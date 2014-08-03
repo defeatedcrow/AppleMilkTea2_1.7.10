@@ -6,7 +6,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.api.edibles.IEdibleItem;
-import mods.defeatedcrow.common.block.EdibleEntityItemBlock;
+import mods.defeatedcrow.common.block.edible.EdibleEntityItemBlock;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;

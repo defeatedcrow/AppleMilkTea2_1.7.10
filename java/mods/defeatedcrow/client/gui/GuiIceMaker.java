@@ -1,6 +1,8 @@
 package mods.defeatedcrow.client.gui;
 
 import mods.defeatedcrow.common.tile.*;
+import mods.defeatedcrow.common.tile.appliance.ContainerIceMaker;
+import mods.defeatedcrow.common.tile.appliance.TileIceMaker;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;

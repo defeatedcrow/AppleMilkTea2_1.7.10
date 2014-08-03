@@ -2,7 +2,7 @@ package mods.defeatedcrow.client.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.defeatedcrow.client.model.ModelIceCream;
+import mods.defeatedcrow.client.model.model.ModelIceCream;
 import mods.defeatedcrow.common.entity.edible.PlaceableIcecream;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;

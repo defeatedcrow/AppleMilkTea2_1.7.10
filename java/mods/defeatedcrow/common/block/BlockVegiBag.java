@@ -40,9 +40,13 @@ public class BlockVegiBag extends Block{
     {
         int i = par2;
         if (i > 9) i = 9;
-        if (par1 == 0 || par1 == 1)
+        if (par1 == 1)
         {
         	return this.wheatBagTop[i];
+        }
+        else if (par1 == 0)
+        {
+        	return this.blockIcon;
         }
         else
         {
@@ -75,7 +79,7 @@ public class BlockVegiBag extends Block{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.blockIcon = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "WheatBag_S");
+		this.blockIcon = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "WheatBag_B");
         this.wheatBagSide = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "WheatBag_S");
         this.wheatBagTop = new IIcon[10];
         

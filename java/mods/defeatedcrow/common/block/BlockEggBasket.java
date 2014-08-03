@@ -191,7 +191,7 @@ public class BlockEggBasket extends BlockContainer{
 	
 	@Override
 	public TileEntity createNewTileEntity(World world, int a) {
-		return DCsConfig.noUseCupDirection ? null : new TileEggs();
+		return new TileEggs();
 	}
 	
 	@Override

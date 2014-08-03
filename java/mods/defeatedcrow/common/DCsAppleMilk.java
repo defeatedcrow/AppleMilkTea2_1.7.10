@@ -18,6 +18,7 @@ import mods.defeatedcrow.common.block.*;
 import mods.defeatedcrow.common.entity.*;
 import mods.defeatedcrow.common.entity.edible.*;
 import mods.defeatedcrow.common.item.*;
+import mods.defeatedcrow.common.world.*;
 import mods.defeatedcrow.event.*;
 import mods.defeatedcrow.handler.*;
 import mods.defeatedcrow.plugin.*;
@@ -59,7 +60,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0_alpha2",
+		version = "1.7.10_2.0_alpha3",
 		dependencies = "required-after:Forge@[10.12.1.1090,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 //required-after:SampleCore;
@@ -118,6 +119,9 @@ public class DCsAppleMilk{
 	public static Block  cassisTree;
 	public static Block  clamSand;
 	public static Block  cropMint;
+	public static Block  saplingYuzu;
+	public static Block  logYuzu;
+	public static Block  leavesYuzu;
 	//インテリア
 	public static Block  bowlRack;
 	public static Block  Basket;
@@ -158,6 +162,8 @@ public class DCsAppleMilk{
 	
 	public static Item  monocle;
 	public static Item  onixSword;
+	
+	public static Item  batteryItem;
 	
 	//ポーションのインスタンス
 	public static Potion Immunization;
@@ -265,7 +271,7 @@ public class DCsAppleMilk{
 		//Registering
 		//Material
 		//ツール属性の内容を登録する
-		enumToolMaterialChalcedony = EnumHelper.addToolMaterial("CHALCEDONY", 2, 128, 5.0F, 2.0F, 18);
+		enumToolMaterialChalcedony = EnumHelper.addToolMaterial("CHALCEDONY", 2, 128, 6.0F, 2.0F, 18);
 		enumToolMaterialChalcedony.customCraftingMaterial = Items.flint;
 		
 		//ブロックやアイテムの読み込みと登録

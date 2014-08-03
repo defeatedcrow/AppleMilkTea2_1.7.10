@@ -15,6 +15,7 @@ public class ItemChalcedonyMonocle extends ItemArmor{
 		super(material, index, slot);
 	}
 	
+	@Override
 	public String getArmorTexture(ItemStack item, Entity entity, int slot, String type)
 	  {
 	    if (item.getItem() == DCsAppleMilk.monocle) {

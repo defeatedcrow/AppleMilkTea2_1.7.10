@@ -5,6 +5,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
 import mods.defeatedcrow.common.block.*;
+import mods.defeatedcrow.common.block.plants.BlockCassisTree;
+import mods.defeatedcrow.common.block.plants.BlockMintCrop;
+import mods.defeatedcrow.common.block.plants.BlockSaplingTea;
+import mods.defeatedcrow.common.block.plants.BlockTeaTree;
+import mods.defeatedcrow.common.block.plants.BlockYuzuSapling;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 
@@ -38,6 +43,13 @@ public class DCsBonemealEvent
 		else if (id == DCsAppleMilk.saplingTea)
 		{
 			if(((BlockSaplingTea)DCsAppleMilk.saplingTea).fertilize(event.world, event.x, event.y, event.z))
+			{
+				event.setResult(Result.ALLOW);
+			}
+		}
+		else if (id == DCsAppleMilk.saplingYuzu)
+		{
+			if(((BlockYuzuSapling)DCsAppleMilk.saplingYuzu).fertilize(event.world, event.x, event.y, event.z))
 			{
 				event.setResult(Result.ALLOW);
 			}

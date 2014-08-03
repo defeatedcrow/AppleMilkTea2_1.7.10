@@ -4,6 +4,7 @@ import mods.defeatedcrow.api.recipe.ITeaRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.block.BlockAutoMaker;
+import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
 import mods.defeatedcrow.handler.Util;
 import mods.defeatedcrow.recipe.*;
 import mods.defeatedcrow.recipe.TeaRecipeRegister.TeaRecipe;

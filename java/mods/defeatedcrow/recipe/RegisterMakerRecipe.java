@@ -1,6 +1,7 @@
 package mods.defeatedcrow.recipe;
 
 import mods.defeatedcrow.api.*;
+import mods.defeatedcrow.api.charge.ChargeItemManager;
 import mods.defeatedcrow.api.recipe.*;
 import mods.defeatedcrow.common.*;
 import net.minecraft.block.Block;
@@ -135,6 +136,13 @@ public class RegisterMakerRecipe {
 		
 		RecipeRegisterManager.iceRecipe.registerCharger(new ItemStack(DCsAppleMilk.icyCrystal, 1, 0), 64);
 		
+	}
+	
+	public void RegisterChargeItem()
+	{
+		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 0),  null,  2000);
+		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 1),  null,  5000);
+		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 2),  null,  100);
 	}
 
 }

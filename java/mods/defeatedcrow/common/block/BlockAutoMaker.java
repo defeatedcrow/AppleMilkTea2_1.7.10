@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import mods.defeatedcrow.api.recipe.*;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.TileAutoMaker;
-import mods.defeatedcrow.common.tile.TileMakerNext;
+import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
 import mods.defeatedcrow.recipe.*;
 import mods.defeatedcrow.recipe.TeaRecipeRegister.TeaRecipe;
 

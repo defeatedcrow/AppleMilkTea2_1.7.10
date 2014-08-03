@@ -37,6 +37,8 @@ public class BlockChalcedonyLamp extends BlockContainer{
 	@SideOnly(Side.CLIENT)
     private IIcon[] force;
 	@SideOnly(Side.CLIENT)
+    private IIcon[] sword;
+	@SideOnly(Side.CLIENT)
     private IIcon inner;
 	
 	public BlockChalcedonyLamp  (Material material, boolean flag)
@@ -156,7 +158,7 @@ public class BlockChalcedonyLamp extends BlockContainer{
 	{
 		int playerFacing = MathHelper.floor_double((double)((par5EntityLivingBase.rotationYaw * 4F) / 360F) + 0.5D) & 3;
  
-		if (!DCsConfig.noUseCupDirection && DCsConfig.setAltTexturePass > 1)
+		if (DCsConfig.setAltTexturePass > 1)
 		{
 			byte facing = 0;
 			if (playerFacing == 0)
@@ -211,6 +213,10 @@ public class BlockChalcedonyLamp extends BlockContainer{
 		{
 			return par1 == 1? this.color[1] : (par1 == 0 ? this.force[0] : this.force[1]);
 		}
+		else if (par2 == 11)
+		{
+			return par1 == 1? this.color[3] : (par1 == 0 ? this.sword[0] : (par1 == 2 ? this.sword[1] : this.sword[2]));
+		}
 		else
 		{
 			return this.color[2];
@@ -228,6 +234,7 @@ public class BlockChalcedonyLamp extends BlockContainer{
 		par3List.add(new ItemStack(this, 1, 8));
 		par3List.add(new ItemStack(this, 1, 9));
 		par3List.add(new ItemStack(this, 1, 10));
+		par3List.add(new ItemStack(this, 1, 11));
     }
 	
 	@Override
@@ -289,6 +296,12 @@ public class BlockChalcedonyLamp extends BlockContainer{
         for (int i = 0; i < 3; ++i)
         {
             this.burst[i] = par1IconRegister.registerIcon("defeatedcrow:lampside_burst_" + i);
+        	
+        }
+        this.sword = new IIcon[3];
+        for (int i = 0; i < 3; ++i)
+        {
+            this.sword[i] = par1IconRegister.registerIcon("defeatedcrow:lampside_stone_" + i);
         	
         }
         this.inner = par1IconRegister.registerIcon("defeatedcrow:whitepanel");

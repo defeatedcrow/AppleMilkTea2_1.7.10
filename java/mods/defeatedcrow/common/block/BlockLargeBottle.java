@@ -26,7 +26,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import mods.defeatedcrow.common.*;
-import mods.defeatedcrow.common.item.ItemWallMug;
+import mods.defeatedcrow.common.item.edible.ItemWallMug;
 import mods.defeatedcrow.common.tile.TileLargeBottle;
 import mods.defeatedcrow.plugin.LoadModHandler;
 import mods.defeatedcrow.handler.Util;

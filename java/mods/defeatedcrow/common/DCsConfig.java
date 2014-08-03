@@ -19,7 +19,7 @@ public class DCsConfig {
 	public static int potionIDPrvSuffocation = 67;
 	
 	//entity
-	public static int entityIdMelon = 0;
+	public static int entityIdMelon = 160;
 	
 	public static int entityIdIce = 150;
 	public static int entityIdCup = 151;
@@ -51,14 +51,12 @@ public class DCsConfig {
 	public static boolean disableClam = false;
 	public static boolean noWetGContainer = false;
 	public static boolean teppannHardMode = false;
-	public static boolean noUseCupDirection = false;
 	public static boolean useSummerRender = false;
 	public static boolean teppannRandomCookTime = false;
 	public static boolean canExplodeMelon = true;
 	public static boolean melonBreakBlock = false;
 	public static boolean safetyChocolate = false;
 	public static boolean allowInfinityWipes = true;
-	public static boolean useJapaneseCup = false;
 	public static boolean bonemealClam = true;
 	public static boolean allowEdibleEntities = true;
 	
@@ -111,15 +109,10 @@ public class DCsConfig {
 					+ "1:cherry flowers, 2:blue pattern, 3:white porcelain");
 			Property useSummer = cfg.get("render setting", "Use Summer Rendering", useSummerRender,
 					"Use the Summer Rendering to the Cups.");
-			Property useJPcup = cfg.get("render setting", "Use Japanese Style Cup", useJapaneseCup,
-					"Use the Japanese style (Yunomi) Rendering to the Cups.");
 			Property teppannHard = cfg.get("setting", "Teppann Hard Mode", teppannHardMode,
 					"Enable time limit to get the food from the iron plate.");
 			Property teppannTime = cfg.get("setting", "Teppann Ready Time", teppannReadyTime,
 					"Set the length of time limit to get the food from the iron plate.(min 1 - max 60)");
-			Property noCupDirection = cfg.get("setting", "Disable Cup Direction", noUseCupDirection,
-					"Disable direction and TileEntity.(For example, the filled cups, the bread basket, and the JP bowls.)"
-			        + BR + "If you wish to not put too many Entitys for reduce the load of your PC, please set true.");
 			Property teppannRandom = cfg.get("setting", "Randomly Teppann Cooking Time", teppannRandomCookTime,
 					"Enable randomly cooking time of iron plate.");
 			Property entityMelon = cfg.get("entityid", "EntityIDCompressedMelon", entityIdMelon);
@@ -150,8 +143,7 @@ public class DCsConfig {
 			Property entityBowl2 = cfg.get("entityid", "EntityIDJPBowl", entityIdBowlJP);
 			Property entitySteak = cfg.get("entityid", "EntityIDSteak", entityIdSteak);
 			Property entityCocktail = cfg.get("entityid", "EntityIDCocktail", entityIdCocktail);
-			Property entityAlcohol = cfg.get("entityid", "EntityIDAlcoholCup", entityIdAlcohol,
-				"If you want to use the Forge automatic setting, please set 0.");
+			Property entityAlcohol = cfg.get("entityid", "EntityIDAlcoholCup", entityIdAlcohol);
 			Property entitySandwich = cfg.get("entityid", "EntityIDSandwich", entityIdSandwich);
 			Property entityTart = cfg.get("entityid", "EntityIDIceTart", entityIdTart);
 			
@@ -180,12 +172,10 @@ public class DCsConfig {
 			disableClam = noClam.getBoolean(false);
 			noWetGContainer = nowetGC.getBoolean(false);
 			teppannHardMode = teppannHard.getBoolean(false);
-			noUseCupDirection = noCupDirection.getBoolean(false);
 			useSummerRender = useSummer.getBoolean(false);
 			teppannRandomCookTime = teppannRandom.getBoolean(false);
 			melonBreakBlock = melonBreak.getBoolean(false);
 			safetyChocolate = safetyChoco.getBoolean(false);
-			useJapaneseCup = useJPcup.getBoolean(false);
 			bonemealClam = bonemealClams.getBoolean(false);
 			allowEdibleEntities = edibleEntity.getBoolean(true);
 			

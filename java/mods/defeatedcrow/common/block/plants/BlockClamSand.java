@@ -1,0 +1,376 @@
+package mods.defeatedcrow.common.block.plants;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.client.particle.EntityOrbFX;
+import mods.defeatedcrow.client.particle.ParticleTex;
+import mods.defeatedcrow.common.AMTLogger;
+import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.DCsConfig;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
+public class BlockClamSand extends Block
+{
+    private final int[] sideX = new int[] {1, -1, 0, 0};
+    private final int[] sideZ = new int[] {0, 0, 1, -1};
+	
+	public BlockClamSand()
+    {
+        super(Material.ground);
+        this.setStepSound(Block.soundTypeSand);
+        this.setHardness(0.5F);
+		this.setResistance(1.0F);
+        this.setTickRandomly(true);
+    }
+    
+    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
+    {
+        super.dropBlockAsItemWithChance(par1World, par2, par3, par4, par5, par6, 0);
+    }
+    
+    @Override 
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    {
+        ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
+
+        ret.add(new ItemStack(DCsAppleMilk.clam, 1, 0));
+
+        return ret;
+    }
+    
+    @Override
+    public Item getItemDropped(int par1, Random par2Random, int par3)
+    {
+        return Item.getItemFromBlock(Blocks.sand);
+    }
+    
+    public int quantityDropped(Random par1Random)
+    {
+        return 1;
+    }
+    
+    @Override
+    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+    {
+        ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
+        int currentMeta = par1World.getBlockMetadata(par2, par3, par4);
+        Material ueBlockMaterial = par1World.getBlock(par2, par3 + 1, par4).getMaterial();
+        
+        if (itemstack == null)
+        {
+        	if (currentMeta == 2)
+        	{
+        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.princessClam,1,0)))
+            	{
+            		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.princessClam,1,0), 1);
+            	}
+        	}
+        	else
+        	{
+        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.clam,1,0)))
+            	{
+            		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.clam,1,0), 1);
+            	}
+        	}
+    		
+    		par1World.setBlock(par2, par3, par4, Blocks.sand);
+    		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+    		return true;
+        }
+        else if (itemstack.getItem() == DCsAppleMilk.clam || itemstack.getItem() == DCsAppleMilk.princessClam)
+        {
+        	if (currentMeta == 2)
+        	{
+        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.princessClam,1,0)))
+            	{
+            		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.princessClam,1,0), 1);
+            	}
+        	}
+        	else
+        	{
+        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.clam,1,0)))
+            	{
+            		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.clam,1,0), 1);
+            	}
+        	}
+    		
+    		par1World.setBlock(par2, par3, par4, Blocks.sand);
+    		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+    		return true;
+        }
+        else
+        {
+        	return false;
+        }
+    }
+    
+    @Override
+    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    {
+    	//まずは確率1/20
+        if(!par1World.isRemote && par1World.rand.nextInt(20) == 0)
+        {
+        	super.updateTick(par1World, par2, par3, par4, par5Random);
+        	
+        	//周囲のハマグリ数のカウント
+        	int count = 0;
+        	boolean aroundPrincess = false;
+        	
+        	//各方角ごとに、隣接1~3マス先までのハマグリ砂を探す。最大12カウント。
+        	for (int i = 0; i < 3; i++)
+        	{
+        		if (par1World.getBlock(par2 + 1 + i, par3, par4) == DCsAppleMilk.clamSand) {
+        			count++;
+        			if (par1World.getBlockMetadata(par2 + 1 + i, par3, par4) == 2) aroundPrincess = true;
+        		}
+        		if (par1World.getBlock(par2 - 1 - i, par3, par4) ==DCsAppleMilk.clamSand) {
+        			count++;
+        			if (par1World.getBlockMetadata(par2 - 1 - i, par3, par4) == 2) aroundPrincess = true;
+        		}
+        		if (par1World.getBlock(par2, par3, par4 + 1 + i) == DCsAppleMilk.clamSand) {
+        			count++;
+        			if (par1World.getBlockMetadata(par2, par3, par4 + 1 + i) == 2) aroundPrincess = true;
+        		}
+        		if (par1World.getBlock(par2, par3, par4 - 1 - i) == DCsAppleMilk.clamSand) {
+        			count++;
+        			if (par1World.getBlockMetadata(par2, par3, par4 - 1 - i) == 2) aroundPrincess = true;
+        		}
+        	}
+        	
+        	if (aroundPrincess)//姫ハマグリがいた
+        	{
+        		count = count / 4;//カウントを減
+        	}
+        	
+        	AMTLogger.debugInfo("count: " + count);
+        	
+        	//メタデータ
+        	int meta = par1World.getBlockMetadata(par2, par3, par4);
+        	int chance = DCsConfig.clamChanceValue;
+        	
+        	//増殖予定の座標選定
+        	int i = par1World.rand.nextInt(4);
+        	int Y1 = par3;
+            int X1 = par2 + this.sideX[i];
+        	int Z1 = par4 + this.sideZ[i];
+        	
+        	//座標が増殖可能な状態か？
+        	boolean flag3 = par1World.getBlock(X1, Y1 + 1, Z1).getMaterial() == Material.water;
+        	boolean flag4 = par1World.getBlock(X1, Y1, Z1) == Blocks.sand|| par1World.getBlock(X1, Y1, Z1) == DCsAppleMilk.clamSand;
+        	boolean flag2 = par1World.rand.nextInt(1 + chance) > par1World.rand.nextInt(1 + count);//どちらも乱数判断
+        	AMTLogger.debugInfo("flag: " + flag3 + "/" + flag4 + "/" + flag2);
+        	
+        	if (meta == 0)//ハマグリ
+        	{
+        		if (count < 6)//ふつうに増える。
+        		{
+        			if (flag2 && flag3 && flag4)
+                	{
+        				if (par1World.getBlockMetadata(X1, Y1, Z1) != 2)
+        				{
+        					par1World.setBlock(X1, Y1, Z1, DCsAppleMilk.clamSand);
+        				}
+        					
+                	}
+        		}
+        		else if (count < 9)
+        		{
+        			if (flag2 && flag3 && flag4)
+    				{
+        				if (par1World.getBlockMetadata(X1, Y1, Z1) != 2)
+        				{
+        					par1World.setBlock(X1, Y1, Z1, DCsAppleMilk.clamSand);
+        				}
+    				}
+    				else
+    				{
+    					//自身が衰退ハマグリ砂になる
+    					par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 3);
+    				}
+        		}
+        		else
+        		{
+        			if (flag2 && flag3 && flag4 && par1World.rand.nextInt(15) == 0)//低確率
+    				{
+        				//プリンセス誕生
+    					par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 3);
+    				}
+    				else
+    				{
+    					//自身が衰退ハマグリ砂になる
+    					par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 3);
+    				}
+        		}
+        	}
+        	else if (meta == 1)
+        	{
+        		if (count < 4)//減ってきた
+        		{
+        			//復活する
+					par1World.setBlockMetadataWithNotify(par2, par3, par4, 0, 3);
+        		}
+        		else
+        		{
+        			//消えてしまう
+        			if (!flag2) par1World.setBlock(par2, par3, par4, Blocks.sand);
+        		}
+        	}
+        	else if (meta == 2 && flag3 && flag4)
+        	{
+        		//姫は無条件でハマグリを増やせる
+        		par1World.setBlock(X1, Y1, Z1, DCsAppleMilk.clamSand);
+        	}
+        	
+        	int meta2 = par1World.getBlockMetadata(par2, par3, par4);//結果のメタ
+        	AMTLogger.debugInfo("after metadata: " + meta2);
+        }
+    	
+    }
+    
+    public void canPlaceClamSand()
+    {
+    	
+    }
+    
+    public int tickRate(World par1World)
+    {
+        return 20;
+    }
+    
+    @SideOnly(Side.CLIENT)
+	@Override
+    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    {
+        int l = par1World.getBlockMetadata(par2, par3, par4);
+        Block i = par1World.getBlock(par2, par3 + 1, par2);
+        double d0 = (double)((float)par2 + 0.5F);
+        double d1 = (double)((float)par3 + 1.1F);
+        double d2 = (double)((float)par4 + 0.5F);
+        double d3 = 0.015D;
+        double d4 = 0.27000001072883606D;
+        
+        boolean flag = par1World.getBlock(par2, par3 + 1, par4).getMaterial() == Material.water;
+        
+        int k = 0;
+        
+        if (l == 2)
+        {
+        	for (int j = 1 ; j < 5 ; j++)
+        	{
+        		if (par1World.getBlock(par2, par3 + j, par4).getMaterial() == Material.water) k++;
+        	}
+        		
+        }
+
+        if (!DCsConfig.noRenderFoodsSteam)
+        {
+        	if (l == 2)
+        	{
+        		EntityOrbFX cloud = new EntityOrbFX(par1World, d0, d1 + (double)k, d2, 0.0D, d3, 0.0D);
+            	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("defeatedcrow:particle_orb"));
+    			FMLClientHandler.instance().getClient().effectRenderer.addEffect(cloud);
+        	}
+        	if (l == 0)
+        	{
+        		par1World.spawnParticle("bubble", d0, d1, d2, 0.0D, 0.0D, 0.0D);
+        	}
+        }
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+        par3List.add(new ItemStack(Item.getItemFromBlock(this), 1, 0));
+        par3List.add(new ItemStack(Item.getItemFromBlock(this), 1, 1));
+        par3List.add(new ItemStack(Item.getItemFromBlock(this), 1, 2));
+    }
+    
+    @Override
+	@SideOnly(Side.CLIENT)
+    public int getBlockColor()
+    {
+        return 0x979797;
+    }
+	
+	@SideOnly(Side.CLIENT)
+    public int getRenderColor(int par1)
+    {
+        return 0x979797;
+    }
+	
+	public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    {
+        return 0x979797;
+    }
+	
+	public int getLightValue(IBlockAccess world, int x, int y, int z)
+    {
+		int l = world.getBlockMetadata(x, y, z);
+		return l == 2 ? 15 : 0;
+    }
+    
+    @Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister par1IconRegister)
+	{
+		this.blockIcon = Blocks.sand.getBlockTextureFromSide(1);
+		
+	}
+    
+    public boolean canPlaceHamaguriHere(World world, int X, int Z, int Y)
+    {
+    	boolean flag3 = world.getBlock(X, Y + 1, Z).getMaterial() == Material.water;
+    	boolean flag4 = world.getBlock(X, Y, Z) == Blocks.sand|| world.getBlock(X, Y, Z) == DCsAppleMilk.clamSand;
+    	return flag3 && flag4;
+    }
+    
+    public int hamaguriCalculater(World world, int X, int Z, int Y)
+    {
+    	int difficulty = 0;
+    	int count = 0;
+    	boolean aroundPrincess = false;
+    	
+    	//各方角ごとに、隣接1~3マス先までのハマグリ砂を探す。最大12カウント。
+    	for (int i = 0; i < 3; i++)
+    	{
+    		if (world.getBlock(X + 1 + i, Y, Z) == DCsAppleMilk.clamSand) {
+    			count++;
+    			if (world.getBlockMetadata(X + 1 + i, Y, Z) == 2) aroundPrincess = true;
+    		}
+    		if (world.getBlock(X - 1 - i, Y, Z) == DCsAppleMilk.clamSand) {
+    			count++;
+    			if (world.getBlockMetadata(X - 1 - i, Y, Z) == 2) aroundPrincess = true;
+    		}
+    		if (world.getBlock(X, Y, Z + 1 + i) == DCsAppleMilk.clamSand) {
+    			count++;
+    			if (world.getBlockMetadata(X, Y, Z + 1 + i) == 2) aroundPrincess = true;
+    		}
+    		if (world.getBlock(X, Y, Z - 1 - i) == DCsAppleMilk.clamSand) {
+    			count++;
+    			if (world.getBlockMetadata(X, Y, Z - 1 - i) == 2) aroundPrincess = true;
+    		}
+    	}
+    	
+    	if (aroundPrincess)//姫ハマグリがいた
+    	{
+    		count /= 4;//カウントを減
+    	}
+    	
+    	return count;
+    }
+}

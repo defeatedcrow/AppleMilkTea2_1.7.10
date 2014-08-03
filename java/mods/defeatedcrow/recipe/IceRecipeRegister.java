@@ -11,7 +11,7 @@ import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import net.minecraft.item.ItemStack;
 
-public class IceRecipeRegister extends RecipeRegisterManager implements IIceRecipeRegister{
+public class IceRecipeRegister implements IIceRecipeRegister{
 	
 	private static List<IceRecipe> recipes;
 	private static List<ChargeIceItem> chargeItems;

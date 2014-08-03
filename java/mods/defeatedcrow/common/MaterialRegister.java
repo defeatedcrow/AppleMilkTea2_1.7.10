@@ -1,7 +1,12 @@
 package mods.defeatedcrow.common;
 
 import mods.defeatedcrow.common.block.*;
+import mods.defeatedcrow.common.block.appliance.*;
+import mods.defeatedcrow.common.block.edible.*;
+import mods.defeatedcrow.common.block.plants.*;
 import mods.defeatedcrow.common.item.*;
+import mods.defeatedcrow.common.item.appliance.*;
+import mods.defeatedcrow.common.item.edible.*;
 import mods.defeatedcrow.potion.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -22,6 +27,7 @@ public class MaterialRegister {
 		this.addFoods();
 		this.addDecorations();
 		this.addMaterials();
+		this.addMachines();
 		
 		//登録順をちょっと調整
 		//ツール
@@ -30,6 +36,7 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.chalcedonyHammer,"defeatedcrow.chalcedonyStoneCutter");
 		GameRegistry.registerItem(DCsAppleMilk.chalcedonyKnife,"defeatedcrow.chalcedonyKnife");
 		GameRegistry.registerItem(DCsAppleMilk.monocle, "defeatedcrow.monocle");
+		GameRegistry.registerItem(DCsAppleMilk.onixSword, "defeatedcrow.onixSword");
 		GameRegistry.registerItem(DCsAppleMilk.chopsticks,"defeatedcrow.chopsticks");
 		
 		//たべもの
@@ -55,6 +62,8 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.inkStick, "defeatedcrow.inkStick");
 		GameRegistry.registerItem(DCsAppleMilk.icyCrystal,"defeatedcrow.icyCrystal");
 		GameRegistry.registerItem(DCsAppleMilk.princessClam,"defeatedcrow.princessClam");
+		//装置関係
+		GameRegistry.registerItem(DCsAppleMilk.batteryItem, "defeatedcrow.battery");
 		
 		//基本ツール
 		GameRegistry.registerBlock(DCsAppleMilk.teaMakerNext, "defeatedcrow.teaMakerNext");
@@ -73,6 +82,9 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.saplingTea, ItemTeaSapling.class, "defeatedcrow.saplingTea");
 		GameRegistry.registerBlock(DCsAppleMilk.teaTree, ItemTeaTree.class, "defeatedcrow.teaTree");
 		GameRegistry.registerBlock(DCsAppleMilk.cassisTree, ItemCassisTree.class, "defeatedcrow.cassisTree");
+		GameRegistry.registerBlock(DCsAppleMilk.saplingYuzu, "defeatedcrow.saplingYuzu");
+		GameRegistry.registerBlock(DCsAppleMilk.logYuzu, "defeatedcrow.logYuzu");
+		GameRegistry.registerBlock(DCsAppleMilk.leavesYuzu, ItemYuzuLeaves.class, "defeatedcrow.leavesYuzu");
 		GameRegistry.registerBlock(DCsAppleMilk.clamSand, ItemClamSand.class, "defeatedcrow.clamSand");
 		GameRegistry.registerBlock(DCsAppleMilk.cropMint, "defeatedcrow.cropMint");
 		GameRegistry.registerBlock(DCsAppleMilk.emptyBottle, "defeatedcrow.emptyBottle");
@@ -217,6 +229,10 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.monocle = (new ItemChalcedonyMonocle(ItemArmor.ArmorMaterial.IRON, DCsAppleMilk.proxy.addArmor("monocle"), 0))
 				.setUnlocalizedName("defeatedcrow.monocle")
+				.setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.onixSword = (new ItemOnixSword())
+				.setUnlocalizedName("defeatedcrow.onixSword")
 				.setCreativeTab(DCsAppleMilk.applemilk);
 	}
 	
@@ -427,6 +443,18 @@ public class MaterialRegister {
 				setBlockName("defeatedcrow.teaTree").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
+		DCsAppleMilk.saplingYuzu = (new BlockYuzuSapling()).
+				setBlockName("defeatedcrow.saplingYuzu").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.logYuzu = (new BlockYuzuLog()).
+				setBlockName("defeatedcrow.logYuzu").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.leavesYuzu = (new BlockYuzuLeaves()).
+				setBlockName("defeatedcrow.leavesYuzu").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
 		DCsAppleMilk.cassisTree = (new BlockCassisTree()).
 				setBlockName("defeatedcrow.cassisTree").
 				setCreativeTab(DCsAppleMilk.applemilk);
@@ -456,5 +484,13 @@ public class MaterialRegister {
 		DCsAppleMilk.inkStick  = (new ItemInkStick()).
 				setUnlocalizedName("defeatedcrow.inkStick").
 				setCreativeTab(DCsAppleMilk.applemilk);
+	}
+	
+	static void addMachines()
+	{
+		DCsAppleMilk.batteryItem = (new ItemBattery()).
+				setUnlocalizedName("defeatedcrow.battery").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
 	}
 }

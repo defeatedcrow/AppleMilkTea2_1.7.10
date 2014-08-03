@@ -1,5 +1,6 @@
 package mods.defeatedcrow.recipe;
 
+import mods.defeatedcrow.api.charge.ChargeItemManager;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 
 public class RegisterManager {
@@ -8,6 +9,8 @@ public class RegisterManager {
 	{
 		RecipeRegisterManager.teaRecipe = new TeaRecipeRegister();
 		RecipeRegisterManager.iceRecipe = new IceRecipeRegister();
+		
+		ChargeItemManager.chargeItem = new ChargeItemRegister();
 	}
 	
 	private RegisterManager(){}

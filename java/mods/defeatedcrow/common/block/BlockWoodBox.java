@@ -33,6 +33,7 @@ public class BlockWoodBox extends Block{
 		this.setStepSound(Block.soundTypeWood);
 	}
 	
+	@Override
 	public int damageDropped(int par1)
     {
         return par1;
