@@ -9,6 +9,7 @@ public class RegisterManager {
 	{
 		RecipeRegisterManager.teaRecipe = new TeaRecipeRegister();
 		RecipeRegisterManager.iceRecipe = new IceRecipeRegister();
+		RecipeRegisterManager.prosessorRecipe = new ProsessorRecipeRegister();
 		
 		ChargeItemManager.chargeItem = new ChargeItemRegister();
 	}

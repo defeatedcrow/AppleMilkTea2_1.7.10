@@ -40,7 +40,23 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		super.readFromNBT(par1NBTTagCompound);
-		this.chargeAmount = par1NBTTagCompound.getByte("ChargeAmount");
+		
+		NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", 10);
+		this.itemstacks = new ItemStack[this.getSizeInventory()];
+ 
+		for (int i = 0; i < nbttaglist.tagCount(); ++i)
+		{
+			NBTTagCompound nbttagcompound1 = (NBTTagCompound)nbttaglist.getCompoundTagAt(i);
+			byte b0 = nbttagcompound1.getByte("Slot");
+ 
+			if (b0 >= 0 && b0 < this.itemstacks.length)
+			{
+				this.itemstacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+			}
+		}
+		
+		this.chargeAmount = par1NBTTagCompound.getShort("ChargeAmount");
+		this.cookTime = par1NBTTagCompound.getShort("CookTime");
 		this.coolTime = par1NBTTagCompound.getByte("CoolTime");
 	}
  
@@ -48,17 +64,37 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		super.writeToNBT(par1NBTTagCompound);
- 
+		
+		NBTTagList nbttaglist = new NBTTagList();
+		 
+		for (int i = 0; i < this.itemstacks.length; ++i)
+		{
+			if (this.itemstacks[i] != null)
+			{
+				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+				nbttagcompound1.setByte("Slot", (byte)i);
+				this.itemstacks[i].writeToNBT(nbttagcompound1);
+				nbttaglist.appendTag(nbttagcompound1);
+			}
+		}
+		
 		//燃焼時間や調理時間などの書き込み
-		par1NBTTagCompound.setByte("ChargeAmount", (byte)this.chargeAmount);
+		par1NBTTagCompound.setShort("ChargeAmount", (short)this.chargeAmount);
+		par1NBTTagCompound.setShort("CookTime", (short)this.cookTime);
 		par1NBTTagCompound.setByte("CoolTime", (byte)this.coolTime);
 	}
 	
 	@Override
-	public abstract Packet getDescriptionPacket();
+	public Packet getDescriptionPacket() {
+        NBTTagCompound nbtTagCompound = new NBTTagCompound();
+        this.writeToNBT(nbtTagCompound);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTagCompound);
+	}
  
 	@Override
-    public abstract void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt);
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        this.readFromNBT(pkt.func_148857_g());
+    }
  
 	//調理中の矢印の描画
 	@SideOnly(Side.CLIENT)
@@ -161,7 +197,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	 
 							if (this.itemstacks[0].stackSize == 0)
 							{
-								this.itemstacks[0] = this.itemstacks[1].getItem().getContainerItem(this.itemstacks[1]);
+								this.itemstacks[0] = null;
 							}
 						}
 					}
@@ -196,11 +232,8 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 			{
 				flag1 = true;
 			}
-	 
-			if (flag1)
-			{
-				this.markDirty();
-			}
+			
+			this.markDirty();
 		}
 	}
  
@@ -364,7 +397,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
  
 	@Override
 	public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {
-		return par1 > 1 ? false : (par1 == 1 ? this.isItemFuel(par2ItemStack) : true);
+		return (par1 == 1 || par1 == 11) ? false : (par1 == 0 ? this.isItemFuel(par2ItemStack) : true);
 	}
  
 	//ホッパーにアイテムの受け渡しをする際の優先度
@@ -382,6 +415,6 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	//隣接するホッパーにアイテムを送れるかどうか
 	@Override
 	public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3) {
-		return par3 != 0;
+		return true;
 	}
 }

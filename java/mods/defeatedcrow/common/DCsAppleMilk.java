@@ -89,6 +89,8 @@ public class DCsAppleMilk{
 	public static Block  filledPan2;
 	public static Block  filledChocoPan;
 	public static Block  teppann;
+	public static Block  prosessor;
+	public static Block  evaporator;
 	//たべもの
 	public static Block  teacupBlock;
 	public static Block  teaCup2;
@@ -422,6 +424,14 @@ public class DCsAppleMilk{
 	    
 	    //アイスメーカーのレシピ登録
 	    (new RegisterMakerRecipe()).registerIce();
+	    AMTLogger.trace("Registered new ice maker recipe");
+	    
+	    //チャージアイテム
+	    (new RegisterMakerRecipe()).registerChargeItem();;
+	    AMTLogger.trace("Registered new ice maker recipe");
+	    
+	    //プロセッサーのレシピ登録
+	    (new RegisterMakerRecipe()).registerProsessor();;
 	    AMTLogger.trace("Registered new ice maker recipe");
 	    
 	    //TEへのIMC送信はここで行う

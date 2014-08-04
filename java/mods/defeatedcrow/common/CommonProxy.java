@@ -6,10 +6,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.client.gui.*;
 import mods.defeatedcrow.common.tile.*;
-import mods.defeatedcrow.common.tile.appliance.ContainerIceMaker;
-import mods.defeatedcrow.common.tile.appliance.TileIceMaker;
-import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
-import mods.defeatedcrow.common.tile.appliance.TileTeppann;
+import mods.defeatedcrow.common.tile.appliance.*;
 import mods.defeatedcrow.handler.NetworkUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,6 +49,7 @@ public class CommonProxy implements IGuiHandler{
 		GameRegistry.registerTileEntity(TileCLamp.class, "TileChalcedonyLamp");
 		GameRegistry.registerTileEntity(TileCordial.class, "TileCordial");
 		GameRegistry.registerTileEntity(TileAlcoholCup.class, "TileAlcoholCup");
+		GameRegistry.registerTileEntity(TileProsessor.class, "TileProsessor");
 	}
 	
     //レンダーIDには-1を返す

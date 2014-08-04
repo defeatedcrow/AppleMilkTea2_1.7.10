@@ -70,7 +70,7 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 			}
 		}
  
-		this.chargeAmount = par1NBTTagCompound.getByte("ChargeAmount");
+		this.chargeAmount = par1NBTTagCompound.getShort("ChargeAmount");
 		this.cookTime = par1NBTTagCompound.getShort("CookTime");
 		this.coolTime = par1NBTTagCompound.getByte("CoolTime");
  
@@ -82,7 +82,7 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 		super.writeToNBT(par1NBTTagCompound);
  
 		//燃焼時間や調理時間などの書き込み
-		par1NBTTagCompound.setByte("ChargeAmount", (byte)this.chargeAmount);
+		par1NBTTagCompound.setShort("ChargeAmount", (byte)this.chargeAmount);
 		par1NBTTagCompound.setShort("CookTime", (short)this.cookTime);
 		par1NBTTagCompound.setByte("CoolTime", (byte)this.coolTime);
  

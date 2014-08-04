@@ -138,11 +138,18 @@ public class RegisterMakerRecipe {
 		
 	}
 	
-	public void RegisterChargeItem()
+	public void registerChargeItem()
 	{
 		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 0),  null,  2000);
 		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 1),  null,  5000);
 		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 2),  null,  100);
+	}
+	
+	public void registerProsessor()
+	{
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 1, 2),
+				new Object[]{DCsAppleMilk.leafTea});
+		
 	}
 
 }

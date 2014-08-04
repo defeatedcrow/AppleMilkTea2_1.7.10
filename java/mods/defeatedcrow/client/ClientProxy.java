@@ -76,6 +76,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerTileEntity(TileCLamp.class, "TileChalcedonyLamp", new TileEntityCLampRenderer());
 		ClientRegistry.registerTileEntity(TileCordial.class, "TileCordial", new TileEntityCordialRenderer());
 		ClientRegistry.registerTileEntity(TileAlcoholCup.class, "TileAlcoholCup", new TileEntityAlcoholCupRenderer());
+		GameRegistry.registerTileEntity(TileProsessor.class, "TileProsessor");
 	}
 
 	@Override

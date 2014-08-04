@@ -72,6 +72,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.emptyPan, "defeatedcrow.emptyPan");
 		GameRegistry.registerBlock(DCsAppleMilk.iceMaker, "defeatedcrow.iceMaker");
 		GameRegistry.registerBlock(DCsAppleMilk.teppann, ItemTeppann.class, "defeatedcrow.teppann");
+		GameRegistry.registerBlock(DCsAppleMilk.prosessor, "defeatedcrow.prosessor");
 		//圧縮系
 		GameRegistry.registerBlock(DCsAppleMilk.woodBox, ItemWoodBox.class, "defeatedcrow.WoodBox");
 		GameRegistry.registerBlock(DCsAppleMilk.appleBox, "defeatedcrow.AppleBox");
@@ -211,8 +212,16 @@ public class MaterialRegister {
 				setBlockName("defeatedcrow.iceMaker").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
+		DCsAppleMilk.prosessor = (new BlockProsessor()).
+				setBlockName("defeatedcrow.prosessor").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
 		DCsAppleMilk.DCgrater  = (ItemGrater)(new ItemGrater()).
 				setUnlocalizedName("defeatedcrow.grater").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.batteryItem = (new ItemBattery()).
+				setUnlocalizedName("defeatedcrow.battery").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.chalcedonyKnife = (new ItemChalcedonyKnife( DCsAppleMilk.enumToolMaterialChalcedony)).
