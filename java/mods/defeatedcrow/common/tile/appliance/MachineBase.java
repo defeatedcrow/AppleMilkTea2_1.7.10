@@ -34,7 +34,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	//チャージアイテムを溶かす際の判定発生間隔
 	private int coolTime = 4;
 	//作業中カウント
-	private int cookTime = 0;
+	public int cookTime = 0;
  
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
@@ -100,14 +100,14 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled(int par1)
 	{
-		return this.cookTime * par1 / 150;
+		return this.cookTime * par1 / 100;
 	}
  
 	//チャージゲージの描画
 	@SideOnly(Side.CLIENT)
 	public int getBurnTimeRemainingScaled(int par1)
 	{
-		return this.chargeAmount * par1 / 5000;
+		return this.chargeAmount * par1 / 25600;
 	}
  
 	//調理中
@@ -120,7 +120,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	//チャージが少しでもあれば
 	public boolean isFullCharged()
 	{
-		return this.chargeAmount > 0;
+		return this.chargeAmount == 25600;
 	}
 	
 	//チャージに空きがあり、燃料スロットのアイテムを受け入れられる状態
@@ -132,7 +132,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		if (item != null)
 		{
 			int i = ChargeItemManager.chargeItem.getChargeAmount(item);
-			flag = this.getChargeAmount() + 1 <= 5000;
+			flag = this.getChargeAmount() + 1 <= 25600;
 		}
 		
 		if (this.getStackInSlot(0) == null)
@@ -185,7 +185,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 					//チャージ残量＋アイテムのチャージ量
 					int i = this.chargeAmount += getItemBurnTime(this.itemstacks[0]);
 	 
-					if (i <= 5000)//5000未満ならOK
+					if (i <= 25600)//25600未満ならOK
 					{
 						this.chargeAmount = i;
 						flag1 = true;
@@ -232,6 +232,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 			{
 				flag1 = true;
 			}
+			
 			
 			this.markDirty();
 		}

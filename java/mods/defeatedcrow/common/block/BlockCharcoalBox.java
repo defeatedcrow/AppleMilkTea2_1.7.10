@@ -54,9 +54,9 @@ public class BlockCharcoalBox extends Block implements IFuelHandler{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IIconRegister)
 	{
-		this.blockIcon = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "Container_S");
-		this.charcoalBoxTop = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "CharcoalContainer_T");
-		this.charcoalBoxSide = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "Container_S");
+		this.blockIcon = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "container_S");
+		this.charcoalBoxTop = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "container_charcoal_T");
+		this.charcoalBoxSide = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "container_S");
 		
 	}
 

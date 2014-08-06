@@ -31,8 +31,8 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 	}
 	
 	@Override
-	public void addRecipe(ItemStack output, Object... input) {
-		recipes.add(new ProsessorRecipe(output, input));
+	public void addRecipe(ItemStack output, ItemStack secondary, Object... input) {
+		recipes.add(new ProsessorRecipe(output, secondary, input));
 		AMTLogger.debugInfo("Add Prosessor recipe: output " + output.getDisplayName());
 	}
 
@@ -44,12 +44,14 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 	public class ProsessorRecipe implements IProsessorRecipe{
 		
 		public final ItemStack output;
+		public final ItemStack secondary;
 		private final Object[] input;
 		private final ArrayList<Object> processedInput;
 		
-		public ProsessorRecipe(ItemStack output, Object... inputs)
+		public ProsessorRecipe(ItemStack output, ItemStack sec, Object... inputs)
 		{
 			this.output = output;
+			this.secondary = sec;
 			this.input = inputs;
 			this.processedInput = new ArrayList<Object>();
 			for (int i = 0; i < inputs.length; i++) {
@@ -79,9 +81,14 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 		}
 		
 		@Override
+		public ItemStack getSecondary() {
+			return this.secondary;
+		}
+		
+		@Override
 		public List<Object> getProcessedInput()
 		{
-			return this.processedInput;
+			return new ArrayList<Object>(this.processedInput);
 		}
 		
 		@Override

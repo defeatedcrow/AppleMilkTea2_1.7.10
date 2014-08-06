@@ -7,6 +7,7 @@ import java.util.List;
 
 import mods.defeatedcrow.api.recipe.IProsessorRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
+import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.recipe.ProsessorRecipeRegister.ProsessorRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -49,12 +50,14 @@ public class TileProsessor extends MachineBase{
 		if (recipes == null || recipes.isEmpty()) return false;
 		
 		ItemStack output = null;
+		ItemStack sec = null;
 		
 		for(IProsessorRecipe recipe : recipes)
 		{
 			if (recipe.matches(items))
 			{
-				output = recipe.getOutput().copy();
+				output = recipe.getOutput();
+				sec = recipe.getSecondary();
 				flag1 = true;
 				break;
 			}
@@ -72,6 +75,22 @@ public class TileProsessor extends MachineBase{
 			{
 				int result = this.itemstacks[11].stackSize + output.stackSize;
 				flag2 = (result <= this.getInventoryStackLimit() && result <= output.getMaxStackSize());
+			}
+		}
+		
+		if (flag2 && sec != null)
+		{
+			if (this.itemstacks[12] == null)
+			{
+				flag2 = true;
+			}
+			else
+			{
+				if (this.itemstacks[12].isItemEqual(sec))
+				{
+					int result = this.itemstacks[12].stackSize + sec.stackSize;
+					flag2 = (result <= this.getInventoryStackLimit() && result <= sec.getMaxStackSize());
+				}
 			}
 		}
 		
@@ -113,8 +132,9 @@ public class TileProsessor extends MachineBase{
 		if (flag && activeRecipe != null)
 		{
 			//まずは材料を減らす
-			List<Object> required = activeRecipe.getProcessedInput();
-			ItemStack output = activeRecipe.getOutput().copy();
+			List<Object> required = new ArrayList<Object>(activeRecipe.getProcessedInput());
+			ItemStack output = activeRecipe.getOutput();
+			ItemStack sec = activeRecipe.getSecondary();
 			
 			for (int i = 2; i < 11; i++)
 			{
@@ -130,20 +150,26 @@ public class TileProsessor extends MachineBase{
 	                {
 	                    boolean match = false;
 	                    Object next = req.next();
-	                    int count = ((ItemStack)next).stackSize;
+	                    int count = 1;
 
 	                    if (next instanceof ItemStack)
 	                    {
+	                    	count = ((ItemStack)next).stackSize;
+	                    	
 	                        match = OreDictionary.itemMatches((ItemStack)next, slot, false)
 	                        		&& slot.stackSize >= count;
 	                    }
 	                    else if (next instanceof ArrayList)
 	                    {
-	                        Iterator<ItemStack> itr = ((ArrayList<ItemStack>)next).iterator();
-	                        while (itr.hasNext() && !match)
+	                        ArrayList<ItemStack> list = new ArrayList<ItemStack>((ArrayList<ItemStack>)next);
+	                        count = 1;
+	                        if (list != null && !list.isEmpty())
 	                        {
-	                            match = OreDictionary.itemMatches(itr.next(), slot, false)
-	                            		&& slot.stackSize > 0;
+	                        	for (ItemStack item : list)
+		                        {
+		                            match = OreDictionary.itemMatches(item, slot, false)
+		                            		&& slot.stackSize > 0;
+		                        }
 	                        }
 	                    }
 
@@ -152,7 +178,8 @@ public class TileProsessor extends MachineBase{
 	                        inRecipe = true;
 	                        required.remove(next);
 	                        this.itemstacks[i].stackSize -= count;;
-	                        if (this.itemstacks[i].stackSize == 0) this.itemstacks[i] = null;
+	                        if (this.itemstacks[i].stackSize < 1) this.itemstacks[i] = null;
+	                        this.markDirty();
 	                        break;
 	                    }
 	                }
@@ -164,6 +191,8 @@ public class TileProsessor extends MachineBase{
 	            }
 			}
 			
+			AMTLogger.debugInfo("current recipe : " + output.toString());
+			
 			//次に完成品を完成品スロットへ
 			if (this.itemstacks[11] == null)
 			{
@@ -173,6 +202,20 @@ public class TileProsessor extends MachineBase{
 			{
 				this.itemstacks[11].stackSize += output.stackSize;
 			}
+			
+			if (sec != null)
+			{
+				if (this.itemstacks[12] == null)
+				{
+					this.itemstacks[12] =sec.copy();
+				}
+				else if (this.itemstacks[12].isItemEqual(sec))
+				{
+					this.itemstacks[12].stackSize += sec.stackSize;
+				}
+			}
+			
+			this.markDirty();
 		}
 	}
 	
@@ -183,12 +226,12 @@ public class TileProsessor extends MachineBase{
 	 * 燃料スロット：0
 	 * 燃料空容器の排出スロット：1
 	 * 材料スロット：2～10
-	 * 完成品スロット：11
+	 * 完成品スロット：11,12
 	 * */
 	
 	@Override
 	public int getSizeInventory() {
-		return 12;
+		return 13;
 	}
 
 	@Override
@@ -198,12 +241,12 @@ public class TileProsessor extends MachineBase{
 
 	@Override
 	protected int[] slotsBottom() {
-		return new int[]{1,11};
+		return new int[]{1,11,12};
 	}
 
 	@Override
 	protected int[] slotsSides() {
-		return new int[]{0,1,11};
+		return new int[]{0,1,11,12};
 	}
 	
 	@Override

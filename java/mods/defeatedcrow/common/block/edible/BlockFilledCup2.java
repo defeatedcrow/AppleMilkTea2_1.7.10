@@ -34,7 +34,7 @@ public class BlockFilledCup2 extends BlockContainer{
 	@SideOnly(Side.CLIENT)
     private IIcon[] contentsIIcon;
 	
-	public static final String[] contents = new String[] {"_earlgray", "_tea_milk", "_appletea", "_tea_milk", "_lime", "_tomato", "_berry", "_berry_milk", "_grape", "_mint"};
+	public static final String[] contents = new String[] {"_earlgray", "_tea_milk", "_appletea", "_tea_milk", "_lime", "_tomato", "_berry", "_berry_milk", "_grape", "_mint", "_lemon"};
 	
 	public BlockFilledCup2 ()
 	{
@@ -196,7 +196,7 @@ public class BlockFilledCup2 extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-		for(int i = 0; i < 10; ++i)
+		for(int i = 0; i < 11; ++i)
 		{
 			par3List.add(new ItemStack(this, 1, i));
 		}
@@ -206,7 +206,7 @@ public class BlockFilledCup2 extends BlockContainer{
     public IIcon getIcon(int par1, int par2)
     { 
 		int i = par2;
-		if (i > 9) i = 9;
+		if (i > 10) i = 10;
 		if (par1 == 2)
         {
         	return this.boxIIcon;
@@ -234,8 +234,8 @@ public class BlockFilledCup2 extends BlockContainer{
 		this.boxIIcon = par1IIconRegister.registerIcon("defeatedcrow:porcelain");
 		
 		
-		this.contentsIIcon = new IIcon[10];
-		for (int i = 0; i < 10; ++i)
+		this.contentsIIcon = new IIcon[11];
+		for (int i = 0; i < 11; ++i)
         {
 			this.blockIcon = par1IIconRegister.registerIcon("defeatedcrow:contents" + contents[i]);
 			this.itemIIcon = par1IIconRegister.registerIcon("defeatedcrow:contents" + contents[i]);

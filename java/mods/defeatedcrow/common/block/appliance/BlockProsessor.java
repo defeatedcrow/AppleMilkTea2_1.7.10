@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -74,32 +75,60 @@ public class BlockProsessor extends BlockContainer {
 	@Override
 	public int getRenderType()
 	{
-		return DCsAppleMilk.modelIceMaker;
+		return DCsAppleMilk.modelProsessor;
 	}
 	
 	//中身の設定
 	@Override
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9){
-//		if (par1World.isRemote)
-//		{
-//			return true;
-//		}
-//		else
-//		{
-//			par5EntityPlayer.openGui(DCsAppleMilk.instance, DCsAppleMilk.instance.guiIceMaker, par1World, par2, par3, par4);
-//			return true;
-//		}
 		
 		ItemStack item = par5EntityPlayer.inventory.getCurrentItem();
 		TileProsessor tile = (TileProsessor)par1World.getTileEntity(par2, par3, par4);
-		if (item == null && tile != null)
+		if (tile != null)
 		{
-			int charge = tile.getChargeAmount();
-			boolean active = tile.isActive();
-			par5EntityPlayer.addChatComponentMessage(new ChatComponentText("current charge amount : " + charge));
-			par5EntityPlayer.addChatComponentMessage(new ChatComponentText("Active : " + active));
+//			if (item == null)
+//			{
+//				int charge = tile.getChargeAmount();
+//				boolean active = tile.isActive();
+//				par5EntityPlayer.addChatComponentMessage(new ChatComponentText("current charge amount : " + charge));
+//				par5EntityPlayer.addChatComponentMessage(new ChatComponentText("Active : " + active));
+//			}
+//			else
+//			{
+				if (par1World.isRemote)
+				{
+					return true;
+				}
+				else
+				{
+					par5EntityPlayer.openGui(DCsAppleMilk.instance, DCsAppleMilk.instance.guiProsessor, par1World, par2, par3, par4);
+					return true;
+				}
+//			}
 		}
 		return true;
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+	{
+		short charge = 0;
+		
+		if (par6ItemStack.getItem() == Item.getItemFromBlock(this))
+		{
+			if (par6ItemStack.hasTagCompound() && par6ItemStack.getTagCompound().hasKey("charge"))
+			{
+				NBTTagCompound tag = par6ItemStack.getTagCompound();
+				charge = tag.getShort("charge");
+			}
+		}
+		
+		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
+		if (tile != null && tile instanceof TileProsessor)
+		{
+			((TileProsessor)tile).setChargeAmount(charge);
+			par1World.markBlockForUpdate(par2, par3, par4);
+		}
 	}
 	
 
@@ -110,10 +139,32 @@ public class BlockProsessor extends BlockContainer {
 	 
 		if (tileentity != null)
 		{
+			int charge = tileentity.getChargeAmount();
+			
+			ItemStack block = new ItemStack(this, 1, 0);
+			
+			float a = this.rand.nextFloat() * 0.8F + 0.1F;
+			float a1 = this.rand.nextFloat() * 0.8F + 0.1F;
+			float a2 = this.rand.nextFloat() * 0.8F + 0.1F;
+			EntityItem drop = new EntityItem(par1World, (double)((float)par2 + a), (double)((float)par3 + a1), (double)((float)par4 + a2), block);
+			
+			if (charge > 0)
+			{
+				NBTTagCompound tag = new NBTTagCompound();
+				tag.setShort("charge", (short) charge);
+				drop.getEntityItem().setTagCompound(tag);
+			}
+			
+			float a3 = 0.05F;
+			drop.motionX = (double)((float)this.rand.nextGaussian() * a3);
+			drop.motionY = (double)((float)this.rand.nextGaussian() * a3 + 0.2F);
+			drop.motionZ = (double)((float)this.rand.nextGaussian() * a3);
+			par1World.spawnEntityInWorld(drop);
+			
 			for (int j1 = 0; j1 < tileentity.getSizeInventory(); ++j1)
 			{
 				ItemStack itemstack = tileentity.getStackInSlot(j1);
-	 
+				
 				if (itemstack != null)
 				{
 					float f = this.rand.nextFloat() * 0.8F + 0.1F;
@@ -160,40 +211,14 @@ public class BlockProsessor extends BlockContainer {
 	@Override
 	public Item getItemDropped(int metadata, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(this);
+		return null;
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.blockIcon = par1IconRegister.registerIcon("defeatedcrow:icemaker_body");
+		this.blockIcon = par1IconRegister.registerIcon("defeatedcrow:porcelain");
 	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
-    {
-        int l = par1World.getBlockMetadata(par2, par3, par4);
-        Block i = par1World.getBlock(par2, par3 - 1, par2);
-        boolean b = false;
-        TileProsessor tile = (TileProsessor) par1World.getTileEntity(par2, par3, par4);
-        if (tile != null){
-        	b = tile.isActive();
-        }
-        
-        double d0 = (double)((float)par2 + par5Random.nextFloat());
-        double d1 = (double)((float)par3 - 0.2F + par5Random.nextFloat());
-        double d2 = (double)((float)par4 + par5Random.nextFloat());
-        double d3 = 0.0099999988079071D;
-        double d4 = 0.0099999988079071D;
-        double d5 = 0.0099999988079071D;
-
-        if (!DCsConfig.noRenderFoodsSteam && b) {
-        	EntityBlinkFX cloud = new EntityBlinkFX(par1World, d0, d1, d2, 0.0D, d4, 0.0D);
-        	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("defeatedcrow:particle_blink"));
-			FMLClientHandler.instance().getClient().effectRenderer.addEffect(cloud);
-        }
-    }
 
 }

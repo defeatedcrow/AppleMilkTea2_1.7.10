@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 public interface IProsessorRecipeRegister {
 	
-	void addRecipe(ItemStack output, Object... input);
+	void addRecipe(ItemStack output, ItemStack secondary, Object... input);
 	
 	List<? extends IProsessorRecipe> getRecipes();
 

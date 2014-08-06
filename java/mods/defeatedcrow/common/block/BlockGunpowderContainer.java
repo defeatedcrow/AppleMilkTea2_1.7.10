@@ -34,7 +34,7 @@ import mods.defeatedcrow.handler.Util;
 
 public class BlockGunpowderContainer extends Block{
 	
-	private static final String[] boxType = new String[] {"Gunpowder", "Kayaku", "Clay", "Clam"};
+	private static final String[] boxType = new String[] {"gunpowder", "kayaku", "clay", "clam"};
 	
 	@SideOnly(Side.CLIENT)
     private IIcon[] boxTex;
@@ -174,12 +174,12 @@ public class BlockGunpowderContainer extends Block{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.boxSideTex = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "Container_S");
+		this.boxSideTex = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "container_S");
 		this.boxTex = new IIcon[4];
 		
         for (int i = 0; i < 4; ++i)
         {
-            this.boxTex[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + boxType[i] + "Container_T");
+            this.boxTex[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "container_" + boxType[i] + "_T");
         }
 	}
 

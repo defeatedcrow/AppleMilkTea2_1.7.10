@@ -38,7 +38,7 @@ public class EntityItemCocktail extends EdibleEntityItemBlock{
 	{
 		if (!par2World.isRemote)
 		{
-//    		this.addSSMoisture(4, 3F, par3EntityPlayer);
+    		this.addSSMoisture(4, 3F, par3EntityPlayer);
 		}
 		par3EntityPlayer.triggerAchievement(AchievementRegister.drinkCocktail);
 		return super.onEaten(par1ItemStack, par2World, par3EntityPlayer);

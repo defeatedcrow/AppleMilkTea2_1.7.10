@@ -39,7 +39,7 @@ public class DCsConfig {
 	public static int teaTreeGenValue = 5;
 	public static int clamChanceValue = 5;
 	public static int setCupTexture = 1;
-	public static int setAltTexturePass = 1;
+	public static int setAltTexturePass = 2;
 	public static int teppannReadyTime = 30;
 	public static int cupStackSize = 1;
 	

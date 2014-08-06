@@ -6,6 +6,7 @@ import java.util.List;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.entity.edible.*;
 import mods.defeatedcrow.handler.Util;
+import mods.defeatedcrow.plugin.LoadSSectorPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,12 +40,12 @@ public class EntityItemTeaCup extends EdibleEntityItemBlock{
 		if (!par2World.isRemote)
 		{
 			this.setPotionWithTea(par3EntityPlayer, meta);
-//			this.addSSMoisture(3, 1.5F, par3EntityPlayer);
+			this.addSSMoisture(12, 1.5F, par3EntityPlayer);
 		}
 
         return super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
     }
-	
+
 	@Override
 	public ItemStack getReturnContainer(int meta) {
 		

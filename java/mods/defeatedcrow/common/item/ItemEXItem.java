@@ -37,7 +37,7 @@ public class ItemEXItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
-        int j = MathHelper.clamp_int(par1, 0, 12);
+        int j = MathHelper.clamp_int(par1, 0, 13);
         return this.iconItemType[j];
     }
 
@@ -59,14 +59,15 @@ public class ItemEXItem extends Item {
 		par3List.add(new ItemStack(this, 1, 2));
 		par3List.add(new ItemStack(this, 1, 3));
 		par3List.add(new ItemStack(this, 1, 4));
+		par3List.add(new ItemStack(this, 1, 8));
+		par3List.add(new ItemStack(this, 1, 9));
 		par3List.add(new ItemStack(this, 1, 5));
 		par3List.add(new ItemStack(this, 1, 6));
 		par3List.add(new ItemStack(this, 1, 7));
-		par3List.add(new ItemStack(this, 1, 8));
-		par3List.add(new ItemStack(this, 1, 9));
 		par3List.add(new ItemStack(this, 1, 10));
 		par3List.add(new ItemStack(this, 1, 11));
 		par3List.add(new ItemStack(this, 1, 12));
+		par3List.add(new ItemStack(this, 1, 13));
 	}
 	
 	@Override
@@ -131,9 +132,9 @@ public class ItemEXItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.iconItemType = new IIcon[13];
+		this.iconItemType = new IIcon[14];
 
-        for (int i = 0; i < 13; ++i)
+        for (int i = 0; i < 14; ++i)
         {
             
         	if (i == 0)
@@ -179,6 +180,10 @@ public class ItemEXItem extends Item {
         	else if (i == 12)
         	{
         		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:dustClam");
+        	}
+        	else if (i == 13)
+        	{
+        		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:nugget_iron");
         	}
         	
         }

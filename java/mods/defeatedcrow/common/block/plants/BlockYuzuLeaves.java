@@ -46,7 +46,8 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setStepSound(soundTypeGrass);
-        this.setGraphicsLevel(true);
+        
+        this.field_150121_P = true;
     }
     
     @SideOnly(Side.CLIENT)

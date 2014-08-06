@@ -44,7 +44,7 @@ public class BlockAppleBox extends Block{
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
 		this.blockIcon = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "WoodBox");
-		this.appleBoxTop = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "AppleBox");
+		this.appleBoxTop = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "applebox");
 		this.appleBoxSide = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "WoodBox");
 		
 	}

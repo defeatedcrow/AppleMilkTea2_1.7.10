@@ -60,7 +60,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0_alpha3",
+		version = "1.7.10_2.0_alpha4",
 		dependencies = "required-after:Forge@[10.12.1.1090,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 //required-after:SampleCore;
@@ -180,6 +180,7 @@ public class DCsAppleMilk{
 	//gui
 	public int guiIdAutoMaker = 1;
 	public int guiIceMaker = 2;
+	public int guiProsessor = 3;
 	
 	//villager関連
 	public static VillagerCafe villager;
@@ -243,6 +244,7 @@ public class DCsAppleMilk{
 	public static int modelCordial;
 	public static int modelCassisTree;
 	public static int modelAlcoholCup;
+	public static int modelProsessor;
 	
 	public static final String[] TEX_PASS = new String[] {
 		"defeatedcrow:",
@@ -416,6 +418,7 @@ public class DCsAppleMilk{
 		this.modelCordial = proxy.getRenderID();
 		this.modelCassisTree = proxy.getRenderID();
 		this.modelAlcoholCup = proxy.getRenderID();
+		this.modelProsessor = proxy.getRenderID();
 		proxy.registerRenderers();
 	    
 	    //ティーメーカーのレシピ数の無限化のため、専用のレシピ登録クラスを用意した
@@ -595,21 +598,21 @@ public class DCsAppleMilk{
 	        }
 	    }
 	    
-//	    if (Loader.isModLoaded("MCEconomy"))
-//	    {
-//	    	AMTLogger.loadingModInfo("MCEconomy");
-//	    	try
-//	        {
-//	          this.SuccessLoadEconomy = true;
+	    if (Loader.isModLoaded("MCEconomy"))
+	    {
+	    	AMTLogger.loadingModInfo("MCEconomy");
+	    	try
+	        {
+	          this.SuccessLoadEconomy = true;
 //	          (new MCEconomyPlugin()).registerSellable();
-//	          AMTLogger.loadedModInfo("MCEconomy");
-//	          
-//	        }
-//	        catch (Exception e) {
-//	        	AMTLogger.failLoadingModInfo("MCEconomy");
-//	          e.printStackTrace(System.err);
-//	        }
-//	    }
+	          AMTLogger.loadedModInfo("MCEconomy");
+	          
+	        }
+	        catch (Exception e) {
+	        	AMTLogger.failLoadingModInfo("MCEconomy");
+	          e.printStackTrace(System.err);
+	        }
+	    }
 	    
 	    if (Loader.isModLoaded("SextiarySector"))
 	    {

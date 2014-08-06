@@ -10,6 +10,8 @@ public interface IProsessorRecipe {
 	
 	ItemStack getOutput();
 	
+	ItemStack getSecondary();
+	
 	public List<Object> getProcessedInput();
 	
 	public int getRecipeSize();

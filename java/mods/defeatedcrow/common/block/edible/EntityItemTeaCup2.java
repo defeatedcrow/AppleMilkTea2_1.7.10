@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityItemTeaCup2 extends EdibleEntityItemBlock{
 	
-	public static final String[] teaType = new String[] {"_earlgray", "_earlgray_milk", "_appletea", "_appletea_milk", "_lime", "_tomato", "_berry", "_berry_milk", "_grape", "_mint"};
+	public static final String[] teaType = new String[] {"_earlgray", "_earlgray_milk", "_appletea", "_appletea_milk", "_lime", "_tomato", "_berry", "_berry_milk", "_grape", "_mint", "_yuzu"};
 	
 	private int healAmount = 0;
 	
@@ -40,7 +40,7 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock{
 		if (!par2World.isRemote)
 		{
 			this.setPotionWithTea(par3EntityPlayer, meta);
-//			this.addSSMoisture(3, 1.5F, par3EntityPlayer);
+			this.addSSMoisture(-8, 1.5F, par3EntityPlayer);
 		}
 
         return super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
@@ -119,12 +119,12 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock{
 	
 	protected void setPotionWithTea (EntityPlayer par1EntityPlayer, int meta)
 	{
-		if ((meta < 4) && DCsAppleMilk.succeedAddPotion)
+		if (meta < 4)
 		{
 			par1EntityPlayer.addPotionEffect(new PotionEffect(Potion.heal.id, 1, 0));
 		}
 		
-		if (meta == 4)
+		if (meta == 4 || meta == 10)
 		{
 			clearNegativePotion(par1EntityPlayer);
 		}
@@ -158,7 +158,7 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock{
 	public String getUnlocalizedName(ItemStack par1ItemStack)
 	{
 		int m = (par1ItemStack.getItemDamage());
-		if (m < 10) return super.getUnlocalizedName() + teaType[m];
+		if (m < 11) return super.getUnlocalizedName() + teaType[m];
 		else return super.getUnlocalizedName() + m;
 		
 	}

@@ -42,7 +42,7 @@ public class EntityItemAlcoholCup extends EdibleEntityItemBlock{
 	{
 		if (!par2World.isRemote)
 		{
-//    		this.addSSMoisture(4, 3F, par3EntityPlayer);
+    		this.addSSMoisture(4, 3F, par3EntityPlayer);
     		if (DCsAppleMilk.suffocation != null && par3EntityPlayer.isPotionActive(DCsAppleMilk.suffocation))
     		{
     			par3EntityPlayer.removePotionEffect(DCsAppleMilk.suffocation.id);

@@ -20,8 +20,10 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import mods.defeatedcrow.api.edibles.IEdibleItem;
 import mods.defeatedcrow.client.entity.IEdibleRenderHandler;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
 import mods.defeatedcrow.common.entity.edible.PlaceableFoods;
+import mods.defeatedcrow.plugin.LoadSSectorPlugin;
 
 public abstract class EdibleEntityItemBlock extends ItemBlock implements IEdibleItem{
 	
@@ -121,6 +123,25 @@ public abstract class EdibleEntityItemBlock extends ItemBlock implements IEdible
 		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
 		ret.add(new PotionEffect(Potion.field_76443_y.id, 2, 2));
 		return ret;
+	}
+	
+	/**
+	 * SextiarySector導入時にのみはたらくメソッド。
+	 * 水分やスタミナが増減する。
+	 * <br>int i にマイナス数値が入れば自動的に減少メソッドになる。
+	 * */
+	protected void addSSMoisture(int i, float f, EntityPlayer par3EntityPlayer) {
+		if (DCsAppleMilk.SuccessLoadSSector)
+		{
+			LoadSSectorPlugin.addStatus(i, f, 0, 0, par3EntityPlayer);
+		}
+	}
+	
+	protected void addSSStamina(int i, float f, EntityPlayer par3EntityPlayer) {
+		if (DCsAppleMilk.SuccessLoadSSector)
+		{
+			LoadSSectorPlugin.addStatus(0, 0, i, f, par3EntityPlayer);
+		}
 	}
 	
 	//これを継承しているItemBlockは右クリックでモブにポーション効果を与えられる

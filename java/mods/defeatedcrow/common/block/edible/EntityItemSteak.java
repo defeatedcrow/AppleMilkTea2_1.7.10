@@ -41,6 +41,9 @@ public class EntityItemSteak extends EdibleEntityItemBlock{
 		
 		if (!par2World.isRemote)
 		{
+			this.addSSMoisture(-2, 3F, par3EntityPlayer);
+			this.addSSStamina(4, 3F, par3EntityPlayer);
+			
 			if (meta < 3 && DCsAppleMilk.suffocation != null)
 			{
 				boolean flag = par3EntityPlayer.isPotionActive(DCsAppleMilk.suffocation)

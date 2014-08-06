@@ -19,7 +19,7 @@ import mods.defeatedcrow.handler.Util;
 
 public class BlockVegiBag extends Block{
 	
-	private static final String[] bagVegi = new String[] {"_Leaves", "_Potato", "_Carrot", "_Pumpkin", "_Seed", "_Reed", "_Cactus", "_Cocoa", "_Wart", "Sugar"};
+	private static final String[] bagVegi = new String[] {"_leaves", "_potato", "_carrot", "_pumpkin", "_seed", "_reed", "_cactus", "_cocoa", "_wart", "_sugar"};
 	private static final String[] bagTexType = new String[] {"LeavesBag_T", "PotatoBag_T", "CarrotBag_T", "PumpkinBag_T", "SeedBag_T", "ReedBag_T",
 		"CactusBag_T", "CocoaBag_T", "WartBag_T", "SugarBag_T"};
 	
@@ -79,13 +79,13 @@ public class BlockVegiBag extends Block{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.blockIcon = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "WheatBag_B");
-        this.wheatBagSide = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "WheatBag_S");
+		this.blockIcon = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "bag_wheat_B");
+        this.wheatBagSide = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "bag_wheat_S");
         this.wheatBagTop = new IIcon[10];
         
         for (int i = 0; i < 10; ++i)
         {
-            this.wheatBagTop[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + bagTexType[i]);
+            this.wheatBagTop[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "bag" + bagVegi[i] + "_T");
         }
         
 	}

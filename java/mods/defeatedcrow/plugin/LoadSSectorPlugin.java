@@ -2,7 +2,8 @@ package mods.defeatedcrow.plugin;
 
 import java.util.ArrayList;
 
-//import sextiarysector.stats.EntityPlayerManager;
+
+import shift.sextiarysector.api.SextiarySectorAPI;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
@@ -59,26 +60,31 @@ public class LoadSSectorPlugin {
 
 	}
 	
-//	public static void addStatus(int par1, float par2, int par3, float par4, EntityPlayer par5EntityPlayer)
-//	{
-//		int prevMoist = EntityPlayerManager.getMoistureStats(par5EntityPlayer).getMoistureLevel();
-//		float prevSatMoist = EntityPlayerManager.getMoistureStats(par5EntityPlayer).getSaturationLevel();
-//		int prevStam = EntityPlayerManager.getStaminaStats(par5EntityPlayer).getStaminaLevel();
-//		float prevSatStam = EntityPlayerManager.getStaminaStats(par5EntityPlayer).getSaturationLevel();
-//		boolean flag1 = false;
-//		boolean flag2 = false;
-//		
-//		int m = prevMoist + par1 < 0 ? 0 : par1;
-//		float ms = prevSatMoist + par2 < 0 ? 0 : par2;
-//		int s = prevStam + par3 < 0 ? 0 : par3;
-//		float ss = prevSatStam + par4 < 0 ? 0 : par4;
-//		
-//		if (!par5EntityPlayer.worldObj.isRemote && DCsConfig.allowMoisture)
-//		{
-//			EntityPlayerManager.getMoistureStats(par5EntityPlayer).addStats(m, ms);
-//			EntityPlayerManager.getStaminaStats(par5EntityPlayer).addStats(s, ss);
-//		}
-//		
-//	}
+	public static void addStatus(int par1, float par2, int par3, float par4, EntityPlayer par5EntityPlayer)
+	{
+		int m = par1;
+		float ms = par2;
+		int s = par3;
+		float ss = par4;
+		
+		if (m > 0)
+		{
+			SextiarySectorAPI.addMoistureStats(par5EntityPlayer, m, ms);
+		}
+		else
+		{
+			SextiarySectorAPI.addMoistureExhaustion(par5EntityPlayer, (float)-m*4.0F);
+		}
+		
+		if (s > 0)
+		{
+			SextiarySectorAPI.addStaminaStats(par5EntityPlayer, s, ss);
+		}
+		else
+		{
+			SextiarySectorAPI.addStaminaExhaustion(par5EntityPlayer, (float)-s*4.0F);
+		}
+		
+	}
 
 }

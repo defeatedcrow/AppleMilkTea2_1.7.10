@@ -88,6 +88,9 @@ public class CommonProxy implements IGuiHandler{
 		else if (tileentity instanceof TileIceMaker) {
 			return new ContainerIceMaker(player, (TileIceMaker)tileentity);
 		}
+		else if (tileentity instanceof TileProsessor) {
+			return new ContainerProsessor(player, (TileProsessor)tileentity);
+		}
 		return null;
 	}
  
@@ -102,6 +105,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		else if (tileentity instanceof TileIceMaker) {
 			return new GuiIceMaker(player, (TileIceMaker)tileentity);
+		}
+		else if (tileentity instanceof TileProsessor) {
+			return new GuiProsessor(player, (TileProsessor)tileentity);
 		}
 		return null;
 	}
