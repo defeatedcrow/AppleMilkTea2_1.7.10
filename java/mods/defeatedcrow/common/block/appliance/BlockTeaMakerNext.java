@@ -14,6 +14,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.*;
@@ -48,6 +49,7 @@ public class BlockTeaMakerNext extends BlockContainer{
 	
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
+		Random rand = new Random();
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
         TileMakerNext tile = (TileMakerNext)par1World.getTileEntity(par2, par3, par4);
         if (tile == null)return false;
@@ -196,7 +198,7 @@ public class BlockTeaMakerNext extends BlockContainer{
         			AMTLogger.debugInfo("milk -> milk_drink");
         			tile.setMilk(true);
 					tile.setItemStack(new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage()));
-					tile.setRemainByte((byte)(3 + par1World.rand.nextInt(3)));
+					tile.setRemainByte((byte)(3 + rand.nextInt(3)));
 					tile.markDirty();
 					
 					if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
@@ -216,7 +218,7 @@ public class BlockTeaMakerNext extends BlockContainer{
         				if (recipe.getOutputMilk() != null) //ミルク追加可能として事前に登録済み
         				{
         					tile.setMilk(true);//ミルクフラグだけONに
-        					tile.setRemainByte((byte)(3 + par1World.rand.nextInt(3)));
+        					tile.setRemainByte((byte)(3 + rand.nextInt(3)));
         					tile.markDirty();
         					
         					if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.bucket, 1, 0)))
@@ -263,7 +265,7 @@ public class BlockTeaMakerNext extends BlockContainer{
             	AMTLogger.debugInfo("This Item has recipe: " + flag + ", output: " + s);
         		
     			tile.setItemStack(new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage()));
-    			tile.setRemainByte((byte)(3 + par1World.rand.nextInt(3))); //3～5杯
+    			tile.setRemainByte((byte)(3 + rand.nextInt(3))); //3～5杯
     			tile.markDirty();
     			
     			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
@@ -276,7 +278,7 @@ public class BlockTeaMakerNext extends BlockContainer{
         	else if(DCsAppleMilk.SuccessLoadIC2 && LoadIC2Plugin.IC2Coffeepowder != null && itemstack.getItem() == LoadIC2Plugin.IC2Coffeepowder.getItem())
         	{
         		tile.setItemStack(new ItemStack(DCsAppleMilk.gratedApple, 1, 3));//かわりに当MODのコーヒー粉が突っ込まれる
-    			tile.setRemainByte((byte)(3 + par1World.rand.nextInt(3))); //3～5杯
+    			tile.setRemainByte((byte)(3 + rand.nextInt(3))); //3～5杯
     			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
     			if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
                 {
@@ -493,4 +495,24 @@ public class BlockTeaMakerNext extends BlockContainer{
 	{
 		this.boxTex = par1IconRegister.registerIcon("defeatedcrow:porcelain");
 	}
+	
+	@Override
+    public boolean hasComparatorInputOverride()
+    {
+        return true;
+    }
+
+    @Override
+    public int getComparatorInputOverride(World world, int i, int j, int k, int l)
+    {
+    	TileMakerNext tile = (TileMakerNext) world.getTileEntity(i, j, k);
+        if (tile != null)
+        {
+        	return tile.getRemainByte();
+        }
+        else
+        {
+        	return 0;
+        }
+    }
 }

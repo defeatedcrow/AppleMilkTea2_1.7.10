@@ -46,6 +46,7 @@ import net.minecraftforge.common.*;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fluids.Fluid;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.SidedProxy;
@@ -60,7 +61,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0_alpha4",
+		version = "1.7.10_2.0.alpha5",
 		dependencies = "required-after:Forge@[10.12.1.1090,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 //required-after:SampleCore;
@@ -108,6 +109,7 @@ public class DCsAppleMilk{
 	public static Block  woodBox;
 	public static Block  appleBox;
 	public static Block  vegiBag;
+	public static Block  cardboard;
 	public static BlockCharcoalBox  charcoalBox;
 	public static Block  gunpowderContainer;
 	public static Block  eggBasket;
@@ -164,8 +166,18 @@ public class DCsAppleMilk{
 	
 	public static Item  monocle;
 	public static Item  onixSword;
+	public static Item  pruningShears;
 	
 	public static Item  batteryItem;
+	
+	//液体
+	public static Fluid  vegitableOil;
+	public static Fluid  camelliaOil;
+	
+	public static Block  blockVegitableOil;
+	
+	public static Item  bucketVegiOil;
+	public static Item  bottleVegiOil;
 	
 	//ポーションのインスタンス
 	public static Potion Immunization;
@@ -181,6 +193,7 @@ public class DCsAppleMilk{
 	public int guiIdAutoMaker = 1;
 	public int guiIceMaker = 2;
 	public int guiProsessor = 3;
+	public int guiEvaporator = 4;
 	
 	//villager関連
 	public static VillagerCafe villager;
@@ -245,6 +258,7 @@ public class DCsAppleMilk{
 	public static int modelCassisTree;
 	public static int modelAlcoholCup;
 	public static int modelProsessor;
+	public static int modelEvaporator;
 	
 	public static final String[] TEX_PASS = new String[] {
 		"defeatedcrow:",
@@ -275,17 +289,18 @@ public class DCsAppleMilk{
 		//Registering
 		//Material
 		//ツール属性の内容を登録する
-		enumToolMaterialChalcedony = EnumHelper.addToolMaterial("CHALCEDONY", 2, 128, 6.0F, 2.0F, 18);
+		enumToolMaterialChalcedony = EnumHelper.addToolMaterial("CHALCEDONY", 2, 128, 5.0F, 4.0F, 18);
 		enumToolMaterialChalcedony.customCraftingMaterial = Items.flint;
 		
 		//ブロックやアイテムの読み込みと登録
-		(new MaterialRegister()).load();
+		MaterialRegister.instance.load();
+		MaterialRegister.instance.addFluid();
 		
 		//ポーションIDが拡張出来ているかのチェックを行い、成功時のみポーションを追加する。
 		int potion = Potion.potionTypes.length;
 		try
 		{
-			(new MaterialRegister()).addPotion();
+			MaterialRegister.instance.addPotion();
 			this.succeedAddPotion = true;
 			AMTLogger.debugInfo("Succeed to add new potion effect.");
 		}
@@ -383,8 +398,13 @@ public class DCsAppleMilk{
 		MinecraftForge.EVENT_BUS.register(new DCsBonemealEvent());
 		//モノクルの鉱石辞書名確認機能
 		MinecraftForge.EVENT_BUS.register(new ShowOreNameEvent());
+		
+		MinecraftForge.EVENT_BUS.register(new BucketFillEvent());
 		//クラフトで耐久が減るアイテムの登録
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());
+		
+		//ディスペンサー動作への登録
+		DispenserEvent.instance.init();
 		
 		//Registering new Render
 		//新しいレンダーIDの登録もプロキシクラス内でやる
@@ -419,6 +439,7 @@ public class DCsAppleMilk{
 		this.modelCassisTree = proxy.getRenderID();
 		this.modelAlcoholCup = proxy.getRenderID();
 		this.modelProsessor = proxy.getRenderID();
+		this.modelEvaporator = proxy.getRenderID();
 		proxy.registerRenderers();
 	    
 	    //ティーメーカーのレシピ数の無限化のため、専用のレシピ登録クラスを用意した
@@ -430,12 +451,16 @@ public class DCsAppleMilk{
 	    AMTLogger.trace("Registered new ice maker recipe");
 	    
 	    //チャージアイテム
-	    (new RegisterMakerRecipe()).registerChargeItem();;
+	    (new RegisterMakerRecipe()).registerChargeItem();
 	    AMTLogger.trace("Registered new ice maker recipe");
 	    
 	    //プロセッサーのレシピ登録
-	    (new RegisterMakerRecipe()).registerProsessor();;
-	    AMTLogger.trace("Registered new ice maker recipe");
+	    (new RegisterMakerRecipe()).registerProsessor();
+	    AMTLogger.trace("Registered new prosessor recipe");
+
+	    //エバポレーターのレシピ登録
+	    (new RegisterMakerRecipe()).registerEvaporator();;
+	    AMTLogger.trace("Registered new evaporator recipe");
 	    
 	    //TEへのIMC送信はここで行う
 	    if (Loader.isModLoaded("ThermalExpansion"))

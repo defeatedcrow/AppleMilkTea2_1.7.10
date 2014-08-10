@@ -50,6 +50,7 @@ public class CommonProxy implements IGuiHandler{
 		GameRegistry.registerTileEntity(TileCordial.class, "TileCordial");
 		GameRegistry.registerTileEntity(TileAlcoholCup.class, "TileAlcoholCup");
 		GameRegistry.registerTileEntity(TileProsessor.class, "TileProsessor");
+		GameRegistry.registerTileEntity(TileEvaporator.class, "TileEvaporator");
 	}
 	
     //レンダーIDには-1を返す
@@ -91,6 +92,9 @@ public class CommonProxy implements IGuiHandler{
 		else if (tileentity instanceof TileProsessor) {
 			return new ContainerProsessor(player, (TileProsessor)tileentity);
 		}
+		else if (tileentity instanceof TileEvaporator) {
+			return new ContainerEvaporator(player, (TileEvaporator)tileentity);
+		}
 		return null;
 	}
  
@@ -108,6 +112,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		else if (tileentity instanceof TileProsessor) {
 			return new GuiProsessor(player, (TileProsessor)tileentity);
+		}
+		else if (tileentity instanceof TileEvaporator) {
+			return new GuiEvaporator(player, (TileEvaporator)tileentity);
 		}
 		return null;
 	}

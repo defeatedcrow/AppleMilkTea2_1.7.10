@@ -8,6 +8,7 @@ import mods.defeatedcrow.api.recipe.ITeaRecipe;
 import mods.defeatedcrow.api.recipe.ITeaRecipeRegister;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
+import mods.defeatedcrow.event.DispenserEvent;
 
 public class TeaRecipeRegister implements ITeaRecipeRegister{
 	
@@ -81,6 +82,7 @@ public class TeaRecipeRegister implements ITeaRecipeRegister{
 		if (input != null)
 		{
 			this.recipes.add(new TeaRecipe(input, output, output2, tex, milktex));
+			DispenserEvent.instance.registerTeaMakerEvent(input);
 		}
 		String milkName = "null";
 		if (output2 != null) milkName = output2.getDisplayName();

@@ -77,12 +77,12 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 
 		@Override
 		public ItemStack getOutput() {
-			return this.output;
+			return this.output.copy();
 		}
 		
 		@Override
 		public ItemStack getSecondary() {
-			return this.secondary;
+			return this.secondary == null ? null : this.secondary.copy();
 		}
 		
 		@Override

@@ -20,6 +20,7 @@ public class TileEntityCLampRenderer extends TileEntitySpecialRenderer
     private static final ResourceLocation DTex = new ResourceLocation("defeatedcrow:textures/entity/x32/lamp_embrion.png");
     private static final ResourceLocation RTex = new ResourceLocation("defeatedcrow:textures/entity/x32/lamp_R13A.png");
     private static final ResourceLocation GTex = new ResourceLocation("defeatedcrow:textures/entity/x32/lamp_markIII.png");
+    private static final ResourceLocation ITex = new ResourceLocation("defeatedcrow:textures/entity/x32/lamp_sword.png");
     public static TileEntityCLampRenderer lampRenderer;
     private ModelCLamp lampModel = new ModelCLamp();
 
@@ -56,6 +57,9 @@ public class TileEntityCLampRenderer extends TileEntitySpecialRenderer
         }
         else if (l == 10){
         	this.bindTexture(GTex);
+        }
+        else{
+        	this.bindTexture(ITex);
         }
         
         GL11.glPushMatrix();

@@ -1,7 +1,5 @@
 package mods.defeatedcrow.common.tile.appliance;
 
-import mods.defeatedcrow.api.charge.ChargeItemManager;
-import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -11,35 +9,29 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ContainerProsessor extends Container {
+public class ContainerEvaporator extends Container {
+	
+	private TileEvaporator tileentity;
 	 
-	private TileProsessor tileentity;
- 
-	private TileProsessor inventory;
+	private TileEvaporator inventory;
  
 	private int lastCookTime;
 	private int lastBurnTime;
  
-	public ContainerProsessor(EntityPlayer player, TileProsessor par2TileEntity) {
+	public ContainerEvaporator(EntityPlayer player, TileEvaporator par2TileEntity) {
 		this.tileentity = par2TileEntity;
 		this.inventory = par2TileEntity;
 		
 		//燃料
 		this.addSlotToContainer(new Slot(this.inventory, 0, 9, 9));
 		//材料
-		int j;
-		for (j = 0; j < 3; ++j)
-		{
-			for (int k = 0; k < 3; ++k)
-			{
-				this.addSlotToContainer(new Slot(this.inventory, 2 + k + j * 3, 33 + k * 18, 16 + j * 18));
-			}
-		}
+		this.addSlotToContainer(new Slot(this.inventory, 2, 56, 17));
 		
 		//完成品
 		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 1, 9, 55));
-		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 11, 118, 35));
-		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 12, 145, 35));
+		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 3, 110, 21));
+		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 4, 141, 58));
+		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 5, 56, 55));
 		
 		int i;
  
@@ -123,10 +115,10 @@ public class ContainerProsessor extends Container {
 			itemstack = itemstack1.copy();
  
 			//カーソルを排出スロットにあわせているとき
-			if (par2 == 1 || par2 == 11 || par2 == 12)
+			if (par2 == 1 || par2 == 3 || par2 == 4 || par2 == 5)
 			{
-				//アイテムの移動(スロット3～39へ)
-				if (!this.mergeItemStack(itemstack1, 13, 49, true))
+				//アイテムの移動(スロット6～42へ)
+				if (!this.mergeItemStack(itemstack1, 6, 42, true))
 				{
 					return null;
 				}
@@ -134,10 +126,10 @@ public class ContainerProsessor extends Container {
 				slot.onSlotChange(itemstack1, itemstack);
 			}
 			//カーソルをプレイヤーのインベントリにあわせている
-			else if (par2 > 12)
+			else if (par2 > 5)
 			{
 				//燃料である
-				if (TileProsessor.isItemFuel(itemstack))
+				if (TileEvaporator.isItemFuel(itemstack))
 				{
 					//アイテムの移動(スロット0～1へ)
 					if (!this.mergeItemStack(itemstack1, 0, 1, false))
@@ -147,15 +139,15 @@ public class ContainerProsessor extends Container {
 				}
 				else//それ以外のアイテムはすべて材料欄に飛ばす
 				{
-					//アイテムの移動(スロット2～10へ)
-					if (!this.mergeItemStack(itemstack1, 1, 10, false))
+					//アイテムの移動(スロット2へ)
+					if (!this.mergeItemStack(itemstack1, 1, 2, false))
 					{
 						return null;
 					}
 				}
 			}
-			//アイテムの移動(スロット3～39へ)
-			else if (!this.mergeItemStack(itemstack1, 13, 49, false))
+			//アイテムの移動(スロット6～42へ)
+			else if (!this.mergeItemStack(itemstack1, 6, 42, false))
 			{
 				return null;
 			}
@@ -179,5 +171,5 @@ public class ContainerProsessor extends Container {
  
 		return itemstack;
 	}
- 
+
 }

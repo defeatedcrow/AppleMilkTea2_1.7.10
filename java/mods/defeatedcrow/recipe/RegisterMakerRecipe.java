@@ -274,5 +274,10 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 4), new ItemStack(Items.bucket),
 				new Object[]{new ItemStack(DCsAppleMilk.mincedFoods, 1 ,8), "bucketMilk"});
 	}
+	
+	public void registerEvaporator()
+	{
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.bakedApple), null, new ItemStack(DCsAppleMilk.teacupBlock, 1, 1));
+	}
 
 }

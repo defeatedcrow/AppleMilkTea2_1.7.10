@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderProsessor implements ISimpleBlockRenderingHandler{
+public class RenderEvaporator implements ISimpleBlockRenderingHandler{
 	
 	private IIcon boxIIcon;
 	private IIcon bottomIIcon;
@@ -27,24 +27,24 @@ public class RenderProsessor implements ISimpleBlockRenderingHandler{
 			RenderBlocks renderer) {
 		
 		int meta = metadata;
-		this.boxIIcon = DCsAppleMilk.prosessor.getBlockTextureFromSide(0);
-		this.bottomIIcon = Blocks.stained_hardened_clay.getIcon(1,3);
-		this.glassIIcon = DCsAppleMilk.blockIcecream.getBlockTextureFromSide(0);
+		this.boxIIcon = DCsAppleMilk.evaporator.getIcon(0, 0);
+		this.bottomIIcon = DCsAppleMilk.evaporator.getIcon(2, 0);
+		this.glassIIcon = DCsAppleMilk.evaporator.getIcon(1, 0);
 		
 		if (modelID == this.getRenderId())
 		{
 			//bottom
-			renderInvCuboid(renderer, block,  2.0F/16.0F, 1.0F/16.0F, 2.0F/16.0F, 14.0F/16.0F, 2.0F/16.0F, 14.0F/16.0F,  this.bottomIIcon);
-			renderInvCuboid(renderer, block,  2.0F/16.0F, 0.0F/16.0F, 2.0F/16.0F, 4.0F/16.0F, 1.0F/16.0F, 4.0F/16.0F,  this.bottomIIcon);
-			renderInvCuboid(renderer, block,  2.0F/16.0F, 0.0F/16.0F, 12.0F/16.0F, 4.0F/16.0F, 1.0F/16.0F, 14.0F/16.0F,  this.bottomIIcon);
-			renderInvCuboid(renderer, block,  12.0F/16.0F, 0.0F/16.0F, 2.0F/16.0F, 14.0F/16.0F, 1.0F/16.0F, 4.0F/16.0F,  this.bottomIIcon);
-			renderInvCuboid(renderer, block,  12.0F/16.0F, 0.0F/16.0F, 12.0F/16.0F, 14.0F/16.0F, 1.0F/16.0F, 14.0F/16.0F,  this.bottomIIcon);
-			//body
-			renderInvCuboid(renderer, block,  1.0F/16.0F, 2.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 8.0F/16.0F, 15.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  4.0F/16.0F, 15.0F/16.0F, 4.0F/16.0F, 12.0F/16.0F, 16.0F/16.0F, 12.0F/16.0F,  this.boxIIcon);
-			//glass
-			renderInvCuboid(renderer, block,  3.0F/16.0F, 8.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 15.0F/16.0F, 13.0F/16.0F,  this.glassIIcon);
-			
+			renderInvCuboid(renderer, block,  0.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F,  this.bottomIIcon);
+			//bath
+			renderInvCuboid(renderer, block,  8.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 2.0F/16.0F, 8.0F/16.0F,  this.bottomIIcon);
+			renderInvCuboid(renderer, block,  8.0F/16.0F, 2.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 6.0F/16.0F, 2.0F/16.0F,  this.boxIIcon);
+			renderInvCuboid(renderer, block,  8.0F/16.0F, 2.0F/16.0F, 7.0F/16.0F, 15.0F/16.0F, 6.0F/16.0F, 8.0F/16.0F,  this.boxIIcon);
+			renderInvCuboid(renderer, block,  8.0F/16.0F, 2.0F/16.0F, 2.0F/16.0F, 9.0F/16.0F, 6.0F/16.0F, 7.0F/16.0F,  this.boxIIcon);
+			renderInvCuboid(renderer, block,  14.0F/16.0F, 2.0F/16.0F, 2.0F/16.0F, 15.0F/16.0F, 6.0F/16.0F, 7.0F/16.0F,  this.boxIIcon);
+			//stand
+			renderInvCuboid(renderer, block,  7.5F/16.0F, 1.0F/16.0F, 7.5F/16.0F, 8.5F/16.0F, 10.0F/16.0F, 8.5F/16.0F,  this.boxIIcon);
+			renderInvCuboid(renderer, block,  7.5F/16.0F, 10.0F/16.0F, 6.0F/16.0F, 8.5F/16.0F, 12.0F/16.0F, 10.0F/16.0F,  this.boxIIcon);
+			renderInvCuboid(renderer, block,  9.0F/16.0F, 7.0F/16.0F, 6.0F/16.0F, 11.0F/16.0F, 9.0F/16.0F, 10.0F/16.0F,  this.boxIIcon);
 		}
 	}
 
@@ -72,7 +72,7 @@ public class RenderProsessor implements ISimpleBlockRenderingHandler{
 	@Override
 	public int getRenderId() {
 		
-		return DCsAppleMilk.modelProsessor;
+		return DCsAppleMilk.modelEvaporator;
 	}
 	
 	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, IIcon icon)

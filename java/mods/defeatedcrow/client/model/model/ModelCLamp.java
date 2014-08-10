@@ -59,6 +59,34 @@ public class ModelCLamp extends ModelBase
     ModelRenderer barL2;
     ModelRenderer barL3;
     ModelRenderer barL4;
+    
+    ModelRenderer head1;
+    ModelRenderer head2;
+    ModelRenderer head3;
+    ModelRenderer head4;
+    ModelRenderer head5;
+    ModelRenderer cover1;
+    ModelRenderer head6;
+    ModelRenderer head7;
+    ModelRenderer head8;
+    ModelRenderer head9;
+    ModelRenderer head10;
+    ModelRenderer cover2;
+    ModelRenderer glow1;
+    ModelRenderer glow2;
+    ModelRenderer top;
+    ModelRenderer lod1a;
+    ModelRenderer lod1b;
+    ModelRenderer lod1c;
+    ModelRenderer lod2a;
+    ModelRenderer lod2b;
+    ModelRenderer lod2c;
+    ModelRenderer lod3a;
+    ModelRenderer lod3b;
+    ModelRenderer lod3c;
+    ModelRenderer lod4a;
+    ModelRenderer lod4b;
+    ModelRenderer lod4c;
   
   public ModelCLamp()
   {
@@ -347,6 +375,169 @@ public class ModelCLamp extends ModelBase
       barB6.setTextureSize(64, 32);
       barB6.mirror = true;
       setRotation(barB6, 1.047198F, 1.570796F, 0F);
+      
+      head1 = new ModelRenderer(this, 0, 2);
+      head1.addBox(-1F, 0F, 2F, 2, 1, 2);
+      head1.setRotationPoint(0F, 9F, 0F);
+      head1.setTextureSize(64, 32);
+      head1.mirror = true;
+      setRotation(head1, -0.5235988F, 1.570796F, 0F);
+      head2 = new ModelRenderer(this, 0, 2);
+      head2.addBox(-2F, 0F, 4F, 4, 1, 1);
+      head2.setRotationPoint(0F, 9F, 0F);
+      head2.setTextureSize(64, 32);
+      head2.mirror = true;
+      setRotation(head2, -0.5235988F, 1.570796F, 0F);
+      head3 = new ModelRenderer(this, 0, 2);
+      head3.addBox(-3F, 0F, 5F, 6, 1, 1);
+      head3.setRotationPoint(0F, 9F, 0F);
+      head3.setTextureSize(64, 32);
+      head3.mirror = true;
+      setRotation(head3, -0.5235988F, 1.570796F, 0F);
+      head4 = new ModelRenderer(this, 0, 2);
+      head4.addBox(-4F, 0F, 6F, 8, 1, 1);
+      head4.setRotationPoint(0F, 9F, 0F);
+      head4.setTextureSize(64, 32);
+      head4.mirror = true;
+      setRotation(head4, -0.5235988F, 1.570796F, 0F);
+      head5 = new ModelRenderer(this, 0, 2);
+      head5.addBox(-4F, 0F, 7F, 8, 1, 1);
+      head5.setRotationPoint(0F, 9F, 0F);
+      head5.setTextureSize(64, 32);
+      head5.mirror = true;
+      setRotation(head5, -0.5235988F, 1.570796F, 0F);
+      cover1 = new ModelRenderer(this, 0, 2);
+      cover1.addBox(6F, 0F, -4F, 1, 10, 8);
+      cover1.setRotationPoint(0F, 13F, 0F);
+      cover1.setTextureSize(64, 32);
+      cover1.mirror = true;
+      setRotation(cover1, 0F, 0F, 0F);
+      head6 = new ModelRenderer(this, 0, 2);
+      head6.addBox(-1F, 0F, 2F, 2, 1, 2);
+      head6.setRotationPoint(0F, 9F, 0F);
+      head6.setTextureSize(64, 32);
+      head6.mirror = true;
+      setRotation(head6, -0.5235988F, -1.570796F, 0F);
+      head7 = new ModelRenderer(this, 0, 2);
+      head7.addBox(-2F, 0F, 4F, 4, 1, 1);
+      head7.setRotationPoint(0F, 9F, 0F);
+      head7.setTextureSize(64, 32);
+      head7.mirror = true;
+      setRotation(head7, -0.5235988F, -1.570796F, 0F);
+      head8 = new ModelRenderer(this, 0, 2);
+      head8.addBox(-3F, 0F, 5F, 6, 1, 1);
+      head8.setRotationPoint(0F, 9F, 0F);
+      head8.setTextureSize(64, 32);
+      head8.mirror = true;
+      setRotation(head8, -0.5235988F, -1.570796F, 0F);
+      head9 = new ModelRenderer(this, 0, 2);
+      head9.addBox(-4F, 0F, 6F, 8, 1, 1);
+      head9.setRotationPoint(0F, 9F, 0F);
+      head9.setTextureSize(64, 32);
+      head9.mirror = true;
+      setRotation(head9, -0.5235988F, -1.570796F, 0F);
+      head10 = new ModelRenderer(this, 0, 2);
+      head10.addBox(-4F, 0F, 7F, 8, 1, 1);
+      head10.setRotationPoint(0F, 9F, 0F);
+      head10.setTextureSize(64, 32);
+      head10.mirror = true;
+      setRotation(head10, -0.5235988F, -1.570796F, 0F);
+      cover2 = new ModelRenderer(this, 0, 2);
+      cover2.addBox(-7F, 0F, -4F, 1, 10, 8);
+      cover2.setRotationPoint(0F, 13F, 0F);
+      cover2.setTextureSize(64, 32);
+      cover2.mirror = true;
+      setRotation(cover2, 0F, 0F, 0F);
+      glow1 = new ModelRenderer(this, 24, 0);
+      glow1.addBox(-2F, 0F, -2F, 4, 4, 4);
+      glow1.setRotationPoint(0F, 14F, 0F);
+      glow1.setTextureSize(64, 32);
+      glow1.mirror = true;
+      setRotation(glow1, 0F, 0.7853982F, 0F);
+      glow2 = new ModelRenderer(this, 24, 8);
+      glow2.addBox(-3F, 0F, -3F, 6, 6, 6);
+      glow2.setRotationPoint(0F, 13F, 0F);
+      glow2.setTextureSize(64, 32);
+      glow2.mirror = true;
+      setRotation(glow2, 0F, 0.7853982F, 0F);
+      top = new ModelRenderer(this, 0, 0);
+      top.addBox(-1F, 0F, -1F, 2, 2, 2);
+      top.setRotationPoint(0F, 10F, 0F);
+      top.setTextureSize(64, 32);
+      top.mirror = true;
+      setRotation(top, 0F, 0.7853982F, 0F);
+      lod1a = new ModelRenderer(this, 0, 0);
+      lod1a.addBox(-3F, 0F, 6F, 6, 1, 1);
+      lod1a.setRotationPoint(0F, 15F, 0F);
+      lod1a.setTextureSize(64, 32);
+      lod1a.mirror = true;
+      setRotation(lod1a, 0F, 0F, 0F);
+      lod1b = new ModelRenderer(this, 0, 0);
+      lod1b.addBox(-2F, 0F, 6F, 4, 1, 1);
+      lod1b.setRotationPoint(0F, 15F, 0F);
+      lod1b.setTextureSize(64, 32);
+      lod1b.mirror = true;
+      setRotation(lod1b, 0F, 0.6981317F, 0F);
+      lod1c = new ModelRenderer(this, 0, 0);
+      lod1c.addBox(-2F, 0F, 6F, 4, 1, 1);
+      lod1c.setRotationPoint(0F, 15F, 0F);
+      lod1c.setTextureSize(64, 32);
+      lod1c.mirror = true;
+      setRotation(lod1c, 0F, -0.6981317F, 0F);
+      lod2a = new ModelRenderer(this, 0, 0);
+      lod2a.addBox(-3F, 0F, 6F, 6, 1, 1);
+      lod2a.setRotationPoint(0F, 19F, 0F);
+      lod2a.setTextureSize(64, 32);
+      lod2a.mirror = true;
+      setRotation(lod2a, 0F, 0F, 0F);
+      lod2b = new ModelRenderer(this, 0, 0);
+      lod2b.addBox(-2F, 0F, 6F, 4, 1, 1);
+      lod2b.setRotationPoint(0F, 19F, 0F);
+      lod2b.setTextureSize(64, 32);
+      lod2b.mirror = true;
+      setRotation(lod2b, 0F, 0.6981317F, 0F);
+      lod2c = new ModelRenderer(this, 0, 0);
+      lod2c.addBox(-2F, 0F, 6F, 4, 1, 1);
+      lod2c.setRotationPoint(0F, 19F, 0F);
+      lod2c.setTextureSize(64, 32);
+      lod2c.mirror = true;
+      setRotation(lod2c, 0F, -0.6981317F, 0F);
+      lod3a = new ModelRenderer(this, 0, 0);
+      lod3a.addBox(-3F, 0F, -7F, 6, 1, 1);
+      lod3a.setRotationPoint(0F, 15F, 0F);
+      lod3a.setTextureSize(64, 32);
+      lod3a.mirror = true;
+      setRotation(lod3a, 0F, 0F, 0F);
+      lod3b = new ModelRenderer(this, 0, 0);
+      lod3b.addBox(-2F, 0F, -7F, 4, 1, 1);
+      lod3b.setRotationPoint(0F, 15F, 0F);
+      lod3b.setTextureSize(64, 32);
+      lod3b.mirror = true;
+      setRotation(lod3b, 0F, 0.6981317F, 0F);
+      lod3c = new ModelRenderer(this, 0, 0);
+      lod3c.addBox(-2F, 0F, -7F, 4, 1, 1);
+      lod3c.setRotationPoint(0F, 15F, 0F);
+      lod3c.setTextureSize(64, 32);
+      lod3c.mirror = true;
+      setRotation(lod3c, 0F, -0.6981317F, 0F);
+      lod4a = new ModelRenderer(this, 0, 0);
+      lod4a.addBox(-3F, 0F, -7F, 6, 1, 1);
+      lod4a.setRotationPoint(0F, 19F, 0F);
+      lod4a.setTextureSize(64, 32);
+      lod4a.mirror = true;
+      setRotation(lod4a, 0F, 0F, 0F);
+      lod4b = new ModelRenderer(this, 0, 0);
+      lod4b.addBox(-2F, 0F, -7F, 4, 1, 1);
+      lod4b.setRotationPoint(0F, 19F, 0F);
+      lod4b.setTextureSize(64, 32);
+      lod4b.mirror = true;
+      setRotation(lod4b, 0F, 0.6981317F, 0F);
+      lod4c = new ModelRenderer(this, 0, 0);
+      lod4c.addBox(-2F, 0F, -7F, 4, 1, 1);
+      lod4c.setRotationPoint(0F, 19F, 0F);
+      lod4c.setTextureSize(64, 32);
+      lod4c.mirror = true;
+      setRotation(lod4c, 0F, -0.6981317F, 0F);
   }
   
   //通常色の部分
@@ -366,6 +557,35 @@ public class ModelCLamp extends ModelBase
 		  this.blade21.render(par7);
 		  this.blade22.render(par7);
 		  this.blade23.render(par7);
+	  }
+	  else if (b0 == 11)
+	  {
+		  this.top.render(par7);
+		  this.head1.render(par7);
+		  this.head2.render(par7);
+		  this.head3.render(par7);
+		  this.head4.render(par7);
+		  this.head5.render(par7);
+		  this.head6.render(par7);
+		  this.head7.render(par7);
+		  this.head8.render(par7);
+		  this.head9.render(par7);
+		  this.head10.render(par7);
+		  this.cover1.render(par7);
+		  this.cover2.render(par7);
+		  
+		  this.lod1a.render(par7);
+		  this.lod1b.render(par7);
+		  this.lod1c.render(par7);
+		  this.lod2a.render(par7);
+		  this.lod2b.render(par7);
+		  this.lod2c.render(par7);
+		  this.lod3a.render(par7);
+		  this.lod3b.render(par7);
+		  this.lod3c.render(par7);
+		  this.lod4a.render(par7);
+		  this.lod4b.render(par7);
+		  this.lod4c.render(par7);
 	  }
   }
   
@@ -393,6 +613,10 @@ public class ModelCLamp extends ModelBase
 	  else if (b0 == 10)
 	  {
 		  this.inner1.render(par7);
+	  }
+	  else if (b0 == 11)
+	  {
+		  this.glow2.render(par7);
 	  }
   }
   
@@ -438,6 +662,10 @@ public class ModelCLamp extends ModelBase
 		  this.barR4.render(par7);
 		  this.barF5.render(par7);
 		  this.barF6.render(par7);
+	  }
+	  else if (b0 == 11)
+	  {
+		  this.glow1.render(par7);
 	  }
   }
   

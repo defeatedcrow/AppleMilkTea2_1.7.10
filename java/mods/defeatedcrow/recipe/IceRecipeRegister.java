@@ -73,7 +73,7 @@ public class IceRecipeRegister implements IIceRecipeRegister{
 			{
 				flag = true;
 			}
-			else if (a.getItemDamage() == Short.MAX_VALUE)
+			else if (b.getItemDamage() == Short.MAX_VALUE)
 			{
 				flag = true;
 			}
