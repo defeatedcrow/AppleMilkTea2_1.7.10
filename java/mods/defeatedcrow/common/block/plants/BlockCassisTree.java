@@ -46,7 +46,7 @@ public class BlockCassisTree extends Block implements IPlantable{
 			int meta = par1World.getBlockMetadata(par2, par3, par4);
 			int growth = meta & 3;
 			
-			/*4段階成長する。カシスのみ、成長し切ると実を採取できる。*/
+			/*4段階成長する。成長し切ると実を採取できる。*/
 			if (growth < 3 && (par1World.getBlockLightValue(par2, par3, par4) > 11))
 			{
 				par1World.setBlockMetadataWithNotify(par2, par3, par4, (meta + 1), 3);
@@ -80,7 +80,7 @@ public class BlockCassisTree extends Block implements IPlantable{
         
         if (itemstack == null)
         {
-        	/*採取可能なのはカシスのみ。山茶花は成長したあとは眺めるだけのもの。*/
+        	/*AMT2より、椿にも実の採集機能を付与。*/
         	if (meta == 3)
         	{
         		ItemStack get = new ItemStack(DCsAppleMilk.leafTea, 1, 2);
@@ -92,6 +92,21 @@ public class BlockCassisTree extends Block implements IPlantable{
         		
         		//2段階戻る
         		par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 3);
+        		
+        		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+        		return true;
+        	}
+        	else if (meta == 7)
+        	{
+        		ItemStack get = new ItemStack(DCsAppleMilk.leafTea, 1, 4);
+        		
+        		if (!par5EntityPlayer.inventory.addItemStackToInventory(get))
+        		{
+        			par5EntityPlayer.entityDropItem(get, 1);
+        		}
+        		
+        		//2段階戻る
+        		par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 3);
         		
         		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
         		return true;
@@ -112,6 +127,20 @@ public class BlockCassisTree extends Block implements IPlantable{
     		
     		//2段階戻る
     		par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 3);
+    		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+    		return true;
+        }
+        else if (!par1World.isRemote && meta == 7 && itemstack.getItem() == DCsAppleMilk.leafTea)
+        {
+        	ItemStack get = new ItemStack(DCsAppleMilk.leafTea, 1, 4);
+    		
+    		if (!par5EntityPlayer.inventory.addItemStackToInventory(get))
+    		{
+    			par5EntityPlayer.entityDropItem(get, 1);
+    		}
+    		
+    		//2段階戻る
+    		par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 3);
     		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
     		return true;
         }

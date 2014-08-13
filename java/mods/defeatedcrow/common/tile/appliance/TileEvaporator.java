@@ -4,32 +4,53 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.api.edibles.EdibleItem;
 import mods.defeatedcrow.api.edibles.IEdibleItem;
 import mods.defeatedcrow.api.recipe.*;
 import mods.defeatedcrow.common.AMTLogger;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.block.edible.EdibleEntityItemBlock;
+import mods.defeatedcrow.common.fluid.DCsTank;
+import net.minecraft.block.Block;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class TileEvaporator extends MachineBase{
+public class TileEvaporator extends MachineBase implements IFluidHandler{
+	
+	public DCsTank productTank = new DCsTank(4000);
 	
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		super.readFromNBT(par1NBTTagCompound);
+		this.productTank = new DCsTank(4000);
+		if (par1NBTTagCompound.hasKey("productTank")) {
+		    this.productTank.readFromNBT(par1NBTTagCompound.getCompoundTag("productTank"));
+		}
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		super.writeToNBT(par1NBTTagCompound);
+		NBTTagCompound tank = new NBTTagCompound();
+		this.productTank.writeToNBT(tank);
+		par1NBTTagCompound.setTag("productTank", tank);
 	}
 	
 	@Override
@@ -41,13 +62,105 @@ public class TileEvaporator extends MachineBase{
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
     }
+	
+	@Override
+	public void updateEntity()
+	{
+		super.updateEntity();
+		
+		//液体を取り出す部分
+		boolean flag1 = false;
+		boolean flag2 = false;
+		int drainAmount = 0;
+		Block fluidBlock = null;
+		ItemStack returnStack = null;
+		
+		if (this.productTank.getFluid() != null)
+		{
+			fluidBlock = this.productTank.getFluidType().getBlock();
+			flag1 = (fluidBlock != null);
+		}
+		
+		if (flag1 && this.itemstacks[4] != null)
+		{
+			ItemStack cur = this.itemstacks[4].copy();
+			
+			if (cur.getItem() == Items.bucket)//バケツの場合
+			{
+				returnStack = FluidContainerRegistry.fillFluidContainer(
+						new FluidStack(this.productTank.getFluidType(), 1000), new ItemStack(Items.bucket));
+				flag2 = (returnStack != null && this.productTank.getFluidAmount() >= 1000 * cur.stackSize);
+				drainAmount = 1000 * cur.stackSize;
+			}
+			else if (cur.getItem() == Item.getItemFromBlock(DCsAppleMilk.emptyBottle))
+			{
+				returnStack = FluidContainerRegistry.fillFluidContainer(
+						new FluidStack(this.productTank.getFluidType(), 200), new ItemStack(DCsAppleMilk.emptyBottle));
+				flag2 = (returnStack != null && this.productTank.getFluidAmount() >= 200 * cur.stackSize);
+				drainAmount = 200 * cur.stackSize;
+			}
+			else //その他の場合は1000mBのみチェック
+			{
+				returnStack = FluidContainerRegistry.fillFluidContainer(
+						new FluidStack(this.productTank.getFluidType(), 1000), new ItemStack(cur.getItem(), 1, cur.getItemDamage()));
+				flag2 = (returnStack != null && this.productTank.getFluidAmount() >= 1000 * cur.stackSize);
+				drainAmount = 1000 * cur.stackSize;
+			}
+		}
+		
+		if (flag1 && flag2 && returnStack != null)
+		{
+			ItemStack result = new ItemStack(returnStack.getItem(), this.itemstacks[4].stackSize, returnStack.getItemDamage());
+			
+			if (this.productTank.drain(drainAmount, true) != null)
+			{
+				this.itemstacks[4] = result;
+			}
+		}
+		
+		this.markDirty();
+	}
+	
+	//調理中の矢印の描画
+	@SideOnly(Side.CLIENT)
+	public int getFluidAmountScaled(int par1)
+	{
+		return this.productTank.getFluidAmount() * par1 / 4000;
+	}
+
+	//GUI用にコンテナからの更新を受け取るメソッド。
+	public void getGuiFluidUpdate(int id, int val)
+	{
+		if (id == 2)//ID
+		{
+			if (productTank.getFluid() == null)
+			{
+				productTank.setFluid(new FluidStack(val, 0));
+			}
+			else
+			{
+				productTank.getFluid().fluidID = val;
+			}
+		}
+		else if (id == 3)//amount
+		{
+			if (productTank.getFluid() == null)
+			{
+				productTank.setFluid(new FluidStack(0, val));
+			}
+			else
+			{
+				productTank.getFluid().amount = val;
+			}
+		}
+	}
 
 	@Override
 	public boolean canSmelt() {
-		boolean flag1 = false;
-		boolean flag2 = false;
-		boolean flag3 = false;
-		boolean flag4 = false;
+		boolean flag1 = false;//レシピ
+		boolean flag2 = false;//メイン完成スロット
+		boolean flag3 = false;//液体
+		boolean flag4 = false;//空容器
 		
 		ItemStack items = this.itemstacks[2];
 		if (items == null) return false;
@@ -56,7 +169,10 @@ public class TileEvaporator extends MachineBase{
 		if (recipe == null) return false;
 		
 		ItemStack output = recipe.getOutput();
-		if (output == null) return false;
+		FluidStack second = recipe.getSecondary();
+		
+		//両方がnullのレシピはレシピとみなさない
+		if (output == null && second == null) return false;
 		else flag1 = true;
 		
 		ItemStack container = null;
@@ -70,7 +186,7 @@ public class TileEvaporator extends MachineBase{
 			container = items.getItem().getContainerItem(items);
 		}
 		
-		if (this.itemstacks[3] == null)
+		if (this.itemstacks[3] == null || output == null)
 		{
 			flag2 = true;
 		}
@@ -103,13 +219,19 @@ public class TileEvaporator extends MachineBase{
 			flag4 = true;
 		}
 		
-		FluidStack second = recipe.getSecondary();
-		
-		//液体ありのレシピの場合は、とりあえず禁止しておく
+		//液体ありのレシピの場合
 		if (second == null) flag3 = true;
 		else
 		{
-			flag3 = false;
+			if (this.productTank.isEmpty())
+			{
+				flag3 = true;
+			}
+			else
+			{
+				int fillAmount = this.productTank.fill(second, false);
+				flag3 = fillAmount >= second.amount;
+			}
 		}
 		
 //		AMTLogger.debugInfo("Evaporator update : " + flag1 + ", " + flag2 + ", " + flag3 + ", " + flag4);
@@ -120,6 +242,7 @@ public class TileEvaporator extends MachineBase{
 	@Override
 	public void onProgress() {
 		//結局canSmelt()と同じことをしていて無駄な感じはする
+		//すでに判定は済んでるし、二重にやる必要無いような…
 		boolean flag1 = false;
 		boolean flag2 = false;
 		boolean flag3 = false;
@@ -131,7 +254,8 @@ public class TileEvaporator extends MachineBase{
 		if (recipe == null) return;
 		
 		ItemStack output = recipe.getOutput();
-		if (output == null) return;
+		FluidStack second = recipe.getSecondary();
+		if (output == null && second == null) return;
 		else flag1 = true;
 		
 		ItemStack container = null;
@@ -172,17 +296,31 @@ public class TileEvaporator extends MachineBase{
 		
 		if (flag1 && flag2)
 		{
-			
-			AMTLogger.debugInfo("current recipe : " + output.toString());
+			String out = output == null ? "Empty" : output.toString();
+			String sec = second == null ? "Empty" : second.getFluid().getLocalizedName(second);
+			AMTLogger.debugInfo("current recipe : " + out + ", "  + sec);
 			
 			//次に完成品を完成品スロットへ
-			if (this.itemstacks[3] == null)
+			if (output != null)
 			{
-				this.itemstacks[3] = output.copy();
+				if (this.itemstacks[3] == null)
+				{
+					this.itemstacks[3] = output.copy();
+				}
+				else if (this.itemstacks[3].isItemEqual(output))
+				{
+					this.itemstacks[3].stackSize += output.stackSize;
+				}
 			}
-			else if (this.itemstacks[3].isItemEqual(output))
+			
+			
+			if (this.productTank.isEmpty())
 			{
-				this.itemstacks[3].stackSize += output.stackSize;
+				this.productTank.setFluid(second);
+			}
+			else if (this.productTank.getFluid().isFluidEqual(second))//secondのnull判定も兼ねてる
+			{
+				this.productTank.fill(second, true);
 			}
 			
 			this.markDirty();
@@ -224,6 +362,46 @@ public class TileEvaporator extends MachineBase{
 	@Override
 	public String getInventoryName() {
 		return "Evaporator";
+	}
+	
+	/*====== 以下、IFluidHandlerの実装メソッド ======*/
+
+	@Override
+	public FluidStack drain(ForgeDirection from, FluidStack resource,
+			boolean doDrain) {
+		if (resource == null) {
+			return null;
+		}
+		if (productTank.getFluidType() == resource.getFluid()) {
+			return productTank.drain(resource.amount, doDrain);
+		}
+		return null;
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+		return this.productTank.drain(maxDrain, doDrain);
+	}
+	
+	//外部からの液体の受け入れはなし
+	@Override
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+		return 0;
+	}
+
+	@Override
+	public boolean canFill(ForgeDirection from, Fluid fluid) {
+		return false;
+	}
+
+	@Override
+	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+		return true;
+	}
+
+	@Override
+	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+		return new FluidTankInfo[]{productTank.getInfo()};
 	}
 
 }

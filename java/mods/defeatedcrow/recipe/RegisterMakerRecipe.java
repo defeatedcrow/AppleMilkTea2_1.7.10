@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 public class RegisterMakerRecipe {
 	
@@ -25,12 +26,12 @@ public class RegisterMakerRecipe {
 	    		new String("defeatedcrow:textures/blocks/contents_cocoa.png"),
 	    		new String("defeatedcrow:textures/blocks/contents_cocoa_milk.png"));
 	    
-		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.EXItems, 1, 2), new ItemStack(DCsAppleMilk.teacupBlock, 1, 4),
+		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.foodTea, 1, 0), new ItemStack(DCsAppleMilk.teacupBlock, 1, 4),
 	    		new ItemStack(DCsAppleMilk.teacupBlock, 1, 5),
 	    		new String("defeatedcrow:textures/blocks/contents_greentea.png"),
 	    		new String("defeatedcrow:textures/blocks/contents_greentea_milk.png"));
 	    
-		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.EXItems, 1, 3), new ItemStack(DCsAppleMilk.teacupBlock, 1, 2),
+		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.foodTea, 1, 1), new ItemStack(DCsAppleMilk.teacupBlock, 1, 2),
 	    		new ItemStack(DCsAppleMilk.teacupBlock, 1, 3),
 	    		new String("defeatedcrow:textures/blocks/contents_tea.png"),
 	    		new String("defeatedcrow:textures/blocks/contents_tea_milk.png"));
@@ -53,12 +54,12 @@ public class RegisterMakerRecipe {
 	    		new String("defeatedcrow:textures/blocks/contents_cocoa_milk.png"));
 	    
 	    //teacup2
-		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.EXItems, 1, 8), new ItemStack(DCsAppleMilk.teaCup2, 1, 0),
+		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.foodTea, 1, 0), new ItemStack(DCsAppleMilk.teaCup2, 1, 0),
 	    		new ItemStack(DCsAppleMilk.teaCup2, 1, 1),
 	    		new String("defeatedcrow:textures/blocks/contents_earlgray.png"),
 	    		new String("defeatedcrow:textures/blocks/contents_tea_milk.png"));
 	    
-		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.EXItems, 1, 9), new ItemStack(DCsAppleMilk.teaCup2, 1, 2),
+		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.foodTea, 1, 1), new ItemStack(DCsAppleMilk.teaCup2, 1, 2),
 	    		new ItemStack(DCsAppleMilk.teaCup2, 1, 3),
 	    		new String("defeatedcrow:textures/blocks/contents_appletea.png"),
 	    		new String("defeatedcrow:textures/blocks/contents_tea_milk.png"));
@@ -107,7 +108,7 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.iceRecipe.registerCanLeave(new ItemStack(DCsAppleMilk.teacupBlock, 1, 13), new ItemStack(DCsAppleMilk.blockIcecream, 1, 4),
 				new ItemStack(DCsAppleMilk.emptyCup, 1, 0));
 		
-		RecipeRegisterManager.iceRecipe.registerCanLeave(new ItemStack(Items.water_bucket, 1, 0), new ItemStack(DCsAppleMilk.EXItems, 1, 7),
+		RecipeRegisterManager.iceRecipe.registerCanLeave(new ItemStack(Items.water_bucket, 1, 0), new ItemStack(DCsAppleMilk.EXItems, 1, 4),
 				new ItemStack(Items.bucket, 1, 0));
 		
 		RecipeRegisterManager.iceRecipe.registerCanLeave(new ItemStack(DCsAppleMilk.teaCup2, 1, 4), new ItemStack(DCsAppleMilk.blockIcecream, 1, 7),
@@ -151,10 +152,10 @@ public class RegisterMakerRecipe {
 	public void registerProsessor()
 	{
 		//プロセッサー用の新規レシピ
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 1, 2), null,
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 2, 0), null,
 				new Object[]{DCsAppleMilk.leafTea});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 1, 12), null,
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 2, 6), null,
 				new Object[]{DCsAppleMilk.clam});
 		
 		//おろし金レシピの移植
@@ -210,17 +211,17 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 8), null,
 				new Object[]{"grape"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 1, 8), null,
-				new Object[]{"cropOrange", new ItemStack(DCsAppleMilk.EXItems, 1, 3)});
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 2), null,
+				new Object[]{"cropOrange", new ItemStack(DCsAppleMilk.foodTea, 1, 1)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 1, 8), null,
-				new Object[]{"cropCitron", new ItemStack(DCsAppleMilk.EXItems, 1, 3)});
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 2), null,
+				new Object[]{"cropCitron", new ItemStack(DCsAppleMilk.foodTea, 1, 1)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 1, 8), null,
-				new Object[]{"cropYuzu", new ItemStack(DCsAppleMilk.EXItems, 1, 3)});
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 2), null,
+				new Object[]{"cropYuzu", new ItemStack(DCsAppleMilk.foodTea, 1, 1)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 1, 9), null,
-				new Object[]{"cropApple", new ItemStack(DCsAppleMilk.EXItems, 1, 3)});
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 3), null,
+				new Object[]{"cropApple", new ItemStack(DCsAppleMilk.foodTea, 1, 1)});
 		
 		//鍋材料
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 0), null,
@@ -245,10 +246,10 @@ public class RegisterMakerRecipe {
 				new Object[]{"cropWheat"});
 		
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), null,
-				new Object[]{new ItemStack(DCsAppleMilk.EXItems, 1, 5), "cropRice"});
+				new Object[]{new ItemStack(DCsAppleMilk.EXItems, 1, 2), "cropRice"});
 		
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), null,
-				new Object[]{new ItemStack(DCsAppleMilk.EXItems, 1, 5), "cropWheat"});
+				new Object[]{new ItemStack(DCsAppleMilk.EXItems, 1, 2), "cropWheat"});
 		
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), new ItemStack(Items.bucket),
 				new Object[]{Items.chicken, "leek", "bucketSoymilk", "tofuKinu"});
@@ -277,7 +278,8 @@ public class RegisterMakerRecipe {
 	
 	public void registerEvaporator()
 	{
-		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.bakedApple), null, new ItemStack(DCsAppleMilk.teacupBlock, 1, 1));
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
+				new FluidStack(DCsAppleMilk.vegitableOil, 100), new ItemStack(DCsAppleMilk.leafTea, 1, 4));
 	}
 
 }

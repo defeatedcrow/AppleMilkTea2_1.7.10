@@ -53,8 +53,8 @@ public abstract class PlaceableFoods extends Entity{
     	super(world);
     	this.field_70279_a = true;
     	this.speedMultiplier = 0.07D;
-		this.setSize(0.3F, 0.5F);
-		this.yOffset = this.height / 2;
+		this.setSize(0.5F, 0.3F);
+		this.yOffset = this.height;
     }
 
 	public PlaceableFoods(World world, boolean chops, ItemStack item) {
@@ -304,12 +304,9 @@ public abstract class PlaceableFoods extends Entity{
                 d11 = this.posZ + this.motionZ;
                 this.setPosition(d4, d5, d11);
 
-                if (this.onGround)
-                {
-                    this.motionX *= 0.5D;
-                    this.motionY *= 0.5D;
-                    this.motionZ *= 0.5D;
-                }
+                this.motionX *= 0.5D;
+                this.motionY *= 0.5D;
+                this.motionZ *= 0.5D;
 
                 this.motionX *= 0.9900000095367432D;
                 this.motionY *= 0.949999988079071D;

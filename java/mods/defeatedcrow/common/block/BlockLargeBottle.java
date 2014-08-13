@@ -32,7 +32,7 @@ import mods.defeatedcrow.plugin.LoadModHandler;
 import mods.defeatedcrow.handler.Util;
 
 /**
- * メタデータ0~7: 酒瓶。ロックアイスを持って右クリックすると、ロック・ストレートで頂ける
+ * メタデータ0~7: 酒瓶。空カップを持って右クリックすると、ロック・ストレートで頂ける
  * <br>メタデータ8~15: キャニスター。中身の取り出し及びウォールマグのカスタマイズ。
  * */
 public class BlockLargeBottle extends BlockContainer{
@@ -198,6 +198,48 @@ public class BlockLargeBottle extends BlockContainer{
         			newRem = rem - 1;
         		}
         		tile.setRemainShort((short)newRem);
+        		
+        		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+        	}
+    		
+    		
+    		return true;
+        }
+        else if (itemstack.getItem() == Item.getItemFromBlock(DCsAppleMilk.emptyCup))//カップでストレートのお酒を汲む
+        {
+        	short i = tile.getRemainShort();
+        	int type = currentMeta;
+        	int rem = checkRemain(i);
+        	
+        	boolean flag = false;
+        	
+        	if (type < 8)//お酒のとき
+        	{
+        		if (i > 0)
+        		{
+        			tile.setRemainShort((short) (i - 1));
+        			flag = true;
+        		}
+        		else
+        		{
+        			
+        		}
+        	}
+        	
+        	if (flag)
+        	{
+        		int meta = (type == 0)? 11 : type - 1;
+        		
+        		if (!par5EntityPlayer.capabilities.isCreativeMode)
+                {
+                    --itemstack.stackSize;
+                }
+        		
+        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.alcoholCup,1,meta)))
+	        	{
+	        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.alcoholCup,1,meta), 1);
+	        	}
+        		
         		
         		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
         	}

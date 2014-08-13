@@ -70,7 +70,7 @@ public class LoadThaumcraftPlugin {
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.filledPan2), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.FIRE, 1));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.teppann), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.FIRE, 3));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.iceMaker), new int[]{0}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.COLD, 3));
-	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.autoMaker), new int[]{0}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.EXCHANGE, 3));
+//	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.autoMaker), new int[]{0}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.EXCHANGE, 3));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.teaMakerNext), new int[]{0}, new AspectList().add(Aspect.WATER, 2).add(Aspect.VOID, 1).add(Aspect.FIRE, 1));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.rotaryDial), new int[]{0}, new AspectList().add(Aspect.MECHANISM, 2).add(Aspect.EXCHANGE, 2).add(Aspect.TRAVEL, 1));
 	    

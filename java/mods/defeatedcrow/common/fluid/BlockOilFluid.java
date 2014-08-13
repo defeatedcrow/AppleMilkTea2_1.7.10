@@ -1,4 +1,4 @@
-package mods.defeatedcrow.common.block.fluid;
+package mods.defeatedcrow.common.fluid;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

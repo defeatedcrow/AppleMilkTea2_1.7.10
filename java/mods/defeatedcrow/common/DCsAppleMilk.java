@@ -61,7 +61,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha5",
+		version = "1.7.10_2.0.alpha6",
 		dependencies = "required-after:Forge@[10.12.1.1090,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 //required-after:SampleCore;
@@ -78,12 +78,13 @@ public class DCsAppleMilk{
 	//クリエイティブタブの追加
 	public static final CreativeTabs applemilk = new CreativeTabAMT("applemilk");
 	public static final CreativeTabs applemilkFood = new CreativeTabAMTFood("applemilkfood");
+	public static final CreativeTabs applemilkContainer = new CreativeTabAMTContainer("applemilkcontainer");
 	
 	//ブロックのインスタンス
 	//ツール
 	public static Block  teaMakerNext;
 	public static Block  emptyCup;
-	public static Block  autoMaker;
+//	public static Block  autoMaker;
 	public static Block  iceMaker;
 	public static Block  emptyPan;
 	public static Block  filledPan;
@@ -145,6 +146,7 @@ public class DCsAppleMilk{
 	public static Item  inkStick;
 	public static Item  appleSandwich;
 	public static Item  leafTea;
+	public static Item  foodTea;
 	public static Item  teaCup;
 	public static Item  gratedApple;
 	public static Item  mincedFoods;
@@ -157,6 +159,7 @@ public class DCsAppleMilk{
 	public static Item  chalcedonyHammer;
 	public static Item  chocolateFruits;
 	public static Item  icyCrystal;
+	public static Item  emptyWallMug;
 	public static Item  wallMug;
 	public static Item  itemLargeBottle;
 	public static Item  milkBottle;
@@ -398,7 +401,7 @@ public class DCsAppleMilk{
 		MinecraftForge.EVENT_BUS.register(new DCsBonemealEvent());
 		//モノクルの鉱石辞書名確認機能
 		MinecraftForge.EVENT_BUS.register(new ShowOreNameEvent());
-		
+		//バケツイベント
 		MinecraftForge.EVENT_BUS.register(new BucketFillEvent());
 		//クラフトで耐久が減るアイテムの登録
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());

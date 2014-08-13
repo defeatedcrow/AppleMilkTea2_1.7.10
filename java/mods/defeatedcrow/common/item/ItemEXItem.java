@@ -22,7 +22,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemEXItem extends Item {
 	
-	private static final String[] leefType = new String[] {"_greentea", "_tea", "_oxidized"};
 	@SideOnly(Side.CLIENT)
     private IIcon iconItemType[];
 	
@@ -37,7 +36,7 @@ public class ItemEXItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
-        int j = MathHelper.clamp_int(par1, 0, 13);
+        int j = MathHelper.clamp_int(par1, 0, 7);
         return this.iconItemType[j];
     }
 
@@ -59,15 +58,9 @@ public class ItemEXItem extends Item {
 		par3List.add(new ItemStack(this, 1, 2));
 		par3List.add(new ItemStack(this, 1, 3));
 		par3List.add(new ItemStack(this, 1, 4));
-		par3List.add(new ItemStack(this, 1, 8));
-		par3List.add(new ItemStack(this, 1, 9));
 		par3List.add(new ItemStack(this, 1, 5));
 		par3List.add(new ItemStack(this, 1, 6));
 		par3List.add(new ItemStack(this, 1, 7));
-		par3List.add(new ItemStack(this, 1, 10));
-		par3List.add(new ItemStack(this, 1, 11));
-		par3List.add(new ItemStack(this, 1, 12));
-		par3List.add(new ItemStack(this, 1, 13));
 	}
 	
 	@Override
@@ -112,7 +105,7 @@ public class ItemEXItem extends Item {
         }
         else
         {
-            if (par1ItemStack.getItemDamage() == 12 && DCsConfig.bonemealClam)//骨粉と全く同じ効果
+            if (par1ItemStack.getItemDamage() == 6 && DCsConfig.bonemealClam)//骨粉と全く同じ効果
             {
                 if (ItemDye.applyBonemeal(par1ItemStack, par3World, par4, par5, par6, par2EntityPlayer))
                 {
@@ -132,9 +125,9 @@ public class ItemEXItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.iconItemType = new IIcon[14];
+		this.iconItemType = new IIcon[8];
 
-        for (int i = 0; i < 14; ++i)
+        for (int i = 0; i < 8; ++i)
         {
             
         	if (i == 0)
@@ -145,43 +138,27 @@ public class ItemEXItem extends Item {
         	{
         		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:animalglue");
         	}
-        	else if (i > 1 && i < 5)
-        	{
-        		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:leaf" + leefType[i - 2]);
-        	}
-        	else if (i == 5)
+        	else if (i == 2)
         	{
         		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:mincedfoods_kayaku");
         	}
-        	else if (i == 6)
+        	else if (i == 3)
         	{
         		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:gear_chalcedony");
         	}
-        	else if (i == 7)
+        	else if (i == 4)
         	{
         		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:crushedice");
         	}
-        	else if (i == 8)
-        	{
-        		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:leaf_earlgray");
-        	}
-        	else if (i == 9)
-        	{
-        		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:leaf_appletea");
-        	}
-        	else if (i == 10)
-        	{
-        		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:wallmug");
-        	}
-        	else if (i == 11)
+        	else if (i == 5)
         	{
         		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:dustGlass");
         	}
-        	else if (i == 12)
+        	else if (i == 6)
         	{
         		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:dustClam");
         	}
-        	else if (i == 13)
+        	else if (i == 7)
         	{
         		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:nugget_iron");
         	}

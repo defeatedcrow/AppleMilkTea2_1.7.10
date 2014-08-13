@@ -71,7 +71,7 @@ public class AchievementRegister {
 		craftGrater = (new Achievement("defeatedcrow.grater", "craftGrater", -3, -2, new ItemStack(DCsAppleMilk.DCgrater, 1, 0), craftPan))
 				.registerStat();
 		
-		makeTeaLeaves = (new Achievement("defeatedcrow.makeTealeaves", "makeTeaLeaves", -1, -3, new ItemStack(DCsAppleMilk.EXItems, 1, 2), getTeaLeaves))
+		makeTeaLeaves = (new Achievement("defeatedcrow.makeTealeaves", "makeTeaLeaves", -1, -3, new ItemStack(DCsAppleMilk.foodTea, 1, 0), getTeaLeaves))
 				.initIndependentStat().registerStat();
 		
 		makeRice = (new Achievement("defeatedcrow.rice", "makeRice", -5, 0, new ItemStack(DCsAppleMilk.filledPan, 1, 0), craftGrater))
@@ -110,8 +110,8 @@ public class AchievementRegister {
 		craftGlassLamp = (new Achievement("defeatedcrow.glasslamp", "craftGlassLamp", 4, 4, new ItemStack(DCsAppleMilk.cLamp, 1, 3), craftChalcedony))
 				.setSpecial().registerStat();
 		
-		craftAutoMaker = (new Achievement("defeatedcrow.automaker", "craftAutoMaker", 7, 3, new ItemStack(DCsAppleMilk.autoMaker, 1, 0), craftChalKnife))
-				.registerStat();
+//		craftAutoMaker = (new Achievement("defeatedcrow.automaker", "craftAutoMaker", 7, 3, new ItemStack(DCsAppleMilk.autoMaker, 1, 0), craftChalKnife))
+//				.registerStat();
 		
 		drinkCocktail = (new Achievement("defeatedcrow.cocktail", "drinkCocktail", 3, -2, new ItemStack(DCsAppleMilk.cocktail, 1, 0), craftIceMaker))
 				.registerStat();

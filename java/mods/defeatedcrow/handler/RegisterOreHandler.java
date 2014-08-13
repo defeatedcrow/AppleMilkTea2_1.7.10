@@ -12,9 +12,9 @@ public class RegisterOreHandler {
 	public void register()
 	{
 		OreDictionary.registerOre("dyeBlack", new ItemStack(DCsAppleMilk.inkStick));
-	    OreDictionary.registerOre("dyeOrange", new ItemStack(DCsAppleMilk.EXItems, 1, 4));
-	    OreDictionary.registerOre("dyeWhite", new ItemStack(DCsAppleMilk.EXItems, 1, 12));
-	    OreDictionary.registerOre("dustClam", new ItemStack(DCsAppleMilk.EXItems, 1, 12));
+	    OreDictionary.registerOre("dyeOrange", new ItemStack(DCsAppleMilk.foodTea, 1, 4));
+	    OreDictionary.registerOre("dyeWhite", new ItemStack(DCsAppleMilk.EXItems, 1, 6));
+	    OreDictionary.registerOre("dustClam", new ItemStack(DCsAppleMilk.EXItems, 1, 6));
 	    OreDictionary.registerOre("treeSapling", new ItemStack(DCsAppleMilk.saplingTea, 1, 0));
 	    OreDictionary.registerOre("treeSapling", new ItemStack(DCsAppleMilk.saplingTea, 1, 1));
 	    OreDictionary.registerOre("treeSapling", new ItemStack(DCsAppleMilk.saplingTea, 1, 2));
@@ -30,15 +30,16 @@ public class RegisterOreHandler {
 	    OreDictionary.registerOre("cropSpiceleaf", new ItemStack(DCsAppleMilk.leafTea, 1, 1));
 	    OreDictionary.registerOre("cropCassis", new ItemStack(DCsAppleMilk.leafTea, 1, 2));
 	    OreDictionary.registerOre("cropYuzu", new ItemStack(DCsAppleMilk.leafTea, 1, 3));
+	    OreDictionary.registerOre("cropCitron", new ItemStack(DCsAppleMilk.leafTea, 1, 3));
 	    OreDictionary.registerOre("cropCamellia", new ItemStack(DCsAppleMilk.leafTea, 1, 4));
 	    OreDictionary.registerOre("foodCondencedMilk", new ItemStack(DCsAppleMilk.condensedMIlk, 1, 0));
 	    OreDictionary.registerOre("foodCassisPreserve", new ItemStack(DCsAppleMilk.condensedMIlk, 1, 1));
 	    OreDictionary.registerOre("foodMintSauce", new ItemStack(DCsAppleMilk.condensedMIlk, 1, 2));
 	    OreDictionary.registerOre("foodYuzuMarmalade", new ItemStack(DCsAppleMilk.condensedMIlk, 1, 3));
-	    OreDictionary.registerOre("foodGreenTea", new ItemStack(DCsAppleMilk.EXItems, 1, 2));
-	    OreDictionary.registerOre("foodTea", new ItemStack(DCsAppleMilk.EXItems, 1, 3));
-	    OreDictionary.registerOre("foodEarlGray", new ItemStack(DCsAppleMilk.EXItems, 1, 8));
-	    OreDictionary.registerOre("foodAppletea", new ItemStack(DCsAppleMilk.EXItems, 1, 9));
+	    OreDictionary.registerOre("foodGreenTea", new ItemStack(DCsAppleMilk.foodTea, 1, 0));
+	    OreDictionary.registerOre("foodTea", new ItemStack(DCsAppleMilk.foodTea, 1, 1));
+	    OreDictionary.registerOre("foodEarlGray", new ItemStack(DCsAppleMilk.foodTea, 1, 2));
+	    OreDictionary.registerOre("foodAppletea", new ItemStack(DCsAppleMilk.foodTea, 1, 3));
 	    OreDictionary.registerOre("foodCoffee", new ItemStack(DCsAppleMilk.gratedApple, 1, 3));
 	    OreDictionary.registerOre("cropRice", new ItemStack(DCsAppleMilk.mincedFoods, 1, 3));
 	    OreDictionary.registerOre("cookingRice", new ItemStack(DCsAppleMilk.mincedFoods, 1, 3));
@@ -109,18 +110,20 @@ public class RegisterOreHandler {
 	    
 	    OreDictionary.registerOre("toolGrater", new ItemStack(DCsAppleMilk.DCgrater));
 	    OreDictionary.registerOre("blockTeaMaker", new ItemStack(DCsAppleMilk.teaMakerNext));
-	    OreDictionary.registerOre("blockAutoMaker", new ItemStack(DCsAppleMilk.autoMaker));
+//	    OreDictionary.registerOre("blockAutoMaker", new ItemStack(DCsAppleMilk.autoMaker));
 	    OreDictionary.registerOre("blockIceMaker", new ItemStack(DCsAppleMilk.iceMaker));
 	    OreDictionary.registerOre("blockEmptyCup", new ItemStack(DCsAppleMilk.emptyCup));
 	    OreDictionary.registerOre("blockEmptyPan", new ItemStack(DCsAppleMilk.emptyPan));
+	    OreDictionary.registerOre("blockEvaporator", new ItemStack(DCsAppleMilk.evaporator));
+	    OreDictionary.registerOre("blockProsessor", new ItemStack(DCsAppleMilk.prosessor));
 	    
-	    OreDictionary.registerOre("gearIron", new ItemStack(DCsAppleMilk.EXItems, 1, 6));
+	    OreDictionary.registerOre("gearIron", new ItemStack(DCsAppleMilk.EXItems, 1, 3));
 	    OreDictionary.registerOre("foodBlackEgg", new ItemStack(DCsAppleMilk.clam, 1, 3));
 	    OreDictionary.registerOre("gemIce", new ItemStack(DCsAppleMilk.icyCrystal, 1, 0));
-	    OreDictionary.registerOre("foodCrushedIce", new ItemStack(DCsAppleMilk.EXItems, 1, 7));
-	    OreDictionary.registerOre("cookingIce", new ItemStack(DCsAppleMilk.EXItems, 1, 7));
-	    OreDictionary.registerOre("dustGlass", new ItemStack(DCsAppleMilk.EXItems, 1, 11));
-	    OreDictionary.registerOre("nuggetIron", new ItemStack(DCsAppleMilk.EXItems, 1, 13));
+	    OreDictionary.registerOre("foodCrushedIce", new ItemStack(DCsAppleMilk.EXItems, 1, 4));
+	    OreDictionary.registerOre("cookingIce", new ItemStack(DCsAppleMilk.EXItems, 1, 4));
+	    OreDictionary.registerOre("dustGlass", new ItemStack(DCsAppleMilk.EXItems, 1, 5));
+	    OreDictionary.registerOre("nuggetIron", new ItemStack(DCsAppleMilk.EXItems, 1, 7));
 	    
 	    OreDictionary.registerOre("blockClam", new ItemStack(DCsAppleMilk.gunpowderContainer, 1, 3));
 	    OreDictionary.registerOre("gemClam", new ItemStack(DCsAppleMilk.princessClam, 1, 0));

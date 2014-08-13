@@ -19,7 +19,7 @@ public class LoadTE3Plugin {
 		toSend.setTag("secondaryOutput", new NBTTagCompound());
 
 		new ItemStack(DCsAppleMilk.leafTea, 1, 0).writeToNBT(toSend.getCompoundTag("input"));
-		new ItemStack(DCsAppleMilk.EXItems, 2, 2).writeToNBT(toSend.getCompoundTag("primaryOutput"));
+		new ItemStack(DCsAppleMilk.foodTea, 2, 0).writeToNBT(toSend.getCompoundTag("primaryOutput"));
 		new ItemStack(DCsAppleMilk.leafTea, 1, 1).writeToNBT(toSend.getCompoundTag("secondaryOutput"));
 		toSend.setInteger("secondaryChance", 10);
 		FMLInterModComms.sendMessage("ThermalExpansion", "PulverizerRecipe", toSend);
@@ -31,8 +31,8 @@ public class LoadTE3Plugin {
 		toSend2.setTag("secondaryOutput", new NBTTagCompound());
 
 		new ItemStack(DCsAppleMilk.emptyBottle, 1, 0).writeToNBT(toSend2.getCompoundTag("input"));
-		new ItemStack(DCsAppleMilk.EXItems, 2, 11).writeToNBT(toSend2.getCompoundTag("primaryOutput"));
-		new ItemStack(DCsAppleMilk.EXItems, 1, 11).writeToNBT(toSend2.getCompoundTag("secondaryOutput"));
+		new ItemStack(DCsAppleMilk.EXItems, 2, 5).writeToNBT(toSend2.getCompoundTag("primaryOutput"));
+		new ItemStack(DCsAppleMilk.EXItems, 1, 5).writeToNBT(toSend2.getCompoundTag("secondaryOutput"));
 		toSend2.setInteger("secondaryChance", 50);
 		FMLInterModComms.sendMessage("ThermalExpansion", "PulverizerRecipe", toSend2);
 		

@@ -56,9 +56,9 @@ public class ItemWallMug extends Item{
         {
             --par1ItemStack.stackSize;
         }
-		if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.EXItems,1,10)))
+		if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(this)))
     	{
-    		par3EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.EXItems,1,10), 1);
+    		par3EntityPlayer.entityDropItem(new ItemStack(this), 1);
     	}
 		
 		int meta = par1ItemStack.getItemDamage();

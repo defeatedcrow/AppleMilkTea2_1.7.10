@@ -4,6 +4,7 @@ import java.util.Random;
 
 import mods.defeatedcrow.client.particle.EntityBlinkFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
+import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
 import mods.defeatedcrow.common.tile.appliance.TileEvaporator;
@@ -22,6 +23,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -107,6 +110,7 @@ public class BlockEvaporator extends BlockContainer {
 				par5EntityPlayer.openGui(DCsAppleMilk.instance, DCsAppleMilk.instance.guiEvaporator, par1World, par2, par3, par4);
 				return true;
 			}
+			
 		}
 		return true;
 	}

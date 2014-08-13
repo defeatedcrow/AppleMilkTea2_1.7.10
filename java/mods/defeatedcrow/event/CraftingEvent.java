@@ -41,9 +41,9 @@ public class CraftingEvent {
 			else if (crafting.getItem() == DCsAppleMilk.chalcedonyKnife) {
 				player.triggerAchievement(AchievementRegister.craftChalcedony);
 			}
-			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.autoMaker)) {
-				player.triggerAchievement(AchievementRegister.craftAutoMaker);
-			}
+//			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.autoMaker)) {
+//				player.triggerAchievement(AchievementRegister.craftAutoMaker);
+//			}
 			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.vegiBag)) {
 				player.triggerAchievement(AchievementRegister.craftVegiBag);
 			}
@@ -131,7 +131,7 @@ public class CraftingEvent {
 			else if (item.getItem() == Item.getItemFromBlock(DCsAppleMilk.chalcedony)) {
 				player.triggerAchievement(AchievementRegister.craftChalcedony);
 			}
-			else if (item.getItem() == DCsAppleMilk.EXItems && item.getItemDamage() == 2) {
+			else if (item.getItem() == DCsAppleMilk.foodTea && item.getItemDamage() == 0) {
 				player.triggerAchievement(AchievementRegister.makeTeaLeaves);
 			}
 		}

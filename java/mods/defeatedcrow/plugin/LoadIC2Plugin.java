@@ -63,13 +63,13 @@ public class LoadIC2Plugin {
             RecipeInputItemStack input2 = new RecipeInputItemStack(new ItemStack(DCsAppleMilk.leafTea, 1, 0), 1);
             NBTTagCompound metadata2 = new NBTTagCompound();
             metadata2.setInteger("macerater", 2000);
-            ItemStack outputs2 = new ItemStack(DCsAppleMilk.EXItems, 2, 2);
+            ItemStack outputs2 = new ItemStack(DCsAppleMilk.foodTea, 2, 0);
             
             RecipeInputItemStack input3 = new RecipeInputItemStack(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), 1);
-            ItemStack outputs3 = new ItemStack(DCsAppleMilk.EXItems, 2, 11);
+            ItemStack outputs3 = new ItemStack(DCsAppleMilk.EXItems, 2, 5);
             
             RecipeInputItemStack input4 = new RecipeInputItemStack(new ItemStack(DCsAppleMilk.clam, 1, 0), 1);
-            ItemStack outputs4 = new ItemStack(DCsAppleMilk.EXItems, 2, 12);
+            ItemStack outputs4 = new ItemStack(DCsAppleMilk.EXItems, 2, 6);
             
             Recipes.macerator.addRecipe(input2, metadata2, outputs2);
             Recipes.macerator.addRecipe(input3, metadata2, outputs3);

@@ -110,15 +110,15 @@ public class BlockTeaMakerNext extends BlockContainer{
         		}
         		return false;
         	}
-        	else if (item == DCsAppleMilk.EXItems && meta == 10) //ウォールマグは4種しか汲めない
+        	else if (item == DCsAppleMilk.emptyWallMug) //ウォールマグは4種しか汲めない
         	{
         		if (tile.getOutput() != null)
         		{
         			ItemStack output = tile.getOutput();
-        			if (tileItem.getItem() == DCsAppleMilk.EXItems && tileItem.getItemDamage() == 2) {
+        			if (tileItem.getItem() == DCsAppleMilk.foodTea && tileItem.getItemDamage() == 0) {
         				output = new ItemStack(DCsAppleMilk.wallMug, 1, 1);
         			}
-        			else if (tileItem.getItem() == DCsAppleMilk.EXItems && tileItem.getItemDamage() == 3) {
+        			else if (tileItem.getItem() == DCsAppleMilk.foodTea && tileItem.getItemDamage() == 1) {
         				output = new ItemStack(DCsAppleMilk.wallMug, 1, 0);
         			}
         			else if (tileItem.getItem() == DCsAppleMilk.gratedApple && tileItem.getItemDamage() == 2) {

@@ -21,8 +21,8 @@ import mods.defeatedcrow.common.tile.TileAlcoholCup;
 
 public class BlockAlcoholCup extends BlockContainer{
 	
-	//sake, beer, wine, rum, gin, vodka, whiskey, apple, tea, cassis, plum
-	public static final String[] contents = new String[] {"_water", "_juice", "_tomato", "_juice", "_water", "_water", "_juice", "_lemon", "_tea", "_grape", "_juice"};
+	//shothu, sake, beer, wine, rum, gin, vodka, whiskey, apple, tea, cassis, plum, shothu
+	public static final String[] contents = new String[] {"_water", "_juice", "_tomato", "_juice", "_water", "_water", "_juice", "_lemon", "_tea", "_grape", "_juice", "_water"};
 	
 	@SideOnly(Side.CLIENT)
     private IIcon boxTex;
@@ -124,10 +124,10 @@ public class BlockAlcoholCup extends BlockContainer{
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int par1, int par2)
     { 
-		int i = Math.min(par2, 10);
+		int i = Math.min(par2, 11);
 		if (par1 == 1)
 		{
-			if (par2 == 0 || par2 == 4 || par2 == 5)
+			if (par2 == 0 || par2 == 12 || par2 == 4 || par2 == 5)
 			{
 				return Blocks.water.getBlockTextureFromSide(1);
 			}
@@ -152,7 +152,7 @@ public class BlockAlcoholCup extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-		for(int i = 0; i < 11; ++i)
+		for(int i = 0; i < 12; ++i)
 		{
 			par3List.add(new ItemStack(this, 1, i));
 		}
@@ -170,8 +170,8 @@ public class BlockAlcoholCup extends BlockContainer{
 	{
 		this.boxTex = par1IconRegister.registerIcon("defeatedcrow:blueglass");
 		this.bubbleTex = par1IconRegister.registerIcon("defeatedcrow:contents_sugar");
-		this.contentsTex = new IIcon[11];
-        for (int i = 0; i < 11; ++i)
+		this.contentsTex = new IIcon[12];
+        for (int i = 0; i < 12; ++i)
         {
         	this.contentsTex[i] = par1IconRegister.registerIcon("defeatedcrow:contents" + contents[i]);
         }

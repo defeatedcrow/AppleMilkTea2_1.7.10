@@ -17,7 +17,7 @@ public class ItemCardboard extends ItemBlock{
 	@Override
 	public String getUnlocalizedName(ItemStack par1ItemStack)
 	{
-		int m = (par1ItemStack.getItemDamage());
+		int m = (par1ItemStack.getItemDamage() & 7);
 		if (m < 4) return super.getUnlocalizedName() + bagVegi[m];
 		else return super.getUnlocalizedName() + m;
 	}

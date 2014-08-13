@@ -6,6 +6,8 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,6 +19,8 @@ public class ContainerEvaporator extends Container {
  
 	private int lastCookTime;
 	private int lastBurnTime;
+	private int lastFluidAmount;
+	private int lastFluidID;
  
 	public ContainerEvaporator(EntityPlayer player, TileEvaporator par2TileEntity) {
 		this.tileentity = par2TileEntity;
@@ -30,7 +34,7 @@ public class ContainerEvaporator extends Container {
 		//完成品
 		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 1, 9, 55));
 		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 3, 110, 21));
-		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 4, 141, 58));
+		this.addSlotToContainer(new Slot(this.inventory, 4, 141, 58));
 		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 5, 56, 55));
 		
 		int i;
@@ -56,6 +60,18 @@ public class ContainerEvaporator extends Container {
 		super.addCraftingToCrafters(par1ICrafting);
 		par1ICrafting.sendProgressBarUpdate(this, 0, this.tileentity.cookTime);
 		par1ICrafting.sendProgressBarUpdate(this, 1, this.tileentity.getChargeAmount());
+		
+		if (this.tileentity.productTank.getFluid() != null)
+		{
+			par1ICrafting.sendProgressBarUpdate(this, 2, this.tileentity.productTank.getFluid().fluidID);
+			par1ICrafting.sendProgressBarUpdate(this, 3, this.tileentity.productTank.getFluidAmount());
+		}
+		else
+		{
+			par1ICrafting.sendProgressBarUpdate(this, 2, 0);
+			par1ICrafting.sendProgressBarUpdate(this, 3, 0);
+		}
+		
 	}
  
 	// 更新を送る
@@ -76,10 +92,40 @@ public class ContainerEvaporator extends Container {
 			{
 				icrafting.sendProgressBarUpdate(this, 1, this.tileentity.getChargeAmount());
 			}
+			
+			if (this.tileentity.productTank.getFluid() != null)
+			{
+				if (this.lastFluidID != this.tileentity.productTank.getFluid().fluidID)
+				{
+					icrafting.sendProgressBarUpdate(this, 2, this.tileentity.productTank.getFluid().fluidID);
+				}
+				if (this.lastFluidAmount != this.tileentity.productTank.getFluidAmount())
+				{
+					icrafting.sendProgressBarUpdate(this, 3, this.tileentity.productTank.getFluidAmount());
+				}
+				
+				this.lastFluidAmount = this.tileentity.productTank.getFluidAmount();
+				this.lastFluidID = this.tileentity.productTank.getFluid().fluidID;
+			}
+			else
+			{
+				if (this.lastFluidID != 0)
+				{
+					icrafting.sendProgressBarUpdate(this, 2, 0);
+				}
+				if (this.lastFluidAmount != 0)
+				{
+					icrafting.sendProgressBarUpdate(this, 3, 0);
+				}
+				
+				this.lastFluidAmount = 0;
+				this.lastFluidID = 0;
+			}
 		}
  
 		this.lastCookTime = this.tileentity.cookTime;
 		this.lastBurnTime = this.tileentity.getChargeAmount();
+		
 	}
  
 	// 更新する
@@ -94,6 +140,11 @@ public class ContainerEvaporator extends Container {
 		if (par1 == 1)
 		{
 			this.tileentity.setChargeAmount(par2);
+		}
+		
+		if (par1 == 2 || par1 == 3)
+		{
+			this.tileentity.getGuiFluidUpdate(par1, par2);
 		}
 	}
  

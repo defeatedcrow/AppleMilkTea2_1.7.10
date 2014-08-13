@@ -41,7 +41,7 @@ public class WorldgenTeaTree implements IWorldGenerator {
 				}
 			}
     		
-    		for(int i = 0; i < count; i++)//cassis&camellia
+    		for(int i = 0; i < count/2; i++)//cassis & camellia & yuzu
 			{
 				int PosX = chunk2X + random.nextInt(16);
 				int PosY = 60 + random.nextInt(30);

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import buildcraft.energy.BucketHandler;
+import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -16,7 +17,7 @@ import cpw.mods.fml.common.eventhandler.Event.Result;
 
 public class BucketFillEvent {
 	
-	public Map<Block, Item> buckets = new HashMap<Block, Item>();
+	public static Map<Block, Item> buckets = new HashMap<Block, Item>();
 	
 	@SubscribeEvent
 	public void onBucketFill(FillBucketEvent event) {
@@ -34,6 +35,9 @@ public class BucketFillEvent {
 		Block block = world.getBlock(pos.blockX, pos.blockY, pos.blockZ);
 
 		Item bucket = buckets.get(block);
+		if (bucket != null){
+			AMTLogger.debugInfo("bucket event : " + bucket.getUnlocalizedName());
+		}
 
 		if (bucket != null && world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0) {
 			world.setBlockToAir(pos.blockX, pos.blockY, pos.blockZ);

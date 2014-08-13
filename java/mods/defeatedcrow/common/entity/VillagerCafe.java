@@ -50,7 +50,7 @@ public class VillagerCafe implements IVillageTradeHandler {
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.teaCup2, 1, 5)));
 			
 			//茶葉
-			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.EXItems, 1, 8)));
+			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.foodTea, 1, 2)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.gratedApple, 1, 3)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.leafTea, 1, 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 1), new ItemStack(DCsAppleMilk.leafTea, 1, 2)));
@@ -64,7 +64,7 @@ public class VillagerCafe implements IVillageTradeHandler {
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.egg, 8, 0), new ItemStack(Items.emerald, 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Blocks.pumpkin, 3, 0), new ItemStack(Items.emerald, 1)));
 			
-			recipeList.add(new MerchantRecipe(new ItemStack(DCsAppleMilk.EXItems, 3, 10), new ItemStack(Items.emerald, 1)));
+			recipeList.add(new MerchantRecipe(new ItemStack(DCsAppleMilk.emptyWallMug, 3, 0), new ItemStack(Items.emerald, 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.bowl, 3, 0), new ItemStack(Items.emerald, 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(DCsAppleMilk.emptyCup, 1, 0), new ItemStack(Items.emerald, 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), new ItemStack(Items.emerald, 1)));

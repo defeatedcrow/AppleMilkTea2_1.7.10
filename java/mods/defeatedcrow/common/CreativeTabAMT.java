@@ -24,7 +24,7 @@ public class CreativeTabAMT extends CreativeTabs {
 
 	@Override
 	public Item getTabIconItem() {
-		return Item.getItemFromBlock(DCsAppleMilk.appleBox);
+		return Item.getItemFromBlock(DCsAppleMilk.teaMakerNext);
 	}
 	
 

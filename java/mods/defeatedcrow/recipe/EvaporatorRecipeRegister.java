@@ -28,7 +28,9 @@ public class EvaporatorRecipeRegister implements IEvaporatorRecipeRegister{
 	@Override
 	public void addRecipe(ItemStack output, FluidStack secondary, ItemStack input) {
 		recipes.add(new EvaporatorRecipe(input, output, secondary));
-		AMTLogger.debugInfo("Add Evaporator recipe: input : " + input.getDisplayName() + ", output " + output.getDisplayName());
+		String out = output == null ? "Empty" : output.getDisplayName();
+		String sec = secondary == null ? "Empty" : secondary.getFluid().getLocalizedName(secondary);
+		AMTLogger.debugInfo("Add Evaporator recipe: input: " + input.getDisplayName() + ", output: " + out + ", secondary: " + sec);
 	}
 
 	@Override
