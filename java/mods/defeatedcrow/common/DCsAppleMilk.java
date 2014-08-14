@@ -223,7 +223,7 @@ public class DCsAppleMilk{
 	public static boolean SuccessLoadWa = false;
 	
 	//内部処理用
-	public static boolean debugMode = true;
+	public static boolean debugMode = false;
 	public static boolean succeedAddPotion = false;
 	
 	//新ツール属性の追加
@@ -805,6 +805,7 @@ public class DCsAppleMilk{
 	    //インスタントティーレシピ
 	    //他MODの水入り容器をひと通り取得した後に行うので、最後のほうで呼ぶ
 	    (new DCsRecipeRegister()).addInstantTea();
+	    (new DCsRecipeRegister()).addMetalRecipe();
 	    
 	    //レシピ閲覧系MODの連携要素
 	    (new RegisteredRecipeGet()).setRecipeList();

@@ -75,7 +75,7 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 		Block fluidBlock = null;
 		ItemStack returnStack = null;
 		
-		if (this.productTank.getFluid() != null)
+		if (this.productTank.getFluid() != null && this.productTank.getFluidType() != null)
 		{
 			fluidBlock = this.productTank.getFluidType().getBlock();
 			flag1 = (fluidBlock != null);

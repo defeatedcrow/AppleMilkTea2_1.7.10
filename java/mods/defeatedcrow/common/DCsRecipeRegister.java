@@ -1,6 +1,7 @@
 package mods.defeatedcrow.common;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.google.common.collect.Lists;
@@ -42,26 +43,7 @@ public class DCsRecipeRegister {
 		this.addCordial();
 		this.addSmelting();
 		
-		ArrayList<ItemStack> woodRubber = OreDictionary.getOres("woodRubber");
-	    if (woodRubber.size() > 0){rubberWood = woodRubber.get(0).getItem();}
-	      
-	    if (rubberWood != null)
-	    {
-	    	GameRegistry.addRecipe(
-					new ShapelessOreRecipe(
-			    		new ItemStack(this.rubberWood, 9, 1),
-			    		new Object[]{
-			    		new ItemStack(DCsAppleMilk.woodBox, 1, 4),
-			    		}));
-		     
-		    GameRegistry.addRecipe(
-					new ShapedOreRecipe(
-			    		new ItemStack(DCsAppleMilk.woodBox, 1, 4),
-			    		new Object[]{"XXX","XXX","XXX",
-			    		Character.valueOf('X'), "woodRubber"}));
-	    }
-	    
-	    
+		
 	    //extra recipe
 	    if (DCsConfig.useEXRecipe)
 	    {
@@ -2033,7 +2015,7 @@ public class DCsRecipeRegister {
 	    			  new ItemStack(Items.leather, 1));
 		 
 		 GameRegistry.addShapelessRecipe(
-	    		  new ItemStack(DCsAppleMilk.EXItems, 9, 13),
+	    		  new ItemStack(DCsAppleMilk.EXItems, 9, 7),
 	    			  new ItemStack(Items.iron_ingot, 1),
 	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767));
 		 
@@ -2240,4 +2222,68 @@ public class DCsRecipeRegister {
 		}
 		
 	}
+	
+	//金属ナゲットのレシピ登録も、他MODのアイテム追加が終わるpostInitで呼ぶ
+	public void addMetalRecipe()
+	{
+		ArrayList<ItemStack> woodRubber = OreDictionary.getOres("woodRubber");
+	    if (woodRubber.size() > 0)
+	    {
+	    	ItemStack ret = woodRubber.get(0);
+	    	
+	    	GameRegistry.addRecipe(
+					new ShapelessOreRecipe(
+			    		new ItemStack(ret.getItem(), 9, ret.getItemDamage()),
+			    		new Object[]{
+			    		new ItemStack(DCsAppleMilk.woodBox, 1, 4),
+			    		}));
+		     
+		    GameRegistry.addRecipe(
+					new ShapedOreRecipe(
+			    		new ItemStack(DCsAppleMilk.woodBox, 1, 4),
+			    		new Object[]{"XXX","XXX","XXX",
+			    		Character.valueOf('X'), "woodRubber"}));
+	    }
+	    
+	    ArrayList<ItemStack> ingotTin = OreDictionary.getOres("ingotTin");
+	    while(ingotTin.size() > 0)
+	    {
+	    	ItemStack ret = ingotTin.get(0);
+	    	
+	    	GameRegistry.addRecipe(
+					new ShapelessOreRecipe(
+			    		new ItemStack(DCsAppleMilk.EXItems, 9, 8),
+			    		new Object[]{
+			    		"ingtoTin",
+			    		new ItemStack(DCsAppleMilk.DCgrater, 1, 32767)
+			    		}));
+		     
+		    GameRegistry.addRecipe(
+					new ShapedOreRecipe(
+			    		new ItemStack(ret.getItem(), 1, ret.getItemDamage()),
+			    		new Object[]{"XXX","XXX","XXX",
+			    		Character.valueOf('X'), new ItemStack(DCsAppleMilk.EXItems, 1, 8)}));
+	    }
+	    
+	    ArrayList<ItemStack> ingotCopper = OreDictionary.getOres("ingotCopper");
+	    while(ingotTin.size() > 0)
+	    {
+	    	ItemStack ret = ingotTin.get(0);
+	    	
+	    	GameRegistry.addRecipe(
+					new ShapelessOreRecipe(
+			    		new ItemStack(DCsAppleMilk.EXItems, 9, 9),
+			    		new Object[]{
+			    		"ingtoCopper",
+			    		new ItemStack(DCsAppleMilk.DCgrater, 1, 32767)
+			    		}));
+		     
+		    GameRegistry.addRecipe(
+					new ShapedOreRecipe(
+			    		new ItemStack(ret.getItem(), 1, ret.getItemDamage()),
+			    		new Object[]{"XXX","XXX","XXX",
+			    		Character.valueOf('X'), new ItemStack(DCsAppleMilk.EXItems, 1, 9)}));
+	    }
+	}
+	
 }

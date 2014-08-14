@@ -41,9 +41,9 @@ public class CraftingEvent {
 			else if (crafting.getItem() == DCsAppleMilk.chalcedonyKnife) {
 				player.triggerAchievement(AchievementRegister.craftChalcedony);
 			}
-//			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.autoMaker)) {
-//				player.triggerAchievement(AchievementRegister.craftAutoMaker);
-//			}
+			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.prosessor)) {
+				player.triggerAchievement(AchievementRegister.craftAutoMaker);
+			}
 			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.vegiBag)) {
 				player.triggerAchievement(AchievementRegister.craftVegiBag);
 			}

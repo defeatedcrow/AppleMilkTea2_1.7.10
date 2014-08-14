@@ -246,7 +246,7 @@ public class TileProsessor extends MachineBase{
 
 	@Override
 	protected int[] slotsSides() {
-		return new int[]{0,1,11,12};
+		return new int[]{0,1,2,3,4,5,6,7,8,9,10,11,12};
 	}
 	
 	@Override

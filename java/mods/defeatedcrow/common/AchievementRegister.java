@@ -110,8 +110,8 @@ public class AchievementRegister {
 		craftGlassLamp = (new Achievement("defeatedcrow.glasslamp", "craftGlassLamp", 4, 4, new ItemStack(DCsAppleMilk.cLamp, 1, 3), craftChalcedony))
 				.setSpecial().registerStat();
 		
-//		craftAutoMaker = (new Achievement("defeatedcrow.automaker", "craftAutoMaker", 7, 3, new ItemStack(DCsAppleMilk.autoMaker, 1, 0), craftChalKnife))
-//				.registerStat();
+		craftAutoMaker = (new Achievement("defeatedcrow.prosessor", "craftAutoMaker", 7, 3, new ItemStack(DCsAppleMilk.prosessor, 1, 0), craftChalKnife))
+				.registerStat();
 		
 		drinkCocktail = (new Achievement("defeatedcrow.cocktail", "drinkCocktail", 3, -2, new ItemStack(DCsAppleMilk.cocktail, 1, 0), craftIceMaker))
 				.registerStat();

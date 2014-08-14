@@ -13,8 +13,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 import org.lwjgl.opengl.GL11;
 
-import buildcraft.core.render.RenderUtils;
-
 public class GuiEvaporator extends GuiContainer {
 	 
 	private TileEvaporator tileentity;
@@ -75,7 +73,7 @@ public class GuiEvaporator extends GuiContainer {
 		}
 		IIcon icon = fluid.getFluid().getIcon(fluid);
 		mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-		RenderUtils.setGLColorFromInt(fluid.getFluid().getColor(fluid));
+		setGLColorFromInt(fluid.getFluid().getColor(fluid));
 		int fullX = width / 16;
 		int fullY = height / 16;
 		int lastX = width - fullX * 16;
@@ -98,6 +96,13 @@ public class GuiEvaporator extends GuiContainer {
 			}
 		}
 		drawCutIcon(icon, x + fullX * 16, y + fullY * 16, lastX, lastY, fullLvl == fullY ? lastLvl : 0);
+	}
+	
+	public static void setGLColorFromInt(int color) {
+		float red = (color >> 16 & 255) / 255.0F;
+		float green = (color >> 8 & 255) / 255.0F;
+		float blue = (color & 255) / 255.0F;
+		GL11.glColor4f(red, green, blue, 1.0F);
 	}
 
 	/**

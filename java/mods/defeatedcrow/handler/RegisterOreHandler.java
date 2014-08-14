@@ -110,7 +110,6 @@ public class RegisterOreHandler {
 	    
 	    OreDictionary.registerOre("toolGrater", new ItemStack(DCsAppleMilk.DCgrater));
 	    OreDictionary.registerOre("blockTeaMaker", new ItemStack(DCsAppleMilk.teaMakerNext));
-//	    OreDictionary.registerOre("blockAutoMaker", new ItemStack(DCsAppleMilk.autoMaker));
 	    OreDictionary.registerOre("blockIceMaker", new ItemStack(DCsAppleMilk.iceMaker));
 	    OreDictionary.registerOre("blockEmptyCup", new ItemStack(DCsAppleMilk.emptyCup));
 	    OreDictionary.registerOre("blockEmptyPan", new ItemStack(DCsAppleMilk.emptyPan));
@@ -124,6 +123,8 @@ public class RegisterOreHandler {
 	    OreDictionary.registerOre("cookingIce", new ItemStack(DCsAppleMilk.EXItems, 1, 4));
 	    OreDictionary.registerOre("dustGlass", new ItemStack(DCsAppleMilk.EXItems, 1, 5));
 	    OreDictionary.registerOre("nuggetIron", new ItemStack(DCsAppleMilk.EXItems, 1, 7));
+	    OreDictionary.registerOre("nuggetTin", new ItemStack(DCsAppleMilk.EXItems, 1, 8));
+	    OreDictionary.registerOre("nuggetCopper", new ItemStack(DCsAppleMilk.EXItems, 1, 9));
 	    
 	    OreDictionary.registerOre("blockClam", new ItemStack(DCsAppleMilk.gunpowderContainer, 1, 3));
 	    OreDictionary.registerOre("gemClam", new ItemStack(DCsAppleMilk.princessClam, 1, 0));

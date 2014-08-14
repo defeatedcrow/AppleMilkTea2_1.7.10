@@ -216,7 +216,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 				++this.cookTime;
 				--this.chargeAmount;
 
-				if (this.cookTime == 100)
+				if (this.cookTime == 50)
 				{
 					this.cookTime = 0;
 					this.onProgress();
