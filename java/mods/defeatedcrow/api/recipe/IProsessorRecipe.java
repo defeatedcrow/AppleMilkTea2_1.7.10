@@ -12,6 +12,8 @@ public interface IProsessorRecipe {
 	
 	ItemStack getSecondary();
 	
+	public boolean isFoodRecipe();
+	
 	public List<Object> getProcessedInput();
 	
 	public int getRecipeSize();

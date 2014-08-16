@@ -58,7 +58,7 @@ public class TileProsessor extends MachineBase{
 			{
 				output = recipe.getOutput();
 				sec = recipe.getSecondary();
-				flag1 = true;
+				flag1 = recipe.isFoodRecipe();
 				break;
 			}
 		}

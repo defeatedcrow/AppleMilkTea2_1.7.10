@@ -100,7 +100,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled(int par1)
 	{
-		return this.cookTime * par1 / 100;
+		return this.cookTime * par1 / 50;
 	}
  
 	//チャージゲージの描画

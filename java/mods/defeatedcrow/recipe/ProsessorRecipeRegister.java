@@ -31,13 +31,13 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 	}
 	
 	@Override
-	public void addRecipe(ItemStack output, ItemStack secondary, Object... input) {
-		recipes.add(new ProsessorRecipe(output, secondary, input));
+	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, Object... input) {
+		recipes.add(new ProsessorRecipe(output, secondary, flag, input));
 		AMTLogger.debugInfo("Add Prosessor recipe: output " + output.getDisplayName());
 	}
 
 	@Override
-	public List<? extends IProsessorRecipe> getRecipes() {
+	public List<ProsessorRecipe> getRecipes() {
 		return this.recipes;
 	}
 	
@@ -48,11 +48,14 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 		private final Object[] input;
 		private final ArrayList<Object> processedInput;
 		
-		public ProsessorRecipe(ItemStack output, ItemStack sec, Object... inputs)
+		public final boolean foodRecipe;
+		
+		public ProsessorRecipe(ItemStack output, ItemStack sec, boolean flag, Object... inputs)
 		{
 			this.output = output;
 			this.secondary = sec;
 			this.input = inputs;
+			this.foodRecipe = flag;
 			this.processedInput = new ArrayList<Object>();
 			for (int i = 0; i < inputs.length; i++) {
 				if (inputs[i] instanceof String) {
@@ -83,6 +86,12 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 		@Override
 		public ItemStack getSecondary() {
 			return this.secondary == null ? null : this.secondary.copy();
+		}
+		
+		@Override
+		public boolean isFoodRecipe()
+		{
+			return this.foodRecipe;
 		}
 		
 		@Override

@@ -23,6 +23,7 @@ import mods.defeatedcrow.event.*;
 import mods.defeatedcrow.handler.*;
 import mods.defeatedcrow.plugin.*;
 import mods.defeatedcrow.plugin.craftguide.LoadCraftGuidePlugin;
+import mods.defeatedcrow.plugin.mce.MCEconomyPlugin;
 import mods.defeatedcrow.potion.*;
 import mods.defeatedcrow.recipe.*;
 import net.minecraft.block.Block;
@@ -61,8 +62,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha6",
-		dependencies = "required-after:Forge@[10.12.1.1090,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
+		version = "1.7.10_2.0.alpha8",
+		dependencies = "required-after:Forge@[10.12.1.1197,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 //required-after:SampleCore;
 public class DCsAppleMilk{
@@ -84,7 +85,6 @@ public class DCsAppleMilk{
 	//ツール
 	public static Block  teaMakerNext;
 	public static Block  emptyCup;
-//	public static Block  autoMaker;
 	public static Block  iceMaker;
 	public static Block  emptyPan;
 	public static Block  filledPan;
@@ -221,9 +221,10 @@ public class DCsAppleMilk{
 	public static boolean SuccessLoadDart = false;
 	public static boolean SuccessLoadTE3 = false;
 	public static boolean SuccessLoadWa = false;
+	public static boolean SuccessLoadCGuide = false;
 	
 	//内部処理用
-	public static boolean debugMode = false;
+	public static boolean debugMode = true;
 	public static boolean succeedAddPotion = false;
 	
 	//新ツール属性の追加
@@ -466,20 +467,20 @@ public class DCsAppleMilk{
 	    AMTLogger.trace("Registered new evaporator recipe");
 	    
 	    //TEへのIMC送信はここで行う
-	    if (Loader.isModLoaded("ThermalExpansion"))
-	    {
-	    	AMTLogger.loadingModInfo("ThermalExpansion");
-	    	try
-	        {
-	          this.SuccessLoadTE3 = true;
-	          (new LoadTE3Plugin()).load();
-	          AMTLogger.loadedModInfo("ThermalExpansion");
-	        }
-	        catch (Exception e) {
-	        	AMTLogger.failLoadingModInfo("ThermalExpansion");
-	          e.printStackTrace(System.err);
-	        }
-	    }
+//	    if (Loader.isModLoaded("ThermalExpansion"))
+//	    {
+//	    	AMTLogger.loadingModInfo("ThermalExpansion");
+//	    	try
+//	        {
+//	          this.SuccessLoadTE3 = true;
+//	          (new LoadTE3Plugin()).load();
+//	          AMTLogger.loadedModInfo("ThermalExpansion");
+//	        }
+//	        catch (Exception e) {
+//	        	AMTLogger.failLoadingModInfo("ThermalExpansion");
+//	          e.printStackTrace(System.err);
+//	        }
+//	    }
 	    
 	    //IMCイベント用のテスト
 //	    NBTTagCompound toSend = new NBTTagCompound();
@@ -626,13 +627,13 @@ public class DCsAppleMilk{
 	        }
 	    }
 	    
-	    if (Loader.isModLoaded("MCEconomy"))
+	    if (Loader.isModLoaded("MCEconomy2"))
 	    {
 	    	AMTLogger.loadingModInfo("MCEconomy");
 	    	try
 	        {
 	          this.SuccessLoadEconomy = true;
-//	          (new MCEconomyPlugin()).registerSellable();
+	          (new MCEconomyPlugin()).registerSellable();
 	          AMTLogger.loadedModInfo("MCEconomy");
 	          
 	        }
@@ -819,7 +820,7 @@ public class DCsAppleMilk{
 	    	AMTLogger.loadingModInfo("craftguide");
 	    	try
 	        {
-	          this.SuccessLoadWa = true;
+	          this.SuccessLoadCGuide = true;
 	          (new LoadCraftGuidePlugin()).load();;
 	          AMTLogger.loadedModInfo("craftguide");
 	        }

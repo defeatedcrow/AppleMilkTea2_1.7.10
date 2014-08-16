@@ -25,7 +25,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.TileRotaryDial;
-//import mods.defeatedcrow.handler.economy.DCsShopGui;
+import mods.defeatedcrow.plugin.mce.OpenShopGui;
 
 public class BlockRotaryDial extends BlockContainer{
 	
@@ -47,12 +47,12 @@ public class BlockRotaryDial extends BlockContainer{
         }
         else
         {
-//        	if (DCsAppleMilk.SuccessLoadEconomy) {
-//        		DCsShopGui.openShopGui(par5EntityPlayer, par1World, par2, par3, par4);
-//        	}
-//        	else {
-//        		
-//        	}
+        	if (DCsAppleMilk.SuccessLoadEconomy) {
+        		OpenShopGui.openShopGui(par5EntityPlayer, par1World, par2, par3, par4);
+        	}
+        	else {
+        		
+        	}
         }
         
         return true;

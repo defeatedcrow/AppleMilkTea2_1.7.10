@@ -1389,12 +1389,12 @@ public class DCsRecipeRegister {
 					 }));
 		 
 		 GameRegistry.addShapelessRecipe(
-	    		  new ItemStack(DCsAppleMilk.EXItems,1,3),
-	    			  new ItemStack(DCsAppleMilk.EXItems,1,2));
+	    		  new ItemStack(DCsAppleMilk.foodTea,1,1),
+	    			  new ItemStack(DCsAppleMilk.foodTea,1,0));
 		 
 		 GameRegistry.addShapelessRecipe(
-	    		  new ItemStack(DCsAppleMilk.EXItems,1,4),
-	    			  new ItemStack(DCsAppleMilk.EXItems,1,3));
+	    		  new ItemStack(DCsAppleMilk.foodTea,1,2),
+	    			  new ItemStack(DCsAppleMilk.foodTea,1,1));
 		 
 		 GameRegistry.addShapelessRecipe(
 	    		  new ItemStack(DCsAppleMilk.inkStick,1),
@@ -2010,6 +2010,10 @@ public class DCsRecipeRegister {
 					 }));
 		 
 		 //extended vanilla recipe
+		GameRegistry.addShapelessRecipe(
+	    		  new ItemStack(Blocks.planks, 4, 2),
+	    			  new ItemStack(DCsAppleMilk.logYuzu, 1, 0));
+		
 		 GameRegistry.addShapelessRecipe(
 	    		  new ItemStack(DCsAppleMilk.EXItems, 1, 1),
 	    			  new ItemStack(Items.leather, 1));
@@ -2246,7 +2250,7 @@ public class DCsRecipeRegister {
 	    }
 	    
 	    ArrayList<ItemStack> ingotTin = OreDictionary.getOres("ingotTin");
-	    while(ingotTin.size() > 0)
+	    if(ingotTin.size() > 0)
 	    {
 	    	ItemStack ret = ingotTin.get(0);
 	    	
@@ -2254,7 +2258,7 @@ public class DCsRecipeRegister {
 					new ShapelessOreRecipe(
 			    		new ItemStack(DCsAppleMilk.EXItems, 9, 8),
 			    		new Object[]{
-			    		"ingtoTin",
+			    		"ingotTin",
 			    		new ItemStack(DCsAppleMilk.DCgrater, 1, 32767)
 			    		}));
 		     
@@ -2266,7 +2270,7 @@ public class DCsRecipeRegister {
 	    }
 	    
 	    ArrayList<ItemStack> ingotCopper = OreDictionary.getOres("ingotCopper");
-	    while(ingotTin.size() > 0)
+	    if(ingotCopper.size() > 0)
 	    {
 	    	ItemStack ret = ingotTin.get(0);
 	    	
@@ -2274,7 +2278,7 @@ public class DCsRecipeRegister {
 					new ShapelessOreRecipe(
 			    		new ItemStack(DCsAppleMilk.EXItems, 9, 9),
 			    		new Object[]{
-			    		"ingtoCopper",
+			    		"ingotCopper",
 			    		new ItemStack(DCsAppleMilk.DCgrater, 1, 32767)
 			    		}));
 		     

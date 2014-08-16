@@ -33,7 +33,7 @@ public class IceRecipeHandlerCG implements RecipeProvider{
 		
 		RecipeTemplate template;
 		ItemStack iceMaker = new ItemStack(DCsAppleMilk.iceMaker, 1, 0);
-		template = generator.createRecipeTemplate(this.slots, null, "defeatedcrow:textures/gui/craftguidegui.png", 1, 60, 82, 60);
+		template = generator.createRecipeTemplate(this.slots, iceMaker, "defeatedcrow:textures/gui/craftguidegui.png", 1, 60, 82, 60);
 		HashMap<ItemStack, ItemStack[]> recipeGet = RegisteredRecipeGet.iceRecipeList;
 		Iterator<Entry<ItemStack, ItemStack[]>> inputs = recipeGet.entrySet().iterator();
 		while (inputs.hasNext())
