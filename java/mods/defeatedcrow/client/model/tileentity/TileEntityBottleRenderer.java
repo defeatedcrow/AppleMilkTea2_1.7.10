@@ -48,6 +48,10 @@ public class TileEntityBottleRenderer extends TileEntitySpecialRenderer
         short remShort = par0Tile.getRemainShort();
         
         if (l < 8) {
+        	boolean side = par0Tile.getSide();
+        	float r = 0.0F;
+        	if (side) r = 90.0F;
+        	
         	String texPass = new String (Util.getEntityTexturePassNoAlt() + "largebottle" + type[l] + ".png");
             bottleTex = new ResourceLocation(texPass);
             this.bindTexture(bottleTex);
@@ -57,7 +61,7 @@ public class TileEntityBottleRenderer extends TileEntitySpecialRenderer
             GL11.glTranslatef((float)par1 + 0.5F, (float)par2 + 1.5F, (float)par3 + 0.5F);
             GL11.glScalef(1.0F, -1.0F, -1.0F);
             GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
-            model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+            model.render((Entity)null, 0.0F, 0.0F, 0.0F, r, 0.0F, 0.0625F);
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
             GL11.glPopMatrix();
         }

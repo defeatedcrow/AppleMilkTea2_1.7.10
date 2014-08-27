@@ -20,6 +20,8 @@ public class DCsConfig {
 	
 	//entity
 	public static int entityIdMelon = 160;
+	public static int entityIdSilkMelon = 161;
+	public static int entityIdKinoko = 162;
 	
 	public static int entityIdIce = 150;
 	public static int entityIdCup = 151;
@@ -38,10 +40,12 @@ public class DCsConfig {
 	//コンフィグ項目の初期設定
 	public static int teaTreeGenValue = 5;
 	public static int clamChanceValue = 5;
+	public static int princessChanceValue = 5;
 	public static int setCupTexture = 1;
 	public static int setAltTexturePass = 2;
 	public static int teppannReadyTime = 30;
 	public static int cupStackSize = 1;
+	public static int charmRemain = 0;
 	
 	public static boolean useEXRecipe = false;
 	public static boolean notGenTeaTree = false;
@@ -145,7 +149,9 @@ public class DCsConfig {
 			Property entityCocktail = cfg.get("entityid", "EntityIDCocktail", entityIdCocktail);
 			Property entityAlcohol = cfg.get("entityid", "EntityIDAlcoholCup", entityIdAlcohol);
 			Property entitySandwich = cfg.get("entityid", "EntityIDSandwich", entityIdSandwich);
-			Property entityTart = cfg.get("entityid", "EntityIDIceTart", entityIdTart);
+			Property entityTart = cfg.get("entityid", "EntityIDTart", entityIdTart);
+			Property entitySMelon = cfg.get("entityid", "EntityIDSilkMelon", entityIdSilkMelon);
+			Property entityKinoko = cfg.get("entityid", "EntityIDKinoko", entityIdKinoko);
 			
 			potionIDImmunity = DCpotionID.getInt();
 			potionIDPrvExplode = DCpotionID3.getInt();
@@ -192,6 +198,8 @@ public class DCsConfig {
 			entityIdAlcohol = entityAlcohol.getInt();
 			entityIdSandwich = entitySandwich.getInt();
 			entityIdTart = entityTart.getInt();
+			entityIdSilkMelon = entitySMelon.getInt();
+			entityIdKinoko = entityKinoko.getInt();
 			
 		}
 		catch (Exception e)

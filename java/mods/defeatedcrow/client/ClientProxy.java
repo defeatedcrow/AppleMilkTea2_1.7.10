@@ -77,7 +77,10 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerTileEntity(TileCordial.class, "TileCordial", new TileEntityCordialRenderer());
 		ClientRegistry.registerTileEntity(TileAlcoholCup.class, "TileAlcoholCup", new TileEntityAlcoholCupRenderer());
 		ClientRegistry.registerTileEntity(TileProsessor.class, "TileProsessor", new TileEntityProsessorRenderer());
+		ClientRegistry.registerTileEntity(TileAdvProsessor.class, "TileAdvProsessor", new TileEntityJawCrusherRenderer());
 		ClientRegistry.registerTileEntity(TileEvaporator.class, "TileEvaporator", new TileEntityEvaporatorRenderer());
+		ClientRegistry.registerTileEntity(TileVegiBag.class, "TileVegiBag", new TileEntityVegiBagRenderer());
+		ClientRegistry.registerTileEntity(TileCardBoard.class, "TileCardBoard", new TileEntityCardBoardRenderer());
 	}
 
 	@Override
@@ -130,6 +133,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableCup2.class, new RenderCup2Entity());
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableTart.class, new RenderTartEntity());
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableSandwich.class, new RenderSandwichEntity());
+		RenderingRegistry.registerEntityRenderingHandler(EntityKinoko.class, new RenderKinokoEntity());
 		
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipeID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_cafe.png"));
 	}

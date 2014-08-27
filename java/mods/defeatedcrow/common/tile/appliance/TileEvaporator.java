@@ -172,7 +172,7 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 		FluidStack second = recipe.getSecondary();
 		
 		//両方がnullのレシピはレシピとみなさない
-		if (output == null && second == null) return false;
+		if (output == null && second == null && items.stackSize < recipe.getInput().stackSize) return false;
 		else flag1 = true;
 		
 		ItemStack container = null;
@@ -272,7 +272,7 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 		//材料を減らし、返却アイテムが有る場合は返却スロットへ。
 		if (this.itemstacks[2] != null)
 		{
-			--this.itemstacks[2].stackSize;
+			this.itemstacks[2].stackSize -= recipe.getInput().stackSize;
 
 			if (this.itemstacks[2].stackSize == 0)
 			{

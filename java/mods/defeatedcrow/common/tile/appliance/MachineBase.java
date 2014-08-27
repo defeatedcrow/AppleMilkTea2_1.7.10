@@ -78,6 +78,8 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 			}
 		}
 		
+		par1NBTTagCompound.setTag("Items", nbttaglist);
+		
 		//燃焼時間や調理時間などの書き込み
 		par1NBTTagCompound.setShort("ChargeAmount", (short)this.chargeAmount);
 		par1NBTTagCompound.setShort("CookTime", (short)this.cookTime);
@@ -121,6 +123,12 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	public boolean isFullCharged()
 	{
 		return this.chargeAmount == 25600;
+	}
+	
+	//毎Tickのチャージ消費量を変更可能にする。
+	public int getDecrementChargePerTick()
+	{
+		return 1;
 	}
 	
 	//チャージに空きがあり、燃料スロットのアイテムを受け入れられる状態
@@ -183,7 +191,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 				if (!flag && this.isItemFuel(this.itemstacks[0]))
 				{
 					//チャージ残量＋アイテムのチャージ量
-					int i = this.chargeAmount += getItemBurnTime(this.itemstacks[0]);
+					int i = this.chargeAmount + getItemBurnTime(this.itemstacks[0]);
 	 
 					if (i <= 25600)//25600未満ならOK
 					{
@@ -211,10 +219,11 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 			 * 調理の待ち時間&チャージ減少処理。
 			 * 100tickの調理時間が終わるまでは、tick毎にチャージが減っていく。途中で0になったら調理が振り出しに戻る。
 			 * */
-			if (this.getChargeAmount() > 0 && this.canSmelt())
+			if (this.getChargeAmount() >= this.getDecrementChargePerTick() && this.canSmelt())
 			{
 				++this.cookTime;
-				--this.chargeAmount;
+				this.chargeAmount -= this.getDecrementChargePerTick();
+				if (this.chargeAmount < 0) this.chargeAmount = 0;
 
 				if (this.cookTime == 50)
 				{
@@ -398,7 +407,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
  
 	@Override
 	public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {
-		return (par1 == 1 || par1 == 11) ? false : (par1 == 0 ? this.isItemFuel(par2ItemStack) : true);
+		return (par1 == 1 || par1 > 10) ? false : (par1 == 0 ? this.isItemFuel(par2ItemStack) : true);
 	}
  
 	//ホッパーにアイテムの受け渡しをする際の優先度

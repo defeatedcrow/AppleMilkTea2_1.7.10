@@ -8,6 +8,7 @@ import mods.defeatedcrow.api.recipe.IProsessorRecipe;
 import mods.defeatedcrow.api.recipe.IProsessorRecipeRegister;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
@@ -110,6 +111,7 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 	    public boolean matches(List<ItemStack> items)
 	    {
 	        ArrayList<Object> required = new ArrayList<Object>(this.processedInput);
+	        boolean food = this.isFoodRecipe();
 
 	        for (int x = 0; x < items.size(); x++)
 	        {
@@ -119,6 +121,12 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 	            {
 	                boolean inRecipe = false;
 	                Iterator<Object> req = required.iterator();
+	                
+	                if (!food && slot.getItem() == DCsAppleMilk.slotPanel)
+	                {
+	                	inRecipe = true;
+	                	continue;
+	                }
 
 	                while (req.hasNext())
 	                {

@@ -275,17 +275,6 @@ public class BlockTeaMakerNext extends BlockContainer{
                 }
     			return true;
     		}
-        	else if(DCsAppleMilk.SuccessLoadIC2 && LoadIC2Plugin.IC2Coffeepowder != null && itemstack.getItem() == LoadIC2Plugin.IC2Coffeepowder.getItem())
-        	{
-        		tile.setItemStack(new ItemStack(DCsAppleMilk.gratedApple, 1, 3));//かわりに当MODのコーヒー粉が突っ込まれる
-    			tile.setRemainByte((byte)(3 + rand.nextInt(3))); //3～5杯
-    			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
-    			if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
-                {
-                    par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, (ItemStack)null);
-                }
-    			return true;
-        	}
         	else
         	{
         		return false;

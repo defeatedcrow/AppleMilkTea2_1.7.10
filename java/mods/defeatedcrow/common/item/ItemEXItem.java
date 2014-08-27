@@ -154,11 +154,11 @@ public class ItemEXItem extends Item {
         	}
         	else if (i == 5)
         	{
-        		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:dustGlass");
+        		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:dust_glass");
         	}
         	else if (i == 6)
         	{
-        		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:dustClam");
+        		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:dust_clam");
         	}
         	else if (i == 7)
         	{

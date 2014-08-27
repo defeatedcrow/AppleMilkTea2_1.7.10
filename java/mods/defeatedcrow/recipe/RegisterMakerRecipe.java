@@ -274,12 +274,99 @@ public class RegisterMakerRecipe {
 		
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 4), true, new ItemStack(Items.bucket),
 				new Object[]{new ItemStack(DCsAppleMilk.mincedFoods, 1 ,8), "bucketMilk"});
+		
+		//砕石機
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.flint), false, new ItemStack(Blocks.sand),
+				new Object[]{new ItemStack(Blocks.gravel)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, null,
+				new Object[]{"logWood"});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 1), false, null,
+				new Object[]{new ItemStack(Items.coal, 1, 1)});
+		
+		//ツール還元
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 24, 7), false, null,
+				new Object[]{new ItemStack(Items.iron_axe, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 16, 7), false, null,
+				new Object[]{new ItemStack(Items.iron_hoe, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 24, 7), false, null,
+				new Object[]{new ItemStack(Items.iron_pickaxe, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 8, 7), false, null,
+				new Object[]{new ItemStack(Items.iron_shovel, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 16, 7), false, null,
+				new Object[]{new ItemStack(Items.iron_sword, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 32, 7), false, null,
+				new Object[]{new ItemStack(Items.iron_boots, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 64, 7), false, null,
+				new Object[]{new ItemStack(Items.iron_chestplate, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 40, 7), false, null,
+				new Object[]{new ItemStack(Items.iron_helmet, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 56, 7), false, null,
+				new Object[]{new ItemStack(Items.iron_leggings, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 16, 0), false, null,
+				new Object[]{new ItemStack(Items.golden_hoe, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 24, 0), false, null,
+				new Object[]{new ItemStack(Items.golden_pickaxe, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 8, 0), false, null,
+				new Object[]{new ItemStack(Items.golden_shovel, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 16, 0), false, null,
+				new Object[]{new ItemStack(Items.golden_sword, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 32, 0), false, null,
+				new Object[]{new ItemStack(Items.golden_boots, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 64, 0), false, null,
+				new Object[]{new ItemStack(Items.golden_chestplate, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 40, 0), false, null,
+				new Object[]{new ItemStack(Items.golden_helmet, 1, 32767)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 56, 0), false, null,
+				new Object[]{new ItemStack(Items.golden_leggings, 1, 32767)});
 	}
 	
 	public void registerEvaporator()
 	{
-		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.vegitableOil, 100), new ItemStack(DCsAppleMilk.leafTea, 1, 4));
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
+				new FluidStack(DCsAppleMilk.camelliaOil, 100), new ItemStack(DCsAppleMilk.leafTea, 1, 4));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
+				new FluidStack(DCsAppleMilk.vegitableOil, 100), new ItemStack(Items.wheat_seeds));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
+				new FluidStack(DCsAppleMilk.vegitableOil, 50), new ItemStack(Items.pumpkin_seeds));
+		
+		//エッセンス
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 0),
+				null, new ItemStack(Items.apple, 8, 1));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 1),
+				null, new ItemStack(Blocks.double_plant, 8, 4));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 2),
+				null, new ItemStack(DCsAppleMilk.leafTea, 8, 1));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 3),
+				null, new ItemStack(DCsAppleMilk.leafTea, 8, 3));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 4),
+				null, new ItemStack(DCsAppleMilk.clam, 8, 0));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 5),
+				null, new ItemStack(DCsAppleMilk.icyCrystal, 1, 0));
 	}
 
 }

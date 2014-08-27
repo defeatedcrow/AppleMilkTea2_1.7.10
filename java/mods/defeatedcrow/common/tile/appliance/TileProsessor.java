@@ -8,9 +8,11 @@ import java.util.List;
 import mods.defeatedcrow.api.recipe.IProsessorRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.recipe.ProsessorRecipeRegister.ProsessorRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
@@ -54,11 +56,10 @@ public class TileProsessor extends MachineBase{
 		
 		for(IProsessorRecipe recipe : recipes)
 		{
-			if (recipe.matches(items))
+			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && recipe.matches(items))
 			{
 				output = recipe.getOutput();
 				sec = recipe.getSecondary();
-				flag1 = recipe.isFoodRecipe();
 				break;
 			}
 		}
@@ -67,37 +68,44 @@ public class TileProsessor extends MachineBase{
 		
 		if (this.itemstacks[11] == null)
 		{
-			flag2 = true;
+			flag1 = true;
 		}
 		else
 		{
 			if (this.itemstacks[11].isItemEqual(output))
 			{
 				int result = this.itemstacks[11].stackSize + output.stackSize;
-				flag2 = (result <= this.getInventoryStackLimit() && result <= output.getMaxStackSize());
+				flag1 = (result <= this.getInventoryStackLimit() && result <= output.getMaxStackSize());
 			}
 		}
 		
-		if (flag2 && sec != null)
+		if (flag1)
 		{
-			if (this.itemstacks[12] == null)
+			if (sec != null)
 			{
-				flag2 = true;
+				if (this.itemstacks[12] == null)
+				{
+					flag2 = true;
+				}
+				else
+				{
+					if (this.itemstacks[12].isItemEqual(sec))
+					{
+						int result = this.itemstacks[12].stackSize + sec.stackSize;
+						flag2 = (result <= this.getInventoryStackLimit() && result <= sec.getMaxStackSize());
+					}
+				}
 			}
 			else
 			{
-				if (this.itemstacks[12].isItemEqual(sec))
-				{
-					int result = this.itemstacks[12].stackSize + sec.stackSize;
-					flag2 = (result <= this.getInventoryStackLimit() && result <= sec.getMaxStackSize());
-				}
+				flag2 = true;
 			}
 		}
 		
 		return flag1 && flag2;
 	}
 	
-	private List<ItemStack> getCurrentContains()
+	protected List<ItemStack> getCurrentContains()
 	{
 		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 		for (int i = 2; i < 11; i++)
@@ -108,6 +116,11 @@ public class TileProsessor extends MachineBase{
 			}
 		}
 		return items;
+	}
+	
+	public boolean acceptFoodRecipe()
+	{
+		return true;
 	}
 
 	@Override
@@ -122,7 +135,7 @@ public class TileProsessor extends MachineBase{
 		
 		for(IProsessorRecipe recipe : recipes)
 		{
-			if (recipe.matches(items))
+			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && recipe.matches(items))
 			{
 				activeRecipe = recipe;
 				flag = true;
@@ -144,6 +157,12 @@ public class TileProsessor extends MachineBase{
 	            {
 	                boolean inRecipe = false;
 	                Iterator<Object> req = required.iterator();
+	                
+	                if (slot.getItem() == DCsAppleMilk.slotPanel)
+	                {
+	                	inRecipe = true;
+	                	continue;
+	                }
 
 	                //9スロットについて、要求材料の数だけ回す
 	                while (req.hasNext())
@@ -167,8 +186,9 @@ public class TileProsessor extends MachineBase{
 	                        {
 	                        	for (ItemStack item : list)
 		                        {
-		                            match = OreDictionary.itemMatches(item, slot, false)
+		                            boolean f = OreDictionary.itemMatches(item, slot, false)
 		                            		&& slot.stackSize > 0;
+		                            if (f) match = true;
 		                        }
 	                        }
 	                    }

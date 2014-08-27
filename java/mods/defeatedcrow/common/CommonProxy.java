@@ -50,7 +50,10 @@ public class CommonProxy implements IGuiHandler{
 		GameRegistry.registerTileEntity(TileCordial.class, "TileCordial");
 		GameRegistry.registerTileEntity(TileAlcoholCup.class, "TileAlcoholCup");
 		GameRegistry.registerTileEntity(TileProsessor.class, "TileProsessor");
+		GameRegistry.registerTileEntity(TileAdvProsessor.class, "TileAdvProsessor");
 		GameRegistry.registerTileEntity(TileEvaporator.class, "TileEvaporator");
+		GameRegistry.registerTileEntity(TileVegiBag.class, "TileVegiBag");
+		GameRegistry.registerTileEntity(TileCardBoard.class, "TileCardboard");
 	}
 	
     //レンダーIDには-1を返す
@@ -89,12 +92,16 @@ public class CommonProxy implements IGuiHandler{
 		else if (tileentity instanceof TileIceMaker) {
 			return new ContainerIceMaker(player, (TileIceMaker)tileentity);
 		}
+		else if (tileentity instanceof TileAdvProsessor) {
+			return new ContainerAdvProsessor(player, (TileAdvProsessor)tileentity);
+		}
 		else if (tileentity instanceof TileProsessor) {
 			return new ContainerProsessor(player, (TileProsessor)tileentity);
 		}
 		else if (tileentity instanceof TileEvaporator) {
 			return new ContainerEvaporator(player, (TileEvaporator)tileentity);
 		}
+		
 		return null;
 	}
  
@@ -110,12 +117,16 @@ public class CommonProxy implements IGuiHandler{
 		else if (tileentity instanceof TileIceMaker) {
 			return new GuiIceMaker(player, (TileIceMaker)tileentity);
 		}
+		else if (tileentity instanceof TileAdvProsessor) {
+			return new GuiAdvProsessor(player, (TileAdvProsessor)tileentity);
+		}
 		else if (tileentity instanceof TileProsessor) {
 			return new GuiProsessor(player, (TileProsessor)tileentity);
 		}
 		else if (tileentity instanceof TileEvaporator) {
 			return new GuiEvaporator(player, (TileEvaporator)tileentity);
 		}
+		
 		return null;
 	}
 	

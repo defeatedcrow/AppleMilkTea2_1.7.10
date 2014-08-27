@@ -177,7 +177,7 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 				if (this.chargeAmount < 127 && this.isItemFuel(this.iceItemStacks[1]))
 				{
 					//チャージ残量＋アイテムのチャージ量
-					int i = this.chargeAmount += getItemBurnTime(this.iceItemStacks[1]);
+					int i = this.chargeAmount + getItemBurnTime(this.iceItemStacks[1]);
 	 
 					if (i < 128)//128未満ならOK
 					{

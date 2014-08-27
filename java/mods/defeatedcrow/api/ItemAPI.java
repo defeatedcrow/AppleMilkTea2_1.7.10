@@ -1,6 +1,8 @@
 package mods.defeatedcrow.api;
 
-import mods.defeatedcrow.common.AMTLogger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,6 +12,8 @@ import net.minecraft.item.ItemStack;
  * <br>String型で指定します。名称はこのクラス内のコメントをご確認下さい。
  */
 public class ItemAPI {
+	
+	public static Logger APILogger = LogManager.getLogger("AppleMilkTeaAPI");
 	
 	public static ItemStack getItem(String itemName, int meta)
 	{
@@ -25,7 +29,7 @@ public class ItemAPI {
 			return target;
 		}
 		catch (Exception e) {
-			AMTLogger.info("Failed to get item: " + itemName);
+			APILogger.info("Failed to get item: " + itemName);
 			return null;
 		}
 	}
@@ -44,7 +48,7 @@ public class ItemAPI {
 			return target;
 		}
 		catch (Exception e) {
-			AMTLogger.info("Failed to get block: " + blockName);
+			APILogger.info("Failed to get block: " + blockName);
 			return null;
 		}
 	}

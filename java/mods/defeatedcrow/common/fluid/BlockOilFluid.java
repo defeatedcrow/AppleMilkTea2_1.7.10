@@ -5,7 +5,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -20,6 +22,7 @@ public class BlockOilFluid extends BlockFluidClassic {
 
 	public BlockOilFluid(Fluid fluid, Material material) {
 		super(fluid, material);
+		this.setQuantaPerBlock(6);
 	}
 	
 	@Override

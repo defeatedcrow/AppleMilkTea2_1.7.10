@@ -112,7 +112,7 @@ public class ItemOnixSword extends ItemSword{
         }
         
         par3EntityPlayer.addPotionEffect(add);
-        par2World.playSoundAtEntity(par3EntityPlayer, "random.pop", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+        par2World.playSoundAtEntity(par3EntityPlayer, "defeatedcrow:suzu", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
     }
 
 }

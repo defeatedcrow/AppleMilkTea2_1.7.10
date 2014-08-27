@@ -44,7 +44,6 @@ public class LoadBambooPlugin {
 				ItemStack registerItem = new ItemStack((Item)obj, 1, 0);
 				if (LoadModHandler.registerModItems("rice", registerItem)) {
 					OreDictionary.registerOre("cropRice", registerItem);
-					OreDictionary.registerOre("cookingRice", registerItem);
 					AMTLogger.debugInfo("Succeeded to get rawrice");
 				}
 			}

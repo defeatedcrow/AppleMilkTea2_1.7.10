@@ -60,14 +60,16 @@ public class PotionReflex extends PotionReflexBase{
 							//magic属性のダメージ
 							livingAttacker.attackEntityFrom(DamageSource.magic, amount*amp);
 							//プレイヤーには鈴の音が聞こえる（暫定）
-							target.worldObj.playSoundAtEntity(target, "defeatedcrow:suzu", 1.0F, 1.2F);
+							Float r = target.worldObj.rand.nextFloat();
+							target.worldObj.playSoundAtEntity(target, "defeatedcrow:metal", 1.0F, 0.5F + r);
 							succeed = true;
 						}
 					}
 					else if (amp > 0)
 					{
 						//生き物でない場合は何もしないが、無効化効果は働く
-						target.worldObj.playSoundAtEntity(target, "defeatedcrow:suzu", 1.0F, 1.2F);
+						Float r = target.worldObj.rand.nextFloat();
+						target.worldObj.playSoundAtEntity(target, "defeatedcrow:metal", 1.0F, 0.5F + r);
 						succeed = true;
 					}
 				}
@@ -97,6 +99,8 @@ public class PotionReflex extends PotionReflexBase{
 				
 				if (flag) {
 					player.addExperience(get);
+					Float r = player.worldObj.rand.nextFloat();
+					player.worldObj.playSoundAtEntity(target, "defeatedcrow:suzu", 1.0F, 0.5F + r);
 					succeed = true;
 				}
 			}
@@ -124,6 +128,8 @@ public class PotionReflex extends PotionReflexBase{
 				
 				if (flag) {
 					player.heal(amount*amp);
+					Float r = player.worldObj.rand.nextFloat();
+					player.worldObj.playSoundAtEntity(target, "defeatedcrow:suzu", 1.0F, 0.5F + r);
 					succeed = true;
 				}
 			}

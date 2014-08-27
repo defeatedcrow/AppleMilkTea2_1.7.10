@@ -50,6 +50,7 @@ public class BucketFillEvent {
 	public void register()
 	{
 		buckets.put(DCsAppleMilk.blockVegitableOil, DCsAppleMilk.bucketVegiOil);
+		buckets.put(DCsAppleMilk.blockCamelliaOil, DCsAppleMilk.bucketCamOil);
 	}
 
 }

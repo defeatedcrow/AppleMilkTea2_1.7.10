@@ -226,6 +226,31 @@ public class DCsRecipeRegister {
 			 }
 		 }
 		 
+		 for(int i = 0; i < 5; i++)
+		 {
+			 ItemStack item = new ItemStack(Items.rotten_flesh, 9);
+			 if (i == 1) item = new ItemStack(Items.bone, 9, 2);
+			 else if (i == 2) item = new ItemStack(Items.spider_eye, 9);
+			 else if (i == 3) item = new ItemStack(Items.ender_pearl, 9, 0);
+			 else if (i == 4) item = new ItemStack(Items.slime_ball, 9, 0);
+			 else item = new ItemStack(Items.rotten_flesh,9);
+			 
+			 GameRegistry.addShapelessRecipe(
+		    		  item,
+		    			  new ItemStack(DCsAppleMilk.mobBlock,1,i));
+			 
+			 if (i >= 0){
+			 GameRegistry.addRecipe(
+					 new ItemStack(DCsAppleMilk.mobBlock,1,i),
+					 new Object[]{
+						 "TTT",
+						 "TTT",
+						 "TTT",
+						 Character.valueOf('T'), item
+					 });
+			 }
+		 }
+		 
 		 GameRegistry.addRecipe(
 				 new ItemStack(DCsAppleMilk.appleBox,1),
 				 new Object[]{
@@ -1393,7 +1418,7 @@ public class DCsRecipeRegister {
 	    			  new ItemStack(DCsAppleMilk.foodTea,1,0));
 		 
 		 GameRegistry.addShapelessRecipe(
-	    		  new ItemStack(DCsAppleMilk.foodTea,1,2),
+	    		  new ItemStack(DCsAppleMilk.foodTea,1,4),
 	    			  new ItemStack(DCsAppleMilk.foodTea,1,1));
 		 
 		 GameRegistry.addShapelessRecipe(
@@ -2272,7 +2297,7 @@ public class DCsRecipeRegister {
 	    ArrayList<ItemStack> ingotCopper = OreDictionary.getOres("ingotCopper");
 	    if(ingotCopper.size() > 0)
 	    {
-	    	ItemStack ret = ingotTin.get(0);
+	    	ItemStack ret = ingotCopper.get(0);
 	    	
 	    	GameRegistry.addRecipe(
 					new ShapelessOreRecipe(

@@ -8,6 +8,7 @@ import mods.defeatedcrow.common.block.plants.*;
 import mods.defeatedcrow.common.item.*;
 import mods.defeatedcrow.common.item.appliance.*;
 import mods.defeatedcrow.common.item.edible.*;
+import mods.defeatedcrow.common.item.magic.*;
 import mods.defeatedcrow.event.BucketFillEvent;
 import mods.defeatedcrow.potion.*;
 import net.minecraft.block.Block;
@@ -32,6 +33,7 @@ public class MaterialRegister {
 	public static MaterialRegister instance = new MaterialRegister();
 	
 	private static Fluid registerVegiOil;
+	private static Fluid registerCamOil;
 	
 	private MaterialRegister(){}
 	
@@ -82,16 +84,19 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.princessClam,"defeatedcrow.princessClam");
 		//装置関係
 		GameRegistry.registerItem(DCsAppleMilk.batteryItem, "defeatedcrow.battery");
+		GameRegistry.registerItem(DCsAppleMilk.slotPanel,"defeatedcrow.slotPanel");
+		GameRegistry.registerItem(DCsAppleMilk.dustWood,"defeatedcrow.dustWood");
+		GameRegistry.registerItem(DCsAppleMilk.essentialOil,"defeatedcrow.essentialOil");
 		
 		//基本ツール
 		GameRegistry.registerBlock(DCsAppleMilk.teaMakerNext, "defeatedcrow.teaMakerNext");
 		GameRegistry.registerBlock(DCsAppleMilk.emptyCup, "defeatedcrow.emptyCup");
-//		GameRegistry.registerBlock(DCsAppleMilk.autoMaker, "defeatedcrow.autoMaker");
 		GameRegistry.registerBlock(DCsAppleMilk.emptyPan, "defeatedcrow.emptyPan");
 		GameRegistry.registerBlock(DCsAppleMilk.iceMaker, "defeatedcrow.iceMaker");
 		GameRegistry.registerBlock(DCsAppleMilk.teppann, ItemTeppann.class, "defeatedcrow.teppann");
-		GameRegistry.registerBlock(DCsAppleMilk.prosessor, "defeatedcrow.prosessor");
-		GameRegistry.registerBlock(DCsAppleMilk.evaporator, "defeatedcrow.evaporator");
+		GameRegistry.registerBlock(DCsAppleMilk.prosessor, ItemMachineBlock.class, "defeatedcrow.prosessor");
+		GameRegistry.registerBlock(DCsAppleMilk.advProsessor, ItemMachineBlock.class, "defeatedcrow.advProsessor");
+		GameRegistry.registerBlock(DCsAppleMilk.evaporator, ItemMachineBlock.class, "defeatedcrow.evaporator");
 		//圧縮系
 		GameRegistry.registerBlock(DCsAppleMilk.woodBox, ItemWoodBox.class, "defeatedcrow.WoodBox");
 		GameRegistry.registerBlock(DCsAppleMilk.appleBox, "defeatedcrow.AppleBox");
@@ -99,6 +104,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.cardboard, ItemCardboard.class, "defeatedcrow.cardboardBox");
 		GameRegistry.registerBlock(DCsAppleMilk.charcoalBox, "defeatedcrow.Charcoalcontainer");
 		GameRegistry.registerBlock(DCsAppleMilk.gunpowderContainer, ItemGunpowderContainer.class, "defeatedcrow.GunpowderContainer");
+		GameRegistry.registerBlock(DCsAppleMilk.mobBlock, ItemMobDropBox.class, "defeatedcrow.mobDropBox");
 		//自然
 		GameRegistry.registerBlock(DCsAppleMilk.saplingTea, ItemTeaSapling.class, "defeatedcrow.saplingTea");
 		GameRegistry.registerBlock(DCsAppleMilk.teaTree, ItemTeaTree.class, "defeatedcrow.teaTree");
@@ -208,6 +214,7 @@ public class MaterialRegister {
 	
 	public void addFluid()
 	{
+		//vegi
 		registerVegiOil = new Fluid("vegitable_oil").setDensity(800).setViscosity(1500);
 		FluidRegistry.registerFluid(registerVegiOil);
 		DCsAppleMilk.vegitableOil = FluidRegistry.getFluid("vegitable_oil");
@@ -234,6 +241,35 @@ public class MaterialRegister {
 			GameRegistry.registerItem(DCsAppleMilk.bottleVegiOil, "defeatedcrow.bottleVegiOil");
 			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("vegitable_oil", 200)
 					,new ItemStack(DCsAppleMilk.bottleVegiOil), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
+		}
+		
+		//camellia
+		registerCamOil = new Fluid("camellia_oil").setDensity(800).setViscosity(1500);
+		FluidRegistry.registerFluid(registerCamOil);
+		DCsAppleMilk.camelliaOil = FluidRegistry.getFluid("camellia_oil");
+		
+		DCsAppleMilk.blockCamelliaOil = new BlockCamOilFluid(DCsAppleMilk.camelliaOil, Material.water)
+		.setBlockName("defeatedcrow.blockCamOil");
+		GameRegistry.registerBlock(DCsAppleMilk.blockCamelliaOil, "defeatedcrow.blockCamOil");
+		DCsAppleMilk.camelliaOil.setBlock(DCsAppleMilk.blockCamelliaOil);
+		
+		if (DCsAppleMilk.blockCamelliaOil != null)
+		{
+			DCsAppleMilk.bucketCamOil = new ItemBucketCamOil(DCsAppleMilk.blockCamelliaOil)
+			.setUnlocalizedName("defeatedcrow.bucketCamOil")
+			.setContainerItem(Items.bucket)
+			.setCreativeTab(DCsAppleMilk.applemilk);
+			GameRegistry.registerItem(DCsAppleMilk.bucketCamOil, "defeatedcrow.bucketCamOil");
+			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("camellia_oil", FluidContainerRegistry.BUCKET_VOLUME)
+					,new ItemStack(DCsAppleMilk.bucketCamOil), new ItemStack(Items.bucket));
+			
+			DCsAppleMilk.bottleCamOil = new ItemBottleCamOil(DCsAppleMilk.blockCamelliaOil)
+			.setUnlocalizedName("defeatedcrow.bottleCamOil")
+			.setContainerItem(Item.getItemFromBlock(DCsAppleMilk.emptyBottle))
+			.setCreativeTab(DCsAppleMilk.applemilk);
+			GameRegistry.registerItem(DCsAppleMilk.bottleCamOil, "defeatedcrow.bottleCamOil");
+			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("camellia_oil", 200)
+					,new ItemStack(DCsAppleMilk.bottleCamOil), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
 		}
 		
 		MinecraftForge.EVENT_BUS.register(this);
@@ -271,6 +307,10 @@ public class MaterialRegister {
 				setBlockName("defeatedcrow.prosessor").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
+		DCsAppleMilk.advProsessor = (new BlockAdvProsessor()).
+				setBlockName("defeatedcrow.advProsessor").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
 		DCsAppleMilk.evaporator = (new BlockEvaporator()).
 				setBlockName("defeatedcrow.evaporator").
 				setCreativeTab(DCsAppleMilk.applemilk);
@@ -279,9 +319,9 @@ public class MaterialRegister {
 				setUnlocalizedName("defeatedcrow.grater").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
-		DCsAppleMilk.batteryItem = (new ItemBattery()).
-				setUnlocalizedName("defeatedcrow.battery").
-				setCreativeTab(DCsAppleMilk.applemilk);
+		DCsAppleMilk.chopsticks = (new ItemChopsticks()).
+				setUnlocalizedName("defeatedcrow.chopsticks").
+				setCreativeTab(DCsAppleMilk.applemilkContainer);
 		
 		DCsAppleMilk.chalcedonyKnife = (new ItemChalcedonyKnife( DCsAppleMilk.enumToolMaterialChalcedony)).
 				setUnlocalizedName("defeatedcrow.chalcedonyKnife").
@@ -449,6 +489,10 @@ public class MaterialRegister {
 				setBlockName("defeatedcrow.gunpowderContainer").
 				setCreativeTab(DCsAppleMilk.applemilkContainer);
 		
+		DCsAppleMilk.mobBlock = (new BlockMobDrop()).
+				setBlockName("defeatedcrow.mobDropBox").
+				setCreativeTab(DCsAppleMilk.applemilkContainer);
+		
 		DCsAppleMilk.mushroomBox = (new BlockMushBox()).
 				setBlockName("defeatedcrow.mushroomBox").
 				setCreativeTab(DCsAppleMilk.applemilkContainer);
@@ -467,6 +511,7 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.wipeBox2 = (new BlockWipeBox2()).
 				setBlockName("defeatedcrow.wipeBox2");
+		
 	}
 	
 	static void addDecorations()
@@ -572,11 +617,24 @@ public class MaterialRegister {
 				setUnlocalizedName("defeatedcrow.battery").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
+		DCsAppleMilk.slotPanel = (new ItemSlotPanel()).
+				setUnlocalizedName("defeatedcrow.slotPanel").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.essentialOil = (new ItemEssentialOil()).
+				setUnlocalizedName("defeatedcrow.essentialOil").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.dustWood = (new ItemWoodDust()).
+				setUnlocalizedName("defeatedcrow.dustWood").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
 	}
 	
 	@SubscribeEvent
 	public void onTextureStitch(TextureStitchEvent.Post event)
 	{
 		DCsAppleMilk.vegitableOil.setIcons(DCsAppleMilk.blockVegitableOil.getIcon(0, 0));
+		DCsAppleMilk.camelliaOil.setIcons(DCsAppleMilk.blockCamelliaOil.getIcon(0, 0));
 	}
 }

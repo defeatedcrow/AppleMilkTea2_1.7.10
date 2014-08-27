@@ -62,7 +62,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha8",
+		version = "1.7.10_2.0.alpha9",
 		dependencies = "required-after:Forge@[10.12.1.1197,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 //required-after:SampleCore;
@@ -93,6 +93,7 @@ public class DCsAppleMilk{
 	public static Block  teppann;
 	public static Block  prosessor;
 	public static Block  evaporator;
+	public static Block  advProsessor;
 	//たべもの
 	public static Block  teacupBlock;
 	public static Block  teaCup2;
@@ -118,6 +119,7 @@ public class DCsAppleMilk{
 	public static Block  melonBomb;
 	public static Block  wipeBox;
 	public static Block  wipeBox2;
+	public static Block  mobBlock;
 	//自然
 	public static Block  saplingTea;
 	public static Block  teaTree;
@@ -137,6 +139,7 @@ public class DCsAppleMilk{
 	public static Block  rotaryDial;
 	
 	//アイテムのインスタンス
+	//旧版からの引き継ぎ
 	public static Item  bakedApple;
 	public static Item  appleTart;
 	public static Item  toffyApple;
@@ -167,20 +170,31 @@ public class DCsAppleMilk{
 	public static Item  itemCordial;
 	public static Item  itemMintSeed;
 	
+	//玉髄ツール
 	public static Item  monocle;
 	public static Item  onixSword;
 	public static Item  pruningShears;
 	
+	//装置関係
 	public static Item  batteryItem;
+	public static Item  slotPanel;
+	
+	//魔法関係
+	public static Item  dustWood;
+	public static Item  essentialOil;
+	public static Item  insence;
 	
 	//液体
 	public static Fluid  vegitableOil;
 	public static Fluid  camelliaOil;
 	
 	public static Block  blockVegitableOil;
+	public static Block  blockCamelliaOil;
 	
 	public static Item  bucketVegiOil;
 	public static Item  bottleVegiOil;
+	public static Item  bucketCamOil;
+	public static Item  bottleCamOil;
 	
 	//ポーションのインスタンス
 	public static Potion Immunization;
@@ -197,6 +211,7 @@ public class DCsAppleMilk{
 	public int guiIceMaker = 2;
 	public int guiProsessor = 3;
 	public int guiEvaporator = 4;
+	public int guiAdvProsessor = 5;
 	
 	//villager関連
 	public static VillagerCafe villager;
@@ -345,8 +360,11 @@ public class DCsAppleMilk{
 		if (DCsConfig.entityIdAlcohol == 0) DCsConfig.entityIdAlcohol = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdSandwich == 0) DCsConfig.entityIdSandwich = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdTart == 0) DCsConfig.entityIdTart = EntityRegistry.findGlobalUniqueEntityId();
+		if (DCsConfig.entityIdSilkMelon == 0) DCsConfig.entityIdSilkMelon = EntityRegistry.findGlobalUniqueEntityId();
+		if (DCsConfig.entityIdKinoko == 0) DCsConfig.entityIdKinoko = EntityRegistry.findGlobalUniqueEntityId();
 		
 		EntityRegistry.registerModEntity(EntityMelonBomb.class, "compressedMelon", DCsConfig.entityIdMelon, this, 250, 5, true);
+		EntityRegistry.registerModEntity(EntityKinoko.class, "mushroomBox", DCsConfig.entityIdKinoko, this, 250, 5, true);
 		
 		EntityRegistry.registerModEntity(PlaceableIcecream.class, "PlaceableIceCream", DCsConfig.entityIdIce, this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableSteak.class, "PlaceableSteak", DCsConfig.entityIdSteak, this, 250, 5, true);
@@ -627,14 +645,14 @@ public class DCsAppleMilk{
 	        }
 	    }
 	    
-	    if (Loader.isModLoaded("MCEconomy2"))
+	    if (Loader.isModLoaded("mceconomy2"))
 	    {
-	    	AMTLogger.loadingModInfo("MCEconomy");
+	    	AMTLogger.loadingModInfo("MCEconomy2");
 	    	try
 	        {
 	          this.SuccessLoadEconomy = true;
 	          (new MCEconomyPlugin()).registerSellable();
-	          AMTLogger.loadedModInfo("MCEconomy");
+	          AMTLogger.loadedModInfo("MCEconomy2");
 	          
 	        }
 	        catch (Exception e) {

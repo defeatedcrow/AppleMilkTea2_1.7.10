@@ -23,8 +23,8 @@ public class EvaporatorRecipeHandlerCG implements RecipeProvider{
 	public EvaporatorRecipeHandlerCG()
 	{
 		this.slots[0] = new ItemSlot(6, 21, 16, 16, true);
-		this.slots[1] = new ItemSlot(55, 32, 16, 16, true).setSlotType(SlotType.OUTPUT_SLOT);
-		this.slots[2] = new LiquidSlot(55, 12).setSlotType(SlotType.OUTPUT_SLOT);
+		this.slots[1] = new ItemSlot(54, 32, 16, 16, true).setSlotType(SlotType.OUTPUT_SLOT);
+		this.slots[2] = new LiquidSlot(54, 8).setSlotType(SlotType.OUTPUT_SLOT);
 		this.slots[3] = new ItemSlot(32, 38, 20, 20).setSlotType(SlotType.MACHINE_SLOT);
 	}
 

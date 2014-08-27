@@ -1,1 +1,2 @@
-{"suzu": {"category": "master","sounds": [{"name": "defeatedcrow:items/suzu", "stream": false}]}}
+{"suzu": {"category": "master","sounds": [{"name": "defeatedcrow:items/suzu", "stream": false}]}
+,"metal": {"category": "master","sounds": [{"name": "defeatedcrow:items/metal1", "stream": false}]}}

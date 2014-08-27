@@ -454,6 +454,21 @@ public class LoadModHandler {
 				}
 				OreDictionary.registerOre("cropRice", registerItem2);
 			}
+			Item item = Util.getModItem("Wa", "tamahagane");
+			if (item != null)
+			{
+				ItemStack hagane = new ItemStack(item, 1, 0);
+				if (this.matchItem("hagane", hagane))
+				{
+					AMTLogger.debugInfo("Succeeded to get wa_tamahagane");
+					GameRegistry.addRecipe(
+							 new ShapedOreRecipe(
+				    		  new ItemStack(DCsAppleMilk.cLamp, 1, 11),
+				    		  new Object[]{" X ","XYX"," X ",
+				    			  Character.valueOf('Y'), new ItemStack(DCsAppleMilk.cLamp, 1, 3),
+				    			  Character.valueOf('X'), hagane}));
+				}
+			}
 		}
         catch (Exception e) {
         	AMTLogger.debugInfo("Failed to register ModItems");

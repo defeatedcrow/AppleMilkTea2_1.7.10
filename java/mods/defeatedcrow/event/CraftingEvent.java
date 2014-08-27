@@ -39,7 +39,7 @@ public class CraftingEvent {
 				player.triggerAchievement(AchievementRegister.craftLogBox);
 			}
 			else if (crafting.getItem() == DCsAppleMilk.chalcedonyKnife) {
-				player.triggerAchievement(AchievementRegister.craftChalcedony);
+				player.triggerAchievement(AchievementRegister.craftChalKnife);
 			}
 			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.prosessor)) {
 				player.triggerAchievement(AchievementRegister.craftAutoMaker);

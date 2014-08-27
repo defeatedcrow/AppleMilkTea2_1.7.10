@@ -6,6 +6,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,13 +14,15 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.*;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.tile.TileCardBoard;
 import mods.defeatedcrow.handler.Util;
 
-public class BlockCardboard extends Block{
+public class BlockCardboard extends BlockContainer{
 	
 	private static final String[] bagVegi = new String[] {"_mint", "_cassis", "_yuzu", "_camellia"};
 	
@@ -38,6 +41,17 @@ public class BlockCardboard extends Block{
 		this.setStepSound(Block.soundTypeWood);
 	}
 	
+	@Override
+	public boolean isOpaqueCube()
+    {
+        return false;
+    }
+	
+	@Override
+	public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
 	
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int par1, int par2)
@@ -73,26 +87,38 @@ public class BlockCardboard extends Block{
     {
         int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
         int meta = par6ItemStack.getItemDamage();
+        byte facing = 0;
 
         if (l == 0)
         {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, meta | 8, 3);
+            facing = 0;
         }
 
         if (l == 1)
         {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, meta, 3);
+            facing = 1;
         }
 
         if (l == 2)
         {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, meta | 8, 3);
+            facing = 2;
         }
 
         if (l == 3)
         {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, meta, 3);
+            facing = 4;
         }
+        
+        TileEntity tileEntity = par1World.getTileEntity(par2, par3, par4);
+		if (tileEntity != null && tileEntity instanceof TileCardBoard)
+		{
+			((TileCardBoard)tileEntity).setDirectionByte(facing);
+			par1World.markBlockForUpdate(par2, par3, par4);
+		}
     }
 	
 	@SideOnly(Side.CLIENT)
@@ -119,6 +145,11 @@ public class BlockCardboard extends Block{
             this.texSide[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_S" + bagVegi[i]);
         }
         
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+		return new TileCardBoard();
 	}
 
 }

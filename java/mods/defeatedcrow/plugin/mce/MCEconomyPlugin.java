@@ -220,7 +220,7 @@ public class MCEconomyPlugin extends ProductList{
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.princessClam, 1, i + 1), -1);
 		}
 		
-		AMTLogger.trace("Succeeded to register the price for MCEconomy");
+		AMTLogger.trace("Succeeded to register the price for MCEconomy2");
 		
 		DCshopId = MCEconomyAPI.registerProductList(this);
 		this.registerProducts();
@@ -257,7 +257,7 @@ public class MCEconomyPlugin extends ProductList{
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.emptyPan, 1, 0), 200));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.prosessor, 1, 0), 1000));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.batteryItem, 1, 1), 500));
-		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.batteryItem, 1, 64), 30000));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.batteryItem, 64, 1), 30000));
 	}
 
 	@Override

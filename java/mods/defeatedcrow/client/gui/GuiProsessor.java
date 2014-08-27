@@ -37,7 +37,7 @@ public class GuiProsessor extends GuiContainer {
 		//テクスチャの指定
 		//ResourceLocationの第一引数を付け足してドメインを指定することもできる
 		//例:new ResourceLocation("sample", "textures/gui/container/furnace.png")
-		this.mc.getTextureManager().bindTexture(new ResourceLocation("defeatedcrow", "textures/gui/foodprosessorgui.png"));
+		this.mc.getTextureManager().bindTexture(new ResourceLocation("defeatedcrow", this.GuiTexPass()));
  
 		//かまど描画処理
 		int k = (this.width - this.xSize) / 2;
@@ -51,6 +51,11 @@ public class GuiProsessor extends GuiContainer {
  
 		i2 = this.tileentity.getCookProgressScaled(24);
 		this.drawTexturedModalRect(k + 88, l + 35, 176, 0, i2 + 1, 16);
+	}
+	
+	public String GuiTexPass()
+	{
+		return "textures/gui/foodprosessorgui.png";
 	}
  
 }

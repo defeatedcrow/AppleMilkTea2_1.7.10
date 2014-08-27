@@ -1,0 +1,78 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+
+version = "1.7.10_2.0_alpha"
+group= "mods.defeatedcrow.DCsAppleMilk" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "AppleMilkTea2"
+
+minecraft {
+    version = "1.7.10-10.13.0.1206"
+    runDir = "eclipse/assets"
+}
+
+dependencies {
+    compile fileTree(dir: 'api', include: '*.jar')
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+   classifier = 'dev'
+}  
+
+processResources
+{
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "1.7.10_2.0", project.version
+    inputs.property "1.7.10", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+def defaultEncoding = 'UTF-8'
+compileJava {
+    options.encoding = defaultEncoding
+}
+
+[compileJava, compileTestJava].each{
+    it.options.encoding = 'UTF-8'
+    it.options.compilerArgs += ['-source', '1.7', '-target', '1.7'] //, '-bootclasspath', 'jdk1.7.0/lib/rt.jar']
+}
+reobf { deobfFile = new net.minecraftforge.gradle.delayed.DelayedFile(project, "build/tmp/deobfuscateJar/deobfed.jar") }
+
+jar {
+    manifest {
+        attributes 'FMLCorePlugin' : 'mods.defeatedcrow.asm.AppleMilkCorePlugin','FMLCorePluginContainsFMLMod':'true'
+    }
+}

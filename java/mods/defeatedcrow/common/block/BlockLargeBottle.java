@@ -23,6 +23,7 @@ import net.minecraft.src.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import mods.defeatedcrow.common.*;
@@ -257,6 +258,17 @@ public class BlockLargeBottle extends BlockContainer{
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
     {
         short l = (short)par6ItemStack.getItemDamage();
+        int playerFacing = MathHelper.floor_double((double)((par5EntityLivingBase.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+        
+        boolean facing = false;
+		if (playerFacing == 1 || playerFacing == 3)
+		{
+			facing = false;
+		}
+		else
+		{
+			facing = true;
+		}
         
         super.onBlockPlacedBy(par1World, par2, par3, par4, par5EntityLivingBase, par6ItemStack);
         par1World.setBlockMetadataWithNotify(par2, par3, par4, (l & 15), 3);
@@ -266,7 +278,11 @@ public class BlockLargeBottle extends BlockContainer{
         int i = l >> 4;
         i = i & 7;
 		TileLargeBottle tile = (TileLargeBottle) par1World.getTileEntity(par2, par3, par4);
-    	if (tile != null) tile.setRemainShort((short)i);
+    	if (tile != null)
+    	{
+    		tile.setRemainShort((short)i);
+    		tile.setSide(facing);
+    	}
     }
 	
 	//破壊
