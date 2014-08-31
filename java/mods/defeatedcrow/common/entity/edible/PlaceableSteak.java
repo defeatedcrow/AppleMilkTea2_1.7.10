@@ -23,5 +23,11 @@ public class PlaceableSteak extends PlaceableFoods{
 	protected ItemStack returnItem() {
 		return new ItemStack(DCsAppleMilk.foodPlate, 1, this.getItemMetadata());
 	}
+	
+	@Override
+	protected byte particleNumber()
+    {
+    	return 2;
+    }
 
 }

@@ -258,15 +258,6 @@ public class BlockTeppann extends BlockContainer{
         return par9;
     }
 	
-//	@SideOnly(Side.CLIENT)
-//	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
-//    {
-//		for(int i = 0; i < 9; ++i)
-//		{
-//			par3List.add(new ItemStack(this, 1, i));
-//		}
-//    }
-	
 	//rendeing
 	@Override
 	public int getRenderType()

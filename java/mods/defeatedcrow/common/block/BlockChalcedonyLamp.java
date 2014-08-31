@@ -266,7 +266,7 @@ public class BlockChalcedonyLamp extends BlockContainer{
         	if (l == 8 || l == 10)
         	{
         		EntityOrbFX cloud = new EntityOrbFX(par1World, d0, d1, d2, 0.0D, d3, 0.0D);
-            	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("defeatedcrow:particle_orb"));
+            	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("orb"));
     			FMLClientHandler.instance().getClient().effectRenderer.addEffect(cloud);
         	}
         	

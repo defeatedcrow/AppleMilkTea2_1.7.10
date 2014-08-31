@@ -76,7 +76,7 @@ public class BlockAdvProsessor extends BlockContainer {
 	@Override
 	public int getRenderType()
 	{
-		return DCsAppleMilk.modelProsessor;
+		return DCsAppleMilk.modelJawCrusher;
 	}
 	
 	//中身の設定

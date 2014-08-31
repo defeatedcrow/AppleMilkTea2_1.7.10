@@ -15,6 +15,10 @@ import net.minecraftforge.event.entity.player.FillBucketEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 
+/**
+* This Class was created based on the BucketHander.class (BuildCraft).
+* Original code was created by SpaceToad and BuildCraft Team.
+*/
 public class BucketFillEvent {
 	
 	public static Map<Block, Item> buckets = new HashMap<Block, Item>();

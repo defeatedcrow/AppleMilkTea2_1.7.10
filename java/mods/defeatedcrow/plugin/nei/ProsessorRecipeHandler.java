@@ -49,7 +49,7 @@ public class ProsessorRecipeHandler extends TemplateRecipeHandler {
 		
 		public RecipeCacher(ItemStack[] out) {
 			this();
-			this.result= new PositionedStack(out[0], 112, 24);
+			this.result= new PositionedStack(out[0], 113, 24);
 			if (out[1] != null)
 			{
 				this.leave = new PositionedStack(out[1], 140, 24);
@@ -118,7 +118,7 @@ public class ProsessorRecipeHandler extends TemplateRecipeHandler {
             for(ProsessorRecipe recipe : recipes)
             {
                 List<Object> in = recipe.getProcessedInput();
-                boolean flag = true;
+                boolean flag = recipe.isFoodRecipe();
             	for(Object ret : in) {
             		if (ret instanceof List){
         				List<ItemStack> items = (List<ItemStack>) ret;
@@ -147,7 +147,7 @@ public class ProsessorRecipeHandler extends TemplateRecipeHandler {
         {
         	List<Object> in = recipe.getProcessedInput();
         	//input中にnullがないかチェックする。鉱石辞書レシピ用。
-        	boolean flag = true;
+        	boolean flag = recipe.isFoodRecipe();
         	for(Object ret : in) {
         		if (ret instanceof List){
     				List<ItemStack> items = (List<ItemStack>) ret;
@@ -176,7 +176,7 @@ public class ProsessorRecipeHandler extends TemplateRecipeHandler {
         	List<Object> in = recipe.getProcessedInput();
             ItemStack[] out = new ItemStack[] {recipe.getOutput(),recipe.getSecondary()};
             
-            boolean flag = this.contain(in, ingredient);
+            boolean flag = recipe.isFoodRecipe() && this.contain(in, ingredient);
             
             
             if (flag){ 

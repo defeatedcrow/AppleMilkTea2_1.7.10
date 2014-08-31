@@ -86,15 +86,6 @@ public class BlockProsessor extends BlockContainer {
 		TileProsessor tile = (TileProsessor)par1World.getTileEntity(par2, par3, par4);
 		if (tile != null)
 		{
-//			if (item == null)
-//			{
-//				int charge = tile.getChargeAmount();
-//				boolean active = tile.isActive();
-//				par5EntityPlayer.addChatComponentMessage(new ChatComponentText("current charge amount : " + charge));
-//				par5EntityPlayer.addChatComponentMessage(new ChatComponentText("Active : " + active));
-//			}
-//			else
-//			{
 				if (par1World.isRemote)
 				{
 					return true;
@@ -104,7 +95,6 @@ public class BlockProsessor extends BlockContainer {
 					par5EntityPlayer.openGui(DCsAppleMilk.instance, DCsAppleMilk.instance.guiProsessor, par1World, par2, par3, par4);
 					return true;
 				}
-//			}
 		}
 		return true;
 	}

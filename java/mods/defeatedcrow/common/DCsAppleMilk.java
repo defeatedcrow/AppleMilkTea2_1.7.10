@@ -15,9 +15,11 @@ import java.util.logging.Level;
 
 import mods.defeatedcrow.api.*;
 import mods.defeatedcrow.common.block.*;
+import mods.defeatedcrow.common.block.container.BlockCharcoalBox;
 import mods.defeatedcrow.common.entity.*;
 import mods.defeatedcrow.common.entity.edible.*;
 import mods.defeatedcrow.common.item.*;
+import mods.defeatedcrow.common.item.magic.*;
 import mods.defeatedcrow.common.world.*;
 import mods.defeatedcrow.event.*;
 import mods.defeatedcrow.handler.*;
@@ -62,10 +64,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha9",
+		version = "1.7.10_2.0.alpha10",
 		dependencies = "required-after:Forge@[10.12.1.1197,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
-//required-after:SampleCore;
 public class DCsAppleMilk{
 	
 	//プロキシの登録
@@ -80,6 +81,7 @@ public class DCsAppleMilk{
 	public static final CreativeTabs applemilk = new CreativeTabAMT("applemilk");
 	public static final CreativeTabs applemilkFood = new CreativeTabAMTFood("applemilkfood");
 	public static final CreativeTabs applemilkContainer = new CreativeTabAMTContainer("applemilkcontainer");
+	public static final CreativeTabs applemilkMagic = new CreativeTabAMTMagic("applemilkmagic");
 	
 	//ブロックのインスタンス
 	//ツール
@@ -94,6 +96,7 @@ public class DCsAppleMilk{
 	public static Block  prosessor;
 	public static Block  evaporator;
 	public static Block  advProsessor;
+	public static Block  insenceBase;
 	//たべもの
 	public static Block  teacupBlock;
 	public static Block  teaCup2;
@@ -137,6 +140,7 @@ public class DCsAppleMilk{
 	public static Block  chalcedony;
 	public static Block  cLamp;
 	public static Block  rotaryDial;
+	public static Block  chalcenonyPanel;
 	
 	//アイテムのインスタンス
 	//旧版からの引き継ぎ
@@ -182,7 +186,7 @@ public class DCsAppleMilk{
 	//魔法関係
 	public static Item  dustWood;
 	public static Item  essentialOil;
-	public static Item  insence;
+	public static ItemInsenceRose  insenceRose;
 	
 	//液体
 	public static Fluid  vegitableOil;
@@ -237,6 +241,7 @@ public class DCsAppleMilk{
 	public static boolean SuccessLoadTE3 = false;
 	public static boolean SuccessLoadWa = false;
 	public static boolean SuccessLoadCGuide = false;
+	public static boolean SuccessLoadFFM = false;
 	
 	//内部処理用
 	public static boolean debugMode = true;
@@ -278,6 +283,9 @@ public class DCsAppleMilk{
 	public static int modelAlcoholCup;
 	public static int modelProsessor;
 	public static int modelEvaporator;
+	public static int modelJawCrusher;
+	public static int modelCPanel;
+	public static int modelInsenceBase;
 	
 	public static final String[] TEX_PASS = new String[] {
 		"defeatedcrow:",
@@ -462,6 +470,9 @@ public class DCsAppleMilk{
 		this.modelAlcoholCup = proxy.getRenderID();
 		this.modelProsessor = proxy.getRenderID();
 		this.modelEvaporator = proxy.getRenderID();
+		this.modelJawCrusher = proxy.getRenderID();
+		this.modelCPanel = proxy.getRenderID();
+		this.modelInsenceBase = proxy.getRenderID();
 		proxy.registerRenderers();
 	    
 	    //ティーメーカーのレシピ数の無限化のため、専用のレシピ登録クラスを用意した
@@ -544,6 +555,21 @@ public class DCsAppleMilk{
 	        }
 	        catch (Exception e) {
 	        	AMTLogger.failLoadingModInfo("IC2");
+	          e.printStackTrace(System.err);
+	        }
+	    }
+	    
+	    if (Loader.isModLoaded("Forestry"))
+	    {
+	    	AMTLogger.loadingModInfo("Forestry");
+	    	try
+	        {
+	          this.SuccessLoadFFM = true;
+	          (new LoadForestryPlugin()).load();
+	          AMTLogger.loadedModInfo("Forestry");
+	        }
+	        catch (Exception e) {
+	        	AMTLogger.failLoadingModInfo("Forestry");
 	          e.printStackTrace(System.err);
 	        }
 	    }

@@ -24,6 +24,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import mods.defeatedcrow.*;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.DCsConfig;
 import mods.defeatedcrow.plugin.LoadSSectorPlugin;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -77,6 +78,11 @@ public class ItemPrincessClam extends Item {
         				nbt.setInteger("posX", par4);
         				nbt.setInteger("posY", par5);
         				nbt.setInteger("posZ", par6);
+        				if (DCsConfig.charmRemain > 0)
+        				{
+        					nbt.setInteger("limit", DCsConfig.charmRemain);
+        				}
+        				
         				
         				par1ItemStack.setTagCompound(nbt);
         				par3World.playSoundAtEntity(par2EntityPlayer, "random.pop", 0.4F, 1.8F);
@@ -124,6 +130,24 @@ public class ItemPrincessClam extends Item {
 						thisPlayer.setPositionAndUpdate(X, Y + 1, Z);
 						thisPlayer.fallDistance = 0.0F;
 						world.playSoundAtEntity(thisPlayer, "defeatedcrow:suzu", 1.0F, 1.2F);
+						
+						if (nbt.hasKey("limit"))
+						{
+							int lim = nbt.getInteger("limit");
+							--lim;
+							if (lim > 0)
+							{
+								nbt.setInteger("limit", lim);
+							}
+							else
+							{
+								--itemstack.stackSize;
+								if (itemstack.stackSize < 1)
+								{
+									itemstack = (ItemStack)null;
+								}
+							}
+						}
 						return itemstack;
 	                }
 				}
@@ -176,6 +200,24 @@ public class ItemPrincessClam extends Item {
 								thisPlayer.fallDistance = 0.0F;
 								world.playSoundAtEntity(thisPlayer, "defeatedcrow:suzu", 1.0F, 1.2F);
 								thisPlayer.addChatMessage(new ChatComponentText("Succeeded to warp near the registered player : " + target.getDisplayName()));
+								
+								if (nbt.hasKey("limit"))
+								{
+									int lim = nbt.getInteger("limit");
+									--lim;
+									if (lim > 0)
+									{
+										nbt.setInteger("limit", lim);
+									}
+									else
+									{
+										--itemstack.stackSize;
+										if (itemstack.stackSize < 1)
+										{
+											itemstack = (ItemStack)null;
+										}
+									}
+								}
 								return itemstack;
 			                }
 							else if (!sameDim)
@@ -216,11 +258,12 @@ public class ItemPrincessClam extends Item {
 						break;
 					}
 					
-					if ((this.moonCanWarp(world, X, Y + i, Z) || world.isSideSolid(X, Y + i, Z, ForgeDirection.UP)) && (world.isAirBlock(X, Y + i + 1, Z) || world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.plants || world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.snow)
+					if (this.moonCanWarp(world, X, Y + i, Z) && (world.isAirBlock(X, Y + i + 1, Z) || world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.plants || world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.snow)
 							&& world.isAirBlock(X, Y + i + 2, Z))
 					{
 						y1 = Y + i;
 						flag = true;
+						break;
 					}
 				}
 				
@@ -245,7 +288,7 @@ public class ItemPrincessClam extends Item {
 	}
 	
 	//月チャームのワープ可能判定
-	private boolean moonCanWarp(World world, int X, int Y, int Z)
+	public static boolean moonCanWarp(World world, int X, int Y, int Z)
 	{
 		boolean flag = false;
 		if (Y > 250 || world.provider.hasNoSky) return false;
@@ -256,6 +299,7 @@ public class ItemPrincessClam extends Item {
 			if (block.getMaterial() == Material.snow) flag = true;
 			if (block == Blocks.ice) flag = true;
 			if (block == Blocks.snow_layer) flag = true;
+			if (world.isSideSolid(X , Y , Z, ForgeDirection.UP)) flag = true;
 		}
 		else
 		{
@@ -291,6 +335,10 @@ public class ItemPrincessClam extends Item {
     				
     				nbt.setByte("mode", (byte)1);
     				nbt.setString("targetName", name);
+    				if (DCsConfig.charmRemain > 0)
+    				{
+    					nbt.setInteger("limit", DCsConfig.charmRemain);
+    				}
     				targetItem.setTagCompound(nbt);
     				
     				player.worldObj.playSoundAtEntity(player, "random.pop", 0.4F, 1.8F);

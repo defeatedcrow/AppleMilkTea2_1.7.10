@@ -41,6 +41,7 @@ public class DCsRecipeRegister {
 		this.addPrincess();
 		this.addBottle();
 		this.addCordial();
+		this.addCharms();
 		this.addSmelting();
 		
 		
@@ -395,16 +396,6 @@ public class DCsRecipeRegister {
 					 Character.valueOf('W'), new ItemStack(Items.blaze_rod, 1)
 				 });
 		 
-//		 GameRegistry.addRecipe(
-//				 new ShapedOreRecipe(
-//	    		  new ItemStack(DCsAppleMilk.autoMaker, 1),
-//	    		  new Object[]{
-//						 "ZYZ",
-//						 "ZXZ",
-//						 Character.valueOf('Z'), new ItemStack(Blocks.stained_hardened_clay, 1, 0),
-//						 Character.valueOf('Y'), "gearIron",
-//						 Character.valueOf('X'), new ItemStack(Blocks.dispenser, 1)}));
-		 
 		 GameRegistry.addRecipe(
 				 new ShapedOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.teaMakerNext, 1),
@@ -416,16 +407,6 @@ public class DCsRecipeRegister {
 						 Character.valueOf('Y'), new ItemStack(Items.water_bucket, 1),
 						 Character.valueOf('Z'), new ItemStack(Blocks.glass, 1),
 						 Character.valueOf('W'), new ItemStack(Items.blaze_rod, 1)}));
-		 
-//		 GameRegistry.addRecipe(
-//				 new ShapedOreRecipe(
-//	    		  new ItemStack(DCsAppleMilk.autoMaker, 1),
-//	    		  new Object[]{
-//						 "ZYZ",
-//						 "ZXZ",
-//						 Character.valueOf('Z'), "ingotSilver",
-//						 Character.valueOf('Y'), "gearIron",
-//						 Character.valueOf('X'), new ItemStack(Blocks.dispenser, 1)}));
 		 
 		 GameRegistry.addRecipe(
 				 new ShapedOreRecipe(
@@ -449,6 +430,18 @@ public class DCsRecipeRegister {
 						 Character.valueOf('Z'), new ItemStack(Items.iron_ingot, 1),
 						 Character.valueOf('Y'), new ItemStack(Items.iron_sword, 1),
 						 Character.valueOf('X'), new ItemStack(Blocks.glass, 1)}));
+		 
+		 GameRegistry.addRecipe(
+				 new ShapedOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.advProsessor, 1),
+	    		  new Object[]{
+						 "ZXZ",
+						 "ZYZ",
+						 "ZWZ",
+						 Character.valueOf('W'), new ItemStack(DCsAppleMilk.batteryItem, 1, 0),
+						 Character.valueOf('Z'), new ItemStack(Items.iron_ingot, 1),
+						 Character.valueOf('Y'), new ItemStack(DCsAppleMilk.prosessor, 1),
+						 Character.valueOf('X'), new ItemStack(Items.diamond_sword, 1)}));
 		 
 		 GameRegistry.addRecipe(
 				 new ShapedOreRecipe(
@@ -1679,6 +1672,19 @@ public class DCsRecipeRegister {
 	    			  Character.valueOf('X'), new ItemStack(Blocks.stained_hardened_clay, 1, 15),
 	    			  Character.valueOf('Y'), new ItemStack(Items.gold_ingot, 1, 0),
 	    			  Character.valueOf('Z'), new ItemStack(DCsAppleMilk.EXItems, 1, 3)}));
+		 
+		 GameRegistry.addRecipe(
+				 new ShapedOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.chalcenonyPanel, 1, 0),
+	    		  new Object[]{"XX",
+	    			  Character.valueOf('X'), new ItemStack(DCsAppleMilk.chalcedony, 1, 0)}));
+		 
+		 GameRegistry.addRecipe(
+				 new ShapedOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.slotPanel, 1, 0),
+	    		  new Object[]{"X X"," Y ","X X",
+	    			  Character.valueOf('X'), new ItemStack(DCsAppleMilk.chalcedony, 1, 0),
+	    			  Character.valueOf('Y'), new ItemStack(Items.iron_ingot, 1, 0)}));
 	}
 	
 	static void addPrincess() {
@@ -2088,6 +2094,38 @@ public class DCsRecipeRegister {
 				 });
 	}
 	
+	static void addCharms()
+	{
+		GameRegistry.addRecipe(
+				 new ShapedOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.insenceBase, 1),
+	    		  new Object[]{
+						 " X ",
+						 "XYX",
+						 "ZZZ",
+						 Character.valueOf('X'), new ItemStack(DCsAppleMilk.chalcedony, 1, 0),
+						 Character.valueOf('Y'), new ItemStack(DCsAppleMilk.princessClam, 1, 0),
+						 Character.valueOf('Z'), new ItemStack(Items.iron_ingot, 1, 0)}));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.insenceRose, 1, 0),
+	    		  new Object[]{
+	    			  "dustWood",
+	    			  new ItemStack(DCsAppleMilk.bottleCamOil, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.essentialOil, 1, 1)
+					 }));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.insenceRose, 1, 0),
+	    		  new Object[]{
+	    			  "dustWood",
+	    			  new ItemStack(DCsAppleMilk.bottleVegiOil, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.essentialOil, 1, 1)
+					 }));
+	}
+	
 	static void addSmelting() {
 		
 		GameRegistry.addSmelting(
@@ -2135,6 +2173,9 @@ public class DCsRecipeRegister {
 	      
 	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 2),
 	    		  new ItemStack(DCsAppleMilk.icyToffyApple, 4, 5), 0.2F);
+	      
+	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.dustWood, 1, 0),
+	    		  new ItemStack(DCsAppleMilk.dustWood, 1, 2), 0.2F);
 	}
 	
 	/*この部分は、複数のModの水入り容器を取得した後に呼び出すため、postInitに呼ぶ

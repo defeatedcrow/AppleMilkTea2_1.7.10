@@ -122,7 +122,7 @@ public class BlockClamSand extends Block
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
     	//まずは確率1/20
-        if(!par1World.isRemote && par1World.rand.nextInt(20) == 0)
+        if(!par1World.isRemote && par1World.rand.nextInt(15) == 0)
         {
         	super.updateTick(par1World, par2, par3, par4, par5Random);
         	
@@ -281,7 +281,7 @@ public class BlockClamSand extends Block
         	if (l == 2)
         	{
         		EntityOrbFX cloud = new EntityOrbFX(par1World, d0, d1 + (double)k, d2, 0.0D, d3, 0.0D);
-            	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("defeatedcrow:particle_orb"));
+            	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("orb"));
     			FMLClientHandler.instance().getClient().effectRenderer.addEffect(cloud);
         	}
         	if (l == 0)

@@ -2,12 +2,14 @@ package mods.defeatedcrow.plugin;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.common.AMTLogger;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class LoadForestryPlugin {
 	
@@ -75,6 +77,33 @@ public class LoadForestryPlugin {
 			    		  new Object[]{" X ","XYX"," X ",
 			    			  Character.valueOf('Y'), new ItemStack(Items.bread, 1, 0),
 			    			  Character.valueOf('X'), "dropHoney"}));
+				AMTLogger.debugInfo("Succeeded to get Forestry Honeyed Slice");
+			}
+		}
+		ItemStack item8 = new ItemStack(Util.getModItem("Forestry", "fertilizerCompound"), 1);
+		if (item8 != null) {
+			ItemStack register = new ItemStack(item8.getItem());
+			if (register != null) {
+				LoadModHandler.registerModItems("fertilizer", register);
+				
+				GameRegistry.addRecipe(
+						 new ShapelessOreRecipe(
+			    		  register,
+			    		  new Object[]{
+			    			  "dustOilCake",
+				    		  new ItemStack(Items.dye, 1, 15),
+				    		  "dustAsh"
+							 }));
+				
+				GameRegistry.addRecipe(
+						 new ShapelessOreRecipe(
+			    		  register,
+			    		  new Object[]{
+			    			  "dustOilCake",
+				    		  "dustClam",
+				    		  "dustAsh"
+							 }));
+				AMTLogger.debugInfo("Succeeded to get Forestry fertilizer");
 			}
 		}
 	}

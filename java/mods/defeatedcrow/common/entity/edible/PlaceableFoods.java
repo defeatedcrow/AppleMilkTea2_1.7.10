@@ -3,12 +3,17 @@ package mods.defeatedcrow.common.entity.edible;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.api.edibles.IEdibleItem;
+import mods.defeatedcrow.client.particle.EntityBlinkFX;
+import mods.defeatedcrow.client.particle.EntityDCCloudFX;
+import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.block.edible.EdibleEntityItemBlock;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.DCsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -443,6 +448,11 @@ public abstract class PlaceableFoods extends Entity{
                 }
             }
         }
+        
+        if (this.worldObj.isRemote)
+        {
+        	this.generateRandomParticles(this.particleNumber());
+        }
     }
     
     //乗っているEntityの位置調整
@@ -529,6 +539,39 @@ public abstract class PlaceableFoods extends Entity{
     public void func_70270_d(boolean par1)
     {
         this.field_70279_a = par1;
+    }
+    
+    protected byte particleNumber()
+    {
+    	return 0;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    protected void generateRandomParticles(byte b)
+    {
+    	double d0 = (double)(this.posX + this.rand.nextFloat() - 0.5D);
+        double d1 = (double)(this.posY + 0.2F + this.rand.nextFloat() - 0.5D);
+        double d2 = (double)(this.posZ + this.rand.nextFloat() - 0.5D);
+        double d3 = 0.0099999988079071D;
+        double d4 = 0.0099999988079071D;
+        double d5 = 0.0099999988079071D;
+
+        //とりあえずbyte型で分けてる
+        if (this.worldObj.isRemote && !DCsConfig.noRenderFoodsSteam
+        		&& this.worldObj.rand.nextInt(6) == 0) {
+        	if (b == 1)
+        	{
+        		EntityBlinkFX cloud = new EntityBlinkFX(this.worldObj, d0, d1, d2, 0.0D, d4, 0.0D);
+            	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("blink"));
+    			FMLClientHandler.instance().getClient().effectRenderer.addEffect(cloud);
+        	}
+        	else if (b == 2)
+        	{
+        		EntityDCCloudFX cloud = new EntityDCCloudFX(this.worldObj, d0, d1, d2, 0.0D, d3, 0.0D);
+            	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("cloud"));
+    			FMLClientHandler.instance().getClient().effectRenderer.addEffect(cloud);
+        	}
+        }
     }
     
 }

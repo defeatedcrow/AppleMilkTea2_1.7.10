@@ -139,6 +139,11 @@ public class DCsConfig {
 					"Set the number of new villager ID.");
 			Property edibleEntity = cfg.get("render setting", "Enable Edible Entity", allowEdibleEntities,
 					"Some food blocks are placed as a entity. If false, these are placed as a block. (just same as old version.)");
+			Property princessChance = cfg.get("setting", "Princess Chance Value", princessChanceValue,
+					"Set the generation probability of princess clam. Default value is 5.");
+			Property radenLimit = cfg.get("setting", "Hard Mode Wind Charm", charmRemain,
+					"Set a limit on the number of times to use the Raden Charm (Wind)." + BR
+					+ "If you set 0, disable Hard Mode.");
 			
 			Property entityIce = cfg.get("entityid", "EntityIDIceCream", entityIdIce);
 			Property entityCup = cfg.get("entityid", "EntityIDCup", entityIdCup);
@@ -169,6 +174,8 @@ public class DCsConfig {
 			setAltTexturePass = texPass.getInt();
 			clamChanceValue = ClamValue.getInt();
 			villagerRecipeID = cafeRecipe.getInt();
+			princessChanceValue = princessChance.getInt();
+			charmRemain = radenLimit.getInt();
 			
 			useEXRecipe = EXRecipe.getBoolean(false);
 			notGenTeaTree = noTeaTree.getBoolean(false);

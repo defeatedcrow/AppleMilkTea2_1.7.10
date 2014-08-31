@@ -14,7 +14,6 @@ public class RegisterOreHandler {
 		OreDictionary.registerOre("dyeBlack", new ItemStack(DCsAppleMilk.inkStick));
 	    OreDictionary.registerOre("dyeOrange", new ItemStack(DCsAppleMilk.foodTea, 1, 4));
 	    OreDictionary.registerOre("dyeWhite", new ItemStack(DCsAppleMilk.EXItems, 1, 6));
-	    OreDictionary.registerOre("dustClam", new ItemStack(DCsAppleMilk.EXItems, 1, 6));
 	    OreDictionary.registerOre("treeSapling", new ItemStack(DCsAppleMilk.saplingTea, 1, 0));
 	    OreDictionary.registerOre("treeSapling", new ItemStack(DCsAppleMilk.saplingTea, 1, 1));
 	    OreDictionary.registerOre("treeSapling", new ItemStack(DCsAppleMilk.saplingTea, 1, 2));
@@ -101,7 +100,7 @@ public class RegisterOreHandler {
 	    OreDictionary.registerOre("foodCassisSandwich", new ItemStack(DCsAppleMilk.appleSandwich,1,2));
 	    OreDictionary.registerOre("foodYuzuSandwich", new ItemStack(DCsAppleMilk.appleSandwich,1,3));
 	    OreDictionary.registerOre("foodCookedClam", new ItemStack(DCsAppleMilk.clam, 1, 1));
-	    OreDictionary.registerOre("wheatRice", new ItemStack(DCsAppleMilk.bowlJP, 1, 0));
+	    OreDictionary.registerOre("cookingRice", new ItemStack(DCsAppleMilk.bowlJP, 1, 0));
 	    
 	    OreDictionary.registerOre("blockChalcedony", new ItemStack(DCsAppleMilk.chalcedony, 1, 0));
 	    OreDictionary.registerOre("blockChalcedony", new ItemStack(DCsAppleMilk.chalcedony, 1, 1));
@@ -125,9 +124,15 @@ public class RegisterOreHandler {
 	    OreDictionary.registerOre("nuggetIron", new ItemStack(DCsAppleMilk.EXItems, 1, 7));
 	    OreDictionary.registerOre("nuggetTin", new ItemStack(DCsAppleMilk.EXItems, 1, 8));
 	    OreDictionary.registerOre("nuggetCopper", new ItemStack(DCsAppleMilk.EXItems, 1, 9));
+	    OreDictionary.registerOre("dustWood", new ItemStack(DCsAppleMilk.dustWood, 1, 0));
+	    OreDictionary.registerOre("dustCharcoal", new ItemStack(DCsAppleMilk.dustWood, 1, 1));
+	    OreDictionary.registerOre("dustCoal", new ItemStack(DCsAppleMilk.dustWood, 1, 1));
+	    OreDictionary.registerOre("dustAsh", new ItemStack(DCsAppleMilk.dustWood, 1, 2));
+	    OreDictionary.registerOre("dustOilCake", new ItemStack(DCsAppleMilk.dustWood, 1, 3));
 	    
 	    OreDictionary.registerOre("blockClam", new ItemStack(DCsAppleMilk.gunpowderContainer, 1, 3));
 	    OreDictionary.registerOre("gemClam", new ItemStack(DCsAppleMilk.princessClam, 1, 0));
+	    OreDictionary.registerOre("dustClam", new ItemStack(DCsAppleMilk.EXItems, 1, 6));
 	    
 	    if (DCsConfig.allowSlimeBallDic)
 	    {

@@ -20,7 +20,7 @@ public class ItemIcyCrystal extends Item {
 	
 	@SideOnly(Side.CLIENT)
     private IIcon iconType[];
-	private static final String[] itemType = new String[] {"_blink", "_orb", "_cloud"};
+	private static final String[] itemType = new String[] {"_blink", "_orb", "_cloud", "_flower"};
 	
 	public ItemIcyCrystal (){
 		super ();
@@ -32,7 +32,7 @@ public class ItemIcyCrystal extends Item {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
-        int j = MathHelper.clamp_int(par1, 0, 3);
+        int j = MathHelper.clamp_int(par1, 0, 4);
         return j > 0 ? this.iconType[j - 1] : this.itemIcon;
     }
 	
@@ -57,8 +57,8 @@ public class ItemIcyCrystal extends Item {
 	public void registerIcons(IIconRegister par1IconRegister){
 		
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:icycrystal");
-		this.iconType = new IIcon[3];
-		for (int i = 0; i < 3; ++i)
+		this.iconType = new IIcon[4];
+		for (int i = 0; i < 4; ++i)
         {
             this.iconType[i] = par1IconRegister.registerIcon("defeatedcrow:particle" + itemType[i]);
         }

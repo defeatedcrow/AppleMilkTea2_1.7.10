@@ -25,5 +25,11 @@ public class PlaceableIcecream extends PlaceableFoods{
 	protected ItemStack returnItem() {
 		return new ItemStack(DCsAppleMilk.blockIcecream, 1, this.getItemMetadata());
 	}
+	
+	@Override
+	protected byte particleNumber()
+    {
+    	return 1;
+    }
 
 }

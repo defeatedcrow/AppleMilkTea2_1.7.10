@@ -88,8 +88,6 @@ public class RegisterMakerRecipe {
 	{
 		RecipeRegisterManager.iceRecipe.register(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 0), new ItemStack(DCsAppleMilk.blockIcecream, 1, 0));
 		
-		RecipeRegisterManager.iceRecipe.register(new ItemStack(Blocks.gravel, 1, 0), new ItemStack(Items.flint, 1, 0));
-		
 		RecipeRegisterManager.iceRecipe.registerCanLeave(new ItemStack(DCsAppleMilk.teacupBlock, 1, 3), new ItemStack(DCsAppleMilk.blockIcecream, 1, 1),
 				new ItemStack(DCsAppleMilk.emptyCup, 1, 0));
 		

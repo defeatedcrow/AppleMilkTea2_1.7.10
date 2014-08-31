@@ -23,5 +23,11 @@ public class PlaceableBowlJP extends PlaceableFoods{
 	protected ItemStack returnItem() {
 		return new ItemStack(DCsAppleMilk.bowlJP, 1, this.getItemMetadata());
 	}
+	
+	@Override
+	protected byte particleNumber()
+    {
+    	return 2;
+    }
 
 }

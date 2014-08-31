@@ -15,9 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ParticleTex {
 	private static ParticleTex instance;
  
-	// 画像パス。eclipseの場合はforge/mcp/src/minecraft/assets/addparticle/textures/items/smokecircle.pngに展開される
-	// 実環境では%ziproot%/assets/addparticle/textures/items/smokecircle.png
-	private static String[] iconNames = {"defeatedcrow:particle_blink", "defeatedcrow:particle_orb", "defeatedcrow:particle_cloud"};
+	private static String[] iconNames = {"blink", "orb", "cloud", "flower"};
 	IIcon icons[];
  
 	public static ParticleTex getInstance() {
@@ -44,7 +42,7 @@ public class ParticleTex {
 	public void registerIcons(IIconRegister par1IconRegister) {
 		icons = new IIcon[iconNames.length];
 		for(int i = 0; i < icons.length; ++i) {
-			icons[i] = par1IconRegister.registerIcon(iconNames[i]);
+			icons[i] = par1IconRegister.registerIcon("defeatedcrow:particle_" + iconNames[i]);
 		}
 	}
  

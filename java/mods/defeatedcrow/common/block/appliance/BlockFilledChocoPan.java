@@ -283,7 +283,7 @@ public class BlockFilledChocoPan extends BlockContainer{
 
         if (!DCsConfig.noRenderFoodsSteam) {
         	EntityDCCloudFX cloud = new EntityDCCloudFX(par1World, d0, d1, d2, 0.0D, d3, 0.0D);
-        	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("defeatedcrow:particle_cloud"));
+        	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("cloud"));
 			FMLClientHandler.instance().getClient().effectRenderer.addEffect(cloud);
         }
     }

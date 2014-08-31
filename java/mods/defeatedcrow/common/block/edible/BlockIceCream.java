@@ -270,7 +270,7 @@ public class BlockIceCream extends BlockContainer{
 
         if (!DCsConfig.noRenderFoodsSteam) {
         	EntityBlinkFX cloud = new EntityBlinkFX(par1World, d0, d1, d2, 0.0D, d4, 0.0D);
-        	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("defeatedcrow:particle_blink"));
+        	cloud.setParticleIcon(ParticleTex.getInstance().getIcon("blink"));
 			FMLClientHandler.instance().getClient().effectRenderer.addEffect(cloud);
         }
     }
