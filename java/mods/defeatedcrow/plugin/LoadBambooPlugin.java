@@ -3,32 +3,29 @@ package mods.defeatedcrow.plugin;
 import java.util.ArrayList;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class LoadBambooPlugin {
 	
-	public static Item bambooBasket;
-	public static Item bambooMugimeshi;
+	public static ItemStack bambooBasket;
 
 	public void load() {
 		
 		//やっていることはOreDictionaryから辞書登録名で検索してくるだけ
 		//なので本当は、竹MOD様のロードを確認しなくてもエラーは起こらない
 		ArrayList<ItemStack> basket = OreDictionary.getOres("bambooBasket");
-		ArrayList<ItemStack> mugimeshi = OreDictionary.getOres("wheatRice");
 		
 		if (basket.size() > 0){
-			bambooBasket = basket.get(0).getItem();
-		}
-		if (mugimeshi.size() > 0){
-			bambooMugimeshi = mugimeshi.get(0).getItem();
+			bambooBasket = new ItemStack(basket.get(0).getItem(), 1, basket.get(0).getItemDamage());
 		}
 	}
 	

@@ -25,13 +25,13 @@ import mods.defeatedcrow.common.entity.EntityMelonBomb;
 public class BlockMelonBomb extends Block{
 	
 	@SideOnly(Side.CLIENT)
-    private IIcon itemIcon;
+    protected IIcon itemIcon;
 	@SideOnly(Side.CLIENT)
-    private IIcon boxIcon;
+    protected IIcon boxIcon;
 	
-	private final int[] sideX = new int[] {1, -1, 0, 0, 0, 0};
-	private final int[] sideY = new int[] {0, 0, 1, -1, 0, 0};
-	private final int[] sideZ = new int[] {0, 0, 0, 0, 1, -1};
+	protected final int[] sideX = new int[] {1, -1, 0, 0, 0, 0};
+	protected final int[] sideY = new int[] {0, 0, 1, -1, 0, 0};
+	protected final int[] sideZ = new int[] {0, 0, 0, 0, 1, -1};
 	
 	public BlockMelonBomb ()
 	{
@@ -114,7 +114,7 @@ public class BlockMelonBomb extends Block{
         }
     }
 	
-	private void setEntityMelon(World par1World, int par2, int par3, int par4)
+	protected void setEntityMelon(World par1World, int par2, int par3, int par4)
 	{
 		EntityMelonBomb entityMelon = new EntityMelonBomb(par1World, (double)((float)par2 + 0.5F), (double)((float)par3 + 1.0F), (double)((float)par4 + 0.5F));
         entityMelon.rotationYaw = 0.0F;

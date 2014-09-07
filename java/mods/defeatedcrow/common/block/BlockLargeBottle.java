@@ -323,7 +323,7 @@ public class BlockLargeBottle extends BlockContainer{
 	
 	public int damageDropped(int par1)
     {
-        return 0;
+        return par1;
     }
 	
 	@Override

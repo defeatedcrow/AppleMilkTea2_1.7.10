@@ -47,6 +47,7 @@ public class BlockCordial extends BlockContainer{
 		this.setStepSound(Block.soundTypeGlass);
 	}
 	
+	@Override
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
@@ -81,6 +82,7 @@ public class BlockCordial extends BlockContainer{
     }
 	
 	//設置
+	@Override
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
     {
         short l = (short)par6ItemStack.getItemDamage();
@@ -105,6 +107,7 @@ public class BlockCordial extends BlockContainer{
     }
 	
 	//破壊
+	@Override
 	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6)
     {
         TileCordial tile = (TileCordial)par1World.getTileEntity(par2, par3, par4);
@@ -148,6 +151,12 @@ public class BlockCordial extends BlockContainer{
         }
 
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
+    }
+	
+	@Override
+	public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
+    {
+        return false;
     }
 	
 	public boolean isOpaqueCube()
@@ -218,11 +227,6 @@ public class BlockCordial extends BlockContainer{
 		return 0;
 	}
 	
-	protected boolean canSilkHarvest()
-    {
-        return true;
-    }
-	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IIconRegister)
@@ -234,7 +238,7 @@ public class BlockCordial extends BlockContainer{
         {
 			this.drinkIIcon[i] = par1IIconRegister.registerIcon("defeatedcrow:cordial_drink" + this.type[i]);
             this.contentsIIcon[i] = par1IIconRegister.registerIcon("defeatedcrow:cordial_inner" + this.type[i]);
-        }	
+        }
 	}
 
 	@Override

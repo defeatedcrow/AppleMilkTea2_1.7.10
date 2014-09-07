@@ -56,9 +56,9 @@ public class BlockEmptyPan extends BlockContainer{
         
         if (itemstack == null)
         {
-        	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyPan,1,0)))
+        	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyPanGaiden,1,0)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyPan,1,0), 1);
+        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyPanGaiden,1,0), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);
@@ -67,9 +67,9 @@ public class BlockEmptyPan extends BlockContainer{
         }
         else if (itemstack.getItem() == Item.getItemFromBlock(this))
         {
-        	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyPan,1)))
+        	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyPanGaiden,1)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyPan,1), 1);
+        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyPanGaiden,1), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);
@@ -309,7 +309,7 @@ public class BlockEmptyPan extends BlockContainer{
 	@Override
 	public Item getItemDropped(int metadata, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(this);
+		return Item.getItemFromBlock(DCsAppleMilk.emptyPanGaiden);
 	}
 	
 	@Override

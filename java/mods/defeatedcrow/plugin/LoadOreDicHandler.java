@@ -2,10 +2,13 @@ package mods.defeatedcrow.plugin;
 
 import java.util.ArrayList;
 
+import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class LoadOreDicHandler {
@@ -24,6 +27,7 @@ public class LoadOreDicHandler {
 	private static ArrayList<ItemStack> listBanana = new ArrayList<ItemStack>();
 	private static ArrayList<ItemStack> listRice = new ArrayList<ItemStack>();
 	private static ArrayList<ItemStack> listHoney = new ArrayList<ItemStack>();
+	private static ArrayList<ItemStack> listSoy = new ArrayList<ItemStack>();
 	
 	public void load() {
 		
@@ -59,6 +63,20 @@ public class LoadOreDicHandler {
 		if (listBanana != null) LoadModHandler.registerArray("banana", listBanana);
 		if (listRice != null) LoadModHandler.registerArray("rice", listRice);
 		if (listHoney != null) LoadModHandler.registerArray("honey", listHoney);
+		
+		
+		/**
+		 * 以下、登録したリストを使った追加レシピ登録。
+		 */
+		for (ItemStack soy : listSoy)
+		{
+			if (Util.notEmptyItem(soy)) {
+				LoadModHandler.registerModItems("soybean", soy);
+				
+				RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
+						new FluidStack(DCsAppleMilk.vegitableOil, 100), soy);
+			}
+		}
 		
 	}
 	

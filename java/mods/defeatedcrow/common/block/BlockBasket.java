@@ -39,7 +39,7 @@ public class BlockBasket extends BlockContainer{
 		
 	public BlockBasket ()
 	{
-		super(Material.wood);
+		super(Material.ground);
 		this.setStepSound(Block.soundTypeWood);
 		this.setHardness(0.2F);
 		this.setResistance(1.0F);

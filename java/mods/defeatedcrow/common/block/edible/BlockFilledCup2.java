@@ -34,7 +34,7 @@ public class BlockFilledCup2 extends BlockContainer{
 	@SideOnly(Side.CLIENT)
     private IIcon[] contentsIIcon;
 	
-	public static final String[] contents = new String[] {"_earlgray", "_tea_milk", "_appletea", "_tea_milk", "_lime", "_tomato", "_berry", "_berry_milk", "_grape", "_mint", "_lemon"};
+	public static final String[] contents = new String[] {"_earlgray", "_tea_milk", "_appletea", "_tea_milk", "_lime", "_tomato", "_berry", "_berry_milk", "_grape", "_mint", "_lemon", "_orange", "_soda"};
 	
 	public BlockFilledCup2 ()
 	{
@@ -119,47 +119,8 @@ public class BlockFilledCup2 extends BlockContainer{
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
 		super.onBlockAdded(world, x, y, z);
-//		this.setDefaultDirection(world, x, y, z);
 	}
 	
-//	private void setDefaultDirection(World world, int x, int y, int z)
-//	{
-//		if (!DCsConfig.noUseCupDirection)
-//		{
-//			TileCupHandle tileCupHandle = (TileCupHandle)world.getTileEntity(x, y, z);
-//			
-//			if (!world.isRemote)
-//			{
-//				int var5 = world.getBlockId(x, y, z - 1);
-//				int var6 = world.getBlockId(x, y, z + 1);
-//				int var7 = world.getBlockId(x - 1, y, z);
-//				int var8 = world.getBlockId(x + 1, y, z);
-//				byte var9 = 0;
-//	 
-//				if (Block.opaqueCubeLookup[var5] && !Block.opaqueCubeLookup[var6])
-//				{
-//					var9 = 0;
-//				}
-//	 
-//				if (Block.opaqueCubeLookup[var6] && !Block.opaqueCubeLookup[var5])
-//				{
-//					var9 = 1;
-//				}
-//	 
-//				if (Block.opaqueCubeLookup[var7] && !Block.opaqueCubeLookup[var8])
-//				{
-//					var9 = 2;
-//				}
-//	 
-//				if (Block.opaqueCubeLookup[var8] && !Block.opaqueCubeLookup[var7])
-//				{
-//					var9 = 4;
-//				}
-//	 
-//				tileCupHandle.setDirectionByte(var9);
-//			}
-//		}
-//	}
  
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
 	{
@@ -196,7 +157,7 @@ public class BlockFilledCup2 extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-		for(int i = 0; i < 11; ++i)
+		for(int i = 0; i < 13; ++i)
 		{
 			par3List.add(new ItemStack(this, 1, i));
 		}
@@ -206,7 +167,7 @@ public class BlockFilledCup2 extends BlockContainer{
     public IIcon getIcon(int par1, int par2)
     { 
 		int i = par2;
-		if (i > 10) i = 10;
+		if (i > 12) i = 12;
 		if (par1 == 2)
         {
         	return this.boxIIcon;
@@ -234,8 +195,8 @@ public class BlockFilledCup2 extends BlockContainer{
 		this.boxIIcon = par1IIconRegister.registerIcon("defeatedcrow:porcelain");
 		
 		
-		this.contentsIIcon = new IIcon[11];
-		for (int i = 0; i < 11; ++i)
+		this.contentsIIcon = new IIcon[13];
+		for (int i = 0; i < 13; ++i)
         {
 			this.blockIcon = par1IIconRegister.registerIcon("defeatedcrow:contents" + contents[i]);
 			this.itemIIcon = par1IIconRegister.registerIcon("defeatedcrow:contents" + contents[i]);

@@ -27,7 +27,7 @@ public class RenderTeaMakerNext implements ISimpleBlockRenderingHandler{
 			RenderBlocks renderer) {
 		
 		this.glassIIcon = Blocks.glass.getIcon(0, 0);
-		this.boxIIcon = DCsAppleMilk.teaMakerNext.getIcon(1, 0);
+		this.boxIIcon = block.getIcon(1, 0);
 		this.contentsIIcon = Blocks.water.getBlockTextureFromSide(1);
 		
 		if (modelID == this.getRenderId())
@@ -58,7 +58,7 @@ public class RenderTeaMakerNext implements ISimpleBlockRenderingHandler{
 		
 		int meta = (world.getBlockMetadata(x, y, z) & 3);
 		this.glassIIcon = Blocks.glass.getIcon(0, 0);
-		this.boxIIcon = DCsAppleMilk.teaMakerNext.getIcon(1, 0);
+		this.boxIIcon = block.getIcon(1, 0);
 		
 		if (modelId == this.getRenderId())
 		{

@@ -23,7 +23,7 @@ public class EntityItemBowlJP extends EdibleEntityItemBlock{
 	@Override
 	public ItemStack getReturnContainer(int meta) {
 		
-		return (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null) ? new ItemStack(LoadBambooPlugin.bambooBasket, 1, 0) : new ItemStack(Items.bowl, 1, 0);
+		return (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null) ? LoadBambooPlugin.bambooBasket.copy(): new ItemStack(Items.bowl, 1, 0);
 	}
 	
 	@Override

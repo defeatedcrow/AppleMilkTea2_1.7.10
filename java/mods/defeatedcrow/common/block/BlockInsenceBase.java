@@ -352,11 +352,14 @@ public class BlockInsenceBase extends BlockContainer{
         			}
         			else if (type == EffectType.Block)
         			{
-        				int[] pos = this.searchBlock(world, x, y, z, area);
-        				
-        				if (pos != null && pos.length == 3)
+        				for (int i = 0 ; i < effect.effectAreaRange() ; i++)
         				{
-        					effect.formEffect(world, pos[0], pos[1], pos[2], null, effect);
+        					int[] pos = this.searchBlock(world, x, y, z, area);
+            				
+            				if (pos != null && pos.length == 3)
+            				{
+            					effect.formEffect(world, pos[0], pos[1], pos[2], null, effect);
+            				}
         				}
         			}
         		}

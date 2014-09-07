@@ -21,7 +21,7 @@ public class ItemGratedApple extends ItemFood {
     private IIcon iconType[];
 	
 	private static final String[] itemType = new String[] {"gratedapple", "gratedpeach", "honeylemon", "roastedcoffeepowder", "ganache",
-															"gratedlime", "gratedtomato", "gratedberry", "gratedgrape"};
+															"gratedlime", "gratedtomato", "gratedberry", "gratedgrape", "orangeslice"};
 	
 	public ItemGratedApple (int reco, int sat, boolean flag){
 		super (reco, sat, flag);
@@ -34,7 +34,7 @@ public class ItemGratedApple extends ItemFood {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
-        int j = MathHelper.clamp_int(par1, 0, 8);
+        int j = MathHelper.clamp_int(par1, 0, 9);
         return this.iconType[j];
     }
 	
@@ -54,6 +54,7 @@ public class ItemGratedApple extends ItemFood {
 		par3List.add(new ItemStack(this, 1, 0));
 		par3List.add(new ItemStack(this, 1, 1));
 		par3List.add(new ItemStack(this, 1, 2));
+		par3List.add(new ItemStack(this, 1, 9));
 		par3List.add(new ItemStack(this, 1, 3));
 		par3List.add(new ItemStack(this, 1, 4));
 		par3List.add(new ItemStack(this, 1, 5));
@@ -65,9 +66,9 @@ public class ItemGratedApple extends ItemFood {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister){
-		this.iconType = new IIcon[9];
+		this.iconType = new IIcon[10];
 
-        for (int i = 0; i < 9; ++i)
+        for (int i = 0; i < 10; ++i)
         {
             this.iconType[i] = par1IconRegister.registerIcon("defeatedcrow:" + itemType[i]);
         }

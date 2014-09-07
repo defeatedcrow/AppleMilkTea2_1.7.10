@@ -296,8 +296,6 @@ public class BlockClamSand extends Block
 	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(Item.getItemFromBlock(this), 1, 0));
-        par3List.add(new ItemStack(Item.getItemFromBlock(this), 1, 1));
-        par3List.add(new ItemStack(Item.getItemFromBlock(this), 1, 2));
     }
     
     @Override

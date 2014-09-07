@@ -7,6 +7,7 @@ public final class RecipeRegisterManager {
 	public static ITeaRecipeRegister teaRecipe;
 	public static IProsessorRecipeRegister prosessorRecipe;
 	public static IEvaporatorRecipeRegister evaporatorRecipe;
+	public static IPanRecipeRegister panRecipe;
 	
 	private RecipeRegisterManager(){}
 	

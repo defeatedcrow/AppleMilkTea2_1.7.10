@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
@@ -162,6 +163,11 @@ public class Util {
 			living.addPotionEffect(new PotionEffect(Potion.regeneration.id, 300, 0));
 		}
 		return flag;
+	}
+	
+	public static boolean notEmptyItem(ItemStack item)
+	{
+		return item != null && item.stackSize != 0 && item.getItem() != null;
 	}
 
 }

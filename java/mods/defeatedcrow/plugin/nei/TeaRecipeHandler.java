@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.recipe.RegisteredRecipeGet;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
@@ -108,7 +110,6 @@ public class TeaRecipeHandler extends TemplateRecipeHandler {
 	@Override
     public void loadUsageRecipes(ItemStack ingredient)
     {
-
 		HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) this.recipeLoader();
 
         if(recipes == null || recipes.isEmpty())return;
@@ -119,6 +120,10 @@ public class TeaRecipeHandler extends TemplateRecipeHandler {
             if(ingredient.getItem() == in.getItem() && ingredient.getItemDamage() == in.getItemDamage())
             {
                 arecipes.add(new recipeCacher(ingredient, item));
+            }
+            else if (ingredient.getItem() == Item.getItemFromBlock(DCsAppleMilk.teaMakerNext)
+            		|| ingredient.getItem() == Item.getItemFromBlock(DCsAppleMilk.teaMakerBlack)){
+            	arecipes.add(new recipeCacher(in, item));
             }
         }
     }

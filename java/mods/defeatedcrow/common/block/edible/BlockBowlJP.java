@@ -61,9 +61,9 @@ public class BlockBowlJP extends BlockContainer{
         	{
         		if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null)
         		{
-        			if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(LoadBambooPlugin.bambooBasket,1)))
+        			if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
                 	{
-                		par5EntityPlayer.entityDropItem(new ItemStack(LoadBambooPlugin.bambooBasket,1), 1);
+                		par5EntityPlayer.entityDropItem(LoadBambooPlugin.bambooBasket.copy(), 1);
                 	}
         		}
         		else
@@ -92,9 +92,9 @@ public class BlockBowlJP extends BlockContainer{
         	{
         		if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null)
         		{
-        			if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(LoadBambooPlugin.bambooBasket,1)))
+        			if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
                 	{
-                		par5EntityPlayer.entityDropItem(new ItemStack(LoadBambooPlugin.bambooBasket,1), 1);
+                		par5EntityPlayer.entityDropItem(LoadBambooPlugin.bambooBasket.copy(), 1);
                 	}
         		}
         		else

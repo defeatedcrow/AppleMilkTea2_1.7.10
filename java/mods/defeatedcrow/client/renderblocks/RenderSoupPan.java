@@ -72,7 +72,7 @@ public class RenderSoupPan implements ISimpleBlockRenderingHandler{
 		this.boxIIcon = Blocks.hardened_clay.getBlockTextureFromSide(1);
 		this.contentsIIcon = DCsAppleMilk.filledPan.getIcon(0, meta);
 		this.contentsIIcon2 = DCsAppleMilk.filledPan2.getIcon(0, meta);
-		this.chainTex = DCsAppleMilk.emptyPan.getBlockTextureFromSide(0);
+		this.chainTex = DCsAppleMilk.emptyPanGaiden.getBlockTextureFromSide(0);
 		
 		if (modelId == this.getRenderId())
 		{

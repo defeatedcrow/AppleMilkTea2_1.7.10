@@ -52,9 +52,9 @@ public class BlockFilledChocoPan extends BlockContainer{
         
         if (itemstack == null)
         {
-        	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyPan,1,0)))
+        	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyPanGaiden,1,0)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyPan,1,0), 1);
+        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyPanGaiden,1,0), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);
@@ -86,9 +86,7 @@ public class BlockFilledChocoPan extends BlockContainer{
 		
 		if (dir < 1)
 		{
-			world.setBlock(X, Y, Z, DCsAppleMilk.emptyPan, 0, 3);
-			TilePanHandle tile2 = (TilePanHandle) world.getTileEntity(X, Y, Z);
-			if (tile2 != null)tile2.setDirectionByte((byte)meta);
+			if (!world.isRemote)world.setBlock(X, Y, Z, DCsAppleMilk.emptyPanGaiden, 0, 2);
 			world.markBlockForUpdate(X, Y, Z);
 		}
 		else
@@ -259,7 +257,7 @@ public class BlockFilledChocoPan extends BlockContainer{
 	@Override
 	public Item getItemDropped(int metadata, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(DCsAppleMilk.emptyPan);
+		return Item.getItemFromBlock(DCsAppleMilk.emptyPanGaiden);
 	}
 	
 	@Override

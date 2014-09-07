@@ -26,23 +26,23 @@ import net.minecraft.world.World;
 public class EntityMelonBomb extends Entity
 {
     //何のフラグだか判らん
-	private boolean field_70279_a;
+	protected boolean field_70279_a;
 	//騎乗Entityの速度計算に使用
-    private double speedMultiplier;
+    protected double speedMultiplier;
     //加速度増加量
-    private int boatPosRotationIncrements;
+    protected int boatPosRotationIncrements;
     //位置情報
-    private double boatX;
-    private double boatY;
-    private double boatZ;
-    private double boatYaw;
-    private double boatPitch;
+    protected double boatX;
+    protected double boatY;
+    protected double boatZ;
+    protected double boatYaw;
+    protected double boatPitch;
     @SideOnly(Side.CLIENT)
-    private double velocityX;
+    protected double velocityX;
     @SideOnly(Side.CLIENT)
-    private double velocityY;
+    protected double velocityY;
     @SideOnly(Side.CLIENT)
-    private double velocityZ;
+    protected double velocityZ;
     
     public int readyTime;
 
@@ -57,15 +57,13 @@ public class EntityMelonBomb extends Entity
         this.readyTime = 80;
     }
 
-    /**
-     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
-     * prevent them from trampling crops
-     */
+    @Override
     protected boolean canTriggerWalking()
     {
         return false;
     }
 
+    @Override
     protected void entityInit()
     {
         this.dataWatcher.addObject(17, new Integer(0));
@@ -73,26 +71,19 @@ public class EntityMelonBomb extends Entity
         this.dataWatcher.addObject(19, new Float(0.0F));
     }
 
-    /**
-     * Returns a boundingBox used to collide the entity with other entities and blocks. This enables the entity to be
-     * pushable on contact, like boats or minecarts.
-     */
+    @Override
     public AxisAlignedBB getCollisionBox(Entity par1Entity)
     {
         return par1Entity.boundingBox;
     }
 
-    /**
-     * returns the bounding box for this entity
-     */
+    @Override
     public AxisAlignedBB getBoundingBox()
     {
         return this.boundingBox;
     }
 
-    /**
-     * Returns true if this entity should push and be pushed by other entities when colliding.
-     */
+    @Override
     public boolean canBePushed()
     {
         return true;
@@ -110,17 +101,13 @@ public class EntityMelonBomb extends Entity
         this.prevPosZ = par6;
     }
 
-    /**
-     * Returns the Y offset from the entity's position for any entity riding this one.
-     */
+    @Override
     public double getMountedYOffset()
     {
         return (double)this.height * 0.0D + 0.06000001192092896D;
     }
 
-    /**
-     * Called when the entity is attacked.
-     */
+    @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
         if (this.isEntityInvulnerable())
@@ -151,7 +138,7 @@ public class EntityMelonBomb extends Entity
 
                 if (!flag)
                 {
-                    this.func_145778_a(Item.getItemFromBlock(DCsAppleMilk.melonBomb), 1, 0.0F);
+                    this.func_145778_a(this.dropItem(), 1, 0.0F);
                 }
 
                 this.setDead();
@@ -171,19 +158,21 @@ public class EntityMelonBomb extends Entity
         }
     }
     
-    private void explode()
+    protected void explode()
     {
         float f = 3.0F;
         boolean b = !DCsConfig.melonBreakBlock;
-        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, f, b);
+        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, f, false);
         
+    }
+    
+    protected Item dropItem()
+    {
+    	return Item.getItemFromBlock(DCsAppleMilk.melonBomb);
     }
 
     @SideOnly(Side.CLIENT)
-
-    /**
-     * Setups the entity to do the hurt animation. Only used by packets in multiplayer.
-     */
+    @Override
     public void performHurtAnimation()
     {
         this.setForwardDirection(-this.getForwardDirection());
@@ -191,20 +180,14 @@ public class EntityMelonBomb extends Entity
         this.setDamageTaken(this.getDamageTaken() * 11.0F);
     }
 
-    /**
-     * Returns true if other Entities should be prevented from moving through this Entity.
-     */
+    @Override
     public boolean canBeCollidedWith()
     {
         return !this.isDead;
     }
 
     @SideOnly(Side.CLIENT)
-
-    /**
-     * Sets the position and rotation. Only difference from the other one is no bounding on the rotation. Args: posX,
-     * posY, posZ, yaw, pitch
-     */
+    @Override
     public void setPositionAndRotation2(double par1, double par3, double par5, float par7, float par8, int par9)
     {
         if (this.field_70279_a)
@@ -237,10 +220,7 @@ public class EntityMelonBomb extends Entity
     }
 
     @SideOnly(Side.CLIENT)
-
-    /**
-     * Sets the velocity to the args. Args: x, y, z
-     */
+    @Override
     public void setVelocity(double par1, double par3, double par5)
     {
         this.velocityX = this.motionX = par1;
@@ -248,9 +228,7 @@ public class EntityMelonBomb extends Entity
         this.velocityZ = this.motionZ = par5;
     }
 
-    /**
-     * Called to update the entity's position/logic.
-     */
+    @Override
     public void onUpdate()
     {
         super.onUpdate();
@@ -291,7 +269,7 @@ public class EntityMelonBomb extends Entity
         double d5;
 
         //水しぶき生成
-        if (d3 > 0.26249999999999996D)
+        if (d3 > 0.26249999999999996D && this.inWater)
         {
             d4 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D);
             d5 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D);
@@ -433,16 +411,7 @@ public class EntityMelonBomb extends Entity
             if (this.isCollidedHorizontally && d3 > 0.3D)
             {
                 //速度0.30D以上だとドロップ化・実績解除
-            	if (!this.worldObj.isRemote && !this.isDead)
-                {
-            		if (this.riddenByEntity instanceof EntityPlayer)
-            		{
-            			EntityPlayer player = (EntityPlayer) this.riddenByEntity;
-            			player.triggerAchievement(AchievementRegister.crashMelon);
-            		}
-                    this.setDead();
-                    this.func_145778_a(Item.getItemFromBlock(DCsAppleMilk.melonBomb), 1, 0.0F);
-                }
+            	this.onCrash();
             }
             else
             {
@@ -528,6 +497,7 @@ public class EntityMelonBomb extends Entity
     }
 
     //乗っているEntityの位置調整
+    @Override
     public void updateRiderPosition()
     {
         if (this.riddenByEntity != null)
@@ -538,25 +508,20 @@ public class EntityMelonBomb extends Entity
         }
     }
 
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
+    @Override
     protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {}
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
+    @Override
     protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {}
 
     @SideOnly(Side.CLIENT)
+    @Override
     public float getShadowSize()
     {
         return 0.0F;
     }
 
-    /**
-     * First layer of player interaction
-     */
+    @Override
     public boolean interactFirst(EntityPlayer par1EntityPlayer)
     {
         //他人が乗っている場合は乗れない
@@ -579,9 +544,9 @@ public class EntityMelonBomb extends Entity
     	}
     	else
     	{
-    		if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.melonBomb,1)))
+    		if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(this.dropItem(),1)))
         	{
-        		par1EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.melonBomb,1), 1.0F);
+        		par1EntityPlayer.entityDropItem(new ItemStack(this.dropItem(),1), 1.0F);
         	}
     		
     		this.setDead();
@@ -591,49 +556,31 @@ public class EntityMelonBomb extends Entity
     	
     }
 
-    /**
-     * Sets the damage taken from the last hit.
-     */
     public void setDamageTaken(float par1)
     {
         this.dataWatcher.updateObject(19, Float.valueOf(par1));
     }
 
-    /**
-     * Gets the damage taken from the last hit.
-     */
     public float getDamageTaken()
     {
         return this.dataWatcher.getWatchableObjectFloat(19);
     }
 
-    /**
-     * Sets the time to count down from since the last time entity was hit.
-     */
     public void setTimeSinceHit(int par1)
     {
         this.dataWatcher.updateObject(17, Integer.valueOf(par1));
     }
 
-    /**
-     * Gets the time since the last hit.
-     */
     public int getTimeSinceHit()
     {
         return this.dataWatcher.getWatchableObjectInt(17);
     }
 
-    /**
-     * Sets the forward direction of the entity.
-     */
     public void setForwardDirection(int par1)
     {
         this.dataWatcher.updateObject(18, Integer.valueOf(par1));
     }
 
-    /**
-     * Gets the forward direction of the entity.
-     */
     public int getForwardDirection()
     {
         return this.dataWatcher.getWatchableObjectInt(18);
@@ -643,5 +590,19 @@ public class EntityMelonBomb extends Entity
     public void func_70270_d(boolean par1)
     {
         this.field_70279_a = par1;
+    }
+    
+    protected void onCrash()
+    {
+    	if (!this.worldObj.isRemote && !this.isDead)
+        {
+    		if (this.riddenByEntity instanceof EntityPlayer)
+    		{
+    			EntityPlayer player = (EntityPlayer) this.riddenByEntity;
+    			player.triggerAchievement(AchievementRegister.crashMelon);
+    		}
+            this.setDead();
+            this.func_145778_a(this.dropItem(), 1, 0.0F);
+        }
     }
 }

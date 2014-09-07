@@ -26,7 +26,7 @@ public class CraftingEvent {
 			if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.teaMakerNext)) {
 				player.triggerAchievement(AchievementRegister.craftTeaMaker);
 			}
-			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.emptyPan)) {
+			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.emptyPanGaiden)) {
 				player.triggerAchievement(AchievementRegister.craftPan);
 			}
 			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.teppann)) {

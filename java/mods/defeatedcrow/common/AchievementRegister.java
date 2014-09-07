@@ -53,7 +53,7 @@ public class AchievementRegister {
 		craftTeaMaker = (new Achievement("defeatedcrow.teamaker", "craftTeaMaker", 0, -1, new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0), AchievementList.blazeRod))
 				.initIndependentStat().registerStat();
 		
-		craftPan = (new Achievement("defeatedcrow.pan", "craftPan", -2, 0, new ItemStack(DCsAppleMilk.emptyPan, 1, 0), AchievementList.buildFurnace))
+		craftPan = (new Achievement("defeatedcrow.pan", "craftPan", -2, 0, new ItemStack(DCsAppleMilk.emptyPanGaiden, 1, 0), AchievementList.buildFurnace))
 				.initIndependentStat().registerStat();
 		
 		craftTeppan = (new Achievement("defeatedcrow.teppan", "craftTeppan", -2, 2, new ItemStack(DCsAppleMilk.teppann, 1, 0), AchievementList.acquireIron))

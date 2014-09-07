@@ -2,28 +2,7 @@ package mods.defeatedcrow.common;
 
 import mods.defeatedcrow.common.block.*;
 import mods.defeatedcrow.common.block.appliance.*;
-import mods.defeatedcrow.common.block.container.BlockAppleBox;
-import mods.defeatedcrow.common.block.container.BlockCardboard;
-import mods.defeatedcrow.common.block.container.BlockCharcoalBox;
-import mods.defeatedcrow.common.block.container.BlockEggBasket;
-import mods.defeatedcrow.common.block.container.BlockGunpowderContainer;
-import mods.defeatedcrow.common.block.container.BlockMelonBomb;
-import mods.defeatedcrow.common.block.container.BlockMobDrop;
-import mods.defeatedcrow.common.block.container.BlockMushBox;
-import mods.defeatedcrow.common.block.container.BlockVegiBag;
-import mods.defeatedcrow.common.block.container.BlockWipeBox;
-import mods.defeatedcrow.common.block.container.BlockWipeBox2;
-import mods.defeatedcrow.common.block.container.BlockWoodBox;
-import mods.defeatedcrow.common.block.container.ItemCardboard;
-import mods.defeatedcrow.common.block.container.ItemEggBasket;
-import mods.defeatedcrow.common.block.container.ItemGunpowderContainer;
-import mods.defeatedcrow.common.block.container.ItemMelonBomb;
-import mods.defeatedcrow.common.block.container.ItemMobDropBox;
-import mods.defeatedcrow.common.block.container.ItemMushBox;
-import mods.defeatedcrow.common.block.container.ItemVegiBag;
-import mods.defeatedcrow.common.block.container.ItemWipeBox;
-import mods.defeatedcrow.common.block.container.ItemWipeBox2;
-import mods.defeatedcrow.common.block.container.ItemWoodBox;
+import mods.defeatedcrow.common.block.container.*;
 import mods.defeatedcrow.common.block.edible.*;
 import mods.defeatedcrow.common.fluid.*;
 import mods.defeatedcrow.common.block.plants.*;
@@ -96,6 +75,7 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.foodTea,"defeatedcrow.foodTea");
 		GameRegistry.registerItem(DCsAppleMilk.gratedApple,"defeatedcrow.gratedApple");
 		GameRegistry.registerItem(DCsAppleMilk.mincedFoods,"defeatedcrow.mincedFoods");
+		GameRegistry.registerItem(DCsAppleMilk.yeast,"defeatedcrow.yeast");
 		GameRegistry.registerItem(DCsAppleMilk.emptyWallMug,"defeatedcrow.emptyWallMug");
 		GameRegistry.registerItem(DCsAppleMilk.wallMug,"defeatedcrow.wallMug");
 		GameRegistry.registerItem(DCsAppleMilk.itemLargeBottle,"defeatedcrow.itemBottle");
@@ -113,8 +93,10 @@ public class MaterialRegister {
 		
 		//基本ツール
 		GameRegistry.registerBlock(DCsAppleMilk.teaMakerNext, "defeatedcrow.teaMakerNext");
+		GameRegistry.registerBlock(DCsAppleMilk.teaMakerBlack, "defeatedcrow.teaMakerBlack");
 		GameRegistry.registerBlock(DCsAppleMilk.emptyCup, "defeatedcrow.emptyCup");
 		GameRegistry.registerBlock(DCsAppleMilk.emptyPan, "defeatedcrow.emptyPan");
+		GameRegistry.registerBlock(DCsAppleMilk.emptyPanGaiden, ItemPanG.class, "defeatedcrow.emptyPanG");
 		GameRegistry.registerBlock(DCsAppleMilk.iceMaker, "defeatedcrow.iceMaker");
 		GameRegistry.registerBlock(DCsAppleMilk.teppann, ItemTeppann.class, "defeatedcrow.teppann");
 		GameRegistry.registerBlock(DCsAppleMilk.prosessor, ItemMachineBlock.class, "defeatedcrow.prosessor");
@@ -154,6 +136,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.eggBasket, ItemEggBasket.class,  "defeatedcrow.eggBasket");
 		GameRegistry.registerBlock(DCsAppleMilk.mushroomBox, ItemMushBox.class,  "defeatedcrow.mushroomBox");
 		GameRegistry.registerBlock(DCsAppleMilk.melonBomb, ItemMelonBomb.class,  "defeatedcrow.melonBomb");
+		GameRegistry.registerBlock(DCsAppleMilk.silkyMelon, ItemSilkyMelon.class,  "defeatedcrow.melonSilky");
 		GameRegistry.registerBlock(DCsAppleMilk.wipeBox, ItemWipeBox.class, "defeatedcrow.wipeBox");
 		GameRegistry.registerBlock(DCsAppleMilk.wipeBox2, ItemWipeBox2.class, "defeatedcrow.wipeBox2");
 		GameRegistry.registerBlock(DCsAppleMilk.rotaryDial, "defeatedcrow.rotaryDial");
@@ -297,7 +280,7 @@ public class MaterialRegister {
 					,new ItemStack(DCsAppleMilk.bottleCamOil), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
 		}
 		
-		MinecraftForge.EVENT_BUS.register(this);
+		DCsAppleMilk.proxy.registerFluidTex();
 		
 		(new BucketFillEvent()).register();
 	}
@@ -369,6 +352,10 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.mincedFoods  = (new ItemMincedFoods()).
 				setUnlocalizedName("defeatedcrow.mincedItem").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.yeast  = (new ItemYeast()).
+				setUnlocalizedName("defeatedcrow.yeast").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.EXItems  = (new ItemEXItem()).
@@ -494,6 +481,10 @@ public class MaterialRegister {
 				setBlockName("defeatedcrow.compressedMelon").
 				setCreativeTab(DCsAppleMilk.applemilkContainer);
 		
+		DCsAppleMilk.silkyMelon = (new BlockSilkyMelon()).
+				setBlockName("defeatedcrow.compressedSilkyMelon").
+				setCreativeTab(DCsAppleMilk.applemilkContainer);
+		
 		DCsAppleMilk.wipeBox = (new BlockWipeBox()).
 				setBlockName("defeatedcrow.wipeBox").
 				setCreativeTab(DCsAppleMilk.applemilkContainer);
@@ -610,12 +601,19 @@ public class MaterialRegister {
 				setBlockName("defeatedcrow.teaMakerNext").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
+		DCsAppleMilk.teaMakerBlack = (new BlockTeaMakerBlack()).
+				setBlockName("defeatedcrow.teaMakerBlack").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
 		DCsAppleMilk.emptyCup = (new BlockEmptyCup()).
 				setBlockName("defeatedcrow.emptyCup").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.emptyPan = (new BlockEmptyPan()).
-				setBlockName("defeatedcrow.soupPanEmpty").
+				setBlockName("defeatedcrow.soupPanEmpty");
+		
+		DCsAppleMilk.emptyPanGaiden = (new BlockEmptyPanG()).
+				setBlockName("defeatedcrow.soupPanG").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.teppann = (new BlockTeppann()).
@@ -664,10 +662,4 @@ public class MaterialRegister {
 		
 	}
 	
-	@SubscribeEvent
-	public void onTextureStitch(TextureStitchEvent.Post event)
-	{
-		DCsAppleMilk.vegitableOil.setIcons(DCsAppleMilk.blockVegitableOil.getIcon(0, 0));
-		DCsAppleMilk.camelliaOil.setIcons(DCsAppleMilk.blockCamelliaOil.getIcon(0, 0));
-	}
 }

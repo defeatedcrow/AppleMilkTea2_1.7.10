@@ -11,6 +11,7 @@ public class RegisterManager {
 		RecipeRegisterManager.iceRecipe = new IceRecipeRegister();
 		RecipeRegisterManager.prosessorRecipe = new ProsessorRecipeRegister();
 		RecipeRegisterManager.evaporatorRecipe = new EvaporatorRecipeRegister();
+		RecipeRegisterManager.panRecipe = new PanRecipeRegister();
 		
 		ChargeItemManager.chargeItem = new ChargeItemRegister();
 	}

@@ -238,6 +238,8 @@ public abstract class PlaceableFoods extends Entity{
         this.prevPosZ = this.posZ;
         byte b0 = 5;
         double d0 = 0.0D;
+        
+        boolean spl = false;
 
         //当たり判定が水中にあるか？
         for (int i = 0; i < b0; ++i)
@@ -250,6 +252,7 @@ public abstract class PlaceableFoods extends Entity{
             if (this.worldObj.isAABBInMaterial(axisalignedbb, Material.water))
             {
                 d0 += 1.0D / (double)b0;
+                spl = true;
             }
         }
         
@@ -258,7 +261,7 @@ public abstract class PlaceableFoods extends Entity{
         double d5;
         
       //水しぶき生成
-        if (d3 > 0.26249999999999996D)
+        if (d3 > 0.26249999999999996D && spl)
         {
             d4 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D);
             d5 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D);

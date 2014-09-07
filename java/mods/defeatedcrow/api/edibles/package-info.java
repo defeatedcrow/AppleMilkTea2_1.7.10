@@ -6,6 +6,6 @@
  * Please check the License(MMPL_1.0).txt included in the package file of this Mod.
  */
 
-@API(apiVersion="1.0", owner="DCsAppleMilk", provides="AppleMilkTeaAPI|edibles")
+@API(apiVersion="2.0", owner="DCsAppleMilk", provides="AppleMilkTeaAPI|edibles")
 package mods.defeatedcrow.api.edibles;
 import cpw.mods.fml.common.API;

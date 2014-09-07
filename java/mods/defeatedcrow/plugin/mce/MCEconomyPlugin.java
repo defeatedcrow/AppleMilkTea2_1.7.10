@@ -90,11 +90,12 @@ public class MCEconomyPlugin extends ProductList{
 		//Maker
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.teaMakerNext), 200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.emptyCup), 10);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.emptyPan), 50);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.emptyPanGaiden), 50);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.iceMaker), 200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.teppann), 150);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.prosessor), 200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.evaporator), 200);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.advProsessor), 400);
 		
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.filledPan), -1);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.filledPan2), -1);
@@ -104,7 +105,7 @@ public class MCEconomyPlugin extends ProductList{
 		for (int i = 0; i < 14 ; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.teacupBlock, 1, i), 20);
 		}
-		for (int i = 0; i < 11 ; i++) {
+		for (int i = 0; i < 13 ; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.teaCup2, 1, i), 24);
 		}
 		for (int i = 0; i < 8 ; i++) {
@@ -113,7 +114,7 @@ public class MCEconomyPlugin extends ProductList{
 		for (int i = 0; i < 8 ; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.bowlJP, 1, i), 10);
 		}
-		for (int i = 0; i < 12 ; i++) {
+		for (int i = 0; i < 14 ; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.blockIcecream, 1, i), 25);
 		}
 		for (int i = 0; i < 4 ; i++) {
@@ -254,7 +255,7 @@ public class MCEconomyPlugin extends ProductList{
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.emptyCup, 1, 0), 25));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0), 1000));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.DCgrater, 1, 0), 80));
-		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.emptyPan, 1, 0), 200));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.emptyPanGaiden, 1, 0), 200));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.prosessor, 1, 0), 1000));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.batteryItem, 1, 1), 500));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.batteryItem, 64, 1), 30000));

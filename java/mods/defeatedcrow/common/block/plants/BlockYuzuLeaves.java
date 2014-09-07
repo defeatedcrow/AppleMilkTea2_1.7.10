@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import mods.defeatedcrow.api.plants.IRightClickHarvestable;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
@@ -12,9 +13,12 @@ import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -30,7 +34,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * <br>メタデータ&3が、0:採取後の葉、1:自然生成時の葉、2:花つき、3:実つき。
  * <br>右クリックで実を採取したあと、メタデータが0になることで再採集までのインターバルを作る。
  * */
-public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable
+public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable, IRightClickHarvestable
 {
     int[] around;
     @SideOnly(Side.CLIENT)
@@ -73,51 +77,21 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
-        int meta = par1World.getBlockMetadata(par2, par3, par4) & 3;
+        int meta = par1World.getBlockMetadata(par2, par3, par4);
         
-        if (itemstack == null)
-        {
-        	/*最大まで成長した場合のみ、右クリックで採集ができる*/
-        	if (meta == 3)
-        	{
-        		ItemStack get = new ItemStack(DCsAppleMilk.leafTea, 1, 3);
-        		
-        		if (!par5EntityPlayer.inventory.addItemStackToInventory(get))
-        		{
-        			par5EntityPlayer.entityDropItem(get, 1);
-        		}
-        		
-        		//2段階戻る
-        		int next = par1World.getBlockMetadata(par2, par3, par4) - 3;
-        		par1World.setBlockMetadataWithNotify(par2, par3, par4, next, 3);
-        		
-        		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
-        		return true;
-        	}
-        	else
-        	{
-        		return false;
-        	}
-        }
-        else if (!par1World.isRemote && meta == 3 && itemstack.getItem() == DCsAppleMilk.leafTea)
-        {
-        	ItemStack get = new ItemStack(DCsAppleMilk.leafTea, 1, 3);
-    		
-    		if (!par5EntityPlayer.inventory.addItemStackToInventory(get))
+        InventoryPlayer inventory = par5EntityPlayer.inventory;
+    	
+    	if (inventory != null)
+    	{
+    		ItemStack currentItem = inventory.getCurrentItem();
+    		if(this.onHarvest(par1World, par2, par3, par4, inventory, currentItem))
     		{
-    			par5EntityPlayer.entityDropItem(get, 1);
+    			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+    			return true;
     		}
-    		
-    		//2段階戻る
-    		int next = par1World.getBlockMetadata(par2, par3, par4) - 3;
-    		par1World.setBlockMetadataWithNotify(par2, par3, par4, next, 3);
-    		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
-    		return true;
-        }
-        else
-        {
-        	return false;
-        }
+    	}
+        
+        return false;
     }
     
     /* === 以下、Leaves用メソッド === */
@@ -271,14 +245,14 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable
             {
             	if (type == 0)
             	{
-            		if (rand.nextInt(30) == 0)
+            		if (rand.nextInt(40) == 0)
             		{
             			world.setBlockMetadataWithNotify(x, y, z, newMeta + 1, 3);
             		}
             	}
             	else
             	{
-            		if (rand.nextInt(10) == 0)
+            		if (rand.nextInt(15) == 0)
             		{
             			world.setBlockMetadataWithNotify(x, y, z, newMeta + 1, 3);
             		}
@@ -458,4 +432,101 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable
         
         return ret;
     }
+    
+    @Override
+	public boolean onHarvest(World world, int x, int y, int z,
+			IInventory inventory, ItemStack currentItem) {
+		
+		int meta = world.getBlockMetadata(x, y, z);
+		if ((meta & 3) != 3) return false;
+		
+		ItemStack ret = this.getCropItem(meta);
+		boolean flag = false;
+		
+		if ((currentItem == null || currentItem.getItem() == ret.getItem()) && Util.notEmptyItem(ret))
+		{
+			if (inventory instanceof InventoryPlayer)
+			{
+				InventoryPlayer playerInv = (InventoryPlayer)inventory;
+				
+				if (playerInv.addItemStackToInventory(ret))
+				{
+					world.setBlockMetadataWithNotify(x, y, z, meta - 3, 3);
+					playerInv.markDirty();
+					return true;
+				}
+				else flag = true;
+			}
+			else if (inventory != null)
+			{
+				int slot = this.getAddSlot(inventory, ret);
+				if (slot > -1) {
+					if (inventory.getStackInSlot(slot) == null) {
+						inventory.setInventorySlotContents(slot, ret);
+					}
+					else {
+						++inventory.getStackInSlot(slot).stackSize;
+					}
+					world.setBlockMetadataWithNotify(x, y, z, meta - 3, 3);
+					return true;
+				}
+				else {
+					flag = true;
+				}
+			}
+			else {
+				flag = true;
+			}
+		}
+		
+		if (flag)
+		{
+			float a = world.rand.nextFloat() * 0.8F + 0.1F;
+			float a1 = world.rand.nextFloat() * 0.8F + 0.1F;
+			float a2 = world.rand.nextFloat() * 0.8F + 0.1F;
+			EntityItem drop = new EntityItem(world, (double)((float)x + a), (double)((float)y + a1), (double)((float)z + a2), ret);
+			drop.motionY = 0.25F;
+			
+			if (world.spawnEntityInWorld(drop)){
+				world.setBlockMetadataWithNotify(x, y, z, meta - 3, 3);
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean isHarvestable(World world, int x, int y, int z) {
+		int meta = world.getBlockMetadata(x, y, z) & 3;
+		return meta == 3;
+	}
+
+	@Override
+	public ItemStack getCropItem(int blockMeta) {
+		ItemStack ret = null;
+		if ((blockMeta & 3) == 3) ret = new ItemStack(DCsAppleMilk.leafTea, 1, 3);
+		return ret;
+	}
+	
+	private int getAddSlot(IInventory inventory, ItemStack get)
+	{
+		for (int i = 0 ; i < inventory.getSizeInventory() ; i++)
+		{
+			if (inventory.getStackInSlot(i) == null)
+			{
+				return i;
+			}
+			else if (Util.notEmptyItem(get))
+			{
+				ItemStack cur = inventory.getStackInSlot(i);
+				if (get.getItem() == cur.getItem() && get.getItemDamage() == cur.getItemDamage()
+						&& cur.stackSize < cur.getMaxStackSize())
+				{
+					return i;
+				}
+			}
+		}
+		return -1;
+	}
 }

@@ -61,7 +61,7 @@ public class WorldgenTeaTree implements IWorldGenerator {
 						world.setBlock(PosX, PosY, PosZ, DCsAppleMilk.saplingTea, 1, 2);
 					}
 				}
-				else if (world.rand.nextInt(5) == 0 && BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.PLAINS) && world.getBlock(PosX, PosY - 1, PosZ) == Blocks.grass
+				else if (world.rand.nextInt(3) == 0 && BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.PLAINS) && world.getBlock(PosX, PosY - 1, PosZ) == Blocks.grass
 						&& !world.isBlockNormalCubeDefault(PosX, PosY, PosZ, false))
 				{
 					if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.COLD))

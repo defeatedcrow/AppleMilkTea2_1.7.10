@@ -24,7 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityItemIceCream extends EdibleEntityItemBlock{
 
-private static final String[] type = new String[] {"_milk", "_tea", "_greentea", "_cocoa", "_coffee", "_fruit", "_lemon", "_lime", "_tomato", "_berry", "_grape", "_mint"};
+private static final String[] type = new String[] {"_milk", "_tea", "_greentea", "_cocoa", "_coffee", "_fruit", "_lemon", "_lime", "_tomato", "_berry", "_grape", "_mint", "_orange", "_soda"};
 	
 	public EntityItemIceCream(Block block)
 	{
@@ -37,7 +37,7 @@ private static final String[] type = new String[] {"_milk", "_tea", "_greentea",
 	public String getUnlocalizedName(ItemStack par1ItemStack)
 	{
 		int m = (par1ItemStack.getItemDamage());
-		if (m < 12) return super.getUnlocalizedName() + type[m];
+		if (m < 14) return super.getUnlocalizedName() + type[m];
 		else return super.getUnlocalizedName() + m;
 	}
 	
@@ -126,13 +126,17 @@ private static final String[] type = new String[] {"_milk", "_tea", "_greentea",
 		{
 			return new PotionEffect(Potion.resistance.id, 900, 1);
 		}
-		else if (meta == 10)//grape
+		else if (meta == 10 || meta == 13)//grape
 		{
 			return new PotionEffect(Potion.moveSpeed.id, 900, 0);
 		}
 		else if (meta == 11)//mint
 		{
 			return null;
+		}
+		else if (meta == 12)//orange
+		{
+			return new PotionEffect(Potion.jump.id, 900, 0);
 		}
 		else//例外用
 		{

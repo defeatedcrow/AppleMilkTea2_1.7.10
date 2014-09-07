@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityItemTeaCup2 extends EdibleEntityItemBlock{
 	
-	public static final String[] teaType = new String[] {"_earlgray", "_earlgray_milk", "_appletea", "_appletea_milk", "_lime", "_tomato", "_berry", "_berry_milk", "_grape", "_mint", "_yuzu"};
+	public static final String[] teaType = new String[] {"_earlgray", "_earlgray_milk", "_appletea", "_appletea_milk", "_lime", "_tomato", "_berry", "_berry_milk", "_grape", "_mint", "_yuzu", "_orange", "_soda"};
 	
 	private int healAmount = 0;
 	
@@ -71,11 +71,15 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock{
 		}
 		else if (meta == 6 || meta == 7)
 		{
-			ret.add(new PotionEffect(Potion.resistance.id, 600, 1));
+			ret.add(new PotionEffect(Potion.resistance.id, 600, 0));
 		}
-		else if (meta == 8)
+		else if (meta == 8 || meta == 12)
 		{
-			ret.add(new PotionEffect(Potion.moveSpeed.id, 600, 1));
+			ret.add(new PotionEffect(Potion.moveSpeed.id, 600, 0));
+		}
+		else if (meta == 11)
+		{
+			ret.add(new PotionEffect(Potion.jump.id, 600, 1));
 		}
 		else
 		{
@@ -158,7 +162,7 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock{
 	public String getUnlocalizedName(ItemStack par1ItemStack)
 	{
 		int m = (par1ItemStack.getItemDamage());
-		if (m < 11) return super.getUnlocalizedName() + teaType[m];
+		if (m < 13) return super.getUnlocalizedName() + teaType[m];
 		else return super.getUnlocalizedName() + m;
 		
 	}

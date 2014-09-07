@@ -28,6 +28,7 @@ import mods.defeatedcrow.client.particle.EntityDCCloudFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.TilePanHandle;
+import mods.defeatedcrow.common.tile.appliance.TilePanG;
 import mods.defeatedcrow.plugin.LoadBambooPlugin;
 import mods.defeatedcrow.handler.Util;
 
@@ -67,7 +68,7 @@ public class BlockFilledPan extends BlockContainer{
     		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
     		return true;
         }
-        else if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null && itemstack.getItem() == LoadBambooPlugin.bambooBasket)
+        else if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null && itemstack.getItem() == LoadBambooPlugin.bambooBasket.getItem())
         {
         	this.getJPStew(par1World, par2, par3, par4, par5EntityPlayer, itemstack, currentMeta);
 			this.setPanEmpty(par1World, par2, par3, par4, currentMeta);
@@ -100,9 +101,7 @@ public class BlockFilledPan extends BlockContainer{
 		
 		if (meta < 4)
 		{
-			if (!world.isRemote)world.setBlock(X, Y, Z, DCsAppleMilk.emptyPan, 0, 2);
-			TilePanHandle tile2 = (TilePanHandle) world.getTileEntity(X, Y, Z);
-			tile2.setDirectionByte(dir);
+			if (!world.isRemote)world.setBlock(X, Y, Z, DCsAppleMilk.emptyPanGaiden, 0, 2);
 		}
 		else
 		{
@@ -198,9 +197,9 @@ public class BlockFilledPan extends BlockContainer{
 		}
 		else
 		{
-			if (!player.inventory.addItemStackToInventory(new ItemStack(LoadBambooPlugin.bambooBasket, 1)))
+			if (!player.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
 			{
-				player.entityDropItem(new ItemStack(LoadBambooPlugin.bambooBasket, 1), 1);
+				player.entityDropItem(LoadBambooPlugin.bambooBasket.copy(), 1);
 			}
 		}
 		

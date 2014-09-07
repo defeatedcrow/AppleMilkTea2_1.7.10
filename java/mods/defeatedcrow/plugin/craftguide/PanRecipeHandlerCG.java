@@ -31,7 +31,7 @@ public class PanRecipeHandlerCG implements RecipeProvider{
 	public void generateRecipes(RecipeGenerator generator) {
 		
 		RecipeTemplate template;
-		ItemStack pan = new ItemStack(DCsAppleMilk.emptyPan, 1, 0);
+		ItemStack pan = new ItemStack(DCsAppleMilk.emptyPanGaiden, 1, 0);
 		template = generator.createRecipeTemplate(this.slots, null, "defeatedcrow:textures/gui/craftguidegui.png", 1, 1, 82, 1);
 		HashMap<ItemStack, ItemStack> recipeGet = RegisteredRecipeGet.panRecipeList;
 		Iterator<Entry<ItemStack, ItemStack>> inputs = recipeGet.entrySet().iterator();

@@ -28,6 +28,8 @@ public class ModelIceCream extends ModelBase
     ModelRenderer red;
     ModelRenderer grape;
     ModelRenderer mint;
+    ModelRenderer orange2;
+    ModelRenderer soda;
   
   public ModelIceCream()
   {
@@ -146,6 +148,18 @@ public class ModelIceCream extends ModelBase
       mint.setTextureSize(64, 32);
       mint.mirror = true;
       setRotation(mint, 0F, 0F, 0F);
+      orange2 = new ModelRenderer(this, 32, 2);
+      orange2.addBox(-2F, 0F, -2F, 4, 3, 4);
+      orange2.setRotationPoint(0F, 16F, 0F);
+      orange2.setTextureSize(64, 32);
+      orange2.mirror = true;
+      setRotation(orange2, 0F, 0F, 0F);
+      soda = new ModelRenderer(this, 48, 2);
+      soda.addBox(-2F, 0F, -2F, 4, 3, 4);
+      soda.setRotationPoint(0F, 16F, 0F);
+      soda.setTextureSize(64, 32);
+      soda.mirror = true;
+      setRotation(soda, 0F, 0F, 0F);
   }
   
   public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, byte b0)
@@ -164,6 +178,8 @@ public class ModelIceCream extends ModelBase
     else if (b0 == 9) berry.render(f5);
     else if (b0 == 10) grape.render(f5);
     else if (b0 == 11) mint.render(f5);
+    else if (b0 == 12) orange2.render(f5);
+    else if (b0 == 13) soda.render(f5);
   }
   
   public void renderClear (Entity entity, float f, float f1, float f2, float f3, float f4, float f5, byte b0)

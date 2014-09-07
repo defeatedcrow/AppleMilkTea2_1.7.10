@@ -64,7 +64,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha10",
+		version = "1.7.10_2.0.alpha11",
 		dependencies = "required-after:Forge@[10.12.1.1197,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -86,9 +86,11 @@ public class DCsAppleMilk{
 	//ブロックのインスタンス
 	//ツール
 	public static Block  teaMakerNext;
+	public static Block  teaMakerBlack;
 	public static Block  emptyCup;
 	public static Block  iceMaker;
 	public static Block  emptyPan;
+	public static Block  emptyPanGaiden;
 	public static Block  filledPan;
 	public static Block  filledPan2;
 	public static Block  filledChocoPan;
@@ -123,6 +125,7 @@ public class DCsAppleMilk{
 	public static Block  wipeBox;
 	public static Block  wipeBox2;
 	public static Block  mobBlock;
+	public static Block  silkyMelon;
 	//自然
 	public static Block  saplingTea;
 	public static Block  teaTree;
@@ -182,6 +185,7 @@ public class DCsAppleMilk{
 	//装置関係
 	public static Item  batteryItem;
 	public static Item  slotPanel;
+	public static Item  yeast;
 	
 	//魔法関係
 	public static Item  dustWood;
@@ -372,6 +376,7 @@ public class DCsAppleMilk{
 		if (DCsConfig.entityIdKinoko == 0) DCsConfig.entityIdKinoko = EntityRegistry.findGlobalUniqueEntityId();
 		
 		EntityRegistry.registerModEntity(EntityMelonBomb.class, "compressedMelon", DCsConfig.entityIdMelon, this, 250, 5, true);
+		EntityRegistry.registerModEntity(EntitySilkyMelon.class, "compressedSilkyMelon", DCsConfig.entityIdSilkMelon, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntityKinoko.class, "mushroomBox", DCsConfig.entityIdKinoko, this, 250, 5, true);
 		
 		EntityRegistry.registerModEntity(PlaceableIcecream.class, "PlaceableIceCream", DCsConfig.entityIdIce, this, 250, 5, true);
@@ -482,6 +487,10 @@ public class DCsAppleMilk{
 	    //アイスメーカーのレシピ登録
 	    (new RegisterMakerRecipe()).registerIce();
 	    AMTLogger.trace("Registered new ice maker recipe");
+	    
+	    //鍋のレシピ登録
+	    (new RegisterMakerRecipe()).registerPan();
+	    AMTLogger.trace("Registered new pan recipe");
 	    
 	    //チャージアイテム
 	    (new RegisterMakerRecipe()).registerChargeItem();

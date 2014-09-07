@@ -6,6 +6,7 @@ import java.util.Random;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.api.ItemAPI;
+import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
@@ -13,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -301,6 +303,17 @@ public class LoadModHandler {
 			    		  new Object[]{
 						  new ItemStack(DCsAppleMilk.woodBox, 1, 9)
 							 }));
+			}
+			
+			ArrayList<ItemStack> rape = OreDictionary.getOres("rapeSeeds");
+			if (rape.size() > 0){
+				ItemStack rapeseed = new ItemStack(rape.get(0).getItem(), 1, rape.get(0).getItemDamage());
+				if (rapeseed != null) {
+					LoadModHandler.registerModItems("rapes", rapeseed);
+					
+					RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
+							new FluidStack(DCsAppleMilk.vegitableOil, 100), rapeseed);
+				}
 			}
 		}
         catch (Exception e) {

@@ -34,11 +34,6 @@ import mods.defeatedcrow.recipe.TeaRecipeRegister.TeaRecipe;
 
 public class BlockTeaMakerNext extends BlockContainer{
 	
-	
-	@SideOnly(Side.CLIENT)
-    private IIcon boxTex;
-	
-	
 	public BlockTeaMakerNext ()
 	{
 		super(Material.circuits);
@@ -464,7 +459,7 @@ public class BlockTeaMakerNext extends BlockContainer{
     { 
 		if (par1 == 1)
         {
-        	return this.boxTex;
+        	return this.blockIcon;
         }
         else
         {
@@ -482,7 +477,7 @@ public class BlockTeaMakerNext extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.boxTex = par1IconRegister.registerIcon("defeatedcrow:porcelain");
+		this.blockIcon = par1IconRegister.registerIcon("defeatedcrow:porcelain");
 	}
 	
 	@Override
