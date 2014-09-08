@@ -397,13 +397,13 @@ public class RegisterMakerRecipe {
 	public void registerEvaporator()
 	{
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
-				new FluidStack(DCsAppleMilk.camelliaOil, 100), new ItemStack(DCsAppleMilk.leafTea, 1, 4));
+				new FluidStack(DCsAppleMilk.camelliaOil, 100), new ItemStack(DCsAppleMilk.leafTea, 8, 4));
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
-				new FluidStack(DCsAppleMilk.vegitableOil, 50), new ItemStack(Items.wheat_seeds));
+				new FluidStack(DCsAppleMilk.vegitableOil, 25), new ItemStack(Items.wheat_seeds, 8));
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
-				new FluidStack(DCsAppleMilk.vegitableOil, 50), new ItemStack(Items.pumpkin_seeds));
+				new FluidStack(DCsAppleMilk.vegitableOil, 20), new ItemStack(Items.pumpkin_seeds, 8));
 		
 		//エッセンス
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 0),

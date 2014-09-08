@@ -1,12 +1,16 @@
 package mods.defeatedcrow.plugin;
 
+import ic2.api.recipe.Recipes;
 import cpw.mods.fml.common.registry.GameRegistry;
+import forestry.api.fuels.EngineBronzeFuel;
+import forestry.api.fuels.FuelManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -106,6 +110,19 @@ public class LoadForestryPlugin {
 				AMTLogger.debugInfo("Succeeded to get Forestry fertilizer");
 			}
 		}
+		
+		if (FluidRegistry.isFluidRegistered("vegitable_oil"))
+        {
+        	FuelManager.bronzeEngineFuel.put(DCsAppleMilk.vegitableOil,
+        			new EngineBronzeFuel(DCsAppleMilk.vegitableOil, 2, 2500, 1));
+        	AMTLogger.debugInfo("Succeeded to register fuel for Forestry Bronze Engine : vegitable_oil");
+        }
+		if (FluidRegistry.isFluidRegistered("camellia_oil"))
+        {
+        	FuelManager.bronzeEngineFuel.put(DCsAppleMilk.camelliaOil,
+        			new EngineBronzeFuel(DCsAppleMilk.camelliaOil, 4, 2500, 1));
+        	AMTLogger.debugInfo("Succeeded to register fuel for Forestry Bronze Engine : camellia_oil");
+        }
 	}
 
 }

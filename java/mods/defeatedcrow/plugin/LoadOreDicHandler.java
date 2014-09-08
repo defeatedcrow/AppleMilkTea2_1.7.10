@@ -74,7 +74,7 @@ public class LoadOreDicHandler {
 				LoadModHandler.registerModItems("soybean", soy);
 				
 				RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
-						new FluidStack(DCsAppleMilk.vegitableOil, 100), soy);
+						new FluidStack(DCsAppleMilk.vegitableOil, 25), soy);
 			}
 		}
 		

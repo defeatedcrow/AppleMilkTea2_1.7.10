@@ -7,6 +7,7 @@ import mods.defeatedcrow.common.DCsConfig;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidRegistry;
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.*;
 
@@ -84,6 +85,17 @@ public class LoadIC2Plugin {
             Recipes.macerator.addRecipe(input3, metadata2, outputs3);
             Recipes.macerator.addRecipe(input4, metadata2, outputs4);
             AMTLogger.debugInfo("Succeeded to register IC2machines recipe");
+            
+            if (FluidRegistry.isFluidRegistered("vegitable_oil"))
+            {
+            	Recipes.semiFluidGenerator.addFluid("vegitable_oil", 1, 1.0D);
+            	AMTLogger.debugInfo("Succeeded to register fuel for IC2 Semifluid Generator : vegitable_oil");
+            }
+            if (FluidRegistry.isFluidRegistered("camellia_oil"))
+            {
+            	Recipes.semiFluidGenerator.addFluid("camellia_oil", 1, 1.2D);
+            	AMTLogger.debugInfo("Succeeded to register fuel for IC2 Semifluid Generator : camellia_oil");
+            }
         }
         catch (Exception e) {
           AMTLogger.debugInfo("Failed to register IC2machines recipe");

@@ -64,7 +64,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha11",
+		version = "1.7.10_2.0.alpha12",
 		dependencies = "required-after:Forge@[10.12.1.1197,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -246,9 +246,10 @@ public class DCsAppleMilk{
 	public static boolean SuccessLoadWa = false;
 	public static boolean SuccessLoadCGuide = false;
 	public static boolean SuccessLoadFFM = false;
+	public static boolean SuccessLoadBC = false;
 	
 	//内部処理用
-	public static boolean debugMode = true;
+	public static boolean debugMode = false;
 	public static boolean succeedAddPotion = false;
 	
 	//新ツール属性の追加
@@ -579,6 +580,21 @@ public class DCsAppleMilk{
 	        }
 	        catch (Exception e) {
 	        	AMTLogger.failLoadingModInfo("Forestry");
+	          e.printStackTrace(System.err);
+	        }
+	    }
+	    
+	    if (Loader.isModLoaded("BuildCraft|Energy"))
+	    {
+	    	AMTLogger.loadingModInfo("BuildCraft|Energy");
+	    	try
+	        {
+	          this.SuccessLoadBC = true;
+	          (new LoadBCPlugin()).loadEnergy();
+	          AMTLogger.loadedModInfo("BuildCraft|Energy");
+	        }
+	        catch (Exception e) {
+	        	AMTLogger.failLoadingModInfo("BuildCraft|Energy");
 	          e.printStackTrace(System.err);
 	        }
 	    }

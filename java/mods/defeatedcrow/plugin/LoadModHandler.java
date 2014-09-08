@@ -312,7 +312,7 @@ public class LoadModHandler {
 					LoadModHandler.registerModItems("rapes", rapeseed);
 					
 					RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
-							new FluidStack(DCsAppleMilk.vegitableOil, 100), rapeseed);
+							new FluidStack(DCsAppleMilk.vegitableOil, 25), rapeseed);
 				}
 			}
 		}

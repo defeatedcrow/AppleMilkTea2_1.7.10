@@ -169,7 +169,7 @@ public class EntitySilkyMelon extends Entity
         int Y = MathHelper.floor_double(this.posY);
         int Z = MathHelper.floor_double(this.posZ);
         
-        if (!flag)
+        if (!flag && DCsConfig.melonBreakBlock)
         {
         	for (int i = -2 ; i < 3 ; i++)
         	{

@@ -1321,6 +1321,14 @@ public class DCsRecipeRegister {
 	    			  new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
 	    			  "bottlePlumLiquor",
 					 }));
+		 
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.alcoholCup, 1, 11),
+	    		  new Object[]{
+	    			  new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+	    			  "bottleShothu",
+					 }));
 	}
 	
 	static void addFoodRecipe() {
@@ -1971,7 +1979,7 @@ public class DCsRecipeRegister {
 	
 	static void addCordial() {//酒別にレシピがあり、量が多いので、for文で回しつつ個別メソッドを用意した
 		
-		String[] alcohol = new String[] {"bottleSake", "bottleGin", "bottleRum", "bottleVodka", "bottleWhiskey"};
+		String[] alcohol = new String[] {"bottleShothu", "bottleSake", "bottleGin", "bottleRum", "bottleVodka", "bottleWhiskey"};
 		
 		for (int i = 0 ; i < 5 ; i++)
 		{
