@@ -1,7 +1,9 @@
 package mods.defeatedcrow.plugin;
 
+import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
+import mods.railcraft.api.fuel.FuelManager;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -33,6 +35,11 @@ public class LoadRailCraftPlugin {
 			}
 			
 		}
+		
+		FuelManager.addBoilerFuel(DCsAppleMilk.vegitableOil, 3200);
+		AMTLogger.debugInfo("Add fuel for RC Boiler : vegitable_oil, 3200 fuel");
+		FuelManager.addBoilerFuel(DCsAppleMilk.camelliaOil, 6400);
+		AMTLogger.debugInfo("Add fuel for RC Boiler : camellia_oil, 6400 fuel");
 	}
 
 }
