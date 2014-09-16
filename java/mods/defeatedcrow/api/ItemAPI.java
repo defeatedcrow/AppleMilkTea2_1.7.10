@@ -53,6 +53,7 @@ public class ItemAPI {
 		}
 	}
 	
+	//TODO はよう更新しろや
 	/* Values of itemName & metadata:
 	 * 
 	 * (foods)

@@ -39,6 +39,11 @@ public interface IInsenceEffect {
 	/**
 	 * パーティクル関係。
 	 * */
+	
+	/**
+	 * AMTに登録済みのものしか使えない。
+	 * 現在は、flower、orb、blinkの３種
+	 * */
 	public String particleIcon();
 	
 	public float particleColorR();

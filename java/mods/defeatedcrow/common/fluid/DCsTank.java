@@ -34,7 +34,7 @@ public class DCsTank extends FluidTank{
 
 	public String getFluidName()
 	{
-	    return (this.fluid != null) && (this.fluid.getFluid() != null) ? this.fluid.getFluid().getName() : "Empty";
+	    return (this.fluid != null) && (this.fluid.getFluid() != null) ? this.fluid.getFluid().getLocalizedName(this.fluid): "Empty";
 	}
 	
 	@SideOnly(Side.CLIENT)

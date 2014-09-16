@@ -221,7 +221,7 @@ public class AdvProsessorRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getGuiTexture() {
-		return "defeatedcrow:textures/gui/jawcrushergui.png";
+		return "defeatedcrow:textures/gui/jawcrushergui_nei.png";
 	}
 	
 	@Override

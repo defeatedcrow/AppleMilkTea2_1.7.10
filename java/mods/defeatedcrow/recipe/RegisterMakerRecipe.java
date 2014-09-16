@@ -335,6 +335,18 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.flint), false, new ItemStack(Blocks.sand),
 				new Object[]{new ItemStack(Blocks.gravel)});
 		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.clay_ball), false, null,
+				new Object[]{new ItemStack(Blocks.sand)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Blocks.sand), false, new ItemStack(Items.rotten_flesh),
+				new Object[]{new ItemStack(Blocks.soul_sand)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, null,
+				new Object[]{"dustAsh", "dustOilCake", new ItemStack(Items.dye, 1, 15), new ItemStack(Blocks.sand)});
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, null,
+				new Object[]{"dustAsh", "dustOilCake", new ItemStack(DCsAppleMilk.EXItems, 1, 6), new ItemStack(Blocks.sand)});
+		
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, null,
 				new Object[]{"logWood"});
 		
@@ -396,18 +408,9 @@ public class RegisterMakerRecipe {
 	
 	public void registerEvaporator()
 	{
-		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
-				new FluidStack(DCsAppleMilk.camelliaOil, 100), new ItemStack(DCsAppleMilk.leafTea, 8, 4));
-		
-		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
-				new FluidStack(DCsAppleMilk.vegitableOil, 25), new ItemStack(Items.wheat_seeds, 8));
-		
-		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
-				new FluidStack(DCsAppleMilk.vegitableOil, 20), new ItemStack(Items.pumpkin_seeds, 8));
-		
 		//エッセンス
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 0),
-				null, new ItemStack(Items.apple, 8, 1));
+				null, new ItemStack(Items.apple, 8, 0));
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 1),
 				null, new ItemStack(Blocks.double_plant, 8, 4));
@@ -423,6 +426,42 @@ public class RegisterMakerRecipe {
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 5),
 				null, new ItemStack(DCsAppleMilk.icyCrystal, 1, 0));
+		
+		//酒
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
+				new FluidStack(DCsAppleMilk.shothu_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 0));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
+				new FluidStack(DCsAppleMilk.whiskey_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 1));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 3));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 19));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 35));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 51));
+		
+		//製油
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
+				new FluidStack(DCsAppleMilk.camelliaOil, 100), new ItemStack(DCsAppleMilk.leafTea, 8, 4));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
+				new FluidStack(DCsAppleMilk.vegitableOil, 25), new ItemStack(Items.wheat_seeds, 8));
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
+				new FluidStack(DCsAppleMilk.vegitableOil, 20), new ItemStack(Items.pumpkin_seeds, 8));
+	}
+	
+	public void registerBrewing()
+	{
+		BrewingRecipe.registerRecipe(DCsAppleMilk.shothu_young, DCsAppleMilk.shothu);
+		BrewingRecipe.registerRecipe(DCsAppleMilk.whiskey_young, DCsAppleMilk.whiskey);
+		BrewingRecipe.registerRecipe(DCsAppleMilk.brandy_young, DCsAppleMilk.brandy);
 	}
 
 }

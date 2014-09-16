@@ -35,23 +35,13 @@ public class RenderLargeBottle implements ISimpleBlockRenderingHandler{
 		
 		if (modelID == this.getRenderId())
 		{
-			if (meta < 7) {
-				this.sideIIcon = block.getIcon(0, meta);
-				
-				renderInvCuboid(renderer, block,  5.5F/16.0F, 0.0F/16.0F, 5.5F/16.0F, 10.5F/16.0F, 1.0F/16.0F, 10.5F/16.0F,  this.boxIIcon);
-				renderInvCuboid(renderer, block,  5.5F/16.0F, 1.0F/16.0F, 5.5F/16.0F, 10.5F/16.0F, 8.0F/16.0F, 10.5F/16.0F,  this.sideIIcon);
-				renderInvCuboid(renderer, block,  6.0F/16.0F, 8.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 9.0F/16.0F, 10.0F/16.0F,  this.boxIIcon);
-				renderInvCuboid(renderer, block,  6.5F/16.0F, 9.0F/16.0F, 6.5F/16.0F, 9.5F/16.0F, 10.0F/16.0F, 9.5F/16.0F,  this.boxIIcon);
-				renderInvCuboid(renderer, block,  7.0F/16.0F, 10.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 12.0F/16.0F, 9.0F/16.0F,  this.sideIIcon);
-				//cap
-				renderInvCuboid(renderer, block,  7.0F/16.0F, 12.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 14.0F/16.0F, 9.0F/16.0F,  this.capIIcon);
-			}
-			else {
-				renderInvCuboid(renderer, block,  3.0F/16.0F, 0.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 10.0F/16.0F, 13.0F/16.0F,  this.capIIcon);
-				renderInvCuboid(renderer, block,  5.0F/16.0F, 10.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 11.0F/16.0F, 11.0F/16.0F,  this.capIIcon);
-				renderInvCuboid(renderer, block,  6.0F/16.0F, 11.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 12.0F/16.0F, 10.0F/16.0F,  this.capIIcon);
-				renderInvCuboid(renderer, block,  4.0F/16.0F, 12.0F/16.0F, 4.0F/16.0F, 12.0F/16.0F, 13.0F/16.0F, 12.0F/16.0F,  this.capIIcon);
-			}
+			renderInvCuboid(renderer, block,  5.5F/16.0F, 0.0F/16.0F, 5.5F/16.0F, 10.5F/16.0F, 1.0F/16.0F, 10.5F/16.0F,  this.boxIIcon);
+			renderInvCuboid(renderer, block,  5.5F/16.0F, 1.0F/16.0F, 5.5F/16.0F, 10.5F/16.0F, 8.0F/16.0F, 10.5F/16.0F,  this.sideIIcon);
+			renderInvCuboid(renderer, block,  6.0F/16.0F, 8.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 9.0F/16.0F, 10.0F/16.0F,  this.boxIIcon);
+			renderInvCuboid(renderer, block,  6.5F/16.0F, 9.0F/16.0F, 6.5F/16.0F, 9.5F/16.0F, 10.0F/16.0F, 9.5F/16.0F,  this.boxIIcon);
+			renderInvCuboid(renderer, block,  7.0F/16.0F, 10.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 12.0F/16.0F, 9.0F/16.0F,  this.sideIIcon);
+			//cap
+			renderInvCuboid(renderer, block,  7.0F/16.0F, 12.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 14.0F/16.0F, 9.0F/16.0F,  this.capIIcon);
 			
 		}
 	}

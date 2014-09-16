@@ -209,6 +209,11 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 							}
 						}
 					}
+					
+					if (this.chargeAmount > 25600)
+					{
+						this.chargeAmount = 25600;
+					}
 				}
 				
 				//最後に硬直時間を8tickに設定

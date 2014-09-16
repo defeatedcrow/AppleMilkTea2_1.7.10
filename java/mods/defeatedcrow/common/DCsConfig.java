@@ -36,6 +36,7 @@ public class DCsConfig {
 	
 	//villager関連
 	public static int villagerRecipeID = 15;
+	public static int villagerRecipe2ID = 16;
 	
 	//コンフィグ項目の初期設定
 	public static int teaTreeGenValue = 5;
@@ -174,6 +175,7 @@ public class DCsConfig {
 			setAltTexturePass = texPass.getInt();
 			clamChanceValue = ClamValue.getInt();
 			villagerRecipeID = cafeRecipe.getInt();
+			villagerRecipe2ID = cafeRecipe.getInt() + 1;
 			princessChanceValue = princessChance.getInt();
 			charmRemain = radenLimit.getInt();
 			

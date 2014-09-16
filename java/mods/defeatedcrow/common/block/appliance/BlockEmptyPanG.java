@@ -62,16 +62,18 @@ public class BlockEmptyPanG extends BlockContainer{
         	ItemStack drop = new ItemStack(DCsAppleMilk.emptyPanGaiden, 1, 0);
         	
         	ItemStack input = tile.getItemStack();
-        	byte remain = tile.getRemainByte();
+        	byte rem = tile.getRemainByte();
+        	String disp = tile.getDisplayName();
         	
         	if (input != null)
         	{
-        		NBTTagCompound nbt = new NBTTagCompound();
+        		NBTTagCompound tag = new NBTTagCompound();
         		
-        		nbt.setByte("Remain", remain);
-        		nbt.setTag("Input", input.writeToNBT(new NBTTagCompound()));
+				tag.setByte("remain", rem);
+				tag.setString("display", disp);
+				tag.setTag("input", input.writeToNBT(new NBTTagCompound()));
         		
-        		drop.setTagCompound(nbt);
+        		drop.setTagCompound(tag);
         	}
         	
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(drop))
@@ -79,6 +81,7 @@ public class BlockEmptyPanG extends BlockContainer{
         		par5EntityPlayer.entityDropItem(drop, 1);
         	}
     		
+        	par1World.removeTileEntity(par2, par3, par4);
     		par1World.setBlockToAir(par2, par3, par4);
     		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
     		return true;
@@ -89,6 +92,12 @@ public class BlockEmptyPanG extends BlockContainer{
         	{
         		ItemStack ret = tile.getOutput().copy();
         		int rem = tile.getRemainByte() - 1;
+        		
+        		if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
+                {
+            		par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, (ItemStack)null);
+                }
+        		
         		if (!par5EntityPlayer.inventory.addItemStackToInventory(ret))
             	{
             		par5EntityPlayer.entityDropItem(ret, 1);
@@ -112,6 +121,12 @@ public class BlockEmptyPanG extends BlockContainer{
         	{
         		ItemStack ret = tile.getOutputJP().copy();
         		int rem = tile.getRemainByte() - 1;
+        		
+        		if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
+                {
+            		par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, (ItemStack)null);
+                }
+        		
         		if (!par5EntityPlayer.inventory.addItemStackToInventory(ret))
             	{
             		par5EntityPlayer.entityDropItem(ret, 1);
@@ -351,7 +366,7 @@ public class BlockEmptyPanG extends BlockContainer{
 	@Override
 	public Item getItemDropped(int metadata, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(this);
+		return null;
 	}
 	
 	@Override

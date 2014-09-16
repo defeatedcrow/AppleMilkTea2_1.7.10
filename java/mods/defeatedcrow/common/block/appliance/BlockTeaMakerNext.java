@@ -105,46 +105,46 @@ public class BlockTeaMakerNext extends BlockContainer{
         		}
         		return false;
         	}
-        	else if (item == DCsAppleMilk.emptyWallMug) //ウォールマグは4種しか汲めない
-        	{
-        		if (tile.getOutput() != null)
-        		{
-        			ItemStack output = tile.getOutput();
-        			if (tileItem.getItem() == DCsAppleMilk.foodTea && tileItem.getItemDamage() == 0) {
-        				output = new ItemStack(DCsAppleMilk.wallMug, 1, 1);
-        			}
-        			else if (tileItem.getItem() == DCsAppleMilk.foodTea && tileItem.getItemDamage() == 1) {
-        				output = new ItemStack(DCsAppleMilk.wallMug, 1, 0);
-        			}
-        			else if (tileItem.getItem() == DCsAppleMilk.gratedApple && tileItem.getItemDamage() == 2) {
-        				output = new ItemStack(DCsAppleMilk.wallMug, 1, 3);
-        			}
-        			else if (tileItem.getItem() == Items.dye && tileItem.getItemDamage() == 2) {
-        				output = new ItemStack(DCsAppleMilk.wallMug, 1, 2);
-        			}
-        			
-        			if (output.getItem() == DCsAppleMilk.wallMug)
-        			{
-        				if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
-                        {
-                            par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, (ItemStack)null);
-                        }
-            			
-            			if (!par5EntityPlayer.inventory.addItemStackToInventory(output))
-                		{
-                			par5EntityPlayer.entityDropItem(output, 1.0F);
-                		}
-            			
-            			tile.setRemainByte((byte)(remain - 1));
-            			if ((remain - 1) == 0){
-            				tile.clearTile();
-            			}
-            			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
-            			return true;
-        			}
-        		}
-        		return false;
-        	}
+//        	else if (item == DCsAppleMilk.emptyWallMug) //ウォールマグは4種しか汲めない
+//        	{
+//        		if (tile.getOutput() != null)
+//        		{
+//        			ItemStack output = tile.getOutput();
+//        			if (tileItem.getItem() == DCsAppleMilk.foodTea && tileItem.getItemDamage() == 0) {
+//        				output = new ItemStack(DCsAppleMilk.wallMug, 1, 1);
+//        			}
+//        			else if (tileItem.getItem() == DCsAppleMilk.foodTea && tileItem.getItemDamage() == 1) {
+//        				output = new ItemStack(DCsAppleMilk.wallMug, 1, 0);
+//        			}
+//        			else if (tileItem.getItem() == DCsAppleMilk.gratedApple && tileItem.getItemDamage() == 2) {
+//        				output = new ItemStack(DCsAppleMilk.wallMug, 1, 3);
+//        			}
+//        			else if (tileItem.getItem() == Items.dye && tileItem.getItemDamage() == 2) {
+//        				output = new ItemStack(DCsAppleMilk.wallMug, 1, 2);
+//        			}
+//        			
+//        			if (output.getItem() == DCsAppleMilk.wallMug)
+//        			{
+//        				if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
+//                        {
+//                            par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, (ItemStack)null);
+//                        }
+//            			
+//            			if (!par5EntityPlayer.inventory.addItemStackToInventory(output))
+//                		{
+//                			par5EntityPlayer.entityDropItem(output, 1.0F);
+//                		}
+//            			
+//            			tile.setRemainByte((byte)(remain - 1));
+//            			if ((remain - 1) == 0){
+//            				tile.clearTile();
+//            			}
+//            			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+//            			return true;
+//        			}
+//        		}
+//        		return false;
+//        	}
         	else if (tileItem.getItem() == DCsAppleMilk.gratedApple && tileItem.getItemDamage() == 3 && DCsAppleMilk.SuccessLoadIC2 && LoadIC2Plugin.IC2Mug != null
 					&& LoadIC2Plugin.IC2MugCoffee != null && itemstack.getItem() == LoadIC2Plugin.IC2Mug.getItem()) //IC2コーヒー
 			{

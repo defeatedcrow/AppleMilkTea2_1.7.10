@@ -97,8 +97,6 @@ public class MCEconomyPlugin extends ProductList{
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.evaporator), 200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.advProsessor), 400);
 		
-		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.filledPan), -1);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.filledPan2), -1);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.filledChocoPan), -1);
 		
 		//foodblock

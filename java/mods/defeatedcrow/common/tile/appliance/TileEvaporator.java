@@ -72,18 +72,18 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 		boolean flag1 = false;
 		boolean flag2 = false;
 		int drainAmount = 0;
-		Block fluidBlock = null;
+		Fluid fluid = null;
 		ItemStack returnStack = null;
 		
 		if (this.productTank.getFluid() != null && this.productTank.getFluidType() != null)
 		{
-			fluidBlock = this.productTank.getFluidType().getBlock();
-			flag1 = (fluidBlock != null);
+			fluid = this.productTank.getFluidType();
+			flag1 = (fluid != null);
 		}
 		
 		if (flag1 && this.itemstacks[4] != null)
 		{
-			ItemStack cur = this.itemstacks[4].copy();
+			ItemStack cur = this.itemstacks[4].copy(); 
 			
 			if (cur.getItem() == Items.bucket)//バケツの場合
 			{
@@ -162,8 +162,13 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 		boolean flag3 = false;//液体
 		boolean flag4 = false;//空容器
 		
-		ItemStack items = this.itemstacks[2];
-		if (items == null) return false;
+		ItemStack items = null;
+		if (this.itemstacks[2] == null) {
+			return false;
+		}
+		else {
+			items = this.itemstacks[2].copy();
+		}
 		
 		IEvaporatorRecipe recipe = RecipeRegisterManager.evaporatorRecipe.getRecipe(items);
 		if (recipe == null) return false;
@@ -172,8 +177,12 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 		FluidStack second = recipe.getSecondary();
 		
 		//両方がnullのレシピはレシピとみなさない
-		if (output == null && second == null && items.stackSize < recipe.getInput().stackSize) return false;
-		else flag1 = true;
+		if ((output == null && second == null) || (items.stackSize < recipe.getInput().stackSize)) {
+			return false;
+		}
+		else {
+			flag1 = true;
+		}
 		
 		ItemStack container = null;
 		if (items.getItem() instanceof IEdibleItem)
@@ -184,6 +193,17 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 		else if (items.getItem().hasContainerItem(items))
 		{
 			container = items.getItem().getContainerItem(items);
+		}
+		else if (items.getItem() == DCsAppleMilk.itemLargeBottle)//特殊条件
+		{
+			if (items.getItemDamage() > 16)
+			{
+				container = new ItemStack(DCsAppleMilk.itemLargeBottle, 1, items.getItemDamage() - 16);
+			}
+			else
+			{
+				container = new ItemStack(DCsAppleMilk.emptyBottle, 1, 0);
+			}
 		}
 		
 		if (this.itemstacks[3] == null || output == null)
@@ -268,15 +288,26 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 		{
 			container = items.getItem().getContainerItem(items);
 		}
+		else if (items.getItem() == DCsAppleMilk.itemLargeBottle)//特殊条件
+		{
+			if (items.getItemDamage() > 16)
+			{
+				container = new ItemStack(DCsAppleMilk.itemLargeBottle, 1, items.getItemDamage() - 16);
+			}
+			else
+			{
+				container = new ItemStack(DCsAppleMilk.emptyBottle, 1, 0);
+			}
+		}
 		
 		//材料を減らし、返却アイテムが有る場合は返却スロットへ。
 		if (this.itemstacks[2] != null)
 		{
 			this.itemstacks[2].stackSize -= recipe.getInput().stackSize;
 
-			if (this.itemstacks[2].stackSize == 0)
+			if (this.itemstacks[2].stackSize <= 0)
 			{
-				this.itemstacks[2] = this.itemstacks[2].getItem().getContainerItem(this.itemstacks[2]);
+				this.itemstacks[2] = null;
 			}
 			
 			if (container != null)

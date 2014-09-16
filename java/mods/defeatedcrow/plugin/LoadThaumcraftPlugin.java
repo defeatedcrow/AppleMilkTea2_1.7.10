@@ -66,8 +66,8 @@ public class LoadThaumcraftPlugin {
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.clamSand), new int[]{2}, new AspectList().add(Aspect.SENSES, 4).add(Aspect.AURA, 5));
 	    
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.emptyPanGaiden), new int[]{0}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.VOID, 1).add(Aspect.HUNGER, 1));
-	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.filledPan), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.FIRE, 1));
-	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.filledPan2), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.FIRE, 1));
+//	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.filledPan), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.FIRE, 1));
+//	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.filledPan2), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.FIRE, 1));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.teppann), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.FIRE, 3));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.iceMaker), new int[]{0}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.COLD, 3));
 //	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.autoMaker), new int[]{0}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.EXCHANGE, 3));

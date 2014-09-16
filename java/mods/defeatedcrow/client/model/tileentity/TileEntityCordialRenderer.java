@@ -19,7 +19,7 @@ public class TileEntityCordialRenderer extends TileEntitySpecialRenderer
 {
     private static ResourceLocation glassTex = new ResourceLocation("defeatedcrow:textures/blocks/blueglass.png");
     private static ResourceLocation contentsTex = new ResourceLocation("defeatedcrow:textures/blocks/cordial_drink.png");
-    private static final String[] type = new String[] {"_apple", "_tea", "_cassis", "_plum"};
+    private static final String[] type = new String[] {"_apple", "_tea", "_cassis", "_plum", "_apricot"};
     public static TileEntityCordialRenderer bottleRenderer;
     private ModelCordial bottleModel = new ModelCordial();
 
@@ -41,7 +41,7 @@ public class TileEntityCordialRenderer extends TileEntitySpecialRenderer
     {
         ModelCordial model = this.bottleModel;
         byte l = (byte)par0Tile.getBlockMetadata();
-        if (l > 3) l = 3;
+        if (l > 4) l = 4;
         byte k = (byte) stage;
         boolean aged = par0Tile.getAged();
         

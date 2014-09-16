@@ -135,6 +135,8 @@ public class RegisterOreHandler {
 	    OreDictionary.registerOre("nuggetIron", new ItemStack(DCsAppleMilk.EXItems, 1, 7));
 	    OreDictionary.registerOre("nuggetTin", new ItemStack(DCsAppleMilk.EXItems, 1, 8));
 	    OreDictionary.registerOre("nuggetCopper", new ItemStack(DCsAppleMilk.EXItems, 1, 9));
+	    OreDictionary.registerOre("nuggetSilver", new ItemStack(DCsAppleMilk.EXItems, 1, 10));
+	    OreDictionary.registerOre("nuggetSteel", new ItemStack(DCsAppleMilk.EXItems, 1, 11));
 	    OreDictionary.registerOre("dustWood", new ItemStack(DCsAppleMilk.dustWood, 1, 0));
 	    OreDictionary.registerOre("dustCharcoal", new ItemStack(DCsAppleMilk.dustWood, 1, 1));
 	    OreDictionary.registerOre("dustCoal", new ItemStack(DCsAppleMilk.dustWood, 1, 1));
@@ -147,9 +149,7 @@ public class RegisterOreHandler {
 	    
 	    if (DCsConfig.allowSlimeBallDic)
 	    {
-	    	OreDictionary.registerOre("dropSlime", new ItemStack(Items.slime_ball));
-		    OreDictionary.registerOre("dropSlime", new ItemStack(DCsAppleMilk.EXItems,1,1));
-		    OreDictionary.registerOre("slimeBall", new ItemStack(DCsAppleMilk.EXItems,1,1));
+		    OreDictionary.registerOre("slimeball", new ItemStack(DCsAppleMilk.EXItems,1,1));
 	    }
 	    
 	    for(int i = 0; i < 13 ; i++){
@@ -161,10 +161,11 @@ public class RegisterOreHandler {
 	    }
 	    
 	    for(int i = 1; i < 4 ; i++){
-	    	OreDictionary.registerOre("bottleAppleLiquor", new ItemStack(DCsAppleMilk.itemCordial, 1, i));
-	    	OreDictionary.registerOre("bottleTeaLiquor", new ItemStack(DCsAppleMilk.itemCordial, 1, i + 4));
-	    	OreDictionary.registerOre("bottleCassisLiquor", new ItemStack(DCsAppleMilk.itemCordial, 1, i + 8));
-	    	OreDictionary.registerOre("bottlePlumLiquor", new ItemStack(DCsAppleMilk.itemCordial, 1, i + 12));
+	    	OreDictionary.registerOre("bottleAppleliqueur", new ItemStack(DCsAppleMilk.itemCordial, 1, i));
+	    	OreDictionary.registerOre("bottleTealiqueur", new ItemStack(DCsAppleMilk.itemCordial, 1, i + 4));
+	    	OreDictionary.registerOre("bottleCassisliqueur", new ItemStack(DCsAppleMilk.itemCordial, 1, i + 8));
+	    	OreDictionary.registerOre("bottlePlumliqueur", new ItemStack(DCsAppleMilk.itemCordial, 1, i + 12));
+	    	OreDictionary.registerOre("bottleAmarettoliqueur", new ItemStack(DCsAppleMilk.itemCordial, 1, i + 16));
 	    }
 	    
 	    OreDictionary.registerOre("bottleShothu", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 0));
@@ -175,6 +176,7 @@ public class RegisterOreHandler {
     	OreDictionary.registerOre("bottleRum", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 5));
     	OreDictionary.registerOre("bottleVodka", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 6));
     	OreDictionary.registerOre("bottleWhiskey", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 7));
+    	OreDictionary.registerOre("bottleBrandy", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 8));
     	
     	OreDictionary.registerOre("bottleShothu", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 16));
     	OreDictionary.registerOre("bottleSake", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 17));
@@ -184,6 +186,7 @@ public class RegisterOreHandler {
     	OreDictionary.registerOre("bottleRum", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 21));
     	OreDictionary.registerOre("bottleVodka", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 22));
     	OreDictionary.registerOre("bottleWhiskey", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 23));
+    	OreDictionary.registerOre("bottleBrandy", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 24));
     	
     	OreDictionary.registerOre("bottleShothu", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 32));
     	OreDictionary.registerOre("bottleSake", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 33));
@@ -193,6 +196,7 @@ public class RegisterOreHandler {
     	OreDictionary.registerOre("bottleRum", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 37));
     	OreDictionary.registerOre("bottleVodka", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 38));
     	OreDictionary.registerOre("bottleWhiskey", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 39));
+    	OreDictionary.registerOre("bottleBrandy", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 40));
     	
     	OreDictionary.registerOre("bottleShothu", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 48));
     	OreDictionary.registerOre("bottleSake", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 49));
@@ -202,6 +206,7 @@ public class RegisterOreHandler {
     	OreDictionary.registerOre("bottleRum", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 53));
     	OreDictionary.registerOre("bottleVodka", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 54));
     	OreDictionary.registerOre("bottleWhiskey", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 55));
+    	OreDictionary.registerOre("bottleBrandy", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 56));
 	}
 
 }

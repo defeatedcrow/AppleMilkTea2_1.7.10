@@ -21,6 +21,7 @@ import mods.defeatedcrow.common.entity.edible.*;
 import mods.defeatedcrow.common.item.*;
 import mods.defeatedcrow.common.item.magic.*;
 import mods.defeatedcrow.common.world.*;
+import mods.defeatedcrow.common.world.village.*;
 import mods.defeatedcrow.event.*;
 import mods.defeatedcrow.handler.*;
 import mods.defeatedcrow.plugin.*;
@@ -44,6 +45,7 @@ import net.minecraft.stats.Achievement;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.*;
 import net.minecraftforge.common.config.Configuration;
@@ -64,7 +66,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha12",
+		version = "1.7.10_2.0.alpha13",
 		dependencies = "required-after:Forge@[10.12.1.1197,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -89,10 +91,7 @@ public class DCsAppleMilk{
 	public static Block  teaMakerBlack;
 	public static Block  emptyCup;
 	public static Block  iceMaker;
-	public static Block  emptyPan;
 	public static Block  emptyPanGaiden;
-	public static Block  filledPan;
-	public static Block  filledPan2;
 	public static Block  filledChocoPan;
 	public static Block  teppann;
 	public static Block  prosessor;
@@ -109,9 +108,11 @@ public class DCsAppleMilk{
 	public static Block  bowlJP;
 	public static Block  foodPlate;
 	public static Block  chocoBlock;
+	//ビン
 	public static Block  emptyBottle;
 	public static Block  largeBottle;
 	public static Block  cordial;
+	public static Block  barrel;
 	//コンテナ
 	public static Block  woodBox;
 	public static Block  appleBox;
@@ -139,6 +140,7 @@ public class DCsAppleMilk{
 	public static Block  bowlRack;
 	public static Block  Basket;
 	public static Block  chopsticksBox;
+	//カルセドニー
 	public static Block  flintBlock;
 	public static Block  chalcedony;
 	public static Block  cLamp;
@@ -146,48 +148,54 @@ public class DCsAppleMilk{
 	public static Block  chalcenonyPanel;
 	
 	//アイテムのインスタンス
-	//旧版からの引き継ぎ
+	//食べ物アイテム
 	public static Item  bakedApple;
 	public static Item  appleTart;
 	public static Item  toffyApple;
 	public static Item  icyToffyApple;
-	public static Item  EXItems;
-	public static Item  condensedMIlk;
-	public static Item  inkStick;
 	public static Item  appleSandwich;
+	public static Item  chocolateFruits;
+	
+	//食材
 	public static Item  leafTea;
-	public static Item  foodTea;
-	public static Item  teaCup;
 	public static Item  gratedApple;
 	public static Item  mincedFoods;
-	public static Item  DCStew;
-	public static Item  DCgrater;
-	public static Item  chalcedonyKnife;
-	public static Item  firestarter;
+	public static Item  condensedMIlk;
 	public static Item  clam;
-	public static Item  chopsticks;
-	public static Item  chalcedonyHammer;
-	public static Item  chocolateFruits;
+	
+	//素材系
+	public static Item  EXItems;
+	public static Item  inkStick;
+	public static Item  foodTea;
+	public static Item  DCgrater;
 	public static Item  icyCrystal;
-	public static Item  emptyWallMug;
-	public static Item  wallMug;
-	public static Item  itemLargeBottle;
-	public static Item  milkBottle;
-	public static Item  princessClam;
-	public static Item  itemCordial;
 	public static Item  itemMintSeed;
 	
 	//玉髄ツール
+	public static Item  chalcedonyKnife;
+	public static Item  firestarter;
+	public static Item  chalcedonyHammer;
 	public static Item  monocle;
 	public static Item  onixSword;
 	public static Item  pruningShears;
 	
+	//その他ツール
+	public static Item  chopsticks;
+	public static Item  milkBottle;
+	
 	//装置関係
 	public static Item  batteryItem;
 	public static Item  slotPanel;
+	
+	//酒造等
+	public static Item  itemLargeBottle;
+	public static Item  itemCordial;
 	public static Item  yeast;
+	public static Item  moromi;
+	public static Item  youngAlcohol;
 	
 	//魔法関係
+	public static Item  princessClam;
 	public static Item  dustWood;
 	public static Item  essentialOil;
 	public static ItemInsenceRose  insenceRose;
@@ -195,14 +203,31 @@ public class DCsAppleMilk{
 	//液体
 	public static Fluid  vegitableOil;
 	public static Fluid  camelliaOil;
+	public static Fluid  shothu_young;
+	public static Fluid  whiskey_young;
+	public static Fluid  brandy_young;
+	public static Fluid  shothu;
+	public static Fluid  whiskey;
+	public static Fluid  brandy;
 	
 	public static Block  blockVegitableOil;
 	public static Block  blockCamelliaOil;
+	public static Block  blockDummyAlcohol;
 	
 	public static Item  bucketVegiOil;
 	public static Item  bottleVegiOil;
 	public static Item  bucketCamOil;
 	public static Item  bottleCamOil;
+	public static Item  bucketYoungAlcohol;
+	public static Item  dummyItem;
+	
+	//以下は没アイテム。クラスだけ残してある関係でインスタンスもとってあるが、中身はnullである
+	public static Block  emptyPan;
+	public static Block  filledPan;
+	public static Block  filledPan2;
+	public static Block  canister;
+	public static Item  emptyWallMug;
+	public static Item  wallMug;
 	
 	//ポーションのインスタンス
 	public static Potion Immunization;
@@ -223,6 +248,7 @@ public class DCsAppleMilk{
 	
 	//villager関連
 	public static VillagerCafe villager;
+	public static VillagerYome villagerYome;
 	
 	//前提CoreModsの導入チェック
 	public static boolean RequiredCoreEnabled = false;
@@ -249,7 +275,7 @@ public class DCsAppleMilk{
 	public static boolean SuccessLoadBC = false;
 	
 	//内部処理用
-	public static boolean debugMode = false;
+	public static boolean debugMode = true;
 	public static boolean succeedAddPotion = false;
 	
 	//新ツール属性の追加
@@ -393,8 +419,20 @@ public class DCsAppleMilk{
 		
 		//Villagerの登録
 		villager = new VillagerCafe();
-		VillagerRegistry.instance().registerVillagerId(DCsConfig.villagerRecipeID);
-		VillagerRegistry.instance().registerVillageTradeHandler(DCsConfig.villagerRecipeID, villager);
+		villagerYome = new VillagerYome();
+		VillagerRegistry vill = VillagerRegistry.instance();
+		
+		vill.registerVillagerId(DCsConfig.villagerRecipeID);
+		vill.registerVillageTradeHandler(DCsConfig.villagerRecipeID, villager);
+		
+		vill.registerVillagerId(DCsConfig.villagerRecipe2ID);
+		vill.registerVillageTradeHandler(DCsConfig.villagerRecipe2ID, villagerYome);
+		
+		vill.registerVillageCreationHandler(new VillageCreateHandleCafe());
+        net.minecraft.world.gen.structure.MapGenStructureIO.func_143031_a(ComponentVillageCafe.class, "ViCafe");
+        
+        vill.registerVillageCreationHandler(new VillageCreateHandleWarehouse());
+        net.minecraft.world.gen.structure.MapGenStructureIO.func_143031_a(ComponentVillageWarehouse.class, "ViWarehouse");
 		
 		//Registering new Recipe
 		//レシピや言語の登録は長くなるので専用クラスに任せる
@@ -479,6 +517,7 @@ public class DCsAppleMilk{
 		this.modelJawCrusher = proxy.getRenderID();
 		this.modelCPanel = proxy.getRenderID();
 		this.modelInsenceBase = proxy.getRenderID();
+		this.modelCanister = proxy.getRenderID();
 		proxy.registerRenderers();
 	    
 	    //ティーメーカーのレシピ数の無限化のため、専用のレシピ登録クラスを用意した
@@ -502,42 +541,12 @@ public class DCsAppleMilk{
 	    AMTLogger.trace("Registered new prosessor recipe");
 
 	    //エバポレーターのレシピ登録
-	    (new RegisterMakerRecipe()).registerEvaporator();;
+	    (new RegisterMakerRecipe()).registerEvaporator();
 	    AMTLogger.trace("Registered new evaporator recipe");
 	    
-	    //TEへのIMC送信はここで行う
-//	    if (Loader.isModLoaded("ThermalExpansion"))
-//	    {
-//	    	AMTLogger.loadingModInfo("ThermalExpansion");
-//	    	try
-//	        {
-//	          this.SuccessLoadTE3 = true;
-//	          (new LoadTE3Plugin()).load();
-//	          AMTLogger.loadedModInfo("ThermalExpansion");
-//	        }
-//	        catch (Exception e) {
-//	        	AMTLogger.failLoadingModInfo("ThermalExpansion");
-//	          e.printStackTrace(System.err);
-//	        }
-//	    }
-	    
-	    //IMCイベント用のテスト
-//	    NBTTagCompound toSend = new NBTTagCompound();
-//		toSend.setTag("input", new NBTTagCompound());
-//		toSend.setTag("output", new NBTTagCompound());
-//
-//		new ItemStack(DCsAppleMilk.leafTea, 1, 0).writeToNBT(toSend.getCompoundTag("input"));
-//		new ItemStack(DCsAppleMilk.clam, 1, 0).writeToNBT(toSend.getCompoundTag("output"));
-//		toSend.setString("texture", "defeatedcrow:textures/blocks/contents_milk.png");
-//		FMLInterModComms.sendMessage("DCsAppleMilk", "TeaMakerRecipe", toSend);
-//		
-//		NBTTagCompound toSend2 = new NBTTagCompound();
-//		toSend2.setTag("input", new NBTTagCompound());
-//		toSend2.setTag("output", new NBTTagCompound());
-//
-//		new ItemStack(DCsAppleMilk.leafTea, 1, 0).writeToNBT(toSend2.getCompoundTag("input"));
-//		new ItemStack(DCsAppleMilk.clam, 1, 0).writeToNBT(toSend2.getCompoundTag("output"));
-//		FMLInterModComms.sendMessage("DCsAppleMilk", "IceMakerRecipe", toSend2);
+	    //樽での醸造レシピ
+	    (new RegisterMakerRecipe()).registerBrewing();
+	    AMTLogger.trace("Registered new brewing recipe");
 	}
 	
 	@EventHandler

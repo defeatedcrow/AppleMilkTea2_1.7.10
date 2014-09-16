@@ -36,14 +36,14 @@ public class RegisteredRecipeGet{
 			}
 		}
 		
-		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 3), new ItemStack(DCsAppleMilk.filledPan, 1, 0));
-		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 0), new ItemStack(DCsAppleMilk.filledPan, 1, 1));
-		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), new ItemStack(DCsAppleMilk.filledPan, 1, 2));
-		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 2), new ItemStack(DCsAppleMilk.filledPan, 1, 3));
-		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), new ItemStack(DCsAppleMilk.filledPan2, 1, 0));
-		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), new ItemStack(DCsAppleMilk.filledPan2, 1, 1));
-		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 6), new ItemStack(DCsAppleMilk.filledPan2, 1, 2));
-		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), new ItemStack(DCsAppleMilk.filledPan2, 1, 3));
+		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 3), new ItemStack(DCsAppleMilk.bowlBlock, 1, 0));
+		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 0), new ItemStack(DCsAppleMilk.bowlBlock, 1, 1));
+		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), new ItemStack(DCsAppleMilk.bowlBlock, 1, 2));
+		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 2), new ItemStack(DCsAppleMilk.bowlBlock, 1, 3));
+		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), new ItemStack(DCsAppleMilk.bowlBlock, 1, 4));
+		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), new ItemStack(DCsAppleMilk.bowlBlock, 1, 5));
+		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 6), new ItemStack(DCsAppleMilk.bowlBlock, 1, 6));
+		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), new ItemStack(DCsAppleMilk.bowlBlock, 1, 7));
 		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), new ItemStack(DCsAppleMilk.filledChocoPan, 1, 0));
 	}
 

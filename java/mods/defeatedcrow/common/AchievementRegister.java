@@ -74,7 +74,7 @@ public class AchievementRegister {
 		makeTeaLeaves = (new Achievement("defeatedcrow.makeTealeaves", "makeTeaLeaves", -1, -3, new ItemStack(DCsAppleMilk.foodTea, 1, 0), getTeaLeaves))
 				.initIndependentStat().registerStat();
 		
-		makeRice = (new Achievement("defeatedcrow.rice", "makeRice", -5, 0, new ItemStack(DCsAppleMilk.filledPan, 1, 0), craftGrater))
+		makeRice = (new Achievement("defeatedcrow.rice", "makeRice", -5, 0, new ItemStack(DCsAppleMilk.emptyPanGaiden, 1, 0), craftGrater))
 				.registerStat();
 		
 		getSoup = (new Achievement("defeatedcrow.getSoup", "getSoup", -7, -2, new ItemStack(DCsAppleMilk.bowlBlock, 1, 2), makeRice))

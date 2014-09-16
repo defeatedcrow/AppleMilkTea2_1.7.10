@@ -156,7 +156,7 @@ public class BlockClamSand extends Block
         		count = count / 4;//カウントを減
         	}
         	
-        	AMTLogger.debugInfo("count: " + count);
+//        	AMTLogger.debugInfo("count: " + count);
         	
         	//メタデータ
         	int meta = par1World.getBlockMetadata(par2, par3, par4);
@@ -172,7 +172,7 @@ public class BlockClamSand extends Block
         	boolean flag3 = par1World.getBlock(X1, Y1 + 1, Z1).getMaterial() == Material.water;
         	boolean flag4 = par1World.getBlock(X1, Y1, Z1) == Blocks.sand|| par1World.getBlock(X1, Y1, Z1) == DCsAppleMilk.clamSand;
         	boolean flag2 = par1World.rand.nextInt(1 + chance) > par1World.rand.nextInt(1 + count);//どちらも乱数判断
-        	AMTLogger.debugInfo("flag: " + flag3 + "/" + flag4 + "/" + flag2);
+//        	AMTLogger.debugInfo("flag: " + flag3 + "/" + flag4 + "/" + flag2);
         	
         	if (meta == 0)//ハマグリ
         	{
@@ -236,7 +236,7 @@ public class BlockClamSand extends Block
         	}
         	
         	int meta2 = par1World.getBlockMetadata(par2, par3, par4);//結果のメタ
-        	AMTLogger.debugInfo("after metadata: " + meta2);
+//        	AMTLogger.debugInfo("after metadata: " + meta2);
         }
     	
     }

@@ -14,6 +14,10 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/*
+ * インベントリ内ではアイテムアイコン、設置時には何もレンダーしないダミー用レンダークラス。
+ * ブロックのモデルはTileEntityのレンダーのみを使う。
+ */
 @SideOnly(Side.CLIENT)
 public class RenderDial implements ISimpleBlockRenderingHandler{
 	

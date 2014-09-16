@@ -14,6 +14,7 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
+//カフェマスター。食べ物と酒の販売、材料や食器の買い取り。
 public class VillagerCafe implements IVillageTradeHandler {
 
 	@Override
@@ -29,17 +30,7 @@ public class VillagerCafe implements IVillageTradeHandler {
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 1), new ItemStack(DCsAppleMilk.bowlBlock, 1, 6)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 1), new ItemStack(DCsAppleMilk.bowlBlock, 1, 7)));
 			//お肉
-			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.foodPlate, 1, 3)));
-			
-			//お茶を少々
-			//ソイ・抹茶ラテ
-			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.wallMug, 1, 29)));
-			//練乳砂糖ラテはお店限定
-			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.wallMug, 1, 27)));
-			//メープルナッツラテ
-			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 3), new ItemStack(DCsAppleMilk.wallMug, 1, 160)));
-			//砂糖入りロシアンティー
-			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 3), new ItemStack(DCsAppleMilk.wallMug, 1, 80)));
+			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.foodPlate, 1, 2)));
 			
 			//カップも
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 1), new ItemStack(DCsAppleMilk.teacupBlock, 1, 6)));
@@ -64,7 +55,6 @@ public class VillagerCafe implements IVillageTradeHandler {
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.egg, 8, 0), new ItemStack(Items.emerald, 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Blocks.pumpkin, 3, 0), new ItemStack(Items.emerald, 1)));
 			
-			recipeList.add(new MerchantRecipe(new ItemStack(DCsAppleMilk.emptyWallMug, 3, 0), new ItemStack(Items.emerald, 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.bowl, 3, 0), new ItemStack(Items.emerald, 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(DCsAppleMilk.emptyCup, 1, 0), new ItemStack(Items.emerald, 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), new ItemStack(Items.emerald, 1)));

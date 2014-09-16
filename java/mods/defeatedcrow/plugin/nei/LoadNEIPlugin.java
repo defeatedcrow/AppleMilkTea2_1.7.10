@@ -1,15 +1,19 @@
 package mods.defeatedcrow.plugin.nei;
 
+import net.minecraft.item.Item;
 import mods.defeatedcrow.common.AMTLogger;
 import codechicken.nei.api.API;
 
 public class LoadNEIPlugin {
+	
+	
 	
 	public static TeaRecipeHandler teaRecipe;
 	public static IceRecipeHandler iceRecipe;
 	public static PanRecipeHandler panRecipe;
 	public static ProsessorRecipeHandler prosessorRecipe;
 	public static AdvProsessorRecipeHandler advProsessorRecipe;
+	public static EvaporatorRecipeHandler evaporatorRecipe;
 	
 	public static void load() {
 		
@@ -18,6 +22,8 @@ public class LoadNEIPlugin {
 		panRecipe = new PanRecipeHandler();
 		prosessorRecipe = new ProsessorRecipeHandler();
 		advProsessorRecipe = new AdvProsessorRecipeHandler();
+		evaporatorRecipe = new EvaporatorRecipeHandler();
+		
 		
 		API.registerRecipeHandler(teaRecipe);
 		API.registerUsageHandler(teaRecipe);
@@ -38,6 +44,10 @@ public class LoadNEIPlugin {
 		API.registerRecipeHandler(advProsessorRecipe);
 		API.registerUsageHandler(advProsessorRecipe);
 		API.registerGuiOverlay(GuiRecipe.class, advProsessorRecipe.getOverlayIdentifier(), 0, 0);
+		
+		API.registerRecipeHandler(evaporatorRecipe);
+		API.registerUsageHandler(evaporatorRecipe);
+		API.registerGuiOverlay(GuiRecipe.class, evaporatorRecipe.getOverlayIdentifier(), 0, 0);
 		
 		AMTLogger.loadedModInfo("NEI");
 		

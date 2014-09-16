@@ -14,9 +14,10 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class ParticleTex {
 	private static ParticleTex instance;
+	private ParticleTex(){}
  
 	private static String[] iconNames = {"blink", "orb", "cloud", "flower"};
-	IIcon icons[];
+	static IIcon icons[];
  
 	public static ParticleTex getInstance() {
 		if (instance == null) {
