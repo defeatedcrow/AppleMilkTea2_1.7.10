@@ -86,7 +86,12 @@ public class BlockLargeBottle extends BlockContainer{
         	
         	if (flag)
         	{
-        		int meta = (type == 0)? 11 : type - 1;
+        		int meta = 0;
+        		if (type == 0) meta = 11;
+        		else if (type == 8) meta = 12;
+        		else{
+        			meta = type -1;
+        		}
         		
         		if (!par5EntityPlayer.capabilities.isCreativeMode)
                 {

@@ -65,9 +65,9 @@ compileJava {
     options.encoding = defaultEncoding
 }
 
-[compileJava, compileTestJava].each{
+[compileJava, compileTestJava,compileApiJava,recompMinecraft, makeStart].each{
     it.options.encoding = 'UTF-8'
-    it.options.compilerArgs += ['-source', '1.7', '-target', '1.7'] //, '-bootclasspath', 'jdk1.7.0/lib/rt.jar']
+    it.options.compilerArgs += ['-source', '1.7', '-target', '1.7'] 
 }
 reobf { deobfFile = new net.minecraftforge.gradle.delayed.DelayedFile(project, "build/tmp/deobfuscateJar/deobfed.jar") }
 

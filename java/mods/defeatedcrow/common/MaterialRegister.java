@@ -92,7 +92,15 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.slotPanel,"defeatedcrow.slotPanel");
 		GameRegistry.registerItem(DCsAppleMilk.dustWood,"defeatedcrow.dustWood");
 		GameRegistry.registerItem(DCsAppleMilk.essentialOil,"defeatedcrow.essentialOil");
-		GameRegistry.registerItem(DCsAppleMilk.insenceRose,"defeatedcrow.insence_rose");
+		GameRegistry.registerItem(DCsAppleMilk.incenseRose,"defeatedcrow.incense_rose");
+		GameRegistry.registerItem(DCsAppleMilk.incenseApple,"defeatedcrow.incense_apple");
+		GameRegistry.registerItem(DCsAppleMilk.incenseMint,"defeatedcrow.incense_mint");
+		GameRegistry.registerItem(DCsAppleMilk.incenseClam,"defeatedcrow.incense_clam");
+		GameRegistry.registerItem(DCsAppleMilk.incenseIce,"defeatedcrow.incense_ice");
+		GameRegistry.registerItem(DCsAppleMilk.incenseLavender,"defeatedcrow.incense_lavender");
+		GameRegistry.registerItem(DCsAppleMilk.incenseSandalwood,"defeatedcrow.incense_sandalwood");
+		GameRegistry.registerItem(DCsAppleMilk.incenseAgar,"defeatedcrow.incense_aloeswood");
+		GameRegistry.registerItem(DCsAppleMilk.incenseFrank,"defeatedcrow.incense_frankincense");
 		//そのほか
 		GameRegistry.registerItem(DCsAppleMilk.inkStick, "defeatedcrow.inkStick");
 		GameRegistry.registerItem(DCsAppleMilk.icyCrystal,"defeatedcrow.icyCrystal");
@@ -137,7 +145,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.chalcedony, ItemChalcedony.class, "defeatedcrow.chalcedony");
 		GameRegistry.registerBlock(DCsAppleMilk.cLamp, ItemChalcedonyLamp.class, "defeatedcrow.chalcedonyLamp");
 		GameRegistry.registerBlock(DCsAppleMilk.chalcenonyPanel, "defeatedcrow.chalcedonyPanel");
-		GameRegistry.registerBlock(DCsAppleMilk.insenceBase, "defeatedcrow.insenceBase");
+		GameRegistry.registerBlock(DCsAppleMilk.incenseBase, "defeatedcrow.incenseBase");
 		//インテリア
 		GameRegistry.registerBlock(DCsAppleMilk.Basket, ItemBreadBasket.class, "defeatedcrow.basket");
 		GameRegistry.registerBlock(DCsAppleMilk.bowlRack, ItemBowlRack.class, "defeatedcrow.bowlRack");
@@ -721,12 +729,44 @@ public class MaterialRegister {
 				setUnlocalizedName("defeatedcrow.dustWood").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
-		DCsAppleMilk.insenceBase = (new BlockInsenceBase()).
-				setBlockName("defeatedcrow.insenceBase").
+		DCsAppleMilk.incenseBase = (new BlockIncenseBase()).
+				setBlockName("defeatedcrow.incenseBase").
 				setCreativeTab(DCsAppleMilk.applemilkMagic);
 		
-		DCsAppleMilk.insenceRose = (ItemInsenceRose) (new ItemInsenceRose()).
-				setUnlocalizedName("defeatedcrow.insence_rose").
+		DCsAppleMilk.incenseRose = (ItemIncenseRose) (new ItemIncenseRose()).
+				setUnlocalizedName("defeatedcrow.incense_rose").
+				setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.incenseApple = (ItemIncenseApple) (new ItemIncenseApple()).
+				setUnlocalizedName("defeatedcrow.incense_apple").
+				setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.incenseIce = (ItemIncenseIce) (new ItemIncenseIce()).
+				setUnlocalizedName("defeatedcrow.incense_ice").
+				setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.incenseClam = (ItemIncenseClam) (new ItemIncenseClam()).
+				setUnlocalizedName("defeatedcrow.incense_clam").
+				setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.incenseMint = (ItemIncenseMint) (new ItemIncenseMint()).
+				setUnlocalizedName("defeatedcrow.incense_mint").
+				setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.incenseLavender = (ItemIncenseLavender) (new ItemIncenseLavender()).
+				setUnlocalizedName("defeatedcrow.incense_lavender").
+				setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.incenseSandalwood = (ItemIncenseSandalwood) (new ItemIncenseSandalwood()).
+				setUnlocalizedName("defeatedcrow.incense_sandalwood").
+				setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.incenseAgar = (ItemIncenseAgar) (new ItemIncenseAgar()).
+				setUnlocalizedName("defeatedcrow.incense_aloeswood").
+				setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.incenseFrank = (ItemIncenseFrankincense) (new ItemIncenseFrankincense()).
+				setUnlocalizedName("defeatedcrow.incense_frankincense").
 				setCreativeTab(DCsAppleMilk.applemilkMagic);
 		
 	}

@@ -97,7 +97,7 @@ public class DCsAppleMilk{
 	public static Block  prosessor;
 	public static Block  evaporator;
 	public static Block  advProsessor;
-	public static Block  insenceBase;
+	public static Block  incenseBase;
 	//たべもの
 	public static Block  teacupBlock;
 	public static Block  teaCup2;
@@ -198,7 +198,16 @@ public class DCsAppleMilk{
 	public static Item  princessClam;
 	public static Item  dustWood;
 	public static Item  essentialOil;
-	public static ItemInsenceRose  insenceRose;
+	
+	public static ItemIncenseApple  incenseApple;
+	public static ItemIncenseRose  incenseRose;
+	public static ItemIncenseMint  incenseMint;
+	public static ItemIncenseIce  incenseIce;
+	public static ItemIncenseClam  incenseClam;
+	public static ItemIncenseLavender  incenseLavender;
+	public static ItemIncenseSandalwood  incenseSandalwood;
+	public static ItemIncenseAgar  incenseAgar;
+	public static ItemIncenseFrankincense  incenseFrank;
 	
 	//液体
 	public static Fluid  vegitableOil;
@@ -275,7 +284,7 @@ public class DCsAppleMilk{
 	public static boolean SuccessLoadBC = false;
 	
 	//内部処理用
-	public static boolean debugMode = true;
+	public static boolean debugMode = false;
 	public static boolean succeedAddPotion = false;
 	
 	//新ツール属性の追加
@@ -316,7 +325,7 @@ public class DCsAppleMilk{
 	public static int modelEvaporator;
 	public static int modelJawCrusher;
 	public static int modelCPanel;
-	public static int modelInsenceBase;
+	public static int modelIncenseBase;
 	
 	public static final String[] TEX_PASS = new String[] {
 		"defeatedcrow:",
@@ -516,7 +525,7 @@ public class DCsAppleMilk{
 		this.modelEvaporator = proxy.getRenderID();
 		this.modelJawCrusher = proxy.getRenderID();
 		this.modelCPanel = proxy.getRenderID();
-		this.modelInsenceBase = proxy.getRenderID();
+		this.modelIncenseBase = proxy.getRenderID();
 		this.modelCanister = proxy.getRenderID();
 		proxy.registerRenderers();
 	    

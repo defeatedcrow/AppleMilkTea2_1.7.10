@@ -20,7 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityItemAlcoholCup extends EdibleEntityItemBlock{
 	
 	private static final String[] type = new String[] {"_sake", "_beer", "_wine", "_rum", "_gin", "_vodka", "_whiskey",
-		"_apple", "_tea", "_cassis", "_plum", "_shothu"};
+		"_apple", "_tea", "_cassis", "_plum", "_shothu", "_brandy", "_amaretto"};
 	
 	public EntityItemAlcoholCup(Block block)
 	{
@@ -33,7 +33,7 @@ public class EntityItemAlcoholCup extends EdibleEntityItemBlock{
 	public String getUnlocalizedName(ItemStack par1ItemStack)
 	{
 		int m = (par1ItemStack.getItemDamage());
-		if (m < 12) return super.getUnlocalizedName() + type[m];
+		if (m < 14) return super.getUnlocalizedName() + type[m];
 		else return super.getUnlocalizedName() + m;
 	}
 	
@@ -90,7 +90,7 @@ public class EntityItemAlcoholCup extends EdibleEntityItemBlock{
 		{
 			potion = new PotionEffect(Potion.resistance.id, 2400, 1);
 		}
-		else if (meta == 4)//gin
+		else if (meta == 4 || meta == 12)//gin,brandy
 		{
 			potion = new PotionEffect(Potion.damageBoost.id, 2400, 0);
 		}
@@ -114,7 +114,7 @@ public class EntityItemAlcoholCup extends EdibleEntityItemBlock{
 		{
 			potion = new PotionEffect(Potion.fireResistance.id, 2400, 0);
 		}
-		else if (meta == 10)//plum
+		else if (meta == 10 || meta == 13)//plum,amaretto
 		{
 			potion = new PotionEffect(Potion.resistance.id, 2400, 0);
 		}

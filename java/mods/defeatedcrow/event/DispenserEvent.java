@@ -3,6 +3,7 @@ package mods.defeatedcrow.event;
 import mods.defeatedcrow.api.recipe.ITeaRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.tile.TileIncenseBase;
 import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
@@ -49,6 +50,24 @@ public class DispenserEvent {
                 {
                     Blocks.tnt.onBlockDestroyedByPlayer(world, i, j, k, 1);
                     world.setBlockToAir(i, j, k);
+                }
+                else if (world.getBlock(i, j, k) == DCsAppleMilk.incenseBase)
+                {
+                	TileIncenseBase tile = (TileIncenseBase) world.getTileEntity(i, j, k);
+                	if (tile != null && item != null && tile.hasItem())
+                	{
+                		if (!tile.getActive())
+                		{
+                			if (item.attemptDamageItem(1, world.rand))
+                            {
+                                item.stackSize = 0;
+                            }
+                			tile.setActive();
+                    		tile.markDirty();
+                    		world.setBlockMetadataWithNotify(i, j, k, 1, 3);
+                    		world.scheduleBlockUpdate(i, j, k, DCsAppleMilk.incenseBase, 20);
+                		}
+                	}
                 }
                 else
                 {

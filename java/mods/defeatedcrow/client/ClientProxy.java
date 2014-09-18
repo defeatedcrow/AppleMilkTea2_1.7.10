@@ -84,7 +84,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerTileEntity(TileEvaporator.class, "TileEvaporator", new TileEntityEvaporatorRenderer());
 		ClientRegistry.registerTileEntity(TileVegiBag.class, "TileVegiBag", new TileEntityVegiBagRenderer());
 		ClientRegistry.registerTileEntity(TileCardBoard.class, "TileCardBoard", new TileEntityCardBoardRenderer());
-		ClientRegistry.registerTileEntity(TileInsenceBase.class, "TileInsenceBase", new TileEntityInsenceBaseRenderer());
+		ClientRegistry.registerTileEntity(TileIncenseBase.class, "TileIncenseBase", new TileEntityIncenseBaseRenderer());
 		ClientRegistry.registerTileEntity(TilePanG.class, "TilePanG", new TileEntityPanGRenderer());
 		ClientRegistry.registerTileEntity(TileCanister.class, "TileCanister", new TileEntityCanisterRenderer());
 		ClientRegistry.registerTileEntity(TileBrewingBarrel.class, "TileBarrel", new TileEntityBarrelRenderer());
@@ -130,7 +130,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerBlockHandler(new RenderEvaporator());
 		RenderingRegistry.registerBlockHandler(new RenderJawCrusher());
 		RenderingRegistry.registerBlockHandler(new RenderCPanel());
-		RenderingRegistry.registerBlockHandler(new RenderInsenceBase());
+		RenderingRegistry.registerBlockHandler(new RenderIncenseBase());
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityMelonBomb.class, new RenderMelonBomb());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySilkyMelon.class, new RenderSilkyMelon());

@@ -18,7 +18,7 @@ public class ItemEssentialOil extends Item {
     private IIcon iconType[];
 	
 	private static final String[] itemType = new String[] {"apple", "rose", "mint", "yuzu", "clam", 
-		"ice", "lavender", "vanilla", "sandalwood", "aloeswood"};
+		"ice", "lavender", "vanilla", "sandalwood", "aloeswood", "frankincense"};
 	
 	public ItemEssentialOil (){
 		super ();
@@ -31,7 +31,7 @@ public class ItemEssentialOil extends Item {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
-        int j = MathHelper.clamp_int(par1, 0, 9);
+        int j = MathHelper.clamp_int(par1, 0, 10);
         return this.iconType[j];
     }
 	
@@ -43,7 +43,7 @@ public class ItemEssentialOil extends Item {
 	@Override
 	public String getUnlocalizedName(ItemStack par1ItemStack) {
 		int meta = par1ItemStack.getItemDamage();
-		return meta < 10 ? super.getUnlocalizedName() + "_" + this.itemType[meta] : super.getUnlocalizedName() + "_" + meta;
+		return meta < 11 ? super.getUnlocalizedName() + "_" + this.itemType[meta] : super.getUnlocalizedName() + "_" + meta;
 	}
 	
 	@Override
@@ -59,14 +59,15 @@ public class ItemEssentialOil extends Item {
 		par3List.add(new ItemStack(this, 1, 7));
 		par3List.add(new ItemStack(this, 1, 8));
 		par3List.add(new ItemStack(this, 1, 9));
+		par3List.add(new ItemStack(this, 1, 10));
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister){
-		this.iconType = new IIcon[10];
+		this.iconType = new IIcon[11];
 
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 11; ++i)
         {
             this.iconType[i] = par1IconRegister.registerIcon("defeatedcrow:essence_" + itemType[i]);
         }
