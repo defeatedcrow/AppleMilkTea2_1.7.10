@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 ﻿
+=======
+>>>>>>> origin/master
 tile.defeatedcrow.WoodBox_oak.name=橡木箱
 tile.defeatedcrow.WoodBox_spruse.name=云衫木箱
 tile.defeatedcrow.WoodBox_birch.name=桦木箱
@@ -232,6 +235,10 @@ tile.defeatedcrow.blockCordial_4.name=阿玛雷托酒瓶
 tile.defeatedcrow.emptyBottle.name=空瓶
 tile.defeatedcrow.largeBottle.name=酒瓶
 tile.defeatedcrow.blockBarrel.name=酿造桶
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 item.defeatedcrow.bakedApple.name=烤苹果
 item.defeatedcrow.appleTart_0.name=苹果馅饼
 item.defeatedcrow.appleTart_1.name=黑加仑馅饼
@@ -426,8 +433,15 @@ item.defeatedcrow.bucketYoungAlcohol_0.name=未发酵的烧酒酒桶
 item.defeatedcrow.bucketYoungAlcohol_1.name=未发酵的威士忌酒桶
 item.defeatedcrow.bucketYoungAlcohol_2.name=未发酵的白兰地酒桶
 item.defeatedcrow.dummyItem.name=液体生成
+<<<<<<< HEAD
 entity.compressedMelon.name=压缩西瓜
 entity.compressedSilkMelon.name=平滑压缩西瓜
+=======
+
+entity.compressedMelon.name=压缩西瓜
+entity.compressedSilkMelon.name=平滑压缩西瓜
+
+>>>>>>> origin/master
 fluid.vegitable_oil=植物油
 fluid.camellia_oil=山茶油
 fluid.shothu_young=未发酵的烧酒
@@ -436,6 +450,10 @@ fluid.brandy_young=未发酵的白兰地
 fluid.shothu_dc=烧酒
 fluid.whiskey_dc=威士忌
 fluid.brandy_dc=白兰地
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 DCs.potion.immunization=免疫
 DCs.potion.protectionExplode=爆炸无效
 DCs.potion.protectionProjectile=射撃无效
