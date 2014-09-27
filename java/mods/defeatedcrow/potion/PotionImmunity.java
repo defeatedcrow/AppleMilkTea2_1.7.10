@@ -30,15 +30,19 @@ public class PotionImmunity extends PotionImmunityBase
 		int[] check;
 		boolean flag = false;
 		
-		if (id == DCsConfig.potionIDImmunity)
+		if (id == DCsConfig.potionIDImmunity && !player.worldObj.isRemote)
 		{
 			if (amp == 0)
 			{
 				check = new int[] {Potion.hunger.id};
 			}
-			else
+			else if (amp == 1)
 			{
 				check = new int[] {Potion.poison.id, Potion.wither.id};
+			}
+			else
+			{
+				check = new int[] {Potion.poison.id, Potion.wither.id, Potion.confusion.id, Potion.blindness.id};
 			}
 			
 			for (int i = 0 ; i < check.length ; i++)

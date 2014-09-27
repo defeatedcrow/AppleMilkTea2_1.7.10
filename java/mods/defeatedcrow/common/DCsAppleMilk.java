@@ -66,7 +66,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha13",
+		version = "1.7.10_2.0.alpha14",
 		dependencies = "required-after:Forge@[10.12.1.1197,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -103,6 +103,7 @@ public class DCsAppleMilk{
 	public static Block  teaCup2;
 	public static Block  blockIcecream;
 	public static Block  cocktail;
+	public static Block  cocktail2;
 	public static Block  alcoholCup;
 	public static Block  bowlBlock;
 	public static Block  bowlJP;
@@ -247,6 +248,8 @@ public class DCsAppleMilk{
 	public static Potion absHeal;
 	public static Potion suffocation;
 	public static PotionProtectionEX prvSuffocation;
+	public static Potion hallucinations;
+	public static Potion confinement;
 	
 	//gui
 	public int guiIdAutoMaker = 1;
@@ -378,7 +381,7 @@ public class DCsAppleMilk{
 		
 		
 		//実績の追加
-		(new AchievementRegister()).register();
+		(new AchievementRegister()).register();//TODO 実績増やす
 		
 		//particle用テクスチャ登録
 		proxy.registerTex();
@@ -410,6 +413,7 @@ public class DCsAppleMilk{
 		if (DCsConfig.entityIdTart == 0) DCsConfig.entityIdTart = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdSilkMelon == 0) DCsConfig.entityIdSilkMelon = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdKinoko == 0) DCsConfig.entityIdKinoko = EntityRegistry.findGlobalUniqueEntityId();
+		if (DCsConfig.entityIdCocktail2 == 0) DCsConfig.entityIdCocktail2 = EntityRegistry.findGlobalUniqueEntityId();
 		
 		EntityRegistry.registerModEntity(EntityMelonBomb.class, "compressedMelon", DCsConfig.entityIdMelon, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntitySilkyMelon.class, "compressedSilkyMelon", DCsConfig.entityIdSilkMelon, this, 250, 5, true);
@@ -419,6 +423,7 @@ public class DCsAppleMilk{
 		EntityRegistry.registerModEntity(PlaceableSteak.class, "PlaceableSteak", DCsConfig.entityIdSteak, this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableAlcoholCup.class, "PlaceableAlcoholCup", DCsConfig.entityIdAlcohol, this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableCocktail.class, "PlaceableCocktail", DCsConfig.entityIdCocktail, this, 250, 5, true);
+		EntityRegistry.registerModEntity(PlaceableCocktail2.class, "PlaceableCocktail2", DCsConfig.entityIdCocktail2, this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableBowl.class, "PlaceableBowl", DCsConfig.entityIdBowl, this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableBowlJP.class, "PlaceableBowlJP", DCsConfig.entityIdBowlJP, this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableCup1.class, "PlaceableCup", DCsConfig.entityIdCup, this, 250, 5, true);

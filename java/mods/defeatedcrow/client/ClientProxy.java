@@ -74,6 +74,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerTileEntity(TileWipeBox2.class, "TileWipeBox2", new TileEntityWipe2Renderer());
 		ClientRegistry.registerTileEntity(TileRotaryDial.class, "TileRotaryDial", new TileEntityDialRenderer());
 		ClientRegistry.registerTileEntity(TileCocktail.class, "TileCocktail", new TileEntityCocktailRenderer());
+		ClientRegistry.registerTileEntity(TileCocktail2.class, "TileCocktail2", new TileEntityCocktail2Renderer());
 		ClientRegistry.registerTileEntity(TileLargeBottle.class, "TileLargeBottle", new TileEntityBottleRenderer());
 		ClientRegistry.registerTileEntity(TileEmptyBottle.class, "TileEmptyBottle", new TileEntityEmptyBottleRenderer());
 		ClientRegistry.registerTileEntity(TileCLamp.class, "TileChalcedonyLamp", new TileEntityCLampRenderer());
@@ -138,6 +139,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableSteak.class, new RenderSteakEntity());
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableAlcoholCup.class, new RenderAlcoholCupEntity());
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableCocktail.class, new RenderCocktailEntity());
+		RenderingRegistry.registerEntityRenderingHandler(PlaceableCocktail2.class, new RenderCocktail2Entity());
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableBowl.class, new RenderBowlEntity());
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableBowlJP.class, new RenderBowlJPEntity());
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableCup1.class, new RenderCupEntity());

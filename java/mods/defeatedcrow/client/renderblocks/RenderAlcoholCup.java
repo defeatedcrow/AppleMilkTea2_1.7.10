@@ -33,7 +33,7 @@ public class RenderAlcoholCup implements ISimpleBlockRenderingHandler{
 		
 		if (modelID == this.getRenderId())
 		{
-			if (meta == 2) { //wine
+			if (meta == 2 || meta > 11) { //wine
 				renderInvCuboid(renderer, block,  6.0F/16.0F, 0.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 1.0F/16.0F, 10.0F/16.0F,  this.boxIcon);
 				renderInvCuboid(renderer, block,  7.5F/16.0F, 1.0F/16.0F, 7.5F/16.0F, 8.50F/16.0F, 3.0F/16.0F, 8.5F/16.0F,  this.boxIcon);
 				renderInvCuboid(renderer, block,  5.0F/16.0F, 4.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 6.0F/16.0F, 11.0F/16.0F,  this.boxIcon);
@@ -76,7 +76,7 @@ public class RenderAlcoholCup implements ISimpleBlockRenderingHandler{
 		if (modelId == this.getRenderId())
 		{
 			
-			if (meta == 2) {//wine
+			if (meta == 2 || meta > 11) {//wine
 				//contents
 				renderer.setOverrideBlockTexture(this.contentsIcon);
 				block.setBlockBounds(5.0F/16.0F, 6.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 9.0F/16.0F, 11.0F/16.0F);

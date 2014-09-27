@@ -216,11 +216,11 @@ public class EntityItemCocktail extends EdibleEntityItemBlock{
 		{
 			if (par1EntityPlayer.isPotionActive(DCsAppleMilk.Immunization.id)) {
 				tick = par1EntityPlayer.getActivePotionEffect(DCsAppleMilk.Immunization).getDuration() + 2400;
-				potion = new PotionEffect(DCsAppleMilk.Immunization.id, tick, 1);
-				flag = true;
+				potion = new PotionEffect(DCsAppleMilk.Immunization.id, tick, 2);
+				flag = false;
 			}
 			else {
-				potion = new PotionEffect(DCsAppleMilk.Immunization.id, 2400, 1);
+				potion = new PotionEffect(DCsAppleMilk.Immunization.id, 2400, 2);
 			}
 		}
 		

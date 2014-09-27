@@ -39,12 +39,13 @@ public class AddChestGen {
 		ChestGenHooks dungeon3 = ChestGenHooks.getInfo("dungeonChest");
 		dungeon3.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 17),1,1,10));
 		dungeon3.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.batteryItem, 1, 0),1,4,10));
-		dungeon3.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.essentialOil, 1, 6),1,4,3));
+		dungeon3.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.essentialOil, 1, 6),1,3,5));
 		
 		ChestGenHooks dungeon4 = ChestGenHooks.getInfo("mineshaftCorridor");
 		dungeon4.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 20),1,1,10));
 		dungeon4.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 21),1,1,10));
 		dungeon4.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.itemMintSeed, 1, 0),1,3,10));
+		dungeon3.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.essentialOil, 1, 10),1,3,3));
 	}
 	
 }

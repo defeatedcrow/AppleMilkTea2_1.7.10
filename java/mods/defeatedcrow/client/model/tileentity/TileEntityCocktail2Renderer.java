@@ -3,7 +3,7 @@ package mods.defeatedcrow.client.model.tileentity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.client.model.model.ModelCocktail;
-import mods.defeatedcrow.common.tile.TileCocktail;
+import mods.defeatedcrow.common.tile.TileCocktail2;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -15,13 +15,13 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 @SideOnly(Side.CLIENT)
-public class TileEntityCocktailRenderer extends TileEntitySpecialRenderer
+public class TileEntityCocktail2Renderer extends TileEntitySpecialRenderer
 {
     private static final ResourceLocation cocktailTex = new ResourceLocation("defeatedcrow:textures/entity/cocktail.png");
-    public static TileEntityCocktailRenderer cocktailRenderer;
+    public static TileEntityCocktail2Renderer cocktailRenderer;
     private ModelCocktail cocktailModel = new ModelCocktail();
 
-    public void renderTileEntitySteakAt(TileCocktail par1Tile, double par2, double par4, double par6, float par8)
+    public void renderTileEntitySteakAt(TileCocktail2 par1Tile, double par2, double par4, double par6, float par8)
     {
         this.setRotation(par1Tile, (float)par2, (float)par4, (float)par6);
     }
@@ -35,22 +35,16 @@ public class TileEntityCocktailRenderer extends TileEntitySpecialRenderer
         cocktailRenderer = this;
     }
 
-    public void setRotation(TileCocktail par0Tile, float par1, float par2, float par3)
+    public void setRotation(TileCocktail2 par0Tile, float par1, float par2, float par3)
     {
         ModelCocktail model = this.cocktailModel;
         byte l = (byte)par0Tile.getBlockMetadata();
         
-        byte type = 0;//0:ロング、1:ショート、2:ワイングラス
-        if (l == 0 || l == 1) type = 4;
-        else if (l < 5 || l == 14 || l == 15) type = 1;
-        else if (l == 10) type = 2;
-        else if (l == 6) type = 6;
+        byte type = 0;//0:ロング、1:ショート、2:ワイングラス、4:フローズン
+        if (l == 6 || l == 7) type = 1;
+        else if (l == 1 || l == 2 || l == 9) type = 2;
         
-        byte deco = 0;//0:レモン、1:ライム、2:パイン、3:アップル
-        if (l == 5 || l == 7 || l == 9 || l == 12) deco = 2;
-        else if (l == 0 || l == 3 || l == 8) deco = 1;
-        else if (l == 6) deco = 3;
-        else if (l == 14) deco = 4;
+        byte deco = 0;//デコはない
 
         this.bindTexture(cocktailTex);
         
@@ -92,6 +86,6 @@ public class TileEntityCocktailRenderer extends TileEntitySpecialRenderer
 
     public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8)
     {
-        this.renderTileEntitySteakAt((TileCocktail)par1TileEntity, par2, par4, par6, par8);
+        this.renderTileEntitySteakAt((TileCocktail2)par1TileEntity, par2, par4, par6, par8);
     }
 }

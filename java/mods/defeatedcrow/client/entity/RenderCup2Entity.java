@@ -53,7 +53,7 @@ public class RenderCup2Entity extends Render
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         
         GL11.glColor4f(1.5F, 1.5F, 1.5F, 0.8F);
-        GL11.glTranslatef((float)par2, (float)par4 + 1.3F, (float)par6);
+        GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
         model.renderContents((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
@@ -71,7 +71,7 @@ public class RenderCup2Entity extends Render
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-            GL11.glTranslatef((float)par2, (float)par4 + 1.3F, (float)par6);
+            GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
             GL11.glScalef(1.0F, -1.0F, -1.0F);
             GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
             model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
@@ -88,7 +88,7 @@ public class RenderCup2Entity extends Render
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
             
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            GL11.glTranslatef((float)par2, (float)par4 + 1.3F, (float)par6);
+            GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
             GL11.glScalef(1.0F, -1.0F, -1.0F);
             GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
             model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);

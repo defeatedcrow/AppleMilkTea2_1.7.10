@@ -166,8 +166,9 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.teacupBlock, EntityItemTeaCup.class, "defeatedcrow.filledCup");
 		GameRegistry.registerBlock(DCsAppleMilk.teaCup2, EntityItemTeaCup2.class, "defeatedcrow.filledCup2");
 		GameRegistry.registerBlock(DCsAppleMilk.blockIcecream, EntityItemIceCream.class, "defeatedcrow.iceCreamBlock");
-		GameRegistry.registerBlock(DCsAppleMilk.cocktail, EntityItemCocktail.class, "defeatedcrow.cocktail");
 		GameRegistry.registerBlock(DCsAppleMilk.alcoholCup, EntityItemAlcoholCup.class, "defeatedcrow.alcoholCup");
+		GameRegistry.registerBlock(DCsAppleMilk.cocktail, EntityItemCocktail.class, "defeatedcrow.cocktail");
+		GameRegistry.registerBlock(DCsAppleMilk.cocktail2, EntityItemCocktail2.class, "defeatedcrow.cocktail2");
 	}
 	
 	public void addPotion()
@@ -178,61 +179,45 @@ public class MaterialRegister {
 			DCsAppleMilk.Immunization = (new PotionImmunity(DCsConfig.potionIDImmunity, false, 7889559)).
 					setPotionName("DCs.potion.immunization");
 		}
-		else {
-            throw new IllegalArgumentException("Failed to register new Potion : Immunization of DCsAppleMilk");
-        }
 		if (Potion.potionTypes[DCsConfig.potionIDPrvExplode] == null && DCsConfig.potionIDPrvExplode < 128){
 			DCsAppleMilk.prvExplode = (new PotionProtectionEX(DCsConfig.potionIDPrvExplode, false, 3237665,
 					false, true, false, DamageSource.anvil)).
 					setPotionName("DCs.potion.protectionExplode");
 		}
-		else {
-            throw new IllegalArgumentException("Failed to register new Potion : Explode Protection of DCsAppleMilk");
-        }
 		if (Potion.potionTypes[DCsConfig.potionIDPrvProjectile] == null && DCsConfig.potionIDPrvProjectile < 128){
 			DCsAppleMilk.prvProjectile = (new PotionProtectionEX(DCsConfig.potionIDPrvProjectile, false, 1151526,
 					false, false, true, DamageSource.magic)).
 					setPotionName("DCs.potion.protectionProjectile");
 		}
-		else {
-            throw new IllegalArgumentException("Failed to register new Potion : Projectile Protection of DCsAppleMIlk");
-        }
 		if (Potion.potionTypes[DCsConfig.potionIDReflex] == null && DCsConfig.potionIDReflex < 128){
 			DCsAppleMilk.reflex = (new PotionReflex(DCsConfig.potionIDReflex, false, 999999, false)).
 					setPotionName("DCs.potion.reflex");
 		}
-		else {
-            throw new IllegalArgumentException("Failed to register new Potion : Reflex of DCsAppleMilk");
-        }
 		if (Potion.potionTypes[DCsConfig.potionIDAbsEXP] == null && DCsConfig.potionIDAbsEXP < 128){
 			DCsAppleMilk.absEXP = (new PotionReflex(DCsConfig.potionIDAbsEXP, false, 5599557, false)).
 					setPotionName("DCs.potion.absorptionEXP");
 		}
-		else {
-            throw new IllegalArgumentException("Failed to register new Potion : EXP Absorption of DCsAppleMilk");
-        }
 		if (Potion.potionTypes[DCsConfig.potionIDAbsHeal] == null && DCsConfig.potionIDAbsHeal < 128){
 			DCsAppleMilk.absHeal = (new PotionReflex(DCsConfig.potionIDAbsHeal, false, 9933221, false)).
 					setPotionName("DCs.potion.absorptionHeal");
 		}
-		else {
-            throw new IllegalArgumentException("Failed to register new Potion : Damage Absorption of DCsAppleMilk");
-        }
 		if (Potion.potionTypes[DCsConfig.potionIDSuffocation] == null && DCsConfig.potionIDSuffocation < 128){
 			DCsAppleMilk.suffocation = (new PotionSuffocation(DCsConfig.potionIDSuffocation, true, 9933221)).
 					setPotionName("DCs.potion.suffocation");
 		}
-		else {
-            throw new IllegalArgumentException("Failed to register new Potion : Damage Absorption of DCsAppleMilk");
-        }
 		if (Potion.potionTypes[DCsConfig.potionIDPrvSuffocation] == null && DCsConfig.potionIDPrvSuffocation < 128){
 			DCsAppleMilk.prvSuffocation = (PotionProtectionEX) (new PotionProtectionEX(DCsConfig.potionIDPrvSuffocation, true, 9933221, 
 					false, false, false, DamageSource.inWall)).setProtectSuffocation()
 					.setPotionName("DCs.potion.protectionSuffocation");
 		}
-		else {
-            throw new IllegalArgumentException("Failed to register new Potion : Damage Absorption of DCsAppleMilk");
-        }
+		if (Potion.potionTypes[DCsConfig.potionIDHallucinations] == null && DCsConfig.potionIDHallucinations < 128){
+			DCsAppleMilk.hallucinations = new PotionHallucination(DCsConfig.potionIDHallucinations, true, 1114405)
+					.setPotionName("DCs.potion.hallucination");
+		}
+		if (Potion.potionTypes[DCsConfig.potionIDConfinement] == null && DCsConfig.potionIDConfinement < 128){
+			DCsAppleMilk.confinement = new PotionConfinement(DCsConfig.potionIDConfinement, true, 550099)
+			.setPotionName("DCs.potion.confinement");
+		}
 	}
 	
 	public void addFluid()
@@ -486,6 +471,10 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.cocktail = (new BlockCocktail()).
 				setBlockName("defeatedcrow.cocktail").
+				setCreativeTab(DCsAppleMilk.applemilkFood);
+		
+		DCsAppleMilk.cocktail2 = (new BlockCocktail2()).
+				setBlockName("defeatedcrow.cocktail2").
 				setCreativeTab(DCsAppleMilk.applemilkFood);
 		
 		DCsAppleMilk.emptyBottle = (new BlockEmptyBottle()).

@@ -17,6 +17,8 @@ public class DCsConfig {
 	public static int potionIDAbsHeal = 65;
 	public static int potionIDSuffocation = 66;
 	public static int potionIDPrvSuffocation = 67;
+	public static int potionIDHallucinations = 68;
+	public static int potionIDConfinement = 69;
 	
 	//entity
 	public static int entityIdMelon = 160;
@@ -33,6 +35,7 @@ public class DCsConfig {
 	public static int entityIdAlcohol = 157;
 	public static int entityIdSandwich = 158;
 	public static int entityIdTart = 159;
+	public static int entityIdCocktail2 = 163;
 	
 	//villager関連
 	public static int villagerRecipeID = 15;
@@ -89,6 +92,10 @@ public class DCsConfig {
 			Property DCpotionID7 = cfg.get("potionID", "Suffocation", potionIDSuffocation,
 					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
 			Property DCpotionID8 = cfg.get("potionID", "Protection:Suffocation", potionIDPrvSuffocation,
+					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
+			Property DCpotionID9 = cfg.get("potionID", "Protection:Hallucination", potionIDHallucinations,
+					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
+			Property DCpotionID10 = cfg.get("potionID", "Protection:Confinement", potionIDConfinement,
 					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
 			
 			Property TeaTreeValue = cfg.get("world setting", "Tea Tree Gen Probability", teaTreeGenValue,
@@ -158,6 +165,7 @@ public class DCsConfig {
 			Property entityTart = cfg.get("entityid", "EntityIDTart", entityIdTart);
 			Property entitySMelon = cfg.get("entityid", "EntityIDSilkMelon", entityIdSilkMelon);
 			Property entityKinoko = cfg.get("entityid", "EntityIDKinoko", entityIdKinoko);
+			Property entityCocktail2 = cfg.get("entityid", "EntityIDCocktail2", entityIdCocktail2);
 			
 			potionIDImmunity = DCpotionID.getInt();
 			potionIDPrvExplode = DCpotionID3.getInt();
@@ -167,6 +175,8 @@ public class DCsConfig {
 			potionIDAbsHeal = DCpotionID6.getInt();
 			potionIDSuffocation = DCpotionID7.getInt();
 			potionIDPrvSuffocation = DCpotionID8.getInt();
+			potionIDHallucinations = DCpotionID9.getInt();
+			potionIDConfinement = DCpotionID10.getInt();
 			
 			teaTreeGenValue = TeaTreeValue.getInt();
 			setCupTexture = cupTex.getInt();
@@ -209,6 +219,7 @@ public class DCsConfig {
 			entityIdTart = entityTart.getInt();
 			entityIdSilkMelon = entitySMelon.getInt();
 			entityIdKinoko = entityKinoko.getInt();
+			entityIdCocktail2 = entityCocktail2.getInt();
 			
 		}
 		catch (Exception e)

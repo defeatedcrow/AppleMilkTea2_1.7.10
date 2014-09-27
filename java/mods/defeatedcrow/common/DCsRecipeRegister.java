@@ -230,7 +230,7 @@ public class DCsRecipeRegister {
 		 for(int i = 0; i < 5; i++)
 		 {
 			 ItemStack item = new ItemStack(Items.rotten_flesh, 9);
-			 if (i == 1) item = new ItemStack(Items.bone, 9, 2);
+			 if (i == 1) item = new ItemStack(Items.bone, 9, 0);
 			 else if (i == 2) item = new ItemStack(Items.spider_eye, 9);
 			 else if (i == 3) item = new ItemStack(Items.ender_pearl, 9, 0);
 			 else if (i == 4) item = new ItemStack(Items.slime_ball, 9, 0);
@@ -1231,6 +1231,100 @@ public class DCsRecipeRegister {
 	    		  new Object[]{
 	    			  "bottlePlumliqueur",
 	    			  "foodSoymilk"
+					 }));
+		 
+		 //パナシェ
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 1),
+	    		  new Object[]{
+	    			  "bottleBeer",
+	    			  new ItemStack(DCsAppleMilk.teacupBlock, 1, 10)
+					 }));
+		 
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 1),
+	    		  new Object[]{
+	    			  "bottleBeer",
+	    			  "foodLemonaid"
+					 }));
+		 
+		 //スプリッツァー
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 2),
+	    		  new Object[]{
+	    			  "bottleWine",
+	    			  new ItemStack(DCsAppleMilk.teaCup2, 1, 12)
+					 }));
+		 
+		 //スクリュードライバー
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 3),
+	    		  new Object[]{
+	    			  "bottleVodka",
+	    			  new ItemStack(DCsAppleMilk.teaCup2, 1, 11)
+					 }));
+		 
+		 //ゴッドファーザー
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 4),
+	    		  new Object[]{
+	    			  "bottleWhiskey",
+	    			  "bottleAmarettoliqueur"
+					 }));
+		 
+		 //トムアンドジェリー
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 5),
+	    		  new Object[]{
+	    			  "bottleBrandy",
+	    			  "bucketMilk",
+	    			  "bottleRum",
+	    			  "dustSugar",
+	    			  new ItemStack(Items.egg)
+					 }));
+		 
+		 //アレクサンドラ
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 6),
+	    		  new Object[]{
+	    			  "bottleBrandy",
+	    			  "dustSugar",
+	    			  new ItemStack(Items.dye, 1, 3)
+					 }));
+		 
+		 //ズーム
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 7),
+	    		  new Object[]{
+	    			  "bottleBrandy",
+	    			  "dropHoney",
+	    			  "dustSugar"
+					 }));
+		 
+		 //アマレットミルクティー
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 8),
+	    		  new Object[]{
+	    			  new ItemStack(DCsAppleMilk.teaCup2, 1, 1),
+	    			  "bottleAmarettoliqueur"
+					 }));
+		 
+		 //スノウ・サローノ
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 9),
+	    		  new Object[]{
+	    			  "bucketMilk",
+	    			  "bottleAmarettoliqueur"
 					 }));
 		 
 		 //以下、ストレートで飲むレシピ

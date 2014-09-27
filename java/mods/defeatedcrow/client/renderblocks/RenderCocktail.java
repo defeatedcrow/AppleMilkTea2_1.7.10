@@ -5,6 +5,7 @@ import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
@@ -20,6 +21,7 @@ public class RenderCocktail implements ISimpleBlockRenderingHandler{
 	private IIcon boxIIcon;
 	private IIcon contentsIIcon;
 	private IIcon topIIcon;
+	private IIcon bubbleIcon;
 
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID,
@@ -27,12 +29,24 @@ public class RenderCocktail implements ISimpleBlockRenderingHandler{
 		
 		int meta = metadata;
 		this.boxIIcon = DCsAppleMilk.blockIcecream.getBlockTextureFromSide(0);
-		this.contentsIIcon = DCsAppleMilk.cocktail.getIcon(1, meta);
-		this.topIIcon = DCsAppleMilk.cocktail.getIcon(1, 5);
+		this.contentsIIcon = block.getIcon(1, meta);
+		this.topIIcon = block.getIcon(1, 5);
+		this.bubbleIcon = Blocks.quartz_block.getBlockTextureFromSide(1);
 		
 		if (modelID == this.getRenderId())
 		{
-			if (meta == 5 || meta == 7 || meta == 8 || meta == 9 || meta == 11 || meta == 12 || meta == 13) { //long type
+			int glassType = 0;//long
+			boolean frozen = false;
+			if (block == DCsAppleMilk.cocktail){
+				if (meta < 5 || meta == 6 || meta == 10 || meta > 13) glassType = 1;
+				if (meta < 2) frozen = true;
+			}
+			if (block == DCsAppleMilk.cocktail2){
+				if (meta == 6 || meta == 7 || meta == 1 || meta == 2 || meta == 9) glassType = 1;
+			}
+			
+			
+			if (glassType == 0) { //long type
 				//bottom
 				renderInvCuboid(renderer, block,  5.0F/16.0F, 0.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 1.0F/16.0F, 11.0F/16.0F,  this.boxIIcon);
 				renderInvCuboid(renderer, block,  4.0F/16.0F, 1.0F/16.0F, 4.0F/16.0F, 12.0F/16.0F, 9.0F/16.0F, 5.0F/16.0F,  this.boxIIcon);
@@ -56,7 +70,7 @@ public class RenderCocktail implements ISimpleBlockRenderingHandler{
 				
 				//contents
 				renderInvCuboid(renderer, block,  5.0F/16.0F, 6.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 7.0F/16.0F, 11.0F/16.0F,  this.contentsIIcon);
-				if (meta < 2) {//frozen
+				if (frozen) {//frozen
 					renderInvCuboid(renderer, block,  5.5F/16.0F, 7.0F/16.0F, 5.5F/16.0F, 10.5F/16.0F, 8.0F/16.0F, 10.5F/16.0F,  this.contentsIIcon);
 					renderInvCuboid(renderer, block,  6.0F/16.0F, 8.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 9.0F/16.0F, 10.0F/16.0F,  this.contentsIIcon);
 				}
@@ -70,13 +84,47 @@ public class RenderCocktail implements ISimpleBlockRenderingHandler{
 		
 		int meta = world.getBlockMetadata(x, y, z);
 		this.boxIIcon = DCsAppleMilk.blockIcecream.getBlockTextureFromSide(0);
-		this.contentsIIcon = DCsAppleMilk.cocktail.getIcon(1, meta);
-		this.topIIcon = DCsAppleMilk.cocktail.getIcon(1, 5);
+		this.contentsIIcon = block.getIcon(1, meta);
+		this.topIIcon = block.getIcon(1, 5);
+		this.bubbleIcon = Blocks.quartz_block.getBlockTextureFromSide(1);
 		
 		if (modelId == this.getRenderId())
 		{
+			int glassType = 0;//long
+			boolean frozen = false;
+			boolean b = false;
+			boolean c = false;
 			
-			if (meta < 2) {//frozen
+			if (block == DCsAppleMilk.cocktail){
+				if (meta < 5 || meta > 13) glassType = 1;
+				else if (meta == 6 || meta == 10) glassType = 2;
+				
+				if (meta < 2) frozen = true;
+				
+				if (meta == 7) b = true;
+			}
+			
+			if (block == DCsAppleMilk.cocktail2){
+				if (meta == 6 || meta == 7) glassType = 1;
+				else if (meta == 1 || meta == 2 || meta == 9) glassType = 2;
+				
+				if (meta == 9) c = true;
+			}
+			
+			
+			if (b)//アメリカン・レモネードのみ特殊
+			{
+				renderer.setOverrideBlockTexture(this.topIIcon);
+				block.setBlockBounds(5.0F/16.0F, 6.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 8.0F/16.0F, 11.0F/16.0F);
+				renderer.setRenderBoundsFromBlock(block);
+				renderer.renderStandardBlock(block, x, y, z);
+				
+				renderer.setOverrideBlockTexture(this.contentsIIcon);
+				block.setBlockBounds(5.0F/16.0F, 1.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 6.0F/16.0F, 11.0F/16.0F);
+				renderer.setRenderBoundsFromBlock(block);
+				renderer.renderStandardBlock(block, x, y, z);
+			}
+			else if (frozen) {//frozen
 				//contents
 				renderer.setOverrideBlockTexture(this.contentsIIcon);
 				block.setBlockBounds(5.0F/16.0F, 6.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 7.5F/16.0F, 11.0F/16.0F);
@@ -97,7 +145,7 @@ public class RenderCocktail implements ISimpleBlockRenderingHandler{
 				renderer.setRenderBoundsFromBlock(block);
 				renderer.renderStandardBlock(block, x, y, z);
 			}
-			else if (meta == 5 || meta == 8 || meta == 9 || meta == 11 || meta == 12 || meta == 13) {//long
+			else if (glassType == 0) {//long
 				renderer.setOverrideBlockTexture(this.contentsIIcon);
 				block.setBlockBounds(5.0F/16.0F, 6.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 8.0F/16.0F, 11.0F/16.0F);
 				renderer.setRenderBoundsFromBlock(block);
@@ -108,7 +156,7 @@ public class RenderCocktail implements ISimpleBlockRenderingHandler{
 				renderer.setRenderBoundsFromBlock(block);
 				renderer.renderStandardBlock(block, x, y, z);
 			}
-			else if (meta == 6 || meta == 10) {//wine glass
+			else if (glassType == 2) {//wine glass
 				renderer.setOverrideBlockTexture(this.contentsIIcon);
 				block.setBlockBounds(5.0F/16.0F, 6.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 9.0F/16.0F, 11.0F/16.0F);
 				renderer.setRenderBoundsFromBlock(block);
@@ -119,7 +167,7 @@ public class RenderCocktail implements ISimpleBlockRenderingHandler{
 				renderer.setRenderBoundsFromBlock(block);
 				renderer.renderStandardBlock(block, x, y, z);
 				
-				if (meta == 6)
+				if (meta == 6)//pinacolada
 				{
 					renderer.setOverrideBlockTexture(this.contentsIIcon);
 					block.setBlockBounds(5.5F/16.0F, 9.0F/16.0F, 5.5F/16.0F, 10.5F/16.0F, 9.5F/16.0F, 10.5F/16.0F);
@@ -133,17 +181,6 @@ public class RenderCocktail implements ISimpleBlockRenderingHandler{
 				}
 				
 			}
-			else if (meta == 7) {
-				renderer.setOverrideBlockTexture(this.topIIcon);
-				block.setBlockBounds(5.0F/16.0F, 6.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 8.0F/16.0F, 11.0F/16.0F);
-				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
-				
-				renderer.setOverrideBlockTexture(this.contentsIIcon);
-				block.setBlockBounds(5.0F/16.0F, 1.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 6.0F/16.0F, 11.0F/16.0F);
-				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
-			}
 			else {//short
 				//contents
 				renderer.setOverrideBlockTexture(this.contentsIIcon);
@@ -153,6 +190,14 @@ public class RenderCocktail implements ISimpleBlockRenderingHandler{
 				
 				renderer.setOverrideBlockTexture(this.contentsIIcon);
 				block.setBlockBounds(5.5F/16.0F, 5.0F/16.0F, 5.5F/16.0F, 10.5F/16.0F, 6.0F/16.0F, 10.5F/16.0F);
+				renderer.setRenderBoundsFromBlock(block);
+				renderer.renderStandardBlock(block, x, y, z);
+			}
+			
+			if (c)//snow saronno
+			{
+				renderer.setOverrideBlockTexture(this.contentsIIcon);
+				block.setBlockBounds(5.0F/16.0F, 10.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 16.0F/16.0F, 11.0F/16.0F);
 				renderer.setRenderBoundsFromBlock(block);
 				renderer.renderStandardBlock(block, x, y, z);
 			}

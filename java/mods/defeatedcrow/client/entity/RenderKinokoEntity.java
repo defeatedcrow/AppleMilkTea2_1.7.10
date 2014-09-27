@@ -44,7 +44,7 @@ public class RenderKinokoEntity extends Render
         }
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        GL11.glColor4f(2.0F, 2.0F, 2.0F, 1.0F);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);

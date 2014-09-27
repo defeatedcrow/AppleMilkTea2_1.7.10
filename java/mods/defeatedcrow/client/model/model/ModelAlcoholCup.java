@@ -214,7 +214,7 @@ public class ModelAlcoholCup extends ModelBase
   {
     super.render(entity, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-    if(b0 > 2)
+    if(b0 == 0)
     {
     	icecube.render(f5);
         icecube2.render(f5);
@@ -226,7 +226,7 @@ public class ModelAlcoholCup extends ModelBase
   {
     super.render(entity, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-    if(b0 == 2)
+    if(b0 == 1)
     {
     	inner2.render(f5);
     }
@@ -242,7 +242,7 @@ public class ModelAlcoholCup extends ModelBase
     super.render(entity, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     bottom.render(f5);
-    if (b0 == 2) {
+    if (b0 == 1) {
     	Aleg.render(f5);
     	Aleg2.render(f5);
     	

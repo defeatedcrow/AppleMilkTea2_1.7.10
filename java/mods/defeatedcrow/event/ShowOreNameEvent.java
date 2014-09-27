@@ -8,6 +8,8 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -16,7 +18,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ShowOreNameEvent {
 	
-	private ArrayList<String> ore = new ArrayList<String>();
+	private ArrayList<String> ores = new ArrayList<String>();
+	private ArrayList<String> fluids = new ArrayList<String>();
 	
 	@SubscribeEvent
 	public void advancedTooltip(ItemTooltipEvent event)
@@ -30,8 +33,10 @@ public class ShowOreNameEvent {
 			ItemStack met = player.inventory.armorInventory[3];//頭装備
 			if (met != null && met.getItem() == DCsAppleMilk.monocle)
 			{
-				this.ore = this.getOre(target);
-				event.toolTip.addAll(ore);
+				this.ores = this.getOre(target);
+				this.fluids = this.getFluidName(target);
+				event.toolTip.addAll(ores);
+				event.toolTip.addAll(fluids);
 				flag = true;
 			}
 		}
@@ -53,10 +58,29 @@ public class ShowOreNameEvent {
 		}
 		else
 		{
-			ore.add("unknown");
+			ore.add("No ore dictionary name");
 		}
 		
 		return ore;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	private ArrayList<String> getFluidName(ItemStack item)
+	{
+		ArrayList<String> fluid = new ArrayList<String>();
+		
+		FluidStack f = FluidContainerRegistry.getFluidForFilledItem(item);
+		if (f != null && f.getFluid() != null && f.amount > 0)
+		{
+			fluid.add("Fluid container : " + f.getLocalizedName() + " " + f.amount);
+			fluid.add("Fluid unlocalized name : " + f.getUnlocalizedName());
+		}
+		else
+		{
+			fluid.add("Not fluid container");
+		}
+		
+		return fluid != null ? fluid : null;
 	}
 
 }

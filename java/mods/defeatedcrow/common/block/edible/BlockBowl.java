@@ -27,6 +27,7 @@ import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.handler.Util;
 
+//TODO お味噌汁を増やす！
 public class BlockBowl extends Block{
 	
 	public static final String[] contents = new String[] {"_rice", "_kinoko", "_soup", "_zousui", "_kayaku", "_soi", "_juice", "_BLTsoup"};

@@ -177,13 +177,16 @@ public class EntitySilkyMelon extends Entity
             	{
             		for (int j = -2 ; j < 3 ; j++)
             		{
-            			if (Y - 2 > 0 && Y + 2 < 255 && !this.worldObj.isAirBlock(X + i, Y - j, Z + k))
+            			if (Y - j > 0 && Y - j < 255 && !this.worldObj.isAirBlock(X + i, Y - j, Z + k))
             			{
+            				
             				Block block = this.worldObj.getBlock(X + i, Y - j, Z + k);
             				int meta = this.worldObj.getBlockMetadata(X + i, Y - j, Z + k);
             				if (block != null)
             				{
-            					boolean c = block.hasTileEntity(meta) && block.renderAsNormalBlock();
+            					if (block.getExplosionResistance(this) > 1000 || block.getBlockHardness(worldObj, X + i, Y - j, Z + k) < 0) continue;
+            					
+            					boolean c = block.hasTileEntity(meta) || !block.renderAsNormalBlock();
             					if (c)
             					{
             						this.worldObj.setBlockToAir(X+i, Y-j, Z+k);
@@ -200,6 +203,10 @@ public class EntitySilkyMelon extends Entity
             						this.entityDropItem(drop, 1.0F);
             					}
             				}
+            			}
+            			else
+            			{
+            				continue;
             			}
             		}
             	}

@@ -12,6 +12,7 @@ public class ModelCocktail extends ModelBase
     ModelRenderer lime = new ModelRenderer(this, 32, 5).setTextureSize(64, 32);
     ModelRenderer pine = new ModelRenderer(this, 32, 10).setTextureSize(64, 32);
     ModelRenderer apple = new ModelRenderer(this, 32, 15).setTextureSize(64, 32);
+    ModelRenderer bubble = new ModelRenderer(this, 32, 21).setTextureSize(64, 32);
     
     ModelRenderer bottom = new ModelRenderer(this, 0, 0).setTextureSize(64, 32);
     ModelRenderer Aleg = new ModelRenderer(this, 0, 0).setTextureSize(64, 32);
@@ -137,22 +138,29 @@ public class ModelCocktail extends ModelBase
       
       inner3.addBox(-2F, 0F, -2F, 4, 1, 4);
       inner3.setRotationPoint(0F, 15.5F, 0F);
+      
       inner3.mirror = true;
       setRotation(inner3, 0F, 0F, 0F);
+      
+      bubble.addBox(-3F, 0F, -3F, 6, 1, 6);
+      bubble.setRotationPoint(0F, 15.5F, 0F);
+      bubble.mirror = true;
+      setRotation(bubble, 0F, 0F, 0F);
   }
   
   public void renderInner(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, byte b0)
   {
     super.render(entity, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    byte b = (byte) (b0 & 4);
     
-    if (b0 == 5 || (b0 > 6 && b0 != 10 && b0 != 14 && b0 != 15)) {
+    if (b0 == 0) {
     	inner1.render(f5);
     }
     else
     {
     	inner2.render(f5);
-    	if (b0 == 0 || b0 == 1 || b0 == 6) inner3.render(f5);
+    	if (b == 4) inner3.render(f5);
     }
   }
   
@@ -161,24 +169,27 @@ public class ModelCocktail extends ModelBase
     super.render(entity, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     
-    if (b0 == 0 || b0 == 3 || b0 == 8) lime.render(f5);
-    else if (b0 == 5 || b0 == 7 || b0 == 9 || b0 == 12) lemon.render(f5);
-    else if (b0 == 6) pine.render(f5);
-    else if (b0 == 14) apple.render(f5);
+    if (b0 == 1) lime.render(f5);
+    else if (b0 == 2) lemon.render(f5);
+    else if (b0 == 3) pine.render(f5);
+    else if (b0 == 4) apple.render(f5);
+    else if (b0 == 5) bubble.render(f5);
   }
   
   public void renderGlass(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, byte b0)
   {
     super.render(entity, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    byte b = (byte) (b0 & 3);
+    
     bottom.render(f5);
-    if (b0 == 5 || (b0 > 6 && b0 != 10 && b0 != 14 && b0 != 15)) {
+    if (b == 0) {
     	Bside1.render(f5);
     	Bside2.render(f5);
     	Bside3.render(f5);
     	Bside4.render(f5);
     }
-    else if (b0 == 6 || b0 == 10) {
+    else if (b == 2) {
     	Aleg.render(f5);
     	Aleg2.render(f5);
     	
@@ -227,6 +238,7 @@ public class ModelCocktail extends ModelBase
     this.pine.rotateAngleY = f3 / (180F / (float)Math.PI);
     this.lemon.rotateAngleY = f3 / (180F / (float)Math.PI);
     this.lime.rotateAngleY = f3 / (180F / (float)Math.PI);
+    this.bubble.rotateAngleY = f3 / (180F / (float)Math.PI);
   }
 
 }

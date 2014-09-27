@@ -42,6 +42,10 @@ public class RenderAlcoholCupEntity extends Render
     {
     	ModelAlcoholCup model = this.model;
         byte l = (byte)entity.getItemMetadata();
+        byte type = 0;
+        if (l == 2 || l == 12 || l == 13){
+        	type = 1;
+        }
 
         if (l == 0) {
         	this.bindTexture(atukanTex);
@@ -74,7 +78,7 @@ public class RenderAlcoholCupEntity extends Render
             GL11.glTranslatef((float)par2, (float)par4 + 1.3F, (float)par6);
             GL11.glScalef(1.0F, -1.0F, -1.0F);
             GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
-            model.renderInner((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, l);
+            model.renderInner((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, type);
             
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
             GL11.glDisable(GL11.GL_BLEND);
@@ -91,8 +95,8 @@ public class RenderAlcoholCupEntity extends Render
             GL11.glTranslatef((float)par2, (float)par4 + 1.3F, (float)par6);
             GL11.glScalef(1.0F, -1.0F, -1.0F);
             GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
-            model.renderGlass((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, l);
-            model.renderIce((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, l);
+            model.renderGlass((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, type);
+            model.renderIce((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, type);
             
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
             GL11.glDisable(GL11.GL_BLEND);

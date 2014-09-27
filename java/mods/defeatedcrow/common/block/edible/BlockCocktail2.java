@@ -3,36 +3,40 @@ package mods.defeatedcrow.common.block.edible;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.block.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.*;
-import net.minecraft.item.*;
-import net.minecraft.potion.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.src.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import mods.defeatedcrow.common.*;
-import mods.defeatedcrow.common.tile.TileAlcoholCup;
+import mods.defeatedcrow.common.tile.TileCocktail;
 
-public class BlockAlcoholCup extends BlockContainer{
+public class BlockCocktail2 extends BlockContainer{
 	
-	//shothu, sake, beer, wine, rum, gin, vodka, whiskey, apple, tea, cassis, plum, shothu, brandy, amaretto
-	public static final String[] contents = new String[] {"_water", "_juice", "_tomato", "_juice", "_water", "_water", "_juice", "_lemon", "_tea", "_grape", "_juice", "_water", "_tea", "_tea"};
+	//魔晄割り、パナシェ、スプリッツァー、スクリュードライバー、ゴッドファーザー、ホットエッグノック、アレキサンダー、ズーム、アマレットミルクティー、スノー・サローノ
+	//ロング、ワイン、ワイン、ロング、ロング、ロング、ショート、ショート、ロング、ワイン
+	public static final String[] contents = new String[] {"_soda", "_juice", "_lemon", "_orange", "_tea", "_maple", "_maple", "_juice_milk", "_tea_milk", "_tea"};
 	
 	@SideOnly(Side.CLIENT)
     private IIcon boxTex;
 	@SideOnly(Side.CLIENT)
     private IIcon[] contentsTex;
-	@SideOnly(Side.CLIENT)
-    private IIcon bubbleTex;
 	
 	
-	public BlockAlcoholCup ()
+	public BlockCocktail2 ()
 	{
 		super(Material.glass);
 		this.setStepSound(Block.soundTypeGlass);
@@ -94,7 +98,7 @@ public class BlockAlcoholCup extends BlockContainer{
 	@Override
 	public int getRenderType()
 	{
-		return DCsAppleMilk.modelAlcoholCup;
+		return DCsAppleMilk.modelCocktail;
 	}
 	
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
@@ -124,22 +128,10 @@ public class BlockAlcoholCup extends BlockContainer{
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int par1, int par2)
     { 
-		int i = Math.min(par2, 13);
+		int i = Math.min(par2, 9);
 		if (par1 == 1)
 		{
-			if (par2 == 0 || par2 == 11 || par2 == 4 || par2 == 5)
-			{
-				return Blocks.water.getBlockTextureFromSide(1);
-			}
-			else
-			{
-				return this.contentsTex[par2];
-			}
-			
-		}
-		else if (par1 == 0)
-		{
-			return this.bubbleTex;
+			return this.contentsTex[i];
 		}
 		else
 		{
@@ -152,7 +144,7 @@ public class BlockAlcoholCup extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-		for(int i = 0; i < 14; ++i)
+		for(int i = 0; i < 10; ++i)
 		{
 			par3List.add(new ItemStack(this, 1, i));
 		}
@@ -166,20 +158,19 @@ public class BlockAlcoholCup extends BlockContainer{
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
+	public void registerBlockIcons(IIconRegister par1IIconRegister)
 	{
-		this.boxTex = par1IconRegister.registerIcon("defeatedcrow:blueglass");
-		this.bubbleTex = par1IconRegister.registerIcon("defeatedcrow:contents_sugar");
-		this.contentsTex = new IIcon[14];
-        for (int i = 0; i < 14; ++i)
+		this.boxTex = par1IIconRegister.registerIcon("defeatedcrow:blueglass");
+		this.contentsTex = new IIcon[10];
+        for (int i = 0; i < 10; ++i)
         {
-        	this.contentsTex[i] = par1IconRegister.registerIcon("defeatedcrow:contents" + contents[i]);
+        	this.contentsTex[i] = par1IIconRegister.registerIcon("defeatedcrow:contents" + contents[i]);
         }
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World var1, int var2) {
-		return new TileAlcoholCup();
+	public TileEntity createNewTileEntity(World world, int a) {
+		return new TileCocktail();
 	}
 	
 }

@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.client.model.*;
 import mods.defeatedcrow.client.model.model.ModelCocktail;
-import mods.defeatedcrow.common.block.edible.BlockCocktail;
+import mods.defeatedcrow.common.block.edible.BlockCocktail2;
 import mods.defeatedcrow.common.entity.edible.*;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;
@@ -23,12 +23,12 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 @SideOnly(Side.CLIENT)
-public class RenderCocktailEntity extends Render
+public class RenderCocktail2Entity extends Render
 {
 	private static final ResourceLocation cocktailTex = new ResourceLocation("defeatedcrow:textures/entity/cocktail.png");
     private ModelCocktail model = new ModelCocktail();
 
-    public RenderCocktailEntity()
+    public RenderCocktail2Entity()
     {
         this.shadowSize = 0.3F;
         this.model = new ModelCocktail();
@@ -37,28 +37,20 @@ public class RenderCocktailEntity extends Render
     /**
      * The render method used in RenderBoat that renders the boat model.
      */
-    public void render(PlaceableCocktail entity, double par2, double par4, double par6, float par8, float par9)
+    public void render(PlaceableCocktail2 entity, double par2, double par4, double par6, float par8, float par9)
     {
     	ModelCocktail model = this.model;
         byte l = (byte)entity.getItemMetadata();
+        if (l > 9) l = 9;
         
         byte type = 0;//0:ロング、1:ショート、2:ワイングラス/4:フローズン
-        if (l == 0 || l == 1) type = 5;
-        else if (l < 5 || l == 14 || l == 15) type = 1;
-        else if (l == 10) type = 2;
-        else if (l == 6) type = 6;
+        if (l == 6 || l == 7) type = 1;
+        else if (l == 1 || l == 2 || l == 9) type = 2;
         
-        byte deco = 0;//0:なし、1:レモン、2:ライム、3:パイン、4:アップル
-        if (l == 5 || l == 7 || l == 9 || l == 12) deco = 2;
-        else if (l == 0 || l == 3 || l == 8) deco = 1;
-        else if (l == 6) deco = 3;
-        else if (l == 14) deco = 4;
+        byte deco = 0;//0:なし
+        if (l == 9) deco = 5;
 
-        String innerTexPass = "defeatedcrow:textures/blocks/contents" + BlockCocktail.contents[l] + ".png";
-        if (l == 7)
-        {
-        	innerTexPass = "defeatedcrow:textures/blocks/contents_lemon_gradient2.png";
-        }
+        String innerTexPass = "defeatedcrow:textures/blocks/contents" + BlockCocktail2.contents[l] + ".png";
         ResourceLocation innerTex = new ResourceLocation(innerTexPass);
         this.bindTexture(innerTex);
     	
@@ -67,7 +59,7 @@ public class RenderCocktailEntity extends Render
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.8F);
+        GL11.glColor4f(1.5F, 1.5F, 1.5F, 1.0F);
         GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
@@ -108,18 +100,18 @@ public class RenderCocktailEntity extends Render
         
     }
 
-    protected ResourceLocation getMelonTextures(PlaceableCocktail par1Entity)
+    protected ResourceLocation getMelonTextures(PlaceableCocktail2 par1Entity)
     {
         return cocktailTex;
     }
 
     protected ResourceLocation getEntityTexture(Entity par1Entity)
     {
-        return this.getMelonTextures((PlaceableCocktail)par1Entity);
+        return this.getMelonTextures((PlaceableCocktail2)par1Entity);
     }
 
     public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
     {
-        this.render((PlaceableCocktail)par1Entity, par2, par4, par6, par8, par9);
+        this.render((PlaceableCocktail2)par1Entity, par2, par4, par6, par8, par9);
     }
 }
