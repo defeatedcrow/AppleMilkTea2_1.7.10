@@ -47,7 +47,7 @@ public class EntityItemSteak extends EdibleEntityItemBlock{
 			if (meta < 3 && DCsAppleMilk.suffocation != null)
 			{
 				boolean flag = par3EntityPlayer.isPotionActive(DCsAppleMilk.suffocation)
-						&& (par3EntityPlayer.getActivePotionEffect(DCsAppleMilk.suffocation).getDuration() < 100);
+						&& (par3EntityPlayer.getActivePotionEffect(DCsAppleMilk.suffocation).getDuration() < 150);
 				
 				if (flag){
 					int dur = par3EntityPlayer.getActivePotionEffect(DCsAppleMilk.suffocation).getDuration();
@@ -63,19 +63,8 @@ public class EntityItemSteak extends EdibleEntityItemBlock{
     }
 	
 	@Override
-	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer player, int meta) {
-		
-		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
-		if (meta == 3)
-		{
-			ret.add(new PotionEffect(Potion.field_76443_y.id, 3, 2));
-		}
-		else
-		{
-			ret.add(new PotionEffect(Potion.field_76443_y.id, 3, 3));
-		}
-		
-		return ret;
+	public int[] hungerOnEaten(int meta) {
+		return meta < 3 ? new int[] {12,6} : new int[] {7,3};
 	}
 	
 	@Override

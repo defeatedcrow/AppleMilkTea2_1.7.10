@@ -30,8 +30,8 @@ import net.minecraftforge.common.IShearable;
 
 public class ItemLargeBottle extends Item{
 	
-	private static final String[] contents = new String[] {"shothu", "sake", "beer", "wine", "gin", "rum", "vodka", "whiskey",
-		"brandy"};
+	private static final String[] contents = 
+			new String[] {"shothu", "sake", "beer", "wine", "gin", "rum", "vodka", "whiskey", "brandy"};
 	
 	private boolean repair;
 	private static final Block thisBlockID = DCsAppleMilk.largeBottle;
@@ -228,6 +228,7 @@ public class ItemLargeBottle extends Item{
 	public IIcon getIconFromDamage(int par1)
     {
         int j = (par1 & 15);
+        if (j > 8) j = 8;
         return this.thisTex[j];
     }
 

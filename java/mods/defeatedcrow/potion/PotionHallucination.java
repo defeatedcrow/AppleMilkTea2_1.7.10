@@ -23,7 +23,6 @@ public class PotionHallucination extends PotionImmunityBase
 	/**
 	 * PlayerのonUpdateEventで呼ばれるメソッド。
 	 * Amplifierごとに効果が悪化する。
-	 * リモートワールドにしか発生しないので、罹患者にしか感じられない。
 	 * */
 	@Override
 	public boolean preventPotion(int amp, int id, EntityPlayer player)
@@ -31,27 +30,60 @@ public class PotionHallucination extends PotionImmunityBase
 		boolean flag = false;
 		Random rand = player.worldObj.rand;
 		
-		if (id == DCsConfig.potionIDHallucinations && player.worldObj.isRemote)
+		if (id == DCsConfig.potionIDHallucinations && !player.worldObj.isRemote)
 		{
-			double x = player.prevPosX + rand.nextInt(10) - 5.0D;
-			double y = player.prevPosY;
-			double z = player.prevPosZ + rand.nextInt(10) - 5.0D;
-			int chance = rand.nextInt(20);
+			double x = player.posX + rand.nextInt(7) - 3.0D;
+			double y = player.posY;
+			double z = player.posZ + rand.nextInt(7) - 3.0D;
+			int chance = rand.nextInt(200);
 			float f = rand.nextFloat();
 			
-			if (amp == 0)
+			if (amp >= 0)
 			{
-				if (chance == 0)
+				switch(chance)
 				{
-					player.worldObj.playSoundEffect(x, y, z, "mob.zombie.say", 1.0F, 0.9F + f);
-				}
-				else if (chance == 1)
-				{
-					player.worldObj.playSoundEffect(x, y, z, "mob.creeper.say", 1.0F, 0.9F + f);
-				}
-				else if (chance == 2)
-				{
-					player.worldObj.playSoundEffect(x, y, z, "mob.endermen.stare", 1.0F, 0.9F + f);
+				case 0:
+					player.worldObj.playSoundEffect(x, y, z, "mob.zombie.say", 1.0F, 0.5F + f);
+					flag = true;
+					break;
+				case 1:
+					player.worldObj.playSoundEffect(x, y, z, "mob.creeper.say", 1.0F, 0.5F + f);
+					flag = true;
+					break;
+				case 2:
+					player.worldObj.playSoundEffect(x, y, z, "mob.endermen.stare", 1.0F, 0.5F + f);
+					flag = true;
+					break;
+				case 3:
+					player.worldObj.playSoundEffect(x, y, z, "creeper.primed", 1.0F, 0.5F + f);
+					flag = true;
+					break;
+				case 4:
+					player.worldObj.playSoundEffect(x, y, z, "mob.skeleton.say", 1.0F, 0.5F + f);
+					flag = true;
+					break;
+				case 5:
+					player.worldObj.playSoundEffect(x, y, z, "mob.silverfish.say", 1.0F, 0.9F + f);
+					flag = true;
+					break;
+				case 6:
+					player.worldObj.playSoundEffect(x, y, z, "mob.spider.say", 1.0F, 0.5F + f);
+					flag = true;
+					break;
+				case 7:
+					player.worldObj.playSoundEffect(x, y, z, "mob.endermen.idle", 1.0F, 0.5F + f);
+					flag = true;
+					break;
+				case 8:
+					player.worldObj.playSoundEffect(x, y, z, "mob.blaze.breathe", 1.0F, 0.5F + f);
+					flag = true;
+					break;
+				case 9:
+					player.worldObj.playSoundEffect(x, y, z, "mob.ghast.moan", 1.0F, 0.5F + f);
+					flag = true;
+					break;
+				default:
+					break;
 				}
 			}
 		}

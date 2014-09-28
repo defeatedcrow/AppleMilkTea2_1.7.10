@@ -51,6 +51,11 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock{
 		
 		return new ItemStack(DCsAppleMilk.emptyCup, 1, 0);
 	}
+	
+	@Override
+	public int[] hungerOnEaten(int meta) {
+		return new int[] {0,0};
+	}
 
 	@Override
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer player, int meta) {

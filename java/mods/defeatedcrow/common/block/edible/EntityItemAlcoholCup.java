@@ -61,6 +61,11 @@ public class EntityItemAlcoholCup extends EdibleEntityItemBlock{
 	}
 	
 	@Override
+	public int[] hungerOnEaten(int meta) {
+		return new int[] {0,0};
+	}
+	
+	@Override
 	public ItemStack getReturnContainer(int meta) {
 		
 		return new ItemStack(DCsAppleMilk.emptyCup, 1, 0);
@@ -90,7 +95,7 @@ public class EntityItemAlcoholCup extends EdibleEntityItemBlock{
 		{
 			potion = new PotionEffect(Potion.resistance.id, 2400, 1);
 		}
-		else if (meta == 4 || meta == 12)//gin,brandy
+		else if (meta == 4 || meta == 13)//gin
 		{
 			potion = new PotionEffect(Potion.damageBoost.id, 2400, 0);
 		}
@@ -114,9 +119,13 @@ public class EntityItemAlcoholCup extends EdibleEntityItemBlock{
 		{
 			potion = new PotionEffect(Potion.fireResistance.id, 2400, 0);
 		}
-		else if (meta == 10 || meta == 13)//plum,amaretto
+		else if (meta == 12)//brandy
 		{
-			potion = new PotionEffect(Potion.resistance.id, 2400, 0);
+			potion = new PotionEffect(Potion.regeneration.id, 1200, 1);
+		}
+		else if (meta == 10 && DCsAppleMilk.prvSuffocation != null)//plum
+		{
+			potion = new PotionEffect(DCsAppleMilk.prvSuffocation.id, 2400, 0);
 		}
 		else
 		{

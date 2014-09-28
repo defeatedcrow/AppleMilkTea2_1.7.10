@@ -890,6 +890,20 @@ public class DCsAppleMilk{
 	        }
 	    }
 	    
+	    if (Loader.isModLoaded("EnchantChanger"))
+	    {
+	    	AMTLogger.loadingModInfo("EnchantChanger");
+	    	try
+	        {
+	          (new LoadModHandler()).loadEnchantChanger();
+	          AMTLogger.loadedModInfo("EnchantChanger");
+	        }
+	        catch (Exception e) {
+	        	AMTLogger.failLoadingModInfo("EnchantChanger");
+	          e.printStackTrace(System.err);
+	        }
+	    }
+	    
 	    //Checking another mods
 	    //他のMODのブロック・アイテム登録クラスに先行しないよう、postInitメソッドでロードする
 	    //当MODで勝手に追加する鉱石辞書も含めるように、読み込む位置を他MODのロード処理より後にした

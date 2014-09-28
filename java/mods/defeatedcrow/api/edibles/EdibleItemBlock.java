@@ -3,6 +3,8 @@ package mods.defeatedcrow.api.edibles;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import squeek.applecore.api.food.ItemFoodProxy;
+import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -36,15 +38,27 @@ public class EdibleItemBlock extends ItemBlock implements IEdibleItem {
         }
 		this.returnItemStack(par3EntityPlayer, meta);
 		
-		if (!par2World.isRemote && this.effectOnEaten(par3EntityPlayer, meta) != null)
+		if (!par2World.isRemote)
 		{
-			ArrayList<PotionEffect> potion = this.effectOnEaten(par3EntityPlayer, meta);
-			for (PotionEffect ret : potion)
+			if (this.effectOnEaten(par3EntityPlayer, meta) != null)
 			{
-				par3EntityPlayer.addPotionEffect(ret);
+				ArrayList<PotionEffect> potion = this.effectOnEaten(par3EntityPlayer, meta);
+				if (potion != null && !potion.isEmpty())
+				{
+					for (PotionEffect ret : potion)
+					{
+						par3EntityPlayer.addPotionEffect(ret);
+					}
+				}
+			}
+			
+			if (this.hungerOnEaten(meta) != null)
+			{
+				int[] h = this.hungerOnEaten(meta);
+				par3EntityPlayer.getFoodStats().addStats(h[0], h[1]);
 			}
 		}
-
+		
         return par1ItemStack;
     }
 	
@@ -110,6 +124,11 @@ public class EdibleItemBlock extends ItemBlock implements IEdibleItem {
 		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
 		ret.add(new PotionEffect(Potion.field_76443_y.id, 2, 2));
 		return ret;
+	}
+	
+	@Override
+	public int[] hungerOnEaten(int meta) {
+		return new int[] {4,2};
 	}
 
 }

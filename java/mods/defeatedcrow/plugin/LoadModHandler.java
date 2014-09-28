@@ -467,7 +467,7 @@ public class LoadModHandler {
 				}
 				OreDictionary.registerOre("cropRice", registerItem2);
 			}
-			Item item = Util.getModItem("Wa", "tamahagane");
+			Item item = Util.getModItem("Wa", "玉鋼");
 			if (item != null)
 			{
 				ItemStack hagane = new ItemStack(item, 1, 0);
@@ -484,6 +484,37 @@ public class LoadModHandler {
 			}
 		}
         catch (Exception e) {
+        	AMTLogger.debugInfo("Failed to register ModItems");
+          e.printStackTrace(System.err);
+        }
+	}
+	
+	public void loadEnchantChanger()//EnchantChanger様の魔晄バケツ
+	{
+		try
+		{
+			Item item = Util.getModItem("EnchantChanger", "bucket_lifestream");
+			if (item != null)
+			{
+				ItemStack registerItem = new ItemStack(item, 1, 0);
+				if (this.registerModItems("bucketMako", registerItem)) {
+					AMTLogger.debugInfo("Succeeded to get bucket_lifestream");
+				}
+				
+				if (registerItem != null)
+				{
+					GameRegistry.addRecipe(
+							 new ShapelessOreRecipe(
+				    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 0),
+				    		  new Object[]{
+				    			  "bottleShothu",
+				    			  new ItemStack(DCsAppleMilk.teaCup2, 1, 12),
+				    			  registerItem
+								 }));
+				}
+			}
+		}
+		catch (Exception e) {
         	AMTLogger.debugInfo("Failed to register ModItems");
           e.printStackTrace(System.err);
         }

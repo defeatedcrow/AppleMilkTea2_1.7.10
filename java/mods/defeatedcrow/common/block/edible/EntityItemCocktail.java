@@ -45,6 +45,11 @@ public class EntityItemCocktail extends EdibleEntityItemBlock{
 	}
 	
 	@Override
+	public int[] hungerOnEaten(int meta) {
+		return new int[] {0,0};
+	}
+	
+	@Override
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer par1EntityPlayer, int meta)
 	{
 		PotionEffect potion = new PotionEffect(Potion.digSpeed.id, 2400, 2);

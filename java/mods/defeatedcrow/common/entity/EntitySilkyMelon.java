@@ -162,14 +162,13 @@ public class EntitySilkyMelon extends Entity
     protected void explode()
     {
         float f = 3.0F;
-        boolean flag = this.isWet();
         this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, f, false);
         
         int X = MathHelper.floor_double(this.posX);
         int Y = MathHelper.floor_double(this.posY);
         int Z = MathHelper.floor_double(this.posZ);
         
-        if (!flag && !DCsConfig.melonBreakBlock)
+        if (!DCsConfig.melonBreakBlock)
         {
         	for (int i = -2 ; i < 3 ; i++)
         	{
@@ -184,23 +183,29 @@ public class EntitySilkyMelon extends Entity
             				int meta = this.worldObj.getBlockMetadata(X + i, Y - j, Z + k);
             				if (block != null)
             				{
-            					if (block.getExplosionResistance(this) > 1000 || block.getBlockHardness(worldObj, X + i, Y - j, Z + k) < 0) continue;
+            					boolean canBreak = true;
+            					if (block.getExplosionResistance(this) > 1000 || block.getBlockHardness(worldObj, X + i, Y - j, Z + k) < 0) canBreak = false;
+            					if (DCsConfig.fearMelon) canBreak = true;
             					
             					boolean c = block.hasTileEntity(meta) || !block.renderAsNormalBlock();
-            					if (c)
+            					
+            					if (canBreak)
             					{
-            						this.worldObj.setBlockToAir(X+i, Y-j, Z+k);
-            					}
-            					else if (block.getMaterial() == Material.water || block.getMaterial() == Material.lava
-            							|| block instanceof BlockFluidClassic)
-            					{
-            						this.worldObj.setBlockToAir(X+i, Y-j, Z+k);
-            					}
-            					else
-            					{
-            						ItemStack drop = new ItemStack(block, 1, meta);
-            						this.worldObj.setBlockToAir(X+i, Y-j, Z+k);
-            						this.entityDropItem(drop, 1.0F);
+            						if (c)
+                					{
+                						this.worldObj.setBlockToAir(X+i, Y-j, Z+k);
+                					}
+                					else if (block.getMaterial() == Material.water || block.getMaterial() == Material.lava
+                							|| block instanceof BlockFluidClassic)
+                					{
+                						this.worldObj.setBlockToAir(X+i, Y-j, Z+k);
+                					}
+                					else
+                					{
+                						ItemStack drop = new ItemStack(block, 1, meta);
+                						this.worldObj.setBlockToAir(X+i, Y-j, Z+k);
+                						this.entityDropItem(drop, 1.0F);
+                					}
             					}
             				}
             			}

@@ -2133,16 +2133,16 @@ public class DCsRecipeRegister {
 		    			  alcohol[i],
 		    			  "cropPlum"
 						 }));
-			
-			GameRegistry.addRecipe(
-					 new ShapelessOreRecipe(
-		    		  new ItemStack(DCsAppleMilk.itemCordial, 1, 16),
-		    		  new Object[]{
-		    			  "dustSugar",
-		    			  alcohol[i],
-		    			  "apricotSeed"
-						 }));
 		}
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.itemCordial, 1, 16),
+	    		  new Object[]{
+	    			  "dustSugar",
+	    			  "bottleBrandy",
+	    			  "apricotSeed"
+					 }));
 		
 		//酒造関係の素材もここ
 		GameRegistry.addRecipe(

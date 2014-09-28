@@ -456,6 +456,8 @@ DCs.potion.absorptionEXP=EXP Absorption
 DCs.potion.absorptionHeal=Damage Absorption
 DCs.potion.suffocation=Suffocation
 DCs.potion.protectionSuffocation=Suffocation Resistance
+DCs.potion.hallucination=Hallucination
+DCs.potion.confinement=Confinement
 
 achievement.getTeaLeaves=Tea trees grow in 88 nights
 achievement.getTeaLeaves.desc=Get leaves from tea trees.

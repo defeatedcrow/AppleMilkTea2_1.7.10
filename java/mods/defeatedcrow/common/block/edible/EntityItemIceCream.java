@@ -42,6 +42,11 @@ private static final String[] type = new String[] {"_milk", "_tea", "_greentea",
 	}
 	
 	@Override
+	public int[] hungerOnEaten(int meta) {
+		return new int[] {0,0};
+	}
+	
+	@Override
 	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (!par2World.isRemote)

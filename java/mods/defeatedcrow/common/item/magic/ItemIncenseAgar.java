@@ -2,6 +2,7 @@ package mods.defeatedcrow.common.item.magic;
 
 import mods.defeatedcrow.api.charm.EffectType;
 import mods.defeatedcrow.api.charm.IIncenseEffect;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -18,6 +19,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -62,17 +64,12 @@ public class ItemIncenseAgar extends Item implements IIncenseEffect{
 			{
 				EntityCreature living = (EntityCreature) entity;
 				
-				if (living.getEntityToAttack() != null)//攻撃対象を持っている
+				if (DCsAppleMilk.confinement != null)//ポーション効果が追加されているか
 				{
-					living.setTarget(null);//攻撃対象を消してしまう
+					living.addPotionEffect(new PotionEffect(DCsAppleMilk.confinement.id, 200, 0));
 				}
 				
-				/*注意点として、ターゲットを消されたEntityCreatureは、次のupdate処理時に対象プレイヤーを探す。
-				 * 従って、プレイヤーを容易に発見できる状況では、これを使用しても直ぐ見つかってしまう。
-				 * 
-				 * 壁向こうや窓の外のモブの戦闘態勢を解除するとか、
-				 * 村に来たゾンビを一時的に追い払うとか、
-				 * ちょっと使い方には制限があると思う。*/
+				/*動きを止めてしまう効果に変更。*/
 				
 			}
 			

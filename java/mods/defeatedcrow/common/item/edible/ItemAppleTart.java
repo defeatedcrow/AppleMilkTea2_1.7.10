@@ -35,6 +35,11 @@ public class ItemAppleTart extends EdibleEntityItem{
 		this.setHasSubtypes(true);
 	}
 	
+	@Override
+	public int[] hungerOnEaten(int meta) {
+		return new int[] {8,5};
+	}
+	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
@@ -80,14 +85,6 @@ public class ItemAppleTart extends EdibleEntityItem{
 //			this.reduceMoisture(-1, 0.0F, par3EntityPlayer);
 //		}
 		return super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
-	}
-
-	@Override
-	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer player, int meta) {
-		
-		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
-		ret.add(new PotionEffect(Potion.field_76443_y.id, 3, 2));
-		return ret;
 	}
 
 	@Override

@@ -3,6 +3,11 @@ package mods.defeatedcrow.common.item.edible;
 import java.util.ArrayList;
 import java.util.List;
 
+import squeek.applecore.api.food.FoodValues;
+import squeek.applecore.api.food.IEdible;
+import squeek.applecore.api.food.ItemFoodProxy;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -19,7 +24,8 @@ import mods.defeatedcrow.client.entity.IEdibleRenderHandler;
 import mods.defeatedcrow.common.DCsConfig;
 import mods.defeatedcrow.common.entity.edible.PlaceableFoods;
 
-public abstract class EdibleEntityItem extends Item implements IEdibleItem{
+@Optional.Interface(iface = "squeek.applecore.api.food.IEdible", modid = "AppleCore")
+public abstract class EdibleEntityItem extends Item implements IEdibleItem, IEdible{
 	
 	public boolean allowChopstacks = true;
 	public boolean showTooltip = true;
@@ -29,6 +35,14 @@ public abstract class EdibleEntityItem extends Item implements IEdibleItem{
 		this.allowChopstacks = chopsticks;
 		this.showTooltip = tip;
 	}
+	
+	@Optional.Method(modid = "AppleCore")
+    @Override
+    public FoodValues getFoodValues(ItemStack itemStack)
+    {
+		int[] h = this.hungerOnEaten(itemStack.getItemDamage());
+        return new FoodValues(h[0], h[1]*0.1F);
+    }
 	
 	/**
 	 * 食べる動作
@@ -43,12 +57,31 @@ public abstract class EdibleEntityItem extends Item implements IEdibleItem{
         }
 		this.returnItemStack(par3EntityPlayer, meta);
 		
-		if (!par2World.isRemote && this.effectOnEaten(par3EntityPlayer, meta) != null)
+		if (!par2World.isRemote)
 		{
-			ArrayList<PotionEffect> potion = this.effectOnEaten(par3EntityPlayer, meta);
-			for (PotionEffect ret : potion)
+			if (this.effectOnEaten(par3EntityPlayer, meta) != null)
 			{
-				par3EntityPlayer.addPotionEffect(ret);
+				ArrayList<PotionEffect> potion = this.effectOnEaten(par3EntityPlayer, meta);
+				if (potion != null && !potion.isEmpty())
+				{
+					for (PotionEffect ret : potion)
+					{
+						par3EntityPlayer.addPotionEffect(ret);
+					}
+				}
+			}
+			
+			if (this.hungerOnEaten(meta) != null)
+			{
+				int[] h = this.hungerOnEaten(meta);
+				if (Loader.isModLoaded("AppleCore"))
+		        {
+		            par3EntityPlayer.getFoodStats().func_151686_a(new ItemFoodProxy(this), par1ItemStack);
+		        }
+				else
+				{
+					par3EntityPlayer.getFoodStats().addStats(h[0], h[1]*0.1F);
+				}
 			}
 		}
 
@@ -115,8 +148,12 @@ public abstract class EdibleEntityItem extends Item implements IEdibleItem{
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer player, int meta) {
 		
 		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
-		ret.add(new PotionEffect(Potion.field_76443_y.id, 2, 2));
 		return ret;
+	}
+	
+	@Override
+	public int[] hungerOnEaten(int meta) {
+		return new int[] {4,2};
 	}
 	
 	/*ここからEntity/Blockの設置メソッド*/

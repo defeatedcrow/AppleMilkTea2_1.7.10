@@ -483,10 +483,11 @@ public abstract class PlaceableFoods extends Entity{
     		ItemStack has = this.returnItem();
     		
     		//ふつうはEdibleEntityItemBlockのはず
-    		if (has != null && has.getItem() instanceof IEdibleItem && this.allowChops)
+    		if (has != null && has.getItem() instanceof IEdibleItem)
             {
     			boolean flag = false;
     			IEdibleItem edible = (IEdibleItem) has.getItem();
+    			
     			ArrayList<PotionEffect> effect = edible.effectOnEaten(par1EntityPlayer, has.getItemDamage());
     			if (effect != null && !effect.isEmpty())
     			{
@@ -494,6 +495,13 @@ public abstract class PlaceableFoods extends Entity{
     				{
     					par1EntityPlayer.addPotionEffect(p);
     				}
+    				flag = true;
+    			}
+    			
+    			int[] hunger = edible.hungerOnEaten(has.getItemDamage());
+    			if (hunger != null && hunger.length >= 2)
+    			{
+    				par1EntityPlayer.getFoodStats().addStats(hunger[0], hunger[1]*0.1F);
     				flag = true;
     			}
     			

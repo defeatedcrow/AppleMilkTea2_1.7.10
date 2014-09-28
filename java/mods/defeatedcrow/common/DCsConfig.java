@@ -67,6 +67,7 @@ public class DCsConfig {
 	public static boolean allowInfinityWipes = true;
 	public static boolean bonemealClam = true;
 	public static boolean allowEdibleEntities = true;
+	public static boolean fearMelon = false;
 	
 	private final String BR = System.getProperty("line.separator");
 	
@@ -134,6 +135,8 @@ public class DCsConfig {
 					"Set stack seize of filled cups. Please choose from the 1/3/8.");
 			Property melonBreak = cfg.get("entity", "Melon not Break Block", melonBreakBlock,
 					"Disable destruction by explosion of melon.");
+			Property melonFear = cfg.get("entity", "Silky Melon of Fear", fearMelon,
+					"Silky Melon can destroy all blocks.");
 			Property safetyChoco = cfg.get("setting", "Safety Chocolate Gift", safetyChocolate,
 					"Disable explosion of the heartfelt chocolate gift.");
 			Property infinityWipes = cfg.get("setting", "Allow Infinity Wipes", allowInfinityWipes,
@@ -206,6 +209,7 @@ public class DCsConfig {
 			
 			entityIdMelon = entityMelon.getInt();
 			canExplodeMelon = explodeMelon.getBoolean(false);
+			fearMelon = melonFear.getBoolean(false);
 			
 			entityIdIce = entityIce.getInt();
 			entityIdCup = entityCup.getInt();

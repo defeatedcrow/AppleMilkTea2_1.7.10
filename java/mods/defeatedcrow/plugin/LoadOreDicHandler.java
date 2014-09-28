@@ -49,6 +49,7 @@ public class LoadOreDicHandler {
 		listBanana.addAll(OreDictionary.getOres("cropBanana"));
 		listRice.addAll(OreDictionary.getOres("cropRice"));
 		listHoney.addAll(OreDictionary.getOres("dropHoney"));
+		listSoy.addAll(OreDictionary.getOres("soybeans"));
 		
 		/**
 	     * 当MOD用の管理Mapへの登録。
@@ -63,6 +64,7 @@ public class LoadOreDicHandler {
 		if (listBanana != null) LoadModHandler.registerArray("banana", listBanana);
 		if (listRice != null) LoadModHandler.registerArray("rice", listRice);
 		if (listHoney != null) LoadModHandler.registerArray("honey", listHoney);
+		if (listSoy != null) LoadModHandler.registerArray("soy", listSoy);
 		
 		
 		/**
@@ -71,7 +73,6 @@ public class LoadOreDicHandler {
 		for (ItemStack soy : listSoy)
 		{
 			if (Util.notEmptyItem(soy)) {
-				LoadModHandler.registerModItems("soybean", soy);
 				
 				RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
 						new FluidStack(DCsAppleMilk.vegitableOil, 25), soy);

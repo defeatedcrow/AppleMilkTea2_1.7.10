@@ -61,6 +61,11 @@ public class EntityItemCocktail2 extends EdibleEntityItemBlock{
 	}
 	
 	@Override
+	public int[] hungerOnEaten(int meta) {
+		return new int[] {0,0};
+	}
+	
+	@Override
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer par1EntityPlayer, int meta)
 	{
 		PotionEffect potion = new PotionEffect(Potion.digSpeed.id, 2400, 2);
@@ -73,12 +78,12 @@ public class EntityItemCocktail2 extends EdibleEntityItemBlock{
 		if(meta == 0 && DCsAppleMilk.hallucinations != null)//mako
 		{
 			if (par1EntityPlayer.isPotionActive(DCsAppleMilk.hallucinations.id)) {
-				tick = par1EntityPlayer.getActivePotionEffect(DCsAppleMilk.hallucinations).getDuration() + 2400;
-				potion = new PotionEffect(DCsAppleMilk.hallucinations.id, tick, 1);
+				tick = par1EntityPlayer.getActivePotionEffect(DCsAppleMilk.hallucinations).getDuration() + 1200;
+				potion = new PotionEffect(DCsAppleMilk.hallucinations.id, tick, 0);
 				flag = true;
 			}
 			else {
-				potion = new PotionEffect(Potion.invisibility.id, 2400, 1);
+				potion = new PotionEffect(DCsAppleMilk.hallucinations.id, 1200, 0);
 			}
 		}
 		else if(meta == 1)//panache
@@ -132,7 +137,7 @@ public class EntityItemCocktail2 extends EdibleEntityItemBlock{
 		else if (meta == 5)//egg nog
 		{
 			potion = null;
-			flag = true;
+			flag = false;
 		}
 		else if (meta == 6)//alexandra
 		{
@@ -155,7 +160,7 @@ public class EntityItemCocktail2 extends EdibleEntityItemBlock{
 			if (par1EntityPlayer.isPotionActive(DCsConfig.potionIDImmunity)) {
 				tick = par1EntityPlayer.getActivePotionEffect(DCsAppleMilk.Immunization).getDuration() + 12000;
 				potion = new PotionEffect(DCsConfig.potionIDImmunity, tick, 1);
-				flag = true;
+				flag = false;
 			}
 			else {
 				potion = new PotionEffect(DCsConfig.potionIDImmunity, 12000, 1);

@@ -75,6 +75,11 @@ public class ItemIceBlock extends EdibleItemBlock{
 	}
 	
 	@Override
+	public int[] hungerOnEaten(int meta) {
+		return new int[] {0,0};
+	}
+	
+	@Override
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer player, int meta) {
 		
 		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();

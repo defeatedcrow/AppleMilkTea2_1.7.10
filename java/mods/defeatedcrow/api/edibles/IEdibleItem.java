@@ -18,5 +18,10 @@ public interface IEdibleItem {
      * 飲食時のポーション効果
      */
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer player, int meta);
+	
+	/**
+     * 飲食時の空腹度回復
+     */
+	public int[] hungerOnEaten(int meta);
 
 }

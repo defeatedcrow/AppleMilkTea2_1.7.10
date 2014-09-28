@@ -32,6 +32,10 @@ public class ItemAppleSandwich extends EdibleEntityItem{
 		this.setMaxStackSize(64);
 	}
 	
+	@Override
+	public int[] hungerOnEaten(int meta) {
+		return new int[] {4,2};
+	}
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)

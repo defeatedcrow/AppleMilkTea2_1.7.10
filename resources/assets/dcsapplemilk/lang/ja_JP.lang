@@ -458,6 +458,8 @@ DCs.potion.absorptionEXP=EXP吸収
 DCs.potion.absorptionHeal=ダメージ吸収
 DCs.potion.suffocation=窒息
 DCs.potion.protectionSuffocation=窒息耐性
+DCs.potion.hallucination=幻覚
+DCs.potion.confinement=拘束
 
 achievement.getTeaLeaves=八十八夜
 achievement.getTeaLeaves.desc=茶の木から茶葉を摘む

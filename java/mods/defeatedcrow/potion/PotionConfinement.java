@@ -34,6 +34,7 @@ public class PotionConfinement extends PotionLivingBase
 		{
 			living.motionX = 0.0F;
 			living.motionZ = 0.0F;
+			living.moveForward = 0.0F;
 			flag = true;
 		}
 		
