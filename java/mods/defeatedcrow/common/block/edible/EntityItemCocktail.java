@@ -13,7 +13,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class EntityItemCocktail extends EdibleEntityItemBlock{
+public class EntityItemCocktail extends EdibleEntityItemBlock2{
 	
 	private static final String[] type = new String[] {"_frozen_daiquiri", "_frozen_sake", "_saketini", "_gimlet", "_blackrose", "_redeye", "_pinacolada", "_americanlemonade",
 		"_moscowmule", "_mintjulep", "_kir", "_cassismilk", "_bloodymary", "_cassistea", "_doubleapple", "_plumsoymilk"};

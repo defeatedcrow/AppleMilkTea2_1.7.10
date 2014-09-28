@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 
-public class ItemAppleSandwich extends EdibleEntityItem{
+public class ItemAppleSandwich extends EdibleEntityItem2{
 	
 	@SideOnly(Side.CLIENT)
     private IIcon iconSandwichType[];

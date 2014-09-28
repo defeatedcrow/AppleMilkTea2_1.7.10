@@ -27,7 +27,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
 
-public class EntityItemCocktail2 extends EdibleEntityItemBlock{
+public class EntityItemCocktail2 extends EdibleEntityItemBlock2{
 	
 	private static final String[] type = new String[] {"_mako_tyuhai", "_panache", "_spritzer", "_screw_driver", "_god_farther", "_tom_and_jerry", "_alexander", "_zoom",
 		"_amaretto_milktea", "_snow_saronno"};

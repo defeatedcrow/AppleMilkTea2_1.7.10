@@ -90,7 +90,7 @@ public class EdibleItem extends Item implements IEdibleItem {
     /**
      * 空容器の返却を行うメソッド。
      */
-	private boolean returnItemStack(EntityPlayer player, int meta) {
+	protected boolean returnItemStack(EntityPlayer player, int meta) {
 		ItemStack ret = this.getReturnContainer(meta);
 		if (ret != null) {
 			if (!player.inventory.addItemStackToInventory(ret))

@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityItemAlcoholCup extends EdibleEntityItemBlock{
+public class EntityItemAlcoholCup extends EdibleEntityItemBlock2{
 	
 	private static final String[] type = new String[] {"_sake", "_beer", "_wine", "_rum", "_gin", "_vodka", "_whiskey",
 		"_apple", "_tea", "_cassis", "_plum", "_shothu", "_brandy", "_amaretto"};

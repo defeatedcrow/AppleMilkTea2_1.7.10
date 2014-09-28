@@ -22,7 +22,7 @@ import mods.defeatedcrow.plugin.LoadSSectorPlugin;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemAppleTart extends EdibleEntityItem{
+public class ItemAppleTart extends EdibleEntityItem2{
 	
 	@SideOnly(Side.CLIENT)
     private IIcon iconType[];

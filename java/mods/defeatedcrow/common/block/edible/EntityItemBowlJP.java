@@ -9,7 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityItemBowlJP extends EdibleEntityItemBlock{
+public class EntityItemBowlJP extends EdibleEntityItemBlock2{
 	
 	public static final String[] type = new String[] {"_rice", "_mushroom", "_stew", "_zousui", "_kayaku", "_soi", "_pumpkin", "_BLTsoup"};
 	

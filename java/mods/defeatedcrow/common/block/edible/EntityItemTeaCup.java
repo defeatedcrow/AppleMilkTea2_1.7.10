@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityItemTeaCup extends EdibleEntityItemBlock{
+public class EntityItemTeaCup extends EdibleEntityItemBlock2{
 	
 	public static final String[] teaType = new String[] {"_empty", "_milk", "_tea", "_tea_milk", "_greentea", "_greentea_milk", "_cocoa", "_cocoa_milk", "_juice", "_fruitshakes", "_lemon", "_lemon_milk", "_coffee", "_coffee_milk"};
 	

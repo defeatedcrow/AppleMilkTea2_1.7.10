@@ -3,8 +3,6 @@ package mods.defeatedcrow.api.edibles;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import squeek.applecore.api.food.ItemFoodProxy;
-import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -92,7 +90,7 @@ public class EdibleItemBlock extends ItemBlock implements IEdibleItem {
     /**
      * 空容器の返却を行うメソッド。
      */
-	private boolean returnItemStack(EntityPlayer player, int meta) {
+	protected boolean returnItemStack(EntityPlayer player, int meta) {
 		ItemStack ret = this.getReturnContainer(meta);
 		if (ret != null) {
 			if (!player.inventory.addItemStackToInventory(ret))

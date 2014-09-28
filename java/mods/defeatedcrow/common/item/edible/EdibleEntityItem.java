@@ -3,9 +3,6 @@ package mods.defeatedcrow.common.item.edible;
 import java.util.ArrayList;
 import java.util.List;
 
-import squeek.applecore.api.food.FoodValues;
-import squeek.applecore.api.food.IEdible;
-import squeek.applecore.api.food.ItemFoodProxy;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
@@ -24,8 +21,7 @@ import mods.defeatedcrow.client.entity.IEdibleRenderHandler;
 import mods.defeatedcrow.common.DCsConfig;
 import mods.defeatedcrow.common.entity.edible.PlaceableFoods;
 
-@Optional.Interface(iface = "squeek.applecore.api.food.IEdible", modid = "AppleCore")
-public abstract class EdibleEntityItem extends Item implements IEdibleItem, IEdible{
+public class EdibleEntityItem extends Item implements IEdibleItem{
 	
 	public boolean allowChopstacks = true;
 	public boolean showTooltip = true;
@@ -36,17 +32,7 @@ public abstract class EdibleEntityItem extends Item implements IEdibleItem, IEdi
 		this.showTooltip = tip;
 	}
 	
-	@Optional.Method(modid = "AppleCore")
-    @Override
-    public FoodValues getFoodValues(ItemStack itemStack)
-    {
-		int[] h = this.hungerOnEaten(itemStack.getItemDamage());
-        return new FoodValues(h[0], h[1]*0.1F);
-    }
-	
-	/**
-	 * 食べる動作
-	 */
+	@Override
 	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
 		int meta = par1ItemStack.getItemDamage();
@@ -74,14 +60,7 @@ public abstract class EdibleEntityItem extends Item implements IEdibleItem, IEdi
 			if (this.hungerOnEaten(meta) != null)
 			{
 				int[] h = this.hungerOnEaten(meta);
-				if (Loader.isModLoaded("AppleCore"))
-		        {
-		            par3EntityPlayer.getFoodStats().func_151686_a(new ItemFoodProxy(this), par1ItemStack);
-		        }
-				else
-				{
-					par3EntityPlayer.getFoodStats().addStats(h[0], h[1]*0.1F);
-				}
+				par3EntityPlayer.getFoodStats().addStats(h[0], h[1]*0.1F);
 			}
 		}
 
@@ -118,7 +97,7 @@ public abstract class EdibleEntityItem extends Item implements IEdibleItem, IEdi
     /**
      * 空容器の返却を行うメソッド。
      */
-	private boolean returnItemStack(EntityPlayer player, int meta) {
+	protected boolean returnItemStack(EntityPlayer player, int meta) {
 		ItemStack ret = this.getReturnContainer(meta);
 		if (ret != null) {
 			if (!player.inventory.addItemStackToInventory(ret))
@@ -235,7 +214,10 @@ public abstract class EdibleEntityItem extends Item implements IEdibleItem, IEdi
     }
 	
 	//各Entityクラスで中身をオーバーライドすること。
-	protected abstract boolean spownEntityFoods(World world, EntityPlayer player, ItemStack item, double x, double y, double z);
+	protected boolean spownEntityFoods(World world, EntityPlayer player, ItemStack item, double x, double y, double z)
+	{
+		return false;
+	}
 
     @SideOnly(Side.CLIENT)
     public boolean func_150936_a(World world, int x, int y, int z, int side, EntityPlayer player, ItemStack item)

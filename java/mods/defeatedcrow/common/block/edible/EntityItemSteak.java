@@ -15,7 +15,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class EntityItemSteak extends EdibleEntityItemBlock{
+public class EntityItemSteak extends EdibleEntityItemBlock2{
 	
 	private static final String[] type = new String[] {"_beef", "_pork", "_chicken", "_clam"};
 	

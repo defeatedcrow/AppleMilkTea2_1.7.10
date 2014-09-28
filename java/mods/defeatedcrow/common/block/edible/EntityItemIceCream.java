@@ -22,7 +22,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityItemIceCream extends EdibleEntityItemBlock{
+public class EntityItemIceCream extends EdibleEntityItemBlock2{
 
 private static final String[] type = new String[] {"_milk", "_tea", "_greentea", "_cocoa", "_coffee", "_fruit", "_lemon", "_lime", "_tomato", "_berry", "_grape", "_mint", "_orange", "_soda"};
 	
