@@ -200,6 +200,16 @@ public class RegisterMakerRecipe {
 				new ItemStack(DCsAppleMilk.bowlBlock, 1, 7),
 				new ItemStack(DCsAppleMilk.bowlJP, 1, 7),
 				"BLTsoup", "BLT Soup");
+		
+		RecipeRegisterManager.panRecipe.register(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9),
+				new ItemStack(DCsAppleMilk.bowlBlock, 1, 8),
+				new ItemStack(DCsAppleMilk.bowlJP, 1, 8),
+				"misosoup", "Miso Soup");
+		
+		RecipeRegisterManager.panRecipe.register(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10),
+				new ItemStack(DCsAppleMilk.bowlBlock, 1, 9),
+				new ItemStack(DCsAppleMilk.bowlJP, 1, 9),
+				"clamsoup", "Clam Soup");
 	}
 	
 	public void registerProsessor()

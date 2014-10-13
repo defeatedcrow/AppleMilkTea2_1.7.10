@@ -50,7 +50,7 @@ public class ProsessorRecipeHandlerCG implements RecipeProvider{
 	        items[1] = second;
 	        items[2] = machine;
 	        int i = 3;
-	        for (Object obj : recipe.getProcessedInput())
+	        for (Object obj : recipe.getProsessedInput())
 	        {
 	        	if (i > 11) break;
 	        	ItemStack item;

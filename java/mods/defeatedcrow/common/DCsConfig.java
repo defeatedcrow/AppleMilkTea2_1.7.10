@@ -68,6 +68,9 @@ public class DCsConfig {
 	public static boolean bonemealClam = true;
 	public static boolean allowEdibleEntities = true;
 	public static boolean fearMelon = false;
+	public static boolean enableMobBlock[] = {true, true, true, true, true};
+	public static boolean hardLeatherRecipe = true;
+	
 	
 	private final String BR = System.getProperty("line.separator");
 	
@@ -155,6 +158,11 @@ public class DCsConfig {
 			Property radenLimit = cfg.get("setting", "Hard Mode Wind Charm", charmRemain,
 					"Set a limit on the number of times to use the Raden Charm (Wind)." + BR
 					+ "If you set 0, disable Hard Mode.");
+			Property mobBlock = cfg.get("setting", "Enable Mob Drop Container", enableMobBlock,
+							"Enable to add some compression recipes of mob drop items."
+							+ BR + "Rotten flesh, Bone, Spider eye, Ender parl, and Slime ball.");
+			Property hardLeather = cfg.get("setting", "Hard Mode Leather Recipe", hardLeatherRecipe,
+					"Enable hard mode that make a leather from a rotten flesh.");
 			
 			Property entityIce = cfg.get("entityid", "EntityIDIceCream", entityIdIce);
 			Property entityCup = cfg.get("entityid", "EntityIDCup", entityIdCup);
@@ -206,6 +214,8 @@ public class DCsConfig {
 			safetyChocolate = safetyChoco.getBoolean(false);
 			bonemealClam = bonemealClams.getBoolean(false);
 			allowEdibleEntities = edibleEntity.getBoolean(true);
+			enableMobBlock = mobBlock.getBooleanList();
+			hardLeatherRecipe = hardLeather.getBoolean(false);
 			
 			entityIdMelon = entityMelon.getInt();
 			canExplodeMelon = explodeMelon.getBoolean(false);

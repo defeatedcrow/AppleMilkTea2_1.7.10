@@ -44,6 +44,8 @@ public class RegisteredRecipeGet{
 		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), new ItemStack(DCsAppleMilk.bowlBlock, 1, 5));
 		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 6), new ItemStack(DCsAppleMilk.bowlBlock, 1, 6));
 		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), new ItemStack(DCsAppleMilk.bowlBlock, 1, 7));
+		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), new ItemStack(DCsAppleMilk.bowlBlock, 1, 8));
+		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), new ItemStack(DCsAppleMilk.bowlBlock, 1, 9));
 		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), new ItemStack(DCsAppleMilk.filledChocoPan, 1, 0));
 	}
 

@@ -5,6 +5,7 @@ import mods.defeatedcrow.common.block.appliance.*;
 import mods.defeatedcrow.common.block.brewing.*;
 import mods.defeatedcrow.common.block.container.*;
 import mods.defeatedcrow.common.block.edible.*;
+import mods.defeatedcrow.common.block.energy.*;
 import mods.defeatedcrow.common.fluid.*;
 import mods.defeatedcrow.common.block.plants.*;
 import mods.defeatedcrow.common.item.*;
@@ -105,6 +106,7 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.inkStick, "defeatedcrow.inkStick");
 		GameRegistry.registerItem(DCsAppleMilk.icyCrystal,"defeatedcrow.icyCrystal");
 		GameRegistry.registerItem(DCsAppleMilk.princessClam,"defeatedcrow.princessClam");
+		GameRegistry.registerItem(DCsAppleMilk.stickCarbon,"defeatedcrow.stickCarbon");
 		
 		//基本ツール
 		GameRegistry.registerBlock(DCsAppleMilk.teaMakerNext, "defeatedcrow.teaMakerNext");
@@ -116,6 +118,10 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.prosessor, ItemMachineBlock.class, "defeatedcrow.prosessor");
 		GameRegistry.registerBlock(DCsAppleMilk.advProsessor, ItemMachineBlock.class, "defeatedcrow.advProsessor");
 		GameRegistry.registerBlock(DCsAppleMilk.evaporator, ItemMachineBlock.class, "defeatedcrow.evaporator");
+		//エネルギー
+		GameRegistry.registerBlock(DCsAppleMilk.redGel, "defeatedcrow.redGel");
+//		GameRegistry.registerBlock(DCsAppleMilk.yuzuBat, "defeatedcrow.yuzuBatContainer");
+//		GameRegistry.registerBlock(DCsAppleMilk.gelBat, "defeatedcrow.gelBatContainer");
 		//圧縮系
 		GameRegistry.registerBlock(DCsAppleMilk.woodBox, ItemWoodBox.class, "defeatedcrow.WoodBox");
 		GameRegistry.registerBlock(DCsAppleMilk.appleBox, "defeatedcrow.AppleBox");
@@ -658,6 +664,10 @@ public class MaterialRegister {
 		DCsAppleMilk.inkStick  = (new ItemInkStick()).
 				setUnlocalizedName("defeatedcrow.inkStick").
 				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.stickCarbon  = (new ItemCarbonStick()).
+				setUnlocalizedName("defeatedcrow.stickCarbon").
+				setCreativeTab(DCsAppleMilk.applemilk);
 	}
 	
 	static void addMachines()
@@ -702,14 +712,28 @@ public class MaterialRegister {
 				setBlockName("defeatedcrow.evaporator").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
-		DCsAppleMilk.batteryItem = (new ItemBattery()).
-				setUnlocalizedName("defeatedcrow.battery").
-				setCreativeTab(DCsAppleMilk.applemilk);
-		
 		DCsAppleMilk.slotPanel = (new ItemSlotPanel()).
 				setUnlocalizedName("defeatedcrow.slotPanel").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
+		//エネルギー
+		DCsAppleMilk.batteryItem = (new ItemBattery()).
+				setUnlocalizedName("defeatedcrow.battery").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.yuzuBat = (new BlockYuzuBat()).
+				setBlockName("defeatedcrow.yuzuBatContainer").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.gelBat = (new BlockGelBat()).
+				setBlockName("defeatedcrow.gelBatContainer").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.redGel = (new BlockRedGel()).
+				setBlockName("defeatedcrow.redGel").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		//インセンス
 		DCsAppleMilk.essentialOil = (new ItemEssentialOil()).
 				setUnlocalizedName("defeatedcrow.essentialOil").
 				setCreativeTab(DCsAppleMilk.applemilkMagic);

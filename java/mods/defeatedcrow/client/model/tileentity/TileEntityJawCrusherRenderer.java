@@ -1,7 +1,7 @@
 package mods.defeatedcrow.client.model.tileentity;
 
 import mods.defeatedcrow.client.model.model.ModelJawCrusher;
-import mods.defeatedcrow.client.model.model.ModelProsessor;
+import mods.defeatedcrow.client.model.model.ModelProcessor;
 import mods.defeatedcrow.common.tile.appliance.*;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

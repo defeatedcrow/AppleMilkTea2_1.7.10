@@ -11,6 +11,7 @@ import mods.defeatedcrow.common.block.plants.BlockSaplingTea;
 import mods.defeatedcrow.common.block.plants.BlockTeaTree;
 import mods.defeatedcrow.common.block.plants.BlockYuzuSapling;
 import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 
 public class DCsBonemealEvent

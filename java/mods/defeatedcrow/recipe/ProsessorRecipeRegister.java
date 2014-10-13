@@ -96,7 +96,7 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 		}
 		
 		@Override
-		public List<Object> getProcessedInput()
+		public List<Object> getProsessedInput()
 		{
 			return new ArrayList<Object>(this.processedInput);
 		}

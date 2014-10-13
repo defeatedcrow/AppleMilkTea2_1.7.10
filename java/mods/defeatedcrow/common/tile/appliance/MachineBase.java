@@ -109,7 +109,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	@SideOnly(Side.CLIENT)
 	public int getBurnTimeRemainingScaled(int par1)
 	{
-		return this.chargeAmount * par1 / 25600;
+		return this.chargeAmount * par1 / this.getMaxChargeAmount();
 	}
  
 	//調理中
@@ -119,16 +119,22 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		return this.cookTime > 0;
 	}
 	
-	//チャージが少しでもあれば
+	//チャージが満タンである
 	public boolean isFullCharged()
 	{
-		return this.chargeAmount == 25600;
+		return this.chargeAmount == this.getMaxChargeAmount();
 	}
 	
 	//毎Tickのチャージ消費量を変更可能にする。
 	public int getDecrementChargePerTick()
 	{
 		return 1;
+	}
+	
+	//チャージゲージ上限も変更可能に。
+	public int getMaxChargeAmount()
+	{
+		return 25600;
 	}
 	
 	//チャージに空きがあり、燃料スロットのアイテムを受け入れられる状態
@@ -140,7 +146,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		if (item != null)
 		{
 			int i = ChargeItemManager.chargeItem.getChargeAmount(item);
-			flag = this.getChargeAmount() + 1 <= 25600;
+			flag = this.getChargeAmount() + 1 <= this.getMaxChargeAmount();
 		}
 		
 		if (this.getStackInSlot(0) == null)
@@ -193,7 +199,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 					//チャージ残量＋アイテムのチャージ量
 					int i = this.chargeAmount + getItemBurnTime(this.itemstacks[0]);
 	 
-					if (i <= 25600)//25600未満ならOK
+					if (i <= this.getMaxChargeAmount())//25600未満ならOK
 					{
 						this.chargeAmount = i;
 						flag1 = true;
@@ -210,9 +216,9 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 						}
 					}
 					
-					if (this.chargeAmount > 25600)
+					if (this.chargeAmount > this.getMaxChargeAmount())
 					{
-						this.chargeAmount = 25600;
+						this.chargeAmount = this.getMaxChargeAmount();
 					}
 				}
 				

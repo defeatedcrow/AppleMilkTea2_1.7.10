@@ -1,5 +1,7 @@
 package mods.defeatedcrow.client.gui;
 
+import java.util.ArrayList;
+
 import mods.defeatedcrow.common.tile.appliance.ContainerProsessor;
 import mods.defeatedcrow.common.tile.appliance.TileProsessor;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -27,6 +29,16 @@ public class GuiProsessor extends GuiContainer {
 		String s = this.inventory.hasCustomInventoryName() ? this.inventory.getInventoryName() : I18n.format(this.inventory.getInventoryName(), new Object[0]);
 		this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
+		
+		//チャージゲージのマウスオーバー
+		boolean b1 = this.func_146978_c(11, 26, 12, 27, par1, par2);
+		if (b1)
+		{
+			int charge = this.tileentity.getChargeAmount();
+			ArrayList<String> list1 = new ArrayList<String>();
+			list1.add("Charge Amount : " + charge);
+			this.drawHoveringText(list1, par1 - this.guiLeft, par2 - this.guiTop, fontRendererObj);
+		}
 	}
  
 	@Override
@@ -55,7 +67,7 @@ public class GuiProsessor extends GuiContainer {
 	
 	public String GuiTexPass()
 	{
-		return "textures/gui/foodprosessorgui.png";
+		return "textures/gui/foodprocessorgui.png";
 	}
  
 }

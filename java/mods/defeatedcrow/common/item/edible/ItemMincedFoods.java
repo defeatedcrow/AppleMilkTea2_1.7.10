@@ -24,7 +24,7 @@ public class ItemMincedFoods extends Item {
 	 @SideOnly(Side.CLIENT)
      private IIcon iconType[];
 	 
-	 private final String foodsName[] = new String[] {"mincedfoods_mushroom", "mincedfoods_soup", "mincedfoods_zousui", "sanngoumai", "mincedfoods_gomoku", "mincedfoods_tofu", "mincedfoods_pumpkin", "mincedfoods_BLT", "gratedchocolate"};
+	 private final String foodsName[] = new String[] {"mincedfoods_mushroom", "mincedfoods_soup", "mincedfoods_zousui", "sanngoumai", "mincedfoods_gomoku", "mincedfoods_tofu", "mincedfoods_pumpkin", "mincedfoods_BLT", "gratedchocolate", "mincedfoods_miso", "mincedfoods_clam"};
 	
 	
 	public ItemMincedFoods (){
@@ -38,7 +38,7 @@ public class ItemMincedFoods extends Item {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
-        int j = MathHelper.clamp_int(par1, 0, 9);
+        int j = MathHelper.clamp_int(par1, 0, 11);
         return this.iconType[j];
     }
 
@@ -63,6 +63,8 @@ public class ItemMincedFoods extends Item {
 		par3List.add(new ItemStack(this, 1, 5));
 		par3List.add(new ItemStack(this, 1, 6));
 		par3List.add(new ItemStack(this, 1, 7));
+		par3List.add(new ItemStack(this, 1, 9));
+		par3List.add(new ItemStack(this, 1, 10));
 		par3List.add(new ItemStack(this, 1, 8));
 	}	
 	
@@ -71,9 +73,9 @@ public class ItemMincedFoods extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
     {
-        this.iconType = new IIcon[9];
+        this.iconType = new IIcon[11];
 
-        for (int i = 0; i < 9; ++i)
+        for (int i = 0; i < 11; ++i)
         {
             this.iconType[i] = par1IconRegister.registerIcon("defeatedcrow:" + this.foodsName[i]);
         }

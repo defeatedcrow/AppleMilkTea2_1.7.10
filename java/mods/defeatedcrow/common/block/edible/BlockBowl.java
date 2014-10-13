@@ -30,7 +30,7 @@ import mods.defeatedcrow.handler.Util;
 //TODO お味噌汁を増やす！
 public class BlockBowl extends Block{
 	
-	public static final String[] contents = new String[] {"_rice", "_kinoko", "_soup", "_zousui", "_kayaku", "_soi", "_juice", "_BLTsoup"};
+	public static final String[] contents = new String[] {"_rice", "_kinoko", "_soup", "_zousui", "_kayaku", "_soi", "_juice", "_BLTsoup", "_misosoup", "_clamsoup"};
 	
 	@SideOnly(Side.CLIENT)
     private IIcon boxTex;
@@ -168,7 +168,7 @@ public class BlockBowl extends Block{
         }
         else
         {
-        	return i < 8 ? this.contentsTex[i] : this.boxTex;
+        	return i < 10 ? this.contentsTex[i] : this.boxTex;
         }
     }
 	
@@ -176,7 +176,7 @@ public class BlockBowl extends Block{
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-		for(int i = 0; i < 8; ++i)
+		for(int i = 0; i < 10; ++i)
 		{
 			par3List.add(new ItemStack(this, 1, i));
 		}
@@ -193,12 +193,12 @@ public class BlockBowl extends Block{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.contentsTex = new IIcon[8];
+		this.contentsTex = new IIcon[10];
 		this.boxTex = par1IconRegister.registerIcon("defeatedcrow:porcelain");
 		
-        for (int i = 0; i < 8; ++i)
+        for (int i = 0; i < 10; ++i)
         {
-        	this.contentsTex[i] = par1IconRegister.registerIcon("defeatedcrow:contents" + contents[i]);
+        	this.contentsTex[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "contents" + contents[i]);
         }
 	}
 	

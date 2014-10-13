@@ -25,6 +25,8 @@ public class ModelTart extends ModelBase{
     ModelRenderer mousse3;
     ModelRenderer mousse4;
     ModelRenderer moussetop;
+    ModelRenderer moussetop2;
+    ModelRenderer moussetop3;
     ModelRenderer crop4;
     ModelRenderer crop5;
     ModelRenderer crop6;
@@ -131,6 +133,18 @@ public class ModelTart extends ModelBase{
       moussetop.setTextureSize(64, 32);
       moussetop.mirror = true;
       setRotation(moussetop, 0F, 0F, 0F);
+      moussetop2 = new ModelRenderer(this, 30, 11);
+      moussetop2.addBox(0F, 0F, 0F, 10, 0, 10);
+      moussetop2.setRotationPoint(-5F, 17.9F, -5F);
+      moussetop2.setTextureSize(64, 32);
+      moussetop2.mirror = true;
+      setRotation(moussetop2, 0F, 0F, 0F);
+      moussetop3 = new ModelRenderer(this, 0, 21);
+      moussetop3.addBox(0F, 0F, 0F, 10, 0, 10);
+      moussetop3.setRotationPoint(-5F, 17.9F, -5F);
+      moussetop3.setTextureSize(64, 32);
+      moussetop3.mirror = true;
+      setRotation(moussetop3, 0F, 0F, 0F);
       crop4 = new ModelRenderer(this, 0, 0);
       crop4.addBox(0F, 0F, 0.5F, 1, 1, 1);
       crop4.setRotationPoint(0F, 17F, 0F);
@@ -186,10 +200,15 @@ public class ModelTart extends ModelBase{
     super.render(entity, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     moussebase.render(f5);
-    moussetop.render(f5);
     crop4.render(f5);
     crop5.render(f5);
     crop6.render(f5);
+    if (b0 == 3){
+    	moussetop2.render(f5);
+    }
+    else {
+    	moussetop.render(f5);
+    }
   }
   
   public void renderMousse1(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, byte b0)
@@ -244,6 +263,8 @@ public class ModelTart extends ModelBase{
     
     this.moussebase.rotateAngleY = f3 / (180F / (float)Math.PI);
     this.moussetop.rotateAngleY = f3 / (180F / (float)Math.PI);
+    this.moussetop2.rotateAngleY = f3 / (180F / (float)Math.PI);
+    this.moussetop3.rotateAngleY = f3 / (180F / (float)Math.PI);
     this.mousse1.rotateAngleY = f3 / (180F / (float)Math.PI);
     this.mousse2.rotateAngleY = f3 / (180F / (float)Math.PI);
     this.mousse3.rotateAngleY = f3 / (180F / (float)Math.PI);

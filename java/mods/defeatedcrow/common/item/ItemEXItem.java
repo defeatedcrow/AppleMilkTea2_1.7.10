@@ -36,7 +36,7 @@ public class ItemEXItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
-        int j = MathHelper.clamp_int(par1, 0, 11);
+        int j = MathHelper.clamp_int(par1, 0, 13);
         return this.iconItemType[j];
     }
 
@@ -65,6 +65,8 @@ public class ItemEXItem extends Item {
 		par3List.add(new ItemStack(this, 1, 9));
 		par3List.add(new ItemStack(this, 1, 10));
 		par3List.add(new ItemStack(this, 1, 11));
+		par3List.add(new ItemStack(this, 1, 12));
+		par3List.add(new ItemStack(this, 1, 13));
 	}
 	
 	@Override
@@ -129,11 +131,11 @@ public class ItemEXItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.iconItemType = new IIcon[12];
+		this.iconItemType = new IIcon[14];
 		
-		String[] nuggetType = new String[]{"iron", "tin", "copper", "silver", "steel"};
+		String[] nuggetType = new String[]{"iron", "tin", "copper", "silver", "steel", "lead", "bronze"};
 
-        for (int i = 0; i < 12; ++i)
+        for (int i = 0; i < 14; ++i)
         {
             
         	if (i == 0)
@@ -164,7 +166,7 @@ public class ItemEXItem extends Item {
         	{
         		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:dust_clam");
         	}
-        	else if (i > 6 &&  i < 12)
+        	else if (i > 6 &&  i < 14)
         	{
         		this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:nugget_" + nuggetType[i - 7]);
         	}

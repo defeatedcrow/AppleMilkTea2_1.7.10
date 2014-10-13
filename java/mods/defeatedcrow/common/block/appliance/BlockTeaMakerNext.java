@@ -258,6 +258,14 @@ public class BlockTeaMakerNext extends BlockContainer{
             		s = recipe.getOutput().getDisplayName();
             	}		
             	AMTLogger.debugInfo("This Item has recipe: " + flag + ", output: " + s);
+            	
+            	if (itemstack.getItem() == Items.milk_bucket)
+            	{
+            		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.bucket, 1, 0)))
+            		{
+            			par5EntityPlayer.entityDropItem((new ItemStack(Items.bucket, 1, 0)), 1.0F);
+            		}
+            	}
         		
     			tile.setItemStack(new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage()));
     			tile.setRemainByte((byte)(3 + rand.nextInt(3))); //3～5杯

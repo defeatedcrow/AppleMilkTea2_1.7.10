@@ -53,16 +53,16 @@ public class ItemAPI {
 		}
 	}
 	
-	//TODO はよう更新しろや
+	//TODO まだ修正中です
 	/* Values of itemName & metadata:
 	 * 
 	 * (foods)
 	 * 
 	 * baked apple 					: bakedApple
-	 * apple tart 					: appleTart & apple:0, cassis:2
+	 * apple tart 					: appleTart & apple:0, cassis:1, yuzu:2, apricot:3
 	 * toffy apple (normal) 		: toffyApple
 	 * toffy apple (potion effect) 	: icyToffyApple	& icy:0, airy:1, golden:2, green:3
-	 * Sandwiches 					: appleSandWich & apple:0, egg:1, cassis:2
+	 * Sandwiches 					: appleSandWich & apple:0, egg:1, cassis:2, yuzu:3
 	 * clam							: clam & raw:0, cooked:1
 	 * burnt meat					: clam & 2
 	 * black egg					: clam & 3 
@@ -76,17 +76,20 @@ public class ItemAPI {
 	 * raw tea leaves				: leafTea & tea:0
 	 * mint leaves                  : leaftea & 1
 	 * cassis berry                 : leaftea & 2
-	 * green tea leaves				: EXItems & 2
-	 * tea leaves					: EXItems & 3
-	 * oxidized tea leaves			: EXItems & 4
-	 * earl gray leaves				: EXItems & 8
-	 * apple tea leaves				: EXItems & 9
+	 * yuzu crop                    : leaftea & 3
+	 * camellia crop                : leaftea & 4
+	 * green tea leaves				: foodTea & 0
+	 * tea leaves					: foodTea & 1
+	 * oxidized tea leaves			: foodTea & 2
+	 * earl gray leaves				: foodTea & 3
+	 * apple tea leaves				: foodTea & 4
 	 * 
 	 * condensed milk				: condensedMilk & 0
 	 * cassis preserve              : condensedMilk & 1
 	 * mint sauce                   : condensedMilk & 2
+	 * yuzu marmalade               : condensedMilk & 3
 	 * ganache						: gratedApple & 4
-	 * crashed ice					: EXItems & 7
+	 * crashed ice					: EXItems & 4
 	 * 
 	 * grated fruits				: gratedApple & apple:0, fruit:1, lime:5, tomato:6, berry:7
 	 * honey lemon slices			: gratedApple & 2
@@ -101,14 +104,26 @@ public class ItemAPI {
 	 * minced pumpkin				: mincedFoods & 6
 	 * minced BLT					: mincedFoods & 7
 	 * minced chocolate				: mincedFoods & 8
+	 * materials of miso soup		: mincedFoods & 9
+	 * materials of clam soup		: mincedFoods & 10
 	 * 
 	 * (materials)
 	 * 
 	 * icy crystal					: icyCrystal
-	 * chalcedony gear				: EXItems & 6
+	 * chalcedony gear				: EXItems & 3
 	 * animal glue					: EXItems & 1
 	 * ink stick					: inkStick
-	 * glass dust					: EXItems & 11
+	 * carbon stick					: stickCarbon
+	 * glass dust					: EXItems & 5
+	 * clam dust                    : EXItems & 6
+	 * 
+	 * iron nugget                  : EXItems & 7
+	 * tin nugget                   : EXItems & 8
+	 * copper nugget                : EXItems & 9
+	 * silver nugget                : EXItems & 10
+	 * steel nugget                 : EXItems & 11
+	 * lead nugget                  : EXItems & 12
+	 * bronze nugget                : EXItems & 13
 	 * 
 	 * (tools)
 	 * 
@@ -150,7 +165,6 @@ public class ItemAPI {
 	 * pan							: emptyPan
 	 * cooking iron plate			: teppann
 	 * empty cup					: emptyCup
-	 * empty wallmug				: EXItems & 10
 	 * rotary dial					: rotaryDial
 	 * 
 	 * (basket and table wares)

@@ -26,7 +26,7 @@ public class RenderFilledBowlJP implements ISimpleBlockRenderingHandler{
 			RenderBlocks renderer) {
 		
 		int meta = metadata;
-		if (meta > 8)meta = 8;
+		if (meta > 9 && meta != 15)meta = 9;
 		this.boxIIcon = DCsAppleMilk.bowlBlock.getIcon(1, 0);
 		this.contentsIIcon = DCsAppleMilk.bowlBlock.getIcon(0, meta);
 		
@@ -42,7 +42,7 @@ public class RenderFilledBowlJP implements ISimpleBlockRenderingHandler{
 			renderInvCuboid(renderer, block,  11.0F/16.0F, 2.0F/16.0F, 5.0F/16.0F, 12.0F/16.0F, 6.0F/16.0F, 11.0F/16.0F,  this.boxIIcon);
 			
 			//contents
-			if (meta < 8)
+			if (meta < 10)
 			{
 				if (meta == 0 || meta == 4)
 				{
@@ -61,7 +61,7 @@ public class RenderFilledBowlJP implements ISimpleBlockRenderingHandler{
 			Block block, int modelId, RenderBlocks renderer) {
 		
 		int meta = world.getBlockMetadata(x, y, z);
-		if (meta > 8)meta = 8;
+		if (meta > 9 && meta != 15)meta = 9;
 		this.boxIIcon = DCsAppleMilk.bowlBlock.getIcon(1, 0);
 		this.contentsIIcon = DCsAppleMilk.bowlBlock.getIcon(0, meta);
 		
@@ -81,7 +81,7 @@ public class RenderFilledBowlJP implements ISimpleBlockRenderingHandler{
 				renderer.setRenderBoundsFromBlock(block);
 				renderer.renderStandardBlock(block, x, y, z);
 			}
-			else if (meta < 8)
+			else if (meta < 10)
 			{
 				renderer.setOverrideBlockTexture(this.contentsIIcon);
 				block.setBlockBounds(5.0F/16.0F, 2.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F);

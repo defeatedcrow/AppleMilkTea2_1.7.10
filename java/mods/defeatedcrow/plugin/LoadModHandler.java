@@ -271,15 +271,15 @@ public class LoadModHandler {
 					AMTLogger.debugInfo("Succeeded to get maplesyrup");
 				}
 				
-				GameRegistry.addRecipe(
-						 new ShapedOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (112 + 11)),
-			    		  new Object[]{
-								 "XXX",
-								 "XZX",
-								 "XXX",
-								 Character.valueOf('Z'), new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
-								 Character.valueOf('X'), registerItem}));
+//				GameRegistry.addRecipe(
+//						 new ShapedOreRecipe(
+//			    		  new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (112 + 11)),
+//			    		  new Object[]{
+//								 "XXX",
+//								 "XZX",
+//								 "XXX",
+//								 Character.valueOf('Z'), new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+//								 Character.valueOf('X'), registerItem}));
 			}
 			Block block = Util.getModBlock("mod_ecru_MapleTree", "ecru_BlockMapleWood");
 			if (block != null) {

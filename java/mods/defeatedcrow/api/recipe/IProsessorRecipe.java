@@ -14,7 +14,7 @@ public interface IProsessorRecipe {
 	
 	public boolean isFoodRecipe();
 	
-	public List<Object> getProcessedInput();
+	public List<Object> getProsessedInput();
 	
 	public int getRecipeSize();
 	

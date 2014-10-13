@@ -99,12 +99,6 @@ public class CraftingEvent {
 					rets.add(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0));
 				}
 			}
-/*			else if (m != null && m.getItem() == DCsAppleMilk.DCgrater)
-			{
-				ItemStack m2 = m.copy();
-				m2.damageItem(1, player);
-				rets.add(m2);
-			}*/
 		}
 		if (!rets.isEmpty()) {
 			for (ItemStack ret : rets)

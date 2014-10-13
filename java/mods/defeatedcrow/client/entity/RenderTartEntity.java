@@ -69,7 +69,12 @@ public class RenderTartEntity extends Render
         	ResourceLocation mousseTex1 = new ResourceLocation(mousse1);
         	String mousse2 = "defeatedcrow:textures/blocks/contents_milk.png";
         	ResourceLocation mousseTex2 = new ResourceLocation(mousse2);
+        	
         	String mousse3 = "defeatedcrow:textures/blocks/contents_lemon.png";
+        	if (l == 3)
+        	{
+        		mousse3 = "defeatedcrow:textures/blocks/contents_juice.png";
+        	}
         	ResourceLocation mousseTex3 = new ResourceLocation(mousse3);
         	
         	this.bindTexture(mousseTex);

@@ -6,6 +6,7 @@ import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -21,8 +22,10 @@ public class BlockCamOilFluid extends BlockFluidClassic {
 
 	public BlockCamOilFluid(Fluid fluid, Material material) {
 		super(fluid, material);
-		this.setQuantaPerBlock(12);
+		this.setQuantaPerBlock(10);
 		this.slipperiness = 0.98F;
+		this.displacements.put(Blocks.water,false);
+		this.displacements.put(Blocks.lava,false);
 	}
 	
 	@Override
@@ -41,7 +44,8 @@ public class BlockCamOilFluid extends BlockFluidClassic {
 	
 	@Override
 	public boolean canDisplace(IBlockAccess world, int x, int y, int z) {
-		if (world.getBlock(x, y, z).getMaterial().isLiquid()) {
+		Material mat = world.getBlock(x, y, z).getMaterial();
+		if (mat.isLiquid()) {
 			return false;
 		}
 		return super.canDisplace(world, x, y, z);
@@ -49,9 +53,10 @@ public class BlockCamOilFluid extends BlockFluidClassic {
 
 	@Override
 	public boolean displaceIfPossible(World world, int x, int y, int z) {
-		if (world.getBlock(x, y, z).getMaterial().isLiquid()) {
-			return false;
-		}
+		Material mat = world.getBlock(x, y, z).getMaterial();
+//		if (mat.isLiquid()) {
+//			return false;
+//		}
 		return super.displaceIfPossible(world, x, y, z);
 	}
 	

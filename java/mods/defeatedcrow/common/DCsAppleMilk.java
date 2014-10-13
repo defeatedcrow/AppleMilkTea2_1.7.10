@@ -66,7 +66,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha15",
+		version = "1.7.10_2.0.alpha16",
 		dependencies = "required-after:Forge@[10.12.1.1197,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -98,6 +98,11 @@ public class DCsAppleMilk{
 	public static Block  evaporator;
 	public static Block  advProsessor;
 	public static Block  incenseBase;
+	//エネルギー
+	public static Block  batBox;
+	public static Block  redGel;
+	public static Block  yuzuBat;
+	public static Block  gelBat;
 	//たべもの
 	public static Block  teacupBlock;
 	public static Block  teaCup2;
@@ -171,6 +176,7 @@ public class DCsAppleMilk{
 	public static Item  DCgrater;
 	public static Item  icyCrystal;
 	public static Item  itemMintSeed;
+	public static Item  stickCarbon;
 	
 	//玉髄ツール
 	public static Item  chalcedonyKnife;
@@ -285,6 +291,7 @@ public class DCsAppleMilk{
 	public static boolean SuccessLoadCGuide = false;
 	public static boolean SuccessLoadFFM = false;
 	public static boolean SuccessLoadBC = false;
+	public static boolean SuccessLoadACore = false;
 	
 	//内部処理用
 	public static boolean debugMode = false;
@@ -329,6 +336,8 @@ public class DCsAppleMilk{
 	public static int modelJawCrusher;
 	public static int modelCPanel;
 	public static int modelIncenseBase;
+	public static int modelYuzuBat;
+	public static int modelGelBat;
 	
 	public static final String[] TEX_PASS = new String[] {
 		"defeatedcrow:",
@@ -532,6 +541,8 @@ public class DCsAppleMilk{
 		this.modelCPanel = proxy.getRenderID();
 		this.modelIncenseBase = proxy.getRenderID();
 		this.modelCanister = proxy.getRenderID();
+		this.modelYuzuBat = proxy.getRenderID();
+		this.modelGelBat = proxy.getRenderID();
 		proxy.registerRenderers();
 	    
 	    //ティーメーカーのレシピ数の無限化のため、専用のレシピ登録クラスを用意した
@@ -900,6 +911,21 @@ public class DCsAppleMilk{
 	        }
 	        catch (Exception e) {
 	        	AMTLogger.failLoadingModInfo("EnchantChanger");
+	          e.printStackTrace(System.err);
+	        }
+	    }
+	    
+	    if (Loader.isModLoaded("AppleCore"))
+	    {
+	    	AMTLogger.loadingModInfo("AppleCore");
+	    	try
+	        {
+	    	  //ここでは、専用のフラグを切り替えるだけ。
+	          this.SuccessLoadACore = true;
+	          AMTLogger.loadedModInfo("AppleCore");
+	        }
+	        catch (Exception e) {
+	        	AMTLogger.failLoadingModInfo("AppleCore");
 	          e.printStackTrace(System.err);
 	        }
 	    }

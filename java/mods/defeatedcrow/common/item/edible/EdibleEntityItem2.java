@@ -2,6 +2,8 @@ package mods.defeatedcrow.common.item.edible;
 
 import java.util.ArrayList;
 
+import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.plugin.LoadAppleCorePlugin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -10,7 +12,6 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import squeek.applecore.api.food.FoodValues;
 import squeek.applecore.api.food.IEdible;
-import squeek.applecore.api.food.ItemFoodProxy;
 
 /*クラッシュ回避用の中継クラス*/
 @Optional.Interface(iface = "squeek.applecore.api.food.IEdible", modid = "AppleCore")
@@ -61,9 +62,9 @@ public class EdibleEntityItem2 extends EdibleEntityItem implements IEdible{
 			if (this.hungerOnEaten(meta) != null)
 			{
 				int[] h = this.hungerOnEaten(meta);
-				if (Loader.isModLoaded("AppleCore"))
+				if (DCsAppleMilk.SuccessLoadACore)
 		        {
-		            par3EntityPlayer.getFoodStats().func_151686_a(new ItemFoodProxy(this), par1ItemStack);
+		            LoadAppleCorePlugin.addFoodStatus(par3EntityPlayer, par1ItemStack);
 		        }
 				else
 				{

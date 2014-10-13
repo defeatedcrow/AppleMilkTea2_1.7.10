@@ -137,11 +137,14 @@ public class RegisterOreHandler {
 	    OreDictionary.registerOre("nuggetCopper", new ItemStack(DCsAppleMilk.EXItems, 1, 9));
 	    OreDictionary.registerOre("nuggetSilver", new ItemStack(DCsAppleMilk.EXItems, 1, 10));
 	    OreDictionary.registerOre("nuggetSteel", new ItemStack(DCsAppleMilk.EXItems, 1, 11));
+	    OreDictionary.registerOre("nuggetLead", new ItemStack(DCsAppleMilk.EXItems, 1, 12));
+	    OreDictionary.registerOre("nuggetBronze", new ItemStack(DCsAppleMilk.EXItems, 1, 13));
 	    OreDictionary.registerOre("dustWood", new ItemStack(DCsAppleMilk.dustWood, 1, 0));
 	    OreDictionary.registerOre("dustCharcoal", new ItemStack(DCsAppleMilk.dustWood, 1, 1));
 	    OreDictionary.registerOre("dustCoal", new ItemStack(DCsAppleMilk.dustWood, 1, 1));
 	    OreDictionary.registerOre("dustAsh", new ItemStack(DCsAppleMilk.dustWood, 1, 2));
 	    OreDictionary.registerOre("dustOilCake", new ItemStack(DCsAppleMilk.dustWood, 1, 3));
+	    OreDictionary.registerOre("stickCarbon", new ItemStack(DCsAppleMilk.stickCarbon, 1, 0));
 	    
 	    OreDictionary.registerOre("blockClam", new ItemStack(DCsAppleMilk.gunpowderContainer, 1, 3));
 	    OreDictionary.registerOre("gemClam", new ItemStack(DCsAppleMilk.princessClam, 1, 0));

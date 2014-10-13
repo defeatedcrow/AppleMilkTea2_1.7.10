@@ -210,7 +210,7 @@ public class BlockCPanel extends BlockContainer{
     
     public boolean canPlaceBlockAt(World world, int x, int y, int z)
     {
-        return World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) || BlockFence.func_149825_a(world.getBlock(x, y - 1, z));
+        return world.doesBlockHaveSolidTopSurface(world, x, y - 1, z) || BlockFence.func_149825_a(world.getBlock(x, y - 1, z));
     }
     
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block)

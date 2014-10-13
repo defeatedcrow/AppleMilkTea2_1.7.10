@@ -11,8 +11,8 @@ public class LoadNEIPlugin {
 	public static TeaRecipeHandler teaRecipe;
 	public static IceRecipeHandler iceRecipe;
 	public static PanRecipeHandler panRecipe;
-	public static ProsessorRecipeHandler prosessorRecipe;
-	public static AdvProsessorRecipeHandler advProsessorRecipe;
+	public static ProcessorRecipeHandler processorRecipe;
+	public static AdvProcessorRecipeHandler advProcessorRecipe;
 	public static EvaporatorRecipeHandler evaporatorRecipe;
 	
 	public static void load() {
@@ -20,8 +20,8 @@ public class LoadNEIPlugin {
 		teaRecipe = new TeaRecipeHandler();
 		iceRecipe = new IceRecipeHandler();
 		panRecipe = new PanRecipeHandler();
-		prosessorRecipe = new ProsessorRecipeHandler();
-		advProsessorRecipe = new AdvProsessorRecipeHandler();
+		processorRecipe = new ProcessorRecipeHandler();
+		advProcessorRecipe = new AdvProcessorRecipeHandler();
 		evaporatorRecipe = new EvaporatorRecipeHandler();
 		
 		
@@ -37,13 +37,13 @@ public class LoadNEIPlugin {
 		API.registerUsageHandler(panRecipe);
 		API.registerGuiOverlay(GuiRecipe.class, panRecipe.getOverlayIdentifier(), 0, 0);
 		
-		API.registerRecipeHandler(prosessorRecipe);
-		API.registerUsageHandler(prosessorRecipe);
-		API.registerGuiOverlay(GuiRecipe.class, prosessorRecipe.getOverlayIdentifier(), 0, 0);
+		API.registerRecipeHandler(processorRecipe);
+		API.registerUsageHandler(processorRecipe);
+		API.registerGuiOverlay(GuiRecipe.class, processorRecipe.getOverlayIdentifier(), 0, 0);
 		
-		API.registerRecipeHandler(advProsessorRecipe);
-		API.registerUsageHandler(advProsessorRecipe);
-		API.registerGuiOverlay(GuiRecipe.class, advProsessorRecipe.getOverlayIdentifier(), 0, 0);
+		API.registerRecipeHandler(advProcessorRecipe);
+		API.registerUsageHandler(advProcessorRecipe);
+		API.registerGuiOverlay(GuiRecipe.class, advProcessorRecipe.getOverlayIdentifier(), 0, 0);
 		
 		API.registerRecipeHandler(evaporatorRecipe);
 		API.registerUsageHandler(evaporatorRecipe);

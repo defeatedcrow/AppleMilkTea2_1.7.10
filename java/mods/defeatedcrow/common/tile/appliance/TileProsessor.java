@@ -145,7 +145,7 @@ public class TileProsessor extends MachineBase{
 		if (flag && activeRecipe != null)
 		{
 			//まずは材料を減らす
-			List<Object> required = new ArrayList<Object>(activeRecipe.getProcessedInput());
+			List<Object> required = new ArrayList<Object>(activeRecipe.getProsessedInput());
 			ItemStack output = activeRecipe.getOutput();
 			ItemStack sec = activeRecipe.getSecondary();
 			
@@ -271,7 +271,7 @@ public class TileProsessor extends MachineBase{
 	
 	@Override
 	public String getInventoryName() {
-		return "Food Prosessor";
+		return "Food Processor";
 	}
 
 }

@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 public class EntityItemBowlJP extends EdibleEntityItemBlock2{
 	
-	public static final String[] type = new String[] {"_rice", "_mushroom", "_stew", "_zousui", "_kayaku", "_soi", "_pumpkin", "_BLTsoup"};
+	public static final String[] type = new String[] {"_rice", "_mushroom", "_stew", "_zousui", "_kayaku", "_soi", "_pumpkin", "_BLTsoup", "_misosoup", "_clamsoup"};
 	
 	public EntityItemBowlJP(Block block)
 	{
@@ -35,7 +35,7 @@ public class EntityItemBowlJP extends EdibleEntityItemBlock2{
 	public String getUnlocalizedName(ItemStack par1ItemStack)
 	{
 		int m = (par1ItemStack.getItemDamage());
-		if (m < 8) return super.getUnlocalizedName() + type[m];
+		if (m < 10) return super.getUnlocalizedName() + type[m];
 		else return super.getUnlocalizedName() + m;
 	}
 	

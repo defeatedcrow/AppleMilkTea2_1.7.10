@@ -26,7 +26,7 @@ public class ItemAppleTart extends EdibleEntityItem2{
 	
 	@SideOnly(Side.CLIENT)
     private IIcon iconType[];
-	private static String[] type = new String[] {"apple", "cassis", "yuzu"};
+	private static String[] type = new String[] {"apple", "cassis", "yuzu", "apricot"};
 	
 	public ItemAppleTart (){
 		super (true, false);
@@ -43,7 +43,7 @@ public class ItemAppleTart extends EdibleEntityItem2{
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
-        int j = MathHelper.clamp_int(par1, 0, 2);
+        int j = MathHelper.clamp_int(par1, 0, 3);
         return this.iconType[j];
     }
 
@@ -63,18 +63,20 @@ public class ItemAppleTart extends EdibleEntityItem2{
 		par3List.add(new ItemStack(this, 1, 0));
 		par3List.add(new ItemStack(this, 1, 1));
 		par3List.add(new ItemStack(this, 1, 2));
+		par3List.add(new ItemStack(this, 1, 3));
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister){
-		this.iconType = new IIcon[3];
+		this.iconType = new IIcon[4];
 
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < 3; ++i)
         {
             this.iconType[i] = par1IconRegister.registerIcon("defeatedcrow:" + type[i] + "tart");
         }
         this.iconType[2] = par1IconRegister.registerIcon("defeatedcrow:" + type[2] + "_mousse");
+        this.iconType[3] = par1IconRegister.registerIcon("defeatedcrow:" + type[3] + "_mousse");
 	}
 	
 	@Override

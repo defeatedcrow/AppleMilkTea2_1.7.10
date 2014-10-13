@@ -51,6 +51,12 @@ public class TileAdvProsessor extends TileProsessor{
 		return 4;
 	}
 	
+	@Override
+	public int getMaxChargeAmount()
+	{
+		return 51200;
+	}
+	
 	/* 食べ物レシピ以外が対応レシピ。
 	 * Recipeクラス側でスロットパネル利用可能等の判定を行うので、このフラグで設定。*/
 	@Override

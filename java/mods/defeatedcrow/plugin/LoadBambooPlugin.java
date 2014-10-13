@@ -94,6 +94,13 @@ public class LoadBambooPlugin {
 					AMTLogger.debugInfo("Succeeded to get campfire");
 				}
 			}
+			Item item6 = Util.getModItem("BambooMod", "itemseaweed");
+			if (item6 != null) {
+				ItemStack registerItem5 = new ItemStack(item6, 1, 0);
+				if (LoadModHandler.registerModItems("seaWeed", registerItem5)) {
+					AMTLogger.debugInfo("Succeeded to get seaweed");
+				}
+			}
 		}
         catch (Exception e) {
         	AMTLogger.debugInfo("Failed to register ModItems");
