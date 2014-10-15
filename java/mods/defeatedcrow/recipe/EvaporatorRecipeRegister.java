@@ -26,8 +26,15 @@ public class EvaporatorRecipeRegister implements IEvaporatorRecipeRegister{
 	}
 	
 	@Override
+	public void addRecipe(ItemStack output, FluidStack secondary, ItemStack input, boolean flag) {
+		recipes.add(new EvaporatorRecipe(input, output, secondary, flag));
+		String out = output == null ? "Empty" : output.getDisplayName();
+		String sec = secondary == null ? "Empty" : secondary.getFluid().getLocalizedName(secondary);
+		AMTLogger.debugInfo("Add Evaporator recipe: input: " + input.getDisplayName() + ", output: " + out + ", secondary: " + sec);
+	}
+	
 	public void addRecipe(ItemStack output, FluidStack secondary, ItemStack input) {
-		recipes.add(new EvaporatorRecipe(input, output, secondary));
+		this.addRecipe(input, secondary, output, true);
 		String out = output == null ? "Empty" : output.getDisplayName();
 		String sec = secondary == null ? "Empty" : secondary.getFluid().getLocalizedName(secondary);
 		AMTLogger.debugInfo("Add Evaporator recipe: input: " + input.getDisplayName() + ", output: " + out + ", secondary: " + sec);
@@ -73,14 +80,16 @@ public class EvaporatorRecipe implements IEvaporatorRecipe {
 		private final ItemStack input;
 		private final ItemStack output;
 		private final FluidStack second;
+		private final boolean returnContainer;
 		
 		private final int damage = Short.MAX_VALUE;
 		
-		public EvaporatorRecipe(ItemStack inputItem, ItemStack outputItem, FluidStack secondary)
+		public EvaporatorRecipe(ItemStack inputItem, ItemStack outputItem, FluidStack secondary, boolean flag)
 		{
 			this.input = inputItem;
 			this.output = outputItem;
 			this.second = secondary;
+			this.returnContainer = flag;
 		}
 
 		@Override
@@ -98,6 +107,11 @@ public class EvaporatorRecipe implements IEvaporatorRecipe {
 		public FluidStack getSecondary() {
 			if (this.second == null)return null;
 			return this.second.copy();
+		}
+		
+		@Override
+		public boolean returnContainer() {
+			return this.returnContainer;
 		}
 		
 	}

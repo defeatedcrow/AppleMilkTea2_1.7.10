@@ -12,5 +12,7 @@ public interface IEvaporatorRecipe {
 	ItemStack getOutput();
 	
 	FluidStack getSecondary();
+	
+	boolean returnContainer();
 
 }

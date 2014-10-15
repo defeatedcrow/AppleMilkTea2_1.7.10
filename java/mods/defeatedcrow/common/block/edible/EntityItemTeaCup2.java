@@ -40,7 +40,7 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock2{
 		if (!par2World.isRemote)
 		{
 			this.setPotionWithTea(par3EntityPlayer, meta);
-			this.addSSMoisture(-8, 1.5F, par3EntityPlayer);
+			this.addSSMoisture(6, 1.5F, par3EntityPlayer);
 		}
 
         return super.onEaten(par1ItemStack, par2World, par3EntityPlayer);

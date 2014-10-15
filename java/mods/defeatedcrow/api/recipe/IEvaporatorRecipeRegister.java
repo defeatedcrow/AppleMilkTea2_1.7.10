@@ -7,6 +7,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 public interface IEvaporatorRecipeRegister {
 	
+	void addRecipe(ItemStack output, FluidStack secondary, ItemStack input, boolean flag);
+	
 	void addRecipe(ItemStack output, FluidStack secondary, ItemStack input);
 	
 	public abstract List<? extends IEvaporatorRecipe> getRecipeList();

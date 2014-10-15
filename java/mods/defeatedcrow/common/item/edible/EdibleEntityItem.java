@@ -139,6 +139,12 @@ public class EdibleEntityItem extends Item implements IEdibleItem{
 	
 	public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int side, float p_77648_8_, float p_77648_9_, float p_77648_10_)
     {
+		if (player != null && player.isSneaking())
+		{
+			this.onItemRightClick(item, world, player);
+			return false;
+		}
+		
         Block block = world.getBlock(x, y, z);
 
         if (block == Blocks.snow_layer && (world.getBlockMetadata(x, y, z) & 7) < 1)

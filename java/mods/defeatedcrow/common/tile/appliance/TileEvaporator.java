@@ -219,7 +219,7 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 			}
 		}
 		
-		if (container != null)
+		if (container != null && recipe.returnContainer())
 		{
 			if (this.itemstacks[5] == null)
 			{
@@ -310,7 +310,7 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 				this.itemstacks[2] = null;
 			}
 			
-			if (container != null)
+			if (container != null && recipe.returnContainer())
 			{
 				if (this.itemstacks[5] == null)
 				{

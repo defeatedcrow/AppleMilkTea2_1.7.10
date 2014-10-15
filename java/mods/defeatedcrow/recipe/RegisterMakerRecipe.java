@@ -1,14 +1,19 @@
 package mods.defeatedcrow.recipe;
 
+import java.util.ArrayList;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.api.*;
 import mods.defeatedcrow.api.charge.ChargeItemManager;
 import mods.defeatedcrow.api.recipe.*;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.plugin.LoadModHandler;
 import net.minecraft.block.Block;
 import net.minecraft.init.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class RegisterMakerRecipe {
 	
@@ -221,7 +226,7 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 2, 6), true, null,
 				new Object[]{DCsAppleMilk.clam});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.yeast, 1, 0), true, null,
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.yeast, 1, 0), true, new ItemStack(Items.bowl),
 				new Object[]{"cropApple", Items.sugar, DCsAppleMilk.bowlBlock});
 		
 		//おろし金レシピの移植
@@ -439,22 +444,22 @@ public class RegisterMakerRecipe {
 		
 		//酒
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.shothu_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 0));
+				new FluidStack(DCsAppleMilk.shothu_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 0), false);
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.whiskey_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 1));
+				new FluidStack(DCsAppleMilk.whiskey_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 1), false);
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 3));
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 3), false);
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 19));
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 19), false);
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 35));
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 35), false);
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 51));
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 51), false);
 		
 		//製油
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
@@ -472,6 +477,36 @@ public class RegisterMakerRecipe {
 		BrewingRecipe.registerRecipe(DCsAppleMilk.shothu_young, DCsAppleMilk.shothu);
 		BrewingRecipe.registerRecipe(DCsAppleMilk.whiskey_young, DCsAppleMilk.whiskey);
 		BrewingRecipe.registerRecipe(DCsAppleMilk.brandy_young, DCsAppleMilk.brandy);
+	}
+	
+	public void addKelpRecipe()
+	{
+		 RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
+					new Object[]{"miso", "cropSeaWeed", "tofuKinu"});
+		 
+		 RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
+					new Object[]{"miso", "cropSeaWeed", "tofuMomen"});
+		 
+		 RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), true, null,
+					new Object[]{"foodClam", "cropSeaWeed"});
+		 
+		 ArrayList<ItemStack> kelps = new ArrayList<ItemStack>();
+		 
+		 if (LoadModHandler.getArray("seaWeed") != null && !LoadModHandler.getArray("seaWeed").isEmpty()){
+				kelps.addAll(LoadModHandler.getArray("seaWeed"));
+			}
+		 
+		 for (ItemStack kelp : kelps)
+			{
+			 	RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
+						new Object[]{"miso", kelp, "tofuKinu"});
+			 
+			 	RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
+						new Object[]{"miso", kelp, "tofuMomen"});
+				 
+				RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), true, null,
+							new Object[]{"foodClam", kelp});
+			}
 	}
 
 }

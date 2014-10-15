@@ -40,7 +40,7 @@ public class EntityItemTeaCup extends EdibleEntityItemBlock2{
 		if (!par2World.isRemote)
 		{
 			this.setPotionWithTea(par3EntityPlayer, meta);
-			this.addSSMoisture(12, 1.5F, par3EntityPlayer);
+			this.addSSMoisture(6, 1.5F, par3EntityPlayer);
 		}
 
         return super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
@@ -61,7 +61,15 @@ public class EntityItemTeaCup extends EdibleEntityItemBlock2{
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer player, int meta) {
 		
 		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
-		if(meta == 4 || meta == 5)
+		
+		if(meta == 0)
+		{
+			if (DCsAppleMilk.Immunization != null)
+			{
+				ret.add(new PotionEffect(DCsAppleMilk.Immunization.id, 5, 0));
+			}
+		}
+		else if(meta == 4 || meta == 5)
 		{
 			ret.add(new PotionEffect(Potion.digSpeed.id, 600, 0));
 		}

@@ -66,7 +66,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha16",
+		version = "1.7.10_2.0.alpha17",
 		dependencies = "required-after:Forge@[10.12.1.1197,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -938,7 +938,11 @@ public class DCsAppleMilk{
 	    //インスタントティーレシピ
 	    //他MODの水入り容器をひと通り取得した後に行うので、最後のほうで呼ぶ
 	    (new DCsRecipeRegister()).addInstantTea();
+	    
+	    //その他の他MODアイテム使用レシピ登録
+	    (new DCsRecipeRegister()).addKelpRecipe();
 	    (new DCsRecipeRegister()).addMetalRecipe();
+	    (new RegisterMakerRecipe()).addKelpRecipe();
 	    
 	    //レシピ閲覧系MODの連携要素
 	    (new RegisteredRecipeGet()).setRecipeList();

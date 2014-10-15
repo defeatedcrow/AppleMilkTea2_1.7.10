@@ -232,7 +232,7 @@ public class BlockRedGel extends Block{
 	public void registerBlockIcons(IIconRegister par1IIconRegister)
 	{
 		this.texSide = par1IIconRegister.registerIcon("defeatedcrow:redgel");
-		this.blockIcon = par1IIconRegister.registerIcon("defeatedcrow:redgel_item");
+		this.blockIcon = par1IIconRegister.registerIcon("defeatedcrow:redgel");
 		
 	}
 	

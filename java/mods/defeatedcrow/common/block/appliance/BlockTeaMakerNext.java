@@ -318,6 +318,18 @@ public class BlockTeaMakerNext extends BlockContainer{
     			par2EntityPlayer.entityDropItem(new ItemStack(Items.potionitem, 1, 0), 1);
     		}
 		}
+		else if (ID == Item.getItemFromBlock(DCsAppleMilk.emptyCup))
+		{
+			if (!par2EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
+            {
+                par2EntityPlayer.inventory.setInventorySlotContents(par2EntityPlayer.inventory.currentItem, (ItemStack)null);
+            }
+			
+			if (!par2EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.teacupBlock, 1, 0)))
+    		{
+    			par2EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.teacupBlock, 1, 0), 1);
+    		}
+		}
 		else if (DCsAppleMilk.SuccessLoadIC2 && LoadIC2Plugin.IC2Cell != null && itemstack.getItem() == LoadIC2Plugin.IC2Cell.getItem())
 		{
 			if (!par2EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
@@ -337,6 +349,7 @@ public class BlockTeaMakerNext extends BlockContainer{
 		boolean flag;
 		if (itemstack.getItem() == Items.bucket) flag = true;
 		else if (itemstack.getItem() == Items.glass_bottle) flag = true;
+		else if (itemstack.getItem() == Item.getItemFromBlock(DCsAppleMilk.emptyCup)) flag = true;
 		else if (DCsAppleMilk.SuccessLoadIC2 && LoadIC2Plugin.IC2Cell != null && itemstack.getItem() == LoadIC2Plugin.IC2Cell.getItem()) flag = true;
 		else flag = false;
 		

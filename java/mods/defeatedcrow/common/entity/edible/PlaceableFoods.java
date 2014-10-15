@@ -488,34 +488,37 @@ public abstract class PlaceableFoods extends Entity{
     			boolean flag = false;
     			IEdibleItem edible = (IEdibleItem) has.getItem();
     			
-    			ArrayList<PotionEffect> effect = edible.effectOnEaten(par1EntityPlayer, has.getItemDamage());
-    			if (effect != null && !effect.isEmpty())
-    			{
-    				for (PotionEffect p : effect)
-    				{
-    					par1EntityPlayer.addPotionEffect(p);
-    				}
-    				flag = true;
-    			}
+    			has.getItem().onEaten(has.copy(), worldObj, par1EntityPlayer);
+    			flag = true;
     			
-    			int[] hunger = edible.hungerOnEaten(has.getItemDamage());
-    			if (hunger != null && hunger.length >= 2)
-    			{
-    				par1EntityPlayer.getFoodStats().addStats(hunger[0], hunger[1]*0.1F);
-    				flag = true;
-    			}
+//    			ArrayList<PotionEffect> effect = edible.effectOnEaten(par1EntityPlayer, has.getItemDamage());
+//    			if (effect != null && !effect.isEmpty())
+//    			{
+//    				for (PotionEffect p : effect)
+//    				{
+//    					par1EntityPlayer.addPotionEffect(p);
+//    				}
+//    				flag = true;
+//    			}
+//    			
+//    			int[] hunger = edible.hungerOnEaten(has.getItemDamage());
+//    			if (hunger != null && hunger.length >= 2)
+//    			{
+//    				par1EntityPlayer.getFoodStats().addStats(hunger[0], hunger[1]*0.1F);
+//    				flag = true;
+//    			}
     			
     			if (flag)
     			{
     				//容器を返す場合
-    				ItemStack ret = edible.getReturnContainer(has.getItemDamage());
-    				if (ret != null)
-    				{
-    					if (!par1EntityPlayer.inventory.addItemStackToInventory(ret))
-    		        	{
-    		        		par1EntityPlayer.entityDropItem(ret, 1.0F);
-    		        	}
-    				}
+//    				ItemStack ret = edible.getReturnContainer(has.getItemDamage());
+//    				if (ret != null)
+//    				{
+//    					if (!par1EntityPlayer.inventory.addItemStackToInventory(ret))
+//    		        	{
+//    		        		par1EntityPlayer.entityDropItem(ret, 1.0F);
+//    		        	}
+//    				}
     				
     				this.setDead();
     				this.worldObj.playSoundAtEntity(par1EntityPlayer, "random.pop", 0.4F, 1.8F);
