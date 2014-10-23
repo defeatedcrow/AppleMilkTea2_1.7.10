@@ -17,7 +17,7 @@ public abstract interface IChargeItemRegister {
 	/**
      * 新しいチャージアイテムを登録する。
      * postInit以降のメソッドでの登録を推奨。
-     * @param input (ItemStack) アイスメーカーの燃料スロットに投入するアイテム
+     * @param input (ItemStack) 追加機械の燃料スロットに投入するアイテム
      * @param val (int) チャージ量
      */
 	public abstract void registerCharger(ItemStack input, ItemStack output, int val);

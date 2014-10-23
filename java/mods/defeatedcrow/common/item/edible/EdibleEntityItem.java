@@ -5,6 +5,7 @@ import java.util.List;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -16,7 +17,9 @@ import net.minecraft.item.*;
 import net.minecraft.potion.*;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import mods.defeatedcrow.api.edibles.IEdibleItem;
+import mods.defeatedcrow.api.events.EatEdiblesEvent;
 import mods.defeatedcrow.client.entity.IEdibleRenderHandler;
 import mods.defeatedcrow.common.DCsConfig;
 import mods.defeatedcrow.common.entity.edible.PlaceableFoods;
@@ -36,12 +39,31 @@ public class EdibleEntityItem extends Item implements IEdibleItem{
 	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
 		int meta = par1ItemStack.getItemDamage();
+		boolean flag = false;
+		EatEdiblesEvent event = new EatEdiblesEvent(par2World, par3EntityPlayer, par1ItemStack);
 		
-		if (!par3EntityPlayer.capabilities.isCreativeMode)
+		MinecraftForge.EVENT_BUS.post(event);
+		
+		if (event.hasResult() && event.getResult() == Result.ALLOW)
+		{
+			if (!par3EntityPlayer.capabilities.isCreativeMode)
+	        {
+	            --par1ItemStack.stackSize;
+	            this.returnItemStack(par3EntityPlayer, meta);
+	        }
+			flag = true;
+		}
+		
+        if (event.isCanceled())
+        {
+            return par1ItemStack;
+        }
+		
+		if (!flag && !par3EntityPlayer.capabilities.isCreativeMode)
         {
             --par1ItemStack.stackSize;
+            this.returnItemStack(par3EntityPlayer, meta);
         }
-		this.returnItemStack(par3EntityPlayer, meta);
 		
 		if (!par2World.isRemote)
 		{

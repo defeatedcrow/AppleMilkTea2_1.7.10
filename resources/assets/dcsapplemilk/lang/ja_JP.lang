@@ -247,6 +247,9 @@ tile.defeatedcrow.emptyBottle.name=空の一升瓶
 tile.defeatedcrow.largeBottle.name=酒瓶
 tile.defeatedcrow.blockBarrel.name=醸造樽
 tile.defeatedcrow.redGel.name=赤石ジェル
+tile.defeatedcrow.yuzuBatContainer.name=柚子電池複合体
+tile.defeatedcrow.gelBatContainer.name=充電池ブロック
+tile.defeatedcrow.batBox.name=充電装置
 
 item.defeatedcrow.bakedApple.name=焼きリンゴ
 item.defeatedcrow.appleTart_0.name=リンゴのタルト

@@ -18,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -45,6 +46,7 @@ public class BlockSaplingTea extends Block implements IPlantable
         this.setTickRandomly(true);
         float f = 0.4F;
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
+        this.setStepSound(soundTypeGrass);
     }
     
     public boolean isOpaqueCube()
@@ -61,6 +63,13 @@ public class BlockSaplingTea extends Block implements IPlantable
     {
         return 1;
     }
+	
+	//当たり判定はなし
+	@Override
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
+	{
+	    return null;
+	}
 
     /**
      * Ticks the block if it's been scheduled

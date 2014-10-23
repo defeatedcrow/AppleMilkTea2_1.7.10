@@ -223,7 +223,7 @@ public class TileAutoMaker extends TileEntity implements IInventory
     	boolean flag = false;
     	if (this.onMakerNext())
     	{
-    		if (this.tileNext != null && this.tileNext.getID() == 0)
+    		if (this.tileNext != null && this.tileNext.getRecipe() == null)
     		{
     			flag = true;
     		}

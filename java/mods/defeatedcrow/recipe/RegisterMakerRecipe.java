@@ -162,6 +162,7 @@ public class RegisterMakerRecipe {
 		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 0),  null,  6400);
 		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 1),  null,  12800);
 		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 2),  null,  800);
+		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.yuzuBat, 1, 0),  null,  6400);
 	}
 	
 	public void registerPan()
@@ -450,16 +451,16 @@ public class RegisterMakerRecipe {
 				new FluidStack(DCsAppleMilk.whiskey_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 1), false);
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 3), false);
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 3));
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 19), false);
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 19));
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 35), false);
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 35));
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 51), false);
+				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 51));
 		
 		//製油
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),

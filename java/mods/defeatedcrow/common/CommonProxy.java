@@ -7,6 +7,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.client.gui.*;
 import mods.defeatedcrow.common.tile.*;
 import mods.defeatedcrow.common.tile.appliance.*;
+import mods.defeatedcrow.common.tile.energy.*;
 import mods.defeatedcrow.handler.NetworkUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -60,6 +61,7 @@ public class CommonProxy implements IGuiHandler{
 		GameRegistry.registerTileEntity(TilePanG.class, "TilePanG");
 		GameRegistry.registerTileEntity(TileCanister.class, "TileCanister");
 		GameRegistry.registerTileEntity(TileBrewingBarrel.class, "TileBarrel");
+		GameRegistry.registerTileEntity(TileChargerBase.class, "TileChargerBase");
 	}
 	
     //レンダーIDには-1を返す
@@ -107,6 +109,9 @@ public class CommonProxy implements IGuiHandler{
 		else if (tileentity instanceof TileEvaporator) {
 			return new ContainerEvaporator(player, (TileEvaporator)tileentity);
 		}
+		else if (tileentity instanceof TileChargerBase) {
+			return new ContainerBatBox(player, (TileChargerBase)tileentity);
+		}
 		
 		return null;
 	}
@@ -131,6 +136,9 @@ public class CommonProxy implements IGuiHandler{
 		}
 		else if (tileentity instanceof TileEvaporator) {
 			return new GuiEvaporator(player, (TileEvaporator)tileentity);
+		}
+		else if (tileentity instanceof TileChargerBase) {
+			return new GuiBatBox(player, (TileChargerBase)tileentity);
 		}
 		
 		return null;

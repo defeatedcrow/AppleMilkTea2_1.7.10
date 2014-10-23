@@ -10,6 +10,7 @@ import mods.defeatedcrow.common.entity.*;
 import mods.defeatedcrow.common.entity.edible.*;
 import mods.defeatedcrow.common.tile.*;
 import mods.defeatedcrow.common.tile.appliance.*;
+import mods.defeatedcrow.common.tile.energy.*;
 import mods.defeatedcrow.handler.*;
 import mods.defeatedcrow.plugin.nei.LoadNEIPlugin;
 import net.minecraft.server.MinecraftServer;
@@ -89,6 +90,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerTileEntity(TilePanG.class, "TilePanG", new TileEntityPanGRenderer());
 		ClientRegistry.registerTileEntity(TileCanister.class, "TileCanister", new TileEntityCanisterRenderer());
 		ClientRegistry.registerTileEntity(TileBrewingBarrel.class, "TileBarrel", new TileEntityBarrelRenderer());
+		GameRegistry.registerTileEntity(TileChargerBase.class, "TileChargerBase");
 	}
 
 	@Override

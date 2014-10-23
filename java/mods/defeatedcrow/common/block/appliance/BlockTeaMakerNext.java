@@ -24,6 +24,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import mods.defeatedcrow.api.events.TeamakerRightClickEvent;
 import mods.defeatedcrow.api.recipe.ITeaRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.*;
@@ -50,7 +52,17 @@ public class BlockTeaMakerNext extends BlockContainer{
         if (tile == null)return false;
         
         ItemStack tileItem = tile.getItemStack();//tileが保持しているアイテム
-        int remain = tile.getRemainByte();//残量
+        int remain = tile.getRemain();//残量
+        ITeaRecipe tileRecipe =null;
+        if (tileItem != null) RecipeRegisterManager.teaRecipe.getRecipe(tileItem);
+        
+        TeamakerRightClickEvent event = new TeamakerRightClickEvent(par5EntityPlayer, par2, par3, par4, tile, remain, tileRecipe);
+        MinecraftForge.EVENT_BUS.post(event);
+        
+        if (event.isCanceled())
+        {
+            return true;
+        }
         
         ITeaRecipe recipe = null;//itemのほうのレシピ
         if (itemstack != null) recipe = RecipeRegisterManager.teaRecipe.getRecipe(itemstack);
@@ -60,7 +72,7 @@ public class BlockTeaMakerNext extends BlockContainer{
         	AMTLogger.debugInfo("Checking tile... ");
         	if (tileItem != null )AMTLogger.debugInfo("tile hold item: " + tileItem.getDisplayName());
         	if (tile.getOutput() != null )AMTLogger.debugInfo("tile hold recipe: " + tile.getOutput().getDisplayName());
-        	AMTLogger.debugInfo("tile remaining: " + tile.getRemainByte());
+        	AMTLogger.debugInfo("tile remaining: " + tile.getRemain());
         	AMTLogger.debugInfo("tile texture: " + tile.getCurrentTexture());
         	
         	return DCsAppleMilk.debugMode;
@@ -95,7 +107,7 @@ public class BlockTeaMakerNext extends BlockContainer{
             				par5EntityPlayer.triggerAchievement(AchievementRegister.getAppleMilkTea);
             			}
             			
-            			tile.setRemainByte((byte)(remain - 1));
+            			tile.setRemain((byte)(remain - 1));
             			if ((remain - 1) == 0){
             				tile.clearTile();
             			}
@@ -168,7 +180,7 @@ public class BlockTeaMakerNext extends BlockContainer{
     	    		}
 				}
 				
-				tile.setRemainByte((byte)(remain - 1));
+				tile.setRemain((byte)(remain - 1));
 				if ((remain - 1) == 0){
     				tile.clearTile();
     			}
@@ -192,9 +204,7 @@ public class BlockTeaMakerNext extends BlockContainer{
         		{
         			AMTLogger.debugInfo("milk -> milk_drink");
         			tile.setMilk(true);
-					tile.setItemStack(new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage()));
-					tile.setRemainByte((byte)(3 + rand.nextInt(3)));
-					tile.markDirty();
+					tile.setRecipe(new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage()));
 					
 					if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
                     {
@@ -213,8 +223,6 @@ public class BlockTeaMakerNext extends BlockContainer{
         				if (recipe.getOutputMilk() != null) //ミルク追加可能として事前に登録済み
         				{
         					tile.setMilk(true);//ミルクフラグだけONに
-        					tile.setRemainByte((byte)(3 + rand.nextInt(3)));
-        					tile.markDirty();
         					
         					if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.bucket, 1, 0)))
                     		{
@@ -267,9 +275,7 @@ public class BlockTeaMakerNext extends BlockContainer{
             		}
             	}
         		
-    			tile.setItemStack(new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage()));
-    			tile.setRemainByte((byte)(3 + rand.nextInt(3))); //3～5杯
-    			tile.markDirty();
+    			tile.setRecipe(new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage()));
     			
     			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
     			if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
@@ -513,7 +519,7 @@ public class BlockTeaMakerNext extends BlockContainer{
     	TileMakerNext tile = (TileMakerNext) world.getTileEntity(i, j, k);
         if (tile != null)
         {
-        	return tile.getRemainByte();
+        	return tile.getRemain();
         }
         else
         {

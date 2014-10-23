@@ -71,7 +71,7 @@ public class ItemAppleTart extends EdibleEntityItem2{
 	public void registerIcons(IIconRegister par1IconRegister){
 		this.iconType = new IIcon[4];
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             this.iconType[i] = par1IconRegister.registerIcon("defeatedcrow:" + type[i] + "tart");
         }

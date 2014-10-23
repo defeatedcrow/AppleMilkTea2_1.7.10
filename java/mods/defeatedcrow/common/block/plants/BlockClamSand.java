@@ -12,6 +12,7 @@ import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,6 +23,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BlockClamSand extends Block
 {
@@ -121,8 +125,16 @@ public class BlockClamSand extends Block
     @Override
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
-    	//まずは確率1/20
-        if(!par1World.isRemote && par1World.rand.nextInt(15) == 0)
+    	//海・浜バイオームでは増殖しやすい
+    	BiomeGenBase biome = par1World.getBiomeGenForCoords(par2, par4);
+    	int r = 15;
+    	if (BiomeDictionary.isBiomeOfType(biome, Type.OCEAN)
+    			||BiomeDictionary.isBiomeOfType(biome, Type.BEACH))
+    	{
+    		r = 5;
+    	}
+    	
+        if(!par1World.isRemote && par1World.rand.nextInt(r) == 0)
         {
         	super.updateTick(par1World, par2, par3, par4, par5Random);
         	

@@ -3,9 +3,11 @@ package mods.defeatedcrow.common.tile.appliance;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
+import mods.defeatedcrow.api.appliance.ITeaMaker;
 import mods.defeatedcrow.api.recipe.ITeaRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.handler.Util;
 import mods.defeatedcrow.recipe.IceRecipeRegister;
 import mods.defeatedcrow.recipe.TeaRecipeRegister;
 import mods.defeatedcrow.recipe.TeaRecipeRegister.TeaRecipe;
@@ -17,7 +19,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileMakerNext extends TileEntity
+public class TileMakerNext extends TileEntity implements ITeaMaker
 {
     private byte remain = 1;
     private byte contentsID = 0;
@@ -72,32 +74,96 @@ public class TileMakerNext extends TileEntity
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         this.readFromNBT(pkt.func_148857_g());
     }
+	
+	/* 以下はITeaRecipeのメソッド */
+	
+	@Override
+	public ITeaRecipe getRecipe()
+	{
+		if (Util.notEmptyItem(input)) {
+			return RecipeRegisterManager.teaRecipe.getRecipe(input);
+		}
+		else {
+			return null;
+		}
+		
+	}
+	
+	@Override
+	public void setRecipe(ItemStack item)
+	{
+		this.input = item;
+    	this.setTexture(item);
+    	this.setRemain((byte)(3 + this.worldObj.rand.nextInt(3)));
+    	this.updateTeaMaker();
+	}
 
-    public byte getRemainByte()
+	@Override
+    public byte getRemain()
     {
         return this.remain;
     }
     
-    public void setRemainByte(byte par1)
+	@Override
+    public void setRemain(byte par1)
     {
     	this.remain = par1;
     }
-    
-    public byte getID()
+	
+	@Override
+	public boolean getMilked()
     {
-        return this.contentsID;
+    	return this.isMilk;
     }
+	
+	@Override
+	public void setMilk(boolean flag)
+	{
+		this.isMilk = true;
+		this.remain = 3;
+		this.updateTeaMaker();
+	}
+	
+	@Override
+	public ItemStack getOutput()
+    {
+    	if (this.input != null)
+    	{
+    		ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(input);
+    		if (recipe != null)
+    		{
+    			if (this.isMilk && recipe.getOutputMilk() != null)
+    			{
+    				return recipe.getOutputMilk();
+    			}
+    			else
+    			{
+    				return recipe.getOutput();
+    			}
+    		}
+    	}
+    	return null;
+    }
+	
+	@Override
+	public boolean canSetRecipe(ItemStack item)
+	{
+		if(this.input != null) return false;
+		
+		ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(item);
+		
+		return recipe != null;
+		
+	}
     
     public ItemStack getItemStack()
     {
     	return this.input;
     }
     
-    public void setItemStack(ItemStack item)
+    private void setItemStack(ItemStack item)
     {
     	this.input = item;
-    	this.setTexture(item);
-    	this.markDirty();
     }
     
     public String getCurrentTexture()
@@ -105,7 +171,7 @@ public class TileMakerNext extends TileEntity
     	return this.isMilk ? this.tex_milk : this.tex;
     }
     
-    public void setTexture(ItemStack input)
+    private void setTexture(ItemStack input)
     {
     	if (input != null)
     	{
@@ -135,21 +201,6 @@ public class TileMakerNext extends TileEntity
     	}
     }
     
-    public void setID(byte par1)
-    {
-    	this.contentsID = par1;
-    }
-    
-    public boolean getMilked()
-    {
-    	return this.isMilk;
-    }
-    
-    public void setMilk(boolean flag)
-    {
-    	this.isMilk = flag;
-    }
-    
     public int getMetadata()
     {
     	return this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
@@ -167,43 +218,18 @@ public class TileMakerNext extends TileEntity
     	super.updateEntity();
 	}
     
-    public ITeaRecipe getRecipe()
-    {
-    	if (this.input == null) return null;
-    	if (this.input != null)
-    	{
-    		ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(this.input);
-    		return recipe;
-    	}
-    	return null;
-    }
-    
-    public ItemStack getOutput()
-    {
-    	if (this.input != null)
-    	{
-    		ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(input);
-    		if (recipe != null)
-    		{
-    			if (this.isMilk && recipe.getOutputMilk() != null)
-    			{
-    				return recipe.getOutputMilk();
-    			}
-    			else
-    			{
-    				return recipe.getOutput();
-    			}
-    		}
-    	}
-    	return null;
-    }
-    
     public void clearTile()
     {
     	this.setItemStack(null);
     	this.setTexture(null);
     	this.setMilk(false);
-    	this.setRemainByte((byte) 0);
+    	this.setRemain((byte) 0);
+    	this.markDirty();
+    }
+    
+    private void updateTeaMaker()
+    {
+    	this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     	this.markDirty();
     }
 }

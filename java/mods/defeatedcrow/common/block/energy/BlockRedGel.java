@@ -26,7 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 /*
  * 貼るタイプの赤石。
  * 赤石と違って、どんな状態でもテクスチャは変わらず、また出力方向も常に対角以外の5面である。
- * 常時ONまたは、対角からの信号でOFFになるかのどちらか。（後者なら、少しRSトーチに似る）
+ * 右クリックでON・OFFを切り替える。
  * 
  * 向きはメタデータで格納。0-6:6面分
  * */
@@ -246,7 +246,8 @@ public class BlockRedGel extends Block{
         
         boolean change = false;
         
-        if (!Util.notEmptyItem(item) || item.getItem() instanceof ItemTool)
+        //誤爆防止用に、赤石ジェルを持っていると動作しないようになっている
+        if (!Util.notEmptyItem(item) || item.getItem() != Item.getItemFromBlock(this))
         {
         	if (currentMeta < 8)
         	{

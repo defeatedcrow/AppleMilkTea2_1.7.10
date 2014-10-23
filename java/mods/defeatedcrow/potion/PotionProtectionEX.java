@@ -14,7 +14,7 @@ public class PotionProtectionEX extends Potion{
 	//これがtrueだと全ての効果をあわせもつ。特殊条件で5秒程度付くような使い方をする予定。
 	private boolean allProtection = false;
 	
-	//火・溶岩の関係はすべて防止する。
+	//飛び道具のダメージを無効化する。
 	private boolean projectileProtection = false;
 	
 	//爆発ダメージ無効化

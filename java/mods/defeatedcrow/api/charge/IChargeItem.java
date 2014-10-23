@@ -2,6 +2,10 @@ package mods.defeatedcrow.api.charge;
 
 import net.minecraft.item.ItemStack;
 
+/**
+ * 充電不可の使い捨て電池アイテムのインターフェイス
+ * かき氷器用のIChargeIceと混同しやすい名前になってしまった
+ * */
 public interface IChargeItem {
 	
 	/**

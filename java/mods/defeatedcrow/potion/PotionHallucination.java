@@ -22,7 +22,7 @@ public class PotionHallucination extends PotionImmunityBase
 	
 	/**
 	 * PlayerのonUpdateEventで呼ばれるメソッド。
-	 * Amplifierごとに効果が悪化する。
+	 * Amplifierごとに効果が悪化する予定。今はレベル1の効果しか作っていない。
 	 * */
 	@Override
 	public boolean preventPotion(int amp, int id, EntityPlayer player)

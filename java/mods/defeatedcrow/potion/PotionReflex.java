@@ -11,10 +11,11 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraft.util.MathHelper;
 
 /**
  * 当て身ポーション。
- * このポーションは効果時間中にダメージを受けると発動し、Amplifierが一段階下がる。
+ * このポーションは効果時間中にダメージを受けると発動し、ダメージを反射したり、吸収したりする。
  * */
 public class PotionReflex extends PotionReflexBase{
 	
@@ -55,8 +56,12 @@ public class PotionReflex extends PotionReflexBase{
 						if (attacker != target)
 						{
 							//ノックバック
-							float range = livingAttacker.rotationYaw;
-							livingAttacker.addVelocity(livingAttacker.motionX * (-1.0D) / (double)range, 0.1D, livingAttacker.motionZ * (-1.0D) / (double)range);
+							float range = 360 - livingAttacker.rotationYaw;
+							float yawX = MathHelper.sin(range / 180.0F * (float)Math.PI);
+							float yawZ = MathHelper.cos(range / 180.0F * (float)Math.PI);
+							livingAttacker.motionX += 1.0 * yawX;
+							livingAttacker.motionY += 0.3;
+							livingAttacker.motionZ += 1.0 * yawZ;
 							//magic属性のダメージ
 							livingAttacker.attackEntityFrom(DamageSource.magic, amount*amp);
 							//プレイヤーには鈴の音が聞こえる（暫定）

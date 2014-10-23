@@ -1,43 +1,31 @@
-package mods.defeatedcrow.common.tile.appliance;
+package mods.defeatedcrow.common.tile.energy;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.api.charge.ChargeItemManager;
 import mods.defeatedcrow.api.charge.IChargeableMachine;
 import mods.defeatedcrow.api.energy.IBattery;
 import mods.defeatedcrow.common.DCsConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.common.util.ForgeDirection;
 
-/**
- * ChargeItemを燃料とするTileEntityのベースクラス。
- * <br>チャージ管理部分のみを共通処理としてここで作っている。
- * <br>レシピとアイテム生産については個々のクラスで作る。
- * */
-public abstract class MachineBase extends TileEntity implements ISidedInventory, IChargeableMachine
-{
- 
+/*AMT単体で動作させる場合は、このクラスだけで事足りる*/
+public class TileChargerBase extends TileEntity implements ISidedInventory, IChargeableMachine{
+	
 	//現在のチャージ量
 	private int chargeAmount = 0;
 	//チャージアイテムを溶かす際の判定発生間隔
 	private int coolTime = 4;
-	//作業中カウント
-	public int cookTime = 0;
- 
+	
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
 	{
@@ -57,8 +45,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 			}
 		}
 		
-		this.chargeAmount = par1NBTTagCompound.getShort("ChargeAmount");
-		this.cookTime = par1NBTTagCompound.getShort("CookTime");
+		this.chargeAmount = par1NBTTagCompound.getInteger("ChargeAmount");
 		this.coolTime = par1NBTTagCompound.getByte("CoolTime");
 	}
  
@@ -83,8 +70,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		par1NBTTagCompound.setTag("Items", nbttaglist);
 		
 		//燃焼時間や調理時間などの書き込み
-		par1NBTTagCompound.setShort("ChargeAmount", (short)this.chargeAmount);
-		par1NBTTagCompound.setShort("CookTime", (short)this.cookTime);
+		par1NBTTagCompound.setInteger("ChargeAmount", this.chargeAmount);
 		par1NBTTagCompound.setByte("CoolTime", (byte)this.coolTime);
 	}
 	
@@ -94,31 +80,17 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
         this.writeToNBT(nbtTagCompound);
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTagCompound);
 	}
- 
+	
 	@Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         this.readFromNBT(pkt.func_148857_g());
     }
- 
-	//調理中の矢印の描画
-	@SideOnly(Side.CLIENT)
-	public int getCookProgressScaled(int par1)
-	{
-		return this.cookTime * par1 / 50;
-	}
- 
+	
 	//チャージゲージの描画
 	@SideOnly(Side.CLIENT)
 	public int getBurnTimeRemainingScaled(int par1)
 	{
 		return this.chargeAmount * par1 / this.getMaxChargeAmount();
-	}
- 
-	//調理中
-	@Override
-	public boolean isActive()
-	{
-		return this.cookTime > 0;
 	}
 	
 	//チャージが満タンである
@@ -127,44 +99,14 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		return this.chargeAmount == this.getMaxChargeAmount();
 	}
 	
-	//毎Tickのチャージ消費量を変更可能にする。
-	public int getDecrementChargePerTick()
-	{
-		return 1;
-	}
-	
 	//チャージゲージ上限も変更可能に。
 	public int getMaxChargeAmount()
 	{
-		return 25600;
+		return 128000;
 	}
 	
-	//チャージに空きがあり、燃料スロットのアイテムを受け入れられる状態
-	@Override
-	public boolean canReceiveChargeItem(ItemStack item)
-	{
-		boolean flag = false;
-		boolean flag2 = false;
-		if (item != null)
-		{
-			int i = this.getItemBurnTime(item);
-			flag = i > 0 && (this.getChargeAmount() + i <= this.getMaxChargeAmount());
-		}
-		
-		if (this.getStackInSlot(0) == null)
-		{
-			flag2 = true;
-		}
-		else
-		{
-			ItemStack current = this.getStackInSlot(0);
-			flag2 = item.isItemEqual(current) && (current.stackSize + item.stackSize < current.getMaxStackSize());
-		}
-		
-		return flag && flag2;
-	}
+	/* ゲッターとセッター */
 	
-	//以下はパケット送受信用メソッド
 	public void setChargeAmount(int par1)
 	{
 		this.chargeAmount = par1;
@@ -174,10 +116,9 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	{
 		return this.chargeAmount;
 	}
- 
-	/**
-	 * Tick毎の処理。ほぼバニラかまどのパクリ。
-	 */
+	
+	//アプデ処理
+	@Override
 	public void updateEntity()
 	{
 		boolean flag = this.isFullCharged();
@@ -210,7 +151,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 						{
 							//IBatteryの場合、ここでは空容器のスロット移動は行わない。
 							IBattery bat = (IBattery) this.itemstacks[0].getItem();
-							bat.discharge(this.itemstacks[0], 4, true);
+							bat.discharge(this.itemstacks[0], 16, true);
 						}
 						else//スロット1のアイテムを減らす
 						{
@@ -218,10 +159,6 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 						}
 					}
 					
-					if (this.chargeAmount > this.getMaxChargeAmount())
-					{
-						this.chargeAmount = this.getMaxChargeAmount();
-					}
 				}
 				
 				//からになったIBatteryのスタック移動はここ
@@ -236,32 +173,44 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 					}
 				}
 				
-				//最後に硬直時間を設定。コンフィグで更新間隔は変えられる
+				//次はスロット2~9の充電池を順に充電していく
+				for (int i = 2 ; i < this.getSizeInventory() ; i++)
+				{
+					ItemStack current = this.itemstacks[i];
+					int charge = this.getChargeAmount();
+					int inc = Math.min(charge, 16);
+					
+					if (Util.notEmptyItem(current) && current.getItem() instanceof IBattery && inc > 0)
+					{
+						IBattery bat = (IBattery) current.getItem();
+						int ret = bat.charge(current, inc, true);
+						this.setChargeAmount(charge - ret);
+					}
+				}
+				
+				//最後に硬直時間を4tickに設定
 				this.coolTime = DCsConfig.batteryUpdate;
 			}
 			
-			/*
-			 * 調理の待ち時間&チャージ減少処理。
-			 * 100tickの調理時間が終わるまでは、tick毎にチャージが減っていく。途中で0になったら調理が振り出しに戻る。
-			 * */
-			if (this.getChargeAmount() >= this.getDecrementChargePerTick() && this.canSmelt())
+			//sideごとにケーブルなどからのエネルギーを取得。ただしこのMODにはケーブル類はない。
+			ForgeDirection[] dirs = ForgeDirection.VALID_DIRECTIONS;
+			for (ForgeDirection dir : dirs)
 			{
-				++this.cookTime;
-				this.chargeAmount -= this.getDecrementChargePerTick();
-				if (this.chargeAmount < 0) this.chargeAmount = 0;
-
-				if (this.cookTime == 50)
+				if (!this.isFullCharged())
 				{
-					this.cookTime = 0;
-					this.onProgress();
-					flag1 = true;
+					int accept = this.acceptChargeFromDir(dir);
+					int cap = this.getMaxChargeAmount() - this.getChargeAmount();
+					accept = Math.min(accept, cap);
+					this.chargeAmount += accept;
 				}
+				
 			}
-			else
+			
+			if (this.chargeAmount > this.getMaxChargeAmount())
 			{
-				this.cookTime = 0;
+				this.chargeAmount = this.getMaxChargeAmount();
 			}
-
+			
 			if (this.getChargeAmount() < 1)
 			{
 				flag1 = true;
@@ -271,18 +220,39 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 			this.markDirty();
 		}
 	}
- 
-	/**
-	 * アイテムがIceMakerにレシピ登録された材料かどうか
-	 * レシピ登録はTeaMakerと類似の登録制を使用
-	 */
-	public abstract boolean canSmelt();
- 
-	/**
-	 * 実際に材料を消費して、完成スロットにアウトプットを返すためのメソッド
-	 */
-	public abstract void onProgress();
- 
+	
+	/* IChargeableMachineのメソッド */
+	
+	@Override
+	public boolean isActive()
+	{
+		return this.coolTime > 0;
+	}
+	
+	@Override
+	public boolean canReceiveChargeItem(ItemStack item)
+	{
+		boolean flag = false;
+		boolean flag2 = false;
+		if (item != null)
+		{
+			int i = this.getItemBurnTime(item);
+			flag = i > 0 && (this.getChargeAmount() + i <= this.getMaxChargeAmount());
+		}
+		
+		if (this.getStackInSlot(0) == null)
+		{
+			flag2 = true;
+		}
+		else
+		{
+			ItemStack current = this.getStackInSlot(0);
+			flag2 = item.isItemEqual(current) && (current.stackSize + item.stackSize < current.getMaxStackSize());
+		}
+		
+		return flag && flag2;
+	}
+	
 	/**
 	 * このアイテムのチャージ量
 	 * @param par0ItemStack チェック対象アイテム
@@ -301,16 +271,16 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 			}
 			else if (par0ItemStack.getItem() instanceof IBattery)
 			{
-				//充電池の場合、4/4tickずつ減少する。
+				//充電池の場合、16/4tickずつ減少する。
 				IBattery bat = (IBattery) par0ItemStack.getItem();
-				int ret = bat.discharge(par0ItemStack, 4, false);
+				int ret = bat.discharge(par0ItemStack, 16, false);
 				return ret;
 			}
 			
 			return 0;
 		}
 	}
- 
+	
 	/**
 	 * このアイテムがチャージできる燃料であるかどうか
 	 * @param par0ItemStack チェック対象アイテム
@@ -320,16 +290,33 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		return getItemBurnTime(par0ItemStack) > 0;
 	}
 	
-	/* ========== 以下、ISidedInventoryのメソッド ==========*/
+	/**
+	 * 隣接ブロックからエネルギーを受け入れるメソッド。継承先で中身を入れる。
+	 * AMT単体では特に用のないメソッド
+	 * */
+	public int acceptChargeFromDir(ForgeDirection dir)
+	{
+		return 0;
+	}
+	
+/* ========== 以下、ISidedInventoryのメソッド ==========*/
 	
 	/*
 	 * 0 : 燃料搬入
 	 * 1 : 燃料の空容器搬出
 	 * 2~ : 各Tileで実装される。
 	 * */
-	protected abstract int[] slotsTop();
-	protected abstract int[] slotsBottom();
-	protected abstract int[] slotsSides();
+	protected int[] slotsTop(){
+		return new int[]{0,1,2,3,4,5,6,7,8,9};
+	}
+	
+	protected int[] slotsBottom(){
+		return new int[]{0,1,2,3,4,5,6,7,8,9};
+	}
+	
+	protected int[] slotsSides(){
+		return new int[]{0,1,2,3,4,5,6,7,8,9};
+	}
  
 	public ItemStack[] itemstacks = new ItemStack[getSizeInventory()];
  
@@ -337,7 +324,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	//スロット数は各Tileでオーバーライドして増やすこと。2は最低限の値。
 	@Override
 	public int getSizeInventory() {
-		return 2;
+		return 10;
 	}
  
 	//インベントリ内の任意のスロットにあるアイテムを取得
@@ -406,7 +393,9 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
  
 	// インベントリの名前
 	@Override
-	public abstract String getInventoryName();
+	public String getInventoryName(){
+		return "Battery Charger";
+	}
  
 	// 多言語対応かどうか
 	@Override
@@ -439,7 +428,18 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
  
 	@Override
 	public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {
-		return (par1 == 1 || par1 > 10) ? false : (par1 == 0 ? this.isItemFuel(par2ItemStack) : true);
+		if (par1 == 1)
+		{
+			return false;
+		}
+		else if (par1 == 0)
+		{
+			return this.isItemFuel(par2ItemStack);
+		}
+		else
+		{
+			return par2ItemStack != null && par2ItemStack.getItem() instanceof IBattery;
+		}
 	}
  
 	//ホッパーにアイテムの受け渡しをする際の優先度
@@ -457,6 +457,19 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	//隣接するホッパーにアイテムを送れるかどうか
 	@Override
 	public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3) {
-		return true;
+		if (par1 == 1)
+		{
+			return true;
+		}
+		else if (par1 > 1)
+		{
+			if (par2ItemStack != null && par2ItemStack.getItem() instanceof IBattery)
+			{
+				IBattery bat = (IBattery) par2ItemStack.getItem();
+				return bat.isFullCharged(par2ItemStack);
+			}
+		}
+		return false;
 	}
+
 }

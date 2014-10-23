@@ -66,8 +66,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha17",
-		dependencies = "required-after:Forge@[10.12.1.1197,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
+		version = "1.7.10_2.0.alpha18",
+		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
 	
@@ -263,6 +263,7 @@ public class DCsAppleMilk{
 	public int guiProsessor = 3;
 	public int guiEvaporator = 4;
 	public int guiAdvProsessor = 5;
+	public int guiBatBox = 6;
 	
 	//villager関連
 	public static VillagerCafe villager;
@@ -286,7 +287,7 @@ public class DCsAppleMilk{
 	public static boolean SuccessLoadRC = false;
 	public static boolean SuccessLoadSugi = false;
 	public static boolean SuccessLoadDart = false;
-	public static boolean SuccessLoadTE3 = false;
+	public static boolean SuccessLoadTE4 = false;
 	public static boolean SuccessLoadWa = false;
 	public static boolean SuccessLoadCGuide = false;
 	public static boolean SuccessLoadFFM = false;

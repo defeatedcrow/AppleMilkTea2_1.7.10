@@ -61,30 +61,36 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock2{
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer player, int meta) {
 		
 		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
+		int dur = 600;
+		
+		if ((meta & 1) == 1)
+		{
+			dur = 1200;
+		}
 		
 		if((meta == 0 || meta == 1) && DCsAppleMilk.Immunization != null)
 		{
-			ret.add(new PotionEffect(DCsAppleMilk.Immunization.id, 600, 1));
+			ret.add(new PotionEffect(DCsAppleMilk.Immunization.id, dur, 1));
 		}
 		else if((meta == 2 || meta == 3) && DCsAppleMilk.Immunization != null)
 		{
-			ret.add(new PotionEffect(DCsAppleMilk.Immunization.id, 600, 0));
+			ret.add(new PotionEffect(DCsAppleMilk.Immunization.id, dur, 0));
 		}
 		else if (meta == 5)
 		{
-			ret.add(new PotionEffect(Potion.damageBoost.id, 600, 0));
+			ret.add(new PotionEffect(Potion.damageBoost.id, dur, 0));
 		}
 		else if (meta == 6 || meta == 7)
 		{
-			ret.add(new PotionEffect(Potion.resistance.id, 600, 0));
+			ret.add(new PotionEffect(Potion.resistance.id, dur, 0));
 		}
 		else if (meta == 8 || meta == 12)
 		{
-			ret.add(new PotionEffect(Potion.moveSpeed.id, 600, 0));
+			ret.add(new PotionEffect(Potion.moveSpeed.id, dur, 0));
 		}
 		else if (meta == 11)
 		{
-			ret.add(new PotionEffect(Potion.jump.id, 600, 1));
+			ret.add(new PotionEffect(Potion.jump.id, dur, 1));
 		}
 		else
 		{

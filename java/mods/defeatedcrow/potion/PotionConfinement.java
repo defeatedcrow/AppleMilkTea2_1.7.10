@@ -21,8 +21,7 @@ public class PotionConfinement extends PotionLivingBase
 	
 	/**
 	 * PlayerのonUpdateEventで呼ばれるメソッド。
-	 * Amplifierごとに除去可能なポーション効果をチェックしている。
-	 * 改良が必要。
+	 * 無理やり速度に0を入れているが、これでも結構動かれてしまう。改良が必要。
 	 * */
 	@Override
 	public boolean formPotionEffect(int amp, int id, EntityLivingBase living)

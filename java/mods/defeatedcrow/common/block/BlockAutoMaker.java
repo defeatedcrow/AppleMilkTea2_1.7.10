@@ -108,20 +108,20 @@ public class BlockAutoMaker extends BlockContainer{
 			{
 				ItemStack items = tile.getItemstack();
 				int mode = tile.getMode();
-				int makerID = target.getID();
+				boolean can = target.canSetRecipe(items);
 				int underMeta = par1World.getBlockMetadata(par2, par3 - 1, par4);
 				int nextMeta = underMeta + 1;
 				if (underMeta > 3) nextMeta = 0;
 				
-				if (items != null && makerID == 0)
+				if (items != null && can)
 				{
 					ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(items);
 					if (recipe != null)
 					{
 						if (mode == 1)
 						{
-							target.setItemStack(new ItemStack(items.getItem(), 1, items.getItemDamage()));
-							target.setRemainByte((byte)(3 + par1World.rand.nextInt(3)));
+							target.setRecipe(new ItemStack(items.getItem(), 1, items.getItemDamage()));
+							target.setRemain((byte)(3 + par1World.rand.nextInt(3)));
 							target.markDirty();
 							par1World.setBlockMetadataWithNotify(par2, par3, par4, 0, 3);
 							par1World.setBlockMetadataWithNotify(par2, par3 - 1, par4, nextMeta, 3);
@@ -218,8 +218,8 @@ public class BlockAutoMaker extends BlockContainer{
             						tile.reduceItemStack();
                 					tile.markDirty();
             						
-            						target.setItemStack(new ItemStack(items.getItem(), 1, items.getItemDamage()));
-        							target.setRemainByte((byte)(3 + par1World.rand.nextInt(3)));
+            						target.setRecipe(new ItemStack(items.getItem(), 1, items.getItemDamage()));
+        							target.setRemain((byte)(3 + par1World.rand.nextInt(3)));
         							par1World.setBlockMetadataWithNotify(par2, par3 - 1, par4, nextMeta, 3);
         							par1World.setBlockMetadataWithNotify(par2, par3, par4, 0, 3);
         							

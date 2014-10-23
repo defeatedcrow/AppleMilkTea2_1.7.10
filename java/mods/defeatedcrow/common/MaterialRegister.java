@@ -76,10 +76,12 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.EXItems, "defeatedcrow.condensedMilk");
 		GameRegistry.registerItem(DCsAppleMilk.condensedMIlk, "defeatedcrow.milkCandy");
 		GameRegistry.registerItem(DCsAppleMilk.chocolateFruits,"defeatedcrow.chocolateFruits");
+		
 		//植物
 		GameRegistry.registerItem(DCsAppleMilk.leafTea, "defeatedcrow.leafTea");
 		GameRegistry.registerItem(DCsAppleMilk.itemMintSeed,"defeatedcrow.seedMint");
 		GameRegistry.registerItem(DCsAppleMilk.clam,"defeatedcrow.clam");
+		
 		//飲み物素材
 		GameRegistry.registerItem(DCsAppleMilk.foodTea,"defeatedcrow.foodTea");
 		GameRegistry.registerItem(DCsAppleMilk.gratedApple,"defeatedcrow.gratedApple");
@@ -88,6 +90,7 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.moromi,"defeatedcrow.moromi");
 		GameRegistry.registerItem(DCsAppleMilk.itemLargeBottle,"defeatedcrow.itemBottle");
 		GameRegistry.registerItem(DCsAppleMilk.itemCordial,"defeatedcrow.itemCordial");
+		
 		//装置関係
 		GameRegistry.registerItem(DCsAppleMilk.batteryItem, "defeatedcrow.battery");
 		GameRegistry.registerItem(DCsAppleMilk.slotPanel,"defeatedcrow.slotPanel");
@@ -102,6 +105,7 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.incenseSandalwood,"defeatedcrow.incense_sandalwood");
 		GameRegistry.registerItem(DCsAppleMilk.incenseAgar,"defeatedcrow.incense_aloeswood");
 		GameRegistry.registerItem(DCsAppleMilk.incenseFrank,"defeatedcrow.incense_frankincense");
+		
 		//そのほか
 		GameRegistry.registerItem(DCsAppleMilk.inkStick, "defeatedcrow.inkStick");
 		GameRegistry.registerItem(DCsAppleMilk.icyCrystal,"defeatedcrow.icyCrystal");
@@ -118,10 +122,13 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.prosessor, ItemMachineBlock.class, "defeatedcrow.prosessor");
 		GameRegistry.registerBlock(DCsAppleMilk.advProsessor, ItemMachineBlock.class, "defeatedcrow.advProsessor");
 		GameRegistry.registerBlock(DCsAppleMilk.evaporator, ItemMachineBlock.class, "defeatedcrow.evaporator");
+		
 		//エネルギー
 		GameRegistry.registerBlock(DCsAppleMilk.redGel, "defeatedcrow.redGel");
-//		GameRegistry.registerBlock(DCsAppleMilk.yuzuBat, "defeatedcrow.yuzuBatContainer");
-//		GameRegistry.registerBlock(DCsAppleMilk.gelBat, "defeatedcrow.gelBatContainer");
+		GameRegistry.registerBlock(DCsAppleMilk.yuzuBat, "defeatedcrow.yuzuBatContainer");
+		GameRegistry.registerBlock(DCsAppleMilk.gelBat, ItemGelBat.class, "defeatedcrow.gelBatContainer");
+		GameRegistry.registerBlock(DCsAppleMilk.batBox, ItemBatBox.class, "defeatedcrow.batBox");
+		
 		//圧縮系
 		GameRegistry.registerBlock(DCsAppleMilk.woodBox, ItemWoodBox.class, "defeatedcrow.WoodBox");
 		GameRegistry.registerBlock(DCsAppleMilk.appleBox, "defeatedcrow.AppleBox");
@@ -131,6 +138,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.gunpowderContainer, ItemGunpowderContainer.class, "defeatedcrow.GunpowderContainer");
 		GameRegistry.registerBlock(DCsAppleMilk.mobBlock, ItemMobDropBox.class, "defeatedcrow.mobDropBox");
 		GameRegistry.registerFuelHandler(DCsAppleMilk.charcoalBox);
+		
 		//自然
 		GameRegistry.registerBlock(DCsAppleMilk.saplingTea, ItemTeaSapling.class, "defeatedcrow.saplingTea");
 		GameRegistry.registerBlock(DCsAppleMilk.teaTree, ItemTeaTree.class, "defeatedcrow.teaTree");
@@ -140,18 +148,21 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.leavesYuzu, ItemYuzuLeaves.class, "defeatedcrow.leavesYuzu");
 		GameRegistry.registerBlock(DCsAppleMilk.clamSand, ItemClamSand.class, "defeatedcrow.clamSand");
 		GameRegistry.registerBlock(DCsAppleMilk.cropMint, "defeatedcrow.cropMint");
+		
 		//ボトル関係
 		GameRegistry.registerBlock(DCsAppleMilk.emptyBottle, "defeatedcrow.emptyBottle");
 		GameRegistry.registerBlock(DCsAppleMilk.largeBottle, "defeatedcrow.largeBottle");
 		GameRegistry.registerBlock(DCsAppleMilk.cordial, ItemBlockCordial.class, "defeatedcrow.blockCordial");
 		GameRegistry.registerBlock(DCsAppleMilk.barrel, "defeatedcrow.blockBarrel");
 		GameRegistry.registerBlock(DCsAppleMilk.blockDummyAlcohol, ItemDummyFluid.class, "defeatedcrow.blockDummyAlcohol");
+		
 		//カルセドニー
 		GameRegistry.registerBlock(DCsAppleMilk.flintBlock, "defeatedcrow.flintBlock");
 		GameRegistry.registerBlock(DCsAppleMilk.chalcedony, ItemChalcedony.class, "defeatedcrow.chalcedony");
 		GameRegistry.registerBlock(DCsAppleMilk.cLamp, ItemChalcedonyLamp.class, "defeatedcrow.chalcedonyLamp");
 		GameRegistry.registerBlock(DCsAppleMilk.chalcenonyPanel, "defeatedcrow.chalcedonyPanel");
 		GameRegistry.registerBlock(DCsAppleMilk.incenseBase, "defeatedcrow.incenseBase");
+		
 		//インテリア
 		GameRegistry.registerBlock(DCsAppleMilk.Basket, ItemBreadBasket.class, "defeatedcrow.basket");
 		GameRegistry.registerBlock(DCsAppleMilk.bowlRack, ItemBowlRack.class, "defeatedcrow.bowlRack");
@@ -163,6 +174,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.wipeBox, ItemWipeBox.class, "defeatedcrow.wipeBox");
 		GameRegistry.registerBlock(DCsAppleMilk.wipeBox2, ItemWipeBox2.class, "defeatedcrow.wipeBox2");
 		GameRegistry.registerBlock(DCsAppleMilk.rotaryDial, "defeatedcrow.rotaryDial");
+		
 		//食べ物
 		GameRegistry.registerBlock(DCsAppleMilk.filledChocoPan, "defeatedcrow.soupPan3");
 		GameRegistry.registerBlock(DCsAppleMilk.bowlBlock, EntityItemBowl.class, "defeatedcrow.bowlBlock");
@@ -731,6 +743,10 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.redGel = (new BlockRedGel()).
 				setBlockName("defeatedcrow.redGel").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.batBox = (new BlockBatBox()).
+				setBlockName("defeatedcrow.batBox").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		//インセンス

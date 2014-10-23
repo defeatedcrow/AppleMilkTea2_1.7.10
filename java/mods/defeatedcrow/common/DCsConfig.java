@@ -50,6 +50,7 @@ public class DCsConfig {
 	public static int teppannReadyTime = 30;
 	public static int cupStackSize = 1;
 	public static int charmRemain = 0;
+	public static int batteryUpdate = 4;
 	
 	public static boolean useEXRecipe = false;
 	public static boolean notGenTeaTree = false;
@@ -132,7 +133,7 @@ public class DCsConfig {
 			Property teppannRandom = cfg.get("setting", "Randomly Teppann Cooking Time", teppannRandomCookTime,
 					"Enable randomly cooking time of iron plate.");
 			Property entityMelon = cfg.get("entityid", "EntityIDCompressedMelon", entityIdMelon);
-			Property explodeMelon = cfg.get("entity", "EnableExplodeMelon", canExplodeMelon,
+			Property explodeMelon = cfg.get("entity", "Enable Explode Melon", canExplodeMelon,
 					"Allow the CompressedMelon explode.");
 			Property cupStackSizeInt = cfg.get("setting", "Cups Stack Size", cupStackSize,
 					"Set stack seize of filled cups. Please choose from the 1/3/8.");
@@ -163,6 +164,8 @@ public class DCsConfig {
 							+ BR + "Rotten flesh, Bone, Spider eye, Ender parl, and Slime ball.");
 			Property hardLeather = cfg.get("setting", "Hard Mode Leather Recipe", hardLeatherRecipe,
 					"Enable hard mode that make a leather from a rotten flesh.");
+			Property batteryCycle = cfg.get("setting", "Battery Update Cycle", batteryUpdate,
+					"Set the update cycle tick of the device using the battery.");
 			
 			Property entityIce = cfg.get("entityid", "EntityIDIceCream", entityIdIce);
 			Property entityCup = cfg.get("entityid", "EntityIDCup", entityIdCup);
@@ -199,6 +202,7 @@ public class DCsConfig {
 			villagerRecipe2ID = cafeRecipe.getInt() + 1;
 			princessChanceValue = princessChance.getInt();
 			charmRemain = radenLimit.getInt();
+			batteryUpdate = batteryCycle.getInt();
 			
 			useEXRecipe = EXRecipe.getBoolean(false);
 			notGenTeaTree = noTeaTree.getBoolean(false);

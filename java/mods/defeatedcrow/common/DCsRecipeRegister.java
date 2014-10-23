@@ -2352,6 +2352,25 @@ public class DCsRecipeRegister {
 	    			  new ItemStack(DCsAppleMilk.leafTea, 1, 3),
 	    			  "stickCarbon"
 					 }));
+		
+		//oilの詰め替えレシピ
+		GameRegistry.addShapelessRecipe(
+	    		  new ItemStack(DCsAppleMilk.bottleCamOil, 5, 0),
+	    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.bucketCamOil, 1, 0));
+		
+		GameRegistry.addShapelessRecipe(
+	    		  new ItemStack(DCsAppleMilk.bottleVegiOil, 5, 0),
+	    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.bucketVegiOil, 1, 0));
 		 
 		 //extended vanilla recipe
 		GameRegistry.addShapelessRecipe(

@@ -17,17 +17,32 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10_2.0_alpha"
+version = "1.0"
 group= "mods.defeatedcrow.DCsAppleMilk" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AppleMilkTea2"
 
 minecraft {
-    version = "1.7.10-10.13.0.1206"
+    version = "1.7.10-10.13.2.1230"
     runDir = "eclipse/assets"
 }
 
 dependencies {
-    compile fileTree(dir: 'api', include: '*.jar')
+
+    compile fileTree(dir: 'libs', include: '*.jar')
+
+    // you may put jars on which you depend on in ./libs
+    // or you may define them like so..
+    //compile "some.group:artifact:version:classifier"
+    //compile "some.group:artifact:version"
+      
+    // real examples
+    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
+    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
+
+    // for more info...
+    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
+    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
 }
 
 task sourceJar(type: Jar) {
@@ -38,7 +53,7 @@ task sourceJar(type: Jar) {
 task deobfJar(type: Jar) {
     from sourceSets.main.output
    classifier = 'dev'
-}  
+}
 
 processResources
 {

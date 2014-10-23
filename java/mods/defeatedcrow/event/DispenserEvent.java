@@ -119,8 +119,8 @@ public class DispenserEvent {
                     	ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(item);
                     	if (recipe != null)
                     	{
-                    		tile.setItemStack(new ItemStack(item.getItem(), 1, item.getItemDamage()));
-                    		tile.setRemainByte((byte) 3);
+                    		tile.setRecipe(new ItemStack(item.getItem(), 1, item.getItemDamage()));
+                    		tile.setRemain((byte) 3);
                     		tile.markDirty();
                     		
                     		int meta = world.getBlockMetadata(i, j, k);
