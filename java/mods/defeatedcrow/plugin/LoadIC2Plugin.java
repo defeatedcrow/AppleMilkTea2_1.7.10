@@ -4,6 +4,7 @@ import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -81,9 +82,13 @@ public class LoadIC2Plugin {
             RecipeInputItemStack input4 = new RecipeInputItemStack(new ItemStack(DCsAppleMilk.clam, 1, 0), 1);
             ItemStack outputs4 = new ItemStack(DCsAppleMilk.EXItems, 2, 6);
             
+            RecipeInputItemStack input5 = new RecipeInputItemStack(new ItemStack(Items.coal, 1, 1), 1);
+            ItemStack outputs5 = new ItemStack(DCsAppleMilk.dustWood, 1, 1);
+            
             Recipes.macerator.addRecipe(input2, metadata2, outputs2);
             Recipes.macerator.addRecipe(input3, metadata2, outputs3);
             Recipes.macerator.addRecipe(input4, metadata2, outputs4);
+            Recipes.macerator.addRecipe(input5, metadata2, outputs5);
             AMTLogger.debugInfo("Succeeded to register IC2machines recipe");
             
             if (FluidRegistry.isFluidRegistered("vegitable_oil"))

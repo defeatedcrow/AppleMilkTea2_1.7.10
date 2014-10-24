@@ -295,7 +295,7 @@ public class DCsAppleMilk{
 	public static boolean SuccessLoadACore = false;
 	
 	//内部処理用
-	public static boolean debugMode = false;
+	public static boolean debugMode = true;
 	public static boolean succeedAddPotion = false;
 	
 	//新ツール属性の追加
