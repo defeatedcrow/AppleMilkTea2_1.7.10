@@ -1,7 +1,5 @@
 package mods.defeatedcrow.plugin;
 
-import java.io.EOFException;
-
 import cpw.mods.fml.common.FMLModContainer;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
@@ -18,8 +16,18 @@ public class LoadBCPlugin {
 		AMTLogger.debugInfo("BuildCraft version : " + s);
 		if (s.contains("6.1"))
 		{
-			BuildcraftFuelRegistry.fuel.addFuel(DCsAppleMilk.vegitableOil, 20, 5000);
-			BuildcraftFuelRegistry.fuel.addFuel(DCsAppleMilk.camelliaOil, 30, 10000);
+			if (!s.contains("6.1.1"))
+			{
+				try
+				{
+					BuildcraftFuelRegistry.fuel.addFuel(DCsAppleMilk.vegitableOil, 20, 5000);
+					BuildcraftFuelRegistry.fuel.addFuel(DCsAppleMilk.camelliaOil, 30, 10000);
+				}
+				catch (Exception e)
+				{
+					//何もしない
+				}
+			}
 		}
 	}
 

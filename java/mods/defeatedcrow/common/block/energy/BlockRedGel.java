@@ -106,6 +106,25 @@ public class BlockRedGel extends Block{
 		}
     }
 	
+	@SideOnly(Side.CLIENT)
+    public int colorMultiplier(IBlockAccess world, int x, int y, int z)
+    {
+		int meta = world.getBlockMetadata(x, y, z);
+		Block under = world.getBlock(x, y - 1, z);
+		ForgeDirection dir = ForgeDirection.getOrientation(meta & 7);
+		
+		if (dir != ForgeDirection.UP)
+		{
+			if (under != null && !under.isAir(world, x, y, z) && under == Blocks.grass)
+			{
+				int color = under.colorMultiplier(world, x, y, z);
+				return color;
+			}
+		}
+		
+		return super.colorMultiplier(world, x, y, z);
+    }
+	
 //	@Override
 //	@SideOnly(Side.CLIENT)
 //    public IIcon getIcon(int par1, int par2)

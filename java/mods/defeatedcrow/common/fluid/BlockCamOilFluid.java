@@ -22,7 +22,7 @@ public class BlockCamOilFluid extends BlockFluidClassic {
 
 	public BlockCamOilFluid(Fluid fluid, Material material) {
 		super(fluid, material);
-		this.setQuantaPerBlock(10);
+		this.setQuantaPerBlock(8);
 		this.slipperiness = 0.98F;
 		this.displacements.put(Blocks.water,false);
 		this.displacements.put(Blocks.lava,false);

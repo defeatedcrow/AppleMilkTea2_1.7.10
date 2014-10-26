@@ -16,7 +16,7 @@ public class PotionSuffocation extends Potion{
     {
 		if (par2 > 0 && par1EntityLivingBase.getHealth() > 1.0F)
         {
-			float damage = par2 / 2;
+			float damage = par2;
             par1EntityLivingBase.attackEntityFrom(DamageSource.inWall, damage);
         }
     }
