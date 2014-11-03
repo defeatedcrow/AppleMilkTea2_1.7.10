@@ -37,7 +37,7 @@ public class BlockFilledChocoPan extends BlockContainer{
 	
 	public BlockFilledChocoPan ()
 	{
-		super(Material.circuits);
+		super(Material.ground);
 		this.setStepSound(Block.soundTypeStone);
 		this.setHardness(0.2F);
 		this.setResistance(1.0F);

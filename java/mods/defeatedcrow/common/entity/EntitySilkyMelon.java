@@ -15,7 +15,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemFlintAndSteel;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
@@ -595,6 +599,21 @@ public class EntitySilkyMelon extends Entity
 
                 return true;
             }
+    	}
+    	else if (item != null && (item.getItem() == DCsAppleMilk.firestarter || item.getItem() instanceof ItemFlintAndSteel))
+    	{
+    		if (item.attemptDamageItem(1, this.worldObj.rand))
+            {
+                item.stackSize = 0;
+            }
+    		
+    		this.setDead();
+    		this.explode();
+    		return true;
+    	}
+    	else if (item.getItem().getItemUseAction(item) == EnumAction.bow)
+    	{
+    		return false;
     	}
     	else
     	{

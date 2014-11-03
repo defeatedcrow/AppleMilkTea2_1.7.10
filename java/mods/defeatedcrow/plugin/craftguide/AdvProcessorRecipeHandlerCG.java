@@ -16,11 +16,11 @@ import uristqwerty.CraftGuide.api.RecipeTemplate;
 import uristqwerty.CraftGuide.api.Slot;
 import uristqwerty.CraftGuide.api.SlotType;
 
-public class ProsessorRecipeHandlerCG implements RecipeProvider{
+public class AdvProcessorRecipeHandlerCG implements RecipeProvider{
 	
 	private final Slot[] slots = new Slot[12];
 	
-	public ProsessorRecipeHandlerCG()
+	public AdvProcessorRecipeHandlerCG()
 	{
 		this.slots[0] = new ItemSlot(58, 18, 16, 16, true).setSlotType(SlotType.OUTPUT_SLOT);
 		this.slots[1] = new ItemSlot(58, 35, 16, 16, true).setSlotType(SlotType.OUTPUT_SLOT);
@@ -38,13 +38,13 @@ public class ProsessorRecipeHandlerCG implements RecipeProvider{
 	public void generateRecipes(RecipeGenerator generator) {
 		
 		RecipeTemplate template;
-		ItemStack machine = new ItemStack(DCsAppleMilk.prosessor, 1, 0);
+		ItemStack machine = new ItemStack(DCsAppleMilk.advProsessor, 1, 0);
 		template = generator.createRecipeTemplate(this.slots, machine, "defeatedcrow:textures/gui/craftguidegui.png", 1, 120, 82, 120);
 		List<ProsessorRecipe> recipeGet = (List<ProsessorRecipe>) RecipeRegisterManager.prosessorRecipe.getRecipes();
 		for(ProsessorRecipe recipe : recipeGet)
 		{
 			boolean food = recipe.isFoodRecipe();
-			if (!food) continue;
+			if (food) continue;
 			ItemStack output = recipe.getOutput();
 			ItemStack second = recipe.getSecondary();
 			Object[] items = new Object[12];

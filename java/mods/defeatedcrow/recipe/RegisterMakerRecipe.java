@@ -478,6 +478,9 @@ public class RegisterMakerRecipe {
 		BrewingRecipe.registerRecipe(DCsAppleMilk.shothu_young, DCsAppleMilk.shothu);
 		BrewingRecipe.registerRecipe(DCsAppleMilk.whiskey_young, DCsAppleMilk.whiskey);
 		BrewingRecipe.registerRecipe(DCsAppleMilk.brandy_young, DCsAppleMilk.brandy);
+		BrewingRecipe.registerRecipe(DCsAppleMilk.sake_young, DCsAppleMilk.sake);
+		BrewingRecipe.registerRecipe(DCsAppleMilk.beer_young, DCsAppleMilk.beer);
+		BrewingRecipe.registerRecipe(DCsAppleMilk.wine_young, DCsAppleMilk.wine);
 	}
 	
 	public void addKelpRecipe()

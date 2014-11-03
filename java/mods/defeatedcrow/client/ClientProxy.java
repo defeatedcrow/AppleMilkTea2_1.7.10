@@ -216,6 +216,12 @@ public class ClientProxy extends CommonProxy {
 		DCsAppleMilk.shothu.setIcons(DCsAppleMilk.blockDummyAlcohol.getIcon(0, 3));
 		DCsAppleMilk.whiskey.setIcons(DCsAppleMilk.blockDummyAlcohol.getIcon(0, 4));
 		DCsAppleMilk.brandy.setIcons(DCsAppleMilk.blockDummyAlcohol.getIcon(0, 5));
+		DCsAppleMilk.sake_young.setIcons(DCsAppleMilk.blockDummyAlcohol2.getIcon(0, 0));
+		DCsAppleMilk.beer_young.setIcons(DCsAppleMilk.blockDummyAlcohol2.getIcon(0, 1));
+		DCsAppleMilk.wine_young.setIcons(DCsAppleMilk.blockDummyAlcohol2.getIcon(0, 2));
+		DCsAppleMilk.sake.setIcons(DCsAppleMilk.blockDummyAlcohol2.getIcon(0, 3));
+		DCsAppleMilk.beer.setIcons(DCsAppleMilk.blockDummyAlcohol2.getIcon(0, 4));
+		DCsAppleMilk.wine.setIcons(DCsAppleMilk.blockDummyAlcohol2.getIcon(0, 5));
 	}
 
 }

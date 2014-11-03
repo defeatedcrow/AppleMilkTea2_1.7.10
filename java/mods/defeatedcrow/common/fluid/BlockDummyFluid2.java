@@ -13,29 +13,29 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /*
- * 0~2:焼酎、ウィスキー、ブランデーのYoung
- * 3~5:焼酎、ウィスキー、ブランデー
+ * 0~2:日本酒、ビール、ワインーのYoung
+ * 3~5:日本酒、ビール、ワイン
  * */
 
-public class BlockDummyFluid extends Block {
+public class BlockDummyFluid2 extends Block {
 	
 	@SideOnly(Side.CLIENT)
 	protected IIcon baseIcon[];
 	
-	private String[] iconType = new String[] {"shothu_still", "whiskey_still", "brandy_still"};
+	private String[] iconType = new String[] {"shothu_still", "beer_still", "wine_still"};
 
-	public BlockDummyFluid() {
+	public BlockDummyFluid2() {
 		super(Material.water);
 	}
 	
 	@Override
 	public IIcon getIcon(int side, int meta) {
 		MathHelper.clamp_int(meta, 0, 5);
-		if (meta == 4)
+		if (meta == 1 || meta == 4)
 		{
 			return this.baseIcon[1];
 		}
-		else if (meta == 5)
+		else if (meta == 2 || meta == 5)
 		{
 			return this.baseIcon[2];
 		}

@@ -40,8 +40,8 @@ public class VillagerYome implements IVillageTradeHandler {
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.monocle, 1, 0)));
 			
 			//電池
-			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.batteryItem, 1, 1)));
-			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 6), new ItemStack(DCsAppleMilk.batteryItem, 5, 1)));
+			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(DCsAppleMilk.batteryItem, 1, 0)));
+			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 6), new ItemStack(DCsAppleMilk.batteryItem, 5, 0)));
 			
 			//精油
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 5), new ItemStack(DCsAppleMilk.essentialOil, 1, 8)));

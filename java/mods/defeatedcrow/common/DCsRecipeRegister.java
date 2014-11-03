@@ -1991,6 +1991,8 @@ public class DCsRecipeRegister {
 	    		  new ItemStack(DCsAppleMilk.moromi, 1, 0),
 	    		  new Object[]{
 	    			  "cropRice",
+	    			  "cropRice",
+	    			  "cropRice",
 	    			  new ItemStack(Items.water_bucket, 1, 0),
 	    			  "kouji"
 					 }));
@@ -2000,6 +2002,30 @@ public class DCsRecipeRegister {
 	    		  new ItemStack(DCsAppleMilk.moromi, 1, 1),
 	    		  new Object[]{
 	    			  new ItemStack(Items.wheat, 1, 0),
+	    			  new ItemStack(Items.wheat, 1, 0),
+	    			  new ItemStack(Items.wheat, 1, 0),
+	    			  new ItemStack(Items.water_bucket, 1, 0),
+	    			  "kouji"
+					 }));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.moromi, 1, 1),
+	    		  new Object[]{
+	    			  "grape",
+	    			  "grape",
+	    			  "grape",
+	    			  new ItemStack(Items.water_bucket, 1, 0),
+	    			  "kouji"
+					 }));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.moromi, 1, 1),
+	    		  new Object[]{
+	    			  "cropGrape",
+	    			  "cropGrape",
+	    			  "cropGrape",
 	    			  new ItemStack(Items.water_bucket, 1, 0),
 	    			  "kouji"
 					 }));
@@ -2038,6 +2064,18 @@ public class DCsRecipeRegister {
 						 "ZYZ",
 						 "ZWZ",
 						 Character.valueOf('W'), new ItemStack(DCsAppleMilk.batteryItem, 1, 0),
+						 Character.valueOf('Z'), new ItemStack(Items.iron_ingot, 1),
+						 Character.valueOf('Y'), new ItemStack(DCsAppleMilk.prosessor, 1),
+						 Character.valueOf('X'), new ItemStack(Items.diamond_sword, 1)}));
+		 
+		 GameRegistry.addRecipe(
+				 new ShapedOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.advProsessor, 1),
+	    		  new Object[]{
+						 "ZXZ",
+						 "ZYZ",
+						 "ZWZ",
+						 Character.valueOf('W'), new ItemStack(DCsAppleMilk.gelBat, 1, 0),
 						 Character.valueOf('Z'), new ItemStack(Items.iron_ingot, 1),
 						 Character.valueOf('Y'), new ItemStack(DCsAppleMilk.prosessor, 1),
 						 Character.valueOf('X'), new ItemStack(Items.diamond_sword, 1)}));
@@ -2295,6 +2333,16 @@ public class DCsRecipeRegister {
 					 Character.valueOf('T'), Items.string,
 					 Character.valueOf('S'), new ItemStack(DCsAppleMilk.EXItems,1,1),
 				 });
+		 
+		 GameRegistry.addShapelessRecipe(
+	    		  new ItemStack(Items.string, 3, 0),
+	    			  new ItemStack(Blocks.wool, 1, 32767),
+	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767));
+		 
+		 GameRegistry.addShapelessRecipe(
+	    		  new ItemStack(DCsAppleMilk.dustWood, 1, 1),
+	    			  new ItemStack(Items.coal, 1, 1),
+	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767));
 	}
 	
 	static void addCharms()

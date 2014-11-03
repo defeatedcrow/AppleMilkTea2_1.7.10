@@ -83,12 +83,11 @@ public class ItemIncenseClam extends Item implements IIncenseEffect{
 					if (barrel != null)
 					{
 						int currentStage = barrel.getAgingStage();
-						if (!barrel.getAged() && currentStage < 4)
+						if (!barrel.productTank.isEmpty() && !barrel.getAged() && currentStage < 4)
 						{
 							barrel.setAgingStage(currentStage + 1);
 							barrel.markDirty();
 							world.markBlockForUpdate(x, y, z);
-							world.playAuxSFX(2005, x, y + 1, z, 0);
 							flag = true;
 						}
 					}

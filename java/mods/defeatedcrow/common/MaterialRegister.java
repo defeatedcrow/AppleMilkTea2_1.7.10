@@ -44,6 +44,12 @@ public class MaterialRegister {
 	private static Fluid registerWhiskey;
 	private static Fluid registerBrandyYoung;
 	private static Fluid registerBrandy;
+	private static Fluid registerSakeYoung;
+	private static Fluid registerSake;
+	private static Fluid registerBeerYoung;
+	private static Fluid registerBeer;
+	private static Fluid registerWineYoung;
+	private static Fluid registerWine;
 	
 	private MaterialRegister(){}
 	
@@ -155,6 +161,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.cordial, ItemBlockCordial.class, "defeatedcrow.blockCordial");
 		GameRegistry.registerBlock(DCsAppleMilk.barrel, "defeatedcrow.blockBarrel");
 		GameRegistry.registerBlock(DCsAppleMilk.blockDummyAlcohol, ItemDummyFluid.class, "defeatedcrow.blockDummyAlcohol");
+		GameRegistry.registerBlock(DCsAppleMilk.blockDummyAlcohol2, ItemDummyFluid2.class, "defeatedcrow.blockDummyAlcohol2");
 		
 		//カルセドニー
 		GameRegistry.registerBlock(DCsAppleMilk.flintBlock, "defeatedcrow.flintBlock");
@@ -324,6 +331,31 @@ public class MaterialRegister {
 		DCsAppleMilk.brandy = FluidRegistry.getFluid("brandy_dc");
 		
 		
+		registerSakeYoung = new Fluid("sake_young").setDensity(1000).setViscosity(1000);
+		FluidRegistry.registerFluid(registerSakeYoung);
+		DCsAppleMilk.sake_young = FluidRegistry.getFluid("sake_young");
+		
+		registerBeerYoung = new Fluid("beer_young").setDensity(1000).setViscosity(1000);
+		FluidRegistry.registerFluid(registerBeerYoung);
+		DCsAppleMilk.beer_young = FluidRegistry.getFluid("beer_young");
+		
+		registerWineYoung = new Fluid("wine_young").setDensity(1000).setViscosity(1000);
+		FluidRegistry.registerFluid(registerWineYoung);
+		DCsAppleMilk.wine_young = FluidRegistry.getFluid("wine_young");
+		
+		registerSake = new Fluid("sake_dc").setDensity(1000).setViscosity(1000);
+		FluidRegistry.registerFluid(registerSake);
+		DCsAppleMilk.sake = FluidRegistry.getFluid("sake_dc");
+		
+		registerBeer = new Fluid("beer_dc").setDensity(1000).setViscosity(1000);
+		FluidRegistry.registerFluid(registerBeer);
+		DCsAppleMilk.beer = FluidRegistry.getFluid("beer_dc");
+		
+		registerWine = new Fluid("wine_dc").setDensity(1000).setViscosity(1000);
+		FluidRegistry.registerFluid(registerWine);
+		DCsAppleMilk.wine = FluidRegistry.getFluid("wine_dc");
+		
+		
 		DCsAppleMilk.bucketYoungAlcohol = new ItemBucketYoungAlcohol()
 		.setUnlocalizedName("defeatedcrow.bucketYoungAlcohol")
 		.setContainerItem(Items.bucket)
@@ -337,12 +369,26 @@ public class MaterialRegister {
 		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("brandy_young", FluidContainerRegistry.BUCKET_VOLUME)
 				,new ItemStack(DCsAppleMilk.bucketYoungAlcohol, 1, 2), new ItemStack(Items.bucket));
 		
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("sake_young", FluidContainerRegistry.BUCKET_VOLUME)
+				,new ItemStack(DCsAppleMilk.moromi, 1, 0), new ItemStack(Items.bucket));
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("beer_young", FluidContainerRegistry.BUCKET_VOLUME)
+				,new ItemStack(DCsAppleMilk.moromi, 1, 1), new ItemStack(Items.bucket));
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("wine_young", FluidContainerRegistry.BUCKET_VOLUME)
+				,new ItemStack(DCsAppleMilk.moromi, 1, 2), new ItemStack(Items.bucket));
+		
 		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("shothu_dc", 200)
 				,new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 48), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
 		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("whiskey_dc", 200)
 				,new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 55), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
 		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("brandy_dc", 200)
 				,new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 56), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
+		
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("sake_dc", 200)
+				,new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 49), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("beer_dc", 200)
+				,new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 50), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("wine_dc", 200)
+				,new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 51), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
 		
 		DCsAppleMilk.proxy.registerFluidTex();
 		
@@ -520,6 +566,9 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.blockDummyAlcohol = (new BlockDummyFluid())
 				.setBlockName("defeatedcrow.blockDummyAlcohol");
+		
+		DCsAppleMilk.blockDummyAlcohol2 = (new BlockDummyFluid2())
+				.setBlockName("defeatedcrow.blockDummyAlcohol2");
 	}
 	
 	static void addContainers()

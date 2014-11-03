@@ -44,7 +44,7 @@ public class BlockFilledPan extends BlockContainer{
 	
 	public BlockFilledPan ()
 	{
-		super(Material.circuits);
+		super(Material.ground);
 		this.setStepSound(Block.soundTypeStone);
 		this.setHardness(0.2F);
 		this.setResistance(1.0F);

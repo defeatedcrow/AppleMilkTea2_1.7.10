@@ -46,6 +46,7 @@ public class AddChestGen {
 		dungeon4.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 21),1,1,10));
 		dungeon4.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.itemMintSeed, 1, 0),1,3,10));
 		dungeon3.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.essentialOil, 1, 10),1,3,3));
+		dungeon3.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.batteryItem, 1, 0),1,4,10));
 	}
 	
 }
