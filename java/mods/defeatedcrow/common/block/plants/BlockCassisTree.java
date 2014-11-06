@@ -210,7 +210,7 @@ public class BlockCassisTree extends Block implements IPlantable, IRightClickHar
 		ItemStack ret = this.getCropItem(meta);
 		boolean flag = false;
 		
-		if ((currentItem == null || currentItem.getItem() == ret.getItem()) && Util.notEmptyItem(ret))
+		if (Util.notEmptyItem(ret) && (currentItem == null || currentItem.getItem() == ret.getItem()))
 		{
 			if (inventory instanceof InventoryPlayer)
 			{

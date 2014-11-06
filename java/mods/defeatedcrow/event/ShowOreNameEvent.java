@@ -3,7 +3,6 @@ package mods.defeatedcrow.event;
 import java.util.ArrayList;
 import java.util.List;
 
-import universalelectricity.api.item.IEnergyItem;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -22,7 +21,6 @@ public class ShowOreNameEvent {
 	
 	private ArrayList<String> ores = new ArrayList<String>();
 	private ArrayList<String> fluids = new ArrayList<String>();
-	private ArrayList<String> energy = new ArrayList<String>();
 	
 	@SubscribeEvent
 	public void advancedTooltip(ItemTooltipEvent event)
@@ -38,11 +36,9 @@ public class ShowOreNameEvent {
 			{
 				this.ores = this.getOre(target);
 				this.fluids = this.getFluidName(target);
-				this.energy = this.showEnergy(target);
 				
 				event.toolTip.addAll(ores);
 				event.toolTip.addAll(fluids);
-				event.toolTip.addAll(energy);
 				flag = true;
 			}
 		}
@@ -87,25 +83,6 @@ public class ShowOreNameEvent {
 		}
 		
 		return fluid != null ? fluid : null;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	private ArrayList<String> showEnergy(ItemStack item)
-	{
-		ArrayList<String> energy = new ArrayList<String>();
-		
-		if (Util.notEmptyItem(item) && item.getItem() instanceof IEnergyItem)
-		{
-			IEnergyItem bat = (IEnergyItem) item.getItem();
-			double amt = bat.getEnergy(item);
-			energy.add("UE energy amount : " + amt);
-		}
-		else
-		{
-			energy.add("Not Energy Container");
-		}
-		
-		return energy != null ? energy : null;
 	}
 
 }

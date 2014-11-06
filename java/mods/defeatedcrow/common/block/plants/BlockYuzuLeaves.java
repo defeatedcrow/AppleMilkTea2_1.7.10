@@ -443,7 +443,7 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable, IRig
 		ItemStack ret = this.getCropItem(meta);
 		boolean flag = false;
 		
-		if ((currentItem == null || currentItem.getItem() == ret.getItem()) && Util.notEmptyItem(ret))
+		if (Util.notEmptyItem(ret) && (currentItem == null || currentItem.getItem() == ret.getItem()))
 		{
 			if (inventory instanceof InventoryPlayer)
 			{

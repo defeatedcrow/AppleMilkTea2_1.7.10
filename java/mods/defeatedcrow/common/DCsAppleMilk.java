@@ -66,7 +66,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha20",
+		version = "1.7.10_2.0.alpha21",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -346,6 +346,7 @@ public class DCsAppleMilk{
 	public static int modelIncenseBase;
 	public static int modelYuzuBat;
 	public static int modelGelBat;
+	public static int modelBatBox;
 	
 	public static final String[] TEX_PASS = new String[] {
 		"defeatedcrow:",
@@ -551,6 +552,7 @@ public class DCsAppleMilk{
 		this.modelCanister = proxy.getRenderID();
 		this.modelYuzuBat = proxy.getRenderID();
 		this.modelGelBat = proxy.getRenderID();
+		this.modelBatBox = proxy.getRenderID();
 		proxy.registerRenderers();
 	    
 	    //ティーメーカーのレシピ数の無限化のため、専用のレシピ登録クラスを用意した

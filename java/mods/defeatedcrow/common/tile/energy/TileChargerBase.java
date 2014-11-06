@@ -22,7 +22,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class TileChargerBase extends TileEntity implements ISidedInventory, IChargeableMachine{
 	
 	//現在のチャージ量
-	private int chargeAmount = 0;
+	protected int chargeAmount = 0;
 	//チャージアイテムを溶かす際の判定発生間隔
 	private int coolTime = 4;
 	
@@ -109,7 +109,8 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 	
 	public void setChargeAmount(int par1)
 	{
-		this.chargeAmount = par1;
+		int ret = Math.min(par1, this.getMaxChargeAmount());
+		this.chargeAmount = ret;
 	}
 	
 	public int getChargeAmount()

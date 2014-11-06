@@ -106,7 +106,7 @@ public class ContainerBatBox extends Container {
 			//カーソルを排出スロットにあわせているとき
 			if (par2 == 1)
 			{
-				//アイテムの移動(スロット3～39へ)
+				//アイテムの移動(スロット10～46へ)
 				if (!this.mergeItemStack(itemstack1, 10, 46, true))
 				{
 					return null;
@@ -118,7 +118,7 @@ public class ContainerBatBox extends Container {
 			else if (par2 > 9)
 			{
 				//燃料である
-				if (TileProsessor.isItemFuel(itemstack))
+				if (TileChargerBase.isItemFuel(itemstack))
 				{
 					//アイテムの移動(スロット0～1へ)
 					if (!this.mergeItemStack(itemstack1, 0, 1, false))
@@ -133,6 +133,15 @@ public class ContainerBatBox extends Container {
 								return null;
 							}
 						}
+					}
+				}
+				else if (itemstack1.getItem() instanceof IBattery)//バッテリーアイテム
+				{
+					//アイテムの移動(スロット2～9へ)
+					IBattery bat = (IBattery) itemstack1.getItem();
+					if (!this.mergeItemStack(itemstack1, 2, 9, false))
+					{
+						return null;
 					}
 				}
 				else//それ以外のアイテムは何もしない

@@ -59,12 +59,12 @@ public class RegisterMakerRecipe {
 	    		new String("defeatedcrow:textures/blocks/contents_cocoa_milk.png"));
 	    
 	    //teacup2
-		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.foodTea, 1, 0), new ItemStack(DCsAppleMilk.teaCup2, 1, 0),
+		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.foodTea, 1, 2), new ItemStack(DCsAppleMilk.teaCup2, 1, 0),
 	    		new ItemStack(DCsAppleMilk.teaCup2, 1, 1),
 	    		new String("defeatedcrow:textures/blocks/contents_earlgray.png"),
 	    		new String("defeatedcrow:textures/blocks/contents_tea_milk.png"));
 	    
-		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.foodTea, 1, 1), new ItemStack(DCsAppleMilk.teaCup2, 1, 2),
+		RecipeRegisterManager.teaRecipe.registerCanMilk(new ItemStack(DCsAppleMilk.foodTea, 1, 3), new ItemStack(DCsAppleMilk.teaCup2, 1, 2),
 	    		new ItemStack(DCsAppleMilk.teaCup2, 1, 3),
 	    		new String("defeatedcrow:textures/blocks/contents_appletea.png"),
 	    		new String("defeatedcrow:textures/blocks/contents_tea_milk.png"));

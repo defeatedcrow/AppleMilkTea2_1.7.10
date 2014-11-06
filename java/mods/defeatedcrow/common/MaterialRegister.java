@@ -69,6 +69,7 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.firestarter,"defeatedcrow.firestarter");
 		GameRegistry.registerItem(DCsAppleMilk.chalcedonyHammer,"defeatedcrow.chalcedonyStoneCutter");
 		GameRegistry.registerItem(DCsAppleMilk.chalcedonyKnife,"defeatedcrow.chalcedonyKnife");
+		GameRegistry.registerItem(DCsAppleMilk.pruningShears,"defeatedcrow.chalcedonyShears");
 		GameRegistry.registerItem(DCsAppleMilk.monocle, "defeatedcrow.monocle");
 		GameRegistry.registerItem(DCsAppleMilk.onixSword, "defeatedcrow.onixSword");
 		GameRegistry.registerItem(DCsAppleMilk.chopsticks,"defeatedcrow.chopsticks");
@@ -409,8 +410,12 @@ public class MaterialRegister {
 				setUnlocalizedName("defeatedcrow.chopsticks").
 				setCreativeTab(DCsAppleMilk.applemilkContainer);
 		
-		DCsAppleMilk.chalcedonyKnife = (new ItemChalcedonyKnife( DCsAppleMilk.enumToolMaterialChalcedony)).
+		DCsAppleMilk.chalcedonyKnife = (new ItemChalcedonyKnife(DCsAppleMilk.enumToolMaterialChalcedony)).
 				setUnlocalizedName("defeatedcrow.chalcedonyKnife").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.pruningShears = (new ItemChalcedonyShears(DCsAppleMilk.enumToolMaterialChalcedony)).
+				setUnlocalizedName("defeatedcrow.chalcedonyShears").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.firestarter = (new ItemFireStarter()).

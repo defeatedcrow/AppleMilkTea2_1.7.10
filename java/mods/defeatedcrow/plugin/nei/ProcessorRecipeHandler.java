@@ -172,12 +172,17 @@ public class ProcessorRecipeHandler extends TemplateRecipeHandler {
         for(ProsessorRecipe recipe : recipes)
         {
         	if (recipe == null)continue;
-        	
         	List<Object> in = recipe.getProsessedInput();
             ItemStack[] out = new ItemStack[] {recipe.getOutput(),recipe.getSecondary()};
             
             boolean flag = recipe.isFoodRecipe() && this.contain(in, ingredient);
-            
+            //input中にnullがないかチェックする。鉱石辞書レシピ用。
+            for(Object ret : in) {
+        		if (ret instanceof List){
+    				List<ItemStack> items = (List<ItemStack>) ret;
+    				if (items.isEmpty())flag = false;
+    			}
+        	}
             
             if (flag){ 
             	RecipeCacher cache = new RecipeCacher(in, out);

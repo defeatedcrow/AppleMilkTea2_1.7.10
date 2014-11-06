@@ -119,7 +119,7 @@ public class TileMakerNext extends TileEntity implements ITeaMaker
 	@Override
 	public void setMilk(boolean flag)
 	{
-		this.isMilk = true;
+		this.isMilk = flag;
 		this.remain = 3;
 		this.updateTeaMaker();
 	}

@@ -176,7 +176,7 @@ public class BlockTeaTree extends Block implements IPlantable, IRightClickHarves
 		ItemStack ret = this.getCropItem(meta);
 		boolean flag = false;
 		
-		if ((currentItem == null || currentItem.getItem() == ret.getItem()) && Util.notEmptyItem(ret))
+		if (Util.notEmptyItem(ret) && (currentItem == null || currentItem.getItem() == ret.getItem()))
 		{
 			if (inventory instanceof InventoryPlayer)
 			{

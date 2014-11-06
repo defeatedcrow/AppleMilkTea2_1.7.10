@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.tile.energy.TileChargerBase;
+import mods.defeatedcrow.common.tile.energy.TileChargerDevice;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -65,7 +66,7 @@ public class BlockBatBox extends BlockContainer{
 	@Override
 	public int getRenderType()
 	{
-		return 0;//DCsAppleMilk.modelDial;
+		return DCsAppleMilk.modelBatBox;
 	}
 	
 	@Override
@@ -191,7 +192,7 @@ public class BlockBatBox extends BlockContainer{
 	 
 	@Override
 	public TileEntity createNewTileEntity(World world, int a) {
-		return new TileChargerBase();
+		return new TileChargerDevice();
 	}
 	
 	@Override
