@@ -95,9 +95,11 @@ private static final String[] type = new String[] {"_milk", "_tea", "_greentea",
 	
 	public PotionEffect iceEffect(int meta) {
 		
+		int dur = 1800;
+		
 		if(meta == 0)//milk
 		{
-			return new PotionEffect(Potion.fireResistance.id, 900, 0);
+			return new PotionEffect(Potion.fireResistance.id, dur, 0);
 		}
 		else if(meta == 1)//tea
 		{
@@ -105,19 +107,19 @@ private static final String[] type = new String[] {"_milk", "_tea", "_greentea",
 		}
 		else if(meta == 2)//greentea
 		{
-			return new PotionEffect(Potion.digSpeed.id, 900, 0);
+			return new PotionEffect(Potion.digSpeed.id, dur, 0);
 		}
 		else if (meta == 3 || meta == 4)//cocoa,coffee
 		{
-			return new PotionEffect(Potion.nightVision.id, 900, 0);
+			return new PotionEffect(Potion.nightVision.id, dur, 0);
 		}
 		else if ((meta == 5) && DCsAppleMilk.succeedAddPotion)//fruit
 		{
-			return new PotionEffect(DCsAppleMilk.Immunization.id, 900, 0);
+			return new PotionEffect(DCsAppleMilk.Immunization.id, dur, 0);
 		}
 		else if ((meta == 6) && DCsAppleMilk.succeedAddPotion)//lemon
 		{
-			return new PotionEffect(DCsAppleMilk.Immunization.id, 900, 1);
+			return new PotionEffect(DCsAppleMilk.Immunization.id, dur, 1);
 		}
 		else if (meta == 7)//lime
 		{
@@ -125,15 +127,15 @@ private static final String[] type = new String[] {"_milk", "_tea", "_greentea",
 		}
 		else if (meta == 8)//tomato
 		{
-			return new PotionEffect(Potion.damageBoost.id, 900, 0);
+			return new PotionEffect(Potion.damageBoost.id, dur, 0);
 		}
 		else if (meta == 9)//berry
 		{
-			return new PotionEffect(Potion.resistance.id, 900, 1);
+			return new PotionEffect(Potion.resistance.id, dur, 1);
 		}
 		else if (meta == 10 || meta == 13)//grape
 		{
-			return new PotionEffect(Potion.moveSpeed.id, 900, 0);
+			return new PotionEffect(Potion.moveSpeed.id, dur, 0);
 		}
 		else if (meta == 11)//mint
 		{
@@ -141,7 +143,7 @@ private static final String[] type = new String[] {"_milk", "_tea", "_greentea",
 		}
 		else if (meta == 12)//orange
 		{
-			return new PotionEffect(Potion.jump.id, 900, 0);
+			return new PotionEffect(Potion.jump.id, dur, 0);
 		}
 		else//例外用
 		{

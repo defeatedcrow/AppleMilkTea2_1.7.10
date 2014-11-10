@@ -607,8 +607,9 @@ public class EntitySilkyMelon extends Entity
                 item.stackSize = 0;
             }
     		
+    		par1EntityPlayer.triggerAchievement(AchievementRegister.useSilkMelon);
     		this.setDead();
-    		this.explode();
+    		if (!this.worldObj.isRemote) this.explode();
     		return true;
     	}
     	else if (item.getItem().getItemUseAction(item) == EnumAction.bow)

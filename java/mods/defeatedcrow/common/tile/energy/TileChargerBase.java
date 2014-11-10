@@ -181,11 +181,19 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 					int charge = this.getChargeAmount();
 					int inc = Math.min(charge, 16);
 					
-					if (Util.notEmptyItem(current) && current.getItem() instanceof IBattery && inc > 0)
+					if (Util.notEmptyItem(current) && inc > 0)
 					{
-						IBattery bat = (IBattery) current.getItem();
-						int ret = bat.charge(current, inc, true);
-						this.setChargeAmount(charge - ret);
+						if (current.getItem() instanceof IBattery)
+						{
+							IBattery bat = (IBattery) current.getItem();
+							int ret = bat.charge(current, inc, true);
+							this.setChargeAmount(charge - ret);
+						}
+						else if (this.isChargeableBattery(current))
+						{
+							int ret = this.chargeAnotherBattery(current, inc, true);
+							this.setChargeAmount(charge - ret);
+						}
 					}
 				}
 				
@@ -296,6 +304,25 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 	 * AMT単体では特に用のないメソッド
 	 * */
 	public int acceptChargeFromDir(ForgeDirection dir)
+	{
+		return 0;
+	}
+	
+	/**
+	 * 他MODの電池アイテムを対応させるためのメソッド。
+	 * 残量確認なども含めて、実際に充電できる時のみTrueを返すこと。
+	 * */
+	public boolean isChargeableBattery(ItemStack item)
+	{
+		return false;
+	}
+	
+	/**
+	 * 他MODの電池アイテムを対応させるためのメソッド。
+	 * ここで充電を増やす。
+	 * シミュレート可能だが当MOD内では使っていない。
+	 * */
+	public int chargeAnotherBattery(ItemStack item, int inc, boolean isSimulate)
 	{
 		return 0;
 	}

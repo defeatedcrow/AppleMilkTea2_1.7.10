@@ -6,6 +6,7 @@ import java.util.Random;
 
 import mods.defeatedcrow.api.plants.IRightClickHarvestable;
 import mods.defeatedcrow.common.AMTLogger;
+import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
@@ -86,6 +87,7 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable, IRig
     		ItemStack currentItem = inventory.getCurrentItem();
     		if(this.onHarvest(par1World, par2, par3, par4, inventory, currentItem))
     		{
+    			par5EntityPlayer.triggerAchievement(AchievementRegister.getYuzu);
     			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
     			return true;
     		}

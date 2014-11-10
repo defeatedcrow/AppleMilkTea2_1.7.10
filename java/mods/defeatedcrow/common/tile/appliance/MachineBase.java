@@ -210,7 +210,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 						{
 							//IBatteryの場合、ここでは空容器のスロット移動は行わない。
 							IBattery bat = (IBattery) this.itemstacks[0].getItem();
-							bat.discharge(this.itemstacks[0], 4, true);
+							bat.discharge(this.itemstacks[0], 16, true);
 						}
 						else//スロット1のアイテムを減らす
 						{
@@ -301,9 +301,9 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 			}
 			else if (par0ItemStack.getItem() instanceof IBattery)
 			{
-				//充電池の場合、4/4tickずつ減少する。
+				//充電池の場合、16/4tickずつ減少する。
 				IBattery bat = (IBattery) par0ItemStack.getItem();
-				int ret = bat.discharge(par0ItemStack, 4, false);
+				int ret = bat.discharge(par0ItemStack, 16, false);
 				return ret;
 			}
 			

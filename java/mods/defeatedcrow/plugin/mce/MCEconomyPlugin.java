@@ -209,6 +209,7 @@ public class MCEconomyPlugin extends ProductList{
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.DCgrater), 20);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.monocle), 120);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.onixSword), 150);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.pruningShears), 160);
 		
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.batteryItem, 1, 0), 100);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.batteryItem, 1, 1), 200);
@@ -257,6 +258,8 @@ public class MCEconomyPlugin extends ProductList{
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.prosessor, 1, 0), 1000));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.batteryItem, 1, 1), 500));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.batteryItem, 64, 1), 30000));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.chalcedonyHammer, 1, 0), 400));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.pruningShears, 1, 0), 500));
 	}
 
 	@Override

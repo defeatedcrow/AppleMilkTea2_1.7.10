@@ -39,8 +39,8 @@ public class CraftingEvent {
 			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.woodBox)) {
 				player.triggerAchievement(AchievementRegister.craftLogBox);
 			}
-			else if (crafting.getItem() == DCsAppleMilk.chalcedonyKnife) {
-				player.triggerAchievement(AchievementRegister.craftChalKnife);
+			else if (crafting.getItem() == DCsAppleMilk.EXItems && crafting.getItemDamage() == 3) {
+				player.triggerAchievement(AchievementRegister.craftChalGear);
 			}
 			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.prosessor)) {
 				player.triggerAchievement(AchievementRegister.craftAutoMaker);
@@ -48,11 +48,29 @@ public class CraftingEvent {
 			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.vegiBag)) {
 				player.triggerAchievement(AchievementRegister.craftVegiBag);
 			}
-			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.cLamp) && crafting.getItemDamage() == 3) {
+			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.cLamp) && crafting.getItemDamage() == 5) {
 				player.triggerAchievement(AchievementRegister.craftGlassLamp);
 			}
 			else if (crafting.getItem() == DCsAppleMilk.DCgrater) {
 				player.triggerAchievement(AchievementRegister.craftGrater);
+			}
+			else if (crafting.getItem() == DCsAppleMilk.batteryItem && crafting.getItemDamage() == 2) {
+				player.triggerAchievement(AchievementRegister.craftYuzuBattery);
+			}
+			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.gelBat)) {
+				player.triggerAchievement(AchievementRegister.craftChargeableBat);
+			}
+			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.barrel)) {
+				player.triggerAchievement(AchievementRegister.craftBarrel);
+			}
+			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.evaporator)) {
+				player.triggerAchievement(AchievementRegister.craftEvp);
+			}
+			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.advProsessor)) {
+				player.triggerAchievement(AchievementRegister.craftJaw);
+			}
+			else if (crafting.getItem() == DCsAppleMilk.princessClam && crafting.getItemDamage() > 0) {
+				player.triggerAchievement(AchievementRegister.craftCharm);
 			}
 		}
 		

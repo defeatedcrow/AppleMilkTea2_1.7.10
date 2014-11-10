@@ -173,7 +173,13 @@ public class TileMakerNext extends TileEntity implements ITeaMaker
     
     private void setTexture(ItemStack input)
     {
-    	if (input != null)
+    	if (input == null)
+    	{
+    		this.tex = "defeatedcrow:textures/blocks/contents_water.png";
+    		this.tex_milk = "defeatedcrow:textures/blocks/contents_water.png";
+    		return;
+    	}
+    	else
     	{
     		ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(input);
         	if (recipe != null)
@@ -193,11 +199,6 @@ public class TileMakerNext extends TileEntity implements ITeaMaker
         		this.tex = "defeatedcrow:textures/blocks/contents_water.png";
         		this.tex_milk = "defeatedcrow:textures/blocks/contents_water.png";
         	}
-    	}
-    	else
-    	{
-    		this.tex = "defeatedcrow:textures/blocks/contents_water.png";
-    		this.tex_milk = "defeatedcrow:textures/blocks/contents_water.png";
     	}
     }
     

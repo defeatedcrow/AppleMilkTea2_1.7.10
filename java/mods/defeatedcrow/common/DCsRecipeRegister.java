@@ -1652,6 +1652,14 @@ public class DCsRecipeRegister {
 		 
 		 GameRegistry.addRecipe(
 				 new ShapedOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.pruningShears, 1),
+	    		  new Object[]{" XX"," Y ","YZ ",
+	    			  Character.valueOf('X'), new ItemStack(DCsAppleMilk.chalcedonyKnife, 1, 0),
+	    			  Character.valueOf('Y'), "stickCarbon",
+	    			  Character.valueOf('Z'), new ItemStack(Items.leather, 1, 0)}));
+		 
+		 GameRegistry.addRecipe(
+				 new ShapedOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.onixSword, 1),
 	    		  new Object[]{"X","X","Y",
 	    			  Character.valueOf('Y'), new ItemStack(Items.iron_ingot),
@@ -2010,7 +2018,7 @@ public class DCsRecipeRegister {
 		
 		GameRegistry.addRecipe(
 				 new ShapelessOreRecipe(
-	    		  new ItemStack(DCsAppleMilk.moromi, 1, 1),
+	    		  new ItemStack(DCsAppleMilk.moromi, 1, 2),
 	    		  new Object[]{
 	    			  "grape",
 	    			  "grape",
@@ -2021,7 +2029,7 @@ public class DCsRecipeRegister {
 		
 		GameRegistry.addRecipe(
 				 new ShapelessOreRecipe(
-	    		  new ItemStack(DCsAppleMilk.moromi, 1, 1),
+	    		  new ItemStack(DCsAppleMilk.moromi, 1, 2),
 	    		  new Object[]{
 	    			  "cropGrape",
 	    			  "cropGrape",

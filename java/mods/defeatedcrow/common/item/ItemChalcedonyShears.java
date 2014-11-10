@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.api.plants.IRightClickHarvestable;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.block.plants.BlockClamSand;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -129,16 +130,7 @@ public class ItemChalcedonyShears extends ItemTool{
         							flag = true;
         						}
         					}
-        					//その2、ハマグリ砂
-        					if (block == DCsAppleMilk.clamSand)
-        					{
-        						//とりあえず右クリック処理
-        						if (block.onBlockActivated(world, X + i, Y - j, Z + k, player, meta, 0.5F, 0.5F, 0.5F))
-        						{
-        							flag = true;
-        						}
-        					}
-        					//その3、IGrowable、これは骨粉使用不可であれば成長しきっていると判断し、破壊する。
+        					//その2、IGrowable、これは骨粉使用不可であれば成長しきっていると判断し、破壊する。
         					if (block instanceof IGrowable)
         					{
         						IGrowable crop = (IGrowable) block;

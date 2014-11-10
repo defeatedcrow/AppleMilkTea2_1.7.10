@@ -7,9 +7,11 @@ import java.util.Random;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.api.plants.IRightClickHarvestable;
 import mods.defeatedcrow.client.particle.EntityOrbFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.AMTLogger;
+import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
 import mods.defeatedcrow.handler.Util;
@@ -17,8 +19,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
@@ -27,8 +32,8 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class BlockClamSand extends Block
-{
+public class BlockClamSand extends Block implements IRightClickHarvestable{
+	
     private final int[] sideX = new int[] {1, -1, 0, 0};
     private final int[] sideZ = new int[] {0, 0, 1, -1};
 	
@@ -70,56 +75,23 @@ public class BlockClamSand extends Block
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
-        ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
-        int currentMeta = par1World.getBlockMetadata(par2, par3, par4);
-        Material ueBlockMaterial = par1World.getBlock(par2, par3 + 1, par4).getMaterial();
+    	ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
+        int meta = par1World.getBlockMetadata(par2, par3, par4);
         
-        if (itemstack == null)
-        {
-        	if (currentMeta == 2)
-        	{
-        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.princessClam,1,0)))
-            	{
-            		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.princessClam,1,0), 1);
-            	}
-        	}
-        	else
-        	{
-        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.clam,1,0)))
-            	{
-            		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.clam,1,0), 1);
-            	}
-        	}
-    		
-    		par1World.setBlock(par2, par3, par4, Blocks.sand);
-    		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
-    		return true;
-        }
-        else if (itemstack.getItem() == DCsAppleMilk.clam || itemstack.getItem() == DCsAppleMilk.princessClam)
-        {
-        	if (currentMeta == 2)
-        	{
-        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.princessClam,1,0)))
-            	{
-            		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.princessClam,1,0), 1);
-            	}
-        	}
-        	else
-        	{
-        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.clam,1,0)))
-            	{
-            		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.clam,1,0), 1);
-            	}
-        	}
-    		
-    		par1World.setBlock(par2, par3, par4, Blocks.sand);
-    		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
-    		return true;
-        }
-        else
-        {
-        	return false;
-        }
+        InventoryPlayer inventory = par5EntityPlayer.inventory;
+    	
+    	if (inventory != null)
+    	{
+    		ItemStack currentItem = inventory.getCurrentItem();
+    		if(this.onHarvest(par1World, par2, par3, par4, inventory, currentItem))
+    		{
+    			if (meta == 2) par5EntityPlayer.triggerAchievement(AchievementRegister.getPrincess);
+    			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+    			return true;
+    		}
+    	}
+        
+        return false;
     }
     
     @Override
@@ -253,11 +225,6 @@ public class BlockClamSand extends Block
     	
     }
     
-    public void canPlaceClamSand()
-    {
-    	
-    }
-    
     public int tickRate(World par1World)
     {
         return 20;
@@ -341,46 +308,100 @@ public class BlockClamSand extends Block
 		this.blockIcon = Blocks.sand.getBlockTextureFromSide(1);
 		
 	}
-    
-    public boolean canPlaceHamaguriHere(World world, int X, int Z, int Y)
-    {
-    	boolean flag3 = world.getBlock(X, Y + 1, Z).getMaterial() == Material.water;
-    	boolean flag4 = world.getBlock(X, Y, Z) == Blocks.sand|| world.getBlock(X, Y, Z) == DCsAppleMilk.clamSand;
-    	return flag3 && flag4;
-    }
-    
-    public int hamaguriCalculater(World world, int X, int Z, int Y)
-    {
-    	int difficulty = 0;
-    	int count = 0;
-    	boolean aroundPrincess = false;
-    	
-    	//各方角ごとに、隣接1~3マス先までのハマグリ砂を探す。最大12カウント。
-    	for (int i = 0; i < 3; i++)
-    	{
-    		if (world.getBlock(X + 1 + i, Y, Z) == DCsAppleMilk.clamSand) {
-    			count++;
-    			if (world.getBlockMetadata(X + 1 + i, Y, Z) == 2) aroundPrincess = true;
-    		}
-    		if (world.getBlock(X - 1 - i, Y, Z) == DCsAppleMilk.clamSand) {
-    			count++;
-    			if (world.getBlockMetadata(X - 1 - i, Y, Z) == 2) aroundPrincess = true;
-    		}
-    		if (world.getBlock(X, Y, Z + 1 + i) == DCsAppleMilk.clamSand) {
-    			count++;
-    			if (world.getBlockMetadata(X, Y, Z + 1 + i) == 2) aroundPrincess = true;
-    		}
-    		if (world.getBlock(X, Y, Z - 1 - i) == DCsAppleMilk.clamSand) {
-    			count++;
-    			if (world.getBlockMetadata(X, Y, Z - 1 - i) == 2) aroundPrincess = true;
-    		}
-    	}
-    	
-    	if (aroundPrincess)//姫ハマグリがいた
-    	{
-    		count /= 4;//カウントを減
-    	}
-    	
-    	return count;
-    }
+
+    @Override
+	public boolean onHarvest(World world, int x, int y, int z,
+			IInventory inventory, ItemStack currentItem) {
+		
+		int meta = world.getBlockMetadata(x, y, z);
+		
+		ItemStack ret = this.getCropItem(meta);
+		boolean flag = false;
+		
+		if (Util.notEmptyItem(ret) && (currentItem == null || currentItem.getItem() == ret.getItem()))
+		{
+			if (inventory instanceof InventoryPlayer)
+			{
+				InventoryPlayer playerInv = (InventoryPlayer)inventory;
+				
+				if (playerInv.addItemStackToInventory(ret))
+				{
+					world.setBlock(x, y, z, Blocks.sand, 0, 3);
+					playerInv.markDirty();
+					return true;
+				}
+				else flag = true;
+			}
+			else if (inventory != null)
+			{
+				int slot = this.getAddSlot(inventory, ret);
+				if (slot > -1) {
+					if (inventory.getStackInSlot(slot) == null) {
+						inventory.setInventorySlotContents(slot, ret);
+					}
+					else {
+						++inventory.getStackInSlot(slot).stackSize;
+					}
+					world.setBlock(x, y, z, Blocks.sand, 0, 3);
+					return true;
+				}
+				else {
+					flag = true;
+				}
+			}
+			else {
+				flag = true;
+			}
+		}
+		
+		if (flag)
+		{
+			float a = world.rand.nextFloat() * 0.8F + 0.1F;
+			float a1 = world.rand.nextFloat() * 0.8F + 0.1F;
+			float a2 = world.rand.nextFloat() * 0.8F + 0.1F;
+			EntityItem drop = new EntityItem(world, (double)((float)x + a), (double)((float)y + a1), (double)((float)z + a2), ret);
+			drop.motionY = 0.25F;
+			
+			if (world.spawnEntityInWorld(drop)){
+				world.setBlock(x, y, z, Blocks.sand, 0, 3);
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean isHarvestable(World world, int x, int y, int z) {
+		return true;
+	}
+
+	@Override
+	public ItemStack getCropItem(int blockMeta) {
+		ItemStack ret = null;
+		if (blockMeta == 2) ret = new ItemStack(DCsAppleMilk.princessClam, 1, 0);
+		else ret = new ItemStack(DCsAppleMilk.clam, 1, 0);
+		return ret;
+	}
+	
+	private int getAddSlot(IInventory inventory, ItemStack get)
+	{
+		for (int i = 0 ; i < inventory.getSizeInventory() ; i++)
+		{
+			if (inventory.getStackInSlot(i) == null)
+			{
+				return i;
+			}
+			else if (Util.notEmptyItem(get))
+			{
+				ItemStack cur = inventory.getStackInSlot(i);
+				if (get.getItem() == cur.getItem() && get.getItemDamage() == cur.getItemDamage()
+						&& cur.stackSize < cur.getMaxStackSize())
+				{
+					return i;
+				}
+			}
+		}
+		return -1;
+	}
 }

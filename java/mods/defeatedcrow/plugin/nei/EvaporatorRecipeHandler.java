@@ -204,6 +204,7 @@ public class EvaporatorRecipeHandler extends TemplateRecipeHandler {
 			return;
 		}
 		IIcon icon = fluid.getFluid().getIcon(fluid);
+		if (icon == null)return;
 		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 		setGLColorFromInt(fluid.getFluid().getColor(fluid));
 		int fullX = width / 16;

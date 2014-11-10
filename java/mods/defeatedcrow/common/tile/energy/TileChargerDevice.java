@@ -5,6 +5,8 @@ import cofh.api.energy.IEnergyHandler;
 import cofh.api.tileentity.IEnergyInfo;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
+import mods.defeatedcrow.plugin.RFItemHandler;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -18,9 +20,10 @@ import net.minecraftforge.common.util.ForgeDirection;
 	{
 		@Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHCore"),
 		@Optional.Interface(iface = "cofh.api.tileentity.IEnergyInfo", modid = "CoFHCore"),
+		@Optional.Interface(iface = "shift.sextiarysector.api.machine.energy.IEnergyHandler", modid = "SextiarySector")
 	}
 )
-public class TileChargerDevice extends TileChargerBase implements IEnergyHandler, IEnergyInfo{
+public class TileChargerDevice extends TileChargerBase implements IEnergyHandler, IEnergyInfo, shift.sextiarysector.api.machine.energy.IEnergyHandler{
 	
 	//このへんはオーバーライドしとかないとイマイチ動きが悪い
 	@Override
@@ -63,6 +66,42 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	{
 		//GF -> Charge
 		return 3;
+	}
+	
+	/* 充電操作用のメソッド */
+	
+	/**
+	 * 他MODの電池アイテムを対応させるためのメソッド。
+	 * 残量確認なども含めて、実際に充電できる時のみTrueを返すこと。
+	 * */
+	@Override
+	public boolean isChargeableBattery(ItemStack item)
+	{
+		boolean flag = false;
+		
+		if (Loader.isModLoaded("CoFHCore"))
+		{
+			flag = RFItemHandler.isChargeable(item);
+		}
+		
+		return flag;
+	}
+	
+	/**
+	 * 他MODの電池アイテムを対応させるためのメソッド。
+	 * ここで充電を増やす。
+	 * <br>減らす方はTileChargerBaseで行っているので不要。
+	 * <br>シミュレート可能だが当MOD内では使っていない。
+	 * */
+	@Override
+	public int chargeAnotherBattery(ItemStack item, int inc, boolean flag)
+	{
+		int ret = 0;
+		if (Loader.isModLoaded("CoFHCore"))
+		{
+			ret = RFItemHandler.chargeAmount(item, inc, flag);
+		}
+		return ret;
 	}
 	
 	
@@ -145,8 +184,66 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		return get;
 	}
 	
-	
-	
-	
+	/* GF用 */
+
+	@Optional.Method(modid = "SextiarySector")
+	@Override
+	public int addEnergy(ForgeDirection from, int power, int speed,
+			boolean simulate) {
+		//エネルギーの受け入れ
+		int eng = this.getChargeAmount();
+		int get = speed;
+		if (this.isFullCharged() || speed < 3) return 0;
+				
+		int ret = Math.min((this.getMaxChargeAmount() - eng) * this.exchangeRateGF(), get);
+				
+		if (!simulate){
+			int i = Math.round(ret / this.exchangeRateGF());//1/3に
+			this.setChargeAmount(eng + i);
+		}
+				
+		return ret;
+	}
+
+	@Optional.Method(modid = "SextiarySector")
+	@Override
+	public int drawEnergy(ForgeDirection from, int power, int speed,
+			boolean simulate) {
+		return 0;
+	}
+
+	@Optional.Method(modid = "SextiarySector")
+	@Override
+	public boolean canInterface(ForgeDirection from) {
+		return true;
+	}
+
+	@Optional.Method(modid = "SextiarySector")
+	@Override
+	public int getPowerStored(ForgeDirection from) {
+		int eng = this.getChargeAmount();
+		int get = eng * this.exchangeRateGF();
+		return get;
+	}
+
+	@Optional.Method(modid = "SextiarySector")
+	@Override
+	public long getSpeedStored(ForgeDirection from) {
+		return 3;
+	}
+
+	@Optional.Method(modid = "SextiarySector")
+	@Override
+	public int getMaxPowerStored(ForgeDirection from) {
+		int eng = this.getMaxChargeAmount();
+		int get = eng * this.exchangeRateGF();
+		return get;
+	}
+
+	@Optional.Method(modid = "SextiarySector")
+	@Override
+	public long getMaxSpeedStored(ForgeDirection from) {
+		return 3;
+	}
 
 }

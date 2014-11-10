@@ -72,6 +72,7 @@ public class BlockTeaTree extends Block implements IPlantable, IRightClickHarves
     		ItemStack currentItem = inventory.getCurrentItem();
     		if(this.onHarvest(par1World, par2, par3, par4, inventory, currentItem))
     		{
+    			par5EntityPlayer.triggerAchievement(AchievementRegister.getTeaLeaves);
     			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
     			return true;
     		}

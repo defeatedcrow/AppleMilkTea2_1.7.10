@@ -66,7 +66,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.alpha21",
+		version = "1.7.10_2.0.beta1",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -302,7 +302,7 @@ public class DCsAppleMilk{
 	public static boolean SuccessLoadACore = false;
 	
 	//内部処理用
-	public static boolean debugMode = true;
+	public static boolean debugMode = false;
 	public static boolean succeedAddPotion = false;
 	
 	//新ツール属性の追加

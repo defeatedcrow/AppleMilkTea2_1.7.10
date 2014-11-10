@@ -114,7 +114,12 @@ public class TilePanG extends TileEntity
     
     public void setTexture(ItemStack input)
     {
-    	if (input != null)
+    	if (input == null)
+    	{
+    		this.tex = "defeatedcrow:textures/blocks/contents_rice.png";
+    		return;
+    	}
+    	else
     	{
     		IPanRecipe recipe = RecipeRegisterManager.panRecipe.getRecipe(input);
         	if (recipe != null)
@@ -126,10 +131,6 @@ public class TilePanG extends TileEntity
         	{
         		this.tex = "defeatedcrow:textures/blocks/contents_rice.png";
         	}
-    	}
-    	else
-    	{
-    		this.tex = "defeatedcrow:textures/blocks/contents_rice.png";
     	}
     }
     
@@ -189,10 +190,8 @@ public class TilePanG extends TileEntity
     
     public void clearTile()
     {
-    	this.setItemStack(null);
-    	this.setTexture(null);
     	this.setRemainByte((byte) 0);
-    	this.markDirty();
+    	this.setItemStack(null);
     	this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 }

@@ -18,13 +18,13 @@ public class ModelPanHandle extends ModelBase
   public ModelPanHandle()
   {
     
-      handlea1.addBox(5F, 0F, -1.5F, 2, 1, 3);
+      handlea1.addBox(6F, 0F, -1.5F, 2, 1, 3);
       handlea1.setRotationPoint(0F, 16F, 0F);
-      handlea2.addBox(-7F, 0F, -1.5F, 2, 1, 3);
+      handlea2.addBox(-8F, 0F, -1.5F, 2, 1, 3);
       handlea2.setRotationPoint(0F, 16F, 0F);
-      handlea3.addBox(-1.5F, 0F, 5F, 3, 1, 2);
+      handlea3.addBox(-1.5F, 0F, 6F, 3, 1, 2);
       handlea3.setRotationPoint(0F, 16F, 0F);
-      handlea4.addBox(-1.5F, 0F, -7F, 3, 1, 2);
+      handlea4.addBox(-1.5F, 0F, -8F, 3, 1, 2);
       handlea4.setRotationPoint(0F, 16F, 0F);
   }
   

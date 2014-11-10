@@ -100,6 +100,7 @@ public class BlockIncenseBase extends BlockContainer{
         {
         	if (tile != null && tile.hasItem() && !tile.getActive())
         	{
+        		par5EntityPlayer.triggerAchievement(AchievementRegister.useIncense);
         		itemstack.attemptDamageItem(1, par1World.rand);
         		tile.setActive();
         		tile.markDirty();

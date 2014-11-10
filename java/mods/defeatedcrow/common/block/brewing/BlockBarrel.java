@@ -100,6 +100,11 @@ public class BlockBarrel extends BlockContainer{
                 	}
         			par5EntityPlayer.inventory.markDirty();
         			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+        			
+        			//実績
+        			if (ret.getItem() == DCsAppleMilk.itemLargeBottle){
+        				par5EntityPlayer.triggerAchievement(AchievementRegister.getAlcohol);
+        			}
         			return true;
         		}
         	}

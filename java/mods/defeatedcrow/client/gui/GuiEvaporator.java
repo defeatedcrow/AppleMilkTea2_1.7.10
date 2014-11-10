@@ -95,6 +95,7 @@ public class GuiEvaporator extends GuiContainer {
 			return;
 		}
 		IIcon icon = fluid.getFluid().getIcon(fluid);
+		if (icon == null)return;
 		mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 		setGLColorFromInt(fluid.getFluid().getColor(fluid));
 		int fullX = width / 16;
