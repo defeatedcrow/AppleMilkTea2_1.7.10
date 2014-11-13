@@ -99,7 +99,8 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		int ret = 0;
 		if (Loader.isModLoaded("CoFHCore"))
 		{
-			ret = RFItemHandler.chargeAmount(item, inc, flag);
+			int i  = RFItemHandler.chargeAmount(item, inc * this.exchangeRateRF(), flag);
+			ret = Math.round(i / this.exchangeRateRF());
 		}
 		return ret;
 	}

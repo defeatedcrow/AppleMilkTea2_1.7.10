@@ -190,8 +190,7 @@ public class TilePanG extends TileEntity
     
     public void clearTile()
     {
-    	this.setRemainByte((byte) 0);
-    	this.setItemStack(null);
-    	this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    	this.remain = 0;
+    	this.tex = "defeatedcrow:textures/blocks/contents_rice.png";
     }
 }

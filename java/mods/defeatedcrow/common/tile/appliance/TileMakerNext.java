@@ -221,10 +221,9 @@ public class TileMakerNext extends TileEntity implements ITeaMaker
     
     public void clearTile()
     {
-    	this.setItemStack(null);
     	this.setTexture(null);
-    	this.setMilk(false);
-    	this.setRemain((byte) 0);
+    	this.isMilk = false;
+    	this.remain = 0;
     	this.markDirty();
     }
     

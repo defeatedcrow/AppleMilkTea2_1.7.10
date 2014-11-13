@@ -191,7 +191,7 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 						}
 						else if (this.isChargeableBattery(current))
 						{
-							int ret = this.chargeAnotherBattery(current, inc, true);
+							int ret = this.chargeAnotherBattery(current, inc, false);
 							this.setChargeAmount(charge - ret);
 						}
 					}
