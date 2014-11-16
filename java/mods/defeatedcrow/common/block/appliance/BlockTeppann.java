@@ -168,7 +168,7 @@ public class BlockTeppann extends BlockContainer{
 			tile.getItemstack((ItemStack)null);
 			if (!par5EntityPlayer.inventory.addItemStackToInventory(getItem))
 			{
-				par5EntityPlayer.entityDropItem(getItem, 1.0F);
+				if (!par1World.isRemote) par5EntityPlayer.entityDropItem(getItem, 1.0F);
 			}
 			
 			//実績用処理

@@ -82,14 +82,14 @@ public class BlockChopsticksBox extends BlockContainer{
 		{
 			if (!player.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.chopsticks,1, 1)))
 	    	{
-	    		player.entityDropItem(new ItemStack(DCsAppleMilk.chopsticks,1, 1), 1);
+				if (!player.worldObj.isRemote) player.entityDropItem(new ItemStack(DCsAppleMilk.chopsticks,1, 1), 1);
 	    	}
 		}
 		else
 		{
 			if (!player.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.chopsticks,1, 0)))
 	    	{
-	    		player.entityDropItem(new ItemStack(DCsAppleMilk.chopsticks,1, 0), 1);
+				if (!player.worldObj.isRemote) player.entityDropItem(new ItemStack(DCsAppleMilk.chopsticks,1, 0), 1);
 	    	}
 		}
 	}

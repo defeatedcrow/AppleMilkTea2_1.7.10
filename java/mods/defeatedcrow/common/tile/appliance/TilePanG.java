@@ -190,6 +190,7 @@ public class TilePanG extends TileEntity
     
     public void clearTile()
     {
+    	this.input = null;
     	this.remain = 0;
     	this.tex = "defeatedcrow:textures/blocks/contents_rice.png";
     }

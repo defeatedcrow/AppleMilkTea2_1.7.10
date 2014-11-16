@@ -54,7 +54,7 @@ public class BlockEggBasket extends BlockContainer{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.eggBasket,1,currentMeta)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.eggBasket,1,currentMeta), 1);
+        		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.eggBasket,1,currentMeta), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);
@@ -65,7 +65,7 @@ public class BlockEggBasket extends BlockContainer{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.eggBasket,1,currentMeta)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.eggBasket,1,currentMeta), 1);
+        		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.eggBasket,1,currentMeta), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);

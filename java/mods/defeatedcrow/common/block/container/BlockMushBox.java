@@ -48,7 +48,7 @@ public class BlockMushBox extends Block{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.mushroomBox,1,meta)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.mushroomBox,1,meta), 1);
+        		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.mushroomBox,1,meta), 1);
         	}
         	
         	par1World.setBlockToAir(par2, par3, par4);
@@ -59,7 +59,7 @@ public class BlockMushBox extends Block{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.mushroomBox,1,meta)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.mushroomBox,1,meta), 1);
+        		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.mushroomBox,1,meta), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);

@@ -546,7 +546,7 @@ public class EntityMelonBomb extends Entity
     	{
     		if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(this.dropItem(),1)))
         	{
-        		par1EntityPlayer.entityDropItem(new ItemStack(this.dropItem(),1), 1.0F);
+    			if (!worldObj.isRemote) par1EntityPlayer.entityDropItem(new ItemStack(this.dropItem(),1), 1.0F);
         	}
     		
     		this.setDead();

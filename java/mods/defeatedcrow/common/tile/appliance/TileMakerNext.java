@@ -221,6 +221,7 @@ public class TileMakerNext extends TileEntity implements ITeaMaker
     
     public void clearTile()
     {
+    	this.input = null;
     	this.setTexture(null);
     	this.isMilk = false;
     	this.remain = 0;

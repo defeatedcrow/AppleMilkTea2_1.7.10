@@ -44,7 +44,7 @@ public class BlockEmptyBottle extends BlockContainer{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(this,1)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(this,1), 1);
+        		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(this,1), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);
@@ -55,7 +55,7 @@ public class BlockEmptyBottle extends BlockContainer{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(this,1)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(this,1), 1);
+        		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(this,1), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);

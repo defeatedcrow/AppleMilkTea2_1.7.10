@@ -69,7 +69,7 @@ public class BlockEmptyPan extends BlockContainer{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyPanGaiden,1)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyPanGaiden,1), 1);
+        		if (!par5EntityPlayer.worldObj.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyPanGaiden,1), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);

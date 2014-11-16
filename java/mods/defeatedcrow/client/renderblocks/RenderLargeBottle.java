@@ -29,19 +29,19 @@ public class RenderLargeBottle implements ISimpleBlockRenderingHandler{
 			RenderBlocks renderer) {
 		
 		int meta = metadata;
-		this.capIIcon = DCsAppleMilk.blockIcecream.getBlockTextureFromSide(0);
-		this.boxIIcon = block.getIcon(1, meta);
-		this.woodIIcon = Blocks.planks.getBlockTextureFromSide(0);
+		this.boxIIcon = block.getIcon(2, meta);
+		this.sideIIcon = block.getIcon(3, meta);
+		this.capIIcon = Blocks.iron_block.getBlockTextureFromSide(0);
 		
 		if (modelID == this.getRenderId())
 		{
-			renderInvCuboid(renderer, block,  5.5F/16.0F, 0.0F/16.0F, 5.5F/16.0F, 10.5F/16.0F, 1.0F/16.0F, 10.5F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  5.5F/16.0F, 1.0F/16.0F, 5.5F/16.0F, 10.5F/16.0F, 8.0F/16.0F, 10.5F/16.0F,  this.sideIIcon);
-			renderInvCuboid(renderer, block,  6.0F/16.0F, 8.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 9.0F/16.0F, 10.0F/16.0F,  this.boxIIcon);
+			renderInvCuboid(renderer, block,  5.0F/16.0F, 0.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 1.0F/16.0F, 11.0F/16.0F,  this.boxIIcon);
+			renderInvCuboid(renderer, block,  5.0F/16.0F, 1.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 7.0F/16.0F, 11.0F/16.0F,  this.sideIIcon);
+			renderInvCuboid(renderer, block,  6.0F/16.0F, 7.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 9.0F/16.0F, 10.0F/16.0F,  this.boxIIcon);
 			renderInvCuboid(renderer, block,  6.5F/16.0F, 9.0F/16.0F, 6.5F/16.0F, 9.5F/16.0F, 10.0F/16.0F, 9.5F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  7.0F/16.0F, 10.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 12.0F/16.0F, 9.0F/16.0F,  this.sideIIcon);
+			renderInvCuboid(renderer, block,  7.0F/16.0F, 10.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 14.0F/16.0F, 9.0F/16.0F,  this.boxIIcon);
 			//cap
-			renderInvCuboid(renderer, block,  7.0F/16.0F, 12.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 14.0F/16.0F, 9.0F/16.0F,  this.capIIcon);
+			renderInvCuboid(renderer, block,  7.0F/16.0F, 14.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 15.0F/16.0F, 9.0F/16.0F,  this.capIIcon);
 			
 		}
 	}
@@ -51,7 +51,6 @@ public class RenderLargeBottle implements ISimpleBlockRenderingHandler{
 			Block block, int modelId, RenderBlocks renderer) {
 		
 		int meta = world.getBlockMetadata(x, y, z);
-		TileLargeBottle tile = (TileLargeBottle) world.getTileEntity(x, y, z);
 		this.boxIIcon = block.getIcon(1, meta);
 		this.woodIIcon = Blocks.planks.getBlockTextureFromSide(0);
 		

@@ -19,7 +19,8 @@ import org.lwjgl.opengl.GL12;
 public class TileEntityBottleRenderer extends TileEntitySpecialRenderer
 {
     private static ResourceLocation bottleTex = new ResourceLocation("defeatedcrow:textures/entity/largebottle.png");
-    private static final String[] type = new String[] {"_shothu", "_sake", "_beer", "_wine", "_gin", "_rum", "_vodka", "_whiskey", "_brandy"};
+    private static final String[] type = new String[] {"_shothu", "_sake", "_beer", "_wine", "_gin", "_rum", "_vodka", "_whiskey", "_brandy"
+    	, "_brandy", "_brandy", "_brandy", "_brandy", "_brandy", "_brandy"};
     public static TileEntityBottleRenderer bottleRenderer;
     private ModelLargeBottle bottleModel = new ModelLargeBottle();
 
@@ -41,7 +42,6 @@ public class TileEntityBottleRenderer extends TileEntitySpecialRenderer
     {
         ModelLargeBottle model = this.bottleModel;
         byte l = (byte)(par0Tile.getBlockMetadata()& 15);
-        short remShort = par0Tile.getRemainShort();
         
         boolean side = par0Tile.getSide();
     	float r = 0.0F;
@@ -59,6 +59,7 @@ public class TileEntityBottleRenderer extends TileEntitySpecialRenderer
         model.render((Entity)null, 0.0F, 0.0F, 0.0F, r, 0.0F, 0.0625F);
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
     public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8)

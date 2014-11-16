@@ -133,7 +133,7 @@ public abstract class EdibleEntityItemBlock extends ItemBlock implements IEdible
 		if (ret != null) {
 			if (!player.inventory.addItemStackToInventory(ret))
 	    	{
-	    		player.entityDropItem(ret, 1);
+				if (!player.worldObj.isRemote) player.entityDropItem(ret, 1);
 	    		return true;
 	    	}
 		}

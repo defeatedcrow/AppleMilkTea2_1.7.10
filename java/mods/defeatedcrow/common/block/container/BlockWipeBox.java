@@ -76,7 +76,7 @@ public class BlockWipeBox extends BlockContainer{
         			{
         				if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.paper, 1, 0)))
         	        	{
-        	        		par5EntityPlayer.entityDropItem(new ItemStack(Items.paper, 1, 0), 1);
+        					if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(Items.paper, 1, 0), 1);
         	        	}
         				par1World.setBlockToAir(par2, par3, par4);
         	    		par1World.playSoundAtEntity(par5EntityPlayer, "dig.cloth", 1.0F, 1.3F);
@@ -85,7 +85,7 @@ public class BlockWipeBox extends BlockContainer{
         			{
         				if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.paper, 1, 0)))
         	        	{
-        	        		par5EntityPlayer.entityDropItem(new ItemStack(Items.paper,1), 1);
+        					if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(Items.paper,1), 1);
         	        	}
         				par1World.playSoundAtEntity(par5EntityPlayer, "dig.cloth", 1.0F, 1.3F);
         				tile.setRemainByte((byte)(remain - 1));

@@ -111,7 +111,7 @@ public class DispenserEvent {
                 int j = block.getYInt() + enumfacing.getFrontOffsetY();
                 int k = block.getZInt() + enumfacing.getFrontOffsetZ();
 
-                if (world.getBlock(i, j, k) == DCsAppleMilk.teaMakerNext)
+                if (!world.isRemote && world.getBlock(i, j, k) == DCsAppleMilk.teaMakerNext)
                 {
                     TileMakerNext tile = (TileMakerNext) world.getTileEntity(i, j, k);
                     if (tile != null && item != null && tile.getItemStack() == null)

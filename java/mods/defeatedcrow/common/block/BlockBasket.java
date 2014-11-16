@@ -60,13 +60,13 @@ public class BlockBasket extends BlockContainer{
     		else
     		{
     			if (currentMeta < 6) {
-    				this.getBowl(par5EntityPlayer, currentMeta);
+    				this.getBowl(par1World, par5EntityPlayer, currentMeta);
         			par1World.setBlockMetadataWithNotify(par2, par3, par4, (currentMeta - 1), 3);
             		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
             		return true;
     			}
     			else {
-    				this.getBottle(par5EntityPlayer, currentMeta);
+    				this.getBottle(par1World, par5EntityPlayer, currentMeta);
         			if (currentMeta == 6) {
         				par1World.setBlockToAir(par2, par3, par4);
         			}
@@ -118,19 +118,19 @@ public class BlockBasket extends BlockContainer{
         }
     }
 	
-	private void getBowl (EntityPlayer player, int meta)
+	private void getBowl (World world, EntityPlayer player, int meta)
 	{
 		if (!player.inventory.addItemStackToInventory(new ItemStack(Items.bread,1)))
     	{
-    		player.entityDropItem(new ItemStack(Items.bread,1), 1.0F);
+			if (!world.isRemote) player.entityDropItem(new ItemStack(Items.bread,1), 1.0F);
     	}
 	}
 	
-	private void getBottle (EntityPlayer player, int meta)
+	private void getBottle (World world, EntityPlayer player, int meta)
 	{
 		if (!player.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0)))
     	{
-    		player.entityDropItem(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), 1.0F);
+			if (!world.isRemote) player.entityDropItem(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), 1.0F);
     	}
 	}
 	

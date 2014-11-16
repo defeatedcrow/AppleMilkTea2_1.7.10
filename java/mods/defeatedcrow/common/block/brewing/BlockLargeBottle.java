@@ -45,6 +45,8 @@ public class BlockLargeBottle extends BlockContainer{
     private IIcon[] boxTex;
 	@SideOnly(Side.CLIENT)
     private IIcon[] sideTex;
+	@SideOnly(Side.CLIENT)
+    private IIcon[] itemTex;
 	
 	
 	public BlockLargeBottle ()
@@ -100,7 +102,7 @@ public class BlockLargeBottle extends BlockContainer{
         		
         		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.alcoholCup,1,meta)))
 	        	{
-	        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.alcoholCup,1,meta), 1);
+        			if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.alcoholCup,1,meta), 1);
 	        	}
         		
         		
@@ -245,13 +247,17 @@ public class BlockLargeBottle extends BlockContainer{
     { 
 		int i = par2;
 		if (i > 8) i = 8;
-		if (par1 == 1)
+		if (par1 == 2)
         {
         	return this.boxTex[i];
         }
-        else
+        else if (par1 == 3)
         {
         	return this.sideTex[i];
+        }
+        else
+        {
+        	return this.itemTex[i];
         }
 		
     }
@@ -262,11 +268,14 @@ public class BlockLargeBottle extends BlockContainer{
 	{
 		this.sideTex = new IIcon[9];
 		this.boxTex = new IIcon[9];
+		this.itemTex = new IIcon[9];
+		this.blockIcon = par1IconRegister.registerIcon("defeatedcrow:bottle" + "_shothu");
 
         for (int i = 0; i < 9; ++i)
         {
         	this.sideTex[i] = par1IconRegister.registerIcon("defeatedcrow:bottleside" + contents[i]);
         	this.boxTex[i] = par1IconRegister.registerIcon("defeatedcrow:bottle" + contents[i]);
+        	this.itemTex[i] = par1IconRegister.registerIcon("defeatedcrow:itembottle" + contents[i]);
         }
 	}
 	

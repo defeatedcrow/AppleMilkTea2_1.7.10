@@ -54,7 +54,7 @@ public class BlockFilledChocoPan extends BlockContainer{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyPanGaiden,1,0)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyPanGaiden,1,0), 1);
+        		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyPanGaiden,1,0), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);
@@ -106,7 +106,7 @@ public class BlockFilledChocoPan extends BlockContainer{
 		
 		if (!player.inventory.addItemStackToInventory(chocolate))
 		{
-			player.entityDropItem(chocolate, 1.0F);
+			if (!world.isRemote) player.entityDropItem(chocolate, 1.0F);
 		}
 		
 		world.playSoundAtEntity(player, "random.pop", 0.4F, 1.8F);

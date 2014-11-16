@@ -48,7 +48,7 @@ public class BlockEmptyCup extends BlockContainer{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyCup,1)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyCup,1), 1);
+        		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyCup,1), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);
@@ -59,7 +59,7 @@ public class BlockEmptyCup extends BlockContainer{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyCup,1)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyCup,1), 1);
+        		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyCup,1), 1);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);

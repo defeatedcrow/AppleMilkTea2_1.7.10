@@ -536,7 +536,7 @@ public abstract class PlaceableFoods extends Entity{
     		
     		if (has != null && !par1EntityPlayer.inventory.addItemStackToInventory(has))
         	{
-        		par1EntityPlayer.entityDropItem(has, 1.0F);
+    			if (!worldObj.isRemote) par1EntityPlayer.entityDropItem(has, 1.0F);
         	}
     		
     		this.setDead();

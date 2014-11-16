@@ -96,7 +96,7 @@ public class BlockBarrel extends BlockContainer{
         			
         			if (!par5EntityPlayer.inventory.addItemStackToInventory(result))
                 	{
-                		par5EntityPlayer.entityDropItem(result, 1);
+        				if (!par1World.isRemote) par5EntityPlayer.entityDropItem(result, 1);
                 	}
         			par5EntityPlayer.inventory.markDirty();
         			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
@@ -132,7 +132,7 @@ public class BlockBarrel extends BlockContainer{
                 			
                 			if (!par5EntityPlayer.inventory.addItemStackToInventory(ret.copy()))
                         	{
-                        		par5EntityPlayer.entityDropItem(ret.copy(), 1);
+                				if (!par1World.isRemote) par5EntityPlayer.entityDropItem(ret.copy(), 1);
                         	}
                 			
                 			par5EntityPlayer.inventory.markDirty();

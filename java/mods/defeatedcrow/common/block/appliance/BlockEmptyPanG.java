@@ -100,7 +100,7 @@ public class BlockEmptyPanG extends BlockContainer{
         		
         		if (!par5EntityPlayer.inventory.addItemStackToInventory(ret))
             	{
-            		par5EntityPlayer.entityDropItem(ret, 1);
+        			if (!par1World.isRemote)  par5EntityPlayer.entityDropItem(ret, 1);
             	}
         		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
         		
@@ -129,7 +129,7 @@ public class BlockEmptyPanG extends BlockContainer{
         		
         		if (!par5EntityPlayer.inventory.addItemStackToInventory(ret))
             	{
-            		par5EntityPlayer.entityDropItem(ret, 1);
+        			if (!par1World.isRemote)  par5EntityPlayer.entityDropItem(ret, 1);
             	}
         		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
         		

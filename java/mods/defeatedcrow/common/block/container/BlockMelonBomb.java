@@ -50,7 +50,7 @@ public class BlockMelonBomb extends Block{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(this,1)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(this,1), 1.0F);
+        		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(this,1), 1.0F);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);
@@ -61,7 +61,7 @@ public class BlockMelonBomb extends Block{
         {
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(this,1)))
         	{
-        		par5EntityPlayer.entityDropItem(new ItemStack(this,1), 1.0F);
+        		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(this,1), 1.0F);
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);

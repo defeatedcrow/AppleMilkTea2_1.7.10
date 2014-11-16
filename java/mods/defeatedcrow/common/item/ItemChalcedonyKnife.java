@@ -46,12 +46,14 @@ public class ItemChalcedonyKnife extends ItemTool{
         }
     }
 	
-	public boolean canHarvestBlock(Block par1Block)
+	@Override
+	public boolean func_150897_b(Block par1Block)
     {
         return par1Block == Blocks.web || par1Block == Blocks.redstone_wire || par1Block == Blocks.tripwire;
     }
 	
-	public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block)
+	@Override
+	public float func_150893_a(ItemStack par1ItemStack, Block par2Block)
     {
         return par2Block != Blocks.web && par2Block != Blocks.leaves ? (par2Block == Blocks.wool ? 5.0F : super.func_150893_a(par1ItemStack, par2Block)) : 15.0F;
     }

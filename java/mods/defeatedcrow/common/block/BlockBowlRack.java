@@ -77,7 +77,7 @@ public class BlockBowlRack extends Block{
 	{
 		if (!player.inventory.addItemStackToInventory(new ItemStack(Items.bowl,1)))
     	{
-    		player.entityDropItem(new ItemStack(Items.bowl,1),1);
+			if (!player.worldObj.isRemote) player.entityDropItem(new ItemStack(Items.bowl,1),1);
     	}
 	}
 	

@@ -97,7 +97,7 @@ public class BlockTeaMakerNext extends BlockContainer{
             			
             			if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(output.getItem(), 1, output.getItemDamage())))
                 		{
-                			par5EntityPlayer.entityDropItem((new ItemStack(output.getItem(), 1, output.getItemDamage())), 1.0F);
+            				if (!par1World.isRemote) par5EntityPlayer.entityDropItem((new ItemStack(output.getItem(), 1, output.getItemDamage())), 1.0F);
                 		}
             			
             			//実績用処理
@@ -130,14 +130,14 @@ public class BlockTeaMakerNext extends BlockContainer{
 				{
 					if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadIC2Plugin.IC2MugCoffeeMilk.copy()))
     	    		{
-    	    			par5EntityPlayer.entityDropItem(LoadIC2Plugin.IC2MugCoffeeMilk.copy(), 1);
+						if (!par1World.isRemote) par5EntityPlayer.entityDropItem(LoadIC2Plugin.IC2MugCoffeeMilk.copy(), 1);
     	    		}
 				}
 				else
 				{
 					if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadIC2Plugin.IC2MugCoffee.copy()))
     	    		{
-    	    			par5EntityPlayer.entityDropItem(LoadIC2Plugin.IC2MugCoffee.copy(), 1);
+						if (!par1World.isRemote) par5EntityPlayer.entityDropItem(LoadIC2Plugin.IC2MugCoffee.copy(), 1);
     	    		}
 				}
 				
@@ -187,7 +187,7 @@ public class BlockTeaMakerNext extends BlockContainer{
         					
         					if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.bucket, 1, 0)))
                     		{
-                    			par5EntityPlayer.entityDropItem((new ItemStack(Items.bucket, 1, 0)), 1.0F);
+        						if (!par1World.isRemote) par5EntityPlayer.entityDropItem((new ItemStack(Items.bucket, 1, 0)), 1.0F);
                     		}
         					if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
                             {
@@ -232,7 +232,7 @@ public class BlockTeaMakerNext extends BlockContainer{
             	{
             		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.bucket, 1, 0)))
             		{
-            			par5EntityPlayer.entityDropItem((new ItemStack(Items.bucket, 1, 0)), 1.0F);
+            			if (!par1World.isRemote) par5EntityPlayer.entityDropItem((new ItemStack(Items.bucket, 1, 0)), 1.0F);
             		}
             	}
         		
@@ -265,7 +265,7 @@ public class BlockTeaMakerNext extends BlockContainer{
 		{
 			if (!par2EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.water_bucket,1)))
     		{
-    			par2EntityPlayer.entityDropItem(new ItemStack(Items.water_bucket, 1), 1);
+				if (!par2EntityPlayer.worldObj.isRemote) par2EntityPlayer.entityDropItem(new ItemStack(Items.water_bucket, 1), 1);
     		}
 			
 			if (!par2EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
@@ -282,7 +282,7 @@ public class BlockTeaMakerNext extends BlockContainer{
 			
 			if (!par2EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.potionitem, 1, 0)))
     		{
-    			par2EntityPlayer.entityDropItem(new ItemStack(Items.potionitem, 1, 0), 1);
+				if (!par2EntityPlayer.worldObj.isRemote) par2EntityPlayer.entityDropItem(new ItemStack(Items.potionitem, 1, 0), 1);
     		}
 		}
 		else if (ID == Item.getItemFromBlock(DCsAppleMilk.emptyCup))
@@ -294,7 +294,7 @@ public class BlockTeaMakerNext extends BlockContainer{
 			
 			if (!par2EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.teacupBlock, 1, 0)))
     		{
-    			par2EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.teacupBlock, 1, 0), 1);
+				if (!par2EntityPlayer.worldObj.isRemote) par2EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.teacupBlock, 1, 0), 1);
     		}
 		}
 		else if (DCsAppleMilk.SuccessLoadIC2 && LoadIC2Plugin.IC2Cell != null && itemstack.getItem() == LoadIC2Plugin.IC2Cell.getItem())
@@ -306,7 +306,7 @@ public class BlockTeaMakerNext extends BlockContainer{
 			
 			if (!par2EntityPlayer.inventory.addItemStackToInventory(LoadIC2Plugin.IC2WaterCell))
     		{
-    			par2EntityPlayer.entityDropItem(LoadIC2Plugin.IC2WaterCell, 1);
+				if (!par2EntityPlayer.worldObj.isRemote) par2EntityPlayer.entityDropItem(LoadIC2Plugin.IC2WaterCell, 1);
     		}
 		}
 	}
