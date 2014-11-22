@@ -63,6 +63,18 @@ public class LoadIC2Plugin {
         //以下はexp版専用のメソッド
         try
         {
+        	//燃料登録
+        	if (FluidRegistry.isFluidRegistered("vegitable_oil"))
+            {
+            	Recipes.semiFluidGenerator.addFluid("vegitable_oil", 1, 1.0D);
+            	AMTLogger.debugInfo("Succeeded to register fuel for IC2 Semifluid Generator : vegitable_oil");
+            }
+            if (FluidRegistry.isFluidRegistered("camellia_oil"))
+            {
+            	Recipes.semiFluidGenerator.addFluid("camellia_oil", 1, 1.2D);
+            	AMTLogger.debugInfo("Succeeded to register fuel for IC2 Semifluid Generator : camellia_oil");
+            }
+        	
         	//NTGはnullのままでも別にいいのかもしれない
     		RecipeInputItemStack input = new RecipeInputItemStack(new ItemStack(DCsAppleMilk.woodBox, 1, 4), 1);
             NBTTagCompound metadata = new NBTTagCompound();
@@ -90,17 +102,6 @@ public class LoadIC2Plugin {
             Recipes.macerator.addRecipe(input4, metadata2, outputs4);
             Recipes.macerator.addRecipe(input5, metadata2, outputs5);
             AMTLogger.debugInfo("Succeeded to register IC2machines recipe");
-            
-            if (FluidRegistry.isFluidRegistered("vegitable_oil"))
-            {
-            	Recipes.semiFluidGenerator.addFluid("vegitable_oil", 1, 1.0D);
-            	AMTLogger.debugInfo("Succeeded to register fuel for IC2 Semifluid Generator : vegitable_oil");
-            }
-            if (FluidRegistry.isFluidRegistered("camellia_oil"))
-            {
-            	Recipes.semiFluidGenerator.addFluid("camellia_oil", 1, 1.2D);
-            	AMTLogger.debugInfo("Succeeded to register fuel for IC2 Semifluid Generator : camellia_oil");
-            }
         }
         catch (Exception e) {
           AMTLogger.debugInfo("Failed to register IC2machines recipe");

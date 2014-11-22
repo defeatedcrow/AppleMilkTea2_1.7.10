@@ -48,6 +48,9 @@ public class TileEntityCLampRenderer extends TileEntitySpecialRenderer
         if (par4 == 2) j = 0.0F;
         if (par4 == 4) j = 90.0F;
         
+        float k = 0;
+        k = tile.getAngle();
+        
         if (l == 8) {
         	this.bindTexture(DTex);
         }
@@ -67,7 +70,7 @@ public class TileEntityCLampRenderer extends TileEntitySpecialRenderer
         GL11.glTranslatef((float)par1 + 0.5F, (float)par2 + 1.5F, (float)par3 + 0.5F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
-        model.render((Entity)null, 0.0F, 0.0F, 0.0F, j, 0.0F, 0.0625F, l);
+        model.render((Entity)null, 0.0F, 0.0F, 0.0F, j, 0.0F, 0.0625F, l, k);
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();
         
@@ -98,7 +101,7 @@ public class TileEntityCLampRenderer extends TileEntitySpecialRenderer
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
         GL11.glColor4f(2.0F, 2.0F, 2.0F, 0.5F);
-        model.renderLucent((Entity)null, 0.0F, 0.0F, 0.0F, j, 0.0F, 0.0625F, l);
+        model.renderLucent((Entity)null, 0.0F, 0.0F, 0.0F, j, 0.0F, 0.0625F, l, k);
         
         GL11.glDisable(GL11.GL_STENCIL_TEST);
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);

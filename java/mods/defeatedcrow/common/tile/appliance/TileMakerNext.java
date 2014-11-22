@@ -28,6 +28,8 @@ public class TileMakerNext extends TileEntity implements ITeaMaker
     private ItemStack input = null;
     private String tex = "defeatedcrow:textures/blocks/contents_water.png";
     private String tex_milk = "defeatedcrow:textures/blocks/contents_water.png";
+    
+    private byte coolTime = 0;
 
     //NBT
     public void readFromNBT(NBTTagCompound par1NBTTagCompound)
@@ -43,6 +45,7 @@ public class TileMakerNext extends TileEntity implements ITeaMaker
         this.isMilk = par1NBTTagCompound.getBoolean("Milk");
         this.tex = par1NBTTagCompound.getString("Tex");
         this.tex_milk = par1NBTTagCompound.getString("Tex_Milk");
+        this.coolTime = par1NBTTagCompound.getByte("CoolTime");
     }
 
     /**
@@ -56,6 +59,7 @@ public class TileMakerNext extends TileEntity implements ITeaMaker
         par1NBTTagCompound.setBoolean("Milk", this.isMilk);
         par1NBTTagCompound.setString("Tex", tex);
         par1NBTTagCompound.setString("Tex_Milk", tex_milk);
+        par1NBTTagCompound.setByte("CoolTime", this.coolTime);
         
         if (this.getItemStack() != null)
         {
@@ -202,6 +206,16 @@ public class TileMakerNext extends TileEntity implements ITeaMaker
     	}
     }
     
+    private byte getCoolTime()
+    {
+    	return this.coolTime;
+    }
+    
+    private void setCoolTime(byte t)
+    {
+    	this.coolTime = t;
+    }
+    
     public int getMetadata()
     {
     	return this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
@@ -214,6 +228,12 @@ public class TileMakerNext extends TileEntity implements ITeaMaker
     	if (this.input == null)
     	{
     		this.clearTile();
+    	}
+    	
+    	if (this.coolTime == 0)
+    	{
+    		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    		this.setCoolTime((byte) 20);
     	}
     	
     	super.updateEntity();

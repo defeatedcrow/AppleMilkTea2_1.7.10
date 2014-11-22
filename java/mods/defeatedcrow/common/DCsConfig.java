@@ -72,6 +72,8 @@ public class DCsConfig {
 	public static boolean enableMobBlock[] = {true, true, true, true, true};
 	public static boolean hardLeatherRecipe = true;
 	
+	public static String debugPass = "Input the password here";
+	
 	
 	private final String BR = System.getProperty("line.separator");
 	
@@ -166,6 +168,8 @@ public class DCsConfig {
 					"Enable hard mode that make a leather from a rotten flesh.");
 			Property batteryCycle = cfg.get("setting", "Battery Update Cycle", batteryUpdate,
 					"Set the update cycle tick of the device using the battery.");
+			Property debug = cfg.get("debug setting", "Debug Mode Pass", debugPass,
+					"Input the password for starting in debug mode. This is only for developer.");
 			
 			Property entityIce = cfg.get("entityid", "EntityIDIceCream", entityIdIce);
 			Property entityCup = cfg.get("entityid", "EntityIDCup", entityIdCup);
@@ -238,6 +242,8 @@ public class DCsConfig {
 			entityIdSilkMelon = entitySMelon.getInt();
 			entityIdKinoko = entityKinoko.getInt();
 			entityIdCocktail2 = entityCocktail2.getInt();
+			
+			debugPass = debug.getString();
 			
 		}
 		catch (Exception e)

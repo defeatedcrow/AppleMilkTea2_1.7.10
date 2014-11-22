@@ -20,6 +20,8 @@ public class TilePanG extends TileEntity
     
     private ItemStack input = null;
     private String tex = "defeatedcrow:textures/blocks/contents_rice.png";
+    
+    private byte coolTime = 0;
 
     //NBT
     public void readFromNBT(NBTTagCompound par1NBTTagCompound)
@@ -34,6 +36,7 @@ public class TilePanG extends TileEntity
         this.remain = par1NBTTagCompound.getByte("Remaining");
         this.direction = par1NBTTagCompound.getBoolean("Direction");
         this.tex = par1NBTTagCompound.getString("Tex");
+        this.coolTime = par1NBTTagCompound.getByte("CoolTime");
     }
 
     /**
@@ -46,6 +49,7 @@ public class TilePanG extends TileEntity
         par1NBTTagCompound.setByte("Remaining", this.remain);
         par1NBTTagCompound.setBoolean("Direction", this.direction);
         par1NBTTagCompound.setString("Tex", tex);
+        par1NBTTagCompound.setByte("CoolTime", this.coolTime);
         
         if (this.getItemStack() != null)
         {
@@ -134,6 +138,16 @@ public class TilePanG extends TileEntity
     	}
     }
     
+    private byte getCoolTime()
+    {
+    	return this.coolTime;
+    }
+    
+    private void setCoolTime(byte t)
+    {
+    	this.coolTime = t;
+    }
+    
     public int getMetadata()
     {
     	return this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
@@ -146,6 +160,12 @@ public class TilePanG extends TileEntity
     	if (this.input == null)
     	{
     		this.clearTile();
+    	}
+    	
+    	if (this.coolTime == 0)
+    	{
+    		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    		this.setCoolTime((byte) 20);
     	}
     	
     	super.updateEntity();

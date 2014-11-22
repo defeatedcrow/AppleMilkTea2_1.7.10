@@ -68,12 +68,6 @@ public class ItemOnixSword extends ItemSword{
     	par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
         return par1ItemStack;
     }
-
-	@Override
-    public int getItemEnchantability()
-    {
-        return 1;
-    }
     
 	@Override
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
@@ -82,11 +76,20 @@ public class ItemOnixSword extends ItemSword{
 
         boolean flag = par3EntityPlayer.capabilities.isCreativeMode || 
         		EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
+        
+        boolean flag2 = false;
+        int unb = EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, par1ItemStack);
+        if (unb > 0)
+        {
+        	flag2 = itemRand.nextInt(unb + 1) > 0;
+        }
 
-        if (!flag)
+        if (!flag && !flag2)
         {
         	par1ItemStack.damageItem(1, par3EntityPlayer);
         }
+        
+        int shp = EnchantmentHelper.getEnchantmentLevel(Enchantment.sharpness.effectId, par1ItemStack);
 
         float f = (float)j / 20.0F;
         f = (f * f + f * 2.0F) / 3.0F;
@@ -104,11 +107,11 @@ public class ItemOnixSword extends ItemSword{
         PotionEffect add;
         if (DCsAppleMilk.reflex != null)
         {
-        	add = new PotionEffect(DCsAppleMilk.reflex.id, 30, 3);
+        	add = new PotionEffect(DCsAppleMilk.reflex.id, 30 + shp*10, 2 + shp);
         }
         else
         {
-        	add = new PotionEffect(Potion.resistance.id, 30, 4);
+        	add = new PotionEffect(Potion.resistance.id, 30 + shp*10, 4);
         }
         
         par3EntityPlayer.addPotionEffect(add);

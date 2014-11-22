@@ -20,6 +20,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
@@ -174,7 +175,7 @@ public class EvaporatorRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getRecipeName() {
-		return "Evaporator";
+		return StatCollector.translateToLocal("dc.EvaporatorNEI");
 	}
 
 	@Override

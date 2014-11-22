@@ -155,6 +155,7 @@ public class BlockEmptyPanG extends BlockContainer{
         		
         		if (ID == DCsAppleMilk.mincedFoods && IDm == 8)//チョコ鍋だけは旧仕様
         		{
+        			par1World.removeTileEntity(par2, par3, par4);
         			par1World.setBlock(par2, par3, par4, DCsAppleMilk.filledChocoPan);
         			TileChocoPan tile2 = (TileChocoPan) par1World.getTileEntity(par2, par3, par4);
         			tile2.setRemainByte((byte)11);
@@ -289,10 +290,11 @@ public class BlockEmptyPanG extends BlockContainer{
 	@Override
 	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6)
 	{
-		TilePanG tileentity = (TilePanG) par1World.getTileEntity(par2, par3, par4);
+		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 	 
-		if (tileentity != null)
+		if (tile instanceof TilePanG)
 		{
+			TilePanG tileentity = (TilePanG) tile;
 			byte rem = tileentity.getRemainByte();
 			ItemStack input = tileentity.getItemStack();
 			String disp = tileentity.getDisplayName();

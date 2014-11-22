@@ -1,5 +1,8 @@
 package mods.defeatedcrow.handler;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -168,6 +171,51 @@ public class Util {
 	public static boolean notEmptyItem(ItemStack item)
 	{
 		return item != null && item.stackSize != 0 && item.getItem() != null;
+	}
+	
+	//デバッグモード
+	public static boolean checkDebugModePass(String pass)
+	{
+		byte[] b = null;
+		String get = "";
+		MessageDigest md5;
+		
+		try
+		{
+			md5 = MessageDigest.getInstance("MD5");
+			md5.update(pass.getBytes());
+			b = md5.digest();
+		}
+		catch (NoSuchAlgorithmException e)
+		{
+			AMTLogger.logger.warn("Failed to check password...", e);
+		}
+		
+		get = getStringFromBytes(b);
+		AMTLogger.debugInfo("Get String : " + get);
+		
+		if (!get.isEmpty())
+		{
+			boolean match =  get.matches("7805f2fa0adc68cd9a8f7cb2135e0b57");
+			AMTLogger.info("DebugMode : " + match);
+			return match;
+		}
+		
+		return true;
+	}
+	
+	private static String getStringFromBytes(byte[] b) {
+
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < b.length; i++) {
+
+			if ((b[i] & 0xff) < 0x10) {
+				builder.append("0");
+			}
+			builder.append(Integer.toHexString(0xff & b[i]));
+		}
+
+		return builder.toString();
 	}
 
 }

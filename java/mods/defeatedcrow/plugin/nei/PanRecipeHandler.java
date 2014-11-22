@@ -11,6 +11,7 @@ import mods.defeatedcrow.recipe.RegisteredRecipeGet;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
@@ -131,7 +132,7 @@ public class PanRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getRecipeName() {
-		return "Use on the Enpty Pan";
+		return StatCollector.translateToLocal("dc.PanGuiNameNEI");
 	}
 
 	@Override

@@ -66,7 +66,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.beta3",
+		version = "1.7.10_2.0.beta4",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -373,6 +373,14 @@ public class DCsAppleMilk{
 		//コンフィグを生成する
 		Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
 		(new DCsConfig()).config(cfg);
+		
+		//デバッグモードのチェック
+		String str = DCsConfig.debugPass;
+		if (str != null && !str.isEmpty()){
+			boolean b = Util.checkDebugModePass(str);
+			if (b) AMTLogger.info("Starting in Debug Mode.");
+			this.debugMode = b;
+		}
 		
 		//Registering
 		//Material

@@ -9,6 +9,7 @@ import mods.defeatedcrow.recipe.RegisteredRecipeGet;
 import mods.defeatedcrow.client.gui.GuiIceMaker;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
@@ -137,7 +138,7 @@ public class IceRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getRecipeName() {
-		return "Ice Maker";
+		return StatCollector.translateToLocal("dc.IceMakerNEI");
 	}
 
 	@Override

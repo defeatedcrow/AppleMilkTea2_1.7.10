@@ -541,10 +541,10 @@ public class ModelCLamp extends ModelBase
   }
   
   //通常色の部分
-  public void render (Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7, byte b0)
+  public void render (Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7, byte b0, float rad)
   {
 	  super.render(par1Entity, par2, par3, par4, par5, par6, par7);
-	  this.setRotationAngles(par2, par3, par4, par5, par6, par7, par1Entity, b0);
+	  this.setRotationAngles(par2, par3, par4, par5, par6, par7, par1Entity, b0, rad);
 	  
 	  if (b0 == 9)
 	  {
@@ -591,10 +591,10 @@ public class ModelCLamp extends ModelBase
   }
   
   //半透明かつ、明るい色
-  public void renderLucent(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7, byte b0)
+  public void renderLucent(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7, byte b0, float rad)
   {
 	  super.render(par1Entity, par2, par3, par4, par5, par6, par7);
-	  this.setRotationAngles(par2, par3, par4, par5, par6, par7, par1Entity, b0);
+	  this.setRotationAngles(par2, par3, par4, par5, par6, par7, par1Entity, b0, rad);
 	  
 	  if (b0 == 8)
 	  {
@@ -625,7 +625,7 @@ public class ModelCLamp extends ModelBase
   public void renderGlow(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7, byte b0)
   {
 	  super.render(par1Entity, par2, par3, par4, par5, par6, par7);
-	  this.setRotationAngles(par2, par3, par4, par5, par6, par7, par1Entity, b0);
+	  this.setRotationAngles(par2, par3, par4, par5, par6, par7, par1Entity, b0, 0.0F);
 	  
 	  if (b0 == 8)
 	  {
@@ -677,10 +677,9 @@ public class ModelCLamp extends ModelBase
       model.rotateAngleZ = z;
   }
   
-  public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity, byte b0)
+  public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity, byte b0, float rad)
   {
       super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-      float fi = f3;
       
       this.body.rotateAngleY = f3 / (180F / (float)Math.PI);
       this.head.rotateAngleY = f3 / (180F / (float)Math.PI);
@@ -692,10 +691,10 @@ public class ModelCLamp extends ModelBase
       this.wing2.rotateAngleY = -1.570796F + f3 / (180F / (float)Math.PI);
       this.core2.rotateAngleY = f3 / (180F / (float)Math.PI);
       
-      this.core1.rotateAngleY += 0.5F / (180F / (float)Math.PI);
-      this.core1.rotateAngleX += 0.5F / (180F / (float)Math.PI);
+      this.core1.rotateAngleY += rad/ 3 / (360F / (float)Math.PI);
+      this.core1.rotateAngleX += rad/ 3 / (360F / (float)Math.PI);
       
-      this.wingb1.rotateAngleY += 0.05F / (180F / (float)Math.PI);
-      this.wingb2.rotateAngleY += 0.05F / (180F / (float)Math.PI);
+      this.wingb1.rotateAngleY = rad / (180F / (float)Math.PI);
+      this.wingb2.rotateAngleY = -3.141593F + rad / (180F / (float)Math.PI);
   }
 }

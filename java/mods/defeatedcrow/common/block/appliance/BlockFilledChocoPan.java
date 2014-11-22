@@ -12,6 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -55,6 +56,27 @@ public class BlockFilledChocoPan extends BlockContainer{
         	if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyPanGaiden,1,0)))
         	{
         		if (!par1World.isRemote) par5EntityPlayer.entityDropItem(new ItemStack(DCsAppleMilk.emptyPanGaiden,1,0), 1);
+        	}
+        	
+        	if(!par1World.isRemote)
+        	{
+        		TileChocoPan pan = (TileChocoPan) par1World.getTileEntity(par2, par3, par4);
+        		if (pan != null && pan.getRemainByte() > 0)
+        		{
+        			int count = pan.getRemainByte();
+        			float f = par1World.rand.nextFloat() * 0.8F + 0.1F;
+                    float f1 = par1World.rand.nextFloat() * 0.8F + 0.1F;
+                    float f2 = par1World.rand.nextFloat() * 0.8F + 0.1F;
+                    
+                    ItemStack choco = new ItemStack(DCsAppleMilk.chocolateFruits, count, 13);
+                    EntityItem entityItem = new EntityItem(par1World, (double)((float)par2 + f), (double)((float)par3 + f1), (double)((float)par4 + f2), choco);
+                    
+                    float f3 = 0.05F;
+                    entityItem.motionX = (double)((float)par1World.rand.nextGaussian() * f3);
+                    entityItem.motionY = (double)((float)par1World.rand.nextGaussian() * f3 + 0.2F);
+                    entityItem.motionZ = (double)((float)par1World.rand.nextGaussian() * f3);
+                    par1World.spawnEntityInWorld(entityItem);
+        		}
         	}
     		
     		par1World.setBlockToAir(par2, par3, par4);

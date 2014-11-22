@@ -147,6 +147,7 @@ public class RegisterOreHandler {
 	    OreDictionary.registerOre("dustAsh", new ItemStack(DCsAppleMilk.dustWood, 1, 2));
 	    OreDictionary.registerOre("dustOilCake", new ItemStack(DCsAppleMilk.dustWood, 1, 3));
 	    OreDictionary.registerOre("stickCarbon", new ItemStack(DCsAppleMilk.stickCarbon, 1, 0));
+	    OreDictionary.registerOre("plateChocolate", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 13));
 	    
 	    OreDictionary.registerOre("blockClam", new ItemStack(DCsAppleMilk.gunpowderContainer, 1, 3));
 	    OreDictionary.registerOre("gemClam", new ItemStack(DCsAppleMilk.princessClam, 1, 0));

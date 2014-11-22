@@ -20,7 +20,7 @@ public class ItemChocoFruits extends ItemFood {
 	@SideOnly(Side.CLIENT)
     private IIcon iconType[];
 	
-	private static final String[] itemType = new String[] {"almond", "peanut", "crashednut", "strawberry", "cherry", "berry", "banana", "rice", "bread", "cookie", "truffle", "candy", "toffy"};
+	private static final String[] itemType = new String[] {"almond", "peanut", "crashednut", "strawberry", "cherry", "berry", "banana", "rice", "bread", "cookie", "truffle", "candy", "toffy", "plate"};
 	
 	public ItemChocoFruits (int reco, int sat, boolean flag){
 		super (reco, sat, flag);
@@ -33,7 +33,7 @@ public class ItemChocoFruits extends ItemFood {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
-        int j = MathHelper.clamp_int(par1, 0, 13);
+        int j = MathHelper.clamp_int(par1, 0, 14);
         return this.iconType[j];
     }
 	
@@ -50,7 +50,7 @@ public class ItemChocoFruits extends ItemFood {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-		for (int i = 0 ; i < 13 ; i++)
+		for (int i = 0 ; i < 14 ; i++)
 		{
 			par3List.add(new ItemStack(this, 1, i));
 		}
@@ -59,9 +59,9 @@ public class ItemChocoFruits extends ItemFood {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister){
-		this.iconType = new IIcon[13];
+		this.iconType = new IIcon[14];
 
-        for (int i = 0; i < 13; ++i)
+        for (int i = 0; i < 14; ++i)
         {
             this.iconType[i] = par1IconRegister.registerIcon("defeatedcrow:choco_" + itemType[i]);
         }

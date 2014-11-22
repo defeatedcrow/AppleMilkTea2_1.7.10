@@ -217,6 +217,7 @@ public class BlockBasket extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
+		par3List.add(new ItemStack(this, 1, 0));
 		par3List.add(new ItemStack(this, 1, 5));
 		par3List.add(new ItemStack(this, 1, 14));
     }

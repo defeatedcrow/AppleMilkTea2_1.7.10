@@ -10,6 +10,7 @@ import mods.defeatedcrow.plugin.nei.ProcessorRecipeHandler.RecipeCacher;
 import mods.defeatedcrow.recipe.ProsessorRecipeRegister.ProsessorRecipe;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
@@ -216,7 +217,7 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getRecipeName() {
-		return "Jaw Crusher";
+		return StatCollector.translateToLocal("dc.JawCrusherNEI");
 	}
 
 	@Override
