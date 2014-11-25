@@ -60,7 +60,7 @@ public class LoadForestryPlugin {
 				}
 			}
 		}
-		ItemStack item6 = new ItemStack(Util.getModItem("Forestry", "canWater"), 1);
+		ItemStack item6 = new ItemStack(Util.getModItem("Forestry", "waterCan"), 1);
 		if (item6 != null) {
 			ItemStack register = new ItemStack(item6.getItem());
 			if (register != null) {
