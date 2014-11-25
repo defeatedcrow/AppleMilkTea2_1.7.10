@@ -73,11 +73,15 @@ public class ItemPrincessClam extends Item {
             		if (nbt == null)
             		{
             			nbt = new NBTTagCompound();
+            			int dim = par3World.provider.dimensionId;
+            			String dimName = par3World.provider.getDimensionName();
             			
         				nbt.setByte("mode", (byte)2);
         				nbt.setInteger("posX", par4);
         				nbt.setInteger("posY", par5);
         				nbt.setInteger("posZ", par6);
+        				nbt.setInteger("Dim", dim);
+        				nbt.setString("DimName", dimName);
         				if (DCsConfig.charmRemain > 0)
         				{
         					nbt.setInteger("limit", DCsConfig.charmRemain);
@@ -120,9 +124,16 @@ public class ItemPrincessClam extends Item {
 					int X = nbt.getInteger("posX");
 					int Y = nbt.getInteger("posY");
 					int Z = nbt.getInteger("posZ");
-					AMTLogger.debugInfo(X + "," + Y + "," + Z);
+					
+					int D = 0;
+					if (nbt.hasKey("Dim")){
+						D = nbt.getInteger("Dim");
+					}
+					
+					AMTLogger.debugInfo(X + "," + Y + "," + Z + ",/DimID:" + D);
 					
 					if (thisPlayer.worldObj == world
+							&& world.provider.dimensionId == D
 							&& world.isSideSolid(X, Y, Z, ForgeDirection.UP))
 	                {
 						AMTLogger.debugInfo("warp");
@@ -159,9 +170,9 @@ public class ItemPrincessClam extends Item {
 					
 					if (target != null)
 					{
-						int X = (int) target.posX;
-						int Y = (int) target.posY;
-						int Z = (int) target.posZ;
+						int X = MathHelper.floor_double(target.posX);
+						int Y = MathHelper.floor_double(target.posY);
+						int Z = MathHelper.floor_double(target.posZ);
 						String DimName = target.worldObj.provider.getDimensionName();
 						AMTLogger.debugInfo(DimName + " : " + X + "," + Y + "," + Z);
 						
@@ -243,9 +254,9 @@ public class ItemPrincessClam extends Item {
 			}
 			else if (meta == 4)//moon
 			{
-				int X = (int) thisPlayer.posX;
-				int Y = (int) thisPlayer.posY;
-				int Z = (int) thisPlayer.posZ;
+				int X = MathHelper.floor_double(thisPlayer.posX);
+				int Y = MathHelper.floor_double(thisPlayer.posY);
+				int Z = MathHelper.floor_double(thisPlayer.posZ);
 				
 				int y1 = Y;
 				
@@ -258,13 +269,22 @@ public class ItemPrincessClam extends Item {
 						break;
 					}
 					
-					if (this.moonCanWarp(world, X, Y + i, Z) && (world.isAirBlock(X, Y + i + 1, Z) || world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.vine
-							 || world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.plants || world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.snow)
-							&& world.isAirBlock(X, Y + i + 2, Z))
+					if (this.moonCanWarp(world, X, Y + i, Z) && world.isAirBlock(X, Y + i + 2, Z))
 					{
-						y1 = Y + i;
-						flag = true;
-						break;
+						if (world.isAirBlock(X, Y + i + 1, Z))
+						{
+							y1 = Y + i;
+							flag = true;
+							break;
+						}
+						else if (world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.vine
+								|| world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.plants
+								|| world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.snow)
+						{
+							y1 = Y + i;
+							flag = true;
+							break;
+						}
 					}
 				}
 				
@@ -292,20 +312,21 @@ public class ItemPrincessClam extends Item {
 	public static boolean moonCanWarp(World world, int X, int Y, int Z)
 	{
 		boolean flag = false;
-		if (Y > 250 || world.provider.hasNoSky) return false;
-		if (world.canBlockSeeTheSky(X, Y + 1, Z))
+		if (Y > 250 || world.provider.hasNoSky || world.getBlock(X, Y, Z) == null || world.isAirBlock(X, Y, Z)) return false;
+		
+		if (world.getBlock(X, Y, Z) == Blocks.grass)
+		{
+			flag = true;
+		}
+		else if (world.canBlockSeeTheSky(X, Y + 1, Z))
 		{
 			Block block = world.getBlock(X, Y, Z);
 			if (block.getMaterial() == Material.grass) flag = true;
 			if (block.getMaterial() == Material.snow) flag = true;
+			if (block == Blocks.water) flag = true;
 			if (block == Blocks.ice) flag = true;
 			if (block == Blocks.snow_layer) flag = true;
 			if (world.isSideSolid(X , Y , Z, ForgeDirection.UP)) flag = true;
-		}
-		else
-		{
-			Block block = world.getBlock(X, Y, Z);
-			if (block == Blocks.grass) flag = true;
 		}
 		return flag;
 	}
@@ -384,7 +405,14 @@ public class ItemPrincessClam extends Item {
 					int X = nbt.getInteger("posX");
 					int Y = nbt.getInteger("posY");
 					int Z = nbt.getInteger("posZ");
-					s = X + ", " + Y + ", " + Z;
+					
+					String D = "Unknown";
+					if (nbt.hasKey("DimName"))
+					{
+						D = nbt.getString("DimName");
+					}
+					
+					s = X + ", " + Y + ", " + Z + " / " + D;
 				}
 			}
 			par3List.add(new String("Registered pos : " + s));
