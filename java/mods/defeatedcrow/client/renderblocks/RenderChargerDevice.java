@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
@@ -26,19 +27,19 @@ public class RenderChargerDevice implements ISimpleBlockRenderingHandler{
 			RenderBlocks renderer) {
 		
 		int meta = metadata;
-		this.boxIcon = DCsAppleMilk.foodPlate.getBlockTextureFromSide(0);
+		this.boxIcon = Blocks.wool.getIcon(1, 15);
 		this.innerIcon = DCsAppleMilk.batBox.getBlockTextureFromSide(0);
 		
 		if (modelID == this.getRenderId())
 		{
 			renderInvCuboid(renderer, block,  0.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F,  this.boxIcon);
 			renderInvCuboid(renderer, block,  0.0F/16.0F, 15.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F,  this.boxIcon);
-			renderInvCuboid(renderer, block,  0.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 16.0F/16.0F, 15.0F/16.0F, 16.0F/16.0F,  this.boxIcon);
+			renderInvCuboid(renderer, block,  0.0F/16.0F, 1.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F,  this.boxIcon);
 			renderInvCuboid(renderer, block,  0.0F/16.0F, 1.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F,  this.boxIcon);
-			renderInvCuboid(renderer, block,  15.0F/16.0F, 1.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F,  this.boxIcon);
+			renderInvCuboid(renderer, block,  0.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 16.0F/16.0F, 15.0F/16.0F, 16.0F/16.0F,  this.boxIcon);
 			
 			//inner
-			renderInvCuboid(renderer, block,  1.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 2.0F/16.0F,  this.innerIcon);
+			renderInvCuboid(renderer, block,  1.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F,  this.innerIcon);
 		}
 	}
 
@@ -59,7 +60,7 @@ public class RenderChargerDevice implements ISimpleBlockRenderingHandler{
 
 	@Override
 	public boolean shouldRender3DInInventory(int modelId) {
-		return false;
+		return true;
 	}
 		
 		

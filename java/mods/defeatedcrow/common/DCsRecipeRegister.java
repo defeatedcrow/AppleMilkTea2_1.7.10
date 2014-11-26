@@ -1893,9 +1893,9 @@ public class DCsRecipeRegister {
 						 Character.valueOf('Y'), new ItemStack(Items.dye, 1, 4),
 						 Character.valueOf('X'), new ItemStack(Blocks.obsidian, 1, 0)}));
 		
-//		GameRegistry.addShapelessRecipe(
-//				new ItemStack(DCsAppleMilk.princessClam, 1, 3),
-//				new ItemStack(DCsAppleMilk.princessClam, 1, 3));
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(DCsAppleMilk.princessClam, 1, 3),
+				new ItemStack(DCsAppleMilk.princessClam, 1, 3));
 	}
 	
 	static void addBottle() {

@@ -251,6 +251,8 @@ public class TileMakerNext extends TileEntity implements ITeaMaker
     private void updateTeaMaker()
     {
     	this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    	this.worldObj.notifyBlockChange(xCoord, yCoord, zCoord, DCsAppleMilk.teaMakerNext);
+    	this.worldObj.func_147453_f(xCoord, yCoord, zCoord, DCsAppleMilk.teaMakerNext);
     	this.markDirty();
     }
 }

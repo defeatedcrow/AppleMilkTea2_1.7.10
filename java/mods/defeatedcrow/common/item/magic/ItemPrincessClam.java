@@ -69,30 +69,40 @@ public class ItemPrincessClam extends Item {
             			&& par3World.isSideSolid(par4, par5, par6, ForgeDirection.UP))//2ブロックの空間がある
             	{
             		NBTTagCompound nbt = par1ItemStack.getTagCompound();
+            		boolean flag = false;
             		
             		if (nbt == null)
             		{
             			nbt = new NBTTagCompound();
+            			flag = true;
+            		}
+            		else if (!nbt.hasKey("DCsCharm"))
+            		{
+            			flag = true;
+            		}
+            		
+            		if (flag)
+            		{
             			int dim = par3World.provider.dimensionId;
             			String dimName = par3World.provider.getDimensionName();
             			
-        				nbt.setByte("mode", (byte)2);
-        				nbt.setInteger("posX", par4);
-        				nbt.setInteger("posY", par5);
-        				nbt.setInteger("posZ", par6);
-        				nbt.setInteger("Dim", dim);
-        				nbt.setString("DimName", dimName);
+        				nbt.setByte("DCsCharm", (byte)2);
+        				nbt.setInteger("DCposX", par4);
+        				nbt.setInteger("DCposY", par5);
+        				nbt.setInteger("DCposZ", par6);
+        				nbt.setInteger("DCdim", dim);
+        				nbt.setString("DCdimName", dimName);
         				if (DCsConfig.charmRemain > 0)
         				{
-        					nbt.setInteger("limit", DCsConfig.charmRemain);
+        					nbt.setInteger("DClimit", DCsConfig.charmRemain);
         				}
-        				
         				
         				par1ItemStack.setTagCompound(nbt);
         				par3World.playSoundAtEntity(par2EntityPlayer, "random.pop", 0.4F, 1.8F);
         				par2EntityPlayer.addChatMessage(new ChatComponentText("Registered warp pos : " + par4 + ", " + (par5 + 1) + ", " + par6));
         				return true;
             		}
+            		
             	}
             	return false;
             }
@@ -116,18 +126,18 @@ public class ItemPrincessClam extends Item {
 			
 			if (meta == 3 && nbt != null)//wing
 			{
-				byte mode = nbt.getByte("mode");
+				byte mode = nbt.getByte("DCsCharm");
 				AMTLogger.debugInfo("mode:" + mode);
 				
 				if (mode == 2)//posモード
 				{
-					int X = nbt.getInteger("posX");
-					int Y = nbt.getInteger("posY");
-					int Z = nbt.getInteger("posZ");
+					int X = nbt.getInteger("DCposX");
+					int Y = nbt.getInteger("DCposY");
+					int Z = nbt.getInteger("DCposZ");
 					
 					int D = 0;
-					if (nbt.hasKey("Dim")){
-						D = nbt.getInteger("Dim");
+					if (nbt.hasKey("DCdim")){
+						D = nbt.getInteger("DCdim");
 					}
 					
 					AMTLogger.debugInfo(X + "," + Y + "," + Z + ",/DimID:" + D);
@@ -142,13 +152,13 @@ public class ItemPrincessClam extends Item {
 						thisPlayer.fallDistance = 0.0F;
 						world.playSoundAtEntity(thisPlayer, "defeatedcrow:suzu", 1.0F, 1.2F);
 						
-						if (nbt.hasKey("limit"))
+						if (nbt.hasKey("DClimit"))
 						{
-							int lim = nbt.getInteger("limit");
+							int lim = nbt.getInteger("DClimit");
 							--lim;
 							if (lim > 0)
 							{
-								nbt.setInteger("limit", lim);
+								nbt.setInteger("DClimit", lim);
 							}
 							else
 							{
@@ -165,7 +175,7 @@ public class ItemPrincessClam extends Item {
 				
 				if (mode == 1)//playerモード
 				{
-					String name = nbt.getString("targetName");
+					String name = nbt.getString("DCtargetName");
 					EntityPlayer target = world.getPlayerEntityByName(name);
 					
 					if (target != null)
@@ -212,13 +222,13 @@ public class ItemPrincessClam extends Item {
 								world.playSoundAtEntity(thisPlayer, "defeatedcrow:suzu", 1.0F, 1.2F);
 								thisPlayer.addChatMessage(new ChatComponentText("Succeeded to warp near the registered player : " + target.getDisplayName()));
 								
-								if (nbt.hasKey("limit"))
+								if (nbt.hasKey("DClimit"))
 								{
-									int lim = nbt.getInteger("limit");
+									int lim = nbt.getInteger("DClimit");
 									--lim;
 									if (lim > 0)
 									{
-										nbt.setInteger("limit", lim);
+										nbt.setInteger("DClimit", lim);
 									}
 									else
 									{
@@ -344,8 +354,19 @@ public class ItemPrincessClam extends Item {
         	NBTTagCompound nbt = itemstack.getTagCompound();
         	int meta = itemstack.getItemDamage();
         	
-        	if (entity instanceof EntityPlayer && entity.isEntityAlive() && nbt == null)
+        	if (entity instanceof EntityPlayer && entity.isEntityAlive())
         	{
+        		boolean flag = false;
+        		if (nbt == null){
+        			nbt = new NBTTagCompound();
+        			flag = true;
+        		}
+        		else if (!nbt.hasKey("DCsCharm")){
+        			flag = true;
+        		}
+        		
+        		if (!flag) return false;
+        		
         		EntityPlayer target = (EntityPlayer)entity;
         		String name = target.getDisplayName();
         		
@@ -353,13 +374,11 @@ public class ItemPrincessClam extends Item {
         		
         		if (targetItem.getItem() == this)
         		{
-        			nbt = new NBTTagCompound();
-    				
-    				nbt.setByte("mode", (byte)1);
-    				nbt.setString("targetName", name);
+    				nbt.setByte("DCsCharm", (byte)1);
+    				nbt.setString("DCtargetName", name);
     				if (DCsConfig.charmRemain > 0)
     				{
-    					nbt.setInteger("limit", DCsConfig.charmRemain);
+    					nbt.setInteger("DClimit", DCsConfig.charmRemain);
     				}
     				targetItem.setTagCompound(nbt);
     				
@@ -395,21 +414,21 @@ public class ItemPrincessClam extends Item {
 			String s = "None";
 			if (nbt != null)
 			{
-				byte mode = nbt.getByte("mode");
+				byte mode = nbt.getByte("DCsCharm");
 				if (mode == 1)
 				{
-					s = nbt.getString("targetName");
+					s = nbt.getString("DCtargetName");
 				}
 				else if (mode == 2)
 				{
-					int X = nbt.getInteger("posX");
-					int Y = nbt.getInteger("posY");
-					int Z = nbt.getInteger("posZ");
+					int X = nbt.getInteger("DCposX");
+					int Y = nbt.getInteger("DCposY");
+					int Z = nbt.getInteger("DCposZ");
 					
 					String D = "Unknown";
-					if (nbt.hasKey("DimName"))
+					if (nbt.hasKey("DCdimName"))
 					{
-						D = nbt.getString("DimName");
+						D = nbt.getString("DCdimName");
 					}
 					
 					s = X + ", " + Y + ", " + Z + " / " + D;

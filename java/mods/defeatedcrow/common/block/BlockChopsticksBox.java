@@ -152,6 +152,14 @@ public class BlockChopsticksBox extends BlockContainer{
     }
 	
 	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+		par3List.add(new ItemStack(this, 1, 0));
+		par3List.add(new ItemStack(this, 1, 4));
+    }
+	
+	@Override
 	public Item getItemDropped(int metadata, Random rand, int fortune)
 	{
 		return Item.getItemFromBlock(this);

@@ -103,6 +103,9 @@ public class BlockEmptyPanG extends BlockContainer{
         			if (!par1World.isRemote)  par5EntityPlayer.entityDropItem(ret, 1);
             	}
         		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+        		if (ret.getItem() == Item.getItemFromBlock(DCsAppleMilk.bowlBlock)) {
+    				par5EntityPlayer.triggerAchievement(AchievementRegister.getSoup);
+    			}
         		
         		tile.setRemainByte((byte)rem);
         		if (rem < 1)
