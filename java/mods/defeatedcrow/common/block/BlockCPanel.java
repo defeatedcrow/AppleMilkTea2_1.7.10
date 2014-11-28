@@ -267,20 +267,21 @@ public class BlockCPanel extends BlockContainer{
         			if (item != null)
         			{
         				NBTTagCompound nbt = item.getTagCompound();
-        				if (nbt != null && nbt.hasKey("mode"))
+        				if (nbt != null && nbt.hasKey("DCsCharm"))
         				{
-        					byte m = nbt.getByte("mode");
+        					byte m = nbt.getByte("DCsCharm");
         					if (m == 1)//player
         					{
-        						String name = nbt.getString("targetName");
+        						String name = nbt.getString("DCtargetName");
         						this.formWindPlayerEffect(world, player, name);
         					}
         					else if (m == 2)
         					{
-        						int X = nbt.getInteger("posX");
-        						int Y = nbt.getInteger("posY");
-        						int Z = nbt.getInteger("posZ");
-        						this.formWindPosEffect(world, player, X, Y, Z);
+        						int X = nbt.getInteger("DCposX");
+        						int Y = nbt.getInteger("DCposY");
+        						int Z = nbt.getInteger("DCposZ");
+        						int dim = nbt.getInteger("DCdim");
+        						this.formWindPosEffect(world, player, X, Y, Z, dim);
         					}
         				}
         			}
@@ -367,9 +368,10 @@ public class BlockCPanel extends BlockContainer{
 		return false;
     }
     
-    private boolean formWindPosEffect(World world, EntityPlayer player, int x, int y, int z)
+    private boolean formWindPosEffect(World world, EntityPlayer player, int x, int y, int z, int dim)
     {
-    	if (world.isSideSolid(x, y, z, ForgeDirection.UP))
+    	if (world.isSideSolid(x, y, z, ForgeDirection.UP)
+    			&& world.provider.dimensionId == dim)
         {
 			AMTLogger.debugInfo("warp");
 			

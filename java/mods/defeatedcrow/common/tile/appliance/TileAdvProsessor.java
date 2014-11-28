@@ -54,7 +54,7 @@ public class TileAdvProsessor extends TileProsessor{
 	@Override
 	public int getMaxChargeAmount()
 	{
-		return 51200;
+		return 25600;
 	}
 	
 	/* 食べ物レシピ以外が対応レシピ。

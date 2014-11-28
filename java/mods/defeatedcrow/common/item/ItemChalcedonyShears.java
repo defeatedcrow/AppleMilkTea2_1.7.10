@@ -12,6 +12,7 @@ import mods.defeatedcrow.common.DCsConfig;
 import mods.defeatedcrow.common.block.plants.BlockClamSand;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockStem;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -136,7 +137,7 @@ public class ItemChalcedonyShears extends ItemTool{
         					if (block instanceof IGrowable)
         					{
         						IGrowable crop = (IGrowable) block;
-        						if (!crop.func_149851_a(world, X + i, Y - j, Z + k, true))
+        						if (!crop.func_149851_a(world, X + i, Y - j, Z + k, true) && !(crop instanceof BlockStem))
         						{
         							block.dropBlockAsItemWithChance(world, X + i, Y - j, Z + k, meta, 1.0F, 0);
         							if (world.setBlockToAir(X + i, Y - j, Z + k))
@@ -144,6 +145,16 @@ public class ItemChalcedonyShears extends ItemTool{
         								flag = true;
         							}
         						}
+        					}
+        					
+        					//その3、カボチャとスイカと蜘蛛の巣も壊せる
+        					if (block == Blocks.melon_block || block == Blocks.pumpkin || block == Blocks.web)
+        					{
+        						block.dropBlockAsItemWithChance(world, X + i, Y - j, Z + k, meta, 1.0F, 0);
+        						if (world.setBlockToAir(X + i, Y - j, Z + k))
+    							{
+    								flag = true;
+    							}
         					}
         				}
         			}

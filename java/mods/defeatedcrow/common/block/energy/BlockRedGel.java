@@ -263,6 +263,7 @@ public class BlockRedGel extends Block{
     {
     	ItemStack item = player.inventory.getCurrentItem();
         int currentMeta = world.getBlockMetadata(x, y, z);
+        ForgeDirection dir = ForgeDirection.getOrientation(currentMeta & 7);
         
         boolean change = false;
         
@@ -285,8 +286,11 @@ public class BlockRedGel extends Block{
         
         if (change)
         {
+        	this.updatePlate(world, x, y, z, (currentMeta & 8));
+        	world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
         	world.notifyBlocksOfNeighborChange(x, y, z, this);
-            world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
+        	world.notifyBlocksOfNeighborChange(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ, this);
+        	world.func_147453_f(x, y, z, this);
             world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
         	return true;
         }
@@ -315,9 +319,40 @@ public class BlockRedGel extends Block{
             int i = world.getBlockMetadata(x, y, z);
             ForgeDirection dir = ForgeDirection.getOrientation(i);
             
-            world.notifyBlocksOfNeighborChange(x, y, z, this);
+            if (i > 0)
+            {
+            	this.updatePlate(world, x, y, z, i & 8);
+            }
+        }
+    }
+	
+	protected void updatePlate(World world, int x, int y, int z, int str)
+    {
+        int i1 = str;
+        boolean flag = str > 0;
+        boolean flag1 = i1 > 0;
+        int meta = world.getBlockMetadata(x, y, z);
+        ForgeDirection dir = ForgeDirection.getOrientation(meta);
+
+        if (!flag1 && flag)
+        {
+        	world.setBlockMetadataWithNotify(x, y, z, (meta & 7), 2);
+        	world.notifyBlocksOfNeighborChange(x, y, z, this);
             world.notifyBlocksOfNeighborChange(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ, this);
             world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
+            world.playSoundEffect((double)x + 0.5D, (double)y + 0.1D, (double)z + 0.5D, "random.click", 0.3F, 0.5F);
+        }
+        else if (flag1 && !flag)
+        {
+        	world.setBlockMetadataWithNotify(x, y, z, (meta | 8), 2);
+        	world.notifyBlocksOfNeighborChange(x, y, z, this);
+            world.notifyBlocksOfNeighborChange(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ, this);
+            world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
+            world.playSoundEffect((double)x + 0.5D, (double)y + 0.1D, (double)z + 0.5D, "random.click", 0.3F, 0.6F);
+        }
+
+        if (flag1)
+        {
             world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
         }
     }
