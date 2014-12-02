@@ -218,10 +218,10 @@ public class BlockTeaTree extends Block implements IPlantable, IRightClickHarves
 			float a = world.rand.nextFloat() * 0.8F + 0.1F;
 			float a1 = world.rand.nextFloat() * 0.8F + 0.1F;
 			float a2 = world.rand.nextFloat() * 0.8F + 0.1F;
-			EntityItem drop = new EntityItem(world, (double)((float)x + a), (double)((float)y + a1), (double)((float)z + a2), ret);
+			EntityItem drop = new EntityItem(world, (double)((float)x + a), (double)((float)y + 1 + a1), (double)((float)z + a2), ret);
 			drop.motionY = 0.25F;
 			
-			if (world.spawnEntityInWorld(drop)){
+			if (!world.isRemote && world.spawnEntityInWorld(drop)){
 				world.setBlockMetadataWithNotify(x, y, z, 0, 3);
 				return true;
 			}

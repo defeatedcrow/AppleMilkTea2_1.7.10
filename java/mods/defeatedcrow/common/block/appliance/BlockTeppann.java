@@ -105,6 +105,7 @@ public class BlockTeppann extends BlockContainer{
             else if (this.checkFoodstaff(item) && this.getUnderMaterial(par1World, par2, par3, par4))
             {
             	this.setFoodstaff(par1World, par2, par3, par4, par5EntityPlayer, item);
+            	this.updateTeaapn(par1World, par2, par3, par4);
             	return true;
             }
             else
@@ -120,6 +121,7 @@ public class BlockTeppann extends BlockContainer{
         else if (item.getItem() == Item.getItemFromBlock(DCsAppleMilk.foodPlate))
         {
         	this.getFoodPlate(par1World, par2, par3, par4, par5EntityPlayer);
+        	this.updateTeaapn(par1World, par2, par3, par4);
             return true;
         }
         else
@@ -179,6 +181,12 @@ public class BlockTeppann extends BlockContainer{
 			tile.getItemstack((ItemStack)null);
 			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
 		}
+	}
+	
+	private void updateTeaapn(World world, int x, int y, int z)
+	{
+		world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
+		world.notifyBlocksOfNeighborChange(x, y, z, this);
 	}
 	
 	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6)

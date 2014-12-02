@@ -254,8 +254,8 @@ public class BlockCassisTree extends Block implements IPlantable, IRightClickHar
 			EntityItem drop = new EntityItem(world, (double)((float)x + a), (double)((float)y + a1), (double)((float)z + a2), ret);
 			drop.motionY = 0.25F;
 			
-			if (world.spawnEntityInWorld(drop)){
-				world.setBlockMetadataWithNotify(x, y, z, meta - 2, 3);
+			if (!world.isRemote && world.spawnEntityInWorld(drop)){
+				world.setBlockMetadataWithNotify(x, y, z, 0, 3);
 				return true;
 			}
 		}

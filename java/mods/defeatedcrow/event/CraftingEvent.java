@@ -72,6 +72,9 @@ public class CraftingEvent {
 			else if (crafting.getItem() == DCsAppleMilk.princessClam && crafting.getItemDamage() > 0) {
 				player.triggerAchievement(AchievementRegister.craftCharm);
 			}
+			else if (crafting.getItem() == DCsAppleMilk.appleTart) {
+				player.triggerAchievement(AchievementRegister.craftTart);
+			}
 		}
 		
 		ArrayList<ItemStack> rets = new ArrayList<ItemStack>();
