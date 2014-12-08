@@ -88,7 +88,7 @@ public class TileEntityCupHandleRenderer extends TileEntitySpecialRenderer
             GL11.glTranslatef(0.0F, -1.0F, 0.0F);
             GL11.glRotatef((float)short1, 0.0F, -1.0F, 0.0F);
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-            this.cupHandleModel.render((Entity)null, 0.0F, 0.0F, 0.0F, par4, 0.0F, 0.0625F);
+            modelCupHandle.render((Entity)null, 0.0F, 0.0F, 0.0F, par4, 0.0F, 0.0625F);
             GL11.glPopMatrix();
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         	

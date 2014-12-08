@@ -5,6 +5,7 @@ import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.tile.TileIncenseBase;
 import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
@@ -13,6 +14,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
 
 public class DispenserEvent {
 	
@@ -156,6 +160,149 @@ public class DispenserEvent {
             }
         });
 		
+	}
+	
+	public void registerFluidDispence()
+	{
+		//容器から出す
+		BlockDispenser.dispenseBehaviorRegistry.putObject(DCsAppleMilk.bucketCamOil, new BehaviorDefaultDispenseItem()
+        {
+			private boolean flag = true;
+            
+			protected ItemStack dispenseStack(IBlockSource block, ItemStack itemstack)
+            {
+                EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
+                World world = block.getWorld();
+                int i = block.getXInt() + enumfacing.getFrontOffsetX();
+                int j = block.getYInt() + enumfacing.getFrontOffsetY();
+                int k = block.getZInt() + enumfacing.getFrontOffsetZ();
+                
+                if (!world.isRemote && world.isAirBlock(i, j, k))
+                {
+                	if (world.setBlock(i, j, k, DCsAppleMilk.blockCamelliaOil)) {
+                		flag = true;
+                	}
+                }
+                
+                if (flag) {
+                	return new ItemStack(Items.bucket);
+                }
+                else {
+                	return itemstack;
+                }
+            }
+			
+			protected void playDispenseSound(IBlockSource block)
+            {
+                if (this.flag)
+                {
+                    block.getWorld().playAuxSFX(1009, block.getXInt(), block.getYInt(), block.getZInt(), 0);
+                }
+                else
+                {
+                    block.getWorld().playAuxSFX(1001, block.getXInt(), block.getYInt(), block.getZInt(), 0);
+                }
+            }
+            
+        });
+		
+		BlockDispenser.dispenseBehaviorRegistry.putObject(DCsAppleMilk.bucketVegiOil, new BehaviorDefaultDispenseItem()
+        {
+			private boolean flag = true;
+            
+			protected ItemStack dispenseStack(IBlockSource block, ItemStack itemstack)
+            {
+                EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
+                World world = block.getWorld();
+                int i = block.getXInt() + enumfacing.getFrontOffsetX();
+                int j = block.getYInt() + enumfacing.getFrontOffsetY();
+                int k = block.getZInt() + enumfacing.getFrontOffsetZ();
+                
+                if (!world.isRemote && world.isAirBlock(i, j, k))
+                {
+                	if (world.setBlock(i, j, k, DCsAppleMilk.blockVegitableOil)) {
+                		flag = true;
+                	}
+                }
+                
+                if (flag) {
+                	return new ItemStack(Items.bucket);
+                }
+                else {
+                	return itemstack;
+                }
+            }
+			
+			protected void playDispenseSound(IBlockSource block)
+            {
+                if (this.flag)
+                {
+                    block.getWorld().playAuxSFX(1009, block.getXInt(), block.getYInt(), block.getZInt(), 0);
+                }
+                else
+                {
+                    block.getWorld().playAuxSFX(1001, block.getXInt(), block.getYInt(), block.getZInt(), 0);
+                }
+            }
+            
+        });
+		
+		//容器に汲む
+		BlockDispenser.dispenseBehaviorRegistry.putObject(Items.bucket, new BehaviorDefaultDispenseItem()
+        {
+			private boolean flag = true;
+            
+			protected ItemStack dispenseStack(IBlockSource block, ItemStack itemstack)
+            {
+                EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
+                World world = block.getWorld();
+                int i = block.getXInt() + enumfacing.getFrontOffsetX();
+                int j = block.getYInt() + enumfacing.getFrontOffsetY();
+                int k = block.getZInt() + enumfacing.getFrontOffsetZ();
+                
+                ItemStack fill = null;
+                
+                if (!world.isRemote && world.getBlock(i, j, k) == DCsAppleMilk.blockCamelliaOil)
+                {
+                	if (world.setBlockToAir(i, j, k)) {
+                		world.markBlockForUpdate(i, j, k);
+                		world.notifyBlockChange(i, j, k, world.getBlock(i, j, k));
+                		fill = new ItemStack(DCsAppleMilk.bucketCamOil);
+                		flag = true;
+                	}
+                }
+                
+                if (!world.isRemote && world.getBlock(i, j, k) == DCsAppleMilk.blockVegitableOil)
+                {
+                	if (world.setBlockToAir(i, j, k)) {
+                		world.markBlockForUpdate(i, j, k);
+                		world.notifyBlockChange(i, j, k, world.getBlock(i, j, k));
+                		fill = new ItemStack(DCsAppleMilk.bucketVegiOil);
+                		flag = true;
+                	}
+                }
+                
+                if (flag) {
+                	return fill;
+                }
+                else {
+                	return itemstack;
+                }
+            }
+			
+			protected void playDispenseSound(IBlockSource block)
+            {
+                if (this.flag)
+                {
+                    block.getWorld().playAuxSFX(1009, block.getXInt(), block.getYInt(), block.getZInt(), 0);
+                }
+                else
+                {
+                    block.getWorld().playAuxSFX(1001, block.getXInt(), block.getYInt(), block.getZInt(), 0);
+                }
+            }
+            
+        });
 	}
 
 }

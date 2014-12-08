@@ -26,7 +26,7 @@ public class BlockTeaMakerBlack extends BlockTeaMakerNext{
 	@Override
 	public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity)
     {
-        if (entity instanceof EntityWither)
+        if ((entity instanceof EntityWither) || (entity instanceof EntityDragon))
         {
             return this == DCsAppleMilk.teaMakerBlack ? false : super.canEntityDestroy(world, x, y, z, entity);
         }

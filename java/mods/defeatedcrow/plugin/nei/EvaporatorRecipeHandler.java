@@ -117,7 +117,7 @@ public class EvaporatorRecipeHandler extends TemplateRecipeHandler {
 	@Override
     public void loadCraftingRecipes(String outputId, Object... results)
     {
-        if(outputId.equals("DCsEvaporator"))
+        if(outputId.equals("DCsEvaporator") && getClass() == EvaporatorRecipeHandler.class)
         {
             List<EvaporatorRecipe> recipes = this.recipeLoader();
 

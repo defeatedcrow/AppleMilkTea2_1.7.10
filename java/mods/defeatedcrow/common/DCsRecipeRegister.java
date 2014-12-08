@@ -391,6 +391,31 @@ public class DCsRecipeRegister {
 					 "UUU",
 					 Character.valueOf('U'), new ItemStack(DCsAppleMilk.wipeBox, 1, 0)
 				 });
+		 
+		 GameRegistry.addRecipe(
+				 new ItemStack(DCsAppleMilk.flowerPot, 1, 0),
+				 new Object[]{
+					 "UUU",
+					 "UUU",
+					 "UUU",
+					 Character.valueOf('U'), new ItemStack(Blocks.red_flower)
+				 });
+		 
+		 GameRegistry.addRecipe(
+				 new ItemStack(DCsAppleMilk.flowerPot, 1, 4),
+				 new Object[]{
+					 "UUU",
+					 "UUU",
+					 "UUU",
+					 Character.valueOf('U'), new ItemStack(Blocks.yellow_flower)
+				 });
+		 
+		 GameRegistry.addRecipe(
+				 new ItemStack(DCsAppleMilk.yuzuFence, 1, 0),
+				 new Object[]{
+					 "UUU",
+					 'U', new ItemStack(DCsAppleMilk.logYuzu, 1, 0)
+				 });
 	}
 	
 	static void addTablewareRecipe() {

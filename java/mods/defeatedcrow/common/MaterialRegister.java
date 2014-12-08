@@ -13,6 +13,7 @@ import mods.defeatedcrow.common.item.appliance.*;
 import mods.defeatedcrow.common.item.edible.*;
 import mods.defeatedcrow.common.item.magic.*;
 import mods.defeatedcrow.event.BucketFillEvent;
+import mods.defeatedcrow.event.DispenserEvent;
 import mods.defeatedcrow.plugin.nei.ItemDummyForTooltip;
 import mods.defeatedcrow.potion.*;
 import net.minecraft.block.Block;
@@ -145,6 +146,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.gunpowderContainer, ItemGunpowderContainer.class, "defeatedcrow.GunpowderContainer");
 		GameRegistry.registerBlock(DCsAppleMilk.mobBlock, ItemMobDropBox.class, "defeatedcrow.mobDropBox");
 		GameRegistry.registerFuelHandler(DCsAppleMilk.charcoalBox);
+		GameRegistry.registerBlock(DCsAppleMilk.flowerPot, ItemFlowerPot.class, "defeatedcrow.flowerPot");
 		
 		//自然
 		GameRegistry.registerBlock(DCsAppleMilk.saplingTea, ItemTeaSapling.class, "defeatedcrow.saplingTea");
@@ -182,6 +184,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.wipeBox, ItemWipeBox.class, "defeatedcrow.wipeBox");
 		GameRegistry.registerBlock(DCsAppleMilk.wipeBox2, ItemWipeBox2.class, "defeatedcrow.wipeBox2");
 		GameRegistry.registerBlock(DCsAppleMilk.rotaryDial, "defeatedcrow.rotaryDial");
+		GameRegistry.registerBlock(DCsAppleMilk.yuzuFence, "defeatedcrow.yuzuFence");
 		
 		//食べ物
 		GameRegistry.registerBlock(DCsAppleMilk.filledChocoPan, "defeatedcrow.soupPan3");
@@ -394,6 +397,7 @@ public class MaterialRegister {
 		DCsAppleMilk.proxy.registerFluidTex();
 		
 		(new BucketFillEvent()).register();
+		DispenserEvent.instance.registerFluidDispence();
 		
 		DCsAppleMilk.dummyItem = (new ItemDummyForTooltip()).setUnlocalizedName("defeatedcrow.dummyItem");
 		GameRegistry.registerItem(DCsAppleMilk.dummyItem, "defeatedcrow.dummyItem");
@@ -629,6 +633,10 @@ public class MaterialRegister {
 		DCsAppleMilk.wipeBox2 = (new BlockWipeBox2()).
 				setBlockName("defeatedcrow.wipeBox2");
 		
+		DCsAppleMilk.flowerPot = (new BlockFlowerPot()).
+				setBlockName("defeatedcrow.flowerPot").
+				setCreativeTab(DCsAppleMilk.applemilkContainer);
+		
 	}
 	
 	static void addDecorations()
@@ -667,6 +675,10 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.chalcenonyPanel = (new BlockCPanel()).
 				setBlockName("defeatedcrow.chalcedonyPanel").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.yuzuFence = (new BlockYuzuFence()).
+				setBlockName("defeatedcrow.yuzuFence").
 				setCreativeTab(DCsAppleMilk.applemilk);
 	}
 	

@@ -72,7 +72,7 @@ public class TeaRecipeHandler extends TemplateRecipeHandler {
 	@Override
     public void loadCraftingRecipes(String outputId, Object... results)
     {
-        if(outputId.equals("DCsTeaMaker"))
+        if(outputId.equals("DCsTeaMaker") && getClass() == TeaRecipeHandler.class)
         {
             HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) this.recipeLoader();
 

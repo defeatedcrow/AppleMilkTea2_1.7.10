@@ -73,7 +73,7 @@ public class PanRecipeHandler extends TemplateRecipeHandler {
 	@Override
     public void loadCraftingRecipes(String outputId, Object... results)
     {
-        if(outputId.equals("DCsFilledPan"))
+        if(outputId.equals("DCsFilledPan") && getClass() == PanRecipeHandler.class)
         {
             HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) this.recipeLoader();
 

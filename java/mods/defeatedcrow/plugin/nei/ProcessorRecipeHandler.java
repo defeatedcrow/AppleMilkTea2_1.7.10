@@ -111,7 +111,7 @@ public class ProcessorRecipeHandler extends TemplateRecipeHandler {
 	@Override
     public void loadCraftingRecipes(String outputId, Object... results)
     {
-        if(outputId.equals("DCsProcessor"))
+        if(outputId.equals("DCsProcessor") && getClass() == ProcessorRecipeHandler.class)
         {
             List<ProsessorRecipe> recipes = this.recipeLoader();
 

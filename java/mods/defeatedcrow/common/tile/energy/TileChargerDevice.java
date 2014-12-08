@@ -1,5 +1,7 @@
 package mods.defeatedcrow.common.tile.energy;
 
+import ic2.api.energy.tile.IEnergySink;
+import codechicken.lib.math.MathHelper;
 import cofh.api.energy.IEnergyConnection;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.tileentity.IEnergyInfo;
@@ -12,18 +14,20 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /*TileChargerBaseの発展型。
  * 他MODのエネルギー受け入れのために用意したもの。*/
 @Optional.InterfaceList(
 	{
+		@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2"),
 		@Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHCore"),
 		@Optional.Interface(iface = "cofh.api.tileentity.IEnergyInfo", modid = "CoFHCore"),
 		@Optional.Interface(iface = "shift.sextiarysector.api.machine.energy.IEnergyHandler", modid = "SextiarySector")
 	}
 )
-public class TileChargerDevice extends TileChargerBase implements IEnergyHandler, IEnergyInfo, shift.sextiarysector.api.machine.energy.IEnergyHandler{
+public class TileChargerDevice extends TileChargerBase implements IEnergySink, IEnergyHandler, IEnergyInfo, shift.sextiarysector.api.machine.energy.IEnergyHandler{
 	
 	//このへんはオーバーライドしとかないとイマイチ動きが悪い
 	@Override
@@ -245,6 +249,43 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	@Override
 	public long getMaxSpeedStored(ForgeDirection from) {
 		return 3;
+	}
+
+	@Optional.Method(modid = "IC2")
+	@Override
+	public boolean acceptsEnergyFrom(TileEntity emitter,
+			ForgeDirection direction) {
+		return true;
+	}
+
+	@Optional.Method(modid = "IC2")
+	@Override
+	public double getDemandedEnergy() {
+		if (this.getChargeAmount() >= this.getMaxChargeAmount()) return 0;
+		
+		int ret = this.getMaxChargeAmount() - this.getChargeAmount();
+		ret *= this.exchangeRateEU();
+		return ret;
+	}
+
+	@Optional.Method(modid = "IC2")
+	@Override
+	public int getSinkTier() {
+		return 2;
+	}
+
+	@Optional.Method(modid = "IC2")
+	@Override
+	public double injectEnergy(ForgeDirection directionFrom, double amount,
+			double voltage) {
+		if (this.getChargeAmount() >= this.getMaxChargeAmount()) return amount;
+		double get = amount * this.exchangeRateEU();
+		
+		int ret = MathHelper.floor_double(get) + this.getChargeAmount();
+		if (ret >= this.getMaxChargeAmount()) ret = this.getMaxChargeAmount();
+		this.setChargeAmount(ret);
+		
+		return 0;
 	}
 
 }

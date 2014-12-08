@@ -82,7 +82,7 @@ public class IceRecipeHandler extends TemplateRecipeHandler {
 	@Override
     public void loadCraftingRecipes(String outputId, Object... results)
     {
-        if(outputId.equals("DCsIceMaker"))
+        if(outputId.equals("DCsIceMaker") && getClass() == IceRecipeHandler.class)
         {
             HashMap<ItemStack, ItemStack[]> recipes = (HashMap<ItemStack, ItemStack[]>) this.recipeLoader();
 
