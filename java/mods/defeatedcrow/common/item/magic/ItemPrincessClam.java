@@ -166,6 +166,7 @@ public class ItemPrincessClam extends Item {
 								if (itemstack.stackSize < 1)
 								{
 									itemstack = (ItemStack)null;
+									return null;
 								}
 							}
 						}
@@ -236,6 +237,7 @@ public class ItemPrincessClam extends Item {
 										if (itemstack.stackSize < 1)
 										{
 											itemstack = (ItemStack)null;
+											return null;
 										}
 									}
 								}

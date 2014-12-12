@@ -13,6 +13,8 @@ import net.minecraft.util.MathHelper;
 
 /**
  * 充電可能アイテムのItemBlock版のベースクラス
+ * 注意!このクラスを継承したItemBlockは、設置するとチャージ情報がリセットされてしまいます。
+ * TileEntityなどを利用して、別途で情報保存用の処理を行う必要あり。
  * */
 public abstract class BatteyItemBlockBase extends ItemBlock implements IBattery{
 

@@ -1,5 +1,6 @@
 package mods.defeatedcrow.plugin;
 
+import cpw.mods.fml.common.Loader;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
@@ -100,7 +101,7 @@ public class LoadIC2Plugin {
             Recipes.macerator.addRecipe(input2, metadata2, outputs2);
             Recipes.macerator.addRecipe(input3, metadata2, outputs3);
             Recipes.macerator.addRecipe(input4, metadata2, outputs4);
-            Recipes.macerator.addRecipe(input5, metadata2, outputs5);
+            if (!Loader.isModLoaded("Railcraft")) Recipes.macerator.addRecipe(input5, metadata2, outputs5);
             AMTLogger.debugInfo("Succeeded to register IC2machines recipe");
         }
         catch (Exception e) {

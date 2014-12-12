@@ -16,7 +16,7 @@ public abstract class PotionImmunityBase extends Potion{
 	}
 	
 	
-	/**@param target : 攻撃を受けたEntityLivingBase
+	/**
 	 * @param id : このポーションのID
 	 * @param amp : このポーション効果のAmplifier
 	 * @param player : 監視対象のプレイヤー

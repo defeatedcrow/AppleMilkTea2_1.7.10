@@ -25,6 +25,7 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 	protected int chargeAmount = 0;
 	//チャージアイテムを溶かす際の判定発生間隔
 	private int coolTime = 4;
+	public final int MAX_CHARGE = 128000;
 	
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
@@ -102,7 +103,7 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 	//チャージゲージ上限も変更可能に。
 	public int getMaxChargeAmount()
 	{
-		return 128000;
+		return MAX_CHARGE;
 	}
 	
 	/* ゲッターとセッター */
@@ -496,7 +497,16 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 				IBattery bat = (IBattery) par2ItemStack.getItem();
 				return bat.isFullCharged(par2ItemStack);
 			}
+			else if (this.isChargeableBattery(par2ItemStack))
+			{
+				return this.chargeAnotherBattery(par2ItemStack, 1, true) == 0;//フルチャージかどうか
+			}
+			else
+			{
+				return true;//無関係なアイテムは排出する
+			}
 		}
+		
 		return false;
 	}
 

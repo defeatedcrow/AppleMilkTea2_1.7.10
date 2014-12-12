@@ -3,7 +3,9 @@ package mods.defeatedcrow.common.tile.appliance;
 import mods.defeatedcrow.api.charge.ChargeItemManager;
 import mods.defeatedcrow.api.charge.IChargeableMachine;
 import mods.defeatedcrow.api.energy.IBattery;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.plugin.EUSinkChannel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,9 +19,11 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,10 +41,26 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	private int coolTime = 4;
 	//作業中カウント
 	public int cookTime = 0;
+	
+	//EU受け入れ用のチャンネル
+	protected EUSinkChannel EUChannel;
+	
+	public MachineBase() {
+		super();
+		if (DCsAppleMilk.SuccessLoadIC2) EUChannel = new EUSinkChannel(this, this.getMaxChargeAmount(), 3);
+	}
+	
+	private int exchangeRateEU()
+	{
+		//EU -> Charge
+		return 2;
+	}
  
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
 	{
+		if (EUChannel != null) EUChannel.readFromNBT(par1NBTTagCompound);
+		
 		super.readFromNBT(par1NBTTagCompound);
 		
 		NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", 10);
@@ -65,6 +85,8 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
 	{
+		if (EUChannel != null) EUChannel.writeToNBT(par1NBTTagCompound);
+		
 		super.writeToNBT(par1NBTTagCompound);
 		
 		NBTTagList nbttaglist = new NBTTagList();
@@ -99,6 +121,19 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         this.readFromNBT(pkt.func_148857_g());
     }
+	
+	@Override
+	public void invalidate() {
+		if (EUChannel != null) EUChannel.invalidate();
+		super.invalidate();
+	}
+	
+	//以下はSinkChannel用のメソッド
+	@Override
+	public void onChunkUnload() {
+		if (EUChannel != null) EUChannel.onChunkUnload();
+		super.onChunkUnload();
+	}
  
 	//調理中の矢印の描画
 	@SideOnly(Side.CLIENT)
@@ -183,7 +218,11 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		boolean flag = this.isFullCharged();
 		boolean flag1 = false;
  
-		//まず燃料を溶かす処理
+		//まずEUChannel更新
+		if (!this.worldObj.isRemote && EUChannel != null)
+		{
+			EUChannel.updateEntity();
+		}
 		
 		//硬直時間：燃料の消費に利用
 		if (this.coolTime > 0)
@@ -238,6 +277,20 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 				
 				//最後に硬直時間を設定。コンフィグで更新間隔は変えられる
 				this.coolTime = DCsConfig.batteryUpdate;
+			}
+			
+			//Chargerから移植した他MODケーブルチェック
+			ForgeDirection[] dirs = ForgeDirection.VALID_DIRECTIONS;
+			for (ForgeDirection dir : dirs)
+			{
+				if (!this.isFullCharged())
+				{
+					int accept = this.acceptChargeFromDir(dir);
+					int cap = this.getMaxChargeAmount() - this.getChargeAmount();
+					accept = Math.min(accept, cap);
+					this.chargeAmount += accept;
+				}
+				
 			}
 			
 			/*
@@ -318,6 +371,20 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	public static boolean isItemFuel(ItemStack par0ItemStack)
 	{
 		return getItemBurnTime(par0ItemStack) > 0;
+	}
+	
+	public int acceptChargeFromDir(ForgeDirection dir)
+	{
+		//EU受入量は指定する必要があるので、とりあえず512とする。
+		int i = this.getChargeAmount();
+		double eu = Math.min(EUChannel.getEnergyStored(), 512);
+		double get = eu / this.exchangeRateEU();
+		if ((this.getMaxChargeAmount() - i) < get) return 0;
+		
+		if (EUChannel.useEnergy(eu)){
+			return MathHelper.floor_double(get);
+		}
+		return 0;
 	}
 	
 	/* ========== 以下、ISidedInventoryのメソッド ==========*/

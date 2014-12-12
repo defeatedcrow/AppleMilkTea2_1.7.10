@@ -8,7 +8,7 @@ import net.minecraft.util.DamageSource;
 /**
  * ただ単に継承して使えるようにするだけのもの。
  * <br>継承しているポーション効果は、
- * プレイヤーを含むEntityLivingBaseのダメージ処理時に呼び出され、Amplifierが一段階減少する。
+ * プレイヤーを含むEntityLivingBaseのダメージ処理時に呼び出される。(amplifier現象機能は廃止済み)
  * <br>呼び出されたあとの処理はこのクラス内で定義できます。*/
 public abstract class PotionReflexBase extends Potion{
 	
@@ -25,7 +25,7 @@ public abstract class PotionReflexBase extends Potion{
 	 * @param effect : このポーション効果
 	 * @param amount : 受けたダメージの値
 	 * <br>このメソッド内でダメージを受けた瞬間の処理を行い、成否判定をboolean型で返して下さい。
-	 * <br>trueを返した場合のみ、Amplifierの減少処理とダメージの無効化が行われます。
+	 * <br>trueを返した場合のみ、ダメージの無効化が行われます。
 	 * */
 	public abstract boolean effectFormer(EntityLivingBase target, DamageSource source, PotionEffect effect, float amount);
 

@@ -14,6 +14,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -32,9 +33,14 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 	}
 	
 	@Override
-	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, Object... input) {
-		recipes.add(new ProsessorRecipe(output, secondary, flag, input));
+	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, float secondaryChance, Object... input){
+		float c = MathHelper.clamp_float(0.0F, secondaryChance, 1.0F);
+		recipes.add(new ProsessorRecipe(output, secondary, flag, c, input));
 		AMTLogger.debugInfo("Add Prosessor recipe: output " + output.getDisplayName());
+	}
+	
+	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, Object... input) {
+		addRecipe(output, flag, secondary, 1.0F, input);
 	}
 
 	@Override
@@ -48,15 +54,17 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 		public final ItemStack secondary;
 		private final Object[] input;
 		private final ArrayList<Object> processedInput;
+		private final float chance;
 		
 		public final boolean foodRecipe;
 		
-		public ProsessorRecipe(ItemStack output, ItemStack sec, boolean flag, Object... inputs)
+		public ProsessorRecipe(ItemStack output, ItemStack sec, boolean flag, float secondaryChance, Object... inputs)
 		{
 			this.output = output;
 			this.secondary = sec;
 			this.input = inputs;
 			this.foodRecipe = flag;
+			this.chance = secondaryChance;
 			this.processedInput = new ArrayList<Object>();
 			for (int i = 0; i < inputs.length; i++) {
 				if (inputs[i] instanceof String) {
@@ -82,6 +90,12 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 		@Override
 		public ItemStack getOutput() {
 			return this.output.copy();
+		}
+		
+		@Override
+		public float getChance()
+		{
+			return this.chance;
 		}
 		
 		@Override

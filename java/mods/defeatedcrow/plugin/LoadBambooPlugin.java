@@ -96,9 +96,17 @@ public class LoadBambooPlugin {
 			}
 			Item item6 = Util.getModItem("BambooMod", "itemseaweed");
 			if (item6 != null) {
-				ItemStack registerItem5 = new ItemStack(item6, 1, 0);
-				if (LoadModHandler.registerModItems("seaWeed", registerItem5)) {
+				ItemStack registerItem6 = new ItemStack(item6, 1, 0);
+				if (LoadModHandler.registerModItems("seaWeed", registerItem6)) {
 					AMTLogger.debugInfo("Succeeded to get seaweed");
+				}
+			}
+			Item item7 = Util.getModItem("BambooMod", "itemtomato");
+			if (item7 != null) {
+				ItemStack registerItem7 = new ItemStack(item7, 1, 0);
+				if (LoadModHandler.registerModItems("tomato", registerItem7)) {
+					OreDictionary.registerOre("cropTomato", registerItem7);
+					AMTLogger.debugInfo("Succeeded to get tomato");
 				}
 			}
 		}

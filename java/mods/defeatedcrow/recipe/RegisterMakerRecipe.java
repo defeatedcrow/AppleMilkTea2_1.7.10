@@ -406,6 +406,9 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 8, 0), false, null,
 				new Object[]{new ItemStack(Items.golden_shovel, 1, 32767)});
 		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 24, 0), false, null,
+				new Object[]{new ItemStack(Items.golden_axe, 1, 32767)});
+		
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 16, 0), false, null,
 				new Object[]{new ItemStack(Items.golden_sword, 1, 32767)});
 		

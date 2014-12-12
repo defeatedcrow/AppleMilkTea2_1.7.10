@@ -53,6 +53,7 @@ public class TileProsessor extends MachineBase{
 		
 		ItemStack output = null;
 		ItemStack sec = null;
+		float chance = 1.0F;
 		
 		for(IProsessorRecipe recipe : recipes)
 		{
@@ -60,6 +61,7 @@ public class TileProsessor extends MachineBase{
 			{
 				output = recipe.getOutput();
 				sec = recipe.getSecondary();
+				chance = recipe.getChance();
 				break;
 			}
 		}
@@ -148,6 +150,8 @@ public class TileProsessor extends MachineBase{
 			List<Object> required = new ArrayList<Object>(activeRecipe.getProsessedInput());
 			ItemStack output = activeRecipe.getOutput();
 			ItemStack sec = activeRecipe.getSecondary();
+			float chance = activeRecipe.getChance();
+			boolean getSec = worldObj.rand.nextFloat() <= chance;
 			
 			for (int i = 2; i < 11; i++)
 			{
@@ -223,7 +227,7 @@ public class TileProsessor extends MachineBase{
 				this.itemstacks[11].stackSize += output.stackSize;
 			}
 			
-			if (sec != null)
+			if (sec != null && getSec)
 			{
 				if (this.itemstacks[12] == null)
 				{

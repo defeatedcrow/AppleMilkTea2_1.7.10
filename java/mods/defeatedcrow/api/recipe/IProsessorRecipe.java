@@ -12,6 +12,8 @@ public interface IProsessorRecipe {
 	
 	ItemStack getSecondary();
 	
+	float getChance();
+	
 	public boolean isFoodRecipe();
 	
 	public List<Object> getProsessedInput();

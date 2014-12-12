@@ -1918,9 +1918,11 @@ public class DCsRecipeRegister {
 						 Character.valueOf('Y'), new ItemStack(Items.dye, 1, 4),
 						 Character.valueOf('X'), new ItemStack(Blocks.obsidian, 1, 0)}));
 		
+		if (DCsConfig.charmRemain == 0){
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(DCsAppleMilk.princessClam, 1, 3),
 				new ItemStack(DCsAppleMilk.princessClam, 1, 3));
+		}
 	}
 	
 	static void addBottle() {
@@ -2485,6 +2487,9 @@ public class DCsRecipeRegister {
 	      
 	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.dustWood, 1, 0),
 	    		  new ItemStack(DCsAppleMilk.dustWood, 1, 2), 0.2F);
+	      
+	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.logYuzu, 1, 0),
+	    		  new ItemStack(Items.coal, 1, 1), 0.2F);
 	}
 	
 	/*この部分は、複数のModの水入り容器を取得した後に呼び出すため、postInitに呼ぶ
