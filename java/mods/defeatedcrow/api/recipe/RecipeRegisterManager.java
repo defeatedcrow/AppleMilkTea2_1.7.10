@@ -9,6 +9,8 @@ public final class RecipeRegisterManager {
 	public static IEvaporatorRecipeRegister evaporatorRecipe;
 	public static IPanRecipeRegister panRecipe;
 	
+	public static ISlagResultLoot slagLoot;
+	
 	private RecipeRegisterManager(){}
 	
 }

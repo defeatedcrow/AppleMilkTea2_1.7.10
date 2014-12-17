@@ -7,6 +7,7 @@ import mods.defeatedcrow.client.particle.*;
 import mods.defeatedcrow.client.renderblocks.*;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.entity.*;
+import mods.defeatedcrow.common.entity.dummy.*;
 import mods.defeatedcrow.common.entity.edible.*;
 import mods.defeatedcrow.common.tile.*;
 import mods.defeatedcrow.common.tile.appliance.*;
@@ -157,6 +158,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableTart.class, new RenderTartEntity());
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableSandwich.class, new RenderSandwichEntity());
 		RenderingRegistry.registerEntityRenderingHandler(EntityKinoko.class, new RenderKinokoEntity());
+		RenderingRegistry.registerEntityRenderingHandler(EntityStunEffect.class, new RenderStunEntity());
 		
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipeID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_cafe.png"));
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipe2ID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_yome.png"));

@@ -211,6 +211,10 @@ public class BlockEmptyPanG extends BlockContainer{
 		else if (RecipeRegisterManager.panRecipe.isHeatSource(block, meta)) {
 			return true;
 		}
+		else if (LoadModHandler.matchItem("furnaceBlock", new ItemStack(block, 1, meta)))
+		{
+			return true;
+		}
 		else if (world.getBlock(x, y, z).getMaterial() == Material.fire) {
 			return true;
 		}

@@ -14,6 +14,7 @@ public class RegisterManager {
 		RecipeRegisterManager.panRecipe = new PanRecipeRegister();
 		
 		ChargeItemManager.chargeItem = new ChargeItemRegister();
+		RecipeRegisterManager.slagLoot = new SlagResultLoot();
 	}
 	
 	private RegisterManager(){}

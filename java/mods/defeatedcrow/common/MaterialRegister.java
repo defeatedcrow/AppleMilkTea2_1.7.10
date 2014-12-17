@@ -14,6 +14,7 @@ import mods.defeatedcrow.common.item.edible.*;
 import mods.defeatedcrow.common.item.magic.*;
 import mods.defeatedcrow.event.BucketFillEvent;
 import mods.defeatedcrow.event.DispenserEvent;
+import mods.defeatedcrow.event.FluidDispenser;
 import mods.defeatedcrow.plugin.nei.ItemDummyForTooltip;
 import mods.defeatedcrow.potion.*;
 import net.minecraft.block.Block;
@@ -119,6 +120,8 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.icyCrystal,"defeatedcrow.icyCrystal");
 		GameRegistry.registerItem(DCsAppleMilk.princessClam,"defeatedcrow.princessClam");
 		GameRegistry.registerItem(DCsAppleMilk.stickCarbon,"defeatedcrow.stickCarbon");
+		GameRegistry.registerItem(DCsAppleMilk.strangeSlag,"defeatedcrow.strangeSlag");
+		GameRegistry.registerItem(DCsAppleMilk.fossilScale,"defeatedcrow.fossilScale");
 		
 		//基本ツール
 		GameRegistry.registerBlock(DCsAppleMilk.teaMakerNext, "defeatedcrow.teaMakerNext");
@@ -398,6 +401,7 @@ public class MaterialRegister {
 		
 		(new BucketFillEvent()).register();
 		DispenserEvent.instance.registerFluidDispence();
+		FluidDispenser.load();
 		
 		DCsAppleMilk.dummyItem = (new ItemDummyForTooltip()).setUnlocalizedName("defeatedcrow.dummyItem");
 		GameRegistry.registerItem(DCsAppleMilk.dummyItem, "defeatedcrow.dummyItem");
@@ -746,6 +750,14 @@ public class MaterialRegister {
 		DCsAppleMilk.stickCarbon  = (new ItemCarbonStick()).
 				setUnlocalizedName("defeatedcrow.stickCarbon").
 				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.strangeSlag  = (new ItemStrangeSlag()).
+				setUnlocalizedName("defeatedcrow.strangeSlag").
+				setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.fossilScale  = (new ItemFossilScale()).
+				setUnlocalizedName("defeatedcrow.fossilScale").
+				setCreativeTab(DCsAppleMilk.applemilkMagic);
 	}
 	
 	static void addMachines()

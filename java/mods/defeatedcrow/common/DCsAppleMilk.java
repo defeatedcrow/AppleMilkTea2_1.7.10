@@ -17,6 +17,7 @@ import mods.defeatedcrow.api.*;
 import mods.defeatedcrow.common.block.*;
 import mods.defeatedcrow.common.block.container.BlockCharcoalBox;
 import mods.defeatedcrow.common.entity.*;
+import mods.defeatedcrow.common.entity.dummy.EntityStunEffect;
 import mods.defeatedcrow.common.entity.edible.*;
 import mods.defeatedcrow.common.item.*;
 import mods.defeatedcrow.common.item.magic.*;
@@ -207,6 +208,8 @@ public class DCsAppleMilk{
 	public static Item  princessClam;
 	public static Item  dustWood;
 	public static Item  essentialOil;
+	public static Item  strangeSlag;
+	public static Item  fossilScale;
 	
 	public static ItemIncenseApple  incenseApple;
 	public static ItemIncenseRose  incenseRose;
@@ -444,10 +447,13 @@ public class DCsAppleMilk{
 		if (DCsConfig.entityIdSilkMelon == 0) DCsConfig.entityIdSilkMelon = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdKinoko == 0) DCsConfig.entityIdKinoko = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdCocktail2 == 0) DCsConfig.entityIdCocktail2 = EntityRegistry.findGlobalUniqueEntityId();
+		if (DCsConfig.entityIdStun == 0) DCsConfig.entityIdStun = EntityRegistry.findGlobalUniqueEntityId();
+		if (DCsConfig.entityIdIllusion == 0) DCsConfig.entityIdIllusion = EntityRegistry.findGlobalUniqueEntityId();
 		
 		EntityRegistry.registerModEntity(EntityMelonBomb.class, "compressedMelon", DCsConfig.entityIdMelon, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntitySilkyMelon.class, "compressedSilkyMelon", DCsConfig.entityIdSilkMelon, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntityKinoko.class, "mushroomBox", DCsConfig.entityIdKinoko, this, 250, 5, true);
+		EntityRegistry.registerModEntity(EntityStunEffect.class, "stunEntity", DCsConfig.entityIdStun, this, 250, 5, true);
 		
 		EntityRegistry.registerModEntity(PlaceableIcecream.class, "PlaceableIceCream", DCsConfig.entityIdIce, this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableSteak.class, "PlaceableSteak", DCsConfig.entityIdSteak, this, 250, 5, true);
@@ -958,6 +964,7 @@ public class DCsAppleMilk{
 	    //他のMODのブロック・アイテム登録クラスに先行しないよう、postInitメソッドでロードする
 	    //当MODで勝手に追加する鉱石辞書も含めるように、読み込む位置を他MODのロード処理より後にした
 	    (new LoadOreDicHandler()).load();
+	    OreCrushRecipe.searchOreName();
 	    
 	    //インスタントティーレシピ
 	    //他MODの水入り容器をひと通り取得した後に行うので、最後のほうで呼ぶ

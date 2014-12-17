@@ -3,6 +3,7 @@ package mods.defeatedcrow.common.item.magic;
 import mods.defeatedcrow.api.charm.EffectType;
 import mods.defeatedcrow.api.charm.IIncenseEffect;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.entity.dummy.EntityStunEffect;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -61,16 +62,20 @@ public class ItemIncenseAgar extends Item implements IIncenseEffect{
 		
 		if (incense.getEffectType() == this.getEffectType() && entity != null)
 		{
-			if (entity instanceof EntityCreature)//対象はEntityCreature
+			if (entity instanceof EntityLiving)//対象はEntityLiving
 			{
-				EntityCreature living = (EntityCreature) entity;
+				EntityLiving living = (EntityLiving) entity;
 				
-				if (DCsAppleMilk.confinement != null)//ポーション効果が追加されているか
-				{
-					living.addPotionEffect(new PotionEffect(DCsAppleMilk.confinement.id, 200, 0));
-				}
+//				if (DCsAppleMilk.confinement != null)//ポーション効果が追加されているか
+//				{
+//					living.addPotionEffect(new PotionEffect(DCsAppleMilk.confinement.id, 200, 0));
+//				}
 				
 				/*動きを止めてしまう効果に変更。*/
+				EntityStunEffect stun = new EntityStunEffect(world, living, null, 20);
+				if (!world.isRemote){
+					world.spawnEntityInWorld(stun);
+				}
 				
 			}
 			

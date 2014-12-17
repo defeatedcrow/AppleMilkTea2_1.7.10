@@ -12,6 +12,7 @@ import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
@@ -248,61 +249,70 @@ public class DispenserEvent {
         });
 		
 		//容器に汲む
-		BlockDispenser.dispenseBehaviorRegistry.putObject(Items.bucket, new BehaviorDefaultDispenseItem()
+		//BlockDispenser.dispenseBehaviorRegistry.putObject(Items.bucket, new EmptyBucketDispenseItem());
+	}
+	
+	private class EmptyBucketDispenseItem extends BehaviorDefaultDispenseItem
+	{
+		private final BehaviorDefaultDispenseItem defaultReturnItem = new BehaviorDefaultDispenseItem();
+		private boolean flag = true;
+		
+		protected ItemStack dispenseStack(IBlockSource block, ItemStack itemstack)
         {
-			private boolean flag = true;
+            EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
+            World world = block.getWorld();
+            int i = block.getXInt() + enumfacing.getFrontOffsetX();
+            int j = block.getYInt() + enumfacing.getFrontOffsetY();
+            int k = block.getZInt() + enumfacing.getFrontOffsetZ();
             
-			protected ItemStack dispenseStack(IBlockSource block, ItemStack itemstack)
+            ItemStack fill = null;
+            
+            if (!world.isRemote && world.getBlock(i, j, k) == DCsAppleMilk.blockCamelliaOil)
             {
-                EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
-                World world = block.getWorld();
-                int i = block.getXInt() + enumfacing.getFrontOffsetX();
-                int j = block.getYInt() + enumfacing.getFrontOffsetY();
-                int k = block.getZInt() + enumfacing.getFrontOffsetZ();
-                
-                ItemStack fill = null;
-                
-                if (!world.isRemote && world.getBlock(i, j, k) == DCsAppleMilk.blockCamelliaOil)
-                {
-                	if (world.setBlockToAir(i, j, k)) {
-                		world.markBlockForUpdate(i, j, k);
-                		world.notifyBlockChange(i, j, k, world.getBlock(i, j, k));
-                		fill = new ItemStack(DCsAppleMilk.bucketCamOil);
-                		flag = true;
-                	}
-                }
-                
-                if (!world.isRemote && world.getBlock(i, j, k) == DCsAppleMilk.blockVegitableOil)
-                {
-                	if (world.setBlockToAir(i, j, k)) {
-                		world.markBlockForUpdate(i, j, k);
-                		world.notifyBlockChange(i, j, k, world.getBlock(i, j, k));
-                		fill = new ItemStack(DCsAppleMilk.bucketVegiOil);
-                		flag = true;
-                	}
-                }
-                
-                if (flag) {
-                	return fill;
-                }
-                else {
-                	return itemstack;
-                }
-            }
-			
-			protected void playDispenseSound(IBlockSource block)
-            {
-                if (this.flag)
-                {
-                    block.getWorld().playAuxSFX(1009, block.getXInt(), block.getYInt(), block.getZInt(), 0);
-                }
-                else
-                {
-                    block.getWorld().playAuxSFX(1001, block.getXInt(), block.getYInt(), block.getZInt(), 0);
-                }
+            	if (world.setBlockToAir(i, j, k)) {
+            		world.markBlockForUpdate(i, j, k);
+            		world.notifyBlockChange(i, j, k, world.getBlock(i, j, k));
+            		fill = new ItemStack(DCsAppleMilk.bucketCamOil);
+            		flag = true;
+            	}
             }
             
-        });
+            if (!world.isRemote && world.getBlock(i, j, k) == DCsAppleMilk.blockVegitableOil)
+            {
+            	if (world.setBlockToAir(i, j, k)) {
+            		world.markBlockForUpdate(i, j, k);
+            		world.notifyBlockChange(i, j, k, world.getBlock(i, j, k));
+            		fill = new ItemStack(DCsAppleMilk.bucketVegiOil);
+            		flag = true;
+            	}
+            }
+            
+            if (fill == null) {
+            	return this.defaultReturnItem.dispense(block, itemstack);
+            }
+            
+            if (--itemstack.stackSize == 0)
+            {
+            	itemstack = fill.copy();
+            }
+            else if (((TileEntityDispenser)block.getBlockTileEntity()).func_146019_a(fill) < 0) {
+            	return this.defaultReturnItem.dispense(block, itemstack);
+            }
+            
+            return itemstack;
+        }
+		
+		protected void playDispenseSound(IBlockSource block)
+        {
+            if (this.flag)
+            {
+                block.getWorld().playAuxSFX(1009, block.getXInt(), block.getYInt(), block.getZInt(), 0);
+            }
+            else
+            {
+                block.getWorld().playAuxSFX(1001, block.getXInt(), block.getYInt(), block.getZInt(), 0);
+            }
+        }
 	}
 
 }

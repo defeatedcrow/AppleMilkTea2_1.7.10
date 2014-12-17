@@ -14,7 +14,7 @@ public class LoadBCPlugin {
 		ModContainer mod = Loader.instance().getIndexedModList().get("BuildCraft|Energy");
 		String s = mod.getVersion();
 		AMTLogger.debugInfo("BuildCraft version : " + s);
-		if (s.contains("6.1"))
+		if (s.contains("6.1") || s.contains("6.2"))
 		{
 			if (!s.contains("6.1.1"))
 			{

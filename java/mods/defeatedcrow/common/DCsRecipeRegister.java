@@ -1847,6 +1847,13 @@ public class DCsRecipeRegister {
 	    			  Character.valueOf('Y'), new ItemStack(DCsAppleMilk.cLamp, 1, 3),
 	    			  Character.valueOf('X'), "ingotSteel"}));
 		 
+		 GameRegistry.addRecipe(
+				 new ShapedOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cLamp, 1, 11),
+	    		  new Object[]{" X ","XYX"," X ",
+	    			  Character.valueOf('Y'), new ItemStack(DCsAppleMilk.cLamp, 1, 3),
+	    			  Character.valueOf('X'), "ingotBlackSteel"}));
+		 
 	}
 	
 	static void addPrincess() {
