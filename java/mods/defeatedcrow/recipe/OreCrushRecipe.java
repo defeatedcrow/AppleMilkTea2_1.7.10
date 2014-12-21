@@ -32,8 +32,8 @@ public class OreCrushRecipe {
 	public static void searchOreName()
 	{
 		String[] ores1 = new String[] {"Iron", "Tin", "Copper"};
-		String[] ores2 = new String[] {"Silver", "Lead", "Gold", "Nickel", "Redstone"};
-		String[] gems = new String[] {"Coal", "Diamond", "Ruby", "Sapphire", "Emerald", "Quartz"};
+		String[] ores2 = new String[] {"Silver", "Lead", "Gold", "Nickel", "Platinum", "Redstone"};
+		String[] gems = new String[] {"Coal", "Diamond", "Ruby", "Sapphire", "Peridot", "Emerald", "Quartz"};
 		
 		//その1
 		for (int i = 0 ; i < ores1.length ; i++)

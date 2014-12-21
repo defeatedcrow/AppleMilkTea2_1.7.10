@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import cpw.mods.fml.server.FMLServerHandler;
+import mods.defeatedcrow.api.energy.IBattery;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.block.appliance.ItemMachineBlock;
 import mods.defeatedcrow.common.entity.edible.*;
@@ -206,6 +207,15 @@ public class EntityItemCocktail2 extends EdibleEntityItemBlock2{
 							short c = 25600;
 							nbt2.setShort("charge", c);
 							item.setTagCompound(nbt2);
+						}
+						
+					}
+					if (item != null && item.getItem() instanceof IBattery)
+					{
+						IBattery bat = (IBattery) item.getItem();
+						if (bat != null && !bat.isFullCharged(item))
+						{
+							bat.charge(item, 25600, true);
 						}
 						
 					}

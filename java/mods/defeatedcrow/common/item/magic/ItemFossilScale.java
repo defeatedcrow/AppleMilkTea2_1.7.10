@@ -23,7 +23,8 @@ public class ItemFossilScale extends Item{
 
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:purple_scale");
 	}
-	
+
+	//TODO 効果の実装
 //	@Override
 //    public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity)
 //    {

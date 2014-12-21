@@ -7,6 +7,8 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.plugin.*;
+import mods.defeatedcrow.plugin.IC2.*;
+import mods.defeatedcrow.plugin.cofh.RFItemHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -28,12 +30,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 )
 public class TileChargerDevice extends TileChargerBase implements IEnergyHandler, IEnergyInfo, shift.sextiarysector.api.machine.energy.IEnergyHandler{
 	
-	protected EUSinkChannel EUChannel;
+	protected IEUSinkChannel EUChannel;
 	
 	//このTileにはコンストラクタが要る
 	public TileChargerDevice() {
 		super();
-		if (DCsAppleMilk.SuccessLoadIC2) EUChannel = new EUSinkChannel(this, MAX_CHARGE, 3);
+		if (DCsAppleMilk.SuccessLoadIC2) EUChannel = EUSinkManager.getChannel(this, MAX_CHARGE, 3);
 	}
 	
 	//このへんはオーバーライドしとかないとイマイチ動きが悪い
@@ -41,7 +43,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		if (EUChannel != null) {
-			EUChannel.readFromNBT(par1NBTTagCompound);
+			EUChannel.readFromNBT2(par1NBTTagCompound);
 		}
 		super.readFromNBT(par1NBTTagCompound);
 	}
@@ -50,7 +52,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		if (EUChannel != null) {
-			EUChannel.writeToNBT(par1NBTTagCompound);
+			EUChannel.writeToNBT2(par1NBTTagCompound);
 		}
 		super.writeToNBT(par1NBTTagCompound);
 	}
@@ -136,27 +138,31 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	public int acceptChargeFromDir(ForgeDirection dir)
 	{
 		//EU受入量は指定する必要があるので、とりあえず512とする。
-		int i = this.getChargeAmount();
-		double eu = Math.min(EUChannel.getEnergyStored(), 512);
-		double get = eu / this.exchangeRateEU();
-		if ((MAX_CHARGE - i) < get) return 0;
-		
-		if (EUChannel.useEnergy(eu)){
-			return MathHelper.floor_double(get);
+		if (EUChannel != null)
+		{
+			int i = this.getChargeAmount();
+			double eu = Math.min(EUChannel.getEnergyStored2(), 512);
+			double get = eu / this.exchangeRateEU();
+			if ((MAX_CHARGE - i) < get) return 0;
+			
+			if (EUChannel.useEnergy2(eu)){
+				return MathHelper.floor_double(get);
+			}
 		}
+		
 		return 0;
 	}
 	
 	@Override
 	public void invalidate() {
-		if (EUChannel != null) EUChannel.invalidate();
+		if (EUChannel != null) EUChannel.invalidate2();
 		super.invalidate();
 	}
 	
 	//以下はSinkChannel用のメソッド
 	@Override
 	public void onChunkUnload() {
-		if (EUChannel != null) EUChannel.onChunkUnload();
+		if (EUChannel != null) EUChannel.onChunkUnload2();
 		super.onChunkUnload();
 	}
 	
@@ -164,7 +170,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	public void updateEntity() {
 		if (!this.worldObj.isRemote && EUChannel != null)
 		{
-			EUChannel.updateEntity();
+			EUChannel.updateEntity2();
 		}
 		super.updateEntity();
 	}
@@ -309,42 +315,5 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	public long getMaxSpeedStored(ForgeDirection from) {
 		return 3;
 	}
-
-//	@Optional.Method(modid = "IC2")
-//	@Override
-//	public boolean acceptsEnergyFrom(TileEntity emitter,
-//			ForgeDirection direction) {
-//		return true;
-//	}
-//
-//	@Optional.Method(modid = "IC2")
-//	@Override
-//	public double getDemandedEnergy() {
-//		if (this.getChargeAmount() >= this.getMaxChargeAmount()) return 0;
-//		
-//		int ret = this.getMaxChargeAmount() - this.getChargeAmount();
-//		ret *= this.exchangeRateEU();
-//		return ret;
-//	}
-//
-//	@Optional.Method(modid = "IC2")
-//	@Override
-//	public int getSinkTier() {
-//		return 2;
-//	}
-//
-//	@Optional.Method(modid = "IC2")
-//	@Override
-//	public double injectEnergy(ForgeDirection directionFrom, double amount,
-//			double voltage) {
-//		if (this.getChargeAmount() >= this.getMaxChargeAmount()) return amount;
-//		double get = amount * this.exchangeRateEU();
-//		
-//		int ret = MathHelper.floor_double(get) + this.getChargeAmount();
-//		if (ret >= this.getMaxChargeAmount()) ret = this.getMaxChargeAmount();
-//		this.setChargeAmount(ret);
-//		
-//		return 0;
-//	}
 
 }

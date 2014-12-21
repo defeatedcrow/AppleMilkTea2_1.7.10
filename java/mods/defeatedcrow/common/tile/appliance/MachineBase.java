@@ -1,11 +1,10 @@
 package mods.defeatedcrow.common.tile.appliance;
 
-import mods.defeatedcrow.api.charge.ChargeItemManager;
-import mods.defeatedcrow.api.charge.IChargeableMachine;
+import mods.defeatedcrow.api.charge.*;
 import mods.defeatedcrow.api.energy.IBattery;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
-import mods.defeatedcrow.plugin.EUSinkChannel;
+import mods.defeatedcrow.plugin.IC2.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,11 +42,11 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	public int cookTime = 0;
 	
 	//EU受け入れ用のチャンネル
-	protected EUSinkChannel EUChannel;
+	protected IEUSinkChannel EUChannel;
 	
 	public MachineBase() {
 		super();
-		if (DCsAppleMilk.SuccessLoadIC2) EUChannel = new EUSinkChannel(this, this.getMaxChargeAmount(), 3);
+		if (DCsAppleMilk.SuccessLoadIC2) EUChannel = EUSinkManager.getChannel(this, this.getMaxChargeAmount(), 3);
 	}
 	
 	private int exchangeRateEU()
@@ -59,7 +58,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
 	{
-		if (EUChannel != null) EUChannel.readFromNBT(par1NBTTagCompound);
+		if (EUChannel != null) EUChannel.readFromNBT2(par1NBTTagCompound);
 		
 		super.readFromNBT(par1NBTTagCompound);
 		
@@ -85,7 +84,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
 	{
-		if (EUChannel != null) EUChannel.writeToNBT(par1NBTTagCompound);
+		if (EUChannel != null) EUChannel.writeToNBT2(par1NBTTagCompound);
 		
 		super.writeToNBT(par1NBTTagCompound);
 		
@@ -124,14 +123,14 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	
 	@Override
 	public void invalidate() {
-		if (EUChannel != null) EUChannel.invalidate();
+		if (EUChannel != null) EUChannel.invalidate2();
 		super.invalidate();
 	}
 	
 	//以下はSinkChannel用のメソッド
 	@Override
 	public void onChunkUnload() {
-		if (EUChannel != null) EUChannel.onChunkUnload();
+		if (EUChannel != null) EUChannel.onChunkUnload2();
 		super.onChunkUnload();
 	}
  
@@ -221,7 +220,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		//まずEUChannel更新
 		if (!this.worldObj.isRemote && EUChannel != null)
 		{
-			EUChannel.updateEntity();
+			EUChannel.updateEntity2();
 		}
 		
 		//硬直時間：燃料の消費に利用
@@ -376,13 +375,16 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	public int acceptChargeFromDir(ForgeDirection dir)
 	{
 		//EU受入量は指定する必要があるので、とりあえず512とする。
-		int i = this.getChargeAmount();
-		double eu = Math.min(EUChannel.getEnergyStored(), 512);
-		double get = eu / this.exchangeRateEU();
-		if ((this.getMaxChargeAmount() - i) < get) return 0;
-		
-		if (EUChannel.useEnergy(eu)){
-			return MathHelper.floor_double(get);
+		if (EUChannel != null){
+			
+			int i = this.getChargeAmount();
+			double eu = Math.min(EUChannel.getEnergyStored2(), 512);
+			double get = eu / this.exchangeRateEU();
+			if ((this.getMaxChargeAmount() - i) < get) return 0;
+			
+			if (EUChannel.useEnergy2(eu)){
+				return MathHelper.floor_double(get);
+			}
 		}
 		return 0;
 	}

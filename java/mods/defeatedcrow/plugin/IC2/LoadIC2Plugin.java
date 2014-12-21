@@ -1,10 +1,11 @@
-package mods.defeatedcrow.plugin;
+package mods.defeatedcrow.plugin.IC2;
 
 import cpw.mods.fml.common.Loader;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.plugin.LoadModHandler;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

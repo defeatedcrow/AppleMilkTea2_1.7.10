@@ -26,7 +26,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 //鎮静のインセンス
-//TODO スタン効果の実装
 public class ItemIncenseAgar extends Item implements IIncenseEffect{
 	
 	public ItemIncenseAgar (){

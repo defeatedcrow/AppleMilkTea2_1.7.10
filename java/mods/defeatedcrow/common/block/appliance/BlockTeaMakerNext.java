@@ -30,7 +30,7 @@ import mods.defeatedcrow.api.recipe.ITeaRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
-import mods.defeatedcrow.plugin.LoadIC2Plugin;
+import mods.defeatedcrow.plugin.IC2.LoadIC2Plugin;
 import mods.defeatedcrow.recipe.*;
 import mods.defeatedcrow.recipe.TeaRecipeRegister.TeaRecipe;
 

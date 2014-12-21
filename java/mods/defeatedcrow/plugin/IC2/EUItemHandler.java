@@ -1,4 +1,4 @@
-package mods.defeatedcrow.plugin;
+package mods.defeatedcrow.plugin.IC2;
 
 import codechicken.lib.math.MathHelper;
 import ic2.api.item.ElectricItem;

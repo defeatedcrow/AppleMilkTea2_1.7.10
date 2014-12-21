@@ -26,6 +26,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.IHopper;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
@@ -254,6 +256,25 @@ public abstract class PlaceableFoods extends Entity{
                 d0 += 1.0D / (double)b0;
                 spl = true;
             }
+        }
+        
+        //ホッパーの上に来るとドロップアイテム化する機能をつけた
+        if (!this.worldObj.isRemote)
+        {
+        	int i = MathHelper.floor_double(posX);
+        	int j = MathHelper.floor_double(posY);
+        	int k = MathHelper.floor_double(posZ);
+        	
+        	if (!this.worldObj.isAirBlock(i, j - 1, k) && this.worldObj.getTileEntity(i, j - 1, k) != null)
+        	{
+        		TileEntity tile = this.worldObj.getTileEntity(i, j - 1, k);
+        		if (tile instanceof IHopper)
+        		{
+        			ItemStack drop = this.returnItem();
+        			this.entityDropItem(drop, 0.1F);
+        			this.setDead();
+        		}
+        	}
         }
         
         double d3 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);

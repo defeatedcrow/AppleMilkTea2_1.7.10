@@ -26,6 +26,7 @@ import mods.defeatedcrow.common.world.village.*;
 import mods.defeatedcrow.event.*;
 import mods.defeatedcrow.handler.*;
 import mods.defeatedcrow.plugin.*;
+import mods.defeatedcrow.plugin.IC2.LoadIC2Plugin;
 import mods.defeatedcrow.plugin.craftguide.LoadCraftGuidePlugin;
 import mods.defeatedcrow.plugin.mce.MCEconomyPlugin;
 import mods.defeatedcrow.potion.*;
@@ -67,7 +68,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.beta8",
+		version = "1.7.10_2.0.beta10",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{

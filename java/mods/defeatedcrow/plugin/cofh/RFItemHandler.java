@@ -1,4 +1,4 @@
-package mods.defeatedcrow.plugin;
+package mods.defeatedcrow.plugin.cofh;
 
 import cofh.api.energy.IEnergyContainerItem;
 import net.minecraft.item.ItemStack;

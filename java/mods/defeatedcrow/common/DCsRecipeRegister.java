@@ -31,6 +31,7 @@ public class DCsRecipeRegister {
 		OreDictionary.registerOre("cropWheat", new ItemStack(Items.wheat, 1, 0));
 		OreDictionary.registerOre("cropApple", new ItemStack(Items.apple, 1, 0));
 		OreDictionary.registerOre("bucketMilk", new ItemStack(Items.milk_bucket, 1, 0));
+		OreDictionary.registerOre("gemCoal", new ItemStack(Items.coal, 1, 0));
 		
 		this.addContainerRecipe();
 		this.addTablewareRecipe();

@@ -13,6 +13,7 @@ import mods.defeatedcrow.common.tile.TileChocoPan;
 import mods.defeatedcrow.common.tile.appliance.TilePanG;
 import mods.defeatedcrow.common.tile.appliance.TileProsessor;
 import mods.defeatedcrow.handler.Util;
+import mods.defeatedcrow.plugin.LoadBambooPlugin;
 import mods.defeatedcrow.plugin.LoadModHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -118,7 +119,7 @@ public class BlockEmptyPanG extends BlockContainer{
         	}
         	return true;
         }
-        else if (itemstack.getItem() == Items.bowl)//竹のボウル：和風のoutputを返し、remainを1減らす。
+        else if (LoadBambooPlugin.bambooBasket != null && itemstack.getItem() == LoadBambooPlugin.bambooBasket.getItem())//竹のボウル：和風のoutputを返し、remainを1減らす。
         {
         	if (tile.getOutput() != null && tile.getRemainByte() > 0)
         	{
@@ -187,6 +188,7 @@ public class BlockEmptyPanG extends BlockContainer{
                         }
             			
             			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+            			par5EntityPlayer.triggerAchievement(AchievementRegister.makeRice);
             			return true;
             		}
         		}
