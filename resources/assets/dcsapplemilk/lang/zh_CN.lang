@@ -224,7 +224,7 @@ tile.defeatedcrow.chalcedonyLamp_yazukaBlack.name=黑玉髓玻璃灯
 tile.defeatedcrow.chalcedonyLamp_burst.name=玉髓烛台
 tile.defeatedcrow.chalcedonyLamp_force.name=玉髓台灯
 tile.defeatedcrow.chalcedonyLamp_cube.name=玉髓落地灯
-tile.defeatedcrow.chalcedonyLamp_cube2.name=玉髓东风灯
+tile.defeatedcrow.chalcedonyLamp_sword.name=玉髓东洋灯
 tile.defeatedcrow.rotaryDial.name=旋转拨号电话
 tile.defeatedcrow.chalcedonyPanel.name=玉髄压力板
 tile.defeatedcrow.gunpowderContainer_gunpowder.name=火药集装箱
@@ -354,6 +354,8 @@ item.defeatedcrow.princessClam_1.name=螺钿细工(花)
 item.defeatedcrow.princessClam_2.name=螺钿细工(蝶)
 item.defeatedcrow.princessClam_3.name=螺钿细工(风)
 item.defeatedcrow.princessClam_4.name=螺钿细工(月)
+item.defeatedcrow.strangeSlag.name=奇特矿渣
+item.defeatedcrow.fossilScale.name=古代鱼的鳞片
 item.defeatedcrow.dustWood_wood.name=木屑
 item.defeatedcrow.dustWood_charcoal.name=木炭粉
 item.defeatedcrow.dustWood_ash.name=草木灰
@@ -569,8 +571,3 @@ dc.ProcessorNEI=食物处理机
 dc.EvaporatorNEI=減圧蒸留器
 dc.JawCrusherNEI=颚式粉碎机
 dc.IceMakerNEI=刨冰机
-
-
-
-
-
