@@ -139,6 +139,11 @@ public class OreCrushRecipe {
 				GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.oreDust, 1, i),
 			    		  new ItemStack(ingot.getItem(), 1, ingot.getItemDamage()),  0.3F);
 			}
+			else//なかったら鉄になる
+			{
+				GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.oreDust, 1, i),
+			    		  new ItemStack(Items.iron_ingot),  0.3F);
+			}
 		}
 		
 	}
