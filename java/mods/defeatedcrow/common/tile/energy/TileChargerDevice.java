@@ -290,7 +290,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 
 	@Optional.Method(modid = "SextiarySector")
 	@Override
-	public int getPowerStored(ForgeDirection from) {
+	public long getSpeedStored(ForgeDirection from) {
 		int eng = this.getChargeAmount();
 		int get = eng * this.exchangeRateGF();
 		return get;
@@ -298,13 +298,13 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 
 	@Optional.Method(modid = "SextiarySector")
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getPowerStored(ForgeDirection from) {
 		return 3;
 	}
 
 	@Optional.Method(modid = "SextiarySector")
 	@Override
-	public int getMaxPowerStored(ForgeDirection from) {
+	public long getMaxSpeedStored(ForgeDirection from) {
 		int eng = this.getMaxChargeAmount();
 		int get = eng * this.exchangeRateGF();
 		return get;
@@ -312,7 +312,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 
 	@Optional.Method(modid = "SextiarySector")
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
+	public int getMaxPowerStored(ForgeDirection from) {
 		return 3;
 	}
 

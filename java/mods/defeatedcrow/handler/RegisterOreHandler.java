@@ -141,6 +141,7 @@ public class RegisterOreHandler {
 	    OreDictionary.registerOre("nuggetSteel", new ItemStack(DCsAppleMilk.EXItems, 1, 11));
 	    OreDictionary.registerOre("nuggetLead", new ItemStack(DCsAppleMilk.EXItems, 1, 12));
 	    OreDictionary.registerOre("nuggetBronze", new ItemStack(DCsAppleMilk.EXItems, 1, 13));
+	    OreDictionary.registerOre("nuggetFlint", new ItemStack(DCsAppleMilk.EXItems, 1, 14));
 	    OreDictionary.registerOre("dustWood", new ItemStack(DCsAppleMilk.dustWood, 1, 0));
 	    OreDictionary.registerOre("dustCharcoal", new ItemStack(DCsAppleMilk.dustWood, 1, 1));
 	    OreDictionary.registerOre("dustCoal", new ItemStack(DCsAppleMilk.dustWood, 1, 1));
@@ -148,6 +149,15 @@ public class RegisterOreHandler {
 	    OreDictionary.registerOre("dustOilCake", new ItemStack(DCsAppleMilk.dustWood, 1, 3));
 	    OreDictionary.registerOre("stickCarbon", new ItemStack(DCsAppleMilk.stickCarbon, 1, 0));
 	    OreDictionary.registerOre("plateChocolate", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 13));
+	    
+	    OreDictionary.registerOre("dustIron", new ItemStack(DCsAppleMilk.oreDust, 1, 0));
+	    OreDictionary.registerOre("dustTin", new ItemStack(DCsAppleMilk.oreDust, 1, 1));
+	    OreDictionary.registerOre("dustCopper", new ItemStack(DCsAppleMilk.oreDust, 1, 2));
+	    OreDictionary.registerOre("dustSilver", new ItemStack(DCsAppleMilk.oreDust, 1, 3));
+	    OreDictionary.registerOre("dustLead", new ItemStack(DCsAppleMilk.oreDust, 1, 4));
+	    OreDictionary.registerOre("dustGold", new ItemStack(DCsAppleMilk.oreDust, 1, 5));
+	    OreDictionary.registerOre("dustNickel", new ItemStack(DCsAppleMilk.oreDust, 1, 6));
+	    OreDictionary.registerOre("dustPlatinum", new ItemStack(DCsAppleMilk.oreDust, 1, 7));
 	    
 	    OreDictionary.registerOre("blockClam", new ItemStack(DCsAppleMilk.gunpowderContainer, 1, 3));
 	    OreDictionary.registerOre("gemClam", new ItemStack(DCsAppleMilk.princessClam, 1, 0));

@@ -13,6 +13,7 @@ import net.minecraft.init.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class RegisterMakerRecipe {
@@ -514,6 +515,14 @@ public class RegisterMakerRecipe {
 				RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), true, null,
 							new Object[]{"foodClam", kelp});
 			}
+	}
+	
+	public static void testRecipe()
+	{
+		OreDictionary.registerOre("logYuzuWood", new ItemStack(DCsAppleMilk.logYuzu, 1, 0));
+		
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, null,
+				new Object[]{"logYuzuWood"});
 	}
 
 }

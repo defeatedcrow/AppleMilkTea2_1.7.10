@@ -2171,7 +2171,7 @@ public class DCsRecipeRegister {
 						 "  X",
 						 " X ",
 						 "X  ",
-						 Character.valueOf('X'), new ItemStack(DCsAppleMilk.dustWood, 1, 1)}));
+						 Character.valueOf('X'), "dustCoal"}));
 		
 		GameRegistry.addRecipe(
 				 new ShapelessOreRecipe(
@@ -2179,6 +2179,14 @@ public class DCsRecipeRegister {
 	    		  new Object[]{
 	    			  "cropYuzu",
 	    			  new ItemStack(Items.redstone, 1, 0),
+	    			  "slimeball"
+					 }));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.yuzuGel, 1, 0),
+	    		  new Object[]{
+	    			  "cropYuzu",
 	    			  "slimeball"
 					 }));
 		
@@ -2239,6 +2247,15 @@ public class DCsRecipeRegister {
 	    		  new ItemStack(DCsAppleMilk.batteryItem, 1, 2),
 	    		  new Object[]{
 	    			  "nuggetLead",
+	    			  new ItemStack(DCsAppleMilk.leafTea, 1, 3),
+	    			  "stickCarbon"
+					 }));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.batteryItem, 1, 2),
+	    		  new Object[]{
+	    			  "nuggetFlint",
 	    			  new ItemStack(DCsAppleMilk.leafTea, 1, 3),
 	    			  "stickCarbon"
 					 }));
@@ -2338,6 +2355,11 @@ public class DCsRecipeRegister {
 	    			  new ItemStack(Items.iron_ingot, 1),
 	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767));
 		 
+		 GameRegistry.addShapelessRecipe(
+	    		  new ItemStack(DCsAppleMilk.EXItems, 9, 14),
+	    			  new ItemStack(Items.flint, 1),
+	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767));
+		 
 		 GameRegistry.addRecipe(
 				 new ShapedOreRecipe(
 	    		  new ItemStack(Items.iron_ingot, 1),
@@ -2346,6 +2368,15 @@ public class DCsRecipeRegister {
 						 "XXX",
 						 "XXX",
 						 Character.valueOf('X'), new ItemStack(DCsAppleMilk.EXItems, 1, 7)}));
+		 
+		 GameRegistry.addRecipe(
+				 new ShapedOreRecipe(
+	    		  new ItemStack(Items.flint, 1),
+	    		  new Object[]{
+						 "XXX",
+						 "XXX",
+						 "XXX",
+						 Character.valueOf('X'), new ItemStack(DCsAppleMilk.EXItems, 1, 14)}));
 		 
 		 GameRegistry.addShapelessRecipe(
 	    		  new ItemStack(Blocks.sticky_piston, 1),
@@ -2472,31 +2503,31 @@ public class DCsRecipeRegister {
 	    		  new ItemStack(Items.quartz, 1),
 	    		  0.5F);
 	      
-	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.leafTea, 1, 0),
+	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.leafTea, 1, 0),
 	    		  new ItemStack(DCsAppleMilk.foodTea, 1, 0), 0.2F);
 	      
-	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.clam, 1, 0),
+	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.clam, 1, 0),
 	    		  new ItemStack(DCsAppleMilk.clam, 1, 1), 0.2F);
 	      
-	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
 	    		  new ItemStack(DCsAppleMilk.EXItems, 1, 5), 0.2F);
 	      
-	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.EXItems, 1, 5),
+	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.EXItems, 1, 5),
 	    		  new ItemStack(Blocks.glass,1, 0), 0.2F);
 	      
-	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 0),
+	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 0),
 	    		  new ItemStack(DCsAppleMilk.EXItems, 8, 0), 0.2F);
 	      
-	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 1),
+	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 1),
 	    		  new ItemStack(DCsAppleMilk.icyToffyApple, 4, 4), 0.2F);
 	      
-	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 2),
+	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 2),
 	    		  new ItemStack(DCsAppleMilk.icyToffyApple, 4, 5), 0.2F);
 	      
-	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.dustWood, 1, 0),
+	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.dustWood, 1, 0),
 	    		  new ItemStack(DCsAppleMilk.dustWood, 1, 2), 0.2F);
 	      
-	      FurnaceRecipes.smelting().func_151394_a(new ItemStack(DCsAppleMilk.logYuzu, 1, 0),
+	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.logYuzu, 1, 0),
 	    		  new ItemStack(Items.coal, 1, 1), 0.2F);
 	}
 	

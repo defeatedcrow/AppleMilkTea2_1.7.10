@@ -363,7 +363,7 @@ public class BlockClamSand extends Block implements IRightClickHarvestable{
 			drop.motionY = 0.25F;
 			
 			if (!world.isRemote && world.spawnEntityInWorld(drop)){
-				world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+				world.setBlock(x, y, z, Blocks.sand, 0, 3);
 				return true;
 			}
 		}

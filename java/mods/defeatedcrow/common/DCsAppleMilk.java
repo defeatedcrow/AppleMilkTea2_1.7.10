@@ -68,7 +68,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.beta10",
+		version = "1.7.10_2.0.beta11",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -83,6 +83,7 @@ public class DCsAppleMilk{
 	
 	//クリエイティブタブの追加
 	public static final CreativeTabs applemilk = new CreativeTabAMT("applemilk");
+	public static final CreativeTabs applemilkMaterial = new CreativeTabAMTMaterial("applemilkmaterial");
 	public static final CreativeTabs applemilkFood = new CreativeTabAMTFood("applemilkfood");
 	public static final CreativeTabs applemilkContainer = new CreativeTabAMTContainer("applemilkcontainer");
 	public static final CreativeTabs applemilkMagic = new CreativeTabAMTMagic("applemilkmagic");
@@ -103,6 +104,7 @@ public class DCsAppleMilk{
 	//エネルギー
 	public static Block  batBox;
 	public static Block  redGel;
+	public static Block  yuzuGel;
 	public static Block  yuzuBat;
 	public static Block  gelBat;
 	//たべもの
@@ -181,6 +183,7 @@ public class DCsAppleMilk{
 	public static Item  icyCrystal;
 	public static Item  itemMintSeed;
 	public static Item  stickCarbon;
+	public static Item  oreDust;
 	
 	//玉髄ツール
 	public static Item  chalcedonyKnife;
@@ -603,6 +606,9 @@ public class DCsAppleMilk{
 	    //樽での醸造レシピ
 	    (new RegisterMakerRecipe()).registerBrewing();
 	    AMTLogger.trace("Registered new brewing recipe");
+	    
+	    //デバッグテスト用
+	    if (debugMode) (new RegisterMakerRecipe()).testRecipe();
 	}
 	
 	@EventHandler

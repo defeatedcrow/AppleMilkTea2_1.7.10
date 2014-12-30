@@ -2,6 +2,7 @@ package mods.defeatedcrow.recipe;
 
 import java.util.ArrayList;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.init.Blocks;
@@ -41,6 +42,7 @@ public class OreCrushRecipe {
 			String ore = "ore" + ores1[i];
 			ItemStack nugget = null;
 			ItemStack dust = null;
+			
 			if (OreDictionary.getOres("nugget" + ores1[i]) != null && !OreDictionary.getOres("nugget" + ores1[i]).isEmpty())
 				nugget = OreDictionary.getOres("nugget" + ores1[i]).get(0);
 			if (OreDictionary.getOres("dust" + ores1[i]) != null && !OreDictionary.getOres("dust" + ores1[i]).isEmpty())
@@ -64,6 +66,7 @@ public class OreCrushRecipe {
 		{
 			String ore = "ore" + ores2[i];
 			ItemStack dust = null;
+			ItemStack ingot = null;
 			if (OreDictionary.getOres("dust" + ores2[i]) != null && !OreDictionary.getOres("dust" + ores2[i]).isEmpty())
 				dust = OreDictionary.getOres("dust" + ores2[i]).get(0);
 			
@@ -72,6 +75,11 @@ public class OreCrushRecipe {
 				RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(dust.getItem(), 2, dust.getItemDamage()), false, 
 						new ItemStack(DCsAppleMilk.strangeSlag, 1, 0), 0.5F, 
 						new Object[]{ore});
+			}
+			
+			if (OreDictionary.getOres("ingot" + ores2[i]) != null && !OreDictionary.getOres("ingot" + ores2[i]).isEmpty())
+			{
+				ingot = OreDictionary.getOres("ingot" + ores2[i]).get(0);
 			}
 			
 			if (dust != null)
@@ -119,6 +127,20 @@ public class OreCrushRecipe {
 		
 		tier5.add(new ItemStack(Items.spawn_egg, 1, 120));
 		tier5.add(new ItemStack(DCsAppleMilk.fossilScale));
+		
+		//ボタ山設定以外のdust取得
+		//ingotが存在しないと焼くレシピも存在しない
+		String[] ores3 = new String[] {"Iron", "Tin", "Copper", "Silver", "Lead", "Gold", "Nickel", "Platinum"};
+		for (int i = 0 ; i < ores3.length ; i++)
+		{
+			if (OreDictionary.getOres("ingot" + ores3[i]) != null && !OreDictionary.getOres("ingot" + ores3[i]).isEmpty())
+			{
+				ItemStack ingot = OreDictionary.getOres("ingot" + ores3[i]).get(0);
+				GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.oreDust, 1, i),
+			    		  new ItemStack(ingot.getItem(), 1, ingot.getItemDamage()),  0.3F);
+			}
+		}
+		
 	}
 
 }

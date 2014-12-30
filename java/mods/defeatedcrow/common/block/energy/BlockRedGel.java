@@ -39,6 +39,7 @@ public class BlockRedGel extends Block{
 	{
 		super(Material.circuits);
 		this.setStepSound(Block.soundTypePiston);
+		this.setTickRandomly(true);
 	}
 	
 	@Override

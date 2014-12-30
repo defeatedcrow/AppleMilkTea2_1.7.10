@@ -120,6 +120,7 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.icyCrystal,"defeatedcrow.icyCrystal");
 		GameRegistry.registerItem(DCsAppleMilk.princessClam,"defeatedcrow.princessClam");
 		GameRegistry.registerItem(DCsAppleMilk.stickCarbon,"defeatedcrow.stickCarbon");
+		GameRegistry.registerItem(DCsAppleMilk.oreDust,"defeatedcrow.oreDust");
 		GameRegistry.registerItem(DCsAppleMilk.strangeSlag,"defeatedcrow.strangeSlag");
 		GameRegistry.registerItem(DCsAppleMilk.fossilScale,"defeatedcrow.fossilScale");
 		
@@ -136,6 +137,7 @@ public class MaterialRegister {
 		
 		//エネルギー
 		GameRegistry.registerBlock(DCsAppleMilk.redGel, "defeatedcrow.redGel");
+		GameRegistry.registerBlock(DCsAppleMilk.yuzuGel, "defeatedcrow.lightGel");
 		GameRegistry.registerBlock(DCsAppleMilk.yuzuBat, "defeatedcrow.yuzuBatContainer");
 		GameRegistry.registerBlock(DCsAppleMilk.gelBat, ItemGelBat.class, "defeatedcrow.gelBatContainer");
 		GameRegistry.registerBlock(DCsAppleMilk.batBox, ItemBatBox.class, "defeatedcrow.batBox");
@@ -471,15 +473,15 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.foodTea  = (new ItemFoodTea()).
 				setUnlocalizedName("defeatedcrow.foodTea").
-				setCreativeTab(DCsAppleMilk.applemilk);
+				setCreativeTab(DCsAppleMilk.applemilkMaterial);
 		
 		DCsAppleMilk.gratedApple  = (new ItemGratedApple(2, 2, false)).
 				setUnlocalizedName("defeatedcrow.gratedApple").
-				setCreativeTab(DCsAppleMilk.applemilk);
+				setCreativeTab(DCsAppleMilk.applemilkMaterial);
 		
 		DCsAppleMilk.mincedFoods  = (new ItemMincedFoods()).
 				setUnlocalizedName("defeatedcrow.mincedItem").
-				setCreativeTab(DCsAppleMilk.applemilk);
+				setCreativeTab(DCsAppleMilk.applemilkMaterial);
 		
 		DCsAppleMilk.yeast  = (new ItemYeast()).
 				setUnlocalizedName("defeatedcrow.yeast").
@@ -491,11 +493,11 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.EXItems  = (new ItemEXItem()).
 				setUnlocalizedName("defeatedcrow.extraItems").
-				setCreativeTab(DCsAppleMilk.applemilk);
+				setCreativeTab(DCsAppleMilk.applemilkMaterial);
 		
 		DCsAppleMilk.condensedMIlk  = (new ItemCondensedMilk(1, 1, false)).
 				setUnlocalizedName("defeatedcrow.condensedMilk").
-				setCreativeTab(DCsAppleMilk.applemilk);
+				setCreativeTab(DCsAppleMilk.applemilkMaterial);
 		
 //		DCsAppleMilk.filledPan = (new BlockFilledPan()).
 //				setBlockName("defeatedcrow.soupPan");
@@ -690,11 +692,11 @@ public class MaterialRegister {
 	{
 		DCsAppleMilk.leafTea  = (new ItemLeafTea()).
 				setUnlocalizedName("defeatedcrow.leafTea").
-				setCreativeTab(DCsAppleMilk.applemilk);
+				setCreativeTab(DCsAppleMilk.applemilkMaterial);
 		
 		DCsAppleMilk.itemMintSeed = (new ItemMintSeed()).
 				setUnlocalizedName("defeatedcrow.seedMint").
-				setCreativeTab(DCsAppleMilk.applemilk).
+				setCreativeTab(DCsAppleMilk.applemilkMaterial).
 				setTextureName("defeatedcrow:seed_mint");
 		
 		DCsAppleMilk.saplingTea = (new BlockSaplingTea()).
@@ -726,7 +728,7 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.clam = (new ItemClam()).
 				setUnlocalizedName("defeatedcrow.clam").
-				setCreativeTab(DCsAppleMilk.applemilk);
+				setCreativeTab(DCsAppleMilk.applemilkFood);
 		
 		DCsAppleMilk.princessClam = (new ItemPrincessClam()).
 				setUnlocalizedName("defeatedcrow.princessClam").
@@ -741,15 +743,19 @@ public class MaterialRegister {
 	{
 		DCsAppleMilk.icyCrystal = (new ItemIcyCrystal()).
 				setUnlocalizedName("defeatedcrow.icyCrystal").
-				setCreativeTab(DCsAppleMilk.applemilk);
+				setCreativeTab(DCsAppleMilk.applemilkMaterial);
 		
 		DCsAppleMilk.inkStick  = (new ItemInkStick()).
 				setUnlocalizedName("defeatedcrow.inkStick").
-				setCreativeTab(DCsAppleMilk.applemilk);
+				setCreativeTab(DCsAppleMilk.applemilkMaterial);
 		
 		DCsAppleMilk.stickCarbon  = (new ItemCarbonStick()).
 				setUnlocalizedName("defeatedcrow.stickCarbon").
-				setCreativeTab(DCsAppleMilk.applemilk);
+				setCreativeTab(DCsAppleMilk.applemilkMaterial);
+		
+		DCsAppleMilk.oreDust  = (new ItemOreDust()).
+				setUnlocalizedName("defeatedcrow.oreDust").
+				setCreativeTab(DCsAppleMilk.applemilkMaterial);
 		
 		DCsAppleMilk.strangeSlag  = (new ItemStrangeSlag()).
 				setUnlocalizedName("defeatedcrow.strangeSlag").
@@ -823,6 +829,10 @@ public class MaterialRegister {
 				setBlockName("defeatedcrow.redGel").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
+		DCsAppleMilk.yuzuGel = (new BlockYuzuLight()).
+				setBlockName("defeatedcrow.lightGel").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
 		DCsAppleMilk.batBox = (new BlockBatBox()).
 				setBlockName("defeatedcrow.batBox").
 				setCreativeTab(DCsAppleMilk.applemilk);
@@ -834,7 +844,7 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.dustWood = (new ItemWoodDust()).
 				setUnlocalizedName("defeatedcrow.dustWood").
-				setCreativeTab(DCsAppleMilk.applemilk);
+				setCreativeTab(DCsAppleMilk.applemilkMaterial);
 		
 		DCsAppleMilk.incenseBase = (new BlockIncenseBase()).
 				setBlockName("defeatedcrow.incenseBase").
