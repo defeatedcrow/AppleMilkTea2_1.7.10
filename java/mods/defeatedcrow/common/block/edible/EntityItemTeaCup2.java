@@ -94,7 +94,7 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock2{
 		}
 		else
 		{
-			ret.add(new PotionEffect(Potion.heal.id, 1, 1));
+			ret.add(new PotionEffect(Potion.heal.id, 1, 0));
 		}
 		return ret;
 	}
@@ -196,6 +196,24 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock2{
 		}
 		
 		return false;
+	}
+	
+	@SideOnly(Side.CLIENT)
+    //マウスオーバー時の表示情報
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	{
+		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
+		int l = par1ItemStack.getItemDamage();
+		if (l == 4 || l == 10)
+		{
+			String s = "Remove the negative potion effects.";
+			par3List.add(s);
+		}
+		else if (l == 9)
+		{
+			String s = "Increase the duration of the current potion effects.";
+			par3List.add(s);
+		}
 	}
 	
 }

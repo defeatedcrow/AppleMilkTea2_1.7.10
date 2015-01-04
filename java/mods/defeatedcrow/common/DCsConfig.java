@@ -26,6 +26,7 @@ public class DCsConfig {
 	public static int entityIdKinoko = 162;
 	public static int entityIdStun = 164;
 	public static int entityIdIllusion = 165;
+	public static int entityIdMissile = 166;
 	
 	public static int entityIdIce = 150;
 	public static int entityIdCup = 151;
@@ -188,6 +189,7 @@ public class DCsConfig {
 			Property entityCocktail2 = cfg.get("entityid", "EntityIDCocktail2", entityIdCocktail2);
 			Property entityStun = cfg.get("entityid", "EntityIDStun", entityIdStun);
 			Property entityIllusion = cfg.get("entityid", "EntityIDIllusion", entityIdIllusion);
+			Property entityMissile = cfg.get("entityid", "EntityIDAnchorMissile", entityIdMissile);
 			
 			potionIDImmunity = DCpotionID.getInt();
 			potionIDPrvExplode = DCpotionID3.getInt();
@@ -248,6 +250,7 @@ public class DCsConfig {
 			entityIdCocktail2 = entityCocktail2.getInt();
 			entityIdStun = entityStun.getInt();
 			entityIdIllusion = entityIllusion.getInt();
+			entityIdMissile = entityMissile.getInt();
 			
 			debugPass = debug.getString();
 			

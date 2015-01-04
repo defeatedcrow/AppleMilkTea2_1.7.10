@@ -2536,6 +2536,7 @@ public class DCsRecipeRegister {
 	public void addInstantTea() {
 		
 		this.waterContainer.add(new ItemStack(Items.water_bucket, 1, 0));
+		this.waterContainer.add(new ItemStack(Items.potionitem, 1, 0));
 		
 		if (LoadModHandler.getArray("containerWater") != null && !LoadModHandler.getArray("containerWater").isEmpty()){
 			this.waterContainer.addAll(LoadModHandler.getArray("containerWater"));
@@ -2654,16 +2655,17 @@ public class DCsRecipeRegister {
 	public void addMetalRecipe()
 	{
 		ArrayList<ItemStack> woodRubber = OreDictionary.getOres("woodRubber");
-	    if (woodRubber.size() > 0)
+	    if (woodRubber != null && woodRubber.size() > 0 && woodRubber.get(0) != null)
 	    {
 	    	ItemStack ret = woodRubber.get(0);
+	    	int d = ret.getItemDamage();
+	    	if (d == OreDictionary.WILDCARD_VALUE) d = 0;
 	    	
 	    	GameRegistry.addRecipe(
-					new ShapelessOreRecipe(
-			    		new ItemStack(ret.getItem(), 9, ret.getItemDamage()),
-			    		new Object[]{
-			    		new ItemStack(DCsAppleMilk.woodBox, 1, 4),
-			    		}));
+					new ShapedOreRecipe(
+			    		new ItemStack(ret.getItem(), 9, d),
+			    		new Object[]{"X",
+			    		'X', new ItemStack(DCsAppleMilk.woodBox, 1, 4)}));
 		     
 		    GameRegistry.addRecipe(
 					new ShapedOreRecipe(

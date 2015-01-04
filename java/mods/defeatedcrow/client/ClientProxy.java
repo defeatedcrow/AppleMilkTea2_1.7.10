@@ -2,6 +2,7 @@ package mods.defeatedcrow.client;
 
 import mods.defeatedcrow.client.entity.*;
 import mods.defeatedcrow.client.model.*;
+import mods.defeatedcrow.client.model.model.ModelAnchorMissile;
 import mods.defeatedcrow.client.model.tileentity.*;
 import mods.defeatedcrow.client.particle.*;
 import mods.defeatedcrow.client.renderblocks.*;
@@ -14,6 +15,7 @@ import mods.defeatedcrow.common.tile.appliance.*;
 import mods.defeatedcrow.common.tile.energy.*;
 import mods.defeatedcrow.handler.*;
 import mods.defeatedcrow.plugin.nei.LoadNEIPlugin;
+import mods.defeatedcrow.tutorial.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -159,6 +161,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableSandwich.class, new RenderSandwichEntity());
 		RenderingRegistry.registerEntityRenderingHandler(EntityKinoko.class, new RenderKinokoEntity());
 		RenderingRegistry.registerEntityRenderingHandler(EntityStunEffect.class, new RenderStunEntity());
+		RenderingRegistry.registerEntityRenderingHandler(EntityAnchorMissile.class, new RenderAnchorMissile(new ModelAnchorMissile()));
 		
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipeID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_cafe.png"));
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipe2ID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_yome.png"));

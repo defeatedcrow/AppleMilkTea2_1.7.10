@@ -68,7 +68,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0.beta11",
+		version = "1.7.10_2.0a_dev",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -453,11 +453,13 @@ public class DCsAppleMilk{
 		if (DCsConfig.entityIdCocktail2 == 0) DCsConfig.entityIdCocktail2 = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdStun == 0) DCsConfig.entityIdStun = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdIllusion == 0) DCsConfig.entityIdIllusion = EntityRegistry.findGlobalUniqueEntityId();
+		if (DCsConfig.entityIdMissile == 0) DCsConfig.entityIdMissile = EntityRegistry.findGlobalUniqueEntityId();
 		
 		EntityRegistry.registerModEntity(EntityMelonBomb.class, "compressedMelon", DCsConfig.entityIdMelon, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntitySilkyMelon.class, "compressedSilkyMelon", DCsConfig.entityIdSilkMelon, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntityKinoko.class, "mushroomBox", DCsConfig.entityIdKinoko, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntityStunEffect.class, "stunEntity", DCsConfig.entityIdStun, this, 250, 5, true);
+		EntityRegistry.registerModEntity(EntityAnchorMissile.class, "anchorMissile", DCsConfig.entityIdMissile, this, 250, 5, true);
 		
 		EntityRegistry.registerModEntity(PlaceableIcecream.class, "PlaceableIceCream", DCsConfig.entityIdIce, this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableSteak.class, "PlaceableSteak", DCsConfig.entityIdSteak, this, 250, 5, true);

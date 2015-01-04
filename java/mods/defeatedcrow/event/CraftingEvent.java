@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import mods.defeatedcrow.common.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -86,7 +87,13 @@ public class CraftingEvent {
 			if (m != null && (m.getItem() == Item.getItemFromBlock(DCsAppleMilk.teacupBlock) || m.getItem() == Item.getItemFromBlock(DCsAppleMilk.teaCup2))) {
 				rets.add(new ItemStack(DCsAppleMilk.emptyCup,1,0));
 			}
-			else if (m != null && m.getItem() == DCsAppleMilk.itemLargeBottle && m.getItemDamage() > 0) {
+			
+			if (m != null && m.getItem() == Items.potionitem
+					&& (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.teacupBlock) || crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.teaCup2))) {
+				rets.add(new ItemStack(Items.glass_bottle,1,0));
+			}
+			
+			if (m != null && m.getItem() == DCsAppleMilk.itemLargeBottle && m.getItemDamage() > 0) {
 				int type = m.getItemDamage() & 15;
 				int rem = (m.getItemDamage() >> 4) & 7;
 				if (type > 0)

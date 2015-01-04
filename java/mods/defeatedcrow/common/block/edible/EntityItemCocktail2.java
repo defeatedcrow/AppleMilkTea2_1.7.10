@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import cpw.mods.fml.server.FMLServerHandler;
 import mods.defeatedcrow.api.energy.IBattery;
 import mods.defeatedcrow.common.*;
@@ -348,6 +350,44 @@ public class EntityItemCocktail2 extends EdibleEntityItemBlock2{
 		}
 		
 		return false;
+	}
+	
+	@SideOnly(Side.CLIENT)
+    //マウスオーバー時の表示情報
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	{
+		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
+		int l = par1ItemStack.getItemDamage();
+		if (l == 0)
+		{
+			String s = "Repair the durability of the tools in your inventory.";
+			par3List.add(s);
+		}
+		else if (l == 1)
+		{
+			String s = "Fly high!";
+			par3List.add(s);
+		}
+		else if (l == 2)
+		{
+			String s = "Make a wind, and grass disappear.";
+			par3List.add(s);
+		}
+		else if (l == 5)
+		{
+			String s = "Erase the enemies around you.";
+			par3List.add(s);
+		}
+		else if (l == 7)
+		{
+			String s = "Flowers comes around you.";
+			par3List.add(s);
+		}
+		else if (l == 9)
+		{
+			String s = "Rain will fall, or sometimes it's snow.";
+			par3List.add(s);
+		}
 	}
 
 }

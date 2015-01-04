@@ -5,9 +5,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import java.util.List;
 
+import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.handler.CustomExplosion;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -24,6 +26,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -74,6 +78,7 @@ public class EntitySilkyMelon extends Entity
         this.dataWatcher.addObject(17, new Integer(0));
         this.dataWatcher.addObject(18, new Integer(1));
         this.dataWatcher.addObject(19, new Float(0.0F));
+        this.dataWatcher.addObject(20, new Integer(0));
     }
 
     @Override
@@ -128,9 +133,19 @@ public class EntitySilkyMelon extends Entity
             this.setBeenAttacked();
             //ダメージソースを確認
             boolean flag = par1DamageSource.getEntity() instanceof EntityPlayer && ((EntityPlayer)par1DamageSource.getEntity()).capabilities.isCreativeMode;
-
             //起爆トリガー
             boolean explode = par1DamageSource.isExplosion() || par1DamageSource.isProjectile() || !(par1DamageSource.getEntity() instanceof EntityPlayer);
+            
+            EntityLivingBase igniter = null;
+            if (par1DamageSource instanceof EntityDamageSourceIndirect)
+            {
+            	Entity ent = ((EntityDamageSourceIndirect)par1DamageSource).getEntity();
+            	if (ent instanceof EntityLivingBase)
+            	{
+            		igniter = (EntityLivingBase) ent;
+            	}
+            	
+            }
             
             //壊れるときの動作
             if ((flag || this.getDamageTaken() > 40.0F) && !explode)
@@ -151,8 +166,7 @@ public class EntitySilkyMelon extends Entity
             else if (explode)
             {
             	//起爆条件を満たしたので爆発
-            	this.setDead();
-            	this.explode();
+            	this.explode(igniter);
             }
 
             return true;
@@ -163,10 +177,13 @@ public class EntitySilkyMelon extends Entity
         }
     }
     
-    protected void explode()
+    protected void explode(EntityLivingBase igniter)
     {
+    	this.setExploded(4);
         float f = 3.0F;
-        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, f, false);
+        CustomExplosion explosion = new CustomExplosion(worldObj, this, igniter, 
+        		this.posX, this.posY, this.posZ, f, CustomExplosion.Type.Melon, true);
+        explosion.doExplosion();
         
         int X = MathHelper.floor_double(this.posX);
         int Y = MathHelper.floor_double(this.posY);
@@ -290,6 +307,21 @@ public class EntitySilkyMelon extends Entity
     public void onUpdate()
     {
         super.onUpdate();
+        
+        //爆発の結果
+        int exp = this.getExploded();
+        if (this.getExploded() == 1)
+    	{
+    		this.setDead();
+    	}
+    	if (exp > 1){
+    		AMTLogger.debugInfo("current explode int :" + exp);
+    		this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY + 1.0D, 
+    				this.posZ, this.motionX, this.motionY, this.motionZ);
+    		exp--;
+    		this.setExploded(exp);
+    	}
+    	
 
         //被ダメ計算
         if (this.getTimeSinceHit() > 0)
@@ -608,8 +640,7 @@ public class EntitySilkyMelon extends Entity
             }
     		
     		par1EntityPlayer.triggerAchievement(AchievementRegister.useSilkMelon);
-    		this.setDead();
-    		if (!this.worldObj.isRemote) this.explode();
+    		if (!this.worldObj.isRemote) this.explode(par1EntityPlayer);
     		return true;
     	}
     	else if (item.getItem().getItemUseAction(item) == EnumAction.bow)
@@ -659,6 +690,16 @@ public class EntitySilkyMelon extends Entity
     {
         return this.dataWatcher.getWatchableObjectInt(18);
     }
+    
+    public void setExploded(int par1)
+    {
+        this.dataWatcher.updateObject(20, Integer.valueOf(par1));
+    }
+
+    public int getExploded()
+    {
+        return this.dataWatcher.getWatchableObjectInt(20);
+    }
 
     @SideOnly(Side.CLIENT)
     public void func_70270_d(boolean par1)
@@ -671,7 +712,7 @@ public class EntitySilkyMelon extends Entity
     	if (!this.worldObj.isRemote && !this.isDead)
         {
             this.setDead();
-            this.explode();
+            this.explode(null);
         }
     }
 }
