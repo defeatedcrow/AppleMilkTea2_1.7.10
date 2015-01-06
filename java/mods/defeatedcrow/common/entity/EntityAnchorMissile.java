@@ -6,6 +6,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.common.AMTLogger;
+import mods.defeatedcrow.common.DCsConfig;
 import mods.defeatedcrow.handler.CustomExplosion;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -215,11 +216,11 @@ public class EntityAnchorMissile extends Entity implements IProjectile{
         }
         
         //その2、アクティブか否か
-        if (livingTimeCount > 5 && !this.active)
+        if (livingTimeCount > 3 && !this.active)
         {
         	this.active = true;
         	this.setActive((byte) 1);
-        	this.playSound("defeatedcrow:knock", 1.0F, 1.1F / (this.rand.nextFloat() * 0.2F + 0.9F));
+        	this.playSound("defeatedcrow:knock", 0.5F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
         }
         
         boolean explode = false;
@@ -494,11 +495,12 @@ public class EntityAnchorMissile extends Entity implements IProjectile{
         	{
             	AMTLogger.debugInfo("explosion");
         		this.setExplosion();
-                float f = 5.0F;
-               // if (!this.worldObj.isRemote) this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, f, true);
-                CustomExplosion explosion = new CustomExplosion(worldObj, this, (EntityLivingBase)shootingEntity, 
-                		this.posX, this.posY, this.posZ, f, CustomExplosion.Type.Anchor, true);
-                explosion.doExplosion();
+        		if (!DCsConfig.disableMissileExplosion){
+        			float f = 5.0F;
+                    CustomExplosion explosion = new CustomExplosion(worldObj, this, (EntityLivingBase)shootingEntity, 
+                    		this.posX, this.posY, this.posZ, f, CustomExplosion.Type.Anchor, true);
+                    explosion.doExplosion();
+        		}
         	}
 
         }

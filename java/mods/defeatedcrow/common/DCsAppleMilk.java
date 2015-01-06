@@ -17,6 +17,7 @@ import mods.defeatedcrow.api.*;
 import mods.defeatedcrow.common.block.*;
 import mods.defeatedcrow.common.block.container.BlockCharcoalBox;
 import mods.defeatedcrow.common.entity.*;
+import mods.defeatedcrow.common.entity.dummy.EntityIllusionMobs;
 import mods.defeatedcrow.common.entity.dummy.EntityStunEffect;
 import mods.defeatedcrow.common.entity.edible.*;
 import mods.defeatedcrow.common.item.*;
@@ -68,7 +69,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0a_dev",
+		version = "1.7.10_2.0a",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -459,6 +460,7 @@ public class DCsAppleMilk{
 		EntityRegistry.registerModEntity(EntitySilkyMelon.class, "compressedSilkyMelon", DCsConfig.entityIdSilkMelon, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntityKinoko.class, "mushroomBox", DCsConfig.entityIdKinoko, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntityStunEffect.class, "stunEntity", DCsConfig.entityIdStun, this, 250, 5, true);
+		EntityRegistry.registerModEntity(EntityIllusionMobs.class, "illusionCreeper", DCsConfig.entityIdIllusion, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntityAnchorMissile.class, "anchorMissile", DCsConfig.entityIdMissile, this, 250, 5, true);
 		
 		EntityRegistry.registerModEntity(PlaceableIcecream.class, "PlaceableIceCream", DCsConfig.entityIdIce, this, 250, 5, true);

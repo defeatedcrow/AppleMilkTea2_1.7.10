@@ -128,7 +128,7 @@ public class CustomExplosion extends Explosion{
                         }
                         else if (!entity.onGround)
                     	{
-                    		damage *= 3.0F;
+                    		damage *= 10.0F;
                     	}
                     }
                     

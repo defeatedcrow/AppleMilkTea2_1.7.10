@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.entity.EntityAnchorMissile;
+import mods.defeatedcrow.common.entity.dummy.EntityIllusionMobs;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -14,6 +15,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
@@ -72,8 +74,8 @@ public class ItemFossilScale extends Item{
         	for (int k = 0 ; k < list.size() ; k++)
         	{
         		EntityLivingBase entity = (EntityLivingBase) list.get(k);
-        		if (!(entity instanceof EntityPlayer) && entity.canEntityBeSeen(par3EntityPlayer)
-        				&& !(target instanceof EntityTameable || target instanceof EntityHorse))
+        		if (entity.canEntityBeSeen(par3EntityPlayer) && !(entity instanceof EntityPlayer)
+        				&& !(entity instanceof EntityTameable) && !(entity instanceof EntityHorse) && !(entity instanceof EntityVillager))
         		{
         			target = entity;
         			AMTLogger.debugInfo("target : " + target.toString());
@@ -106,6 +108,10 @@ public class ItemFossilScale extends Item{
 		{
 			EntityAnchorMissile bullet = new EntityAnchorMissile(par2World, par3EntityPlayer, target, 1.0F, 1.0F, par3EntityPlayer.rotationYaw,
 					0.0F, 0.0F, 0.0F);
+			
+//			EntityIllusionMobs bullet = new EntityIllusionMobs(par2World, 
+//					par3EntityPlayer.posX, par3EntityPlayer.posY, par3EntityPlayer.posZ, yaw);
+					
 			
 			par1ItemStack.damageItem(1, par3EntityPlayer);
 			par2World.playSoundAtEntity(par3EntityPlayer, "random.pop", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);

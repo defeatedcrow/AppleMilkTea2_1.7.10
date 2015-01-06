@@ -74,6 +74,7 @@ public class DCsConfig {
 	public static boolean fearMelon = false;
 	public static boolean enableMobBlock[] = {true, true, true, true, true};
 	public static boolean hardLeatherRecipe = true;
+	public static boolean disableMissileExplosion = false;
 	
 	public static String debugPass = "Input the password here";
 	
@@ -139,13 +140,15 @@ public class DCsConfig {
 					"Enable randomly cooking time of iron plate.");
 			Property entityMelon = cfg.get("entityid", "EntityIDCompressedMelon", entityIdMelon);
 			Property explodeMelon = cfg.get("entity", "Enable Explode Melon", canExplodeMelon,
-					"Allow the CompressedMelon explode.");
+					"Allow the Compressed Melon explode.");
 			Property cupStackSizeInt = cfg.get("setting", "Cups Stack Size", cupStackSize,
 					"Set stack seize of filled cups. Please choose from the 1/3/8.");
 			Property melonBreak = cfg.get("entity", "Melon not Break Block", melonBreakBlock,
 					"Disable destruction by explosion of melon.");
 			Property melonFear = cfg.get("entity", "Silky Melon of Fear", fearMelon,
-					"Silky Melon can destroy all blocks.");
+					"Silky Melon can destroy all blocks except blocks that coordinates Y = 1.");
+			Property missileExplosion = cfg.get("entity", "Dsiable Missile Explosion", disableMissileExplosion,
+					"Disable explosion of missiles generated from the Fossil Scale.");
 			Property safetyChoco = cfg.get("setting", "Safety Chocolate Gift", safetyChocolate,
 					"Disable explosion of the heartfelt chocolate gift.");
 			Property infinityWipes = cfg.get("setting", "Allow Infinity Wipes", allowInfinityWipes,
@@ -230,6 +233,7 @@ public class DCsConfig {
 			allowEdibleEntities = edibleEntity.getBoolean(true);
 			enableMobBlock = mobBlock.getBooleanList();
 			hardLeatherRecipe = hardLeather.getBoolean(false);
+			disableMissileExplosion = missileExplosion.getBoolean(false);
 			
 			entityIdMelon = entityMelon.getInt();
 			canExplodeMelon = explodeMelon.getBoolean(false);

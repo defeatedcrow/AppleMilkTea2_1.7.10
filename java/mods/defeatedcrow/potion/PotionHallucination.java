@@ -2,11 +2,14 @@ package mods.defeatedcrow.potion;
 
 import java.util.Random;
 
+import cofh.repack.codechicken.lib.math.MathHelper;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.api.potion.PotionImmunityBase;
 import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.entity.dummy.EntityIllusionMobs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
+import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * 幻覚ポーション。
@@ -14,6 +17,10 @@ import net.minecraft.potion.Potion;
  * */
 public class PotionHallucination extends PotionImmunityBase
 {
+	
+	private final String[] overworldMobs = new String[] {"mob.zombie.say", "mob.creeper.say", "mob.endermen.stare",
+			"creeper.primed", "mob.skeleton.say", "mob.spider.say", "mob.endermen.idle"};
+	private final String[] netherMobs = new String[] {"mob.blaze.breathe", "mob.ghast.moan"};
 	
 	public PotionHallucination(int par1, boolean par2, int par3)
     {
@@ -37,53 +44,47 @@ public class PotionHallucination extends PotionImmunityBase
 			double z = player.posZ + rand.nextInt(7) - 3.0D;
 			int chance = rand.nextInt(200);
 			float f = rand.nextFloat();
+			float yaw = player.rotationYaw + 180.0F;
+			if (yaw > 180.0F) yaw -= 360.0F;
+			
+			int dim = player.worldObj.provider.dimensionId;
+			String voice = "mob.zombie.say";
+			if (dim == -1){
+				int i = player.worldObj.rand.nextInt(netherMobs.length);
+				voice = netherMobs[i];
+			}
+			else{
+				int i = player.worldObj.rand.nextInt(overworldMobs.length);
+				voice = overworldMobs[i];
+			}
+			
 			
 			if (amp >= 0)
 			{
-				switch(chance)
+				if (chance <= amp)
 				{
-				case 0:
-					player.worldObj.playSoundEffect(x, y, z, "mob.zombie.say", 1.0F, 0.5F + f);
+					player.worldObj.playSoundEffect(x, y, z, voice, 1.0F, 0.8F + f);
 					flag = true;
-					break;
-				case 1:
-					player.worldObj.playSoundEffect(x, y, z, "mob.creeper.say", 1.0F, 0.5F + f);
-					flag = true;
-					break;
-				case 2:
-					player.worldObj.playSoundEffect(x, y, z, "mob.endermen.stare", 1.0F, 0.5F + f);
-					flag = true;
-					break;
-				case 3:
-					player.worldObj.playSoundEffect(x, y, z, "creeper.primed", 1.0F, 0.5F + f);
-					flag = true;
-					break;
-				case 4:
-					player.worldObj.playSoundEffect(x, y, z, "mob.skeleton.say", 1.0F, 0.5F + f);
-					flag = true;
-					break;
-				case 5:
-					player.worldObj.playSoundEffect(x, y, z, "mob.silverfish.say", 1.0F, 0.9F + f);
-					flag = true;
-					break;
-				case 6:
-					player.worldObj.playSoundEffect(x, y, z, "mob.spider.say", 1.0F, 0.5F + f);
-					flag = true;
-					break;
-				case 7:
-					player.worldObj.playSoundEffect(x, y, z, "mob.endermen.idle", 1.0F, 0.5F + f);
-					flag = true;
-					break;
-				case 8:
-					player.worldObj.playSoundEffect(x, y, z, "mob.blaze.breathe", 1.0F, 0.5F + f);
-					flag = true;
-					break;
-				case 9:
-					player.worldObj.playSoundEffect(x, y, z, "mob.ghast.moan", 1.0F, 0.5F + f);
-					flag = true;
-					break;
-				default:
-					break;
+				}
+			}
+			
+			if (amp > 0)
+			{
+				if (chance < amp)
+				{
+					int ix = MathHelper.floor_double(x);
+					int iy = MathHelper.floor_double(y);
+					int iz = MathHelper.floor_double(z);
+					boolean a = player.worldObj.isSideSolid(ix, iy - 1, iz, ForgeDirection.UP);
+					boolean b = player.worldObj.isAirBlock(ix, iy, iz);
+					boolean c = player.worldObj.isAirBlock(ix, iy + 1, iz);
+					
+					if (a && b && c){
+						EntityIllusionMobs illusion = new EntityIllusionMobs(player.worldObj, x, y, z, yaw);
+						player.worldObj.spawnEntityInWorld(illusion);
+						flag = true;
+					}
+					
 				}
 			}
 		}

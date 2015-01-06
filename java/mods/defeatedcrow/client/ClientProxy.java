@@ -15,12 +15,13 @@ import mods.defeatedcrow.common.tile.appliance.*;
 import mods.defeatedcrow.common.tile.energy.*;
 import mods.defeatedcrow.handler.*;
 import mods.defeatedcrow.plugin.nei.LoadNEIPlugin;
-import mods.defeatedcrow.tutorial.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -161,6 +162,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableSandwich.class, new RenderSandwichEntity());
 		RenderingRegistry.registerEntityRenderingHandler(EntityKinoko.class, new RenderKinokoEntity());
 		RenderingRegistry.registerEntityRenderingHandler(EntityStunEffect.class, new RenderStunEntity());
+		RenderingRegistry.registerEntityRenderingHandler(EntityIllusionMobs.class, new RenderIllusionCreeper());
 		RenderingRegistry.registerEntityRenderingHandler(EntityAnchorMissile.class, new RenderAnchorMissile(new ModelAnchorMissile()));
 		
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipeID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_cafe.png"));

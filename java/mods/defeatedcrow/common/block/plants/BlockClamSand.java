@@ -105,6 +105,10 @@ public class BlockClamSand extends Block implements IRightClickHarvestable{
     	{
     		r = 5;
     	}
+    	if (par1World.getBlockMetadata(par2, par3, par4) == 2)
+    	{
+    		r = 3;
+    	}
     	
         if(!par1World.isRemote && par1World.rand.nextInt(r) == 0)
         {
@@ -121,7 +125,7 @@ public class BlockClamSand extends Block implements IRightClickHarvestable{
         			count++;
         			if (par1World.getBlockMetadata(par2 + 1 + i, par3, par4) == 2) aroundPrincess = true;
         		}
-        		if (par1World.getBlock(par2 - 1 - i, par3, par4) ==DCsAppleMilk.clamSand) {
+        		if (par1World.getBlock(par2 - 1 - i, par3, par4) == DCsAppleMilk.clamSand) {
         			count++;
         			if (par1World.getBlockMetadata(par2 - 1 - i, par3, par4) == 2) aroundPrincess = true;
         		}
@@ -154,9 +158,11 @@ public class BlockClamSand extends Block implements IRightClickHarvestable{
         	
         	//座標が増殖可能な状態か？
         	boolean flag3 = par1World.getBlock(X1, Y1 + 1, Z1).getMaterial() == Material.water;
-        	boolean flag4 = par1World.getBlock(X1, Y1, Z1) == Blocks.sand|| par1World.getBlock(X1, Y1, Z1) == DCsAppleMilk.clamSand;
+        	boolean flag4 = par1World.getBlock(X1, Y1, Z1) == Blocks.sand || par1World.getBlock(X1, Y1, Z1) == DCsAppleMilk.clamSand;
         	boolean flag2 = par1World.rand.nextInt(1 + chance) > par1World.rand.nextInt(1 + count);//どちらも乱数判断
 //        	AMTLogger.debugInfo("flag: " + flag3 + "/" + flag4 + "/" + flag2);
+        	
+        	String s = "Clam gen : " + X1 + "," + Y1 + "," + Z1 + ":";
         	
         	if (meta == 0)//ハマグリ
         	{
@@ -167,6 +173,8 @@ public class BlockClamSand extends Block implements IRightClickHarvestable{
         				if (par1World.getBlockMetadata(X1, Y1, Z1) != 2)
         				{
         					par1World.setBlock(X1, Y1, Z1, DCsAppleMilk.clamSand);
+        					s += "normal";
+        					AMTLogger.debugInfo(s);
         				}
         					
                 	}
@@ -178,6 +186,8 @@ public class BlockClamSand extends Block implements IRightClickHarvestable{
         				if (par1World.getBlockMetadata(X1, Y1, Z1) != 2)
         				{
         					par1World.setBlock(X1, Y1, Z1, DCsAppleMilk.clamSand);
+        					s += "normal";
+        					AMTLogger.debugInfo(s);
         				}
     				}
     				else
@@ -192,6 +202,8 @@ public class BlockClamSand extends Block implements IRightClickHarvestable{
     				{
         				//プリンセス誕生
     					par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 3);
+    					s += "prencess gen";
+    					AMTLogger.debugInfo(s);
     				}
     				else
     				{
@@ -213,10 +225,13 @@ public class BlockClamSand extends Block implements IRightClickHarvestable{
         			if (!flag2) par1World.setBlock(par2, par3, par4, Blocks.sand);
         		}
         	}
-        	else if (meta == 2 && flag3 && flag4)
+        	else if (meta == 2)
         	{
         		//姫は無条件でハマグリを増やせる
-        		par1World.setBlock(X1, Y1, Z1, DCsAppleMilk.clamSand);
+        		if (par1World.getBlockMetadata(X1, Y1, Z1) != 2 && flag3 && flag4){
+        		par1World.setBlock(X1, Y1, Z1, DCsAppleMilk.clamSand);}
+        		s += "prencess";
+        		AMTLogger.debugInfo(s);
         	}
         	
         	int meta2 = par1World.getBlockMetadata(par2, par3, par4);//結果のメタ

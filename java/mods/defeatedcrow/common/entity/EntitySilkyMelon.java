@@ -180,10 +180,12 @@ public class EntitySilkyMelon extends Entity
     protected void explode(EntityLivingBase igniter)
     {
     	this.setExploded(4);
-        float f = 3.0F;
-        CustomExplosion explosion = new CustomExplosion(worldObj, this, igniter, 
-        		this.posX, this.posY, this.posZ, f, CustomExplosion.Type.Melon, true);
-        explosion.doExplosion();
+    	if (DCsConfig.canExplodeMelon){
+    		float f = 3.0F;
+            CustomExplosion explosion = new CustomExplosion(worldObj, this, igniter, 
+            		this.posX, this.posY, this.posZ, f, CustomExplosion.Type.Melon, true);
+            explosion.doExplosion();
+    	}
         
         int X = MathHelper.floor_double(this.posX);
         int Y = MathHelper.floor_double(this.posY);
@@ -643,7 +645,7 @@ public class EntitySilkyMelon extends Entity
     		if (!this.worldObj.isRemote) this.explode(par1EntityPlayer);
     		return true;
     	}
-    	else if (item.getItem().getItemUseAction(item) == EnumAction.bow)
+    	else if (item != null && item.getItem().getItemUseAction(item) == EnumAction.bow)
     	{
     		return false;
     	}
