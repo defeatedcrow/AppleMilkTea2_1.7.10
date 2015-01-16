@@ -69,7 +69,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0a",
+		version = "1.7.10_2.0c",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -97,7 +97,7 @@ public class DCsAppleMilk{
 	public static Block  iceMaker;
 	public static Block  emptyPanGaiden;
 	public static Block  filledChocoPan;
-	public static Block  teppann;
+	public static Block  teppanII;
 	public static Block  prosessor;
 	public static Block  evaporator;
 	public static Block  advProsessor;
@@ -215,6 +215,8 @@ public class DCsAppleMilk{
 	public static Item  essentialOil;
 	public static Item  strangeSlag;
 	public static Item  fossilScale;
+	public static Item  fossilCannon;
+	public static Item  yuzuGatling;
 	
 	public static ItemIncenseApple  incenseApple;
 	public static ItemIncenseRose  incenseRose;
@@ -252,15 +254,19 @@ public class DCsAppleMilk{
 	public static Item  bucketCamOil;
 	public static Item  bottleCamOil;
 	public static Item  bucketYoungAlcohol;
+	
+	//NEI表示用ダミー
 	public static Item  dummyItem;
+	public static Item  dummyTeppan;
 	
 	//以下は没アイテム。クラスだけ残してある関係でインスタンスもとってあるが、中身はnullである
 	public static Block  emptyPan;
 	public static Block  filledPan;
 	public static Block  filledPan2;
 	public static Block  canister;
-	public static Item  emptyWallMug;
-	public static Item  wallMug;
+	public static Item   emptyWallMug;
+	public static Item   wallMug;
+	public static Block  teppann;
 	
 	//ポーションのインスタンス
 	public static Potion Immunization;
@@ -455,6 +461,7 @@ public class DCsAppleMilk{
 		if (DCsConfig.entityIdStun == 0) DCsConfig.entityIdStun = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdIllusion == 0) DCsConfig.entityIdIllusion = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdMissile == 0) DCsConfig.entityIdMissile = EntityRegistry.findGlobalUniqueEntityId();
+		if (DCsConfig.entityIdBullet == 0) DCsConfig.entityIdBullet = EntityRegistry.findGlobalUniqueEntityId();
 		
 		EntityRegistry.registerModEntity(EntityMelonBomb.class, "compressedMelon", DCsConfig.entityIdMelon, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntitySilkyMelon.class, "compressedSilkyMelon", DCsConfig.entityIdSilkMelon, this, 250, 5, true);
@@ -462,6 +469,7 @@ public class DCsAppleMilk{
 		EntityRegistry.registerModEntity(EntityStunEffect.class, "stunEntity", DCsConfig.entityIdStun, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntityIllusionMobs.class, "illusionCreeper", DCsConfig.entityIdIllusion, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntityAnchorMissile.class, "anchorMissile", DCsConfig.entityIdMissile, this, 250, 5, true);
+		EntityRegistry.registerModEntity(EntityYuzuBullet.class, "yuzuBullet", DCsConfig.entityIdBullet, this, 250, 5, true);
 		
 		EntityRegistry.registerModEntity(PlaceableIcecream.class, "PlaceableIceCream", DCsConfig.entityIdIce, this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableSteak.class, "PlaceableSteak", DCsConfig.entityIdSteak, this, 250, 5, true);
@@ -594,6 +602,10 @@ public class DCsAppleMilk{
 	    //鍋のレシピ登録
 	    (new RegisterMakerRecipe()).registerPan();
 	    AMTLogger.trace("Registered new pan recipe");
+	    
+	    //鉄板のレシピ登録
+	    (new RegisterMakerRecipe()).registerPlate();
+	    AMTLogger.trace("Registered new food plate recipe");
 	    
 	    //チャージアイテム
 	    (new RegisterMakerRecipe()).registerChargeItem();

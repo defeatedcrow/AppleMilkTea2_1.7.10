@@ -14,6 +14,7 @@ public class LoadNEIPlugin {
 	public static ProcessorRecipeHandler processorRecipe;
 	public static AdvProcessorRecipeHandler advProcessorRecipe;
 	public static EvaporatorRecipeHandler evaporatorRecipe;
+	public static TeppanRecipeHandler plateRecipe;
 	
 	public static void load() {
 		
@@ -23,6 +24,7 @@ public class LoadNEIPlugin {
 		processorRecipe = new ProcessorRecipeHandler();
 		advProcessorRecipe = new AdvProcessorRecipeHandler();
 		evaporatorRecipe = new EvaporatorRecipeHandler();
+		plateRecipe = new TeppanRecipeHandler();
 		
 		
 		API.registerRecipeHandler(teaRecipe);
@@ -48,6 +50,10 @@ public class LoadNEIPlugin {
 		API.registerRecipeHandler(evaporatorRecipe);
 		API.registerUsageHandler(evaporatorRecipe);
 		API.registerGuiOverlay(GuiRecipe.class, evaporatorRecipe.getOverlayIdentifier(), 0, 0);
+		
+		API.registerRecipeHandler(plateRecipe);
+		API.registerUsageHandler(plateRecipe);
+		API.registerGuiOverlay(GuiRecipe.class, plateRecipe.getOverlayIdentifier(), 0, 0);
 		
 		AMTLogger.loadedModInfo("NEI");
 		

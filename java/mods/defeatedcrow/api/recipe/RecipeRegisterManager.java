@@ -8,6 +8,7 @@ public final class RecipeRegisterManager {
 	public static IProsessorRecipeRegister prosessorRecipe;
 	public static IEvaporatorRecipeRegister evaporatorRecipe;
 	public static IPanRecipeRegister panRecipe;
+	public static IPlateRecipeRegister plateRecipe;
 	
 	public static ISlagResultLoot slagLoot;
 	

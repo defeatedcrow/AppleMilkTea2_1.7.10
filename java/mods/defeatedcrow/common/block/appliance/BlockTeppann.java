@@ -49,7 +49,7 @@ public class BlockTeppann extends BlockContainer{
 	@Override
 	public Item getItemDropped(int metadata, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(this);
+		return Item.getItemFromBlock(DCsAppleMilk.teppanII);
 	}
 	
 	public int damageDropped(int par1)

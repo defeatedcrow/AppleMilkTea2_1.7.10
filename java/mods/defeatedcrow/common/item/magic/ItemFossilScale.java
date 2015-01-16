@@ -18,6 +18,7 @@ import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
@@ -42,6 +43,12 @@ public class ItemFossilScale extends Item{
 
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:purple_scale");
 	}
+	
+	//文字色
+		public EnumRarity getRarity(ItemStack par1ItemStack)
+	    {
+	        return EnumRarity.uncommon;
+	    }
 	
 	/*
 	 * 右クリック使用をやめた時に呼ばれるメソッド。右クリックを継続して押していた時間をもとに、エンティティを発射する処理を行う。

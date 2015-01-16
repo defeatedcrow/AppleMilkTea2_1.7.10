@@ -59,7 +59,8 @@ public class ItemIncenseIce extends Item implements IIncenseEffect{
 		if (incense.getEffectType() == this.getEffectType())
 		{
 			Block block = world.getBlock(x, y, z);
-			if (block != null)
+			int meta = world.getBlockMetadata(x, y, z);
+			if (block != null && meta == 0)//水源のみ
 			{
 				if (block == Blocks.water){
 					world.setBlock(x, y, z, Blocks.ice);

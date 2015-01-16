@@ -1,8 +1,10 @@
 package mods.defeatedcrow.client;
 
 import mods.defeatedcrow.client.entity.*;
+import mods.defeatedcrow.client.item.RenderItemFossilCannon;
+import mods.defeatedcrow.client.item.RenderItemYuzuGatling;
 import mods.defeatedcrow.client.model.*;
-import mods.defeatedcrow.client.model.model.ModelAnchorMissile;
+import mods.defeatedcrow.client.model.model.*;
 import mods.defeatedcrow.client.model.tileentity.*;
 import mods.defeatedcrow.client.particle.*;
 import mods.defeatedcrow.client.renderblocks.*;
@@ -96,6 +98,8 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerTileEntity(TileBrewingBarrel.class, "TileBarrel", new TileEntityBarrelRenderer());
 		ClientRegistry.registerTileEntity(TileChargerDevice.class, "TileChargerDevice", new TileEntityChargerRenderer());
 		ClientRegistry.registerTileEntity(TileFlowerPot.class, "TileFlowerPot", new TileEntityFlowerPotRenderer());
+		ClientRegistry.registerTileEntity(TileTeppanII.class, "TileTeppanII", new TileEntityTeppanIIRenderer());
+		
 		GameRegistry.registerTileEntity(TileChargerBase.class, "TileChargerBase");
 		GameRegistry.registerTileEntity(TileGelBat.class, "TileGelBattery");
 	}
@@ -164,6 +168,10 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityStunEffect.class, new RenderStunEntity());
 		RenderingRegistry.registerEntityRenderingHandler(EntityIllusionMobs.class, new RenderIllusionCreeper());
 		RenderingRegistry.registerEntityRenderingHandler(EntityAnchorMissile.class, new RenderAnchorMissile(new ModelAnchorMissile()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityYuzuBullet.class, new RenderYuzuBullet(new ModelYuzuBullet()));
+		
+		MinecraftForgeClient.registerItemRenderer(DCsAppleMilk.yuzuGatling, new RenderItemYuzuGatling());
+		MinecraftForgeClient.registerItemRenderer(DCsAppleMilk.fossilCannon, new RenderItemFossilCannon());
 		
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipeID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_cafe.png"));
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipe2ID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_yome.png"));

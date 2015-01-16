@@ -517,6 +517,21 @@ public class RegisterMakerRecipe {
 			}
 	}
 	
+	public static void registerPlate()
+	{
+		RecipeRegisterManager.plateRecipe.register(new ItemStack(Items.beef), 
+				new ItemStack(DCsAppleMilk.foodPlate, 1, 0), 100, false);
+		
+		RecipeRegisterManager.plateRecipe.register(new ItemStack(Items.porkchop), 
+				new ItemStack(DCsAppleMilk.foodPlate, 1, 1), 100, false);
+		
+		RecipeRegisterManager.plateRecipe.register(new ItemStack(Items.chicken), 
+				new ItemStack(DCsAppleMilk.foodPlate, 1, 2), 100, true);
+		
+		RecipeRegisterManager.plateRecipe.register(new ItemStack(DCsAppleMilk.clam, 1, 0), 
+				new ItemStack(DCsAppleMilk.foodPlate, 1, 3), 40, false);
+	}
+	
 	public static void testRecipe()
 	{
 		OreDictionary.registerOre("logYuzuWood", new ItemStack(DCsAppleMilk.logYuzu, 1, 0));

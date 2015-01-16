@@ -514,7 +514,7 @@ public class DCsRecipeRegister {
 				 });
 		 
 		 GameRegistry.addRecipe(
-				 new ItemStack(DCsAppleMilk.teppann, 1, 0),
+				 new ItemStack(DCsAppleMilk.teppanII, 1, 0),
 				 new Object[]{
 					 "X X",
 					 "XXX",
@@ -2284,6 +2284,25 @@ public class DCsRecipeRegister {
 	    			  Character.valueOf('Z'), new ItemStack(DCsAppleMilk.gelBat, 1, 0),
 	    			  Character.valueOf('V'), new ItemStack(Blocks.chest, 1, 0),
 	    			  Character.valueOf('W'), "gearIron"}));
+		
+		//カノン
+		GameRegistry.addRecipe(
+				 new ShapedOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.yuzuGatling, 1, 0),
+	    		  new Object[]{"  X","YXZ","WV ",
+	    			  Character.valueOf('X'), "blockChalcedony",
+	    			  Character.valueOf('Y'), "gearIron",
+	    			  Character.valueOf('V'), new ItemStack(DCsAppleMilk.gelBat, 1, 0),
+	    			  Character.valueOf('Z'), new ItemStack(DCsAppleMilk.firestarter, 1, 32767),
+	    			  Character.valueOf('W'), new ItemStack(DCsAppleMilk.cardboard, 1, 2)}));
+		
+		GameRegistry.addRecipe(
+				 new ShapedOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.fossilCannon, 1, 0),
+	    		  new Object[]{"  X","YX ","W  ",
+	    			  Character.valueOf('X'), new ItemStack(DCsAppleMilk.fossilScale),
+	    			  Character.valueOf('Y'), new ItemStack(Items.nether_star),
+	    			  Character.valueOf('W'), new ItemStack(DCsAppleMilk.yuzuGatling, 1)}));
 	}
 	
 	static void addMaterials() {

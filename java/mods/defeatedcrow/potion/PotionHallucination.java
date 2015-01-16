@@ -82,6 +82,7 @@ public class PotionHallucination extends PotionImmunityBase
 					if (a && b && c){
 						EntityIllusionMobs illusion = new EntityIllusionMobs(player.worldObj, x, y, z, yaw);
 						player.worldObj.spawnEntityInWorld(illusion);
+						player.worldObj.playSoundEffect(x, y, z, "mob.creeper.say", 1.0F, 0.8F + f);
 						flag = true;
 					}
 					

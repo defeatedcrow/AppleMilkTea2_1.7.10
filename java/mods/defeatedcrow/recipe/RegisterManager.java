@@ -12,6 +12,7 @@ public class RegisterManager {
 		RecipeRegisterManager.prosessorRecipe = new ProsessorRecipeRegister();
 		RecipeRegisterManager.evaporatorRecipe = new EvaporatorRecipeRegister();
 		RecipeRegisterManager.panRecipe = new PanRecipeRegister();
+		RecipeRegisterManager.plateRecipe = new PlateRecipeRegister();
 		
 		ChargeItemManager.chargeItem = new ChargeItemRegister();
 		RecipeRegisterManager.slagLoot = new SlagResultLoot();

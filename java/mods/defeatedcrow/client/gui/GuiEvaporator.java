@@ -88,38 +88,46 @@ public class GuiEvaporator extends GuiContainer {
 	}
 	
 	/**
-	 * Original code was made by SpaceToad and the BuildCraft Team. 
+	 * Original code was made by Shift02. 
 	 * */
 	private void drawFluid(FluidStack fluid, int level, int x, int y, int width, int height) {
 		if (fluid == null || fluid.getFluid() == null) {
 			return;
 		}
+		
+		ResourceLocation res = null;
+		if (fluid.getFluid().getSpriteNumber() == 0)
+		{
+			res = TextureMap.locationBlocksTexture;
+		}
+		else
+		{
+			res = TextureMap.locationItemsTexture;
+		}
+		mc.getTextureManager().bindTexture(res);
+		
+		
 		IIcon icon = fluid.getFluid().getIcon(fluid);
 		if (icon == null)return;
 		mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 		setGLColorFromInt(fluid.getFluid().getColor(fluid));
-		int fullX = width / 16;
-		int fullY = height / 16;
-		int lastX = width - fullX * 16;
-		int lastY = height - fullY * 16;
-		int fullLvl = (height - level) / 16;
-		int lastLvl = (height - level) - fullLvl * 16;
-		for (int i = 0; i < fullX; i++) {
-			for (int j = 0; j < fullY; j++) {
-				if (j >= fullLvl) {
-					drawCutIcon(icon, x + i * 16, y + j * 16, 16, 16, j == fullLvl ? lastLvl : 0);
-				}
+		
+		int widR = width;
+		int heiR = level;
+		int yR = y + (height - heiR);
+		
+		int widL = 0;
+		int heiL = 0;
+		
+		for (int i = 0; i < widR; i += 16) {
+			for (int j = 0; j < heiR; j += 16) {
+			widL = Math.min(widR - i, 16);
+			heiL = Math.min(heiR - j, 16);
+			this.drawTexturedModelRectFromIcon(x + i, yR + j, icon, widL, heiL);
 			}
 		}
-		for (int i = 0; i < fullX; i++) {
-			drawCutIcon(icon, x + i * 16, y + fullY * 16, 16, lastY, fullLvl == fullY ? lastLvl : 0);
-		}
-		for (int i = 0; i < fullY; i++) {
-			if (i >= fullLvl) {
-				drawCutIcon(icon, x + fullX * 16, y + i * 16, lastX, 16, i == fullLvl ? lastLvl : 0);
-			}
-		}
-		drawCutIcon(icon, x + fullX * 16, y + fullY * 16, lastX, lastY, fullLvl == fullY ? lastLvl : 0);
+		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0F);
+		
 	}
 	
 	public static void setGLColorFromInt(int color) {
@@ -127,19 +135,6 @@ public class GuiEvaporator extends GuiContainer {
 		float green = (color >> 8 & 255) / 255.0F;
 		float blue = (color & 255) / 255.0F;
 		GL11.glColor4f(red, green, blue, 1.0F);
-	}
-
-	/**
-	 * Original code was made by SpaceToad and the BuildCraft Team. 
-	 * */
-	private void drawCutIcon(IIcon icon, int x, int y, int width, int height, int cut) {
-		Tessellator tess = Tessellator.instance;
-		tess.startDrawingQuads();
-		tess.addVertexWithUV(x, y + height, zLevel, icon.getMinU(), icon.getInterpolatedV(height));
-		tess.addVertexWithUV(x + width, y + height, zLevel, icon.getInterpolatedU(width), icon.getInterpolatedV(height));
-		tess.addVertexWithUV(x + width, y + cut, zLevel, icon.getInterpolatedU(width), icon.getInterpolatedV(cut));
-		tess.addVertexWithUV(x, y + cut, zLevel, icon.getMinU(), icon.getInterpolatedV(cut));
-		tess.draw();
 	}
 
 }

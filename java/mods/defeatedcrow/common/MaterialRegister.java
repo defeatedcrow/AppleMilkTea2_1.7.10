@@ -15,6 +15,7 @@ import mods.defeatedcrow.common.item.magic.*;
 import mods.defeatedcrow.event.BucketFillEvent;
 import mods.defeatedcrow.event.DispenserEvent;
 import mods.defeatedcrow.event.FluidDispenser;
+import mods.defeatedcrow.plugin.nei.ItemDummyForTeppan;
 import mods.defeatedcrow.plugin.nei.ItemDummyForTooltip;
 import mods.defeatedcrow.potion.*;
 import net.minecraft.block.Block;
@@ -75,6 +76,8 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.monocle, "defeatedcrow.monocle");
 		GameRegistry.registerItem(DCsAppleMilk.onixSword, "defeatedcrow.onixSword");
 		GameRegistry.registerItem(DCsAppleMilk.chopsticks,"defeatedcrow.chopsticks");
+		GameRegistry.registerItem(DCsAppleMilk.yuzuGatling, "defeatedcrow.yuzuGatling");
+		GameRegistry.registerItem(DCsAppleMilk.fossilCannon, "defeatedcrow.fossilCannon");
 		
 		//たべもの
 		GameRegistry.registerItem(DCsAppleMilk.bakedApple, "defeatedcrow.bakedApple");
@@ -131,6 +134,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.emptyPanGaiden, ItemPanG.class, "defeatedcrow.emptyPanG");
 		GameRegistry.registerBlock(DCsAppleMilk.iceMaker, "defeatedcrow.iceMaker");
 		GameRegistry.registerBlock(DCsAppleMilk.teppann, ItemTeppann.class, "defeatedcrow.teppann");
+		GameRegistry.registerBlock(DCsAppleMilk.teppanII, "defeatedcrow.teppanII");
 		GameRegistry.registerBlock(DCsAppleMilk.prosessor, ItemMachineBlock.class, "defeatedcrow.prosessor");
 		GameRegistry.registerBlock(DCsAppleMilk.advProsessor, ItemMachineBlock.class, "defeatedcrow.advProsessor");
 		GameRegistry.registerBlock(DCsAppleMilk.evaporator, ItemMachineBlock.class, "defeatedcrow.evaporator");
@@ -443,6 +447,14 @@ public class MaterialRegister {
 		DCsAppleMilk.onixSword = (new ItemOnixSword())
 				.setUnlocalizedName("defeatedcrow.onixSword")
 				.setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.yuzuGatling = (new ItemYuzuGatling())
+				.setUnlocalizedName("defeatedcrow.yuzuGatling")
+				.setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.fossilCannon = (new ItemFossilCannon())
+				.setUnlocalizedName("defeatedcrow.fossilCannon")
+				.setCreativeTab(DCsAppleMilk.applemilkMagic);
 	}
 	
 	static void addFoods()
@@ -649,19 +661,19 @@ public class MaterialRegister {
 	{
 		DCsAppleMilk.bowlRack = (new BlockBowlRack()).
 				setBlockName("defeatedcrow.bowlRack").
-				setCreativeTab(DCsAppleMilk.applemilkContainer);
+				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.Basket = (new BlockBasket()).
 				setBlockName("defeatedcrow.basket").
-				setCreativeTab(DCsAppleMilk.applemilkContainer);
+				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.chopsticksBox = (new BlockChopsticksBox()).
 				setBlockName("defeatedcrow.chopsticksBox").
-				setCreativeTab(DCsAppleMilk.applemilkContainer);
+				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.chopsticks = (new ItemChopsticks()).
 				setUnlocalizedName("defeatedcrow.chopsticks").
-				setCreativeTab(DCsAppleMilk.applemilkContainer);
+				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.flintBlock = (new BlockFlint(Material.rock, false)).
 				setBlockName("defeatedcrow.flintBlock").
@@ -677,7 +689,7 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.rotaryDial = (new BlockRotaryDial()).
 				setBlockName("defeatedcrow.rotaryDial").
-				setCreativeTab(DCsAppleMilk.applemilkContainer);
+				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.chalcenonyPanel = (new BlockCPanel()).
 				setBlockName("defeatedcrow.chalcedonyPanel").
@@ -789,8 +801,14 @@ public class MaterialRegister {
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.teppann = (new BlockTeppann()).
-				setBlockName("defeatedcrow.cookingIronPlate").
+				setBlockName("defeatedcrow.cookingIronPlate");
+		
+		DCsAppleMilk.teppanII = (new BlockTeppanII()).
+				setBlockName("defeatedcrow.cookingIronPlateII").
 				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.dummyTeppan = (new ItemDummyForTeppan()).setUnlocalizedName("defeatedcrow.dummyPlate");
+		GameRegistry.registerItem(DCsAppleMilk.dummyTeppan, "defeatedcrow.dummyPlate");
 		
 		DCsAppleMilk.iceMaker = (new BlockIceMaker()).
 				setBlockName("defeatedcrow.iceMaker").

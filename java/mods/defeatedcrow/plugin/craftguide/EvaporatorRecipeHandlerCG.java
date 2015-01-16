@@ -5,7 +5,6 @@ import java.util.List;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.recipe.EvaporatorRecipeRegister.EvaporatorRecipe;
-import mods.defeatedcrow.recipe.ProsessorRecipeRegister.ProsessorRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import uristqwerty.CraftGuide.api.ItemSlot;

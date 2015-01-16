@@ -186,6 +186,11 @@ public class EntitySilkyMelon extends Entity
             		this.posX, this.posY, this.posZ, f, CustomExplosion.Type.Melon, true);
             explosion.doExplosion();
     	}
+    	
+    	if (igniter instanceof EntityPlayer)
+    	{
+    		((EntityPlayer)igniter).triggerAchievement(AchievementRegister.useSilkMelon);
+    	}
         
         int X = MathHelper.floor_double(this.posX);
         int Y = MathHelper.floor_double(this.posY);
@@ -713,8 +718,12 @@ public class EntitySilkyMelon extends Entity
     {
     	if (!this.worldObj.isRemote && !this.isDead)
         {
+    		EntityLivingBase rider = null;
+    		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase){
+    			rider = (EntityLivingBase) this.riddenByEntity;
+    		}
             this.setDead();
-            this.explode(null);
+            this.explode(rider);
         }
     }
 }

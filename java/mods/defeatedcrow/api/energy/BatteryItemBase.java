@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 
 /**
@@ -19,7 +20,9 @@ import net.minecraft.util.StatCollector;
  * */
 public abstract class BatteryItemBase extends Item implements IBattery{
 	
-	public BatteryItemBase(){}
+	public BatteryItemBase(){
+		super();
+	}
 
 	@Override
 	public int getChargeAmount(ItemStack item) {
@@ -144,7 +147,8 @@ public abstract class BatteryItemBase extends Item implements IBattery{
 		int charge = 0;
 		int max = this.getMaxAmount(stack);
 		if (nbt != null && nbt.hasKey("charge")){
-			charge = Math.max(charge, max);
+			charge = nbt.getInteger("charge");
+			charge = MathHelper.clamp_int(charge, 0, max);
 		}
     	
 		int i = max - charge;

@@ -63,12 +63,12 @@ public class BlockCassisTree extends Block implements IPlantable, IRightClickHar
 		int meta = par1World.getBlockMetadata(par2, par3, par4);
 		if (meta < 3)
 		{
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 3);
 			return true;
 		}
 		else if (meta > 3 && meta < 7)
 		{
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 7, 2);
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 7, 3);
 			return true;
 		}
 		else
