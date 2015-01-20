@@ -1,9 +1,9 @@
 package mods.defeatedcrow.plugin.IC2;
 
-import codechicken.lib.math.MathHelper;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 
 //EU使用ツール、電池のための中継クラス
 public class EUItemHandler {

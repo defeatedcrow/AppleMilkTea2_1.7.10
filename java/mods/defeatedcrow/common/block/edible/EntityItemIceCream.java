@@ -113,11 +113,11 @@ private static final String[] type = new String[] {"_milk", "_tea", "_greentea",
 		{
 			return new PotionEffect(Potion.nightVision.id, dur, 0);
 		}
-		else if ((meta == 5) && DCsAppleMilk.succeedAddPotion)//fruit
+		else if ((meta == 5) && DCsAppleMilk.Immunization != null)//fruit
 		{
 			return new PotionEffect(DCsAppleMilk.Immunization.id, dur, 0);
 		}
-		else if ((meta == 6) && DCsAppleMilk.succeedAddPotion)//lemon
+		else if ((meta == 6) && DCsAppleMilk.Immunization != null)//lemon
 		{
 			return new PotionEffect(DCsAppleMilk.Immunization.id, dur, 1);
 		}

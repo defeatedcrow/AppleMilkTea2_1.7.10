@@ -14,6 +14,7 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
 import net.minecraft.util.AxisAlignedBB;
@@ -247,9 +248,11 @@ public class EntityYuzuBullet extends Entity implements IProjectile{
  
                         if (d1 < d0 || d0 == 0.0D)
                         {
-                        	entityTarget = new MovingObjectPosition(entity1);
-                            d0 = d1;
-                            break;
+                        	if (entity1 != null){
+                        		entityTarget = new MovingObjectPosition(entity1);
+                                d0 = d1;
+                                break;
+                        	}
                         }
                     }
                 }
@@ -297,19 +300,17 @@ public class EntityYuzuBullet extends Entity implements IProjectile{
                 int i1 = MathHelper.ceiling_double_int(1.0D * this.damage);
                 //0~2程度の乱数値を上乗せ
                 i1 += this.rand.nextInt(3);
+                
+                if (target.isImmuneToFire() && this.isBurning()){
+                	i1 = 0;
+                }
 
                 DamageSource damagesource = null;
                 
                 //別メソッドでダメージソースを確認
                 damagesource = this.thisDamageSource(this.shootingEntity);
 
-                //バニラ矢と同様、このエンティティが燃えているなら対象に着火することも出来る
-                if (this.isBurning() && !(target instanceof EntityEnderman))
-                {
-                    target.setFire(5);
-                }
-
-                else if (target instanceof IProjectile)
+                if (target instanceof IProjectile)
                 {
                 	//対象が矢などの飛翔Entityの場合、打ち消すことが出来る
                 	target.setDead();
@@ -368,6 +369,16 @@ public class EntityYuzuBullet extends Entity implements IProjectile{
                 {
                 	//Block側に衝突を伝える
                     this.inTile.onEntityCollidedWithBlock(this.worldObj, this.xTile, this.yTile, this.zTile, this);
+                    
+                    //燃えている時
+                    if (this.isBurning())
+                    {
+                    	if (this.inTile == Blocks.ice) this.worldObj.setBlock(xTile, yTile, zTile, Blocks.water);
+                    	if (this.inTile.getMaterial() == Material.snow) {
+                    		this.worldObj.setBlockToAir(xTile, yTile, zTile);
+                    		this.setDead();
+                    	}
+                    }
                 }
             }
         }
@@ -414,6 +425,10 @@ public class EntityYuzuBullet extends Entity implements IProjectile{
         //水中に有る
         if (this.isInWater())
         {
+        	if (this.isBurning()){
+        		this.extinguish();
+        	}
+        	
         	//泡パーティクルが出る
             for (int j1 = 0; j1 < 4; ++j1)
             {
@@ -494,7 +509,12 @@ public class EntityYuzuBullet extends Entity implements IProjectile{
     public DamageSource thisDamageSource(Entity entity)
     {
         //発射元のEntityがnullだった場合の対策を含む。
-    	return entity != null ? EntityDamageSource.causeIndirectMagicDamage(entity, this) : DamageSource.magic;
+    	if (this.isBurning()){
+    		return DamageSource.lava;
+    	}
+    	else {
+    		return entity != null ? EntityDamageSource.causeIndirectMagicDamage(entity, this) : DamageSource.magic;
+    	}
     }
 
 }

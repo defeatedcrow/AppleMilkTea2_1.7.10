@@ -150,7 +150,9 @@ public class BlockTeppanII extends BlockContainer{
 	public boolean isOvenMode(World world, int x, int y, int z)
 	{
 		int count = 0;
-		if (world.canBlockSeeTheSky(x, y, z)){
+		if (world.getBlock(x, y + 1, z).getMaterial() != Material.rock
+				&& world.getBlock(x, y + 2, z).getMaterial() != Material.rock
+				&& world.getBlock(x, y + 3, z).getMaterial() != Material.rock){
 			return false;
 		}
 		
@@ -260,6 +262,10 @@ public class BlockTeppanII extends BlockContainer{
 				{
 					if (!par1World.isRemote) par5EntityPlayer.entityDropItem(ret, 1.0F);
 				}
+				if (ret != null && ret.getItem() == Item.getItemFromBlock(DCsAppleMilk.foodPlate) && ret.getItemDamage() == 3){
+					par5EntityPlayer.triggerAchievement(AchievementRegister.getHamaguri);
+				}
+				
 				par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
 				if (!par1World.isRemote){
 					tep.refreshPlate();
@@ -282,6 +288,28 @@ public class BlockTeppanII extends BlockContainer{
 				}
 				par5EntityPlayer.inventory.markDirty();
 				return true;
+			}
+			
+			//どれでもなく調理中でもなかった
+			if (tep.plateItems[0] != null)
+			{
+				IPlateRecipe recipe = RecipeRegisterManager.plateRecipe.getRecipe(tep.plateItems[0]);
+				
+				if (recipe == null || (!this.isOvenMode(par1World, par2, par3, par4) && recipe.useOvenRecipe()))
+				{
+					ItemStack ret = tep.plateItems[0];
+					if (ret != null && !par5EntityPlayer.inventory.addItemStackToInventory(ret))
+					{
+						if (!par1World.isRemote) par5EntityPlayer.entityDropItem(ret, 1.0F);
+					}
+					par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+					if (!par1World.isRemote){
+						tep.refreshPlate();
+						tep.updatePlate();
+					}
+					par5EntityPlayer.inventory.markDirty();
+					return true;
+				}
 			}
 		}
 		

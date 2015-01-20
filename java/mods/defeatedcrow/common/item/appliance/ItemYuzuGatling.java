@@ -60,26 +60,39 @@ public class ItemYuzuGatling extends ItemBow implements IBattery{
 	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		boolean flag = par3EntityPlayer.capabilities.isCreativeMode || 
-		        EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
+		boolean flag = par3EntityPlayer.capabilities.isCreativeMode;
+		  
 		boolean flag2 = false;
+		if (!flag){
+			if (par3EntityPlayer.inventory.hasItemStack(new ItemStack(DCsAppleMilk.leafTea, 1, 3))){
+				flag2 = true;
+			}
+			else {
+				flag2 = EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
+			}
+		}
+		boolean flag3 = false;
 		if (par1ItemStack.getItem() == this){
-			int c2 = this.discharge(par1ItemStack, 2, !flag);
-			boolean has = par3EntityPlayer.inventory.hasItemStack(new ItemStack(DCsAppleMilk.leafTea, 1, 3));
-			if (flag || (c2 > 0 && has)) flag2 = true;
+			int c2 = this.discharge(par1ItemStack, 2, false);
+			if (c2 > 0) flag3 = true;
 		}
 		
-		if (flag2)
+		if (flag || (flag2 && flag3))
 		{
 			boolean loose = flag || this.looseYuzu(par3EntityPlayer, DCsAppleMilk.leafTea, 3);
+			if (!flag) this.discharge(par1ItemStack, 2, true);
 			
 			int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, par1ItemStack);
 			int fire = EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, par1ItemStack);
 			
-			EntityYuzuBullet bullet = new EntityYuzuBullet(par2World, par3EntityPlayer, 3.0F, 1.0F, 0.0F, 0.0F, -0.0F);
+			EntityYuzuBullet bullet = new EntityYuzuBullet(par2World, par3EntityPlayer, 3.0F, 0.0F, 0.0F, 0.0F, 0.0F);
 			
-			bullet.setDamage(8.0D + (double)power * 0.5D);
-			if (fire > 0) bullet.setFire(100);
+			float dam = (fire > 0) ? 5.0F : 3.0F;
+			bullet.setDamage(dam + (double)power * 0.5D);
+			
+			if (fire > 0) {
+				bullet.setFire(100);
+			}
 			
 			if (loose && !par2World.isRemote){
 				par2World.spawnEntityInWorld(bullet);

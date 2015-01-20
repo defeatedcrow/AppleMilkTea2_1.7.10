@@ -212,7 +212,7 @@ public abstract class EdibleEntityItemBlock extends ItemBlock implements IEdible
             {
                 --itemstack.stackSize;
             }
-        	if (!player.inventory.addItemStackToInventory(ret))
+        	if (ret != null && !player.inventory.addItemStackToInventory(ret))
 	    	{
 	    		player.entityDropItem(ret, 1);
 	    	}

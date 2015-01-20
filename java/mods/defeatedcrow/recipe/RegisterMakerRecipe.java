@@ -530,6 +530,12 @@ public class RegisterMakerRecipe {
 		
 		RecipeRegisterManager.plateRecipe.register(new ItemStack(DCsAppleMilk.clam, 1, 0), 
 				new ItemStack(DCsAppleMilk.foodPlate, 1, 3), 40, false);
+		
+		RecipeRegisterManager.plateRecipe.register(new ItemStack(Items.fish, 1, 0), 
+				new ItemStack(Items.cooked_fished, 1, 3), 40, false);
+		
+		RecipeRegisterManager.plateRecipe.register(new ItemStack(Items.rotten_flesh, 1, 0), 
+				new ItemStack(Items.leather, 1, 3), 40, false);
 	}
 	
 	public static void testRecipe()

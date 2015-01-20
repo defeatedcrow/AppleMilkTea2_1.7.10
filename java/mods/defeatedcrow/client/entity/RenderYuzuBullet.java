@@ -32,12 +32,18 @@ public class RenderYuzuBullet extends Render
     public void renderMissile(EntityYuzuBullet par1Entity, double par2, double par4, double par6, float par8, float par9)
     {
     	ModelYuzuBullet model = (ModelYuzuBullet) this.modelMissile;
+    	boolean b = par1Entity.isBurning();
     	
     	this.bindEntityTexture(par1Entity);
     	GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        GL11.glColor4f(2.0F, 2.0F, 2.0F, 1.0F);
+        if (b){
+        	GL11.glColor4f(2.0F, 2.0F, 2.0F, 1.0F);
+        }
+        else{
+        	GL11.glColor4f(3.0F, 1.0F, 1.0F, 1.0F);
+        }
         GL11.glTranslatef((float)par2, (float)par4 + 1.0F, (float)par6);
         GL11.glRotatef(par1Entity.prevRotationYaw + (par1Entity.rotationYaw - par1Entity.prevRotationYaw) * par9, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(par1Entity.prevRotationPitch + (par1Entity.rotationPitch - par1Entity.prevRotationPitch) * par9, -1.0F, 0.0F, 0.0F);
