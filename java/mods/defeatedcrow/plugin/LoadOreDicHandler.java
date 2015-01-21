@@ -28,6 +28,7 @@ public class LoadOreDicHandler {
 	private static ArrayList<ItemStack> listRice = new ArrayList<ItemStack>();
 	private static ArrayList<ItemStack> listHoney = new ArrayList<ItemStack>();
 	private static ArrayList<ItemStack> listSoy = new ArrayList<ItemStack>();
+	private static ArrayList<ItemStack> listSeaweed = new ArrayList<ItemStack>();
 	
 	public void load() {
 		
@@ -50,21 +51,23 @@ public class LoadOreDicHandler {
 		listRice.addAll(OreDictionary.getOres("cropRice"));
 		listHoney.addAll(OreDictionary.getOres("dropHoney"));
 		listSoy.addAll(OreDictionary.getOres("soybeans"));
+		listSeaweed.addAll(OreDictionary.getOres("cropSeaweed"));
 		
 		/**
 	     * 当MOD用の管理Mapへの登録。
 	     * 鉱石辞書名とは異なる名前で登録している。
 	     */
-		if (listAlmond != null) LoadModHandler.registerArray("nuts", listAlmond);
-		if (listPeanut != null) LoadModHandler.registerArray("nuts", listPeanut);
-		if (listNuts!= null) LoadModHandler.registerArray("nuts", listNuts);
-		if (listCherry != null) LoadModHandler.registerArray("cherry", listCherry);
-		if (listBerry != null) LoadModHandler.registerArray("berry", listBerry);
-		if (listStraw != null) LoadModHandler.registerArray("strawberry", listStraw);
-		if (listBanana != null) LoadModHandler.registerArray("banana", listBanana);
-		if (listRice != null) LoadModHandler.registerArray("rice", listRice);
-		if (listHoney != null) LoadModHandler.registerArray("honey", listHoney);
-		if (listSoy != null) LoadModHandler.registerArray("soy", listSoy);
+		if (listAlmond != null && listAlmond.isEmpty()) LoadModHandler.registerArray("nuts", listAlmond);
+		if (listPeanut != null && listPeanut.isEmpty()) LoadModHandler.registerArray("nuts", listPeanut);
+		if (listNuts!= null && listNuts.isEmpty()) LoadModHandler.registerArray("nuts", listNuts);
+		if (listCherry != null && listCherry.isEmpty()) LoadModHandler.registerArray("cherry", listCherry);
+		if (listBerry != null && listBerry.isEmpty()) LoadModHandler.registerArray("berry", listBerry);
+		if (listStraw != null && listStraw.isEmpty()) LoadModHandler.registerArray("strawberry", listStraw);
+		if (listBanana != null && listBanana.isEmpty()) LoadModHandler.registerArray("banana", listBanana);
+		if (listRice != null && listRice.isEmpty()) LoadModHandler.registerArray("rice", listRice);
+		if (listHoney != null && listHoney.isEmpty()) LoadModHandler.registerArray("honey", listHoney);
+		if (listSoy != null && listSoy.isEmpty()) LoadModHandler.registerArray("soy", listSoy);
+		if (listSeaweed != null && !listSeaweed.isEmpty()) LoadModHandler.registerArray("seaWeed", listSeaweed);
 		
 		
 		/**

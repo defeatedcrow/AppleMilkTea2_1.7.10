@@ -58,6 +58,15 @@ public class MCEconomyPlugin extends ProductList{
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.wipeBox, 1, 0), 6);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.wipeBox, 1, 1), 18);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.wipeBox2, 1, 0), 40);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.mobBlock, 1, 0), 20);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.mobBlock, 1, 1), 20);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.mobBlock, 1, 2), 50);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.mobBlock, 1, 3), 50);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.mobBlock, 1, 4), 30);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.flowerPot, 1, 0), 10);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.flowerPot, 1, 1), 10);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.yuzuFence, 1, 0), 10);
+		
 		
 		//baskets
 		for (int i = 0; i < 15 ; i++) {
@@ -86,16 +95,23 @@ public class MCEconomyPlugin extends ProductList{
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.cLamp, 1, 9), -1);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.cLamp, 1, 10), -1);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.cLamp, 1, 11), -1);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chalcenonyPanel, 1, 0), 90);
 		
 		//Maker
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.teaMakerNext), 200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.emptyCup), 10);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.emptyPanGaiden), 50);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.iceMaker), 200);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.teppann), 150);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.teppanII), 150);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.prosessor), 200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.evaporator), 200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.advProsessor), 400);
+		
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.gelBat), 50);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.batBox), 250);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.yuzuBat), 100);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.yuzuGel), 10);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.redGel), 15);
 		
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.filledChocoPan), -1);
 		
@@ -219,6 +235,11 @@ public class MCEconomyPlugin extends ProductList{
 		for (int i = 0; i < 4 ; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.princessClam, 1, i + 1), -1);
 		}
+		
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.strangeSlag, 1, 0), 20);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.fossilScale, 1, 0), 300);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.yuzuGatling, 1, 0), 120);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.fossilCannon, 1, 0), 500);
 		
 		AMTLogger.trace("Succeeded to register the price for MCEconomy2");
 		

@@ -3,11 +3,14 @@ package mods.defeatedcrow.plugin;
 import java.util.ArrayList;
 
 
+
 import shift.sextiarysector.api.SextiarySectorAPI;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -18,6 +21,8 @@ public class LoadSSectorPlugin {
 	public static ItemStack ginBottle;
 	public static ItemStack beerBottle;
 	public static ItemStack emptyBottle;
+	
+	public static ItemStack laver;
 	
 	public void load()
 	{
@@ -55,6 +60,14 @@ public class LoadSSectorPlugin {
 		if (bottle.size() > 0){
 			emptyBottle = bottle.get(0);
 			if (emptyBottle != null) {
+			}
+		}
+		
+		Item item = Util.getModItem("SextiarySector", "Laver");
+		if (item != null) {
+			ItemStack registerItem = new ItemStack(item, 1, 0);
+			if (LoadModHandler.registerModItems("seaWeed", registerItem)) {
+				AMTLogger.debugInfo("Succeeded to get Laver");
 			}
 		}
 

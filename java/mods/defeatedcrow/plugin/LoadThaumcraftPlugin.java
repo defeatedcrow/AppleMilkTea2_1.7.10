@@ -59,6 +59,9 @@ public class LoadThaumcraftPlugin {
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.onixSword), new int[]{32767}, new AspectList().add(Aspect.WEAPON, 2).add(Aspect.CRYSTAL, 1).add(Aspect.MAGIC, 1));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.chopsticks), new int[]{32767}, new AspectList().add(Aspect.TOOL, 1));
 		
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.yuzuGatling), new int[]{32767}, new AspectList().add(Aspect.WEAPON, 3).add(Aspect.ENERGY, 1).add(Aspect.HARVEST, 1));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.fossilCannon), new int[]{32767}, new AspectList().add(Aspect.WEAPON, 3).add(Aspect.ENERGY, 1).add(Aspect.WATER, 1));
+		
 		//battery
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.batteryItem), new int[]{0,1,2}, new AspectList().add(Aspect.ENERGY, 3));
 		
@@ -78,6 +81,8 @@ public class LoadThaumcraftPlugin {
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.princessClam), new int[]{2}, new AspectList().add(Aspect.MAGIC, 5).add(Aspect.SOUL, 3));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.princessClam), new int[]{3}, new AspectList().add(Aspect.MAGIC, 5).add(Aspect.FLIGHT, 3));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.princessClam), new int[]{4}, new AspectList().add(Aspect.MAGIC, 5).add(Aspect.LIGHT, 3));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.strangeSlag), new int[]{0}, new AspectList().add(Aspect.MAGIC, 2).add(Aspect.METAL, 3));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.fossilScale), new int[]{0}, new AspectList().add(Aspect.MAGIC, 2).add(Aspect.WATER, 3));
 		
 		//materials
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.inkStick), new int[]{0}, new AspectList().add(Aspect.SENSES, 1));
@@ -116,6 +121,7 @@ public class LoadThaumcraftPlugin {
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.mobBlock), new int[]{2}, new AspectList().add(Aspect.POISON, 5));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.mobBlock), new int[]{3}, new AspectList().add(Aspect.ELDRITCH, 5));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.mobBlock), new int[]{4}, new AspectList().add(Aspect.SLIME, 5));
+	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.flowerPot), new int[]{0,1}, new AspectList().add(Aspect.SENSES, 5).add(Aspect.PLANT, 3));
 	    
 	    //chalcedony
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.flintBlock), new int[]{0}, new AspectList().add(Aspect.MINE, 3).add(Aspect.FIRE, 3));
@@ -126,6 +132,7 @@ public class LoadThaumcraftPlugin {
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cLamp), new int[]{9}, new AspectList().add(Aspect.LIGHT, 2).add(Aspect.CRYSTAL, 3).add(Aspect.BEAST, 2).add(Aspect.UNDEAD, 2));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cLamp), new int[]{10}, new AspectList().add(Aspect.LIGHT, 2).add(Aspect.CRYSTAL, 3).add(Aspect.MECHANISM, 2).add(Aspect.TRAP, 2));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cLamp), new int[]{11}, new AspectList().add(Aspect.LIGHT, 2).add(Aspect.CRYSTAL, 3).add(Aspect.ENTROPY, 2).add(Aspect.ORDER, 2));
+	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.chalcenonyPanel), new int[]{0}, new AspectList().add(Aspect.MINE, 1).add(Aspect.CRYSTAL, 1).add(Aspect.SENSES, 1));
 	    
 	    //deco
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.Basket), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1));
@@ -135,10 +142,13 @@ public class LoadThaumcraftPlugin {
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.clamSand), new int[]{0}, new AspectList().add(Aspect.WATER, 2).add(Aspect.HEAL, 1));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.clamSand), new int[]{1}, new AspectList().add(Aspect.WATER, 2).add(Aspect.VOID, 1));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.clamSand), new int[]{2}, new AspectList().add(Aspect.SENSES, 4).add(Aspect.AURA, 5));
+	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.yuzuGel), new int[]{0}, new AspectList().add(Aspect.ENERGY, 1).add(Aspect.SLIME, 1));
+	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.redGel), new int[]{0}, new AspectList().add(Aspect.ENERGY, 2).add(Aspect.SLIME, 1));
+	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.yuzuFence), new int[]{0}, new AspectList().add(Aspect.TREE, 2).add(Aspect.TRAP, 3));
 	    
 	    //tools
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.emptyPanGaiden), new int[]{0}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.VOID, 1).add(Aspect.HUNGER, 1));
-	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.teppann), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.FIRE, 3));
+	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.teppanII), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.FIRE, 3));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.iceMaker), new int[]{0}, new AspectList().add(Aspect.CRAFT, 2).add(Aspect.HUNGER, 1).add(Aspect.COLD, 3));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.teaMakerNext), new int[]{0}, new AspectList().add(Aspect.WATER, 2).add(Aspect.VOID, 1).add(Aspect.FIRE, 1));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.teaMakerBlack), new int[]{0}, new AspectList().add(Aspect.WATER, 2).add(Aspect.DARKNESS, 1).add(Aspect.FIRE, 1));
@@ -162,7 +172,7 @@ public class LoadThaumcraftPlugin {
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.blockIcecream), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.HUNGER, 2).add(Aspect.COLD, 2));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cocktail), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.WATER, 2).add(Aspect.MAGIC, 2).add(Aspect.SENSES, 2));
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.largeBottle), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.WATER, 8).add(Aspect.VOID, 8).add(Aspect.CRYSTAL, 4));
-	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cordial), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.WATER, 3).add(Aspect.HEAL, 3).add(Aspect.CRYSTAL, 4));
+	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.barrel), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.WATER, 3).add(Aspect.AIR, 3).add(Aspect.MAGIC, 1));
 	    
 	    //plants
 	    ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.saplingTea), new int[]{OreDictionary.WILDCARD_VALUE}, new AspectList().add(Aspect.PLANT, 2).add(Aspect.HEAL, 2));
