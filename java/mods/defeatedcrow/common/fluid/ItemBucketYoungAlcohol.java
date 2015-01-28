@@ -46,7 +46,7 @@ public class ItemBucketYoungAlcohol extends Item{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-		for (int i = 0 ; i < 3 ; i++)
+		for (int i = 0 ; i < 5 ; i++)
 		{
 			par3List.add(new ItemStack(this, 1, i));
 		}

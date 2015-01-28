@@ -2074,6 +2074,71 @@ public class DCsRecipeRegister {
 					 }));
 		
 		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.moromi, 1, 3),
+	    		  new Object[]{
+	    			  "cropReed",
+	    			  "cropReed",
+	    			  "cropReed",
+	    			  new ItemStack(Items.water_bucket, 1, 0),
+	    			  "kouji"
+					 }));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.moromi, 1, 3),
+	    		  new Object[]{
+	    			  new ItemStack(Items.reeds),
+	    			  new ItemStack(Items.reeds),
+	    			  new ItemStack(Items.reeds),
+	    			  new ItemStack(Items.water_bucket, 1, 0),
+	    			  "kouji"
+					 }));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.moromi, 1, 4),
+	    		  new Object[]{
+	    			  "cropPotato",
+	    			  "cropPotato",
+	    			  "cropPotato",
+	    			  new ItemStack(Items.water_bucket, 1, 0),
+	    			  "kouji"
+					 }));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.moromi, 1, 4),
+	    		  new Object[]{
+	    			  new ItemStack(Items.potato),
+	    			  new ItemStack(Items.potato),
+	    			  new ItemStack(Items.potato),
+	    			  new ItemStack(Items.water_bucket, 1, 0),
+	    			  "kouji"
+					 }));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.moromi, 1, 4),
+	    		  new Object[]{
+	    			  new ItemStack(Items.potato),
+	    			  new ItemStack(Items.potato),
+	    			  new ItemStack(Items.potato),
+	    			  new ItemStack(Items.water_bucket, 1, 0),
+	    			  "kouji"
+					 }));
+		
+		//vodka
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (48 + 6)),
+	    		  new Object[]{
+	    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+	    			  new ItemStack(DCsAppleMilk.bucketYoungAlcohol, 1, 4),
+	    			  new ItemStack(Items.coal, 1, 1),
+					 }));
+		
+		GameRegistry.addRecipe(
 				 new ShapedOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.barrel, 1, 0),
 	    		  new Object[]{

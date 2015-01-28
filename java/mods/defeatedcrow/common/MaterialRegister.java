@@ -53,6 +53,10 @@ public class MaterialRegister {
 	private static Fluid registerBeer;
 	private static Fluid registerWineYoung;
 	private static Fluid registerWine;
+	private static Fluid registerRumYoung;
+	private static Fluid registerRum;
+	private static Fluid registerVodkaYoung;
+	private static Fluid registerVodka;
 	
 	private MaterialRegister(){}
 	
@@ -331,6 +335,14 @@ public class MaterialRegister {
 		FluidRegistry.registerFluid(registerBrandyYoung);
 		DCsAppleMilk.brandy_young = FluidRegistry.getFluid("brandy_young");
 		
+		registerRumYoung = new Fluid("rum_young").setDensity(1000).setViscosity(1000);
+		FluidRegistry.registerFluid(registerRumYoung);
+		DCsAppleMilk.rum_young = FluidRegistry.getFluid("rum_young");
+		
+		registerVodkaYoung = new Fluid("vodka_young").setDensity(1000).setViscosity(1000);
+		FluidRegistry.registerFluid(registerVodkaYoung);
+		DCsAppleMilk.vodka_young = FluidRegistry.getFluid("vodka_young");
+		
 		registerShothu = new Fluid("shothu_dc").setDensity(1000).setViscosity(1000);
 		FluidRegistry.registerFluid(registerShothu);
 		DCsAppleMilk.shothu = FluidRegistry.getFluid("shothu_dc");
@@ -342,6 +354,14 @@ public class MaterialRegister {
 		registerBrandy = new Fluid("brandy_dc").setDensity(1000).setViscosity(1000);
 		FluidRegistry.registerFluid(registerBrandy);
 		DCsAppleMilk.brandy = FluidRegistry.getFluid("brandy_dc");
+		
+		registerRum = new Fluid("rum_dc").setDensity(1000).setViscosity(1000);
+		FluidRegistry.registerFluid(registerRum);
+		DCsAppleMilk.rum = FluidRegistry.getFluid("rum_dc");
+		
+		registerVodka = new Fluid("vodka_dc").setDensity(1000).setViscosity(1000);
+		FluidRegistry.registerFluid(registerVodka);
+		DCsAppleMilk.vodka = FluidRegistry.getFluid("vodka_dc");
 		
 		
 		registerSakeYoung = new Fluid("sake_young").setDensity(1000).setViscosity(1000);
@@ -381,6 +401,10 @@ public class MaterialRegister {
 				,new ItemStack(DCsAppleMilk.bucketYoungAlcohol, 1, 1), new ItemStack(Items.bucket));
 		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("brandy_young", FluidContainerRegistry.BUCKET_VOLUME)
 				,new ItemStack(DCsAppleMilk.bucketYoungAlcohol, 1, 2), new ItemStack(Items.bucket));
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("rum_young", FluidContainerRegistry.BUCKET_VOLUME)
+				,new ItemStack(DCsAppleMilk.bucketYoungAlcohol, 1, 3), new ItemStack(Items.bucket));
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("vodka_young", FluidContainerRegistry.BUCKET_VOLUME)
+				,new ItemStack(DCsAppleMilk.bucketYoungAlcohol, 1, 4), new ItemStack(Items.bucket));
 		
 		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("sake_young", FluidContainerRegistry.BUCKET_VOLUME)
 				,new ItemStack(DCsAppleMilk.moromi, 1, 0), new ItemStack(Items.bucket));
@@ -395,6 +419,10 @@ public class MaterialRegister {
 				,new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 55), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
 		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("brandy_dc", 200)
 				,new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 56), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("rum_dc", 200)
+				,new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 53), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("vodka_dc", 200)
+				,new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 54), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));
 		
 		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("sake_dc", 200)
 				,new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 49), new ItemStack(Item.getItemFromBlock(DCsAppleMilk.emptyBottle)));

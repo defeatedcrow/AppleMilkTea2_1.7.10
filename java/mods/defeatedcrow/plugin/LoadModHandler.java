@@ -306,6 +306,16 @@ public class LoadModHandler {
 							new FluidStack(DCsAppleMilk.vegitableOil, 25), rapeseed);
 				}
 			}
+			
+			ArrayList<ItemStack> milk180 = OreDictionary.getOres("milk180");
+			if (milk180.size() > 0){
+				ItemStack milk = new ItemStack(rape.get(0).getItem(), 1, rape.get(0).getItemDamage());
+				if (milk != null) {
+					LoadModHandler.registerModItems("rapes", milk);
+					
+					OreDictionary.registerOre("listAllmilk", milk);
+				}
+			}
 		}
         catch (Exception e) {
         	AMTLogger.debugInfo("Failed to register ModItems");

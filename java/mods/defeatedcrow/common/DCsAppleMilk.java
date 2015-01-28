@@ -69,7 +69,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.1a",
+		version = "1.7.10_2.2_dev",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -234,9 +234,13 @@ public class DCsAppleMilk{
 	public static Fluid  shothu_young;
 	public static Fluid  whiskey_young;
 	public static Fluid  brandy_young;
+	public static Fluid  rum_young;
+	public static Fluid  vodka_young;
 	public static Fluid  shothu;
 	public static Fluid  whiskey;
 	public static Fluid  brandy;
+	public static Fluid  rum;
+	public static Fluid  vodka;
 	public static Fluid  sake_young;
 	public static Fluid  beer_young;
 	public static Fluid  wine_young;

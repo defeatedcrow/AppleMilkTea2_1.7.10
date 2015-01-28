@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -31,6 +32,7 @@ public class EntityItemTeaCup extends EdibleEntityItemBlock2{
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		this.setMaxStackSize(Util.getCupStacksize());
+		setContainerItem(Item.getItemFromBlock(DCsAppleMilk.emptyCup));
 	}
 	
 	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)

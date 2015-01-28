@@ -18,6 +18,13 @@ public class EntityItemBowlJP extends EdibleEntityItemBlock2{
 		super(block, true, false);
 		setMaxDamage(0);
 		setHasSubtypes(true);
+		
+		if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null) {
+			setContainerItem(LoadBambooPlugin.bambooBasket.getItem());
+		}
+		else {
+			setContainerItem(Items.bowl);
+		}
 	}
 	
 	@Override

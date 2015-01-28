@@ -228,7 +228,7 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 2, 6), true, null,
 				new Object[]{DCsAppleMilk.clam});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.yeast, 1, 0), true, new ItemStack(Items.bowl),
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.yeast, 1, 0), true, null,
 				new Object[]{"cropApple", Items.sugar, DCsAppleMilk.bowlBlock});
 		
 		//おろし金レシピの移植
@@ -300,10 +300,10 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 0), true, null,
 				new Object[]{Blocks.brown_mushroom, Blocks.red_mushroom});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), true, new ItemStack(Items.bucket),
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), true, null,
 				new Object[]{new ItemStack(Items.fish, 1, 0), Items.carrot, Items.potato, "bucketMilk"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), true, new ItemStack(Items.bucket),
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), true, null,
 				new Object[]{new ItemStack(Items.fish, 1, 1), Items.carrot, Items.potato, "bucketMilk"});
 		
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 2), true, null,
@@ -324,16 +324,16 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), true, null,
 				new Object[]{new ItemStack(DCsAppleMilk.EXItems, 1, 2), "cropWheat"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, new ItemStack(Items.bucket),
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
 				new Object[]{Items.chicken, "leek", "bucketSoymilk", "tofuKinu"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, new ItemStack(Items.bucket),
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
 				new Object[]{Items.chicken, "leek", "bucketSoymilk", "tofuMomen"});
 		
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
 				new Object[]{Items.chicken, "cropLeek", "foodSoymilk", "foodSilkentofu"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 6), true, new ItemStack(Items.bucket),
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 6), true, null,
 				new Object[]{Blocks.pumpkin, "bucketMilk"});
 		
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), true, null,
@@ -342,10 +342,10 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), true, null,
 				new Object[]{Items.porkchop, "cabbage", "tomato"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), true, new ItemStack(Items.bucket),
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), true, null,
 				new Object[]{new ItemStack(Items.dye,1,3), new ItemStack(Items.dye,1,3), "bucketMilk", "dustSugar"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 4), true, new ItemStack(Items.bucket),
+		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 4), true, null,
 				new Object[]{new ItemStack(DCsAppleMilk.mincedFoods, 1 ,8), "bucketMilk"});
 		
 		//砕石機
@@ -455,6 +455,12 @@ public class RegisterMakerRecipe {
 				new FluidStack(DCsAppleMilk.whiskey_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 1), false);
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
+				new FluidStack(DCsAppleMilk.rum_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 3), false);
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
+				new FluidStack(DCsAppleMilk.vodka_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 4), false);
+		
+		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
 				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 3));
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
@@ -482,6 +488,7 @@ public class RegisterMakerRecipe {
 		BrewingRecipe.registerRecipe(DCsAppleMilk.shothu_young, DCsAppleMilk.shothu);
 		BrewingRecipe.registerRecipe(DCsAppleMilk.whiskey_young, DCsAppleMilk.whiskey);
 		BrewingRecipe.registerRecipe(DCsAppleMilk.brandy_young, DCsAppleMilk.brandy);
+		BrewingRecipe.registerRecipe(DCsAppleMilk.rum_young, DCsAppleMilk.rum);
 		BrewingRecipe.registerRecipe(DCsAppleMilk.sake_young, DCsAppleMilk.sake);
 		BrewingRecipe.registerRecipe(DCsAppleMilk.beer_young, DCsAppleMilk.beer);
 		BrewingRecipe.registerRecipe(DCsAppleMilk.wine_young, DCsAppleMilk.wine);
@@ -532,10 +539,10 @@ public class RegisterMakerRecipe {
 				new ItemStack(DCsAppleMilk.foodPlate, 1, 3), 40, false);
 		
 		RecipeRegisterManager.plateRecipe.register(new ItemStack(Items.fish, 1, 0), 
-				new ItemStack(Items.cooked_fished, 1, 3), 40, false);
+				new ItemStack(Items.cooked_fished), 40, false);
 		
 		RecipeRegisterManager.plateRecipe.register(new ItemStack(Items.rotten_flesh, 1, 0), 
-				new ItemStack(Items.leather, 1, 3), 40, false);
+				new ItemStack(Items.leather), 40, false);
 	}
 	
 	public static void testRecipe()

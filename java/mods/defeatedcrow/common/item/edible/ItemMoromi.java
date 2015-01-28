@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMoromi extends Item {
 	
-	private static final String[] type = new String[] {"rice", "wort", "grape"};
+	private static final String[] type = new String[] {"rice", "wort", "grape", "syrup", "potato"};
 	@SideOnly(Side.CLIENT)
     private IIcon iconItemType[];
 	
@@ -30,7 +30,7 @@ public class ItemMoromi extends Item {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
-        int j = MathHelper.clamp_int(par1, 0, 2);
+        int j = MathHelper.clamp_int(par1, 0, 4);
         return this.iconItemType[j];
     }
 
@@ -50,15 +50,17 @@ public class ItemMoromi extends Item {
 		par3List.add(new ItemStack(this, 1, 0));
 		par3List.add(new ItemStack(this, 1, 1));
 		par3List.add(new ItemStack(this, 1, 2));
+		par3List.add(new ItemStack(this, 1, 3));
+		par3List.add(new ItemStack(this, 1, 4));
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.iconItemType = new IIcon[3];
+		this.iconItemType = new IIcon[5];
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 5; ++i)
         {
         	this.iconItemType[i] = par1IconRegister.registerIcon("defeatedcrow:moromi_" + type[i]);
         }

@@ -16,6 +16,7 @@ public class EntityItemBowl extends EdibleEntityItemBlock2{
 		super(block, true, false);
 		setMaxDamage(0);
 		setHasSubtypes(true);
+		setContainerItem(Items.bowl);
 	}
 	
 	@Override

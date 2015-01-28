@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
@@ -61,8 +62,8 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 		public ProsessorRecipe(ItemStack output, ItemStack sec, boolean flag, float secondaryChance, Object... inputs)
 		{
 			this.output = output;
-			this.secondary = sec;
 			this.input = inputs;
+			this.secondary = sec;
 			this.foodRecipe = flag;
 			this.chance = secondaryChance;
 			this.processedInput = new ArrayList<Object>();
@@ -79,7 +80,6 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 					throw new IllegalArgumentException("Unknown Object passed to recipe!");
 				}
 			}
-			
 		}
 		
 		@Override
@@ -100,7 +100,36 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 		
 		@Override
 		public ItemStack getSecondary() {
-			return this.secondary == null ? null : this.secondary.copy();
+			if (this.secondary != null){
+				return this.secondary.copy();
+			}
+			else {
+				return null;
+			}
+		}
+		
+		@Override
+		public ItemStack getContainerItem(List<ItemStack> items)
+		{
+			ItemStack cont = null;
+			for (int i = 0 ; i < items.size() ; i++)
+			{
+				ItemStack next = items.get(i);
+				if (next != null) {
+					cont = next.getItem().getContainerItem(next);
+					if (cont != null) {
+						break;
+					}
+					else {
+						cont = FluidContainerRegistry.drainFluidContainer(next);
+						if (cont != null) {
+							break;
+						}
+					}
+				}
+			}
+			
+			return cont == null ? null : cont;
 		}
 		
 		@Override
@@ -136,7 +165,7 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 	                boolean inRecipe = false;
 	                Iterator<Object> req = required.iterator();
 	                
-	                if (!food && slot.getItem() == DCsAppleMilk.slotPanel)
+	                if (slot.getItem() == DCsAppleMilk.slotPanel)
 	                {
 	                	inRecipe = true;
 	                	continue;

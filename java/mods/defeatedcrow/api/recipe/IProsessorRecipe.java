@@ -22,4 +22,6 @@ public interface IProsessorRecipe {
 	
 	public boolean matches(List<ItemStack> items);
 
+	ItemStack getContainerItem(List<ItemStack> items);
+
 }

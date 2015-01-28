@@ -161,7 +161,7 @@ public class BlockMintCrop extends BlockBush implements IGrowable
     public IIcon getIcon(int par1, int par2)
     {
     	int j = MathHelper.clamp_int(par1, 0, 3);
-        return this.iconArray[par2];
+        return this.iconArray[j];
     }
 
     /*

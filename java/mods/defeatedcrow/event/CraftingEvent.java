@@ -84,9 +84,6 @@ public class CraftingEvent {
 		for (int i = 0; i < craftMatrix.getSizeInventory() ; i++)
 		{
 			ItemStack m = craftMatrix.getStackInSlot(i);
-			if (m != null && (m.getItem() == Item.getItemFromBlock(DCsAppleMilk.teacupBlock) || m.getItem() == Item.getItemFromBlock(DCsAppleMilk.teaCup2))) {
-				rets.add(new ItemStack(DCsAppleMilk.emptyCup,1,0));
-			}
 			
 			if (m != null && m.getItem() == Items.potionitem
 					&& (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.teacupBlock) || crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.teaCup2))) {

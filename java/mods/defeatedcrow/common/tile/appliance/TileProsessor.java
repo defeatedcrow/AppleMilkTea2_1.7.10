@@ -53,6 +53,7 @@ public class TileProsessor extends MachineBase{
 		
 		ItemStack output = null;
 		ItemStack sec = null;
+		ItemStack cont = null;
 		float chance = 1.0F;
 		
 		for(IProsessorRecipe recipe : recipes)
@@ -62,6 +63,7 @@ public class TileProsessor extends MachineBase{
 				output = recipe.getOutput();
 				sec = recipe.getSecondary();
 				chance = recipe.getChance();
+				cont = recipe.getContainerItem(items);
 				break;
 			}
 		}
@@ -95,6 +97,21 @@ public class TileProsessor extends MachineBase{
 					{
 						int result = this.itemstacks[12].stackSize + sec.stackSize;
 						flag2 = (result <= this.getInventoryStackLimit() && result <= sec.getMaxStackSize());
+					}
+				}
+			}
+			else if (cont != null)
+			{
+				if (this.itemstacks[12] == null)
+				{
+					flag2 = true;
+				}
+				else
+				{
+					if (this.itemstacks[12].isItemEqual(cont))
+					{
+						int result = this.itemstacks[12].stackSize + cont.stackSize;
+						flag2 = (result <= this.getInventoryStackLimit() && result <= cont.getMaxStackSize());
 					}
 				}
 			}
@@ -150,6 +167,7 @@ public class TileProsessor extends MachineBase{
 			List<Object> required = new ArrayList<Object>(activeRecipe.getProsessedInput());
 			ItemStack output = activeRecipe.getOutput();
 			ItemStack sec = activeRecipe.getSecondary();
+			ItemStack cont = activeRecipe.getContainerItem(items);
 			float chance = activeRecipe.getChance();
 			boolean getSec = worldObj.rand.nextFloat() <= chance;
 			
@@ -234,6 +252,17 @@ public class TileProsessor extends MachineBase{
 					this.itemstacks[12] =sec.copy();
 				}
 				else if (this.itemstacks[12].isItemEqual(sec))
+				{
+					this.itemstacks[12].stackSize += sec.stackSize;
+				}
+			}
+			else if (cont != null)
+			{
+				if (this.itemstacks[12] == null)
+				{
+					this.itemstacks[12] =cont.copy();
+				}
+				else if (this.itemstacks[12].isItemEqual(cont))
 				{
 					this.itemstacks[12].stackSize += sec.stackSize;
 				}

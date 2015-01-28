@@ -44,7 +44,7 @@ public class RegisterOreHandler {
 	    OreDictionary.registerOre("cropRice", new ItemStack(DCsAppleMilk.mincedFoods, 1, 3));
 	    OreDictionary.registerOre("cookingRice", new ItemStack(DCsAppleMilk.bowlBlock, 1, 0));
 	    OreDictionary.registerOre("cookingRice", new ItemStack(DCsAppleMilk.bowlJP, 1, 0));
-	    OreDictionary.registerOre("yeast", new ItemStack(DCsAppleMilk.yeast, 1, 0));
+	    OreDictionary.registerOre("foodYeast", new ItemStack(DCsAppleMilk.yeast, 1, 0));
 	    OreDictionary.registerOre("kouji", new ItemStack(DCsAppleMilk.yeast, 1, 0));
 	    OreDictionary.registerOre("bucketCamelliaOil", new ItemStack(DCsAppleMilk.bucketCamOil, 1, 0));
 	    OreDictionary.registerOre("bucketVegitableOil", new ItemStack(DCsAppleMilk.bucketVegiOil, 1, 0));
