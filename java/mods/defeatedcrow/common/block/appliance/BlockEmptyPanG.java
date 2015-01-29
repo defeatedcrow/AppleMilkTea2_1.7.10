@@ -29,8 +29,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -174,7 +176,7 @@ public class BlockEmptyPanG extends BlockContainer{
         		}
         		else
         		{
-        			IPanRecipe recipe= RecipeRegisterManager.panRecipe.getRecipe(input);
+        			IPanRecipe recipe = RecipeRegisterManager.panRecipe.getRecipe(input);
             		if (recipe != null)
             		{
             			tile.setItemStack(input);
@@ -191,12 +193,25 @@ public class BlockEmptyPanG extends BlockContainer{
             			par5EntityPlayer.triggerAchievement(AchievementRegister.makeRice);
             			return true;
             		}
+            		else
+            		{
+            			if (par1World.isRemote) par5EntityPlayer.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("dc.panMessage.noRecipe")));
+            			return true;
+            		}
         		}
-        		
-        		return false;
     		}
     		else
     		{
+    			if (!this.onFurnace(par1World, par2, par3 - 1, par4))
+    			{
+    				if (par1World.isRemote) par5EntityPlayer.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("dc.panMessage.noHeatSource")));
+        			return true;
+    			}
+    			else if (tile.getItemStack() != null)
+    			{
+    				if (par1World.isRemote) par5EntityPlayer.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("dc.panMessage.alreadyHasRecipe")));
+        			return true;
+    			}
     			return false;
     		}
         }

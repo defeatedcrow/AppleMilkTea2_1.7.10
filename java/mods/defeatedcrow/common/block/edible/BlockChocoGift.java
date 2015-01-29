@@ -17,6 +17,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.src.*;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.handler.Util;
 
@@ -44,6 +46,14 @@ public class BlockChocoGift extends Block{
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
         int currentMeta = par1World.getBlockMetadata(par2, par3, par4);
         Block bottomBlockID = par1World.getBlock(par2, par3 - 1, par4);
+        
+        AMTBlockRightCrickEvent event = new AMTBlockRightCrickEvent(par1World, par5EntityPlayer, itemstack, par2, par3, par4);
+        MinecraftForge.EVENT_BUS.post(event);
+        
+        if (event.isCanceled())
+        {
+            return true;
+        }
         
         if (itemstack == null)
         {

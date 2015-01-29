@@ -22,6 +22,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.TileCupHandle;
 
@@ -46,6 +48,14 @@ public class BlockFilledCup2 extends BlockContainer{
     {
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
         int meta = par1World.getBlockMetadata(par2, par3, par4);
+        
+        AMTBlockRightCrickEvent event = new AMTBlockRightCrickEvent(par1World, par5EntityPlayer, itemstack, par2, par3, par4);
+        MinecraftForge.EVENT_BUS.post(event);
+        
+        if (event.isCanceled())
+        {
+            return true;
+        }
         
         if (itemstack == null)
         {

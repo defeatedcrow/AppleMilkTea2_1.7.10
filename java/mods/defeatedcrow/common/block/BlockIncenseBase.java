@@ -29,8 +29,10 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.MinecraftForge;
 import mods.defeatedcrow.api.charm.EffectType;
 import mods.defeatedcrow.api.charm.IIncenseEffect;
+import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
 import mods.defeatedcrow.client.particle.*;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.TileIncenseBase;
@@ -55,6 +57,14 @@ public class BlockIncenseBase extends BlockContainer{
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
         int meta = par1World.getBlockMetadata(par2, par3, par4);
         TileIncenseBase tile = (TileIncenseBase) par1World.getTileEntity(par2, par3, par4);
+        
+        AMTBlockRightCrickEvent event = new AMTBlockRightCrickEvent(par1World, par5EntityPlayer, itemstack, par2, par3, par4);
+        MinecraftForge.EVENT_BUS.post(event);
+        
+        if (event.isCanceled())
+        {
+            return true;
+        }
         
         if (itemstack == null)//回収動作
         {

@@ -585,6 +585,13 @@ achievement.dc.craftCharm.desc=Craft a any charm.
 achievement.dc.getCordial=Make a Cordial
 achievement.dc.getCordial.desc=Craft and ferment a cordial.
 
+dc.panMessage.noRecipe=This item has no recipe.
+dc.panMessage.noHeatSource=Heat source under this block is required.(eg furnace, fire)
+dc.panMessage.alreadyHasRecipe=Already contains the food in the pan.
+dc.plateMessage.noRecipe=This item has no recipe.
+dc.plateMessage.noHeatSource=Heat source under this block is required.(eg fire, lava)
+dc.plateMessage.needOvenMode=Oven mode is required. Top and any three sides must be surrounded by other blocks.
+
 dc.PanGuiNameNEI=Use on the clay pan
 dc.MakerGuiNEI=Use on the tea maker 
 dc.ProcessorNEI=Food Processor

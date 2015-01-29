@@ -76,6 +76,7 @@ public class DCsConfig {
 	public static boolean enableMobBlock[] = {true, true, true, true, true};
 	public static boolean hardLeatherRecipe = true;
 	public static boolean disableMissileExplosion = false;
+	public static boolean PvPProhibitionMode = false;
 	
 	public static String debugPass = "Input the password here";
 	
@@ -177,6 +178,10 @@ public class DCsConfig {
 					"Set the update cycle tick of the device using the battery.");
 			Property debug = cfg.get("debug setting", "Debug Mode Pass", debugPass,
 					"Input the password for starting in debug mode. This is only for developer.");
+			Property noPvP = cfg.get("setting", "PvP Prohibition Mode", PvPProhibitionMode,
+					"Disable the damage caused by items of this MOD against player."
+					+ BR + "(For example, Yuzu Gatling, Silky Melon, etc.)");
+			
 			
 			Property entityIce = cfg.get("entityid", "EntityIDIceCream", entityIdIce);
 			Property entityCup = cfg.get("entityid", "EntityIDCup", entityIdCup);
@@ -236,6 +241,7 @@ public class DCsConfig {
 			enableMobBlock = mobBlock.getBooleanList();
 			hardLeatherRecipe = hardLeather.getBoolean(false);
 			disableMissileExplosion = missileExplosion.getBoolean(false);
+			PvPProhibitionMode = noPvP.getBoolean(false);
 			
 			entityIdMelon = entityMelon.getInt();
 			canExplodeMelon = explodeMelon.getBoolean(false);

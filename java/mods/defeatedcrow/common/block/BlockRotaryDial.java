@@ -23,6 +23,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.TileRotaryDial;
 import mods.defeatedcrow.plugin.mce.OpenShopGui;
@@ -41,6 +43,14 @@ public class BlockRotaryDial extends BlockContainer{
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
+        
+        AMTBlockRightCrickEvent event = new AMTBlockRightCrickEvent(par1World, par5EntityPlayer, itemstack, par2, par3, par4);
+        MinecraftForge.EVENT_BUS.post(event);
+        
+        if (event.isCanceled())
+        {
+            return true;
+        }
         
         if (par1World.isRemote) {
         	return true;

@@ -245,7 +245,7 @@ public class TileTeppanII extends TileEntity implements ISidedInventory{
 				int y = yCoord + dir.offsetY;
 				int z = zCoord + dir.offsetZ;
 				if (!this.worldObj.isAirBlock(x, y ,z)
-						&& this.worldObj.getBlock(x, y, z).getMaterial() == Material.rock);
+						&& this.worldObj.getBlock(x, y, z).getMaterial() != Material.water);
 				{
 					count++;
 				}

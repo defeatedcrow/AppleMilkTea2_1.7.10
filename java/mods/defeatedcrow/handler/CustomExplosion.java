@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import mods.defeatedcrow.common.AMTLogger;
+import mods.defeatedcrow.common.DCsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentProtection;
@@ -114,6 +115,10 @@ public class CustomExplosion extends Explosion{
                         {
                         	flag = false;
                         }
+                        else if (DCsConfig.PvPProhibitionMode && entity instanceof EntityPlayer)
+                        {
+                        	flag = false;
+                        }
                     }
                     else if (this.type == Type.Anchor)
                     {
@@ -126,10 +131,22 @@ public class CustomExplosion extends Explosion{
                         {
                         	flag = false;
                         }
+                        else if (DCsConfig.PvPProhibitionMode && entity instanceof EntityPlayer)
+                        {
+                        	flag = false;
+                        }
                         else if (!entity.onGround)
                     	{
                     		damage *= 10.0F;
                     	}
+                    }
+                    else
+                    {
+                    	if (entity instanceof EntityLivingBase && this.igniter != null)
+                        {
+                        	EntityLivingBase living = (EntityLivingBase) entity;
+                        	flag = !(living == this.igniter);
+                        }
                     }
                     
                     

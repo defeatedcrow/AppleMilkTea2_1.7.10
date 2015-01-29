@@ -4,6 +4,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.common.DCsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -281,6 +282,10 @@ public class EntityYuzuBullet extends Entity implements IProjectile{
                     	//対象が撃った本人の場合も当たらない
                     	canAttack = false;
                     }
+                    else if (DCsConfig.PvPProhibitionMode && entityplayer instanceof EntityPlayer)
+                    {
+                    	canAttack = false;
+                    }
                 }
                 else
                 {
@@ -293,7 +298,7 @@ public class EntityYuzuBullet extends Entity implements IProjectile{
  
             //当たったあとの処理
             //まずはリストから
-            if (canAttack)
+            if (this.livingTimeCount > 1 && canAttack)
             {
             	Entity target = entityTarget.entityHit;
             	
@@ -347,6 +352,7 @@ public class EntityYuzuBullet extends Entity implements IProjectile{
                     }
                 }
             }
+            
             if (movingobjectposition != null)//blockのみ
             {
             	this.xTile = movingobjectposition.blockX;

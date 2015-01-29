@@ -371,6 +371,10 @@ public class EntityAnchorMissile extends Entity implements IProjectile{
                     	//対象が撃った本人の場合も当たらない
                     	canAttack = false;
                     }
+                    else if (DCsConfig.PvPProhibitionMode && entityplayer instanceof EntityPlayer)
+                    {
+                    	canAttack = false;
+                    }
                 }
                 else if (target instanceof EntityTameable || target instanceof EntityHorse)
                 {

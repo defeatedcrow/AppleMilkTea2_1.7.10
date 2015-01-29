@@ -22,6 +22,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -165,7 +167,7 @@ public class BlockTeppanII extends BlockContainer{
 				int y1 = y + dir.offsetY;
 				int z1 = z + dir.offsetZ;
 				if (!world.isAirBlock(x1, y1 ,z1)
-						&& world.getBlock(x1, y1, z1).getMaterial() == Material.rock);
+						&& world.getBlock(x1, y1, z1).getMaterial() != Material.water);
 				{
 					count++;
 				}
@@ -233,8 +235,14 @@ public class BlockTeppanII extends BlockContainer{
 			AMTLogger.debugInfo("cooking flag fin:" + tep.isFinishCooking() + " fail:" + tep.isFailed());
 		}
 		
-		if (tep!= null && tep.isOnHeatSource())
+		if (tep!= null)
 		{
+			if (!tep.isOnHeatSource())
+			{
+				if (par1World.isRemote) par5EntityPlayer.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("dc.plateMessage.noHeatSource")));
+    			return true;
+			}
+			
 			if (tep.plateNoHoldingItem() && item != null)
 			{
 				if (tep.canSetRecipe(item))
@@ -252,6 +260,18 @@ public class BlockTeppanII extends BlockContainer{
 						tep.updatePlate();
 					}
 					
+					//add message
+					IPlateRecipe recipe = RecipeRegisterManager.plateRecipe.getRecipe(input);
+					if (recipe.useOvenRecipe() && !this.isOvenMode(par1World, par2, par3, par4))
+					{
+						if (par1World.isRemote) par5EntityPlayer.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("dc.plateMessage.needOvenMode")));
+					}
+					
+					return true;
+				}
+				else
+				{
+					if (par1World.isRemote) par5EntityPlayer.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("dc.plateMessage.noRecipe")));
 					return true;
 				}
 			}

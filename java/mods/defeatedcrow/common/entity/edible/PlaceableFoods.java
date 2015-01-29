@@ -7,6 +7,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.api.edibles.IEdibleItem;
+import mods.defeatedcrow.api.events.*;
 import mods.defeatedcrow.client.particle.EntityBlinkFX;
 import mods.defeatedcrow.client.particle.EntityDCCloudFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
@@ -34,6 +35,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 
 public abstract class PlaceableFoods extends Entity{
@@ -499,6 +501,15 @@ public abstract class PlaceableFoods extends Entity{
     public boolean interactFirst(EntityPlayer par1EntityPlayer)
     {
     	ItemStack item = par1EntityPlayer.inventory.getCurrentItem();
+    	
+    	AMTFoodEntityRightCrickEvent event = new AMTFoodEntityRightCrickEvent(worldObj, par1EntityPlayer, item, this);
+        MinecraftForge.EVENT_BUS.post(event);
+        
+        if (event.isCanceled())
+        {
+            return true;
+        }
+    	
     	if (item != null && item.getItem() == DCsAppleMilk.chopsticks)
     	{
     		ItemStack has = this.returnItem();
