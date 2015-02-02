@@ -3,7 +3,6 @@ package mods.defeatedcrow.event;
 import java.util.HashMap;
 import java.util.Map;
 
-import buildcraft.energy.BucketHandler;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;

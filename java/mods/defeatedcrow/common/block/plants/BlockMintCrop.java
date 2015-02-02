@@ -160,7 +160,7 @@ public class BlockMintCrop extends BlockBush implements IGrowable
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int par1, int par2)
     {
-    	int j = MathHelper.clamp_int(par1, 0, 3);
+    	int j = MathHelper.clamp_int(par2, 0, 3);
         return this.iconArray[j];
     }
 

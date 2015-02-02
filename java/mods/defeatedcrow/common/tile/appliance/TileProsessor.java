@@ -264,7 +264,7 @@ public class TileProsessor extends MachineBase{
 				}
 				else if (this.itemstacks[12].isItemEqual(cont))
 				{
-					this.itemstacks[12].stackSize += sec.stackSize;
+					this.itemstacks[12].stackSize += cont.stackSize;
 				}
 			}
 			

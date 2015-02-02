@@ -13,6 +13,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentProtection;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
@@ -102,7 +103,7 @@ public class CustomExplosion extends Explosion{
                     
                     if (this.type == Type.Melon)
                     {
-                    	if (entity instanceof EntityItem || entity == this.exploder)
+                    	if (entity instanceof EntityItem || entity instanceof IProjectile || entity == this.exploder)
                         {
                         	flag = false;
                         }
@@ -154,7 +155,14 @@ public class CustomExplosion extends Explosion{
                     {
                     	AMTLogger.debugInfo("explosion type :" + this.type);
                     	AMTLogger.debugInfo("explosion deal damage :" + damage);
-                    	entity.attackEntityFrom(DamageSource.setExplosionSource(this), damage);
+                    	if (entity instanceof IProjectile)
+                    	{
+                    		entity.setDead();
+                    	}
+                    	else
+                    	{
+                    		entity.attackEntityFrom(DamageSource.setExplosionSource(this), damage);
+                    	}
                         double d8 = EnchantmentProtection.func_92092_a(entity, d11);
                         entity.motionX += d5 * d8;
                         entity.motionY += d6 * d8;

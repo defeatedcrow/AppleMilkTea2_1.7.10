@@ -63,12 +63,14 @@ public class ItemYuzuGatling extends ItemBow implements IBattery{
 		boolean flag = par3EntityPlayer.capabilities.isCreativeMode;
 		  
 		boolean flag2 = false;
+		boolean inf = EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 		if (!flag){
 			if (par3EntityPlayer.inventory.hasItemStack(new ItemStack(DCsAppleMilk.leafTea, 1, 3))){
 				flag2 = true;
 			}
-			else {
-				flag2 = EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
+			else
+			{
+				flag = inf;
 			}
 		}
 		boolean flag3 = false;
@@ -79,7 +81,7 @@ public class ItemYuzuGatling extends ItemBow implements IBattery{
 		
 		if (flag || (flag2 && flag3))
 		{
-			boolean loose = flag || this.looseYuzu(par3EntityPlayer, DCsAppleMilk.leafTea, 3);
+			boolean loose = flag || inf || this.looseYuzu(par3EntityPlayer, DCsAppleMilk.leafTea, 3);
 			if (!flag) this.discharge(par1ItemStack, 2, true);
 			
 			int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, par1ItemStack);

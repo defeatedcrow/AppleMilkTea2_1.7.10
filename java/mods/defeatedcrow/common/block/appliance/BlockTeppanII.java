@@ -152,10 +152,17 @@ public class BlockTeppanII extends BlockContainer{
 	public boolean isOvenMode(World world, int x, int y, int z)
 	{
 		int count = 0;
-		if (world.getBlock(x, y + 1, z).getMaterial() != Material.rock
-				&& world.getBlock(x, y + 2, z).getMaterial() != Material.rock
-				&& world.getBlock(x, y + 3, z).getMaterial() != Material.rock){
-			return false;
+		if (world.canBlockSeeTheSky(x, y, z)){
+			boolean b = true;
+			for (int i = 0 ; i < 5 ; i++)
+			{
+				if (!world.isAirBlock(x, y + 1 + i, z)
+						|| world.getBlock(x, y + 1 + i, z).getMaterial() != Material.water)
+				{
+					b = false;
+				}
+			}
+			if (b) return false;
 		}
 		
 		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS)
@@ -302,10 +309,10 @@ public class BlockTeppanII extends BlockContainer{
 					if (!par1World.isRemote) par5EntityPlayer.entityDropItem(ret, 1.0F);
 				}
 				par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
-				if (!par1World.isRemote){
+				//if (!par1World.isRemote){
 					tep.refreshPlate();
 					tep.updatePlate();
-				}
+				//}
 				par5EntityPlayer.inventory.markDirty();
 				return true;
 			}

@@ -1,5 +1,9 @@
 package mods.defeatedcrow.common.tile.appliance;
 
+import buildcraft.api.transport.IPipeConnection;
+import buildcraft.api.transport.IPipeConnection.ConnectOverride;
+import buildcraft.api.transport.IPipeTile.PipeType;
+import cpw.mods.fml.common.Optional;
 import mods.defeatedcrow.api.recipe.IPlateRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
@@ -18,7 +22,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileTeppanII extends TileEntity implements ISidedInventory{
+@Optional.InterfaceList(
+		{
+			@Optional.Interface(iface = "buildcraft.api.transport.IPipeConnection", modid = "BuildCraft|Core"),
+		}
+	)
+public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeConnection{
 	
 	private int cookTime = 0;
 	private int cookFinishTime = 0;
@@ -28,6 +37,8 @@ public class TileTeppanII extends TileEntity implements ISidedInventory{
 	private boolean failed = false;
 	
 	private boolean isOvenMode = false;
+	
+	private int lastAmount = 0;
 	
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
@@ -232,8 +243,17 @@ public class TileTeppanII extends TileEntity implements ISidedInventory{
 	public boolean isOvenMode()
 	{
 		int count = 0;
-		if (!this.isOnHeatSource() || this.worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord)){
-			return false;
+		if (this.worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord)){
+			boolean b = true;
+			for (int i = 0 ; i < 5 ; i++)
+			{
+				if (!worldObj.isAirBlock(xCoord, yCoord + 1 + i, zCoord)
+						|| worldObj.getBlock(xCoord, yCoord + 1 + i, zCoord).getMaterial() != Material.water)
+				{
+					b = false;
+				}
+			}
+			if (b) return false;
 		}
 		
 		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS)
@@ -258,11 +278,12 @@ public class TileTeppanII extends TileEntity implements ISidedInventory{
 	@Override
 	public void updateEntity()
     {
-		if (this.plateNoHoldingItem())
+		if (!worldObj.isRemote)
 		{
-			this.refreshPlate();
+			this.onServerUpdate();
 		}
-		else
+		
+		if (!this.plateNoHoldingItem())
 		{
 			//焦げる
 			if (DCsConfig.teppannHardMode && this.cookFailTime > 0 && this.cookTime > this.cookFailTime && this.plateItems[1] != null)
@@ -315,6 +336,24 @@ public class TileTeppanII extends TileEntity implements ISidedInventory{
 			}
 		}
     }
+	
+	private void onServerUpdate()
+	{
+		int itemCount = 0;
+		for (int i = 0 ; i < this.getSizeInventory() ; i++)
+		{
+			if (this.getStackInSlot(i) != null)
+			{
+				itemCount += this.getStackInSlot(i).stackSize;
+			}
+		}
+		
+		if (lastAmount != itemCount)
+		{
+			lastAmount = itemCount;
+			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		}
+	}
 
 	/* ========== 以下、ISidedInventoryのメソッド ==========*/
 	
@@ -454,6 +493,14 @@ public class TileTeppanII extends TileEntity implements ISidedInventory{
 	@Override
 	public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3) {
 		return par1 != 0;
+	}
+	
+	//BuildCraft対応
+	@Optional.Method(modid = "BuildCraft|Core")
+	@Override
+	public ConnectOverride overridePipeConnection(PipeType type,
+			ForgeDirection with) {
+		return ConnectOverride.DISCONNECT;
 	}
 
 }

@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
+import com.sun.xml.internal.ws.api.server.EndpointComponent;
+
 import mods.defeatedcrow.api.*;
 import mods.defeatedcrow.common.block.*;
 import mods.defeatedcrow.common.block.container.BlockCharcoalBox;
@@ -45,8 +47,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.src.*;
 import net.minecraft.stats.Achievement;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -62,6 +66,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.common.registry.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -69,7 +74,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.2_dev",
+		version = "1.7.10_2.2c",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -386,7 +391,8 @@ public class DCsAppleMilk{
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		//前提MODの導入確認ログ
-		(new RequiredCoreModChecker()).coreModCheck();
+		RequiredCoreModChecker.coreModCheck();
+		this.RequiredCoreEnabled = RequiredCoreModChecker.getCompleted();
 		
 		//APIのインスタンス生成
 		RegisterManager.load();
@@ -532,7 +538,7 @@ public class DCsAppleMilk{
 		
 		//Registering new event
 		//ログイン時イベント
-		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(new PlayerLoggedInMassage());
 		//ポーション効果の内容をLivingEventで作ったのでそれの読み込み
 		MinecraftForge.EVENT_BUS.register(new DCsLivingEvent());
 		MinecraftForge.EVENT_BUS.register(new DCsHurtEvent());
@@ -546,6 +552,7 @@ public class DCsAppleMilk{
 		MinecraftForge.EVENT_BUS.register(new BucketFillEvent());
 		//クラフトで耐久が減るアイテムの登録
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());
+		//FMLCommonHandler.instance().bus().register(new PlayerLoggedInMassage());
 		
 		//ディスペンサー動作への登録
 		DispenserEvent.instance.init();
@@ -1025,19 +1032,29 @@ public class DCsAppleMilk{
 	    }
     }
 	
-//	@EventHandler
-//	public void startServer(FMLServerStartedEvent event)
-//	{
-//		this.proxy.serverStart();
-//	}
-//	
-//	@SubscribeEvent
-//    /*マルチでは各プレイヤーがログイン時にサーバの情報を読まなければならない*/
-//    public void onEntityJoinWorld(EntityJoinWorldEvent event)  {
-//        if (event.entity instanceof EntityPlayer) {
-//        	EntityPlayer player = (EntityPlayer) event.entity;
-//        	this.proxy.playerLogin(player);
-//        }
-//	}
+	public int getMajorVersion()
+	{
+		return 2;
+	}
+	
+	public int getMinorVersion()
+	{
+		return 2;
+	}
+	
+	public String getRivision()
+	{
+		return "c";
+	}
+	
+	public String getModName()
+	{
+		return "Apple&Milk&Tea";
+	}
+	
+	public String getModID()
+	{
+		return "DCsAppleMilk";
+	}
 	
 }
