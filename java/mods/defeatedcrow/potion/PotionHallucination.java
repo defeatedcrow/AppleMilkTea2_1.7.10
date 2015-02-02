@@ -2,13 +2,13 @@ package mods.defeatedcrow.potion;
 
 import java.util.Random;
 
-import cofh.repack.codechicken.lib.math.MathHelper;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.api.potion.PotionImmunityBase;
 import mods.defeatedcrow.common.DCsConfig;
 import mods.defeatedcrow.common.entity.dummy.EntityIllusionMobs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
