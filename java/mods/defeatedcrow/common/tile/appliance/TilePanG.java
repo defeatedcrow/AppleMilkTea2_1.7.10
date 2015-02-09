@@ -129,7 +129,14 @@ public class TilePanG extends TileEntity
         	if (recipe != null)
         	{
         		String s = recipe.getTex();
-        		this.tex = "defeatedcrow:textures/blocks/contents_" + s + ".png";
+                if (s.contains(":"))
+                {
+                    this.tex = s;
+                }
+                else
+                {
+                    this.tex = "defeatedcrow:textures/blocks/contents_" + s + ".png";
+                }
         	}
         	else
         	{
