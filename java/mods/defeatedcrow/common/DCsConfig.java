@@ -40,6 +40,7 @@ public class DCsConfig {
 	public static int entityIdSandwich = 158;
 	public static int entityIdTart = 159;
 	public static int entityIdCocktail2 = 163;
+	public static int entityIdCocktailSP = 168;
 	
 	//villager関連
 	public static int villagerRecipeID = 15;
@@ -90,26 +91,19 @@ public class DCsConfig {
 		{
 			cfg.load();
 			
-			Property DCpotionID = cfg.get("potionID", "Immunization", potionIDImmunity,
+			cfg.addCustomCategoryComment("potionID",
 					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
-			Property DCpotionID2 = cfg.get("potionID", "Protection:Projectile", potionIDPrvProjectile,
-					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
-			Property DCpotionID3 = cfg.get("potionID", "Protection:Explode", potionIDPrvExplode,
-					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
-			Property DCpotionID4 = cfg.get("potionID", "Reflex", potionIDReflex,
-					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
-			Property DCpotionID5 = cfg.get("potionID", "EXPAbsorption", potionIDAbsEXP,
-					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
-			Property DCpotionID6 = cfg.get("potionID", "DamageAbsorption", potionIDAbsHeal,
-					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
-			Property DCpotionID7 = cfg.get("potionID", "Suffocation", potionIDSuffocation,
-					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
-			Property DCpotionID8 = cfg.get("potionID", "Protection:Suffocation", potionIDPrvSuffocation,
-					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
-			Property DCpotionID9 = cfg.get("potionID", "Protection:Hallucination", potionIDHallucinations,
-					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
-			Property DCpotionID10 = cfg.get("potionID", "Protection:Confinement", potionIDConfinement,
-					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
+			
+			Property DCpotionID = cfg.get("potionID", "Immunization", potionIDImmunity);
+			Property DCpotionID2 = cfg.get("potionID", "Protection:Projectile", potionIDPrvProjectile);
+			Property DCpotionID3 = cfg.get("potionID", "Protection:Explode", potionIDPrvExplode);
+			Property DCpotionID4 = cfg.get("potionID", "Reflex", potionIDReflex);
+			Property DCpotionID5 = cfg.get("potionID", "EXPAbsorption", potionIDAbsEXP);
+			Property DCpotionID6 = cfg.get("potionID", "DamageAbsorption", potionIDAbsHeal);
+			Property DCpotionID7 = cfg.get("potionID", "Suffocation", potionIDSuffocation);
+			Property DCpotionID8 = cfg.get("potionID", "Protection:Suffocation", potionIDPrvSuffocation);
+			Property DCpotionID9 = cfg.get("potionID", "Protection:Hallucination", potionIDHallucinations);
+			Property DCpotionID10 = cfg.get("potionID", "Protection:Confinement", potionIDConfinement);
 			
 			Property TeaTreeValue = cfg.get("world setting", "Tea Tree Gen Probability", teaTreeGenValue,
 					"Set the generation probability of tea tree.(1-20) Default value is 5.");
@@ -200,6 +194,7 @@ public class DCsConfig {
 			Property entityIllusion = cfg.get("entityid", "EntityIDIllusion", entityIdIllusion);
 			Property entityMissile = cfg.get("entityid", "EntityIDAnchorMissile", entityIdMissile);
 			Property entityBullet = cfg.get("entityid", "EntityIDYuzuBullet", entityIdBullet);
+			Property entityCocktailSP = cfg.get("entityid", "EntityIDCocktailSP", entityIdCocktailSP);
 			
 			potionIDImmunity = DCpotionID.getInt();
 			potionIDPrvExplode = DCpotionID3.getInt();
@@ -264,6 +259,7 @@ public class DCsConfig {
 			entityIdIllusion = entityIllusion.getInt();
 			entityIdMissile = entityMissile.getInt();
 			entityIdBullet = entityBullet.getInt();
+			entityIdCocktailSP = entityCocktailSP.getInt();
 			
 			debugPass = debug.getString();
 			

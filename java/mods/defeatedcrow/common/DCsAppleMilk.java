@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 import mods.defeatedcrow.api.*;
+import mods.defeatedcrow.api.potion.*;
 import mods.defeatedcrow.common.block.*;
 import mods.defeatedcrow.common.block.container.BlockCharcoalBox;
 import mods.defeatedcrow.common.entity.*;
@@ -66,7 +67,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.2c",
+		version = "1.7.10_2.3a",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -116,6 +117,7 @@ public class DCsAppleMilk{
 	public static Block  bowlJP;
 	public static Block  foodPlate;
 	public static Block  chocoBlock;
+	public static Block  cocktailSP;
 	//ビン
 	public static Block  emptyBottle;
 	public static Block  largeBottle;
@@ -214,6 +216,9 @@ public class DCsAppleMilk{
 	public static Item  fossilScale;
 	public static Item  fossilCannon;
 	public static Item  yuzuGatling;
+	
+	//クソヤロー専用アイテム
+	public static Item eightEyesArm;
 	
 	public static ItemIncenseApple  incenseApple;
 	public static ItemIncenseRose  incenseRose;
@@ -394,6 +399,9 @@ public class DCsAppleMilk{
 		Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
 		(new DCsConfig()).config(cfg);
 		
+		Configuration cfg2 = new Configuration(new File(event.getModConfigurationDirectory(), getModID() + "-cocktail.cfg"));
+		(new DCsConfigCocktail()).config(cfg2);
+		
 		//デバッグモードのチェック
 		String str = DCsConfig.debugPass;
 		if (str != null && !str.isEmpty()){
@@ -424,6 +432,7 @@ public class DCsAppleMilk{
 		{
 			AMTLogger.debugInfo("Failed to add new potion effect.");
 		}
+		((PotionGetter)AMTPotionManager.manager).initialize();
 		
 		
 		//実績の追加
@@ -464,6 +473,7 @@ public class DCsAppleMilk{
 		if (DCsConfig.entityIdIllusion == 0) DCsConfig.entityIdIllusion = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdMissile == 0) DCsConfig.entityIdMissile = EntityRegistry.findGlobalUniqueEntityId();
 		if (DCsConfig.entityIdBullet == 0) DCsConfig.entityIdBullet = EntityRegistry.findGlobalUniqueEntityId();
+		if (DCsConfig.entityIdCocktailSP == 0) DCsConfig.entityIdCocktailSP = EntityRegistry.findGlobalUniqueEntityId();
 		
 		EntityRegistry.registerModEntity(EntityMelonBomb.class, "compressedMelon", DCsConfig.entityIdMelon, this, 250, 5, true);
 		EntityRegistry.registerModEntity(EntitySilkyMelon.class, "compressedSilkyMelon", DCsConfig.entityIdSilkMelon, this, 250, 5, true);
@@ -484,6 +494,7 @@ public class DCsAppleMilk{
 		EntityRegistry.registerModEntity(PlaceableCup2.class, "PlaceableCup2", DCsConfig.entityIdCup2, this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableTart.class, "PlaceableTart", DCsConfig.entityIdTart, this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableSandwich.class, "PlaceableSandwich", DCsConfig.entityIdSandwich, this, 250, 5, true);
+		EntityRegistry.registerModEntity(PlaceableCocktailSP.class, "PlaceableCocktailSP", DCsConfig.entityIdCocktailSP, this, 250, 5, true);
 		
 		//Villagerの登録
 		villager = new VillagerCafe();
@@ -615,8 +626,8 @@ public class DCsAppleMilk{
 	    AMTLogger.trace("Registered new ice maker recipe");
 	    
 	    //プロセッサーのレシピ登録
-	    (new RegisterMakerRecipe()).registerProsessor();
-	    AMTLogger.trace("Registered new prosessor recipe");
+	    (new RegisterMakerRecipe()).registerProcessor();
+	    AMTLogger.trace("Registered new processor recipe");
 
 	    //エバポレーターのレシピ登録
 	    (new RegisterMakerRecipe()).registerEvaporator();
@@ -997,6 +1008,7 @@ public class DCsAppleMilk{
 	    (new DCsRecipeRegister()).addInstantTea();
 	    
 	    //その他の他MODアイテム使用レシピ登録
+	    (new DCsRecipeRegister()).addCocktailSPRecipe();
 	    (new DCsRecipeRegister()).addKelpRecipe();
 	    (new DCsRecipeRegister()).addMetalRecipe();
 	    (new RegisterMakerRecipe()).addKelpRecipe();

@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -36,7 +37,7 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 	private boolean fisnished = false;
 	private boolean failed = false;
 	
-	private boolean isOvenMode = false;
+//	private boolean isOvenMode = false;
 	
 	private int lastAmount = 0;
 	
@@ -185,15 +186,15 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 		return this.plateItems[0] == null && this.plateItems[1] == null && this.plateItems[2] == null;
 	}
 	
-	public boolean getOvenMode()
-	{
-		return this.isOvenMode;
-	}
-	
-	public void setOvenMode(boolean b)
-	{
-		this.isOvenMode = b;
-	}
+//	public boolean getOvenMode()
+//	{
+//		return this.isOvenMode;
+//	}
+//	
+//	public void setOvenMode(boolean b)
+//	{
+//		this.isOvenMode = b;
+//	}
 	
 	/* ========== Plateのレシピ制御部分 ==========*/
 	
@@ -207,7 +208,16 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 		if (item == null) return false;
 		
 		IPlateRecipe recipe = RecipeRegisterManager.plateRecipe.getRecipe(item);
-		return recipe != null;
+		if (recipe == null) return false;
+		
+		if (recipe.useOvenRecipe())
+		{
+			return this.isOvenMode();
+		}
+		else
+		{
+			return true;
+		}
 	}
 	
 	//投入メソッド
@@ -243,17 +253,22 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 	public boolean isOvenMode()
 	{
 		int count = 0;
+		boolean b = false;
+		
 		if (this.worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord)){
-			boolean b = true;
-			for (int i = 0 ; i < 5 ; i++)
-			{
-				if (!worldObj.isAirBlock(xCoord, yCoord + 1 + i, zCoord)
-						|| worldObj.getBlock(xCoord, yCoord + 1 + i, zCoord).getMaterial() != Material.water)
-				{
-					b = false;
-				}
-			}
-			if (b) return false;
+//			for (int i = 0 ; i < 3 ; i++)
+//			{
+//				if (!worldObj.isAirBlock(xCoord, yCoord + 1 + i, zCoord)
+//						&& worldObj.getBlock(xCoord, yCoord + 1 + i, zCoord).getMaterial() != Material.water)
+//				{
+//					b = true;
+//				}
+//			}
+			return false;
+		}
+		else
+		{
+			b = true;
 		}
 		
 		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS)
@@ -262,16 +277,20 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 			else
 			{
 				int x = xCoord + dir.offsetX;
-				int y = yCoord + dir.offsetY;
+				int y = yCoord;
 				int z = zCoord + dir.offsetZ;
-				if (!this.worldObj.isAirBlock(x, y ,z)
-						&& this.worldObj.getBlock(x, y, z).getMaterial() != Material.water);
+				Block block = worldObj.getBlock(x, y, z);
+				if (block == null || worldObj.isAirBlock(x, y ,z)) continue;
+				
+				if (block.getMaterial() != Material.water
+						&& block.getMaterial() != Material.air);
+
 				{
 					count++;
 				}
 			}
 		}
-		return count > 3;
+		return b && count > 3;
 	}
 	
 	//実処理
@@ -316,16 +335,26 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 						}
 					}
 				}
-				this.cookTime++;
+				else
+				{
+					
+				}
 			}
 			
 			//レシピ処理、ちなみにカウントが失敗判定以内であれば、カウントが止まり調理を待ってくれる
-			if (this.plateItems[0] != null && this.isOnHeatSource())
+			if (this.plateItems[0] != null && this.isOnHeatSource() && this.plateItems[1] == null)
 			{
 				boolean cooking = false;
 				
 				IPlateRecipe recipe = RecipeRegisterManager.plateRecipe.getRecipe(this.plateItems[0]);
-				if (recipe != null) cooking = true;
+				if (recipe != null)
+				{
+					cooking = true;
+					if (this.cookFinishTime == 0)
+					{
+						this.setCookFinishTime(recipe.cookingTime());
+					}
+				}
 				
 				if (recipe.useOvenRecipe() && cooking)
 				{
@@ -333,6 +362,13 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 				}
 				
 				if (cooking) this.cookTime++;
+			}
+		}
+		else
+		{
+			if (this.fisnished || this.failed)
+			{
+				this.refreshPlate();
 			}
 		}
     }
@@ -344,7 +380,7 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 		{
 			if (this.getStackInSlot(i) != null)
 			{
-				itemCount += this.getStackInSlot(i).stackSize;
+				itemCount += this.getStackInSlot(i).getDisplayName().length();
 			}
 		}
 		
@@ -474,7 +510,7 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
  
 	@Override
 	public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {
-		return par1 == 0 ? (this.canSetRecipe(par2ItemStack) ? true : false) : false;
+		return par1 == 0 ? (!this.fisnished && this.canSetRecipe(par2ItemStack) ? true : false) : false;
 	}
  
 	//ホッパーにアイテムの受け渡しをする際の優先度

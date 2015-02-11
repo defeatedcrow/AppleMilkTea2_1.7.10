@@ -9,7 +9,6 @@ import mods.defeatedcrow.api.recipe.IEvaporatorRecipe;
 import mods.defeatedcrow.api.recipe.IEvaporatorRecipeRegister;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
-import mods.defeatedcrow.recipe.ProsessorRecipeRegister.ProsessorRecipe;
 
 public class EvaporatorRecipeRegister implements IEvaporatorRecipeRegister{
 	

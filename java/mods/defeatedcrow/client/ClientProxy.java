@@ -1,6 +1,8 @@
 package mods.defeatedcrow.client;
 
 import mods.defeatedcrow.client.entity.*;
+import mods.defeatedcrow.client.item.RenderEightEyesArm;
+import mods.defeatedcrow.client.item.RenderItemCocktailSP;
 import mods.defeatedcrow.client.item.RenderItemFossilCannon;
 import mods.defeatedcrow.client.item.RenderItemYuzuGatling;
 import mods.defeatedcrow.client.model.*;
@@ -25,6 +27,7 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -99,6 +102,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerTileEntity(TileChargerDevice.class, "TileChargerDevice", new TileEntityChargerRenderer());
 		ClientRegistry.registerTileEntity(TileFlowerPot.class, "TileFlowerPot", new TileEntityFlowerPotRenderer());
 		ClientRegistry.registerTileEntity(TileTeppanII.class, "TileTeppanII", new TileEntityTeppanIIRenderer());
+		ClientRegistry.registerTileEntity(TileCocktailSP.class, "TileCocktailSP", new TileEntityCocktailSPRenderer());
 		
 		GameRegistry.registerTileEntity(TileChargerBase.class, "TileChargerBase");
 		GameRegistry.registerTileEntity(TileGelBat.class, "TileGelBattery");
@@ -169,9 +173,12 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityIllusionMobs.class, new RenderIllusionCreeper());
 		RenderingRegistry.registerEntityRenderingHandler(EntityAnchorMissile.class, new RenderAnchorMissile(new ModelAnchorMissile()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityYuzuBullet.class, new RenderYuzuBullet(new ModelYuzuBullet()));
+		RenderingRegistry.registerEntityRenderingHandler(PlaceableCocktailSP.class, new RenderCocktailSPEntity());
 		
 		MinecraftForgeClient.registerItemRenderer(DCsAppleMilk.yuzuGatling, new RenderItemYuzuGatling());
 		MinecraftForgeClient.registerItemRenderer(DCsAppleMilk.fossilCannon, new RenderItemFossilCannon());
+		MinecraftForgeClient.registerItemRenderer(DCsAppleMilk.eightEyesArm, new RenderEightEyesArm());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(DCsAppleMilk.cocktailSP), new RenderItemCocktailSP());
 		
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipeID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_cafe.png"));
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipe2ID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_yome.png"));

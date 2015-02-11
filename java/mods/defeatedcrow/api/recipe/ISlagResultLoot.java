@@ -1,5 +1,7 @@
 package mods.defeatedcrow.api.recipe;
 
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 
 /**
@@ -26,5 +28,9 @@ public interface ISlagResultLoot {
 	 * @param tier : 追加するアイテムのtier
 	 * */
 	void addLoot(ItemStack item, int tier);
+	
+	List<ItemStack> getLootList(int tier);
+	
+	
 
 }

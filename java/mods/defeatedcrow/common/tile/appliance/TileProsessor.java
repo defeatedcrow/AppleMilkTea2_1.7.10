@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import mods.defeatedcrow.api.recipe.IProsessorRecipe;
+import mods.defeatedcrow.api.recipe.IProcessorRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.recipe.ProsessorRecipeRegister.ProsessorRecipe;
+import mods.defeatedcrow.recipe.ProcessorRecipeRegister.ProcessorRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -48,7 +48,7 @@ public class TileProsessor extends MachineBase{
 		boolean flag2 = false;
 		
 		List<ItemStack> items = new ArrayList<ItemStack>(this.getCurrentContains());
-		List<IProsessorRecipe> recipes = new ArrayList<IProsessorRecipe>((List<IProsessorRecipe>) RecipeRegisterManager.prosessorRecipe.getRecipes());
+		List<IProcessorRecipe> recipes = new ArrayList<IProcessorRecipe>((List<IProcessorRecipe>) RecipeRegisterManager.processorRecipe.getRecipes());
 		if (recipes == null || recipes.isEmpty()) return false;
 		
 		ItemStack output = null;
@@ -56,7 +56,7 @@ public class TileProsessor extends MachineBase{
 		ItemStack cont = null;
 		float chance = 1.0F;
 		
-		for(IProsessorRecipe recipe : recipes)
+		for(IProcessorRecipe recipe : recipes)
 		{
 			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && recipe.matches(items))
 			{
@@ -146,13 +146,13 @@ public class TileProsessor extends MachineBase{
 	public void onProgress() {
 		//結局canSmelt()と同じことをしていて無駄な感じはする
 		List<ItemStack> items = new ArrayList<ItemStack>(this.getCurrentContains());
-		List<IProsessorRecipe> recipes = new ArrayList<IProsessorRecipe>((List<IProsessorRecipe>) RecipeRegisterManager.prosessorRecipe.getRecipes());
+		List<IProcessorRecipe> recipes = new ArrayList<IProcessorRecipe>((List<IProcessorRecipe>) RecipeRegisterManager.prosessorRecipe.getRecipes());
 		if (recipes == null || recipes.isEmpty()) return;
 		
-		IProsessorRecipe activeRecipe = null;
+		IProcessorRecipe activeRecipe = null;
 		boolean flag = false;
 		
-		for(IProsessorRecipe recipe : recipes)
+		for(IProcessorRecipe recipe : recipes)
 		{
 			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && recipe.matches(items))
 			{
@@ -164,7 +164,7 @@ public class TileProsessor extends MachineBase{
 		if (flag && activeRecipe != null)
 		{
 			//まずは材料を減らす
-			List<Object> required = new ArrayList<Object>(activeRecipe.getProsessedInput());
+			List<Object> required = new ArrayList<Object>(activeRecipe.getProcessedInput());
 			ItemStack output = activeRecipe.getOutput();
 			ItemStack sec = activeRecipe.getSecondary();
 			ItemStack cont = activeRecipe.getContainerItem(items);

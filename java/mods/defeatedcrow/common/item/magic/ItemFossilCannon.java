@@ -330,5 +330,11 @@ public class ItemFossilCannon extends ItemBow implements IBattery{
     {
         return true;
     }
+	
+//	@SideOnly(Side.CLIENT)
+//    public boolean shouldRotateAroundWhenRendering()
+//    {
+//        return true;
+//    }
 
 }

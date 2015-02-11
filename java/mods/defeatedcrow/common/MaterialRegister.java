@@ -82,6 +82,7 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.chopsticks,"defeatedcrow.chopsticks");
 		GameRegistry.registerItem(DCsAppleMilk.yuzuGatling, "defeatedcrow.yuzuGatling");
 		GameRegistry.registerItem(DCsAppleMilk.fossilCannon, "defeatedcrow.fossilCannon");
+		GameRegistry.registerItem(DCsAppleMilk.eightEyesArm, "defeatedcrow.debugArm");
 		
 		//たべもの
 		GameRegistry.registerItem(DCsAppleMilk.bakedApple, "defeatedcrow.bakedApple");
@@ -211,6 +212,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.alcoholCup, EntityItemAlcoholCup.class, "defeatedcrow.alcoholCup");
 		GameRegistry.registerBlock(DCsAppleMilk.cocktail, EntityItemCocktail.class, "defeatedcrow.cocktail");
 		GameRegistry.registerBlock(DCsAppleMilk.cocktail2, EntityItemCocktail2.class, "defeatedcrow.cocktail2");
+		GameRegistry.registerBlock(DCsAppleMilk.cocktailSP, EntityItemCocktailSP.class, "defeatedcrow.cocktailSP");
 	}
 	
 	public void addPotion()
@@ -483,6 +485,10 @@ public class MaterialRegister {
 		DCsAppleMilk.fossilCannon = (new ItemFossilCannon())
 				.setUnlocalizedName("defeatedcrow.fossilCannon")
 				.setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.eightEyesArm = (new ItemDebugArm())
+				.setUnlocalizedName("defeatedcrow.debugArm");
+		
 	}
 	
 	static void addFoods()
@@ -594,6 +600,10 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.cocktail2 = (new BlockCocktail2()).
 				setBlockName("defeatedcrow.cocktail2").
+				setCreativeTab(DCsAppleMilk.applemilkFood);
+		
+		DCsAppleMilk.cocktailSP = (new BlockCocktailSP()).
+				setBlockName("defeatedcrow.cocktailSP").
 				setCreativeTab(DCsAppleMilk.applemilkFood);
 		
 		DCsAppleMilk.emptyBottle = (new BlockEmptyBottle()).

@@ -155,6 +155,10 @@ public class RegisterMakerRecipe {
 				new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 33));
 		
 		RecipeRegisterManager.iceRecipe.registerCharger(new ItemStack(DCsAppleMilk.icyCrystal, 1, 0), 64);
+		RecipeRegisterManager.iceRecipe.registerCharger(new ItemStack(Blocks.ice, 1, 0), 8);
+		RecipeRegisterManager.iceRecipe.registerCharger(new ItemStack(Blocks.packed_ice, 1, 0), 16);
+		RecipeRegisterManager.iceRecipe.registerCharger(new ItemStack(Blocks.snow, 1, 0), 4);
+		RecipeRegisterManager.iceRecipe.registerCharger(new ItemStack(Items.snowball, 1, 0), 1);
 		
 	}
 	
@@ -219,210 +223,210 @@ public class RegisterMakerRecipe {
 				"clamsoup", "Clam Soup");
 	}
 	
-	public void registerProsessor()
+	public void registerProcessor()
 	{
 		//プロセッサー用の新規レシピ
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 2, 0), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 2, 0), true, null,
 				new Object[]{DCsAppleMilk.leafTea});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 2, 6), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 2, 6), true, null,
 				new Object[]{DCsAppleMilk.clam});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.yeast, 1, 0), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.yeast, 1, 0), true, null,
 				new Object[]{"cropApple", Items.sugar, DCsAppleMilk.bowlBlock});
 		
 		//おろし金レシピの移植
 		//茶葉
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 0), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 0), true, null,
 				new Object[]{"cropApple"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 1), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 1), true, null,
 				new Object[]{"cropPeach"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 1), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 1), true, null,
 				new Object[]{"cropBanana"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 9), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 9), true, null,
 				new Object[]{"cropOrange"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 1), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 1), true, null,
 				new Object[]{"cropPlum"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 2), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 2), true, null,
 				new Object[]{"cropLemon","dropHoney"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 3), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 3), true, null,
 				new Object[]{"cropCoffee"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 5), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 5), true, null,
 				new Object[]{"cropLime"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 5), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 5), true, null,
 				new Object[]{"cropCitron"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 6), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 6), true, null,
 				new Object[]{"cropTomato"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 6), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 6), true, null,
 				new Object[]{"tomato"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), true, null,
 				new Object[]{"cropStrawberry"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), true, null,
 				new Object[]{"cropBlueberry"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), true, null,
 				new Object[]{"cropRaspberry"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), true, null,
 				new Object[]{"cropBlackberry"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), true, null,
 				new Object[]{"cropCassis"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 8), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 8), true, null,
 				new Object[]{"cropGrape"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 8), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 8), true, null,
 				new Object[]{"grape"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 2), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 2), true, null,
 				new Object[]{"cropOrange", new ItemStack(DCsAppleMilk.foodTea, 1, 1)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 2), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 2), true, null,
 				new Object[]{"cropCitron", new ItemStack(DCsAppleMilk.foodTea, 1, 1)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 3), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 3), true, null,
 				new Object[]{"cropApple", new ItemStack(DCsAppleMilk.foodTea, 1, 1)});
 		
 		//鍋材料
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 0), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 0), true, null,
 				new Object[]{Blocks.brown_mushroom, Blocks.red_mushroom});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), true, null,
 				new Object[]{new ItemStack(Items.fish, 1, 0), Items.carrot, Items.potato, "bucketMilk"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), true, null,
 				new Object[]{new ItemStack(Items.fish, 1, 1), Items.carrot, Items.potato, "bucketMilk"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 2), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 2), true, null,
 				new Object[]{Items.egg, Items.chicken, "cropRice"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 2), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 2), true, null,
 				new Object[]{Items.egg, Items.chicken, "cropWheat"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 3), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 3), true, null,
 				new Object[]{"cropRice"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 3), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 3), true, null,
 				new Object[]{"cropWheat"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), true, null,
 				new Object[]{new ItemStack(DCsAppleMilk.EXItems, 1, 2), "cropRice"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), true, null,
 				new Object[]{new ItemStack(DCsAppleMilk.EXItems, 1, 2), "cropWheat"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
 				new Object[]{Items.chicken, "leek", "bucketSoymilk", "tofuKinu"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
 				new Object[]{Items.chicken, "leek", "bucketSoymilk", "tofuMomen"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
 				new Object[]{Items.chicken, "cropLeek", "foodSoymilk", "foodSilkentofu"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 6), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 6), true, null,
 				new Object[]{Blocks.pumpkin, "bucketMilk"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), true, null,
 				new Object[]{Items.porkchop, "cropLettus", "cropTomato"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), true, null,
 				new Object[]{Items.porkchop, "cabbage", "tomato"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), true, null,
 				new Object[]{new ItemStack(Items.dye,1,3), new ItemStack(Items.dye,1,3), "bucketMilk", "dustSugar"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 4), true, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 4), true, null,
 				new Object[]{new ItemStack(DCsAppleMilk.mincedFoods, 1 ,8), "bucketMilk"});
 		
 		//砕石機
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.flint), false, new ItemStack(Blocks.sand),
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.flint), false, new ItemStack(Blocks.sand),
 				new Object[]{new ItemStack(Blocks.gravel)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.clay_ball), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.clay_ball), false, null,
 				new Object[]{new ItemStack(Blocks.sand)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Blocks.sand), false, new ItemStack(Items.rotten_flesh),
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.sand), false, new ItemStack(Items.rotten_flesh),
 				new Object[]{new ItemStack(Blocks.soul_sand)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, null,
 				new Object[]{"dustAsh", "dustOilCake", new ItemStack(Items.dye, 1, 15), new ItemStack(Blocks.sand)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, null,
 				new Object[]{"dustAsh", "dustOilCake", new ItemStack(DCsAppleMilk.EXItems, 1, 6), new ItemStack(Blocks.sand)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, null,
 				new Object[]{"logWood"});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 1), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 1), false, null,
 				new Object[]{new ItemStack(Items.coal, 1, 1)});
 		
 		//ツール還元
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 24, 7), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 24, 7), false, null,
 				new Object[]{new ItemStack(Items.iron_axe, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 16, 7), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 16, 7), false, null,
 				new Object[]{new ItemStack(Items.iron_hoe, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 24, 7), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 24, 7), false, null,
 				new Object[]{new ItemStack(Items.iron_pickaxe, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 8, 7), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 8, 7), false, null,
 				new Object[]{new ItemStack(Items.iron_shovel, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 16, 7), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 16, 7), false, null,
 				new Object[]{new ItemStack(Items.iron_sword, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 32, 7), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 32, 7), false, null,
 				new Object[]{new ItemStack(Items.iron_boots, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 64, 7), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 64, 7), false, null,
 				new Object[]{new ItemStack(Items.iron_chestplate, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 40, 7), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 40, 7), false, null,
 				new Object[]{new ItemStack(Items.iron_helmet, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 56, 7), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 56, 7), false, null,
 				new Object[]{new ItemStack(Items.iron_leggings, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 16, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 16, 0), false, null,
 				new Object[]{new ItemStack(Items.golden_hoe, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 24, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 24, 0), false, null,
 				new Object[]{new ItemStack(Items.golden_pickaxe, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 8, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 8, 0), false, null,
 				new Object[]{new ItemStack(Items.golden_shovel, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 24, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 24, 0), false, null,
 				new Object[]{new ItemStack(Items.golden_axe, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 16, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 16, 0), false, null,
 				new Object[]{new ItemStack(Items.golden_sword, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 32, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 32, 0), false, null,
 				new Object[]{new ItemStack(Items.golden_boots, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 64, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 64, 0), false, null,
 				new Object[]{new ItemStack(Items.golden_chestplate, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 40, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 40, 0), false, null,
 				new Object[]{new ItemStack(Items.golden_helmet, 1, 32767)});
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 56, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.gold_nugget, 56, 0), false, null,
 				new Object[]{new ItemStack(Items.golden_leggings, 1, 32767)});
 	}
 	
@@ -496,13 +500,13 @@ public class RegisterMakerRecipe {
 	
 	public void addKelpRecipe()
 	{
-		 RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
+		 RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
 					new Object[]{"miso", "cropSeaWeed", "tofuKinu"});
 		 
-		 RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
+		 RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
 					new Object[]{"miso", "cropSeaWeed", "tofuMomen"});
 		 
-		 RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), true, null,
+		 RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), true, null,
 					new Object[]{"foodClam", "cropSeaWeed"});
 		 
 		 ArrayList<ItemStack> kelps = new ArrayList<ItemStack>();
@@ -513,13 +517,13 @@ public class RegisterMakerRecipe {
 		 
 		 for (ItemStack kelp : kelps)
 			{
-			 	RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
+			 	RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
 						new Object[]{"miso", kelp, "tofuKinu"});
 			 
-			 	RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
+			 	RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
 						new Object[]{"miso", kelp, "tofuMomen"});
 				 
-				RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), true, null,
+				RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), true, null,
 							new Object[]{"foodClam", kelp});
 			}
 	}
@@ -549,7 +553,7 @@ public class RegisterMakerRecipe {
 	{
 		OreDictionary.registerOre("logYuzuWood", new ItemStack(DCsAppleMilk.logYuzu, 1, 0));
 		
-		RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, null,
 				new Object[]{"logYuzuWood"});
 	}
 

@@ -11,6 +11,7 @@ public interface IPlateRecipeRegister {
 	 * レシピのリストを取得する。
 	 * */
 	List<? extends IPlateRecipe> getRecipeList();
+	List<ItemStack> getHeatSourceList();
 	
 	/**
 	 * ItemStackに登録されたレシピを返すメソッド。

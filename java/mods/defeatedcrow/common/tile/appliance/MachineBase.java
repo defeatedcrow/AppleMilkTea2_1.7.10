@@ -168,6 +168,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	}
 	
 	//チャージゲージ上限も変更可能に。
+	@Override
 	public int getMaxChargeAmount()
 	{
 		return 25600;

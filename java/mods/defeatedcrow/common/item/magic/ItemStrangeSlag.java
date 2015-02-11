@@ -3,8 +3,10 @@ package mods.defeatedcrow.common.item.magic;
 import java.util.ArrayList;
 import java.util.Random;
 
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.api.events.UseSlagEvent;
 import mods.defeatedcrow.recipe.OreCrushRecipe;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
@@ -14,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ItemStrangeSlag extends Item{
 	
@@ -47,6 +50,20 @@ public class ItemStrangeSlag extends Item{
 		
 		ItemStack ret = this.returnItem(itemstack, world, entityplayer);
 		boolean flag = false;
+		
+		UseSlagEvent event = new UseSlagEvent(world, entityplayer, ret);
+		MinecraftForge.EVENT_BUS.post(event);
+		boolean res = false;
+		
+		if (event.hasResult() && event.getResult() == Result.ALLOW)
+		{
+			ret = event.returnItem;
+		}
+		
+        if (event.isCanceled())
+        {
+            return itemstack;
+        }
 		
 		if (ret != null && ret.getItem() != null)
 		{

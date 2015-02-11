@@ -5,7 +5,7 @@ import java.util.List;
 
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.recipe.ProsessorRecipeRegister.ProsessorRecipe;
+import mods.defeatedcrow.recipe.ProcessorRecipeRegister.ProcessorRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -40,8 +40,8 @@ public class ProsessorRecipeHandlerCG implements RecipeProvider{
 		RecipeTemplate template;
 		ItemStack machine = new ItemStack(DCsAppleMilk.prosessor, 1, 0);
 		template = generator.createRecipeTemplate(this.slots, machine, "defeatedcrow:textures/gui/craftguidegui.png", 1, 120, 82, 120);
-		List<ProsessorRecipe> recipeGet = (List<ProsessorRecipe>) RecipeRegisterManager.prosessorRecipe.getRecipes();
-		for(ProsessorRecipe recipe : recipeGet)
+		List<ProcessorRecipe> recipeGet = (List<ProcessorRecipe>) RecipeRegisterManager.prosessorRecipe.getRecipes();
+		for(ProcessorRecipe recipe : recipeGet)
 		{
 			boolean food = recipe.isFoodRecipe();
 			if (!food) continue;
@@ -52,7 +52,7 @@ public class ProsessorRecipeHandlerCG implements RecipeProvider{
 	        items[1] = second;
 	        items[2] = machine;
 	        int i = 3;
-	        for (Object obj : recipe.getProsessedInput())
+	        for (Object obj : recipe.getProcessedInput())
 	        {
 	        	if (i > 11) break;
 	        	ItemStack item;

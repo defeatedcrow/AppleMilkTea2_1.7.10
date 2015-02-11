@@ -10,10 +10,12 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidRegistry;
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.*;
 
+//TODO ラム酒のゲット
 public class LoadIC2Plugin {
 	
 	public static ItemStack IC2Cell;
@@ -110,6 +112,11 @@ public class LoadIC2Plugin {
           e.printStackTrace(System.err);
         }
 		
+	}
+	
+	public static boolean isRumBarrel (TileEntity tile, boolean simulate)
+	{
+		return false;
 	}
 
 }

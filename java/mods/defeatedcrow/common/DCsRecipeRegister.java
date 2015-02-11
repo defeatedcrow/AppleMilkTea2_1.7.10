@@ -30,6 +30,7 @@ public class DCsRecipeRegister {
 		OreDictionary.registerOre("dustSugar", new ItemStack(Items.sugar, 1, 0));
 		OreDictionary.registerOre("cropWheat", new ItemStack(Items.wheat, 1, 0));
 		OreDictionary.registerOre("cropApple", new ItemStack(Items.apple, 1, 0));
+		OreDictionary.registerOre("foodEgg", new ItemStack(Items.egg, 1, 0));
 		OreDictionary.registerOre("bucketMilk", new ItemStack(Items.milk_bucket, 1, 0));
 		OreDictionary.registerOre("gemCoal", new ItemStack(Items.coal, 1, 0));
 		
@@ -2694,6 +2695,28 @@ public class DCsRecipeRegister {
 		
 		}
 		
+	}
+	
+	public void addCocktailSPRecipe()
+	{
+		Object[] rec1 = (Object[])DCsConfigCocktail.recipe1;
+		Object[] rec2 = (Object[])DCsConfigCocktail.recipe2;
+		Object[] rec3 = (Object[])DCsConfigCocktail.recipe3;
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktailSP, 1, 0),
+	    		  rec1));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktailSP, 1, 1),
+	    		  rec2));
+		
+		GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.cocktailSP, 1, 2),
+	    		  rec3));
 	}
 	
 	public void addKelpRecipe()

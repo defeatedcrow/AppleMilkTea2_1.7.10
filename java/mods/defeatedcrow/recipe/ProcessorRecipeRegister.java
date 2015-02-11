@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import mods.defeatedcrow.api.recipe.IProsessorRecipe;
-import mods.defeatedcrow.api.recipe.IProsessorRecipeRegister;
+import mods.defeatedcrow.api.recipe.IProcessorRecipe;
+import mods.defeatedcrow.api.recipe.IProcessorRecipeRegister;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
@@ -19,24 +19,24 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
+public class ProcessorRecipeRegister implements IProcessorRecipeRegister{
 
-	private static List<ProsessorRecipe> recipes;
+	private static List<ProcessorRecipe> recipes;
 	
-	public ProsessorRecipeRegister()
+	public ProcessorRecipeRegister()
 	{
-		this.recipes = new ArrayList<ProsessorRecipe>();
+		this.recipes = new ArrayList<ProcessorRecipe>();
 	}
 	
-	public IProsessorRecipeRegister instance()
+	public IProcessorRecipeRegister instance()
 	{
-		return RecipeRegisterManager.prosessorRecipe;
+		return RecipeRegisterManager.processorRecipe;
 	}
 	
 	@Override
 	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, float secondaryChance, Object... input){
 		float c = MathHelper.clamp_float(0.0F, secondaryChance, 1.0F);
-		recipes.add(new ProsessorRecipe(output, secondary, flag, c, input));
+		recipes.add(new ProcessorRecipe(output, secondary, flag, c, input));
 		AMTLogger.debugInfo("Add Prosessor recipe: output " + output.getDisplayName());
 	}
 	
@@ -45,11 +45,11 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 	}
 
 	@Override
-	public List<ProsessorRecipe> getRecipes() {
+	public List<ProcessorRecipe> getRecipes() {
 		return this.recipes;
 	}
 	
-	public class ProsessorRecipe implements IProsessorRecipe{
+	public class ProcessorRecipe implements IProcessorRecipe{
 		
 		public final ItemStack output;
 		public final ItemStack secondary;
@@ -59,7 +59,7 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 		
 		public final boolean foodRecipe;
 		
-		public ProsessorRecipe(ItemStack output, ItemStack sec, boolean flag, float secondaryChance, Object... inputs)
+		public ProcessorRecipe(ItemStack output, ItemStack sec, boolean flag, float secondaryChance, Object... inputs)
 		{
 			this.output = output;
 			this.input = inputs;
@@ -138,6 +138,13 @@ public class ProsessorRecipeRegister implements IProsessorRecipeRegister{
 			return this.foodRecipe;
 		}
 		
+		@Override
+		public List<Object> getProcessedInput()
+		{
+			return new ArrayList<Object>(this.processedInput);
+		}
+		
+		@Deprecated
 		@Override
 		public List<Object> getProsessedInput()
 		{

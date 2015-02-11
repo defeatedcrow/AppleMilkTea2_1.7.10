@@ -126,9 +126,9 @@ public class BlockTeppanII extends BlockContainer{
 	{
 		boolean flag = this.isOvenMode(par1World, par2, par3, par4);
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
-		if (tile instanceof TileTeppanII){
-			((TileTeppanII)tile).setOvenMode(flag);
-		}
+//		if (tile instanceof TileTeppanII){
+//			((TileTeppanII)tile).setOvenMode(flag);
+//		}
 		par1World.scheduleBlockUpdate(par2, par3, par4, this, this.tickRate(par1World));
 	}
 	
@@ -143,26 +143,31 @@ public class BlockTeppanII extends BlockContainer{
     {
 		boolean flag = this.isOvenMode(par1World, par2, par3, par4);
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
-		if (tile instanceof TileTeppanII){
-			((TileTeppanII)tile).setOvenMode(flag);
-		}
+//		if (tile instanceof TileTeppanII){
+//			((TileTeppanII)tile).setOvenMode(flag);
+//		}
 		par1World.scheduleBlockUpdate(par2, par3, par4, this, this.tickRate(par1World));
     }
 	
 	public boolean isOvenMode(World world, int x, int y, int z)
 	{
 		int count = 0;
+		boolean b = false;
+		
 		if (world.canBlockSeeTheSky(x, y, z)){
-			boolean b = true;
-			for (int i = 0 ; i < 5 ; i++)
-			{
-				if (!world.isAirBlock(x, y + 1 + i, z)
-						|| world.getBlock(x, y + 1 + i, z).getMaterial() != Material.water)
-				{
-					b = false;
-				}
-			}
-			if (b) return false;
+//			for (int i = 0 ; i < 3 ; i++)
+//			{
+//				if (!world.isAirBlock(x, y + 1 + i, z)
+//						&& world.getBlock(x, y + 1 + i, z).getMaterial() != Material.water)
+//				{
+//					b = true;
+//				}
+//			}
+			return false;
+		}
+		else
+		{
+			b = true;
 		}
 		
 		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS)
@@ -171,16 +176,20 @@ public class BlockTeppanII extends BlockContainer{
 			else
 			{
 				int x1 = x + dir.offsetX;
-				int y1 = y + dir.offsetY;
+				int y1 = y;
 				int z1 = z + dir.offsetZ;
-				if (!world.isAirBlock(x1, y1 ,z1)
-						&& world.getBlock(x1, y1, z1).getMaterial() != Material.water);
+				Block block = world.getBlock(x1, y1, z1);
+				if (block == null || world.isAirBlock(x1, y1 ,z1)) continue;
+				
+				if (block.getMaterial() != Material.water
+						&& block.getMaterial() != Material.air);
+
 				{
 					count++;
 				}
 			}
 		}
-		return count > 3;
+		return b && count > 3;
 	}
 	
 	@Override

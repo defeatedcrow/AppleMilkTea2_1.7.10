@@ -25,6 +25,7 @@ import net.minecraftforge.common.MinecraftForge;
 import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.TileCocktail;
+import mods.defeatedcrow.common.tile.TileCocktail2;
 
 public class BlockCocktail2 extends BlockContainer{
 	
@@ -180,7 +181,7 @@ public class BlockCocktail2 extends BlockContainer{
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int a) {
-		return new TileCocktail();
+		return new TileCocktail2();
 	}
 	
 }

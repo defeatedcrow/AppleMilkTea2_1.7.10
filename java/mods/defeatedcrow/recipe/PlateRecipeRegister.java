@@ -27,6 +27,12 @@ public class PlateRecipeRegister implements IPlateRecipeRegister{
 		return this.recipes;
 	}
 	
+	@Override
+	public List<ItemStack> getHeatSourceList()
+	{
+		return this.heatSource;
+	}
+	
 	public IPlateRecipeRegister instance()
 	{
 		return RecipeRegisterManager.plateRecipe;

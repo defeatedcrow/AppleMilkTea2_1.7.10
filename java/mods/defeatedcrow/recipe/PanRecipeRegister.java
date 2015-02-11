@@ -28,6 +28,12 @@ public class PanRecipeRegister implements IPanRecipeRegister{
 		return this.recipes;
 	}
 	
+	@Override
+	public List<ItemStack> getHeatSourceList()
+	{
+		return this.heatSource;
+	}
+	
 	public IPanRecipeRegister instance()
 	{
 		return RecipeRegisterManager.panRecipe;
@@ -82,7 +88,7 @@ public class PanRecipeRegister implements IPanRecipeRegister{
 	public void register(ItemStack input, ItemStack output, String tex, String disp) {
 		if (input != null)
 		{
-			register(input, output, null, tex);
+			register(input, output, output, tex, disp);
 		}
 	}
 

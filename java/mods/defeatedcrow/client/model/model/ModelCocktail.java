@@ -1,5 +1,7 @@
 package mods.defeatedcrow.client.model.model;
 
+import mods.defeatedcrow.common.block.edible.BlockCocktailSP.DecorationType;
+import mods.defeatedcrow.common.block.edible.BlockCocktailSP.ModelType;
 import net.minecraft.src.*;
 import net.minecraft.util.MathHelper;
 import net.minecraft.client.model.ModelBase;
@@ -164,6 +166,20 @@ public class ModelCocktail extends ModelBase
     }
   }
   
+  public void renderInnerSP(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, ModelType type)
+  {
+    super.render(entity, f, f1, f2, f3, f4, f5);
+    setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    
+    if (type == ModelType.LONG) {
+    	inner1.render(f5);
+    }
+    else
+    {
+    	inner2.render(f5);
+    }
+  }
+  
   public void renderDeco(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, byte b0)
   {
     super.render(entity, f, f1, f2, f3, f4, f5);
@@ -174,6 +190,17 @@ public class ModelCocktail extends ModelBase
     else if (b0 == 3) pine.render(f5);
     else if (b0 == 4) apple.render(f5);
     else if (b0 == 5) bubble.render(f5);
+  }
+  
+  public void renderDecoSP(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, DecorationType type)
+  {
+    super.render(entity, f, f1, f2, f3, f4, f5);
+    setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    
+    if (type == DecorationType.LIME) lime.render(f5);
+    else if (type == DecorationType.LEMON) lemon.render(f5);
+    else if (type == DecorationType.PINE) pine.render(f5);
+    else if (type == DecorationType.APPLE) apple.render(f5);
   }
   
   public void renderGlass(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, byte b0)
@@ -199,6 +226,37 @@ public class ModelCocktail extends ModelBase
     	Cside4.render(f5);
     }
     else {
+    	Aside1.render(f5);
+    	Aside2.render(f5);
+    	Aside3.render(f5);
+    	Aside4.render(f5);
+    	Aleg.render(f5);
+    	Aleg2.render(f5);
+    }
+  }
+  
+  public void renderGlassSP(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, ModelType type)
+  {
+    super.render(entity, f, f1, f2, f3, f4, f5);
+    setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+    
+    bottom.render(f5);
+    if (type == ModelType.LONG) {
+    	Bside1.render(f5);
+    	Bside2.render(f5);
+    	Bside3.render(f5);
+    	Bside4.render(f5);
+    }
+    else if (type == ModelType.WINE) {
+    	Aleg.render(f5);
+    	Aleg2.render(f5);
+    	
+    	Cside1.render(f5);
+    	Cside2.render(f5);
+    	Cside3.render(f5);
+    	Cside4.render(f5);
+    }
+    else if (type == ModelType.SHORT){
     	Aside1.render(f5);
     	Aside2.render(f5);
     	Aside3.render(f5);

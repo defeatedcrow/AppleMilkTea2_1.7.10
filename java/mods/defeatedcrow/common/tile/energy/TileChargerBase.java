@@ -3,6 +3,7 @@ package mods.defeatedcrow.common.tile.energy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.api.charge.ChargeItemManager;
+import mods.defeatedcrow.api.charge.IChargeItem;
 import mods.defeatedcrow.api.charge.IChargeableMachine;
 import mods.defeatedcrow.api.energy.IBattery;
 import mods.defeatedcrow.common.DCsConfig;
@@ -17,6 +18,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 
 /*AMT単体で動作させる場合は、このクラスだけで事足りる*/
 public class TileChargerBase extends TileEntity implements ISidedInventory, IChargeableMachine{
@@ -101,6 +103,7 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 	}
 	
 	//チャージゲージ上限も変更可能に。
+	@Override
 	public int getMaxChargeAmount()
 	{
 		return MAX_CHARGE;
@@ -138,6 +141,7 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 		{
 			if (this.coolTime == 0)
 			{
+				ItemStack retItem = null;
 				//チャージが満タンではないか？
 				if (!flag && this.isItemFuel(this.itemstacks[0]))
 				{
@@ -146,18 +150,33 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 	 
 					if (i <= this.getMaxChargeAmount())//指定したチャージ上限より小さいかどうか
 					{
-						this.chargeAmount = i;
-						flag1 = true;
-	 
 						if (this.itemstacks[0].getItem() instanceof IBattery)
 						{
 							//IBatteryの場合、ここでは空容器のスロット移動は行わない。
 							IBattery bat = (IBattery) this.itemstacks[0].getItem();
 							bat.discharge(this.itemstacks[0], 16, true);
+							this.chargeAmount = i;
+							flag1 = true;
+						}
+						else if (this.batteryContainerItem(this.itemstacks[0]) != null)
+						{
+							//containerがある場合
+							if (this.itemstacks[1] == null
+									|| (this.itemstacks[1].getItem() == this.batteryContainerItem(this.itemstacks[0]).getItem()
+									    && this.itemstacks[1].getItemDamage() == this.batteryContainerItem(this.itemstacks[0]).getItemDamage()
+										&& this.itemstacks[1].stackSize < this.itemstacks[1].getMaxStackSize()))
+							{
+								retItem = this.batteryContainerItem(this.itemstacks[0]);
+								
+								this.chargeAmount = i;
+								flag1 = true;
+							}
 						}
 						else//スロット1のアイテムを減らす
 						{
 							this.decrStackSize(0, 1);
+							this.chargeAmount = i;
+							flag1 = true;
 						}
 					}
 					
@@ -173,6 +192,18 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 						this.setInventorySlotContents(1, this.itemstacks[0].copy());
 						this.decrStackSize(0, 1);
 					}
+				}
+				else if (retItem != null && flag1)
+				{
+					if (this.itemstacks[1] == null)
+					{
+						this.setInventorySlotContents(1, retItem.copy());
+					}
+					else
+					{
+						++this.itemstacks[1].stackSize;
+					}
+					this.decrStackSize(0, 1);
 				}
 				
 				//次はスロット2~9の充電池を順に充電していく
@@ -326,6 +357,30 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 	public int chargeAnotherBattery(ItemStack item, int inc, boolean isSimulate)
 	{
 		return 0;
+	}
+	
+	/**
+	 * 空容器返却
+	 * */
+	public ItemStack batteryContainerItem(ItemStack item)
+	{
+		if (item != null && item.getItem() != null)
+		{
+			if (item.getItem() instanceof IChargeItem)
+			{
+				return ((IChargeItem)item.getItem()).returnItem();
+			}
+			else if (FluidContainerRegistry.isFilledContainer(item))
+			{
+				return FluidContainerRegistry.drainFluidContainer(item);
+			}
+			else
+			{
+				return item.getItem().getContainerItem(item);
+			}
+		}
+		
+		return (ItemStack)null;
 	}
 	
 /* ========== 以下、ISidedInventoryのメソッド ==========*/

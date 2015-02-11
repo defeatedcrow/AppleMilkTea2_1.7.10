@@ -192,7 +192,7 @@ public class ModelBarrel extends ModelBase
     l4.render(f5);
     l5.render(f5);
     base1.render(f5);
-    base1.render(f5);
+    base2.render(f5);
   }
   
   public void renderSide(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -233,28 +233,7 @@ public class ModelBarrel extends ModelBase
     l4.rotateAngleY = f3 / (180F / (float)Math.PI);
     l5.rotateAngleY = f3 / (180F / (float)Math.PI);
     base1.rotateAngleY = f3 / (180F / (float)Math.PI);
-    base1.rotateAngleY = f3 / (180F / (float)Math.PI);
-    side2.rotateAngleY = f3 / (180F / (float)Math.PI);
-    side3.rotateAngleY = f3 / (180F / (float)Math.PI);
-    side4.rotateAngleY = f3 / (180F / (float)Math.PI);
-    side5.rotateAngleY = f3 / (180F / (float)Math.PI);
-    side6.rotateAngleY = f3 / (180F / (float)Math.PI);
-    side7.rotateAngleY = f3 / (180F / (float)Math.PI);
-    side8.rotateAngleY = f3 / (180F / (float)Math.PI);
-    side9.rotateAngleY = f3 / (180F / (float)Math.PI);
-    side10.rotateAngleY = f3 / (180F / (float)Math.PI);
-    r1.rotateAngleY = f3 / (180F / (float)Math.PI);
-    r2.rotateAngleY = f3 / (180F / (float)Math.PI);
-    r3.rotateAngleY = f3 / (180F / (float)Math.PI);
-    r4.rotateAngleY = f3 / (180F / (float)Math.PI);
-    r5.rotateAngleY = f3 / (180F / (float)Math.PI);
-    l1.rotateAngleY = f3 / (180F / (float)Math.PI);
-    l2.rotateAngleY = f3 / (180F / (float)Math.PI);
-    l3.rotateAngleY = f3 / (180F / (float)Math.PI);
-    l4.rotateAngleY = f3 / (180F / (float)Math.PI);
-    l5.rotateAngleY = f3 / (180F / (float)Math.PI);
-    base1.rotateAngleY = f3 / (180F / (float)Math.PI);
-    base1.rotateAngleY = f3 / (180F / (float)Math.PI);
+    base2.rotateAngleY = f3 / (180F / (float)Math.PI);
   }
 
 }

@@ -8,6 +8,8 @@ public interface IChargeableMachine {
 	
 	public abstract int getChargeAmount();
 	
+	public abstract int getMaxChargeAmount();
+	
 	public abstract boolean canReceiveChargeItem(ItemStack item);
 
 }

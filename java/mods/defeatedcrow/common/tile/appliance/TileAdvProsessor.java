@@ -3,7 +3,7 @@ package mods.defeatedcrow.common.tile.appliance;
 import java.util.ArrayList;
 import java.util.List;
 
-import mods.defeatedcrow.api.recipe.IProsessorRecipe;
+import mods.defeatedcrow.api.recipe.IProcessorRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;

@@ -11,6 +11,7 @@ public interface IPanRecipeRegister {
 	 * レシピのリストを取得する。
 	 * */
 	List<? extends IPanRecipe> getRecipeList();
+	List<ItemStack> getHeatSourceList();
 	
 	/**
 	 * ItemStackに登録されたレシピを返すメソッド。

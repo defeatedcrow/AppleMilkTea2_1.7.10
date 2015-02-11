@@ -32,7 +32,7 @@ public class CraftingEvent {
 			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.emptyPanGaiden)) {
 				player.triggerAchievement(AchievementRegister.craftPan);
 			}
-			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.teppann)) {
+			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.teppanII)) {
 				player.triggerAchievement(AchievementRegister.craftTeppan);
 			}
 			else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.iceMaker)) {
@@ -90,21 +90,17 @@ public class CraftingEvent {
 				rets.add(new ItemStack(Items.glass_bottle,1,0));
 			}
 			
-			if (m != null && m.getItem() == DCsAppleMilk.itemLargeBottle && m.getItemDamage() > 0) {
+			if (m != null && m.getItem() == DCsAppleMilk.itemLargeBottle) {
 				int type = m.getItemDamage() & 15;
 				int rem = (m.getItemDamage() >> 4) & 7;
-				if (type > 0)
+				rem--;
+				if (rem < 0){
+					rets.add(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0));
+				}
+				else
 				{
-					rem--;
-					if (rem < 0){
-						rets.add(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0));
-					}
-					else
-					{
-						int next = (rem << 4) + type;
-						rets.add(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, next));
-					}
-					
+					int next = (rem << 4) + type;
+					rets.add(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, next));
 				}
 			}
 			else if (m != null && m.getItem() == DCsAppleMilk.itemCordial) {

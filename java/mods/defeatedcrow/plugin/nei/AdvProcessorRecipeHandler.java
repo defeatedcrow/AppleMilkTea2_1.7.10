@@ -7,7 +7,7 @@ import java.util.List;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.client.gui.GuiIceMaker;
 import mods.defeatedcrow.plugin.nei.ProcessorRecipeHandler.RecipeCacher;
-import mods.defeatedcrow.recipe.ProsessorRecipeRegister.ProsessorRecipe;
+import mods.defeatedcrow.recipe.ProcessorRecipeRegister.ProcessorRecipe;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
@@ -29,11 +29,11 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
             {2, 1},
             {2, 2}};
 	
-	private List<ProsessorRecipe> recipes;
+	private List<ProcessorRecipe> recipes;
 	
-	private List<ProsessorRecipe> recipeLoader() {
-		if (RecipeRegisterManager.prosessorRecipe.getRecipes() != null && !RecipeRegisterManager.prosessorRecipe.getRecipes().isEmpty()) {
-			this.recipes = (List<ProsessorRecipe>) RecipeRegisterManager.prosessorRecipe.getRecipes();
+	private List<ProcessorRecipe> recipeLoader() {
+		if (RecipeRegisterManager.processorRecipe.getRecipes() != null && !RecipeRegisterManager.processorRecipe.getRecipes().isEmpty()) {
+			this.recipes = (List<ProcessorRecipe>) RecipeRegisterManager.processorRecipe.getRecipes();
 		}
 		return this.recipes;
 	}
@@ -100,25 +100,25 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 	
 	@Override
 	public String getOverlayIdentifier() {
-	  return "DCsAdvProsessor";
+	  return "DCsAdvProcessor";
 	}
 	
 	@Override
 	public void loadTransferRects() {
-	    transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(80, 25, 20, 20), "DCsAdvProsessor"));
+	    transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(80, 25, 20, 20), "DCsAdvProcessor"));
 	}
 	
 	@Override
     public void loadCraftingRecipes(String outputId, Object... results)
     {
-        if(outputId.equals("DCsAdvProsessor") && getClass() == AdvProcessorRecipeHandler.class)
+        if(outputId.equals("DCsAdvProcessor") && getClass() == AdvProcessorRecipeHandler.class)
         {
-            List<ProsessorRecipe> recipes = this.recipeLoader();
+            List<ProcessorRecipe> recipes = this.recipeLoader();
 
             if(recipes == null || recipes.isEmpty())return;
-            for(ProsessorRecipe recipe : recipes)
+            for(ProcessorRecipe recipe : recipes)
             {
-                List<Object> in = recipe.getProsessedInput();
+                List<Object> in = recipe.getProcessedInput();
                 boolean flag = !recipe.isFoodRecipe();
             	for(Object ret : in) {
             		if (ret instanceof List){
@@ -141,12 +141,12 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
     public void loadCraftingRecipes(ItemStack result)
     {
 
-		List<ProsessorRecipe> recipes = this.recipeLoader();
+		List<ProcessorRecipe> recipes = this.recipeLoader();
 
 		if(recipes == null || recipes.isEmpty())return;
-        for(ProsessorRecipe recipe : recipes)
+        for(ProcessorRecipe recipe : recipes)
         {
-        	List<Object> in = recipe.getProsessedInput();
+        	List<Object> in = recipe.getProcessedInput();
         	//input中にnullがないかチェックする。鉱石辞書レシピ用。
         	boolean flag = !recipe.isFoodRecipe();
         	for(Object ret : in) {
@@ -167,14 +167,14 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
     public void loadUsageRecipes(ItemStack ingredient)
     {
 
-		List<ProsessorRecipe> recipes = this.recipeLoader();
+		List<ProcessorRecipe> recipes = this.recipeLoader();
 
 		if(recipes == null || recipes.isEmpty())return;
-        for(ProsessorRecipe recipe : recipes)
+        for(ProcessorRecipe recipe : recipes)
         {
         	if (recipe == null)continue;
         	
-        	List<Object> in = recipe.getProsessedInput();
+        	List<Object> in = recipe.getProcessedInput();
             ItemStack[] out = new ItemStack[] {recipe.getOutput(),recipe.getSecondary()};
             
             boolean flag = !recipe.isFoodRecipe() && this.contain(in, ingredient);

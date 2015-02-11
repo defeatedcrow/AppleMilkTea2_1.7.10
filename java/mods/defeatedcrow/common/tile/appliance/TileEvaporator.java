@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import buildcraft.api.transport.IPipeConnection;
+import buildcraft.api.transport.IPipeConnection.ConnectOverride;
+import buildcraft.api.transport.IPipeTile.PipeType;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.api.edibles.EdibleItem;
@@ -14,6 +18,7 @@ import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.block.edible.EdibleEntityItemBlock;
 import mods.defeatedcrow.common.fluid.DCsTank;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.item.Item;
@@ -30,7 +35,12 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class TileEvaporator extends MachineBase implements IFluidHandler{
+@Optional.InterfaceList(
+		{
+			@Optional.Interface(iface = "buildcraft.api.transport.IPipeConnection", modid = "BuildCraft|Core"),
+		}
+	)
+public class TileEvaporator extends MachineBase implements IFluidHandler, IPipeConnection{
 	
 	public DCsTank productTank = new DCsTank(4000);
 	
@@ -85,7 +95,11 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 		{
 			ItemStack cur = this.itemstacks[4].copy(); 
 			
-			if (cur.getItem() == Items.bucket)//バケツの場合
+			if (cur.getItem() == Item.getItemFromBlock(Blocks.sand))
+			{
+				this.productTank.drain(this.productTank.getFluidAmount(), true);
+			}
+			else if (cur.getItem() == Items.bucket)//バケツの場合
 			{
 				returnStack = FluidContainerRegistry.fillFluidContainer(
 						new FluidStack(this.productTank.getFluidType(), 1000), new ItemStack(Items.bucket));
@@ -189,6 +203,10 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 		{
 			IEdibleItem edible = (IEdibleItem)items.getItem();
 			container = edible.getReturnContainer(items.getItemDamage());
+		}
+		else if (items.getItem() == DCsAppleMilk.moromi)
+		{
+			
 		}
 		else if (items.getItem().hasContainerItem(items))
 		{
@@ -433,6 +451,14 @@ public class TileEvaporator extends MachineBase implements IFluidHandler{
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
 		return new FluidTankInfo[]{productTank.getInfo()};
+	}
+	
+	//BuildCraft対応
+	@Optional.Method(modid = "BuildCraft|Core")
+	@Override
+	public ConnectOverride overridePipeConnection(PipeType type,
+			ForgeDirection with) {
+		return type == PipeType.FLUID ? ConnectOverride.CONNECT : ConnectOverride.DISCONNECT;
 	}
 
 }

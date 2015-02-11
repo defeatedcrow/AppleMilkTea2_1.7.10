@@ -392,23 +392,23 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 		}
 		else
 		{
-			Item item = par0ItemStack.getItem();
- 
-			if (par0ItemStack.getItem() instanceof ItemBlock && Block.getBlockFromItem(item) != null)
-			{
-				Block block = Block.getBlockFromItem(item);
- 
-				if (block.getMaterial() == Material.craftedSnow)
-				{
-					return 4;
-				}
- 
-				if (block.getMaterial() == Material.ice)
-				{
-					return 8;
-				}
-			}
-			if (item == Items.snowball) return 1;
+//			Item item = par0ItemStack.getItem();
+// 
+//			if (par0ItemStack.getItem() instanceof ItemBlock && Block.getBlockFromItem(item) != null)
+//			{
+//				Block block = Block.getBlockFromItem(item);
+// 
+//				if (block.getMaterial() == Material.craftedSnow)
+//				{
+//					return 4;
+//				}
+// 
+//				if (block.getMaterial() == Material.ice)
+//				{
+//					return 8;
+//				}
+//			}
+//			if (item == Items.snowball) return 1;
 			
 			if (RecipeRegisterManager.iceRecipe.getChargeAmount(par0ItemStack) > 0)
 			{
