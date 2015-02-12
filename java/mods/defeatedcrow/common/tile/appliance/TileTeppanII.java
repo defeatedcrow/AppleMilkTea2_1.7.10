@@ -290,7 +290,7 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 				}
 			}
 		}
-		return b && count > 3;
+		return b && count >= 3;
 	}
 	
 	//実処理
