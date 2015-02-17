@@ -195,20 +195,20 @@ public class BlockFilledPan2 extends BlockContainer{
 		}
 		else
 		{
-            if (LoadBambooPlugin.bambooBasket != null)
-            {
-                if (!player.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
-                {
-                    player.entityDropItem(LoadBambooPlugin.bambooBasket.copy(), 1);
-                }
-            }
-            else
-            {
-                if (!player.inventory.addItemStackToInventory(new ItemStack(Items.bowl,1)))
-                {
-                    player.entityDropItem(new ItemStack(Items.bowl,1), 1);
-                }
-            }
+			if (LoadBambooPlugin.bambooBasket != null)
+			{
+				if (!player.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
+				{
+					player.entityDropItem(LoadBambooPlugin.bambooBasket.copy(), 1);
+				}
+			}
+			else
+			{
+				if (!player.inventory.addItemStackToInventory(new ItemStack(Items.bowl,1)))
+				{
+					player.entityDropItem(new ItemStack(Items.bowl,1), 1);
+				}
+			}
 		}
 		
 		world.playSoundAtEntity(player, "random.pop", 0.4F, 1.8F);
