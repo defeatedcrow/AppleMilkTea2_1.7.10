@@ -70,7 +70,7 @@ public class BlockBowlJP extends BlockContainer{
         {
         	if (currentMeta == 15)
         	{
-        		if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null)
+        		if (LoadBambooPlugin.bambooBasket != null)
         		{
         			if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
                 	{
@@ -101,7 +101,7 @@ public class BlockBowlJP extends BlockContainer{
         {
         	if (currentMeta == 15)
         	{
-        		if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null)
+        		if (LoadBambooPlugin.bambooBasket != null)
         		{
         			if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
                 	{

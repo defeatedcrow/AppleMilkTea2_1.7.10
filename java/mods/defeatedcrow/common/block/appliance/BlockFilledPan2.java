@@ -66,7 +66,7 @@ public class BlockFilledPan2 extends BlockContainer{
     		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
     		return true;
         }
-        else if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null && itemstack.getItem() == LoadBambooPlugin.bambooBasket.getItem())
+        else if (LoadBambooPlugin.bambooBasket != null && itemstack.getItem() == LoadBambooPlugin.bambooBasket.getItem())
         {
         	this.getJPStew(par1World, par2, par3, par4, par5EntityPlayer, itemstack, currentMeta);
 			this.setPanEmpty(par1World, par2, par3, par4, currentMeta);
@@ -195,9 +195,19 @@ public class BlockFilledPan2 extends BlockContainer{
 		}
 		else
 		{
-			if (!player.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
+			if (LoadBambooPlugin.bambooBasket != null)
 			{
-				player.entityDropItem(LoadBambooPlugin.bambooBasket.copy(), 1);
+				if (!player.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
+				{
+					player.entityDropItem(LoadBambooPlugin.bambooBasket.copy(), 1);
+				}
+			}
+			else
+			{
+				if (!player.inventory.addItemStackToInventory(new ItemStack(Items.bowl,1)))
+				{
+					player.entityDropItem(new ItemStack(Items.bowl,1), 1);
+				}
 			}
 		}
 		
