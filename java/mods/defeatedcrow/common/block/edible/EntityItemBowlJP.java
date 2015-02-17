@@ -19,7 +19,7 @@ public class EntityItemBowlJP extends EdibleEntityItemBlock2{
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		
-		if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null) {
+		if (LoadBambooPlugin.bambooBasket != null) {
 			setContainerItem(LoadBambooPlugin.bambooBasket.getItem());
 		}
 		else {
@@ -35,7 +35,7 @@ public class EntityItemBowlJP extends EdibleEntityItemBlock2{
 	@Override
 	public ItemStack getReturnContainer(int meta) {
 		
-		return (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null) ? LoadBambooPlugin.bambooBasket.copy(): new ItemStack(Items.bowl, 1, 0);
+		return (LoadBambooPlugin.bambooBasket != null) ? LoadBambooPlugin.bambooBasket.copy(): new ItemStack(Items.bowl, 1, 0);
 	}
 	
 	@Override
