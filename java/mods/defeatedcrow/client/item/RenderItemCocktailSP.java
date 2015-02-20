@@ -91,37 +91,31 @@ public class RenderItemCocktailSP implements IItemRenderer{
 	        FMLClientHandler.instance().getClient().getTextureManager().bindTexture(innerTex);
 	    	
 //	    	GL11.glPushMatrix();
-	        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 	        GL11.glEnable(GL11.GL_BLEND);
 	        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 	        
 	        GL11.glColor4f(color[0], color[1], color[2], color[3]);
 	        model.renderInnerSP((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, glass);
 	        
-	        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 	        GL11.glDisable(GL11.GL_BLEND);
 //	        GL11.glPopMatrix();
 	    	
 	        FMLClientHandler.instance().getClient().getTextureManager().bindTexture(resource);
 	    	
 //	    	GL11.glPushMatrix();
-	        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 	        
 	        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	        model.renderDecoSP((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, deco);
 	        
-	        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 //	        GL11.glPopMatrix(); 
 	    	
 //	    	GL11.glPushMatrix();
-	        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 	        GL11.glEnable(GL11.GL_BLEND);
 	        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 	        
 	        GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
 	        model.renderGlassSP((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, glass);
 	        
-	        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 	        GL11.glDisable(GL11.GL_BLEND);
 	        GL11.glPopMatrix();
 		}

@@ -2,7 +2,7 @@ package mods.defeatedcrow.common.item;
 
 import java.util.List;
 
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

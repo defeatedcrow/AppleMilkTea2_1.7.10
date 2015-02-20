@@ -3,7 +3,7 @@ package mods.defeatedcrow.client.model.tileentity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.client.model.model.ModelCupHandle;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.tile.TileCupHandle;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;

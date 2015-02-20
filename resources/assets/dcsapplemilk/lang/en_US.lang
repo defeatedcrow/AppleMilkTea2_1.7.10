@@ -1,3 +1,4 @@
+
 tile.defeatedcrow.WoodBox_oak.name=Oak Log Box
 tile.defeatedcrow.WoodBox_spruse.name=Spruce Log Box
 tile.defeatedcrow.WoodBox_birch.name=Birch Log Box
@@ -270,6 +271,7 @@ item.defeatedcrow.icyToffyApple_2.name=Golden Toffee Apple
 item.defeatedcrow.icyToffyApple_3.name=Green Toffee Apple
 item.defeatedcrow.icyToffyApple_4.name=Cassis Candy
 item.defeatedcrow.icyToffyApple_5.name=Mint Candy
+item.defeatedcrow.icyToffyApple_6.name=Yuzu Candy
 item.defeatedcrow.chopsticks_0.name=Chopsticks
 item.defeatedcrow.chopsticks_1.name=Wooden Spoon
 item.defeatedcrow.foodTea_0.name=Green Tea Leaves

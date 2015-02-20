@@ -2,6 +2,7 @@ package mods.defeatedcrow.recipe;
 
 import mods.defeatedcrow.api.charge.ChargeItemManager;
 import mods.defeatedcrow.api.potion.AMTPotionManager;
+import mods.defeatedcrow.api.recipe.IProsessorRecipeRegister;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.potion.PotionGetter;
 
@@ -12,7 +13,7 @@ public class RegisterManager {
 		RecipeRegisterManager.teaRecipe = new TeaRecipeRegister();
 		RecipeRegisterManager.iceRecipe = new IceRecipeRegister();
 		RecipeRegisterManager.processorRecipe = new ProcessorRecipeRegister();
-		RecipeRegisterManager.prosessorRecipe = RecipeRegisterManager.processorRecipe;
+		RecipeRegisterManager.prosessorRecipe = (IProsessorRecipeRegister) RecipeRegisterManager.processorRecipe;
 		RecipeRegisterManager.evaporatorRecipe = new EvaporatorRecipeRegister();
 		RecipeRegisterManager.panRecipe = new PanRecipeRegister();
 		RecipeRegisterManager.plateRecipe = new PlateRecipeRegister();

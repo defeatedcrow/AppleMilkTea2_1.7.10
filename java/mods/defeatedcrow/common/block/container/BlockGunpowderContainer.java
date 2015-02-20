@@ -30,6 +30,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.handler.Util;
 
 public class BlockGunpowderContainer extends Block{

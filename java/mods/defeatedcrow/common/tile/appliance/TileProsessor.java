@@ -68,18 +68,22 @@ public class TileProsessor extends MachineBase{
 			}
 		}
 		
-		if (output == null) return false;
+		if (output == null && sec == null) return false;
 		
-		if (this.itemstacks[11] == null)
-		{
-			flag1 = true;
-		}
+		if (output == null) flag1 = true;
 		else
 		{
-			if (this.itemstacks[11].isItemEqual(output))
+			if (this.itemstacks[11] == null)
 			{
-				int result = this.itemstacks[11].stackSize + output.stackSize;
-				flag1 = (result <= this.getInventoryStackLimit() && result <= output.getMaxStackSize());
+				flag1 = true;
+			}
+			else
+			{
+				if (this.itemstacks[11].isItemEqual(output))
+				{
+					int result = this.itemstacks[11].stackSize + output.stackSize;
+					flag1 = (result <= this.getInventoryStackLimit() && result <= output.getMaxStackSize());
+				}
 			}
 		}
 		
@@ -233,16 +237,19 @@ public class TileProsessor extends MachineBase{
 	            }
 			}
 			
-			AMTLogger.debugInfo("current recipe : " + output.toString());
-			
-			//次に完成品を完成品スロットへ
-			if (this.itemstacks[11] == null)
+			if (output != null)
 			{
-				this.itemstacks[11] = output.copy();
-			}
-			else if (this.itemstacks[11].isItemEqual(output))
-			{
-				this.itemstacks[11].stackSize += output.stackSize;
+				AMTLogger.debugInfo("current recipe : " + output.toString());
+				
+				//次に完成品を完成品スロットへ
+				if (this.itemstacks[11] == null)
+				{
+					this.itemstacks[11] = output.copy();
+				}
+				else if (this.itemstacks[11].isItemEqual(output))
+				{
+					this.itemstacks[11].stackSize += output.stackSize;
+				}
 			}
 			
 			if (sec != null && getSec)

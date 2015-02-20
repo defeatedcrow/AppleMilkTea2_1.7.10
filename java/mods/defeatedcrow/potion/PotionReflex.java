@@ -2,6 +2,7 @@ package mods.defeatedcrow.potion;
 
 import mods.defeatedcrow.api.potion.PotionReflexBase;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityTameable;

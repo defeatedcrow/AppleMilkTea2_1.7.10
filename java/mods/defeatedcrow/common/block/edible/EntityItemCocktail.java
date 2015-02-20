@@ -3,6 +3,7 @@ package mods.defeatedcrow.common.block.edible;
 import java.util.ArrayList;
 
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.entity.edible.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;

@@ -8,7 +8,7 @@ import java.util.List;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.handler.CustomExplosion;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

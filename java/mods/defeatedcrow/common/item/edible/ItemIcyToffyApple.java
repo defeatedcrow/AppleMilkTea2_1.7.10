@@ -19,6 +19,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import mods.defeatedcrow.*;
+import mods.defeatedcrow.api.potion.AMTPotionManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.plugin.LoadSSectorPlugin;
 import cpw.mods.fml.relauncher.Side;
@@ -44,7 +45,7 @@ public class ItemIcyToffyApple extends ItemFood {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1)
     {
-        int j = MathHelper.clamp_int(par1, 0, 5);
+        int j = MathHelper.clamp_int(par1, 0, 6);
         return this.iconToffyType[j];
     }
 
@@ -57,6 +58,7 @@ public class ItemIcyToffyApple extends ItemFood {
 	protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
 		boolean alt = false;
+		boolean alt2 = false;
 		switch(par1ItemStack.getItemDamage())
 		{
 		case 0:
@@ -76,6 +78,10 @@ public class ItemIcyToffyApple extends ItemFood {
 			break;
 		case 5:
 			alt = true;
+			break;
+		case 6:
+			int id = AMTPotionManager.manager.AMTgetPotion("immunization").id;
+			par3EntityPlayer.addPotionEffect(new PotionEffect(id, 2, 3));
 			break;
 		default:
 			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 600, 0));
@@ -117,6 +123,7 @@ public class ItemIcyToffyApple extends ItemFood {
 		par3List.add(new ItemStack(this, 1, 3));
 		par3List.add(new ItemStack(this, 1, 4));
 		par3List.add(new ItemStack(this, 1, 5));
+		par3List.add(new ItemStack(this, 1, 6));
 	}	
 	
 	
@@ -124,7 +131,7 @@ public class ItemIcyToffyApple extends ItemFood {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
     {
-        this.iconToffyType = new IIcon[6];
+        this.iconToffyType = new IIcon[7];
 
         for (int i = 0; i < 4; ++i)
         {
@@ -132,6 +139,7 @@ public class ItemIcyToffyApple extends ItemFood {
         }
         this.iconToffyType[4] = par1IconRegister.registerIcon("defeatedcrow:candy_cassis");
         this.iconToffyType[5] = par1IconRegister.registerIcon("defeatedcrow:candy_mint");
+        this.iconToffyType[6] = par1IconRegister.registerIcon("defeatedcrow:candy_yuzu");
     }
 	
 //	private void reduceMoisture(int par1, float par2, EntityPlayer par3EntityPlayer)

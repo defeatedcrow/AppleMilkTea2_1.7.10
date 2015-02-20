@@ -4,7 +4,7 @@ import java.util.Random;
 
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.api.potion.PotionImmunityBase;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.entity.dummy.EntityIllusionMobs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;

@@ -17,6 +17,8 @@ import mods.defeatedcrow.api.*;
 import mods.defeatedcrow.api.potion.*;
 import mods.defeatedcrow.common.block.*;
 import mods.defeatedcrow.common.block.container.BlockCharcoalBox;
+import mods.defeatedcrow.common.config.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfigCocktail;
 import mods.defeatedcrow.common.entity.*;
 import mods.defeatedcrow.common.entity.dummy.*;
 import mods.defeatedcrow.common.entity.edible.*;
@@ -67,7 +69,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.3a",
+		version = "1.7.10_2.3b",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -706,7 +708,6 @@ public class DCsAppleMilk{
 	    	try
 	        {
 	          this.SuccessLoadBamboo = true;
-	          (new LoadBambooPlugin()).load();
 	          (new LoadBambooPlugin()).loadBambooItems();
 	          AMTLogger.loadedModInfo("BambooMod");
 	          
@@ -1043,12 +1044,12 @@ public class DCsAppleMilk{
 	
 	public int getMinorVersion()
 	{
-		return 2;
+		return 3;
 	}
 	
 	public String getRivision()
 	{
-		return "c";
+		return "b";
 	}
 	
 	public String getModName()

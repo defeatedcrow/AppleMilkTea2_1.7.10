@@ -29,6 +29,7 @@ import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
 import mods.defeatedcrow.client.particle.EntityBlinkFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.tile.TileIceCream;
 
 public class BlockIceCream extends BlockContainer{

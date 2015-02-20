@@ -35,6 +35,7 @@ import mods.defeatedcrow.api.charm.IIncenseEffect;
 import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
 import mods.defeatedcrow.client.particle.*;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.tile.TileIncenseBase;
 
 /**

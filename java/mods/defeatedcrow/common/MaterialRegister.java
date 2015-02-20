@@ -8,6 +8,7 @@ import mods.defeatedcrow.common.block.edible.*;
 import mods.defeatedcrow.common.block.energy.*;
 import mods.defeatedcrow.common.fluid.*;
 import mods.defeatedcrow.common.block.plants.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.item.*;
 import mods.defeatedcrow.common.item.appliance.*;
 import mods.defeatedcrow.common.item.edible.*;
@@ -173,7 +174,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.cropMint, "defeatedcrow.cropMint");
 		
 		//ボトル関係
-		GameRegistry.registerBlock(DCsAppleMilk.emptyBottle, "defeatedcrow.emptyBottle");
+		GameRegistry.registerBlock(DCsAppleMilk.emptyBottle, ItemEmptyBottle.class, "defeatedcrow.emptyBottle");
 		GameRegistry.registerBlock(DCsAppleMilk.largeBottle, ItemBlockBottle.class, "defeatedcrow.largeBottle");
 		GameRegistry.registerBlock(DCsAppleMilk.cordial, ItemBlockCordial.class, "defeatedcrow.blockCordial");
 		GameRegistry.registerBlock(DCsAppleMilk.barrel, "defeatedcrow.blockBarrel");

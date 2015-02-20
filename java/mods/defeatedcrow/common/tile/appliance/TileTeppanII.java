@@ -7,7 +7,7 @@ import cpw.mods.fml.common.Optional;
 import mods.defeatedcrow.api.recipe.IPlateRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -186,16 +186,6 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 		return this.plateItems[0] == null && this.plateItems[1] == null && this.plateItems[2] == null;
 	}
 	
-//	public boolean getOvenMode()
-//	{
-//		return this.isOvenMode;
-//	}
-//	
-//	public void setOvenMode(boolean b)
-//	{
-//		this.isOvenMode = b;
-//	}
-	
 	/* ========== Plateのレシピ制御部分 ==========*/
 	
 	//Blockクラスから使用。レシピがあるアイテムかどうか
@@ -210,10 +200,10 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 		IPlateRecipe recipe = RecipeRegisterManager.plateRecipe.getRecipe(item);
 		if (recipe == null) return false;
 		
-		if (recipe.useOvenRecipe())
-		{
-			return this.isOvenMode();
-		}
+//		if (recipe.useOvenRecipe())
+//		{
+//			return this.isOvenMode();
+//		}
 		else
 		{
 			return true;
@@ -256,14 +246,14 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 		boolean b = false;
 		
 		if (this.worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord)){
-//			for (int i = 0 ; i < 3 ; i++)
-//			{
-//				if (!worldObj.isAirBlock(xCoord, yCoord + 1 + i, zCoord)
-//						&& worldObj.getBlock(xCoord, yCoord + 1 + i, zCoord).getMaterial() != Material.water)
-//				{
-//					b = true;
-//				}
-//			}
+			for (int i = 0 ; i < 3 ; i++)
+			{
+				if (!worldObj.isAirBlock(xCoord, yCoord + 1 + i, zCoord)
+						&& worldObj.getBlock(xCoord, yCoord + 1 + i, zCoord).getMaterial() != Material.water)
+				{
+					b = true;
+				}
+			}
 			return false;
 		}
 		else

@@ -3,7 +3,7 @@ package mods.defeatedcrow.common.tile.appliance;
 import mods.defeatedcrow.api.charge.*;
 import mods.defeatedcrow.api.energy.IBattery;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.plugin.IC2.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

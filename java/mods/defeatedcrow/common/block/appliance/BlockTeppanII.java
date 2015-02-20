@@ -155,14 +155,14 @@ public class BlockTeppanII extends BlockContainer{
 		boolean b = false;
 		
 		if (world.canBlockSeeTheSky(x, y, z)){
-//			for (int i = 0 ; i < 3 ; i++)
-//			{
-//				if (!world.isAirBlock(x, y + 1 + i, z)
-//						&& world.getBlock(x, y + 1 + i, z).getMaterial() != Material.water)
-//				{
-//					b = true;
-//				}
-//			}
+			for (int i = 0 ; i < 3 ; i++)
+			{
+				if (!world.isAirBlock(x, y + 1 + i, z)
+						&& world.getBlock(x, y + 1 + i, z).getMaterial() != Material.water)
+				{
+					b = true;
+				}
+			}
 			return false;
 		}
 		else
@@ -189,7 +189,7 @@ public class BlockTeppanII extends BlockContainer{
 				}
 			}
 		}
-		return b && count > 3;
+		return b && count >= 3;
 	}
 	
 	@Override

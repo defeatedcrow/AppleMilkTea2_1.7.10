@@ -27,6 +27,7 @@ import mods.defeatedcrow.client.particle.EntityDCCloudFX;
 import mods.defeatedcrow.client.particle.EntityOrbFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.handler.Util;
 
 public class BlockBowl extends Block{

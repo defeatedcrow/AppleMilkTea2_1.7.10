@@ -30,6 +30,7 @@ import net.minecraft.world.World;
 import mods.defeatedcrow.client.particle.EntityDCCloudFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.tile.TileChocoPan;
 import mods.defeatedcrow.common.tile.TilePanHandle;
 import mods.defeatedcrow.plugin.LoadBambooPlugin;

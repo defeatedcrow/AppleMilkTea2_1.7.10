@@ -3,7 +3,7 @@ package mods.defeatedcrow.potion;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.api.potion.PotionImmunityBase;
 import mods.defeatedcrow.api.potion.PotionLivingBase;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;

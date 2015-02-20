@@ -2,7 +2,7 @@ package mods.defeatedcrow.client.renderblocks;
 
 
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;

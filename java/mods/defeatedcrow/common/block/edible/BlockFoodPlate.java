@@ -30,6 +30,7 @@ import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
 import mods.defeatedcrow.client.particle.EntityDCCloudFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.tile.TileSteak;
 
 public class BlockFoodPlate extends BlockContainer{

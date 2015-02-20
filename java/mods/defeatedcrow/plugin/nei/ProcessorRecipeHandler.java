@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import mods.defeatedcrow.plugin.nei.AdvProcessorRecipeHandler.RecipeCacher;
 import mods.defeatedcrow.recipe.ProcessorRecipeRegister.ProcessorRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.client.gui.GuiIceMaker;
@@ -50,7 +51,10 @@ public class ProcessorRecipeHandler extends TemplateRecipeHandler {
 		
 		public RecipeCacher(ItemStack[] out) {
 			this();
-			this.result= new PositionedStack(out[0], 113, 24);
+			if (out[0] != null)
+			{
+				this.result = new PositionedStack(out[0], 113, 24);
+			}
 			if (out[1] != null)
 			{
 				this.leave = new PositionedStack(out[1], 140, 24);
@@ -156,7 +160,11 @@ public class ProcessorRecipeHandler extends TemplateRecipeHandler {
     			}
         	}
             ItemStack[] out = new ItemStack[] {recipe.getOutput(),recipe.getSecondary()};
-            if(flag && NEIServerUtils.areStacksSameType(out[0], result))
+            if(flag && out[0] != null && NEIServerUtils.areStacksSameType(out[0], result))
+            {
+                arecipes.add(new RecipeCacher(in, out));
+            }
+            if(flag && out[1] != null && NEIServerUtils.areStacksSameType(out[1], result))
             {
                 arecipes.add(new RecipeCacher(in, out));
             }

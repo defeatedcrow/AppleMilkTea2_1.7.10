@@ -6,7 +6,7 @@ import mods.defeatedcrow.client.particle.EntityBlinkFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.tile.appliance.TileEvaporator;
 import mods.defeatedcrow.common.tile.appliance.TileProsessor;
 import net.minecraft.block.Block;

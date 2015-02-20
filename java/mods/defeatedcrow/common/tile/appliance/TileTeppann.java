@@ -1,7 +1,7 @@
 package mods.defeatedcrow.common.tile.appliance;
 
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

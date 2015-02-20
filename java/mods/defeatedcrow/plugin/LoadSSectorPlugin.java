@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 
 
+
 import shift.sextiarysector.api.SextiarySectorAPI;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

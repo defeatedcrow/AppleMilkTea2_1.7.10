@@ -3,6 +3,7 @@ package mods.defeatedcrow.client.renderblocks;
 import org.lwjgl.opengl.GL11;
 
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;

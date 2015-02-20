@@ -6,6 +6,7 @@ import java.util.List;
 
 import mods.defeatedcrow.api.recipe.IProcessorRecipe;
 import mods.defeatedcrow.api.recipe.IProcessorRecipeRegister;
+import mods.defeatedcrow.api.recipe.IProsessorRecipeRegister;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
@@ -19,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class ProcessorRecipeRegister implements IProcessorRecipeRegister{
+public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProsessorRecipeRegister{
 
 	private static List<ProcessorRecipe> recipes;
 	
@@ -36,8 +37,10 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister{
 	@Override
 	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, float secondaryChance, Object... input){
 		float c = MathHelper.clamp_float(0.0F, secondaryChance, 1.0F);
+		if (output == null || output.stackSize == 0) output = null;
+		if (secondary == null || secondary.stackSize == 0) secondary = null; 
 		recipes.add(new ProcessorRecipe(output, secondary, flag, c, input));
-		AMTLogger.debugInfo("Add Prosessor recipe: output " + output.getDisplayName());
+		AMTLogger.debugInfo("Add Prosessor recipe: output " + (output == null ? "null" : output.getDisplayName()));
 	}
 	
 	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, Object... input) {
@@ -89,7 +92,7 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister{
 
 		@Override
 		public ItemStack getOutput() {
-			return this.output.copy();
+			return this.output == null ? null : this.output.copy();
 		}
 		
 		@Override

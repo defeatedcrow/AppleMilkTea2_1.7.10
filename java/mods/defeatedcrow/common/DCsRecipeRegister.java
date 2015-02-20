@@ -6,7 +6,10 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+import mods.defeatedcrow.common.config.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfigCocktail;
 import mods.defeatedcrow.handler.NetworkUtilServer;
+import mods.defeatedcrow.handler.Util;
 import mods.defeatedcrow.plugin.LoadModHandler;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -2609,6 +2612,9 @@ public class DCsRecipeRegister {
 	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 2),
 	    		  new ItemStack(DCsAppleMilk.icyToffyApple, 4, 5), 0.2F);
 	      
+	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 3),
+	    		  new ItemStack(DCsAppleMilk.icyToffyApple, 4, 6), 0.2F);
+	      
 	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.dustWood, 1, 0),
 	    		  new ItemStack(DCsAppleMilk.dustWood, 1, 2), 0.2F);
 	      
@@ -2697,11 +2703,151 @@ public class DCsRecipeRegister {
 		
 	}
 	
+	//カスタムカクテル
 	public void addCocktailSPRecipe()
 	{
-		Object[] rec1 = (Object[])DCsConfigCocktail.recipe1;
-		Object[] rec2 = (Object[])DCsConfigCocktail.recipe2;
-		Object[] rec3 = (Object[])DCsConfigCocktail.recipe3;
+		String[] string1 = DCsConfigCocktail.recipe1;
+		String[] string2 = DCsConfigCocktail.recipe2;
+		String[] string3 = DCsConfigCocktail.recipe3;
+		
+		Object[] rec1 = new Object[string1.length];
+		Object[] rec2 = new Object[string1.length];
+		Object[] rec3 = new Object[string1.length];
+		
+		for (int i = 0 ; i < string1.length ; i++)
+		{
+			String str = string1[i];
+			
+			if (str.contains(":"))
+			{
+				String[] split = str.split(":");
+				ItemStack input = new ItemStack(DCsAppleMilk.clam, 1, 0);
+				
+				try
+				{
+					if (split.length == 1)
+					{
+						Item item1 = Util.getModItem("minecraft", split[0]);
+						if (item1 != null)
+						{
+							input = new ItemStack(item1, 1, 0);
+						}
+					}
+					else if (split.length == 2)
+					{
+						Item item2 = Util.getModItem(split[0], split[1]);
+						input = new ItemStack(item2, 1, 0);
+					}
+					else if (split.length == 3)
+					{
+						Item item2 = Util.getModItem(split[0], split[1]);
+						int m = Integer.parseInt(split[2]);
+						input = new ItemStack(item2, 1, m);
+					}
+				}
+				catch (Exception e)
+				{
+					
+				}
+				
+				rec1[i] = input;
+			}
+			else
+			{
+				//OreDitionaryと予想して、文字列のまま加える
+				rec1[i] = str;
+			}
+		}
+		
+		for (int k = 0 ; k < string2.length ; k++)
+		{
+			String str = string2[k];
+			
+			if (str.contains(":"))
+			{
+				String[] split = str.split(":");
+				ItemStack input = new ItemStack(DCsAppleMilk.clam, 1, 0);
+				
+				try
+				{
+					if (split.length == 1)
+					{
+						Item item1 = Util.getModItem("minecraft", split[0]);
+						if (item1 != null)
+						{
+							input = new ItemStack(item1, 1, 0);
+						}
+					}
+					else if (split.length == 2)
+					{
+						Item item2 = Util.getModItem(split[0], split[1]);
+						input = new ItemStack(item2, 1, 0);
+					}
+					else if (split.length == 3)
+					{
+						Item item2 = Util.getModItem(split[0], split[1]);
+						int m = Integer.parseInt(split[2]);
+						input = new ItemStack(item2, 1, m);
+					}
+				}
+				catch (Exception e)
+				{
+					
+				}
+				
+				rec2[k] = input;
+			}
+			else
+			{
+				//OreDitionaryと予想して、文字列のまま加える
+				rec2[k] = str;
+			}
+		}
+		
+		for (int j = 0 ; j < string3.length ; j++)
+		{
+			String str = string3[j];
+			
+			if (str.contains(":"))
+			{
+				String[] split = str.split(":");
+				ItemStack input = new ItemStack(DCsAppleMilk.clam, 1, 0);
+				
+				try
+				{
+					if (split.length == 1)
+					{
+						Item item1 = Util.getModItem("minecraft", split[0]);
+						if (item1 != null)
+						{
+							input = new ItemStack(item1, 1, 0);
+						}
+					}
+					else if (split.length == 2)
+					{
+						Item item2 = Util.getModItem(split[0], split[1]);
+						input = new ItemStack(item2, 1, 0);
+					}
+					else if (split.length == 3)
+					{
+						Item item2 = Util.getModItem(split[0], split[1]);
+						int m = Integer.parseInt(split[2]);
+						input = new ItemStack(item2, 1, m);
+					}
+				}
+				catch (Exception e)
+				{
+					
+				}
+				
+				rec3[j] = input;
+			}
+			else
+			{
+				//OreDitionaryと予想して、文字列のまま加える
+				rec3[j] = str;
+			}
+		}
 		
 		GameRegistry.addRecipe(
 				 new ShapelessOreRecipe(

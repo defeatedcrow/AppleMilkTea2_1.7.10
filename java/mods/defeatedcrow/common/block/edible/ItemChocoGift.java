@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import mods.defeatedcrow.api.edibles.EdibleItemBlock;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;

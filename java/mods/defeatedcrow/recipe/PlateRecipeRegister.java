@@ -8,6 +8,7 @@ import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.recipe.PlateRecipeRegister.PlateRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 
@@ -43,7 +44,7 @@ public class PlateRecipeRegister implements IPlateRecipeRegister{
 		if (item == null) return null;
 		for (PlateRecipe recipe : this.recipes)
 		{
-			if (this.isItemEqual(item, recipe.getInput()))
+			if (this.isItemEqual(item, recipe.getInput().getItem(), recipe.getInput().getItemDamage()))
 			{
 				return recipe;
 			}
@@ -58,24 +59,25 @@ public class PlateRecipeRegister implements IPlateRecipeRegister{
 		int m = MathHelper.clamp_int(meta, 0, 15);
 		for (ItemStack source : this.heatSource)
 		{
-			if (this.isItemEqual(source, new ItemStack(block, 1, m)))
+			if (this.isItemEqual(source, Item.getItemFromBlock(block), m))
 			{
 				return true;
 			}
 		}
-		return block.getMaterial() == Material.fire || block.getMaterial() == Material.lava;
+		return false;
 	}
 	
-	private boolean isItemEqual(ItemStack a, ItemStack b)
+	private boolean isItemEqual(ItemStack a, Item b, int meta)
 	{
+		if (a == null)return false;
 		boolean flag = false;
-		if (a.getItem() == b.getItem())
+		if (a.getItem() == b)
 		{
-			if (a.getItemDamage() == b.getItemDamage())
+			if (a.getItemDamage() == meta)
 			{
 				flag = true;
 			}
-			else if (a.getItemDamage() == Short.MAX_VALUE)
+			else if (a.getItemDamage() == 32767)
 			{
 				flag = true;
 			}
@@ -97,8 +99,8 @@ public class PlateRecipeRegister implements IPlateRecipeRegister{
 	{
 		if (block != null)
 		{
-			int m = MathHelper.clamp_int(meta, 0, 16);
-			if (m == 16) {
+			int m = MathHelper.clamp_int(meta, -1, 15);
+			if (m == -1) {
 				this.heatSource.add(new ItemStack(block, 1, 32767));
 			}
 			else {

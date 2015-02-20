@@ -6,8 +6,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import thaumcraft.api.ItemApi;
@@ -231,6 +232,7 @@ public class LoadThaumcraftPlugin {
 		if (this.thaumicNitor != null)
 		{
 			if (LoadModHandler.registerModItems("furnaceBlock", this.thaumicNitor)){
+				RecipeRegisterManager.panRecipe.registerHeatSource(Block.getBlockFromItem(thaumicNitor.getItem()), 1);
 				AMTLogger.debugInfo("Succeeded to get Nitor.");
 			}
 		}

@@ -10,6 +10,7 @@ import cpw.mods.fml.server.FMLServerHandler;
 import mods.defeatedcrow.api.energy.IBattery;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.block.appliance.ItemMachineBlock;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.entity.edible.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

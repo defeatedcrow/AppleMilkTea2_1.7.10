@@ -8,7 +8,7 @@ import mods.defeatedcrow.api.potion.PotionImmunityBase;
 import mods.defeatedcrow.api.potion.PotionLivingBase;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

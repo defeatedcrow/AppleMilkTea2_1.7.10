@@ -1,12 +1,15 @@
 package mods.defeatedcrow.plugin;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -16,16 +19,43 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class LoadBambooPlugin {
 	
-	public static ItemStack bambooBasket;
-
-	public void load() {
+	private static ArrayList<ItemStack> baskets = new ArrayList<ItemStack>();
+	
+	public static List<ItemStack> getBasket()
+	{
+		return Collections.unmodifiableList(baskets);
+	}
+	
+	public static int isBasketItem(ItemStack item)
+	{
+		if (item == null || baskets.isEmpty()) return -1;
+		int num = -1;
+		for (int i = 0 ; i < baskets.size() ; i++)
+		{
+			if (baskets.get(i).getItem() == item.getItem())
+			{
+				if (baskets.get(i).getItemDamage() == item.getItemDamage())
+				{
+					num = i;
+					break;
+				}
+				else if (baskets.get(i).getItemDamage() == OreDictionary.WILDCARD_VALUE)
+				{
+					num = i;
+					break;
+				}
+			}
+		}
 		
-		//やっていることはOreDictionaryから辞書登録名で検索してくるだけ
-		//なので本当は、竹MOD様のロードを確認しなくてもエラーは起こらない
-		ArrayList<ItemStack> basket = OreDictionary.getOres("bambooBasket");
+		return num;
 		
-		if (basket.size() > 0){
-			bambooBasket = new ItemStack(basket.get(0).getItem(), 1, basket.get(0).getItemDamage());
+	}
+	
+	public static void addJapaneseBowlContainer(ItemStack item)
+	{
+		if (item != null && item.getItem() != null)
+		{
+			baskets.add(item);
 		}
 	}
 	
@@ -42,6 +72,18 @@ public class LoadBambooPlugin {
 				if (LoadModHandler.registerModItems("rice", registerItem)) {
 					OreDictionary.registerOre("cropRice", registerItem);
 					AMTLogger.debugInfo("Succeeded to get rawrice");
+				}
+			}
+			Item item2 = Util.getModItem("BambooMod", "bamboobasket");
+			if (item2 != null) {
+				ItemStack registerItem2 = new ItemStack(item2, 1, 0);
+				if (LoadModHandler.registerModItems("bambooBasket", registerItem2)) {
+					AMTLogger.debugInfo("Succeeded to get bamboobasket");
+				}
+				
+				if (registerItem2 != null)
+				{
+					baskets.add(registerItem2);
 				}
 			}
 			Item item3 = Util.getModItem("BambooMod", "decoCarpet");
@@ -87,10 +129,12 @@ public class LoadBambooPlugin {
 								 }));
 				}
 			}
-			Item item5 = Util.getModItem("BambooMod", "campfire");
+			Block item5 = Util.getModBlock("BambooMod", "campfire");
 			if (item5 != null) {
 				ItemStack registerItem5 = new ItemStack(item5, 1, 0);
 				if (LoadModHandler.registerModItems("furneceBlock", registerItem5)) {
+					RecipeRegisterManager.panRecipe.registerHeatSource(item5, -1);
+					RecipeRegisterManager.plateRecipe.registerHeatSource(item5, -1);
 					AMTLogger.debugInfo("Succeeded to get campfire");
 				}
 			}

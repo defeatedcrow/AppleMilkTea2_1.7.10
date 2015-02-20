@@ -1,9 +1,12 @@
 package mods.defeatedcrow.potion;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.api.potion.PotionImmunityBase;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 
@@ -27,29 +30,44 @@ public class PotionImmunity extends PotionImmunityBase
 	@Override
 	public boolean preventPotion(int amp, int id, EntityPlayer player)
 	{
-		int[] check;
+		List<Integer> check = new ArrayList<Integer>();
 		boolean flag = false;
 		
 		if (id == DCsConfig.potionIDImmunity && !player.worldObj.isRemote)
 		{
 			if (amp == 0)
 			{
-				check = new int[] {Potion.hunger.id};
-			}
-			else if (amp == 1)
-			{
-				check = new int[] {Potion.poison.id, Potion.wither.id};
-			}
-			else
-			{
-				check = new int[] {Potion.poison.id, Potion.wither.id, Potion.confusion.id, Potion.blindness.id};
+				check.add(Potion.hunger.id);
 			}
 			
-			for (int i = 0 ; i < check.length ; i++)
+			if (amp > 0)
 			{
-				if (player.isPotionActive(check[i]))
+				check.add(Potion.poison.id);
+				check.add(Potion.wither.id);
+			}
+			
+			if (amp > 1)
+			{
+				check.add(Potion.confusion.id);
+				check.add(Potion.blindness.id);
+				if (DCsAppleMilk.suffocation != null)
 				{
-					player.removePotionEffect(check[i]);
+					check.add(DCsAppleMilk.suffocation.id);
+				}
+			}
+			
+			if (amp > 2)
+			{
+				check.add(Potion.digSlowdown.id);
+				check.add(Potion.moveSlowdown.id);
+				check.add(Potion.weakness.id);
+			}
+			
+			for (int i = 0 ; i < check.size() ; i++)
+			{
+				if (player.isPotionActive(check.get(i)))
+				{
+					player.removePotionEffect(check.get(i));
 					flag = true;
 				}
 			}

@@ -2,8 +2,11 @@ package mods.defeatedcrow.common.item.appliance;
 
 import java.util.List;
 
+import mods.defeatedcrow.api.charge.ChargeItemManager;
+import mods.defeatedcrow.recipe.ChargeItemRegister;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -59,6 +62,21 @@ public class ItemBattery extends Item{
         {
             this.iconType[i] = par1IconRegister.registerIcon("defeatedcrow:battery_" + icon[i]);
         }
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+    //マウスオーバー時の表示情報
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	{
+		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
+		int c = 0;
+		c = ChargeItemManager.chargeItem.getChargeAmount(par1ItemStack);
+		if (c > 0)
+		{
+			String s = new String ("charge amount : " + c);
+			par3List.add(s);
+		}
 	}
 
 }

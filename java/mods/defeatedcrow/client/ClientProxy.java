@@ -11,6 +11,7 @@ import mods.defeatedcrow.client.model.tileentity.*;
 import mods.defeatedcrow.client.particle.*;
 import mods.defeatedcrow.client.renderblocks.*;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.entity.*;
 import mods.defeatedcrow.common.entity.dummy.*;
 import mods.defeatedcrow.common.entity.edible.*;

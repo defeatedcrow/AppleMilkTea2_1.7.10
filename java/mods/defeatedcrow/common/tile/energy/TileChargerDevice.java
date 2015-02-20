@@ -6,6 +6,7 @@ import cofh.api.tileentity.IEnergyInfo;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.config.PropertyHandler;
 import mods.defeatedcrow.plugin.*;
 import mods.defeatedcrow.plugin.IC2.*;
 import mods.defeatedcrow.plugin.cofh.RFItemHandler;
@@ -67,24 +68,24 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
         super.onDataPacket(net, pkt);
     }
 	
-	/* Modごとの変換レート。コンフィグ変更可能にする予定はあるが、バランス調整前なので暫定的に変更できないようにする */
+	/* Modごとの変換レート。コンフィグ変更可能にしました。バランスは投げ捨てました。諸事情により問い合わせは拒否します。 */
 	
 	private int exchangeRateRF()
 	{
 		//RF -> Charge
-		return 10;
+		return PropertyHandler.rateRF();
 	}
 	
 	private int exchangeRateEU()
 	{
 		//EU -> Charge
-		return 2;
+		return PropertyHandler.rateEU();
 	}
 	
 	private int exchangeRateGF()
 	{
 		//GF -> Charge
-		return 3;
+		return PropertyHandler.rateGF();
 	}
 	
 	/* 充電操作用のメソッド */
@@ -192,7 +193,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		//エネルギーの受け入れ
 		int eng = this.getChargeAmount();
 		int get = in;
-		if (this.isFullCharged() || get < 10) return 0;
+		if (this.isFullCharged() || get < this.exchangeRateRF()) return 0;
 		
 		int ret = Math.min((this.getMaxChargeAmount() - eng) * this.exchangeRateRF(), get);
 		
@@ -263,7 +264,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		//エネルギーの受け入れ
 		int eng = this.getChargeAmount();
 		int get = speed;
-		if (this.isFullCharged() || speed < 3) return 0;
+		if (this.isFullCharged() || speed < this.exchangeRateEU()) return 0;
 				
 		int ret = Math.min((this.getMaxChargeAmount() - eng) * this.exchangeRateGF(), get);
 				

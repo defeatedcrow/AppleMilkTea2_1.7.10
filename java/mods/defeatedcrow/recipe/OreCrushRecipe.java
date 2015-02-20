@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.config.PropertyHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -36,6 +37,8 @@ public class OreCrushRecipe {
 		String[] ores2 = new String[] {"Silver", "Lead", "Gold", "Nickel", "Platinum", "Redstone"};
 		String[] gems = new String[] {"Coal", "Diamond", "Ruby", "Sapphire", "Peridot", "Emerald", "Quartz"};
 		
+		int[] d = PropertyHandler.getDustGen();
+		
 		//その1
 		for (int i = 0 ; i < ores1.length ; i++)
 		{
@@ -50,8 +53,8 @@ public class OreCrushRecipe {
 			
 			if (OreDictionary.getOres(ore) != null && !OreDictionary.getOres(ore).isEmpty() && dust != null)
 			{
-				RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(dust.getItem(), 2, dust.getItemDamage()), false, 
-						new ItemStack(dust.getItem(), 1, dust.getItemDamage()), 0.5F, 
+				RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(dust.getItem(), d[0], dust.getItemDamage()), false, 
+						new ItemStack(dust.getItem(), d[1], dust.getItemDamage()), 0.5F, 
 						new Object[]{ore});
 			}
 			
@@ -72,7 +75,7 @@ public class OreCrushRecipe {
 			
 			if (OreDictionary.getOres(ore) != null && !OreDictionary.getOres(ore).isEmpty() && dust != null)
 			{
-				RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(dust.getItem(), 2, dust.getItemDamage()), false, 
+				RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(dust.getItem(), d[0], dust.getItemDamage()), false, 
 						new ItemStack(DCsAppleMilk.strangeSlag, 1, 0), 0.5F, 
 						new Object[]{ore});
 			}
@@ -98,7 +101,7 @@ public class OreCrushRecipe {
 			
 			if (OreDictionary.getOres(ore) != null && !OreDictionary.getOres(ore).isEmpty() && gem != null)
 			{
-				RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(gem.getItem(), 2, gem.getItemDamage()), false, 
+				RecipeRegisterManager.prosessorRecipe.addRecipe(new ItemStack(gem.getItem(), d[0], gem.getItemDamage()), false, 
 						new ItemStack(DCsAppleMilk.strangeSlag, 1, 0), 0.5F, 
 						new Object[]{ore});
 			}

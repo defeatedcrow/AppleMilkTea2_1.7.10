@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import mods.defeatedcrow.api.recipe.IPanRecipe;
@@ -44,7 +45,7 @@ public class PanRecipeRegister implements IPanRecipeRegister{
 		if (item == null) return null;
 		for (PanRecipe recipe : this.recipes)
 		{
-			if (this.isItemEqual(item, recipe.getInput()))
+			if (this.isItemEqual(item, recipe.getInput().getItem(), recipe.getInput().getItemDamage()))
 			{
 				return recipe;
 			}
@@ -59,7 +60,7 @@ public class PanRecipeRegister implements IPanRecipeRegister{
 		int m = MathHelper.clamp_int(meta, 0, 15);
 		for (ItemStack source : this.heatSource)
 		{
-			if (this.isItemEqual(source, new ItemStack(block, 1, m)))
+			if (this.isItemEqual(source, Item.getItemFromBlock(block), m))
 			{
 				return true;
 			}
@@ -67,16 +68,17 @@ public class PanRecipeRegister implements IPanRecipeRegister{
 		return false;
 	}
 	
-	private boolean isItemEqual(ItemStack a, ItemStack b)
+	private boolean isItemEqual(ItemStack a, Item b, int meta)
 	{
+		if (a == null)return false;
 		boolean flag = false;
-		if (a.getItem() == b.getItem())
+		if (a.getItem() == b)
 		{
-			if (a.getItemDamage() == b.getItemDamage())
+			if (a.getItemDamage() == meta)
 			{
 				flag = true;
 			}
-			else if (a.getItemDamage() == Short.MAX_VALUE)
+			else if (a.getItemDamage() == 32767)
 			{
 				flag = true;
 			}
@@ -107,8 +109,8 @@ public class PanRecipeRegister implements IPanRecipeRegister{
 	{
 		if (block != null)
 		{
-			int m = MathHelper.clamp_int(meta, 0, 16);
-			if (m == 16) {
+			int m = MathHelper.clamp_int(meta, -1, 15);
+			if (m == -1) {
 				this.heatSource.add(new ItemStack(block, 1, 32767));
 			}
 			else {

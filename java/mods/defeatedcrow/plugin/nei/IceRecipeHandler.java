@@ -32,7 +32,7 @@ public class IceRecipeHandler extends TemplateRecipeHandler {
 		private PositionedStack leave;
 
 		public recipeCacher(ItemStack in, ItemStack[] out) {
-			in.stackSize = 1;
+//			in.stackSize = 1;
 			this.input = new PositionedStack(in, 51, 6);
 			this.result= new PositionedStack(out[0], 107, 24);
 			if (out[1] != null)
@@ -131,7 +131,8 @@ public class IceRecipeHandler extends TemplateRecipeHandler {
             ItemStack in = recipe.getKey();
             if(ingredient.getItem() == in.getItem() && ingredient.getItemDamage() == in.getItemDamage())
             {
-                arecipes.add(new recipeCacher(ingredient, items));
+            	ItemStack ing2 = new ItemStack(ingredient.getItem(), in.stackSize, ingredient.getItemDamage());
+                arecipes.add(new recipeCacher(ing2, items));
             }
         }
     }

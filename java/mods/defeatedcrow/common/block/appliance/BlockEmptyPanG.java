@@ -8,7 +8,7 @@ import mods.defeatedcrow.client.particle.EntityDCCloudFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.tile.TileChocoPan;
 import mods.defeatedcrow.common.tile.appliance.TilePanG;
 import mods.defeatedcrow.common.tile.appliance.TileProsessor;
@@ -121,11 +121,15 @@ public class BlockEmptyPanG extends BlockContainer{
         	}
         	return true;
         }
-        else if (LoadBambooPlugin.bambooBasket != null && itemstack.getItem() == LoadBambooPlugin.bambooBasket.getItem())//竹のボウル：和風のoutputを返し、remainを1減らす。
+        else if (!LoadBambooPlugin.getBasket().isEmpty() && LoadBambooPlugin.isBasketItem(itemstack) >= 0)//竹のボウル：和風のoutputを返し、remainを1減らす。
         {
         	if (tile.getOutput() != null && tile.getRemainByte() > 0)
         	{
         		ItemStack ret = tile.getOutputJP().copy();
+        		NBTTagCompound nbt = new NBTTagCompound();
+        		nbt.setByte("BowlNum", (byte) LoadBambooPlugin.isBasketItem(itemstack));
+        		ret.setTagCompound(nbt);
+        		
         		int rem = tile.getRemainByte() - 1;
         		
         		if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
@@ -222,17 +226,7 @@ public class BlockEmptyPanG extends BlockContainer{
 		Block block = world.getBlock(x, y, z);
 		int meta = world.getBlockMetadata(x, y, z);
 		
-		if (block == Blocks.furnace || block == Blocks.lit_furnace) {
-			return true;
-		}
-		else if (RecipeRegisterManager.panRecipe.isHeatSource(block, meta)) {
-			return true;
-		}
-		else if (LoadModHandler.matchItem("furnaceBlock", new ItemStack(block, 1, meta)))
-		{
-			return true;
-		}
-		else if (world.getBlock(x, y, z).getMaterial() == Material.fire) {
+		if (RecipeRegisterManager.panRecipe.isHeatSource(block, meta)) {
 			return true;
 		}
 		return false;

@@ -7,6 +7,7 @@ import mods.defeatedcrow.api.*;
 import mods.defeatedcrow.api.charge.ChargeItemManager;
 import mods.defeatedcrow.api.recipe.*;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.PropertyHandler;
 import mods.defeatedcrow.plugin.LoadModHandler;
 import net.minecraft.block.Block;
 import net.minecraft.init.*;
@@ -164,14 +165,20 @@ public class RegisterMakerRecipe {
 	
 	public void registerChargeItem()
 	{
-		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 0),  null,  6400);
-		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 1),  null,  12800);
-		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 2),  null,  800);
-		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.yuzuBat, 1, 0),  null,  8000);
+		int r = PropertyHandler.ChargeGenRate();
+		
+		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 0),  null,  r * 16);
+		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 1),  null,  r * 32);
+		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 2),  null,  r * 2);
+		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.yuzuBat, 1, 0),  null,  r * 20);
 	}
 	
 	public void registerPan()
 	{
+		RecipeRegisterManager.panRecipe.registerHeatSource(Blocks.fire, -1);
+		RecipeRegisterManager.panRecipe.registerHeatSource(Blocks.lit_furnace, -1);
+		RecipeRegisterManager.panRecipe.registerHeatSource(Blocks.furnace, -1);
+		
 		RecipeRegisterManager.panRecipe.register(new ItemStack(DCsAppleMilk.mincedFoods, 1, 3),
 				new ItemStack(DCsAppleMilk.bowlBlock, 1, 0),
 				new ItemStack(DCsAppleMilk.bowlJP, 1, 0),
@@ -530,6 +537,10 @@ public class RegisterMakerRecipe {
 	
 	public static void registerPlate()
 	{
+		RecipeRegisterManager.plateRecipe.registerHeatSource(Blocks.lava, -1);
+		RecipeRegisterManager.plateRecipe.registerHeatSource(Blocks.fire, -1);
+		
+		
 		RecipeRegisterManager.plateRecipe.register(new ItemStack(Items.beef), 
 				new ItemStack(DCsAppleMilk.foodPlate, 1, 0), 100, false);
 		

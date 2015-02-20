@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfigCocktail;
 import mods.defeatedcrow.common.tile.TileCocktail;
 import mods.defeatedcrow.common.tile.TileCocktailSP;
 

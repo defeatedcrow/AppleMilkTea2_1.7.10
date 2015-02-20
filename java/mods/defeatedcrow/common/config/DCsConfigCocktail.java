@@ -1,4 +1,4 @@
-package mods.defeatedcrow.common;
+package mods.defeatedcrow.common.config;
 
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -11,16 +11,16 @@ public class DCsConfigCocktail {
 	
 	public static int[] potionIds = {62, 12, 60};
 	public static int[] potionDur = {1200, 1200, 2400};
-	public static int[] potionAmp = {2, 0, 2};
+	public static int[] potionAmp = {0, 0, 2};
 	
-	public static String[] name = {"Russian Ballet", "Rum Flip", "Fake Denki-Bran"};
+	public static String[] name = {"Russian Ballet", "Rum Flip", "Denki-Bran"};
 	
 	public static String[] massage = {"You can put any message here.",
 		"This message is a tool tip display of items.",
 		"This is a fake. Nobody knows the real recipe."};
 	
 	public static String[] recipe1 = {"bottleVodka", "bottleCassisliqueur", "foodBlockLemonade"};
-	public static String[] recipe2 = {"bottleRum", "foodEgg", "dustSugar"};
+	public static String[] recipe2 = {"bottleRum", "minecraft:egg", "dustSugar"};
 	public static String[] recipe3 = {"bottleBrandy", "bottleGin", "bottleWine"};
 	
 	public static int[] color1 = {20, 0, 20, 5};
@@ -43,9 +43,13 @@ public class DCsConfigCocktail {
 					"You can edit the information of the original cocktails."
 					+ BR + "Name : Edit the cocktail name."
 					+ BR + "Massage : Edit the cocktail tool-tip."
-					+ BR + "Color : Edit the cocktail color, red, green, blue, alpha. Please set color 0-50, and set alpha 0-10."
+					+ BR + "Glass and Decoration : Edit the cocktail glass type and decoration fluits."
+					+ BR + "Color : Edit the cocktail color, red, green, blue, alpha. Please set color 0-100, and set alpha 0-10."
 					+ BR + "Potion data : Edit the cocktail effect. "
-					+ BR + "Recipe : Edit the cocktail recipe. Only ore dictionary name can be used.");
+					+ BR + "Recipe : Edit the cocktail recipe. oredictionary name or item unlocalized name can be used."
+					+ BR + "If you want to use vanilla items, describe the following: \"minecraft:itemname:metadata\"."
+					+ BR + "If you want to use mod items, describe the following: \"modid:itemname:metadata\"."
+					+ BR + "If your description was wrong, it will be clam.");
 			
 			Property name1 = cfg.get("cocktail_1", "Cocktail Name", name[0]);
 			Property massage1 = cfg.get("cocktail_1", "Cocktail Massage", massage[0]);
@@ -99,7 +103,7 @@ public class DCsConfigCocktail {
 			color2 = colorP2.getIntList();
 			colorf2 = new float[] {color2[0] * 0.1F, color2[1] * 0.1F, color2[2] * 0.1F, color2[3] * 0.1F};
 			
-			recipe3 = recipeP1.getStringList();
+			recipe3 = recipeP3.getStringList();
 			color3 = colorP3.getIntList();
 			colorf3 = new float[] {color3[0] * 0.1F, color3[1] * 0.1F, color3[2] * 0.1F, color3[3] * 0.1F};
 			

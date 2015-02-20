@@ -11,6 +11,7 @@ import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -294,6 +295,16 @@ public class LoadModHandler {
 			    		  new Object[]{
 						  new ItemStack(DCsAppleMilk.woodBox, 1, 9)
 							 }));
+			}
+			
+			Block block2 = Util.getModBlock("mod_ecru_MapleTree", "ecru_BlockFallenLeavesFire");
+			if (block2 != null) {
+				ItemStack registerItem2 = new ItemStack(block2, 1, 0);
+				if (this.registerModItems("mapleFire", registerItem2)) {
+					RecipeRegisterManager.panRecipe.registerHeatSource(block2, -1);
+					RecipeRegisterManager.plateRecipe.registerHeatSource(block2, -1);
+					AMTLogger.debugInfo("Succeeded to get mapleLeavesFire");
+				}
 			}
 			
 			ArrayList<ItemStack> rape = OreDictionary.getOres("rapeSeeds");

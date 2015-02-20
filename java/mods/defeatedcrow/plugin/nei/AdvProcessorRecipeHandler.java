@@ -50,7 +50,11 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 		
 		public RecipeCacher(ItemStack[] out) {
 			this();
-			this.result= new PositionedStack(out[0], 113, 24);
+			if (out[0] != null)
+			{
+				this.result = new PositionedStack(out[0], 113, 24);
+			}
+			
 			if (out[1] != null)
 			{
 				this.leave = new PositionedStack(out[1], 140, 24);
@@ -155,8 +159,12 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
     				if (items.isEmpty())flag = false;
     			}
         	}
-            ItemStack[] out = new ItemStack[] {recipe.getOutput(),recipe.getSecondary()};
-            if(flag && NEIServerUtils.areStacksSameType(out[0], result))
+            ItemStack[] out = new ItemStack[] {recipe.getOutput(), recipe.getSecondary()};
+            if(flag && out[0] != null && NEIServerUtils.areStacksSameType(out[0], result))
+            {
+                arecipes.add(new RecipeCacher(in, out));
+            }
+            if(flag && out[1] != null && NEIServerUtils.areStacksSameType(out[1], result))
             {
                 arecipes.add(new RecipeCacher(in, out));
             }

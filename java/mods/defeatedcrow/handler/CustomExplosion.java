@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import mods.defeatedcrow.common.AMTLogger;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentProtection;

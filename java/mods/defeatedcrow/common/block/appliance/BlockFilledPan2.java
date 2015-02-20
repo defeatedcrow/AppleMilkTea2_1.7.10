@@ -26,10 +26,12 @@ import net.minecraft.world.World;
 import mods.defeatedcrow.client.particle.EntityDCCloudFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.tile.TilePanHandle;
 import mods.defeatedcrow.plugin.LoadBambooPlugin;
 import mods.defeatedcrow.handler.Util;
 
+@Deprecated
 public class BlockFilledPan2 extends BlockContainer{
 	
 	private static final String[] contents = new String[] {"_kayaku", "_soi", "_juice", "_BLTsoup"};
@@ -66,7 +68,7 @@ public class BlockFilledPan2 extends BlockContainer{
     		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
     		return true;
         }
-        else if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null && itemstack.getItem() == LoadBambooPlugin.bambooBasket.getItem())
+        else if (!LoadBambooPlugin.getBasket().isEmpty() && LoadBambooPlugin.isBasketItem(itemstack) >= 0)
         {
         	this.getJPStew(par1World, par2, par3, par4, par5EntityPlayer, itemstack, currentMeta);
 			this.setPanEmpty(par1World, par2, par3, par4, currentMeta);
@@ -195,9 +197,9 @@ public class BlockFilledPan2 extends BlockContainer{
 		}
 		else
 		{
-			if (!player.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
+			if (!player.inventory.addItemStackToInventory(LoadBambooPlugin.getBasket().get(0)))
 			{
-				player.entityDropItem(LoadBambooPlugin.bambooBasket.copy(), 1);
+				player.entityDropItem(LoadBambooPlugin.getBasket().get(0), 1);
 			}
 		}
 		

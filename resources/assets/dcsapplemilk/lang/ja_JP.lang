@@ -1,3 +1,4 @@
+
 tile.defeatedcrow.WoodBox_oak.name=樫の丸太箱
 tile.defeatedcrow.WoodBox_spruse.name=松の丸太箱
 tile.defeatedcrow.WoodBox_birch.name=白樺の丸太箱
@@ -272,6 +273,7 @@ item.defeatedcrow.icyToffyApple_2.name=黄金りんご飴
 item.defeatedcrow.icyToffyApple_3.name=葉緑素りんご飴
 item.defeatedcrow.icyToffyApple_4.name=カシス飴
 item.defeatedcrow.icyToffyApple_5.name=ハッカ飴
+item.defeatedcrow.icyToffyApple_6.name=ゆず飴
 item.defeatedcrow.chopsticks_0.name=箸
 item.defeatedcrow.chopsticks_1.name=木のスプーン
 item.defeatedcrow.foodTea_0.name=緑茶の茶葉
@@ -478,6 +480,7 @@ item.defeatedcrow.bucketYoungAlcohol_4.name=未濾過のウォッカバケツ
 item.defeatedcrow.dummyItem.name=液体の生成
 item.defeatedcrow.dummyPlate_0.name=鉄板モード
 item.defeatedcrow.dummyPlate_1.name=オーブンモード
+item.defeatedcrow.debugArm.name=八眼紫龍
 
 entity.compressedMelon.name=圧縮メロン
 entity.compressedSilkMelon.name=圧縮シルクメロン
@@ -495,8 +498,8 @@ fluid.wine_young=若いワイン
 fluid.shothu_dc=焼酎
 fluid.whiskey_dc=ウィスキー
 fluid.brandy_dc=ブランデー
-fluid.rum=ラム
-fluid.vodka=ウォッカ
+fluid.rum_dc=ラム
+fluid.vodka_dc=ウォッカ
 fluid.sake_dc=日本酒
 fluid.beer_dc=ビール
 fluid.wine_dc=ワイン

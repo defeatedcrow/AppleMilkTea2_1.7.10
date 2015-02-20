@@ -46,20 +46,15 @@ public class SlagResultLoot implements ISlagResultLoot{
 		switch(tier)
 		{
 		case 1:
-			ret.addAll(OreCrushRecipe.tier1);
-			break;
+			return OreCrushRecipe.tier1;
 		case 2:
-			ret.addAll(OreCrushRecipe.tier2);
-			break;
+			return OreCrushRecipe.tier2;
 		case 3:
-			ret.addAll(OreCrushRecipe.tier3);
-			break;
+			return OreCrushRecipe.tier3;
 		case 4:
-			ret.addAll(OreCrushRecipe.tier4);
-			break;
+			return OreCrushRecipe.tier4;
 		case 5:
-			ret.addAll(OreCrushRecipe.tier5);
-			break;
+			return OreCrushRecipe.tier5;
 		default:
 			break;
 		}

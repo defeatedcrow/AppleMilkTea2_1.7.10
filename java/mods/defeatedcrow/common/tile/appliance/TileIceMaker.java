@@ -253,6 +253,10 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 			
 			if (recipe != null)
 			{
+				
+				//スタックサイズのチェック
+				if (this.iceItemStacks[0].stackSize < recipe.getInput().stackSize) return false;
+				
 				if (recipe.getContainer() != null)
 				{
 					ItemStack container = recipe.getContainer();
@@ -318,6 +322,8 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 			IIceRecipe recipe = RecipeRegisterManager.iceRecipe.getRecipe(this.iceItemStacks[0]);
 			ItemStack itemstack = recipe.getOutput();
 			ItemStack container = recipe.getContainer();
+			
+			if (this.iceItemStacks[0].stackSize < recipe.getInput().stackSize) return;
  
 			if (this.iceItemStacks[2] == null)
 			{
@@ -340,7 +346,7 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 				}
 			}
 			
-			--this.iceItemStacks[0].stackSize;
+			this.iceItemStacks[0].stackSize -= recipe.getInput().stackSize;
 			 
 			if (this.iceItemStacks[0].stackSize <= 0)
 			{

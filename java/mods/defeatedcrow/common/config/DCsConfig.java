@@ -1,4 +1,4 @@
-package mods.defeatedcrow.common;
+package mods.defeatedcrow.common.config;
 
 import java.util.logging.Level;
 
@@ -57,6 +57,11 @@ public class DCsConfig {
 	public static int charmRemain = 0;
 	public static int batteryUpdate = 4;
 	
+	//難易度関係
+	public static int dustDif = 1;
+	public static int chargeDif = 1;
+	public static int exchangeDif = 1;
+	
 	public static boolean useEXRecipe = false;
 	public static boolean notGenTeaTree = false;
 	public static boolean allowSlimeBallDic = true;
@@ -93,6 +98,27 @@ public class DCsConfig {
 			
 			cfg.addCustomCategoryComment("potionID",
 					"Set new potion ID for this mod. These must be bigger than 32, and smaller than 127.");
+			
+			cfg.addCustomCategoryComment("entityid",
+					"Set new entity ID for this mod. If you set 0, use Forge automatic assignment function.");
+			
+			cfg.addCustomCategoryComment("debug setting",
+					"It only for the authors of this mod.");
+			
+			cfg.addCustomCategoryComment("difficulty setting",
+					"Change difficulty of this mod. If configuration changes causes balance collapse, I do not support.");
+			
+			cfg.addCustomCategoryComment("render setting",
+					"This setting is for such as display and model.");
+			
+			cfg.addCustomCategoryComment("world setting",
+					"This setting is for world generation.");
+			
+			cfg.addCustomCategoryComment("entity setting",
+					"This setting is for entities of this mod.");
+			
+			cfg.addCustomCategoryComment("setting",
+					"This setting is for some sistem of this mod.");
 			
 			Property DCpotionID = cfg.get("potionID", "Immunization", potionIDImmunity);
 			Property DCpotionID2 = cfg.get("potionID", "Protection:Projectile", potionIDPrvProjectile);
@@ -135,15 +161,15 @@ public class DCsConfig {
 			Property teppannRandom = cfg.get("setting", "Randomly Teppann Cooking Time", teppannRandomCookTime,
 					"Enable randomly cooking time of iron plate.");
 			Property entityMelon = cfg.get("entityid", "EntityIDCompressedMelon", entityIdMelon);
-			Property explodeMelon = cfg.get("entity", "Enable Explode Melon", canExplodeMelon,
+			Property explodeMelon = cfg.get("entity setting", "Enable Explode Melon", canExplodeMelon,
 					"Allow the Compressed Melon explode.");
 			Property cupStackSizeInt = cfg.get("setting", "Cups Stack Size", cupStackSize,
 					"Set stack seize of filled cups. Please choose from the 1/3/8.");
-			Property melonBreak = cfg.get("entity", "Melon not Break Block", melonBreakBlock,
+			Property melonBreak = cfg.get("entity setting", "Melon not Break Block", melonBreakBlock,
 					"Disable destruction by explosion of melon.");
-			Property melonFear = cfg.get("entity", "Silky Melon of Fear", fearMelon,
+			Property melonFear = cfg.get("entity setting", "Silky Melon of Fear", fearMelon,
 					"Silky Melon can destroy all blocks except blocks that coordinates Y = 1.");
-			Property missileExplosion = cfg.get("entity", "Dsiable Missile Explosion", disableMissileExplosion,
+			Property missileExplosion = cfg.get("entity setting", "Dsiable Missile Explosion", disableMissileExplosion,
 					"Disable explosion of missiles generated from the Fossil Scale.");
 			Property safetyChoco = cfg.get("setting", "Safety Chocolate Gift", safetyChocolate,
 					"Disable explosion of the heartfelt chocolate gift.");
@@ -154,7 +180,7 @@ public class DCsConfig {
 			Property texPass = cfg.get("render setting", "Set Texture Type Number", setAltTexturePass,
 					"Select the texture type number."
 					+ "1:default(x16 tex), 2:use x32 tex");
-			Property cafeRecipe = cfg.get("entity", "New Villager ID", villagerRecipeID,
+			Property cafeRecipe = cfg.get("entity setting", "New Villager ID", villagerRecipeID,
 					"Set the number of new villager ID.");
 			Property edibleEntity = cfg.get("render setting", "Enable Edible Entity", allowEdibleEntities,
 					"Some food blocks are placed as a entity. If false, these are placed as a block. (just same as old version.)");
@@ -175,6 +201,19 @@ public class DCsConfig {
 			Property noPvP = cfg.get("setting", "PvP Prohibition Mode", PvPProhibitionMode,
 					"Disable the damage caused by items of this MOD against player."
 					+ BR + "(For example, Yuzu Gatling, Silky Melon, etc.)");
+			
+			Property dustDifP = cfg.get("difficulty setting", "JawCrusher Dust Gen", dustDif,
+					"Change difficulty of the JawCrusher recipe." + BR
+					+ "0:sweet 1:normal 2:bitter 3:hard");
+			
+			Property chargeDifP = cfg.get("difficulty setting", "Battery Charge Gen", chargeDif,
+					"Change difficulty of the battery charge amount." + BR
+					+ "0:sweet 1:normal 2:bitter 3:hard");
+			
+			Property exchangeDifP = cfg.get("difficulty setting", "Exchange Rate of Charge", exchangeDif,
+					"Change Rate of the charge exchange to the another energy." + BR
+					+ "please set 0-4. smaller are fewer conversion, "
+					+ BR + "and bigger are need more energy to exchange to AMT-Charge.");
 			
 			
 			Property entityIce = cfg.get("entityid", "EntityIDIceCream", entityIdIce);
@@ -218,6 +257,12 @@ public class DCsConfig {
 			princessChanceValue = princessChance.getInt();
 			charmRemain = radenLimit.getInt();
 			batteryUpdate = batteryCycle.getInt();
+			
+			dustDif = dustDifP.getInt();
+			chargeDif = chargeDifP.getInt();
+			exchangeDif = exchangeDifP.getInt();
+			
+			PropertyHandler.loadConfig();
 			
 			useEXRecipe = EXRecipe.getBoolean(false);
 			notGenTeaTree = noTeaTree.getBoolean(false);

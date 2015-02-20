@@ -271,7 +271,7 @@ public class MCEconomyPlugin extends ProductList{
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), 50));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 51), 300));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 54), 500));
-		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 55), 500));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 52), 500));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.emptyCup, 1, 0), 25));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0), 1000));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.DCgrater, 1, 0), 80));

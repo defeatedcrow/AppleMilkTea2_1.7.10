@@ -28,6 +28,7 @@ import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
 import mods.defeatedcrow.client.particle.EntityDCCloudFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.tile.TileDummy;
 import mods.defeatedcrow.common.tile.TileJPBowl;
 import mods.defeatedcrow.handler.Util;
@@ -70,11 +71,11 @@ public class BlockBowlJP extends BlockContainer{
         {
         	if (currentMeta == 15)
         	{
-        		if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null)
+        		if (!LoadBambooPlugin.getBasket().isEmpty() && LoadBambooPlugin.getBasket().get(0) != null)
         		{
-        			if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
+        			if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadBambooPlugin.getBasket().get(0)))
                 	{
-                		par5EntityPlayer.entityDropItem(LoadBambooPlugin.bambooBasket.copy(), 1);
+                		par5EntityPlayer.entityDropItem(LoadBambooPlugin.getBasket().get(0), 1);
                 	}
         		}
         		else
@@ -101,11 +102,11 @@ public class BlockBowlJP extends BlockContainer{
         {
         	if (currentMeta == 15)
         	{
-        		if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null)
+        		if (!LoadBambooPlugin.getBasket().isEmpty() && LoadBambooPlugin.getBasket().get(0) != null)
         		{
-        			if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadBambooPlugin.bambooBasket.copy()))
+        			if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadBambooPlugin.getBasket().get(0)))
                 	{
-                		par5EntityPlayer.entityDropItem(LoadBambooPlugin.bambooBasket.copy(), 1);
+                		par5EntityPlayer.entityDropItem(LoadBambooPlugin.getBasket().get(0), 1);
                 	}
         		}
         		else

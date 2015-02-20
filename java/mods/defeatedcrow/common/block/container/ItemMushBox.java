@@ -2,7 +2,7 @@ package mods.defeatedcrow.common.block.container;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.defeatedcrow.common.DCsConfig;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.entity.EntityKinoko;
 import mods.defeatedcrow.common.entity.edible.PlaceableIcecream;
 import net.minecraft.block.Block;
