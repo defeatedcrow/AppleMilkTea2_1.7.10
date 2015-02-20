@@ -104,9 +104,9 @@ public class BlockBowlJP extends BlockContainer{
         	{
         		if (!LoadBambooPlugin.getBasket().isEmpty() && LoadBambooPlugin.getBasket().get(0) != null)
         		{
-        			if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadBambooPlugin.getBasket().get(0)))
+        			if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadBambooPlugin.getBasket().get(0).copy()))
                 	{
-                		par5EntityPlayer.entityDropItem(LoadBambooPlugin.getBasket().get(0), 1);
+                		par5EntityPlayer.entityDropItem(LoadBambooPlugin.getBasket().get(0).copy(), 1);
                 	}
         		}
         		else
