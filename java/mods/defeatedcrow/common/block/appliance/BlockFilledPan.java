@@ -199,9 +199,18 @@ public class BlockFilledPan extends BlockContainer{
 		}
 		else
 		{
-			if (!player.inventory.addItemStackToInventory(LoadBambooPlugin.getBasket().get(0)))
+			ItemStack r;
+			if (LoadBambooPlugin.getBasket().isEmpty() || LoadBambooPlugin.getBasket().get(0) == null)
 			{
-				player.entityDropItem(LoadBambooPlugin.getBasket().get(0), 1);
+				r = new ItemStack(Items.bowl, 1, 0);
+			}
+			else
+			{
+				r = LoadBambooPlugin.getBasket().get(0).copy();
+			}
+			if (!player.inventory.addItemStackToInventory(r))
+			{
+				player.entityDropItem(r, 1);
 			}
 		}
 		
