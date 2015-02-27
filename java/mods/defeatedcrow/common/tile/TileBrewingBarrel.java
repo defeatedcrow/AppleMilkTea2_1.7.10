@@ -215,7 +215,7 @@ public class TileBrewingBarrel extends TileEntity implements IFluidHandler{
 	@Override
 	public FluidStack drain(ForgeDirection from, FluidStack resource,
 			boolean doDrain) {
-		if (resource == null) {
+		if (resource == null || !this.isAged) {
 			return null;
 		}
 		if (productTank.getFluidType() == resource.getFluid()) {
@@ -232,7 +232,7 @@ public class TileBrewingBarrel extends TileEntity implements IFluidHandler{
 	//外部からの液体の受け入れ
 	@Override
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-		if (resource == null || resource.getFluid() == null){
+		if (resource == null || resource.getFluid() == null || this.isAged){
 			return 0;
 		}
 		
@@ -250,15 +250,16 @@ public class TileBrewingBarrel extends TileEntity implements IFluidHandler{
 		return i;
 	}
 
-	//空でないと受け入れない
+	//空でないと&醸造未完了でないと受け入れない
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return fluid != null && BrewingRecipe.recipe.containsKey(fluid) && this.productTank.isEmpty();
+		return !this.isAged && fluid != null && BrewingRecipe.recipe.containsKey(fluid) && this.productTank.isEmpty();
 	}
 
+	//醸造が完了するまで引き抜けないようにする
 	@Override
 	public boolean canDrain(ForgeDirection from, Fluid fluid) {
-		return true;
+		return this.isAged;
 	}
 
 	@Override

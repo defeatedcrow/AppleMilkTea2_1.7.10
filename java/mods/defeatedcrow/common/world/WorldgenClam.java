@@ -27,7 +27,7 @@ public class WorldgenClam implements IWorldGenerator {
         int chunk2Z = chunkZ << 4;         
         int count = Util.getHamaguriChanceValue();
         
-    	if ((genDim1 == 0))
+    	if ((genDim1 != 1 && genDim1 != -1))
     	{
     		for(int i = 0; i < count; i++)
 			{

@@ -138,6 +138,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	@Override
 	public int acceptChargeFromDir(ForgeDirection dir)
 	{
+		int ret = 0;
 		//EU受入量は指定する必要があるので、とりあえず512とする。
 		if (EUChannel != null)
 		{
@@ -147,11 +148,17 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 			if ((MAX_CHARGE - i) < get) return 0;
 			
 			if (EUChannel.useEnergy2(eu)){
-				return MathHelper.floor_double(get);
+				ret = (int) get;
 			}
 		}
 		
-		return 0;
+		if (ret == 0)
+		{
+			return super.acceptChargeFromDir(dir);
+		}
+		
+		return ret;
+		
 	}
 	
 	@Override

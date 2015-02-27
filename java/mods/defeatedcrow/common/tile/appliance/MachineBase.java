@@ -375,8 +375,25 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	
 	public int acceptChargeFromDir(ForgeDirection dir)
 	{
+		int ret = 0;
+		
+		//IChargeGeneratorからチャージを受け取れるように
+		ForgeDirection opposite = dir.getOpposite();
+		TileEntity tile = worldObj.getTileEntity(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
+		if (tile instanceof IChargeGenerator)
+		{
+			IChargeGenerator device = (IChargeGenerator) tile;
+			int get = device.generateCharge(opposite, true);
+			
+			if (get > 0)
+			{
+				device.generateCharge(opposite, false);
+				ret = get;
+			}
+		}
+		
 		//EU受入量は指定する必要があるので、とりあえず512とする。
-		if (EUChannel != null){
+		if (ret == 0 && EUChannel != null){
 			
 			int i = this.getChargeAmount();
 			double eu = Math.min(EUChannel.getEnergyStored2(), 512);
@@ -384,10 +401,10 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 			if ((this.getMaxChargeAmount() - i) < get) return 0;
 			
 			if (EUChannel.useEnergy2(eu)){
-				return MathHelper.floor_double(get);
+				ret = (int) get;
 			}
 		}
-		return 0;
+		return ret;
 	}
 	
 	/* ========== 以下、ISidedInventoryのメソッド ==========*/

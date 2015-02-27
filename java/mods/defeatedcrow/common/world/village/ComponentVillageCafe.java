@@ -48,7 +48,7 @@ public class ComponentVillageCafe extends StructureVillagePieces.Village {
 		int height = 7;
 		
 		//air
-		this.fillWithBlocks(world, structureboundingbox, 0, 1, 0, 9, 8, 9, Blocks.air, Blocks.air, false);
+		this.fillWithBlocks(world, structureboundingbox, 0, 1, 0, 9, 8, 8, Blocks.air, Blocks.air, false);
 		//床
 		//丸石
 		this.fillWithBlocks(world, structureboundingbox, 0, 0, 1, 7, 1, 7, Blocks.cobblestone, Blocks.cobblestone, false);

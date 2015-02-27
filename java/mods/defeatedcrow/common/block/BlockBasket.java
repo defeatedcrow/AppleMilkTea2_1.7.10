@@ -10,6 +10,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -19,13 +20,14 @@ import net.minecraft.src.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.tile.TileBread;
-import mods.defeatedcrow.common.tile.TileDummy;
 import mods.defeatedcrow.handler.Util;
 
 public class BlockBasket extends BlockContainer{	
@@ -192,6 +194,40 @@ public class BlockBasket extends BlockContainer{
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
 		}
 		
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+	{
+		int playerFacing = MathHelper.floor_double((double)((par5EntityLivingBase.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+ 
+		if (DCsConfig.setAltTexturePass > 1)
+		{
+			byte facing = 0;
+			if (playerFacing == 0)
+			{
+				facing = 0;
+			}
+			if (playerFacing == 1)
+			{
+				facing = 1;
+			}
+			if (playerFacing == 2)
+			{
+				facing = 2;
+			}
+			if (playerFacing == 3)
+			{
+				facing = 4;
+			}
+	 
+			TileEntity tileEntity = par1World.getTileEntity(par2, par3, par4);
+			if (tileEntity != null && tileEntity instanceof TileBread)
+			{
+				((TileBread)tileEntity).setDirectionByte(facing);
+				par1World.markBlockForUpdate(par2, par3, par4);
+			}
+		}
 	}
 	
 	@Override

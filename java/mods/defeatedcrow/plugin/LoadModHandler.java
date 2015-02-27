@@ -320,9 +320,9 @@ public class LoadModHandler {
 			
 			ArrayList<ItemStack> milk180 = OreDictionary.getOres("milk180");
 			if (milk180.size() > 0){
-				ItemStack milk = new ItemStack(rape.get(0).getItem(), 1, rape.get(0).getItemDamage());
+				ItemStack milk = new ItemStack(milk180.get(0).getItem(), 1, milk180.get(0).getItemDamage());
 				if (milk != null) {
-					LoadModHandler.registerModItems("rapes", milk);
+					LoadModHandler.registerModItems("milk180", milk);
 					
 					OreDictionary.registerOre("listAllmilk", milk);
 				}
@@ -479,11 +479,17 @@ public class LoadModHandler {
 				}
 				OreDictionary.registerOre("cropRice", registerItem2);
 			}
-			Item item = Util.getModItem("Wa", "玉鋼");
-			if (item != null)
+			
+			Item item4 = Util.getModItem("Wa", "tamahagane");
+			if (item4 == null)
 			{
-				ItemStack hagane = new ItemStack(item, 1, 0);
-				if (this.matchItem("hagane", hagane))
+				AMTLogger.debugInfo("tamahagane is null...");
+			}
+			else
+			{
+				AMTLogger.debugInfo("tamahagane! " + item4.getUnlocalizedName());
+				ItemStack hagane = new ItemStack(item4, 1, 0);
+				if (this.registerModItems("hagane", hagane))
 				{
 					AMTLogger.debugInfo("Succeeded to get wa_tamahagane");
 					GameRegistry.addRecipe(

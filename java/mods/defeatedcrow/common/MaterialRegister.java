@@ -151,6 +151,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.yuzuBat, "defeatedcrow.yuzuBatContainer");
 		GameRegistry.registerBlock(DCsAppleMilk.gelBat, ItemGelBat.class, "defeatedcrow.gelBatContainer");
 		GameRegistry.registerBlock(DCsAppleMilk.batBox, ItemBatBox.class, "defeatedcrow.batBox");
+		GameRegistry.registerBlock(DCsAppleMilk.handleEngine, "defeatedcrow.EHandle");
 		
 		//圧縮系
 		GameRegistry.registerBlock(DCsAppleMilk.woodBox, ItemWoodBox.class, "defeatedcrow.WoodBox");
@@ -892,6 +893,10 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.batBox = (new BlockBatBox()).
 				setBlockName("defeatedcrow.batBox").
+				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.handleEngine = (new BlockHandleEngine()).
+				setBlockName("defeatedcrow.EHandle").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		//インセンス

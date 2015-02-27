@@ -59,7 +59,7 @@ public class BlockBarrel extends BlockContainer{
         
         if (Util.notEmptyItem(item) && tile.getAged())
         {
-        	if (tile.productTank.isEmpty())return false;
+        	if (tile.productTank.isEmpty())return true;
         	
         	FluidStack fluid = tile.productTank.getFluid().copy();
         	int drainAmount = 0;
@@ -109,7 +109,7 @@ public class BlockBarrel extends BlockContainer{
         		}
         	}
         	
-        	return false;
+        	return true;
         }
         else if (Util.notEmptyItem(item) && tile.productTank.isEmpty())
         {
@@ -137,6 +137,7 @@ public class BlockBarrel extends BlockContainer{
                 			
                 			par5EntityPlayer.inventory.markDirty();
                 			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+                			return true;
             			}
             		}
         			else
@@ -145,7 +146,7 @@ public class BlockBarrel extends BlockContainer{
         			}
         		}
         	}
-        	return false;
+        	return true;
         }
         else if (Util.notEmptyItem(item) && DCsAppleMilk.debugMode && item.getItem() == DCsAppleMilk.chalcedonyKnife)
         {

@@ -7,6 +7,7 @@ import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import mods.defeatedcrow.recipe.EvaporatorRecipeRegister;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -15,6 +16,7 @@ public class LoadBoPPlugin {
 	
 	public static ItemStack bopHoney;
 	public static ItemStack bopBerry;
+	@Deprecated
 	public static ItemStack bopLavender;
 	
 	
@@ -53,6 +55,13 @@ public class LoadBoPPlugin {
 				{
 					eva.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 6), null, reg);
 				}
+			}
+			
+			ItemStack registerItem2 = new ItemStack(item2, 1, 2);
+			if (LoadModHandler.registerModItems("fireFlower", registerItem2)) {
+				RecipeRegisterManager.panRecipe.registerHeatSource(Block.getBlockFromItem(item2), 2);
+				RecipeRegisterManager.plateRecipe.registerHeatSource(Block.getBlockFromItem(item2), 2);
+				AMTLogger.debugInfo("Succeeded to get FireFlower");
 			}
 		}
 	}

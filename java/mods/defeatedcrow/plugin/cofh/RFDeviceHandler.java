@@ -16,7 +16,7 @@ public class RFDeviceHandler {
 		return tile instanceof IEnergyHandler;
 	}
 	
-	public static int inputEnergy(TileEntity tile, int amount)
+	public static int inputEnergy(TileEntity tile, int amount, boolean simulate)
 	{
 		int ret = 0;
 		
@@ -25,7 +25,7 @@ public class RFDeviceHandler {
 			IEnergyHandler handler = (IEnergyHandler) tile;
 			
 			if (handler.canConnectEnergy(ForgeDirection.UNKNOWN))
-			ret = handler.receiveEnergy(ForgeDirection.UNKNOWN, amount, false);
+			ret = handler.receiveEnergy(ForgeDirection.UNKNOWN, amount, simulate);
 		}
 		
 		return ret;

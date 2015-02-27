@@ -25,7 +25,7 @@ public class TileEntityBreadRenderer extends TileEntitySpecialRenderer
 
     public void renderTileEntityBreadAt(TileBread par1TileBread, double par2, double par4, double par6, float par8)
     {
-        this.setRotation((float)par2, (float)par4, (float)par6, par1TileBread.blockMetadata, par1TileBread);
+        this.setRotation((float)par2, (float)par4, (float)par6, par1TileBread.getDirectionByte(), par1TileBread);
     }
 
     /**
@@ -37,16 +37,21 @@ public class TileEntityBreadRenderer extends TileEntitySpecialRenderer
         BreadRenderer = this;
     }
 
-    public void setRotation(float par1, float par2, float par3, int par4, TileBread tile)
+    public void setRotation(float par1, float par2, float par3, byte par4, TileBread tile)
     {
         ModelBreads modelBread = this.breadModel;
         byte l = (byte)tile.getBlockMetadata();
+        float j = 0;
+        if (par4 == 0) j = 180.0F;
+        if (par4 == 1) j = -90.0F;
+        if (par4 == 2) j = 0.0F;
+        if (par4 == 4) j = 90.0F;
         
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glTranslatef((float)par1 + 0.5F, (float)par2 + 1.5F, (float)par3 + 0.5F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
-        GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
+        GL11.glRotatef(j, 0.0F, 1.0F, 0.0F);
         
         if (l < 6) {
         	this.bindTexture(BreadTex);

@@ -254,6 +254,7 @@ tile.defeatedcrow.lightGel.name=Yuzu Light Gel
 tile.defeatedcrow.yuzuBatContainer.name=Yuzu Battery Complex
 tile.defeatedcrow.gelBatContainer.name=Chargeable Battery Box
 tile.defeatedcrow.batBox.name=Charger Block
+tile.defeatedcrow.EHandle.name=Manual Charge Generator
 
 item.defeatedcrow.bakedApple.name=Baked Apple
 item.defeatedcrow.appleTart_0.name=Apple Tart

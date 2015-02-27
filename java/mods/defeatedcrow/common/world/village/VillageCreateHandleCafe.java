@@ -25,7 +25,7 @@ public class VillageCreateHandleCafe implements IVillageCreationHandler {
 	public Object buildComponent(StructureVillagePieces.PieceWeight villagePiece,
                                  StructureVillagePieces.Start startPiece, List pieces, Random random,
 			int p3, int p4, int p5, int p6, int p7) {
-		StructureBoundingBox structureboundingbox = StructureBoundingBox.getComponentToAddBoundingBox(p3, p4, p5, 0, -2, 0, 9, 8, 8, p6);
+		StructureBoundingBox structureboundingbox = StructureBoundingBox.getComponentToAddBoundingBox(p3, p4, p5, -1, -2, -1, 9, 8, 9, p6);
         return StructureComponent.findIntersecting(pieces, structureboundingbox) == null ? new ComponentVillageCafe(startPiece, p7, random, structureboundingbox, p6) : null;
 	}
  

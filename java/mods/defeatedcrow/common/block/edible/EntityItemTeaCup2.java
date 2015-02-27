@@ -130,7 +130,11 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock2{
             PotionEffect potioneffect = (PotionEffect)current.next();
             boolean flag = potioneffect.getPotionID() != Potion.heal.id && potioneffect.getPotionID() !=  Potion.harm.id
             		&& potioneffect.getPotionID() != Potion.regeneration.id;
-            if (flag) living.addPotionEffect(new PotionEffect(potioneffect.getPotionID(), potioneffect.getDuration() + increase, potioneffect.getAmplifier()));
+            
+            if (flag) {
+            	int d = Math.min(potioneffect.getDuration() + increase, 30000);
+            	living.addPotionEffect(new PotionEffect(potioneffect.getPotionID(), d, potioneffect.getAmplifier()));
+            }
         }
 	}
 	

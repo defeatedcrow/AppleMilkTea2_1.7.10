@@ -256,6 +256,7 @@ tile.defeatedcrow.lightGel.name=柚子ジェル
 tile.defeatedcrow.yuzuBatContainer.name=柚子電池複合体
 tile.defeatedcrow.gelBatContainer.name=充電池ブロック
 tile.defeatedcrow.batBox.name=充電装置
+tile.defeatedcrow.EHandle.name=手回し式チャージ発生器
 
 item.defeatedcrow.bakedApple.name=焼きリンゴ
 item.defeatedcrow.appleTart_0.name=リンゴのタルト

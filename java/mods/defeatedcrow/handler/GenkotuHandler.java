@@ -8,7 +8,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-/**グーで殴る*/
+/**
+ * グーで殴る
+ * */
 public class GenkotuHandler {
 	
 	public static ItemStack getMobsDrop(EntityLivingBase entity)

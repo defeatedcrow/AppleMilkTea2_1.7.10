@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
 public class DCsLivingEvent {
@@ -104,6 +105,11 @@ public class DCsLivingEvent {
 						if (immunity.formPotionEffect(amp, immunity.id, living)) {
 							AMTLogger.debugInfo("Succeeded to form effect of PotionLivingBase.");
 						}
+					}
+					
+					if (potion != null && potion.id == potion.jump.id)
+					{
+						living.fallDistance = 0.0F;
 					}
 				}
 			}

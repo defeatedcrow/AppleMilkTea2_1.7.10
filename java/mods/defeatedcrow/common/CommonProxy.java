@@ -67,6 +67,7 @@ public class CommonProxy implements IGuiHandler{
 		GameRegistry.registerTileEntity(TileGelBat.class, "TileGelBattery");
 		GameRegistry.registerTileEntity(TileTeppanII.class, "TileTeppanII");
 		GameRegistry.registerTileEntity(TileCocktailSP.class, "TileCocktailSP");
+		GameRegistry.registerTileEntity(TileHandleEngine.class, "TileEHandle");
 	}
 	
     //レンダーIDには-1を返す

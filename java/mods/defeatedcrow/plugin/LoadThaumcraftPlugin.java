@@ -233,6 +233,7 @@ public class LoadThaumcraftPlugin {
 		{
 			if (LoadModHandler.registerModItems("furnaceBlock", this.thaumicNitor)){
 				RecipeRegisterManager.panRecipe.registerHeatSource(Block.getBlockFromItem(thaumicNitor.getItem()), 1);
+				RecipeRegisterManager.plateRecipe.registerHeatSource(Block.getBlockFromItem(thaumicNitor.getItem()), 1);
 				AMTLogger.debugInfo("Succeeded to get Nitor.");
 			}
 		}

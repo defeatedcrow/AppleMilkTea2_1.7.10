@@ -25,7 +25,7 @@ public class VillageCreateHandleWarehouse implements IVillageCreationHandler {
 	public Object buildComponent(StructureVillagePieces.PieceWeight villagePiece,
                                  StructureVillagePieces.Start startPiece, List pieces, Random random,
 			int p3, int p4, int p5, int p6, int p7) {
-		StructureBoundingBox structureboundingbox = StructureBoundingBox.getComponentToAddBoundingBox(p3, p4, p5, 0, 0, 0, 5, 7, 8, p6);
+		StructureBoundingBox structureboundingbox = StructureBoundingBox.getComponentToAddBoundingBox(p3, p4, p5, 0, 0, 0, 6, 8, 8, p6);
         return StructureComponent.findIntersecting(pieces, structureboundingbox) == null ? new ComponentVillageWarehouse(startPiece, p7, random, structureboundingbox, p6) : null;
 	}
  

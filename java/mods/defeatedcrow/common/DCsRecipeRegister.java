@@ -2040,8 +2040,8 @@ public class DCsRecipeRegister {
 	    			  "cropRice",
 	    			  "cropRice",
 	    			  "cropRice",
-	    			  new ItemStack(Items.water_bucket, 1, 0),
-	    			  "kouji"
+	    			  new ItemStack(Items.bucket, 1, 0),
+	    			  "foodYeast"
 					 }));
 		
 		GameRegistry.addRecipe(
@@ -2051,8 +2051,8 @@ public class DCsRecipeRegister {
 	    			  new ItemStack(Items.wheat, 1, 0),
 	    			  new ItemStack(Items.wheat, 1, 0),
 	    			  new ItemStack(Items.wheat, 1, 0),
-	    			  new ItemStack(Items.water_bucket, 1, 0),
-	    			  "kouji"
+	    			  new ItemStack(Items.bucket, 1, 0),
+	    			  "foodYeast"
 					 }));
 		
 		GameRegistry.addRecipe(
@@ -2062,8 +2062,8 @@ public class DCsRecipeRegister {
 	    			  "grape",
 	    			  "grape",
 	    			  "grape",
-	    			  new ItemStack(Items.water_bucket, 1, 0),
-	    			  "kouji"
+	    			  new ItemStack(Items.bucket, 1, 0),
+	    			  "foodYeast"
 					 }));
 		
 		GameRegistry.addRecipe(
@@ -2073,8 +2073,8 @@ public class DCsRecipeRegister {
 	    			  "cropGrape",
 	    			  "cropGrape",
 	    			  "cropGrape",
-	    			  new ItemStack(Items.water_bucket, 1, 0),
-	    			  "kouji"
+	    			  new ItemStack(Items.bucket, 1, 0),
+	    			  "foodYeast"
 					 }));
 		
 		GameRegistry.addRecipe(
@@ -2084,8 +2084,8 @@ public class DCsRecipeRegister {
 	    			  "cropReed",
 	    			  "cropReed",
 	    			  "cropReed",
-	    			  new ItemStack(Items.water_bucket, 1, 0),
-	    			  "kouji"
+	    			  new ItemStack(Items.bucket, 1, 0),
+	    			  "foodYeast"
 					 }));
 		
 		GameRegistry.addRecipe(
@@ -2095,8 +2095,8 @@ public class DCsRecipeRegister {
 	    			  new ItemStack(Items.reeds),
 	    			  new ItemStack(Items.reeds),
 	    			  new ItemStack(Items.reeds),
-	    			  new ItemStack(Items.water_bucket, 1, 0),
-	    			  "kouji"
+	    			  new ItemStack(Items.bucket, 1, 0),
+	    			  "foodYeast"
 					 }));
 		
 		GameRegistry.addRecipe(
@@ -2106,8 +2106,8 @@ public class DCsRecipeRegister {
 	    			  "cropPotato",
 	    			  "cropPotato",
 	    			  "cropPotato",
-	    			  new ItemStack(Items.water_bucket, 1, 0),
-	    			  "kouji"
+	    			  new ItemStack(Items.bucket, 1, 0),
+	    			  "foodYeast"
 					 }));
 		
 		GameRegistry.addRecipe(
@@ -2117,19 +2117,8 @@ public class DCsRecipeRegister {
 	    			  new ItemStack(Items.potato),
 	    			  new ItemStack(Items.potato),
 	    			  new ItemStack(Items.potato),
-	    			  new ItemStack(Items.water_bucket, 1, 0),
-	    			  "kouji"
-					 }));
-		
-		GameRegistry.addRecipe(
-				 new ShapelessOreRecipe(
-	    		  new ItemStack(DCsAppleMilk.moromi, 1, 4),
-	    		  new Object[]{
-	    			  new ItemStack(Items.potato),
-	    			  new ItemStack(Items.potato),
-	    			  new ItemStack(Items.potato),
-	    			  new ItemStack(Items.water_bucket, 1, 0),
-	    			  "kouji"
+	    			  new ItemStack(Items.bucket, 1, 0),
+	    			  "foodYeast"
 					 }));
 		
 		//vodka
@@ -2353,6 +2342,14 @@ public class DCsRecipeRegister {
 	    			  Character.valueOf('Z'), new ItemStack(DCsAppleMilk.gelBat, 1, 0),
 	    			  Character.valueOf('V'), new ItemStack(Blocks.chest, 1, 0),
 	    			  Character.valueOf('W'), "gearIron"}));
+		
+		GameRegistry.addRecipe(
+				 new ShapedOreRecipe(
+	    		  new ItemStack(DCsAppleMilk.handleEngine, 1, 0),
+	    		  new Object[]{" X "," Y ","XZX",
+	    			  Character.valueOf('X'), "ingotIron",
+	    			  Character.valueOf('Y'), "gearChalcedony",
+	    			  Character.valueOf('Z'), new ItemStack(DCsAppleMilk.redGel, 1, 0)}));
 		
 		//カノン
 		GameRegistry.addRecipe(

@@ -3,6 +3,7 @@ package mods.defeatedcrow.common.tile.energy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.api.charge.ChargeItemManager;
+import mods.defeatedcrow.api.charge.IChargeGenerator;
 import mods.defeatedcrow.api.charge.IChargeItem;
 import mods.defeatedcrow.api.charge.IChargeableMachine;
 import mods.defeatedcrow.api.energy.IBattery;
@@ -333,10 +334,24 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 	
 	/**
 	 * 隣接ブロックからエネルギーを受け入れるメソッド。継承先で中身を入れる。
-	 * AMT単体では特に用のないメソッド
+	 * チャージ発生装置からチャージを受け取る
 	 * */
 	public int acceptChargeFromDir(ForgeDirection dir)
 	{
+		//IChargeGeneratorからチャージを受け取れるように
+		ForgeDirection opposite = dir.getOpposite();
+		TileEntity tile = worldObj.getTileEntity(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
+		if (tile instanceof IChargeGenerator)
+		{
+			IChargeGenerator device = (IChargeGenerator) tile;
+			int get = device.generateCharge(opposite, true);
+			
+			if (get > 0)
+			{
+				device.generateCharge(opposite, false);
+				return get;
+			}
+		}
 		return 0;
 	}
 	

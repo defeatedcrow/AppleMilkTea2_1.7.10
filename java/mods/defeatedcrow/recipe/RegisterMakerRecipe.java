@@ -460,16 +460,16 @@ public class RegisterMakerRecipe {
 		
 		//酒
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.shothu_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 0), false);
+				new FluidStack(DCsAppleMilk.shothu_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 0), true);
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.whiskey_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 1), false);
+				new FluidStack(DCsAppleMilk.whiskey_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 1), true);
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.rum_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 3), false);
+				new FluidStack(DCsAppleMilk.rum_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 3), true);
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
-				new FluidStack(DCsAppleMilk.vodka_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 4), false);
+				new FluidStack(DCsAppleMilk.vodka_young, 100), new ItemStack(DCsAppleMilk.moromi, 1, 4), true);
 		
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null,
 				new FluidStack(DCsAppleMilk.brandy_young, 100), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 3));
