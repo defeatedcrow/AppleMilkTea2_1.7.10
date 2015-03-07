@@ -167,38 +167,6 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		return 1;
 	}
 	
-	//チャージゲージ上限も変更可能に。
-	@Override
-	public int getMaxChargeAmount()
-	{
-		return 25600;
-	}
-	
-	//チャージに空きがあり、燃料スロットのアイテムを受け入れられる状態
-	@Override
-	public boolean canReceiveChargeItem(ItemStack item)
-	{
-		boolean flag = false;
-		boolean flag2 = false;
-		if (item != null)
-		{
-			int i = this.getItemBurnTime(item);
-			flag = i > 0 && (this.getChargeAmount() + i <= this.getMaxChargeAmount());
-		}
-		
-		if (this.getStackInSlot(0) == null)
-		{
-			flag2 = true;
-		}
-		else
-		{
-			ItemStack current = this.getStackInSlot(0);
-			flag2 = item.isItemEqual(current) && (current.stackSize + item.stackSize < current.getMaxStackSize());
-		}
-		
-		return flag && flag2;
-	}
-	
 	//以下はパケット送受信用メソッド
 	public void setChargeAmount(int par1)
 	{
@@ -373,6 +341,10 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		return getItemBurnTime(par0ItemStack) > 0;
 	}
 	
+	/**
+	 * この装置のupdateで、周囲の受け入れ可能装置をサーチしてチャージを得る。
+	 * そのため、AMT2装置にチャージを送りたい装置は基本的にはIChargeGeneratorを実装して隣接されれば良い。
+	 */
 	public int acceptChargeFromDir(ForgeDirection dir)
 	{
 		int ret = 0;
@@ -404,6 +376,71 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 				ret = (int) get;
 			}
 		}
+		return ret;
+	}
+	
+	/* IChargeableMachineのメソッド */
+	
+	//チャージゲージ上限も変更可能に。
+	@Override
+	public int getMaxChargeAmount()
+	{
+		return 25600;
+	}
+	
+	//チャージに空きがあり、燃料スロットのアイテムを受け入れられる状態
+	@Override
+	public boolean canReceiveChargeItem(ItemStack item)
+	{
+		boolean flag = false;
+		boolean flag2 = false;
+		if (item != null)
+		{
+			int i = this.getItemBurnTime(item);
+			flag = i > 0 && (this.getChargeAmount() + i <= this.getMaxChargeAmount());
+		}
+		
+		if (this.getStackInSlot(0) == null)
+		{
+			flag2 = true;
+		}
+		else
+		{
+			ItemStack current = this.getStackInSlot(0);
+			flag2 = item.isItemEqual(current) && (current.stackSize + item.stackSize < current.getMaxStackSize());
+		}
+		
+		return flag && flag2;
+	}
+	
+	@Override
+	public int addCharge(int amount, boolean isSimulate)
+	{
+		int eng = this.getChargeAmount();
+		int get = amount;
+		if (this.isFullCharged()) return 0;
+		
+		int ret = Math.min(this.getMaxChargeAmount() - eng, get);
+		
+		if (!isSimulate){
+			this.setChargeAmount(eng + ret);
+		}
+		
+		return ret;
+	}
+	
+	@Override
+	public int extractCharge(int amount, boolean isSimulate)
+	{
+		int eng = this.getChargeAmount();
+		int get = amount;
+		
+		int ret = Math.min(eng, get);
+		
+		if (!isSimulate){
+			this.setChargeAmount(eng - ret);
+		}
+		
 		return ret;
 	}
 	

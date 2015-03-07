@@ -59,7 +59,11 @@ public class BlockBarrel extends BlockContainer{
         
         if (Util.notEmptyItem(item) && tile.getAged())
         {
-        	if (tile.productTank.isEmpty())return true;
+        	if (tile.productTank.isEmpty()){
+        		tile.setAged(false);
+        		tile.setAgingStage(0);
+        		return true;
+        	}
         	
         	FluidStack fluid = tile.productTank.getFluid().copy();
         	int drainAmount = 0;
@@ -123,6 +127,10 @@ public class BlockBarrel extends BlockContainer{
             			ItemStack ret = FluidContainerRegistry.drainFluidContainer(item);
             			Fluid fluid = input.getFluid();
             			int amount = input.amount;
+            			
+            			tile.setAged(false);
+                		tile.setAgingStage(0);
+                		
             			if (Util.notEmptyItem(ret) && tile.productTank.fill(new FluidStack(fluid, amount), true) > 0)
             			{
             				if (!par5EntityPlayer.capabilities.isCreativeMode && --item.stackSize <= 0)

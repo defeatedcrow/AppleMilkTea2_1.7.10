@@ -3,6 +3,7 @@ package mods.defeatedcrow.asm;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
 import cpw.mods.fml.common.versioning.ComparableVersion;
 import cpw.mods.fml.relauncher.FMLInjectionData;
 import cpw.mods.fml.relauncher.FMLLaunchHandler;
@@ -15,6 +16,10 @@ import sun.net.util.URLUtil;
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.awt.*;
 import java.awt.Dialog.ModalityType;
 import java.awt.event.WindowAdapter;
@@ -44,6 +49,7 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
     private static ByteBuffer downloadBuffer = ByteBuffer.allocateDirect(1 << 23);
     private static final String owner = "CB's DepLoader";
     private static DepLoadInst inst;
+    private static Logger logger = LogManager.getLogger("CBsDepLorder");
 
     public interface IDownloadDisplay {
         void resetProgress(int sizeGuess);
@@ -319,6 +325,7 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
                 mod.deleteOnExit();
                 String msg = owner + " was unable to delete file " + mod.getPath() + " the game will now try to delete it on exit. If this dialog appears again, delete it manually.";
                 System.err.println(msg);
+                logger.warn(msg);
                 if (!GraphicsEnvironment.isHeadless())
                     JOptionPane.showMessageDialog(null, msg, "An update error has occured", JOptionPane.ERROR_MESSAGE);
 
@@ -333,6 +340,7 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
                 URL libDownload = new URL(dep.url + '/' + dep.file.filename);
                 downloadMonitor.updateProgressString("Downloading file %s", libDownload.toString());
                 System.out.format("Downloading file %s\n", libDownload.toString());
+                logger.info("Downloading file " + libDownload.toString());
                 URLConnection connection = libDownload.openConnection();
                 connection.setConnectTimeout(5000);
                 connection.setReadTimeout(5000);
@@ -341,12 +349,14 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
                 download(connection.getInputStream(), sizeGuess, libFile);
                 downloadMonitor.updateProgressString("Download complete");
                 System.out.println("Download complete");
+                logger.info("Download complete");
 
                 scanDepInfo(libFile);
             } catch (Exception e) {
                 libFile.delete();
                 if (downloadMonitor.shouldStopIt()) {
                     System.err.println("You have stopped the downloading operation before it could complete");
+                    logger.warn("You have stopped the downloading operation before it could complete");
                     System.exit(1);
                     return;
                 }
@@ -429,11 +439,13 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
                 int cmp = vfile.version.compareTo(dep.file.version);
                 if (cmp < 0) {
                     System.out.println("Deleted old version " + f.getName());
+                    logger.info("Deleted old version " + f.getName());
                     deleteMod(f);
                     return null;
                 }
                 if (cmp > 0) {
                     System.err.println("Warning: version of " + dep.file.name + ", " + vfile.version + " is newer than request " + dep.file.version);
+                    logger.warn("Warning: version of " + dep.file.name + ", " + vfile.version + " is newer than request " + dep.file.version);
                     return f.getName();
                 }
                 return f.getName();//found dependency
@@ -508,6 +520,7 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
                 zip.close();
             } catch (Exception e) {
                 System.err.println("Failed to load dependencies.info from " + file.getName() + " as JSON");
+                logger.warn("Failed to load dependencies.info from " + file.getName() + " as JSON");
                 e.printStackTrace();
             }
         }
@@ -548,6 +561,7 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
                     pattern = Pattern.compile(node.get("pattern").getAsString());
             } catch (PatternSyntaxException e) {
                 System.err.println("Invalid filename pattern: "+node.get("pattern"));
+                logger.warn("Invalid filename pattern: "+node.get("pattern"));
                 e.printStackTrace();
             }
             if(pattern == null)

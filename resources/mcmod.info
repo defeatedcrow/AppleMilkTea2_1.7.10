@@ -12,11 +12,11 @@
       "defeatedcrow"
     ],
     "name":"Apple&Milk&Tea!",
-    "url":"http://forum.minecraftuser.jp/viewtopic.php?f=13&t=17657",
+    "url":"http://defeatedcrow.wiki.fc2.com/wiki/AppleMilkTea%20ver2",
     "updateUrl":"",
-    "version":"1.7.10_2.3e",
+    "version":"1.7.10_2.4a",
     "requiredMods":[
-      "Minecraft Forge1.7.10 10.13.0.1207+, PotionExtention-1.0.3+"
+      "Minecraft Forge1.7.10 10.13.0.1207+, PotionExtention-1.7.10-1.0.4+"
     ]
   }
 ]

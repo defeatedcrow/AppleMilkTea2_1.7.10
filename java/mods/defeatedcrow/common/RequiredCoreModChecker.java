@@ -28,17 +28,17 @@ public class RequiredCoreModChecker {
 		for (String name : loaded)
 		{
 			AMTLogger.debugInfo("this CoreMod Name : " + name);
-			if (name.equalsIgnoreCase("PotionExtension-1.0.3-forMC1.7.jar"))
+			if (name.equalsIgnoreCase("PotionExtension-1.0.4-forMC1.7.jar"))
 			{
 				completed = true;
-				AMTLogger.info("Required CoreMod was loaded successfully : PotionExtension-1.0.3.jar");
+				AMTLogger.info("Required CoreMod was loaded successfully : PotionExtension-1.0.4.jar");
 			}
 		}
 		
 		//未導入の場合
 		if (!completed)
 		{
-			AMTLogger.warn("Failed to checking required CoreMod : PotionExtension-1.0.3forMC1.7.jar");
+			AMTLogger.warn("Failed to checking required CoreMod : PotionExtension-1.0.4forMC1.7.jar");
 			AMTLogger.warn("Please restart the client, or get to download PotionExtensionCore from the link : ");
 			AMTLogger.warn("http://forum.minecraftuser.jp/viewtopic.php?f=13&t=6672");
 		}

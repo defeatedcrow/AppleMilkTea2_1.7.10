@@ -83,7 +83,7 @@ public class ItemDebugArm extends Item implements IBattery{
         //RF
         else if (Loader.isModLoaded("CoFHCore") && RFDeviceHandler.isRFDevice(tile))
         {
-        	se = RFDeviceHandler.inputEnergy(tile, 1000) > 0;
+        	se = RFDeviceHandler.inputEnergy(tile, 1000, false) > 0;
         }
         
         //Barrel

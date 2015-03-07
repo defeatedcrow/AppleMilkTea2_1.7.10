@@ -4,7 +4,9 @@ import cofh.api.energy.IEnergyProvider;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import mods.defeatedcrow.api.charge.IChargeGenerator;
+import mods.defeatedcrow.api.charge.IChargeableMachine;
 import mods.defeatedcrow.common.config.PropertyHandler;
+import mods.defeatedcrow.plugin.SSector.SS2DeviceHandler;
 import mods.defeatedcrow.plugin.cofh.RFDeviceHandler;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -23,6 +25,7 @@ public class TileHandleEngine extends TileEntity implements IChargeGenerator, IE
 	
 	private int interval = 0;
 	private int round = 0;
+	private int click = 0;
 	
 	private int chargeAmount = 0;
 	private final int MAX_CHARGE = 32;
@@ -36,6 +39,7 @@ public class TileHandleEngine extends TileEntity implements IChargeGenerator, IE
 		
 		this.interval = par1NBTTagCompound.getShort("Interval");
 		this.round = par1NBTTagCompound.getShort("Round");
+		this.click = par1NBTTagCompound.getShort("Click");
 		this.chargeAmount = par1NBTTagCompound.getShort("ChargeAmount");
 	}
 	
@@ -48,6 +52,7 @@ public class TileHandleEngine extends TileEntity implements IChargeGenerator, IE
 		
 		par1NBTTagCompound.setShort("Interval", (short)this.interval);
 		par1NBTTagCompound.setShort("Round", (short)this.round);
+		par1NBTTagCompound.setShort("Click", (short)this.click);
 		par1NBTTagCompound.setShort("ChargeAmount", (short)this.chargeAmount);
 	}
 	
@@ -71,6 +76,16 @@ public class TileHandleEngine extends TileEntity implements IChargeGenerator, IE
 	public int getChargeAmount()
 	{
 		return this.chargeAmount;
+	}
+	
+	public void setClick(int par1)
+	{
+		this.click = par1;
+	}
+	
+	public int getClick()
+	{
+		return this.click;
 	}
 	
 	public void setInterval(int par1)
@@ -110,8 +125,24 @@ public class TileHandleEngine extends TileEntity implements IChargeGenerator, IE
 		if (tile != null)
 		{
 			int ext = Math.min(this.chargeAmount, 2);
+			boolean b = false;
 			
-			if (Loader.isModLoaded("CoFHCore"))
+			if (tile instanceof IChargeableMachine)
+			{
+				b = true;
+			}
+			if (!b && Loader.isModLoaded("SextiarySector"))
+			{
+				int ext2 = ext * PropertyHandler.rateGF();
+				ext2 = SS2DeviceHandler.inputEnergy(tile, ForgeDirection.UP, ext2, true);
+				if (SS2DeviceHandler.isGFDevice(tile) && ext2 > 0)
+				{
+					SS2DeviceHandler.inputEnergy(tile, ForgeDirection.UP, ext2, false);
+					this.chargeAmount -= ext;
+					b = true;
+				}
+			}
+			if (!b && Loader.isModLoaded("CoFHCore"))
 			{
 				int ext2 = ext * PropertyHandler.rateRF();
 				ext2 = RFDeviceHandler.inputEnergy(tile, ext2, true);
@@ -119,8 +150,10 @@ public class TileHandleEngine extends TileEntity implements IChargeGenerator, IE
 				{
 					RFDeviceHandler.inputEnergy(tile, ext2, false);
 					this.chargeAmount -= ext;
+					b = true;
 				}
 			}
+			
 		}
 		
 		if (!worldObj.isRemote)

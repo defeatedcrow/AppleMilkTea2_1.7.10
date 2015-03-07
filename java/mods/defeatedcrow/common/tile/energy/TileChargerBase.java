@@ -295,6 +295,37 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 		return flag && flag2;
 	}
 	
+	@Override
+	public int addCharge(int amount, boolean isSimulate)
+	{
+		int eng = this.getChargeAmount();
+		int get = amount;
+		if (this.isFullCharged()) return 0;
+		
+		int ret = Math.min(this.getMaxChargeAmount() - eng, get);
+		
+		if (!isSimulate){
+			this.setChargeAmount(eng + ret);
+		}
+		
+		return ret;
+	}
+	
+	@Override
+	public int extractCharge(int amount, boolean isSimulate)
+	{
+		int eng = this.getChargeAmount();
+		int get = amount;
+		
+		int ret = Math.min(eng, get);
+		
+		if (!isSimulate){
+			this.setChargeAmount(eng - ret);
+		}
+		
+		return ret;
+	}
+	
 	/**
 	 * このアイテムのチャージ量
 	 * @param par0ItemStack チェック対象アイテム

@@ -6,7 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.plugin.LoadSSectorPlugin;
+import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

@@ -1,9 +1,11 @@
 package mods.defeatedcrow.common.block.energy;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.tile.energy.*;
+import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -12,8 +14,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
 
 public class BlockHandleEngine extends BlockContainer{
 	
@@ -35,8 +39,41 @@ public class BlockHandleEngine extends BlockContainer{
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if (tile != null && tile instanceof TileHandleEngine)
 		{
+			if (par5EntityPlayer == null || par5EntityPlayer instanceof FakePlayer) return true;
+			
 			TileHandleEngine engine = (TileHandleEngine) tile;
 			engine.setInterval(8);
+			
+			if (!par1World.isRemote)
+			{
+				int def = par1World.difficultySetting.getDifficultyId();
+				boolean reduce = false;
+				if (def > 0)
+				{
+					int c = 40 / def;
+					reduce = engine.getClick() > c;
+				}
+				
+				if (reduce){
+					engine.setClick(0);
+					int f = par5EntityPlayer.getFoodStats().getFoodLevel();
+					float s = par5EntityPlayer.getFoodStats().getSaturationLevel();
+					if (f >= 1){
+						par5EntityPlayer.getFoodStats().addStats(-1, 0.0F);
+					}
+					if (Loader.isModLoaded("SextiarySector"))
+					{
+						if (LoadSSectorPlugin.getStaminaStats(par5EntityPlayer) > 1)
+						{
+							LoadSSectorPlugin.addStatus(0, 0.0F, -1, 0.0F, par5EntityPlayer);
+						}
+					}
+				}
+				else
+				{
+					engine.setClick(engine.getClick() + 1);
+				}
+			}
 			return true;
 		}
 		

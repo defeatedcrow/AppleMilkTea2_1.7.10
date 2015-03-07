@@ -16,6 +16,8 @@ public interface IProcessorRecipe {
 	
 	public boolean isFoodRecipe();
 	
+	public boolean forceReturnContainer();
+	
 	@Deprecated
 	public List<Object> getProsessedInput();
 	

@@ -30,7 +30,7 @@ import mods.defeatedcrow.client.entity.IEdibleRenderHandler;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.entity.edible.PlaceableFoods;
-import mods.defeatedcrow.plugin.LoadSSectorPlugin;
+import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
 
 public abstract class EdibleEntityItemBlock extends ItemBlock implements IEdibleItem{
 	

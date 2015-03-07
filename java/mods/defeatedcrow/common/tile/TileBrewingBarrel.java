@@ -219,7 +219,13 @@ public class TileBrewingBarrel extends TileEntity implements IFluidHandler{
 			return null;
 		}
 		if (productTank.getFluidType() == resource.getFluid()) {
-			return productTank.drain(resource.amount, doDrain);
+			FluidStack ret =  productTank.drain(resource.amount, doDrain);
+			if (productTank.isEmpty())
+			{
+				this.setAged(false);
+				this.setAgingStage(0);
+			}
+			return ret;
 		}
 		return null;
 	}

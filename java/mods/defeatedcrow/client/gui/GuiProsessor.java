@@ -29,6 +29,12 @@ public class GuiProsessor extends GuiContainer {
 		String s = this.inventory.hasCustomInventoryName() ? this.inventory.getInventoryName() : I18n.format(this.inventory.getInventoryName(), new Object[0]);
 		this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
+	}
+	
+	@Override
+	public void drawScreen(int par1, int par2, float par3)
+    {
+		super.drawScreen(par1, par2, par3);
 		
 		//チャージゲージのマウスオーバー
 		boolean b1 = this.func_146978_c(11, 26, 12, 27, par1, par2);
@@ -37,9 +43,9 @@ public class GuiProsessor extends GuiContainer {
 			int charge = this.tileentity.getChargeAmount();
 			ArrayList<String> list1 = new ArrayList<String>();
 			list1.add("Charge Amount : " + charge);
-			this.drawHoveringText(list1, par1 - this.guiLeft, par2 - this.guiTop, fontRendererObj);
+			this.drawHoveringText(list1, par1, par2, fontRendererObj);
 		}
-	}
+    }
  
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)

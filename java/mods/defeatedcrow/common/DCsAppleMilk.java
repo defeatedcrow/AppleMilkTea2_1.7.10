@@ -30,6 +30,7 @@ import mods.defeatedcrow.event.*;
 import mods.defeatedcrow.handler.*;
 import mods.defeatedcrow.plugin.*;
 import mods.defeatedcrow.plugin.IC2.LoadIC2Plugin;
+import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
 import mods.defeatedcrow.plugin.craftguide.LoadCraftGuidePlugin;
 import mods.defeatedcrow.plugin.mce.MCEconomyPlugin;
 import mods.defeatedcrow.potion.*;
@@ -69,7 +70,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.3e",
+		version = "1.7.10_2.4a",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -562,6 +563,9 @@ public class DCsAppleMilk{
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());
 		//FMLCommonHandler.instance().bus().register(new PlayerLoggedInMassage());
 		
+		//test
+		MinecraftForge.EVENT_BUS.register(new EatFoodEvent());
+		
 		//ディスペンサー動作への登録
 		DispenserEvent.instance.init();
 		
@@ -1048,12 +1052,12 @@ public class DCsAppleMilk{
 	
 	public int getMinorVersion()
 	{
-		return 3;
+		return 4;
 	}
 	
 	public String getRivision()
 	{
-		return "b";
+		return "a";
 	}
 	
 	public String getModName()

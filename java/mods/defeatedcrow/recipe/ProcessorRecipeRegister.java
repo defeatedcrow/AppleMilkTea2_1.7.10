@@ -35,11 +35,20 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 	}
 	
 	@Override
+	public void addRecipe(ItemStack output, boolean isFood, boolean forceReturn, ItemStack secondary, float secondaryChance, Object... input){
+		float c = MathHelper.clamp_float(0.0F, secondaryChance, 1.0F);
+		if (output == null || output.stackSize == 0) output = null;
+		if (secondary == null || secondary.stackSize == 0) secondary = null; 
+		recipes.add(new ProcessorRecipe(output, secondary, isFood, forceReturn, c, input));
+		AMTLogger.debugInfo("Add Prosessor recipe: output " + (output == null ? "null" : output.getDisplayName()));
+	}
+	
+	@Override
 	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, float secondaryChance, Object... input){
 		float c = MathHelper.clamp_float(0.0F, secondaryChance, 1.0F);
 		if (output == null || output.stackSize == 0) output = null;
 		if (secondary == null || secondary.stackSize == 0) secondary = null; 
-		recipes.add(new ProcessorRecipe(output, secondary, flag, c, input));
+		recipes.add(new ProcessorRecipe(output, secondary, flag, false, c, input));
 		AMTLogger.debugInfo("Add Prosessor recipe: output " + (output == null ? "null" : output.getDisplayName()));
 	}
 	
@@ -59,15 +68,17 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 		private final Object[] input;
 		private final ArrayList<Object> processedInput;
 		private final float chance;
+		private final boolean forceContainer;
 		
 		public final boolean foodRecipe;
 		
-		public ProcessorRecipe(ItemStack output, ItemStack sec, boolean flag, float secondaryChance, Object... inputs)
+		public ProcessorRecipe(ItemStack output, ItemStack sec, boolean flag, boolean flag2, float secondaryChance, Object... inputs)
 		{
 			this.output = output;
 			this.input = inputs;
 			this.secondary = sec;
 			this.foodRecipe = flag;
+			this.forceContainer = flag2;
 			this.chance = secondaryChance;
 			this.processedInput = new ArrayList<Object>();
 			for (int i = 0; i < inputs.length; i++) {
@@ -120,7 +131,7 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 				ItemStack next = items.get(i);
 				if (next != null) {
 					cont = next.getItem().getContainerItem(next);
-					if (cont != null) {
+					if (cont != null && cont.getItem() != next.getItem()) {
 						break;
 					}
 					else {
@@ -139,6 +150,12 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 		public boolean isFoodRecipe()
 		{
 			return this.foodRecipe;
+		}
+		
+		@Override
+		public boolean forceReturnContainer()
+		{
+			return this.forceContainer;
 		}
 		
 		@Override

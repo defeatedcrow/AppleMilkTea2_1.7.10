@@ -2217,7 +2217,7 @@ public class DCsRecipeRegister {
 		 
 		 GameRegistry.addRecipe(
 				 new ShapedOreRecipe(
-	    		  new ItemStack(DCsAppleMilk.slotPanel, 1, 0),
+	    		  new ItemStack(DCsAppleMilk.slotPanel, 4, 0),
 	    		  new Object[]{"X X"," Y ","X X",
 	    			  Character.valueOf('X'), new ItemStack(DCsAppleMilk.chalcedony, 1, 0),
 	    			  Character.valueOf('Y'), new ItemStack(Items.iron_ingot, 1, 0)}));

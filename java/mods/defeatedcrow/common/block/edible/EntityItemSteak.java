@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.entity.edible.*;
-import mods.defeatedcrow.plugin.LoadSSectorPlugin;
+import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;

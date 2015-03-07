@@ -19,7 +19,7 @@ public class AppleMilkCoreModContainer extends DummyModContainer{
 		ModMetadata meta = getMetadata();
         meta.modId       = "AppleMilkCore";
         meta.name        = "AppleMilkCore";
-        meta.version     = "1.0.2";
+        meta.version     = "1.0.3";
         meta.authorList  = Arrays.asList("defeatedcrow");
         meta.description = "This code is required by AppleMilkTeaMod.";
         meta.url         = "http://forum.minecraftuser.jp/viewtopic.php?f=13&t=17657";

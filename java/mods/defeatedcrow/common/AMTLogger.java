@@ -37,7 +37,7 @@ public class AMTLogger {
 	
 	public static void debugInfo(String msg) {
 		if (DCsAppleMilk.debugMode) {
-			AMTLogger.logger.debug("Debug: " + msg);
+			AMTLogger.logger.info("Debug: " + msg);
 		}
 	}
 

@@ -16,7 +16,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import mods.defeatedcrow.*;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.plugin.LoadSSectorPlugin;
+import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
