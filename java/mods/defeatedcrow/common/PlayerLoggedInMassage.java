@@ -20,7 +20,7 @@ public class PlayerLoggedInMassage {
         	{
         		chatCompleted = true;
         		EntityPlayer player = (EntityPlayer) event.entity;
-        		player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.AQUA + "[" + DCsAppleMilk.instance.getModName() + "] " + "Required Core Mod (PotionExtension1.0.3) was not loaded."));
+        		player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.AQUA + "[" + DCsAppleMilk.instance.getModName() + "] " + "Required Core Mod (" + RequiredCoreModChecker.FILE_NAME + ") was not loaded."));
         		player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.AQUA + "If this is a first start, please restart the client."));
         	}
         }

@@ -560,6 +560,36 @@ public class RegisterMakerRecipe {
 				new ItemStack(Items.leather), 40, false);
 	}
 	
+	public static void registerChocolate()
+	{
+		RecipeRegisterManager.chocoRecipe.register("cropAlmond", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 0));
+		RecipeRegisterManager.chocoRecipe.register("cropPeanut", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 1));
+		RecipeRegisterManager.chocoRecipe.register("cropWalnut", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 2));
+		RecipeRegisterManager.chocoRecipe.register("cropHazelnut", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 2));
+		RecipeRegisterManager.chocoRecipe.register("cropCoconut", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 2));
+		RecipeRegisterManager.chocoRecipe.register("cropCherry", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 4));
+		RecipeRegisterManager.chocoRecipe.register("cropStrawberry", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 3));
+		RecipeRegisterManager.chocoRecipe.register("cropRaspberry", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 5));
+		RecipeRegisterManager.chocoRecipe.register("cropCranberry", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 5));
+		RecipeRegisterManager.chocoRecipe.register("cropBlueberry", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 5));
+		RecipeRegisterManager.chocoRecipe.register("cropBlackberry", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 5));
+		RecipeRegisterManager.chocoRecipe.register("cropCassis", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 5));
+		RecipeRegisterManager.chocoRecipe.register("cropBanana", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 6));
+		RecipeRegisterManager.chocoRecipe.register("cropRice", new ItemStack(DCsAppleMilk.chocolateFruits, 1, 7));
+		
+		RecipeRegisterManager.chocoRecipe.register(new ItemStack(Items.bread), 
+				new ItemStack(DCsAppleMilk.chocolateFruits, 1, 8));
+		RecipeRegisterManager.chocoRecipe.register(new ItemStack(Items.cookie), 
+				new ItemStack(DCsAppleMilk.chocolateFruits, 1, 9));
+		RecipeRegisterManager.chocoRecipe.register(new ItemStack(DCsAppleMilk.gratedApple, 1, 4), 
+				new ItemStack(DCsAppleMilk.chocolateFruits, 1, 10));
+		RecipeRegisterManager.chocoRecipe.register(new ItemStack(DCsAppleMilk.toffyApple), 
+				new ItemStack(DCsAppleMilk.chocolateFruits, 1, 12));
+		RecipeRegisterManager.chocoRecipe.register(new ItemStack(DCsAppleMilk.EXItems, 1, 0), 
+				new ItemStack(DCsAppleMilk.chocolateFruits, 1, 11));
+		
+	}
+	
 	public static void testRecipe()
 	{
 		OreDictionary.registerOre("logYuzuWood", new ItemStack(DCsAppleMilk.logYuzu, 1, 0));

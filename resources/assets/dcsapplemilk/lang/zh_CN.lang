@@ -1,4 +1,4 @@
-
+﻿
 tile.defeatedcrow.WoodBox_oak.name=橡木箱
 tile.defeatedcrow.WoodBox_spruse.name=云衫木箱
 tile.defeatedcrow.WoodBox_birch.name=桦木箱
@@ -232,7 +232,8 @@ tile.defeatedcrow.gunpowderContainer_gunpowder.name=火药集装箱
 tile.defeatedcrow.gunpowderContainer_kayaku.name=前菜集装箱
 tile.defeatedcrow.gunpowderContainer_clay.name=粘土集装箱
 tile.defeatedcrow.gunpowderContainer3.name=蛤集装箱
-tile.defeatedcrow.cookingIronPlate_empty.name=烹饪铁板
+tile.defeatedcrow.cookingIronPlate_empty.name=烹饪铁板（旧版）
+tile.defeatedcrow.cookingIronPlateII.name=烹饪铁板
 tile.defeatedcrow.foodPlate_beef.name=铁板牛排
 tile.defeatedcrow.foodPlate_pork.name=铁板猪排
 tile.defeatedcrow.foodPlate_chicken.name=铁板烤鸡

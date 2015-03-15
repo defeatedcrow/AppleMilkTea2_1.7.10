@@ -27,6 +27,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.client.particle.EntityDCCloudFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
 import mods.defeatedcrow.common.*;
@@ -88,9 +90,9 @@ public class BlockFilledChocoPan extends BlockContainer{
         }
         else
         {
-        	ItemStack chocolate = this.checkOreDic(itemstack);
+        	ItemStack chocolate = RecipeRegisterManager.chocoRecipe.getOutput(itemstack);
         	
-        	if (chocolate != null && chocolate.getItem() != Items.stick)
+        	if (chocolate != null && chocolate.getItem() != null)
     		{
 				this.getChocolate(par1World, par2, par3, par4, par5EntityPlayer, itemstack, chocolate);
 				this.setPanEmpty(par1World, par2, par3, par4, currentMeta);
@@ -124,6 +126,18 @@ public class BlockFilledChocoPan extends BlockContainer{
 	
 	private void getChocolate (World world, int x, int y, int z,  EntityPlayer player, ItemStack itemstack, ItemStack chocolate)
 	{
+		ItemStack container = null;
+		if (itemstack != null)
+		{
+			if (FluidContainerRegistry.isFilledContainer(itemstack))
+			{
+				container = FluidContainerRegistry.drainFluidContainer(itemstack);
+			}
+			else
+			{
+				container = itemstack.getItem().getContainerItem(itemstack);
+			}
+		}
 		
 		if (!player.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
         {
@@ -135,33 +149,41 @@ public class BlockFilledChocoPan extends BlockContainer{
 			if (!world.isRemote) player.entityDropItem(chocolate, 1.0F);
 		}
 		
+		if (container != null)
+		{
+			if (!player.inventory.addItemStackToInventory(container))
+			{
+				if (!world.isRemote) player.entityDropItem(container, 1.0F);
+			}
+		}
+		
 		world.playSoundAtEntity(player, "random.pop", 0.4F, 1.8F);
 	}
 	
-	private ItemStack checkOreDic(ItemStack itemstack)
-	{
-		int ore = -1;
-		if (LoadOreDicHandler.isAlmond(itemstack)) ore = 0;//almond
-		else if (LoadOreDicHandler.isPeanut(itemstack)) ore = 1;//peanut
-		else if (LoadOreDicHandler.isNuts(itemstack)) ore = 2;//nut
-		else if (LoadOreDicHandler.isStraw(itemstack)) ore = 3;//strawberry
-		else if (LoadOreDicHandler.isCherry(itemstack)) ore = 4;//cherry
-		else if (LoadOreDicHandler.isBerry(itemstack)) ore = 5;//berry
-		else if (LoadOreDicHandler.isBanana(itemstack)) ore = 6;//banana
-		else if (LoadOreDicHandler.isRice(itemstack)) ore = 7;//rice puff
-		else if (itemstack.getItem() == Items.bread) ore = 8;//bread
-		else if (itemstack.getItem() == Items.cookie) ore = 9;//cookie
-		else if (itemstack.getItem() == DCsAppleMilk.gratedApple && itemstack.getItemDamage() == 4) ore = 10;//ganache
-		else if (itemstack.getItem() == DCsAppleMilk.toffyApple) ore = 12;//candy
-		else if (itemstack.getItem() == DCsAppleMilk.EXItems && itemstack.getItemDamage() == 0) ore = 11;//toffyapple
-		else ore = -1;
-		
-		ItemStack Choco = itemstack;
-		if (ore != -1) Choco = new ItemStack(DCsAppleMilk.chocolateFruits, 1, ore);
-		else Choco = new ItemStack(Items.stick, 1, 0);
-		
-		return Choco;
-	}
+//	private ItemStack checkOreDic(ItemStack itemstack)
+//	{
+//		int ore = -1;
+//		if (LoadOreDicHandler.isAlmond(itemstack)) ore = 0;//almond
+//		else if (LoadOreDicHandler.isPeanut(itemstack)) ore = 1;//peanut
+//		else if (LoadOreDicHandler.isNuts(itemstack)) ore = 2;//nut
+//		else if (LoadOreDicHandler.isStraw(itemstack)) ore = 3;//strawberry
+//		else if (LoadOreDicHandler.isCherry(itemstack)) ore = 4;//cherry
+//		else if (LoadOreDicHandler.isBerry(itemstack)) ore = 5;//berry
+//		else if (LoadOreDicHandler.isBanana(itemstack)) ore = 6;//banana
+//		else if (LoadOreDicHandler.isRice(itemstack)) ore = 7;//rice puff
+//		else if (itemstack.getItem() == Items.bread) ore = 8;//bread
+//		else if (itemstack.getItem() == Items.cookie) ore = 9;//cookie
+//		else if (itemstack.getItem() == DCsAppleMilk.gratedApple && itemstack.getItemDamage() == 4) ore = 10;//ganache
+//		else if (itemstack.getItem() == DCsAppleMilk.toffyApple) ore = 12;//candy
+//		else if (itemstack.getItem() == DCsAppleMilk.EXItems && itemstack.getItemDamage() == 0) ore = 11;//toffyapple
+//		else ore = -1;
+//		
+//		ItemStack Choco = itemstack;
+//		if (ore != -1) Choco = new ItemStack(DCsAppleMilk.chocolateFruits, 1, ore);
+//		else Choco = new ItemStack(Items.stick, 1, 0);
+//		
+//		return Choco;
+//	}
 	
 	public int damageDropped(int par1)
     {
@@ -254,6 +276,13 @@ public class BlockFilledChocoPan extends BlockContainer{
 		}
  
 		par1World.setBlockMetadataWithNotify(par2, par3, par4, facing, 3);
+		
+		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
+		if (tile instanceof TileChocoPan && par6ItemStack != null && 
+				par6ItemStack.getItem() == Item.getItemFromBlock(DCsAppleMilk.filledChocoPan))
+		{
+			((TileChocoPan)tile).setRemainByte((byte) 11);
+		}
 	}
 	
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)

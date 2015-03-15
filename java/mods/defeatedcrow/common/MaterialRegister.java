@@ -554,7 +554,8 @@ public class MaterialRegister {
 //				setBlockName("defeatedcrow.soupPan_2");
 		
 		DCsAppleMilk.filledChocoPan = (new BlockFilledChocoPan()).
-				setBlockName("defeatedcrow.soupPan_3");
+				setBlockName("defeatedcrow.soupPan_3").
+				setCreativeTab(DCsAppleMilk.applemilk);
 		
 		DCsAppleMilk.bowlBlock = (new BlockBowl()).
 				setBlockName("defeatedcrow.bowlBlock").

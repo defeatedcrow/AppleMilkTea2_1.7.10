@@ -32,7 +32,7 @@ public class TeaRecipeHandlerCG implements RecipeProvider{
 		
 		RecipeTemplate template;
 		ItemStack teaMaker = new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0);
-		template = generator.createRecipeTemplate(this.slots, null, "defeatedcrow:textures/gui/craftguidegui.png", 1, 1, 82, 1);
+		template = generator.createRecipeTemplate(this.slots, teaMaker, "defeatedcrow:textures/gui/craftguidegui.png", 1, 1, 82, 1);
 		HashMap<ItemStack, ItemStack> recipeGet = RegisteredRecipeGet.teaRecipeList;
 		Iterator<Entry<ItemStack, ItemStack>> inputs = recipeGet.entrySet().iterator();
 		while (inputs.hasNext())

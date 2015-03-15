@@ -124,7 +124,7 @@ public class BlockHandleEngine extends BlockContainer{
 	@Override
 	public int getRenderType()
 	{
-		return DCsAppleMilk.modelHandleEngine;
+		return -1;
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -150,6 +150,7 @@ public class BlockHandleEngine extends BlockContainer{
             else this.thisIcon[i] = par1IconRegister.registerIcon("defeatedcrow:lampside_burst_0");
         	
         }
+        this.blockIcon = par1IconRegister.registerIcon("defeatedcrow:teppann");
 	}
 
 }

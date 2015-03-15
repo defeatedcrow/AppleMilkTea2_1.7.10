@@ -1,6 +1,7 @@
 package mods.defeatedcrow.client;
 
 import mods.defeatedcrow.client.entity.*;
+import mods.defeatedcrow.client.item.RenderEHandleItem;
 import mods.defeatedcrow.client.item.RenderEightEyesArm;
 import mods.defeatedcrow.client.item.RenderItemCocktailSP;
 import mods.defeatedcrow.client.item.RenderItemFossilCannon;
@@ -182,6 +183,7 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(DCsAppleMilk.fossilCannon, new RenderItemFossilCannon());
 		MinecraftForgeClient.registerItemRenderer(DCsAppleMilk.eightEyesArm, new RenderEightEyesArm());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(DCsAppleMilk.cocktailSP), new RenderItemCocktailSP());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(DCsAppleMilk.handleEngine), new RenderEHandleItem());
 		
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipeID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_cafe.png"));
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipe2ID, new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_yome.png"));

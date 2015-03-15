@@ -50,6 +50,7 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
     private static final String owner = "CB's DepLoader";
     private static DepLoadInst inst;
     private static Logger logger = LogManager.getLogger("CBsDepLorder");
+    private final static String BR = System.getProperty("line.separator");
 
     public interface IDownloadDisplay {
         void resetProgress(int sizeGuess);
@@ -323,7 +324,9 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 
             if (!mod.delete()) {
                 mod.deleteOnExit();
-                String msg = owner + " was unable to delete file " + mod.getPath() + " the game will now try to delete it on exit. If this dialog appears again, delete it manually.";
+                String msg = owner + " was unable to delete file " + mod.getPath()
+                		+ BR + "the game will now try to delete it on exit." 
+                		+ BR + "If this dialog appears again, delete it manually.";
                 System.err.println(msg);
                 logger.warn(msg);
                 if (!GraphicsEnvironment.isHeadless())
@@ -435,9 +438,10 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
                 VersionedFile vfile = new VersionedFile(f.getName(), dep.file.pattern);
                 if (!vfile.matches() || !vfile.name.equals(dep.file.name))
                     continue;
-
+                
+                //旧版の削除指定
                 int cmp = vfile.version.compareTo(dep.file.version);
-                if (cmp < 0) {
+                if (cmp < 0 || f.getName().contains("MC1.7")) {
                     System.out.println("Deleted old version " + f.getName());
                     logger.info("Deleted old version " + f.getName());
                     deleteMod(f);

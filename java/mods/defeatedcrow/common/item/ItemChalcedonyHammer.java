@@ -100,7 +100,7 @@ public class ItemChalcedonyHammer extends ItemPickaxe
         }
         
         //ダメージ
-        if (unb > 0 && Item.itemRand.nextInt(unb) == 0)
+        if (unb > 0 && Item.itemRand.nextInt(unb) != 0)
         {
         	damage = 0;
         }

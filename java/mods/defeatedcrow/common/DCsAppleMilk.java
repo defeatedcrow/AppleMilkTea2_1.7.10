@@ -70,7 +70,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.4a",
+		version = "1.7.10_2.4c",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -1011,6 +1011,7 @@ public class DCsAppleMilk{
 	    //当MODで勝手に追加する鉱石辞書も含めるように、読み込む位置を他MODのロード処理より後にした
 	    (new LoadOreDicHandler()).load();
 	    OreCrushRecipe.searchOreName();
+	    RegisterMakerRecipe.registerChocolate();
 	    
 	    //インスタントティーレシピ
 	    //他MODの水入り容器をひと通り取得した後に行うので、最後のほうで呼ぶ
@@ -1057,7 +1058,7 @@ public class DCsAppleMilk{
 	
 	public String getRivision()
 	{
-		return "a";
+		return "c";
 	}
 	
 	public String getModName()
