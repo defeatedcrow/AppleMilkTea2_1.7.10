@@ -191,8 +191,7 @@ public class ModelBarrel extends ModelBase
     l3.render(f5);
     l4.render(f5);
     l5.render(f5);
-    base1.render(f5);
-    base2.render(f5);
+    
   }
   
   public void renderSide(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -200,6 +199,13 @@ public class ModelBarrel extends ModelBase
     super.render(entity, f, f1, f2, f3, f4, f5);
     r1.render(f5);
     l1.render(f5);
+  }
+  
+  public void renderBase(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+  {
+    super.render(entity, f, f1, f2, f3, f4, f5);
+    base1.render(f5);
+    base2.render(f5);
   }
   
   private void setRotation(ModelRenderer model, float x, float y, float z)

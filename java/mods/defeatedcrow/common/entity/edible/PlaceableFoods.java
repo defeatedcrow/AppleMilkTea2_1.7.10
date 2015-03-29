@@ -15,6 +15,7 @@ import mods.defeatedcrow.common.block.edible.EdibleEntityItemBlock;
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -22,6 +23,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -62,7 +64,7 @@ public abstract class PlaceableFoods extends Entity{
     	super(world);
     	this.field_70279_a = true;
     	this.speedMultiplier = 0.07D;
-		this.setSize(0.5F, 0.3F);
+		this.setSize(0.5F * getSize(), 0.3F * getSize());
 		this.yOffset = this.height;
     }
 
@@ -154,6 +156,12 @@ public abstract class PlaceableFoods extends Entity{
         return true;
     }
     
+    @Override
+    public double getMountedYOffset()
+    {
+        return (double)getScale() * 0.4D - 0.06D;
+    }
+    
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
         if (this.isEntityInvulnerable())
@@ -178,6 +186,12 @@ public abstract class PlaceableFoods extends Entity{
             		if (drop != null){
             			this.worldObj.playSoundAtEntity(this, "random.pop", 0.4F, 1.8F);
             			this.entityDropItem(drop, 0.2F);
+            			
+            			if (this.riddenByEntity != null)
+                        {
+                            this.riddenByEntity.mountEntity(this);
+                        }
+            			
             			this.setDead();
             		}
             		
@@ -232,7 +246,7 @@ public abstract class PlaceableFoods extends Entity{
         this.velocityZ = this.motionZ = par5;
     }
     
-    //基本的にはボートの流用。乗れないけど。
+    //基本的にはボートの流用。
     public void onUpdate()
     {
         super.onUpdate();
@@ -562,6 +576,22 @@ public abstract class PlaceableFoods extends Entity{
                 return false;
             }
     	}
+    	else if (item != null && item.getItem() == Items.stick)
+		{
+			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && this.riddenByEntity != par1EntityPlayer)
+	        {
+	            return true;
+	        }
+	        else
+	        {
+	            if (!this.worldObj.isRemote)
+	            {
+	                par1EntityPlayer.mountEntity(this);
+	            }
+
+	            return true;
+	        }
+		}
     	else
     	{
     		ItemStack has = this.returnItem();
@@ -590,6 +620,16 @@ public abstract class PlaceableFoods extends Entity{
     protected byte particleNumber()
     {
     	return 0;
+    }
+    
+    protected float getScale()
+    {
+    	return 1.0F;
+    }
+    
+    protected float getSize()
+    {
+    	return 1.0F;
     }
     
     @SideOnly(Side.CLIENT)

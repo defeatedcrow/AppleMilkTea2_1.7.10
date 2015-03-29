@@ -172,32 +172,32 @@ public class RenderBreadBasket implements ISimpleBlockRenderingHandler{
 		if (modelId == this.getRenderId())
 		{
 			if (meta < 6) {
-				renderer.setOverrideBlockTexture(this.boxIIcon[0]);
-				block.setBlockBounds(1.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F);
-				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
-				
-				renderer.setOverrideBlockTexture(this.boxIIcon[1]);
-				block.setBlockBounds(0.0F/16.0F, 7.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 8.0F/16.0F, 16.0F/16.0F);
-				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
-				
-				renderer.setOverrideBlockTexture(this.boxIIcon[2]);
-				block.setBlockBounds(0.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 8.0F/16.0F, 16.0F/16.0F);
-				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
-				renderer.setOverrideBlockTexture(this.boxIIcon[2]);
-				block.setBlockBounds(15.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 8.0F/16.0F, 16.0F/16.0F);
-				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
-				renderer.setOverrideBlockTexture(this.boxIIcon[2]);
-				block.setBlockBounds(1.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 8.0F/16.0F, 1.0F/16.0F);
-				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
-				renderer.setOverrideBlockTexture(this.boxIIcon[2]);
-				block.setBlockBounds(1.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 8.0F/16.0F, 16.0F/16.0F);
-				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
+//				renderer.setOverrideBlockTexture(this.boxIIcon[0]);
+//				block.setBlockBounds(1.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F);
+//				renderer.setRenderBoundsFromBlock(block);
+//				renderer.renderStandardBlock(block, x, y, z);
+//				
+//				renderer.setOverrideBlockTexture(this.boxIIcon[1]);
+//				block.setBlockBounds(0.0F/16.0F, 7.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 8.0F/16.0F, 16.0F/16.0F);
+//				renderer.setRenderBoundsFromBlock(block);
+//				renderer.renderStandardBlock(block, x, y, z);
+//				
+//				renderer.setOverrideBlockTexture(this.boxIIcon[2]);
+//				block.setBlockBounds(0.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 8.0F/16.0F, 16.0F/16.0F);
+//				renderer.setRenderBoundsFromBlock(block);
+//				renderer.renderStandardBlock(block, x, y, z);
+//				renderer.setOverrideBlockTexture(this.boxIIcon[2]);
+//				block.setBlockBounds(15.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 8.0F/16.0F, 16.0F/16.0F);
+//				renderer.setRenderBoundsFromBlock(block);
+//				renderer.renderStandardBlock(block, x, y, z);
+//				renderer.setOverrideBlockTexture(this.boxIIcon[2]);
+//				block.setBlockBounds(1.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 8.0F/16.0F, 1.0F/16.0F);
+//				renderer.setRenderBoundsFromBlock(block);
+//				renderer.renderStandardBlock(block, x, y, z);
+//				renderer.setOverrideBlockTexture(this.boxIIcon[2]);
+//				block.setBlockBounds(1.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 8.0F/16.0F, 16.0F/16.0F);
+//				renderer.setRenderBoundsFromBlock(block);
+//				renderer.renderStandardBlock(block, x, y, z);
 				
 				
 //				if (DCsConfig.noUseCupDirection)

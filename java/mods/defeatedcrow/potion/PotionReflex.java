@@ -65,7 +65,7 @@ public class PotionReflex extends PotionReflexBase{
 							livingAttacker.motionZ += 1.0 * yawZ;
 							//magic属性のダメージ
 							livingAttacker.attackEntityFrom(DamageSource.magic, amount*amp);
-							//プレイヤーには鈴の音が聞こえる（暫定）
+							//プレイヤーには金属音が聞こえる
 							Float r = target.worldObj.rand.nextFloat();
 							target.worldObj.playSoundAtEntity(target, "defeatedcrow:metal", 1.0F, 0.5F + r);
 							succeed = true;
@@ -114,9 +114,9 @@ public class PotionReflex extends PotionReflexBase{
 		
 		if (effect.getPotionID() == DCsConfig.potionIDAbsHeal)
 		{
-			if (target instanceof EntityPlayer)
+			if (target instanceof EntityLivingBase)
 			{
-				EntityPlayer player = (EntityPlayer) target;
+				EntityLivingBase player = (EntityLivingBase) target;
 				boolean flag = false;
 				
 				if (amp > 1)

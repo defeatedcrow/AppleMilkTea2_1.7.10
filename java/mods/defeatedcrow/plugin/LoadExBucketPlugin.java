@@ -42,7 +42,7 @@ public class LoadExBucketPlugin {
 						 new ShapelessOreRecipe(
 			    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 6),
 			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+			    			  "toolGrater",
 			    			  new ItemStack(Blocks.pumpkin, 1, 0),
 			    			  woodenBucketMilk
 							 }));
@@ -51,7 +51,7 @@ public class LoadExBucketPlugin {
 						 new ShapelessOreRecipe(
 			    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 8),
 			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+			    			  "toolGrater",
 			    			  woodenBucketMilk,
 				    		  "dustSugar",
 				    		  new ItemStack(Items.dye,9,3),
@@ -112,7 +112,7 @@ public class LoadExBucketPlugin {
 						 new ShapelessOreRecipe(
 			    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 1),
 			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+			    			  "toolGrater",
 				    		  new ItemStack(Items.fish, 1),
 				    		  new ItemStack(Items.carrot, 1),
 			    			  new ItemStack(Items.potato, 1),
@@ -123,7 +123,7 @@ public class LoadExBucketPlugin {
 						 new ShapelessOreRecipe(
 			    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 6),
 			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+			    			  "toolGrater",
 			    			  new ItemStack(Blocks.pumpkin, 1, 0),
 			    			  goldenBucketMilk
 							 }));
@@ -132,7 +132,7 @@ public class LoadExBucketPlugin {
 						 new ShapelessOreRecipe(
 			    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 8),
 			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+			    			  "toolGrater",
 			    			  goldenBucketMilk,
 				    		  "dustSugar",
 				    		  new ItemStack(Items.dye,9,3),

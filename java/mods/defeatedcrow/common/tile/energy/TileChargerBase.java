@@ -7,6 +7,7 @@ import mods.defeatedcrow.api.charge.IChargeGenerator;
 import mods.defeatedcrow.api.charge.IChargeItem;
 import mods.defeatedcrow.api.charge.IChargeableMachine;
 import mods.defeatedcrow.api.energy.IBattery;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.entity.player.EntityPlayer;

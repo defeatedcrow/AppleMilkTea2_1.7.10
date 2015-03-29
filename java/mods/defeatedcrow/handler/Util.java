@@ -106,6 +106,24 @@ public class Util {
 		return DCsAppleMilk.TEX_PASS_ENTITY[l];
 	}
 	
+	public static float getCupScale()
+	{
+		float f = (float) DCsConfig.setCupScale;
+		if (f < 0.01F) f = 0.01F;
+		else if (f > 10.0F) f = 10.0F;
+		
+		return f;
+	}
+	
+	public static float getCupSize()
+	{
+		float f = (float) DCsConfig.setCupScale;
+		if (f < 0.5F) f = 0.5F;
+		else if (f > 2.0F) f = 2.0F;
+		
+		return 0.3F * f;
+	}
+	
 	//0,0=south, 1,90=west, 2,180=north, 3,-90=east
 	//相変わらず方角を覚えられないため自分用に作ったメソッド
 	public static final int[] METAX = new int[] {0, -1, 0, 1};

@@ -70,7 +70,7 @@ public class LoadModHandler {
 						 new ShapelessOreRecipe(
 			    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 1),
 			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+			    			  "toolGrater",
 				    		  new ItemStack(item, 1)
 							 }));
 			}
@@ -85,7 +85,7 @@ public class LoadModHandler {
 						 new ShapelessOreRecipe(
 			    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 8),
 			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+			    			  "toolGrater",
 				    		  new ItemStack(item2, 1)
 							 }));
 			}
@@ -100,7 +100,7 @@ public class LoadModHandler {
 						 new ShapelessOreRecipe(
 			    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 1),
 			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+			    			  "toolGrater",
 				    		  new ItemStack(item3, 1)
 							 }));
 				

@@ -118,7 +118,12 @@ public class RegisterOreHandler {
 	    OreDictionary.registerOre("blockChalcedony", new ItemStack(DCsAppleMilk.chalcedony, 1, 2));
 	    OreDictionary.registerOre("blockChalcedony", new ItemStack(DCsAppleMilk.chalcedony, 1, 3));
 	    
-	    OreDictionary.registerOre("toolGrater", new ItemStack(DCsAppleMilk.DCgrater));
+	    OreDictionary.registerOre("toolGrater", new ItemStack(DCsAppleMilk.DCgrater, 1, 32767));
+	    OreDictionary.registerOre("toolChaicedonyHammer", new ItemStack(DCsAppleMilk.chalcedonyHammer, 1, 32767));
+	    OreDictionary.registerOre("toolChaicedonyKnife", new ItemStack(DCsAppleMilk.chalcedonyKnife, 1, 32767));
+	    OreDictionary.registerOre("toolChaicedonyShears", new ItemStack(DCsAppleMilk.pruningShears, 1, 32767));
+	    OreDictionary.registerOre("toolFirestarter", new ItemStack(DCsAppleMilk.firestarter, 1, 32767));
+	    OreDictionary.registerOre("toolGrater", new ItemStack(DCsAppleMilk.DCgrater, 1, 32767));
 	    OreDictionary.registerOre("blockTeaMaker", new ItemStack(DCsAppleMilk.teaMakerNext));
 	    OreDictionary.registerOre("blockIceMaker", new ItemStack(DCsAppleMilk.iceMaker));
 	    OreDictionary.registerOre("blockEmptyCup", new ItemStack(DCsAppleMilk.emptyCup));

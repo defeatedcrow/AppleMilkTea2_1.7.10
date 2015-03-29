@@ -201,32 +201,42 @@ public class BlockBasket extends BlockContainer{
 	{
 		int playerFacing = MathHelper.floor_double((double)((par5EntityLivingBase.rotationYaw * 4F) / 360F) + 0.5D) & 3;
  
-		if (DCsConfig.setAltTexturePass > 1)
+		boolean tall = false;
+		
+		if (par5EntityLivingBase != null && par5EntityLivingBase instanceof EntityPlayer)
 		{
-			byte facing = 0;
-			if (playerFacing == 0)
+			tall = par5EntityLivingBase.isSneaking();
+		}
+		
+		byte facing = 0;
+		if (playerFacing == 0)
+		{
+			facing = 0;
+		}
+		if (playerFacing == 1)
+		{
+			facing = 1;
+		}
+		if (playerFacing == 2)
+		{
+			facing = 2;
+		}
+		if (playerFacing == 3)
+		{
+			facing = 4;
+		}
+ 
+		TileEntity tileEntity = par1World.getTileEntity(par2, par3, par4);
+		if (tileEntity != null && tileEntity instanceof TileBread)
+		{
+			((TileBread)tileEntity).setDirectionByte(facing);
+			((TileBread)tileEntity).setTall(tall);
+			if (!par1World.isRemote)
 			{
-				facing = 0;
+				byte b = (byte) par1World.rand.nextInt(3);
+				((TileBread)tileEntity).setType(b);
 			}
-			if (playerFacing == 1)
-			{
-				facing = 1;
-			}
-			if (playerFacing == 2)
-			{
-				facing = 2;
-			}
-			if (playerFacing == 3)
-			{
-				facing = 4;
-			}
-	 
-			TileEntity tileEntity = par1World.getTileEntity(par2, par3, par4);
-			if (tileEntity != null && tileEntity instanceof TileBread)
-			{
-				((TileBread)tileEntity).setDirectionByte(facing);
-				par1World.markBlockForUpdate(par2, par3, par4);
-			}
+			par1World.markBlockForUpdate(par2, par3, par4);
 		}
 	}
 	

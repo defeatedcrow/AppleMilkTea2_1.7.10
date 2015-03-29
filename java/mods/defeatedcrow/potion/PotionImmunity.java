@@ -6,7 +6,9 @@ import java.util.List;
 
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.api.potion.PotionImmunityBase;
+import mods.defeatedcrow.api.potion.PotionLivingBase;
 import mods.defeatedcrow.common.config.DCsConfig;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 
@@ -14,7 +16,7 @@ import net.minecraft.potion.Potion;
  * Immunityポーションのクラス。
  * Tick毎に呼び出される。
  * */
-public class PotionImmunity extends PotionImmunityBase
+public class PotionImmunity extends PotionLivingBase
 {
 	
 	public PotionImmunity(int par1, boolean par2, int par3)
@@ -28,12 +30,12 @@ public class PotionImmunity extends PotionImmunityBase
 	 * 改良が必要。
 	 * */
 	@Override
-	public boolean preventPotion(int amp, int id, EntityPlayer player)
+	public boolean formPotionEffect(int amp, int id, EntityLivingBase entity)
 	{
 		List<Integer> check = new ArrayList<Integer>();
 		boolean flag = false;
 		
-		if (id == DCsConfig.potionIDImmunity && !player.worldObj.isRemote)
+		if (id == DCsConfig.potionIDImmunity && !entity.worldObj.isRemote)
 		{
 			if (amp == 0)
 			{
@@ -65,9 +67,9 @@ public class PotionImmunity extends PotionImmunityBase
 			
 			for (int i = 0 ; i < check.size() ; i++)
 			{
-				if (player.isPotionActive(check.get(i)))
+				if (entity.isPotionActive(check.get(i)))
 				{
-					player.removePotionEffect(check.get(i));
+					entity.removePotionEffect(check.get(i));
 					flag = true;
 				}
 			}

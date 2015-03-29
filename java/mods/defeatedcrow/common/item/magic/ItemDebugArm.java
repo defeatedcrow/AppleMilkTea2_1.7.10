@@ -22,6 +22,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import mods.defeatedcrow.api.energy.IBattery;
 import mods.defeatedcrow.api.potion.AMTPotionManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
@@ -83,7 +84,7 @@ public class ItemDebugArm extends Item implements IBattery{
         //RF
         else if (Loader.isModLoaded("CoFHCore") && RFDeviceHandler.isRFDevice(tile))
         {
-        	se = RFDeviceHandler.inputEnergy(tile, 1000, false) > 0;
+        	se = RFDeviceHandler.inputEnergy(ForgeDirection.UP, tile, 1000, false) > 0;
         }
         
         //Barrel

@@ -419,4 +419,15 @@ public class BlockClamSand extends Block implements IRightClickHarvestable{
 		}
 		return -1;
 	}
+
+	//ハマグリはどのメタデータでも収穫できる。暫定的に0を返す。
+	@Override
+	public int getGrownMetadata(World world, int x, int y, int z) {
+		return 0;
+	}
+	
+	@Override
+	public int getInitialMetadata(World world, int x, int y, int z) {
+		return 0;
+	}
 }

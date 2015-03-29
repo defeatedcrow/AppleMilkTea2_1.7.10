@@ -2,7 +2,7 @@ package mods.defeatedcrow.client.model.tileentity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.defeatedcrow.client.model.model.ModelBreads;
+import mods.defeatedcrow.client.model.model.*;
 import mods.defeatedcrow.common.tile.TileBread;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -18,10 +18,20 @@ import org.lwjgl.opengl.GL12;
 @SideOnly(Side.CLIENT)
 public class TileEntityBreadRenderer extends TileEntitySpecialRenderer
 {
-    private static final ResourceLocation BreadTex = new ResourceLocation(Util.getEntityTexturePassNoAlt() + "breadbasket.png");
+    private static final ResourceLocation BreadTex = new ResourceLocation(Util.getEntityTexturePassNoAlt() + "breads.png");
+    private static final ResourceLocation BreadTex2 = new ResourceLocation(Util.getEntityTexturePassNoAlt() + "breads2.png");
+    private static final ResourceLocation BreadTex3 = new ResourceLocation(Util.getEntityTexturePassNoAlt() + "breads3.png");
+    private static final ResourceLocation BreadAltTex = new ResourceLocation(Util.getEntityTexturePassNoAlt() + "breadalt.png");
+    private static final ResourceLocation BreadAltTex2 = new ResourceLocation(Util.getEntityTexturePassNoAlt() + "breadalt2.png");
+    private static final ResourceLocation BreadAltTex3 = new ResourceLocation(Util.getEntityTexturePassNoAlt() + "breadalt3.png");
+    private static final ResourceLocation BasketTex = new ResourceLocation(Util.getEntityTexturePassNoAlt() + "baskets.png");
     private static final ResourceLocation BottleTex = new ResourceLocation(Util.getEntityTexturePassNoAlt() + "bottlebasket.png");
     public static TileEntityBreadRenderer BreadRenderer;
     private ModelBreads breadModel = new ModelBreads();
+    private ModelBreadAlt altModel = new ModelBreadAlt();
+    private ModelBasketL basketL = new ModelBasketL();
+    private ModelBasketT basketT = new ModelBasketT();
+    
 
     public void renderTileEntityBreadAt(TileBread par1TileBread, double par2, double par4, double par6, float par8)
     {
@@ -41,6 +51,8 @@ public class TileEntityBreadRenderer extends TileEntitySpecialRenderer
     {
         ModelBreads modelBread = this.breadModel;
         byte l = (byte)tile.getBlockMetadata();
+        byte b = tile.getType();
+        boolean t = tile.getTall();
         float j = 0;
         if (par4 == 0) j = 180.0F;
         if (par4 == 1) j = -90.0F;
@@ -54,8 +66,24 @@ public class TileEntityBreadRenderer extends TileEntitySpecialRenderer
         GL11.glRotatef(j, 0.0F, 1.0F, 0.0F);
         
         if (l < 6) {
-        	this.bindTexture(BreadTex);
-            this.breadModel.render((Entity)null, 0.0F, 0.0F, 0.0F, l, 0.0F, 0.0625F);
+        	if (t)
+        	{
+        		if (b == 0) this.bindTexture(BreadAltTex);
+        		else if (b == 1) this.bindTexture(BreadAltTex2);
+        		else this.bindTexture(BreadAltTex3);
+                this.altModel.render((Entity)null, 0.0F, 0.0F, 0.0F, l, 0.0F, 0.0625F);
+                this.bindTexture(BasketTex);
+                this.basketT.render((Entity)null, 0.0F, 0.0F, 0.0F, l, 0.0F, 0.0625F);
+        	}
+        	else
+        	{
+        		if (b == 0) this.bindTexture(BreadTex);
+        		else if (b == 1) this.bindTexture(BreadTex2);
+        		else this.bindTexture(BreadTex3);
+                this.breadModel.render((Entity)null, 0.0F, 0.0F, 0.0F, l, 0.0F, 0.0625F);
+                this.bindTexture(BasketTex);
+                this.basketL.render((Entity)null, 0.0F, 0.0F, 0.0F, l, 0.0F, 0.0625F);
+        	}
         }
         else {
         	this.bindTexture(BottleTex);

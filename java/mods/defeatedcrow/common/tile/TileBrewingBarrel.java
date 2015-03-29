@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.common.fluid.DCsTank;
 import mods.defeatedcrow.recipe.BrewingRecipe;
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -113,6 +114,13 @@ public class TileBrewingBarrel extends TileEntity implements IFluidHandler{
     {
     	int i = par1 * 6000;
     	this.aging = i;
+    }
+    
+    //レンダー用。真下の状態を確認
+    public boolean isOnNormalCube()
+    {
+    	Block block = worldObj.getBlock(xCoord, yCoord -1, zCoord);
+    	return !block.isAir(worldObj, xCoord, yCoord -1, zCoord) && block.isNormalCube();
     }
     
     public void updateEntity()

@@ -145,10 +145,10 @@ public class TileHandleEngine extends TileEntity implements IChargeGenerator, IE
 			if (!b && Loader.isModLoaded("CoFHCore"))
 			{
 				int ext2 = ext * PropertyHandler.rateRF();
-				ext2 = RFDeviceHandler.inputEnergy(tile, ext2, true);
+				ext2 = RFDeviceHandler.inputEnergy(ForgeDirection.UP, tile, ext2, true);
 				if (RFDeviceHandler.isRFDevice(tile) && ext2 > 0)
 				{
-					RFDeviceHandler.inputEnergy(tile, ext2, false);
+					RFDeviceHandler.inputEnergy(ForgeDirection.UP, tile, ext2, false);
 					this.chargeAmount -= ext;
 					b = true;
 				}

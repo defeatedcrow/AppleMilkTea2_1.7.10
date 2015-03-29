@@ -298,4 +298,18 @@ public class BlockCassisTree extends Block implements IPlantable, IRightClickHar
 		return -1;
 	}
 
+	@Override
+	public int getGrownMetadata(World world, int x, int y, int z) {
+		int meta = world.getBlockMetadata(x, y, z);
+		if (meta < 4) return 3;
+		else return 7;
+	}
+
+	@Override
+	public int getInitialMetadata(World world, int x, int y, int z) {
+		int meta = world.getBlockMetadata(x, y, z);
+		if (meta < 4) return 0;
+		else return 4;
+	}
+
 }

@@ -28,5 +28,15 @@ public interface IRightClickHarvestable {
 	 * 未成熟のメタデータの場合はnullを返す。
 	 * */
 	ItemStack getCropItem(int blockMeta);
+	
+	/**
+	 * この座標の植物ブロックの収穫可能状態のメタデータ。
+	 * */
+	int getGrownMetadata(World world, int x, int y, int z);
+	
+	/**
+	 * この座標の植物ブロックの初期状態のメタデータ。
+	 * */
+	int getInitialMetadata(World world, int x, int y, int z);
 
 }

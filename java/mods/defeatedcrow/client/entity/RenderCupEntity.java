@@ -8,6 +8,7 @@ import mods.defeatedcrow.common.block.*;
 import mods.defeatedcrow.common.block.edible.BlockFilledCup;
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.entity.edible.*;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -33,7 +34,7 @@ public class RenderCupEntity extends Render
 
     public RenderCupEntity()
     {
-        this.shadowSize = 0.3F;
+        this.shadowSize = 0.3F * Util.getCupSize();
         this.model = new ModelTeaCup();
     }
 
@@ -44,6 +45,8 @@ public class RenderCupEntity extends Render
     {
     	ModelTeaCup model = this.model;
         byte l = (byte)entity.getItemMetadata();
+        float size = Util.getCupScale();
+        float y = (float)par4 + 1.55F * size - 0.10F * size;
 
         String innerTexPass = "defeatedcrow:textures/blocks/contents" + BlockFilledCup.contents[l] + ".png";
         ResourceLocation innerTex = new ResourceLocation(innerTexPass);
@@ -53,7 +56,8 @@ public class RenderCupEntity extends Render
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         
         GL11.glColor4f(1.5F, 1.5F, 1.5F, 0.8F);
-        GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
+        GL11.glTranslatef((float)par2, (float)y, (float)par6);
+        GL11.glScalef(size, size, size);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
         model.renderContents((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
@@ -71,8 +75,9 @@ public class RenderCupEntity extends Render
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-            GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
+            GL11.glTranslatef((float)par2, (float)y, (float)par6);
             GL11.glScalef(1.0F, -1.0F, -1.0F);
+            GL11.glScalef(size, size, size);
             GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
             model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
             
@@ -88,7 +93,8 @@ public class RenderCupEntity extends Render
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
             
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
+            GL11.glTranslatef((float)par2, (float)y, (float)par6);
+            GL11.glScalef(size, size, size);
             GL11.glScalef(1.0F, -1.0F, -1.0F);
             GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
             model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);

@@ -563,7 +563,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 0),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  new ItemStack(Items.apple, 1, 0)
 					 }));
 		
@@ -571,7 +571,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 0),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropApple"
 					 }));
 	    		  
@@ -579,7 +579,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 1),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropPeach"
 					 }));
 		 
@@ -587,7 +587,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 1),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropBanana"
 					 }));
 		 
@@ -595,7 +595,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 9),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropOrange"
 					 }));
 		 
@@ -603,7 +603,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 1),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropPlum"
 					 }));
 		 
@@ -611,7 +611,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 2),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropLemon",
 		    		  "dropHoney"
 					 }));
@@ -620,7 +620,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 3),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropCoffee",
 					 }));
 		 
@@ -628,7 +628,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 5),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropLime",
 					 }));
 		 
@@ -636,7 +636,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 5),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropCitron",
 					 }));
 		 
@@ -644,7 +644,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 6),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropTomato",
 					 }));
 		 
@@ -652,7 +652,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 6),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "tomato",
 					 }));
 		 
@@ -660,7 +660,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 7),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropStrawberry",
 					 }));
 		 
@@ -668,7 +668,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 7),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropBlueberry",
 					 }));
 		 
@@ -676,7 +676,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 7),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropRaspberry",
 					 }));
 		 
@@ -684,7 +684,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 7),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropBlackberry",
 					 }));
 		 
@@ -692,7 +692,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 7),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropCassis",
 					 }));
 		 
@@ -700,7 +700,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 7),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "listAllberry",
 					 }));
 		 
@@ -708,7 +708,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 8),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "cropGrape",
 					 }));
 		 
@@ -716,7 +716,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 8),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "grape",
 					 }));
 		 
@@ -724,7 +724,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.foodTea, 1, 2),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(DCsAppleMilk.foodTea, 1, 1),
 		    		  "cropOrange",
 					 }));
@@ -733,7 +733,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.foodTea, 1, 2),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(DCsAppleMilk.foodTea, 1, 1),
 		    		  "cropCitron",
 					 }));
@@ -742,7 +742,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.foodTea, 1, 3),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(DCsAppleMilk.foodTea, 1, 1),
 	    			  new ItemStack(Items.apple, 1, 0)
 					 }));
@@ -751,7 +751,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.foodTea, 1, 3),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(DCsAppleMilk.foodTea, 1, 1),
 	    			  "cropApple"
 					 }));
@@ -760,7 +760,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 0),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  new ItemStack(Blocks.brown_mushroom, 1, 0),
 		    		  new ItemStack(Blocks.red_mushroom, 1, 0)
 					 }));
@@ -769,7 +769,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 1),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  new ItemStack(Items.fish, 1, 0),
 		    		  new ItemStack(Items.carrot, 1),
 	    			  new ItemStack(Items.potato, 1),
@@ -780,7 +780,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 1),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  new ItemStack(Items.fish, 1, 1),
 		    		  new ItemStack(Items.carrot, 1),
 	    			  new ItemStack(Items.potato, 1),
@@ -791,7 +791,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 1),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  new ItemStack(Items.fish, 1, 0),
 		    		  new ItemStack(Items.carrot, 1, 0),
 	    			  new ItemStack(Items.potato, 1, 0),
@@ -802,7 +802,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 2),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  new ItemStack(Items.egg, 1, 0),
 		    		  new ItemStack(Items.chicken, 1, 0),
 	    			  "cropWheat"
@@ -812,7 +812,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 2),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  new ItemStack(Items.egg, 1, 0),
 		    		  new ItemStack(Items.chicken, 1, 0),
 	    			  "cropRice"
@@ -822,7 +822,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 3),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  "cropRice","cropRice","cropRice"
 					 }));
 		 
@@ -830,7 +830,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 3),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  "cropWheat","cropWheat","cropWheat"
 					 }));
 		 
@@ -838,7 +838,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 4),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(DCsAppleMilk.EXItems, 1, 2),
 		    		  "cropRice"
 					 }));
@@ -847,7 +847,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 4),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(DCsAppleMilk.EXItems, 1, 2),
 	    			  "cropWheat"
 					 }));
@@ -856,7 +856,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 5),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(Items.chicken, 1, 0),
 	    			  "leek",
 		    		  "bucketSoymilk",
@@ -867,7 +867,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 5),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(Items.chicken, 1, 0),
 	    			  "leek",
 		    		  "bucketSoymilk",
@@ -878,7 +878,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 5),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(Items.chicken, 1, 0),
 	    			  "cropLeek",
 		    		  "foodSoymilk",
@@ -889,7 +889,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 6),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(Blocks.pumpkin, 1, 0),
 	    			  "bucketMilk"
 					 }));
@@ -898,7 +898,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 6),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(Blocks.pumpkin, 1, 0),
 	    			  "listAllmilk"
 					 }));
@@ -907,7 +907,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 7),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(Items.porkchop, 1, 0),
 	    			  "cropLettuce",
 		    		  "cropTomato",
@@ -917,7 +917,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 7),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(Items.porkchop, 1, 0),
 	    			  "cabbage",
 		    		  "tomato",
@@ -927,7 +927,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 8),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "bucketMilk",
 		    		  "dustSugar",
 		    		  new ItemStack(Items.dye,9,3),
@@ -938,7 +938,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 8),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 		    		  "listAllmilk",
 		    		  "dustSugar",
 		    		  new ItemStack(Items.dye,9,3),
@@ -949,7 +949,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 9),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  "miso",
 		    		  "cropSeaWeed",
 		    		  "tofuKinu"
@@ -959,7 +959,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 9),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  "miso",
 		    		  "cropSeaWeed",
 		    		  "tofuMomen"
@@ -969,7 +969,7 @@ public class DCsRecipeRegister {
 				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 10),
 	    		  new Object[]{
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+	    			  "toolGrater",
 	    			  new ItemStack(DCsAppleMilk.clam, 1, 0),
 		    		  "cropSeaWeed"
 					 }));
@@ -1588,13 +1588,7 @@ public class DCsRecipeRegister {
 		    		  "dustSugar"
 					 }));
 		 
-		 GameRegistry.addShapelessRecipe(
-	    		  new ItemStack(DCsAppleMilk.foodTea,1,1),
-	    			  new ItemStack(DCsAppleMilk.foodTea,1,0));
 		 
-		 GameRegistry.addShapelessRecipe(
-	    		  new ItemStack(DCsAppleMilk.foodTea,1,4),
-	    			  new ItemStack(DCsAppleMilk.foodTea,1,1));
 		 
 		 GameRegistry.addShapelessRecipe(
 	    		  new ItemStack(DCsAppleMilk.inkStick,1),
@@ -2435,15 +2429,17 @@ public class DCsRecipeRegister {
 	    		  new ItemStack(DCsAppleMilk.EXItems, 1, 1),
 	    			  new ItemStack(Items.leather, 1));
 		 
-		 GameRegistry.addShapelessRecipe(
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.EXItems, 9, 7),
 	    			  new ItemStack(Items.iron_ingot, 1),
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767));
+	    			  "toolGrater"));
 		 
-		 GameRegistry.addShapelessRecipe(
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.EXItems, 9, 14),
 	    			  new ItemStack(Items.flint, 1),
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767));
+	    			  "toolGrater"));
 		 
 		 GameRegistry.addRecipe(
 				 new ShapedOreRecipe(
@@ -2473,15 +2469,17 @@ public class DCsRecipeRegister {
 	    			  new ItemStack(DCsAppleMilk.EXItems, 1, 1),
 	    			  new ItemStack(Items.blaze_powder, 1));
 		 
-		 GameRegistry.addShapelessRecipe(
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
 	    		  new ItemStack(Items.dye, 1, 2),
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
-	    			  new ItemStack(DCsAppleMilk.leafTea, 1, 0));
+	    			  "toolGrater",
+	    			  new ItemStack(DCsAppleMilk.leafTea, 1, 0)));
 		 
-		 GameRegistry.addShapelessRecipe(
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.EXItems, 1, 6),
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
-	    			  new ItemStack(DCsAppleMilk.clam, 1, 0));
+	    		      "toolGrater",
+	    			  new ItemStack(DCsAppleMilk.clam, 1, 0)));
 		 
 		 GameRegistry.addRecipe(
 				 new ItemStack(Items.lead,1),
@@ -2493,15 +2491,17 @@ public class DCsRecipeRegister {
 					 Character.valueOf('S'), new ItemStack(DCsAppleMilk.EXItems,1,1),
 				 });
 		 
-		 GameRegistry.addShapelessRecipe(
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
 	    		  new ItemStack(Items.string, 3, 0),
 	    			  new ItemStack(Blocks.wool, 1, 32767),
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767));
+	    			  "toolGrater"));
 		 
-		 GameRegistry.addShapelessRecipe(
+		 GameRegistry.addRecipe(
+				 new ShapelessOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.dustWood, 1, 1),
-	    			  new ItemStack(Items.coal, 1, 1),
-	    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767));
+	    		  new ItemStack(Items.coal, 1, 32767),
+   			      "toolGrater"));
 	}
 	
 	static void addCharms()
@@ -2522,7 +2522,7 @@ public class DCsRecipeRegister {
 				DCsAppleMilk.incenseApple,
 				DCsAppleMilk.incenseRose,
 				DCsAppleMilk.incenseMint,
-				DCsAppleMilk.incenseMint,
+				DCsAppleMilk.incenseYuzu,
 				DCsAppleMilk.incenseClam,
 				DCsAppleMilk.incenseIce,
 				DCsAppleMilk.incenseLavender,
@@ -2534,7 +2534,7 @@ public class DCsRecipeRegister {
 		
 		for (int i = 0 ; i < 11 ; i++)
 		{
-			if (i == 3 || i == 7)continue;
+			if (i == 7)continue;
 			
 			GameRegistry.addRecipe(
 					 new ShapelessOreRecipe(
@@ -2587,6 +2587,11 @@ public class DCsRecipeRegister {
 	    		  DCsAppleMilk.icyCrystal,
 	    		  new ItemStack(Items.quartz, 1),
 	    		  0.5F);
+	      
+	      GameRegistry.addSmelting(
+	    		  new ItemStack(DCsAppleMilk.EXItems, 1, 1),
+	    		  new ItemStack(Items.slime_ball, 1),
+	    		  0.1F);
 	      
 	      GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.leafTea, 1, 0),
 	    		  new ItemStack(DCsAppleMilk.foodTea, 1, 0), 0.2F);
@@ -2874,7 +2879,7 @@ public class DCsRecipeRegister {
 					 new ShapelessOreRecipe(
 		    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 9),
 		    		  new Object[]{
-		    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+		    			  "toolGrater",
 		    			  "miso",
 			    		  kelp,
 			    		  "tofuKinu"
@@ -2884,7 +2889,7 @@ public class DCsRecipeRegister {
 					 new ShapelessOreRecipe(
 		    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 9),
 		    		  new Object[]{
-		    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+		    			  "toolGrater",
 		    			  "miso",
 			    		  kelp,
 			    		  "tofuMomen"
@@ -2894,7 +2899,7 @@ public class DCsRecipeRegister {
 					 new ShapelessOreRecipe(
 		    		  new ItemStack(DCsAppleMilk.mincedFoods, 1, 10),
 		    		  new Object[]{
-		    			  new ItemStack(DCsAppleMilk.DCgrater, 1, 32767),
+		    			  "toolGrater",
 		    			  new ItemStack(DCsAppleMilk.clam, 1, 0),
 			    		  kelp
 						 }));
@@ -2934,7 +2939,7 @@ public class DCsRecipeRegister {
 			    		new ItemStack(DCsAppleMilk.EXItems, 9, 8),
 			    		new Object[]{
 			    		"ingotTin",
-			    		new ItemStack(DCsAppleMilk.DCgrater, 1, 32767)
+			    		"toolGrater"
 			    		}));
 		     
 		    GameRegistry.addRecipe(
@@ -2954,7 +2959,7 @@ public class DCsRecipeRegister {
 			    		new ItemStack(DCsAppleMilk.EXItems, 9, 9),
 			    		new Object[]{
 			    		"ingotCopper",
-			    		new ItemStack(DCsAppleMilk.DCgrater, 1, 32767)
+			    		"toolGrater"
 			    		}));
 		     
 		    GameRegistry.addRecipe(
@@ -2974,7 +2979,7 @@ public class DCsRecipeRegister {
 			    		new ItemStack(DCsAppleMilk.EXItems, 9, 10),
 			    		new Object[]{
 			    		"ingotSilver",
-			    		new ItemStack(DCsAppleMilk.DCgrater, 1, 32767)
+			    		"toolGrater"
 			    		}));
 		     
 		    GameRegistry.addRecipe(
@@ -2994,7 +2999,7 @@ public class DCsRecipeRegister {
 			    		new ItemStack(DCsAppleMilk.EXItems, 9, 11),
 			    		new Object[]{
 			    		"ingotSteel",
-			    		new ItemStack(DCsAppleMilk.DCgrater, 1, 32767)
+			    		"toolGrater"
 			    		}));
 		     
 		    GameRegistry.addRecipe(
@@ -3014,7 +3019,7 @@ public class DCsRecipeRegister {
 			    		new ItemStack(DCsAppleMilk.EXItems, 9, 12),
 			    		new Object[]{
 			    		"ingotLead",
-			    		new ItemStack(DCsAppleMilk.DCgrater, 1, 32767)
+			    		"toolGrater"
 			    		}));
 		     
 		    GameRegistry.addRecipe(
@@ -3034,7 +3039,7 @@ public class DCsRecipeRegister {
 			    		new ItemStack(DCsAppleMilk.EXItems, 9, 13),
 			    		new Object[]{
 			    		"ingotBronze",
-			    		new ItemStack(DCsAppleMilk.DCgrater, 1, 32767)
+			    		"toolGrater"
 			    		}));
 		     
 		    GameRegistry.addRecipe(

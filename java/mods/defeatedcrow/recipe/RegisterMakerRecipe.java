@@ -7,6 +7,7 @@ import mods.defeatedcrow.api.*;
 import mods.defeatedcrow.api.charge.ChargeItemManager;
 import mods.defeatedcrow.api.recipe.*;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.config.PropertyHandler;
 import mods.defeatedcrow.plugin.LoadModHandler;
 import net.minecraft.block.Block;
@@ -171,6 +172,11 @@ public class RegisterMakerRecipe {
 		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 1),  null,  r * 32);
 		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.batteryItem, 1, 2),  null,  r * 2);
 		ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.yuzuBat, 1, 0),  null,  r * 20);
+		if (DCsConfig.yuzuCropBurn)
+		{
+			ChargeItemManager.chargeItem.registerCharger(new ItemStack(DCsAppleMilk.leafTea, 1, 3),  null,  r / 5);
+		}
+		
 	}
 	
 	public void registerPan()
@@ -558,6 +564,9 @@ public class RegisterMakerRecipe {
 		
 		RecipeRegisterManager.plateRecipe.register(new ItemStack(Items.rotten_flesh, 1, 0), 
 				new ItemStack(Items.leather), 40, false);
+		
+		RecipeRegisterManager.plateRecipe.register(new ItemStack(DCsAppleMilk.EXItems, 1, 1), 
+				new ItemStack(Items.slime_ball), 40, true);
 	}
 	
 	public static void registerChocolate()

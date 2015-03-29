@@ -7,6 +7,7 @@ import mods.defeatedcrow.client.model.model.ModelCocktail;
 import mods.defeatedcrow.common.block.edible.BlockCocktailSP;
 import mods.defeatedcrow.common.block.edible.BlockCocktailSP.*;
 import mods.defeatedcrow.common.entity.edible.*;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -37,6 +38,8 @@ public class RenderCocktailSPEntity extends Render
     {
     	ModelCocktail model = this.model;
         byte l = (byte)entity.getItemMetadata();
+        float size = Util.getCupScale();
+        float y = (float)par4 + 1.55F * size - 0.10F * size;
         
         ModelType type = BlockCocktailSP.getGlassType(l);
         DecorationType deco = BlockCocktailSP.getDecoType(l);
@@ -53,7 +56,8 @@ public class RenderCocktailSPEntity extends Render
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
         GL11.glColor4f(color[0], color[1], color[2], color[3]);
-        GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
+        GL11.glTranslatef((float)par2, (float)y, (float)par6);
+        GL11.glScalef(size, size, size);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
         model.renderInnerSP((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, type);
@@ -68,7 +72,8 @@ public class RenderCocktailSPEntity extends Render
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
+        GL11.glTranslatef((float)par2, (float)y, (float)par6);
+        GL11.glScalef(size, size, size);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
         model.renderDecoSP((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, deco);
@@ -82,7 +87,8 @@ public class RenderCocktailSPEntity extends Render
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-        GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
+        GL11.glTranslatef((float)par2, (float)y, (float)par6);
+        GL11.glScalef(size, size, size);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
         model.renderGlassSP((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, type);

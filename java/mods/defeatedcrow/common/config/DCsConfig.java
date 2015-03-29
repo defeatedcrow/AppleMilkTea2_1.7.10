@@ -56,6 +56,7 @@ public class DCsConfig {
 	public static int cupStackSize = 1;
 	public static int charmRemain = 0;
 	public static int batteryUpdate = 4;
+	public static double setCupScale = 1.0D;
 	
 	//難易度関係
 	public static int dustDif = 1;
@@ -83,6 +84,7 @@ public class DCsConfig {
 	public static boolean hardLeatherRecipe = true;
 	public static boolean disableMissileExplosion = false;
 	public static boolean PvPProhibitionMode = false;
+	public static boolean yuzuCropBurn = true;
 	
 	public static String debugPass = "Input the password here";
 	
@@ -201,6 +203,10 @@ public class DCsConfig {
 			Property noPvP = cfg.get("setting", "PvP Prohibition Mode", PvPProhibitionMode,
 					"Disable the damage caused by items of this MOD against player."
 					+ BR + "(For example, Yuzu Gatling, Silky Melon, etc.)");
+			Property cupScale = cfg.get("render setting", "Set Drink Entity Scale", setCupScale,
+					"Select the scale of drink entity (like a cup). please set 0.01F - 10.0F");
+			Property cropBurn = cfg.get("setting", "Yuzu Crop Burn In Device", yuzuCropBurn,
+					"Yuzu crops can be burned in the chargeable appliance, and generate 80 charge.");
 			
 			Property dustDifP = cfg.get("difficulty setting", "JawCrusher Dust Gen", dustDif,
 					"Change difficulty of the JawCrusher recipe." + BR
@@ -262,6 +268,8 @@ public class DCsConfig {
 			chargeDif = chargeDifP.getInt();
 			exchangeDif = exchangeDifP.getInt();
 			
+			setCupScale = cupScale.getDouble();
+			
 			PropertyHandler.loadConfig();
 			
 			useEXRecipe = EXRecipe.getBoolean(false);
@@ -282,6 +290,7 @@ public class DCsConfig {
 			hardLeatherRecipe = hardLeather.getBoolean(false);
 			disableMissileExplosion = missileExplosion.getBoolean(false);
 			PvPProhibitionMode = noPvP.getBoolean(false);
+			yuzuCropBurn = cropBurn.getBoolean(true);
 			
 			entityIdMelon = entityMelon.getInt();
 			canExplodeMelon = explodeMelon.getBoolean(false);

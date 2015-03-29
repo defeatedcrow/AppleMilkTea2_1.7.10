@@ -11,6 +11,7 @@ import net.minecraft.potion.Potion;
 /**
  * ここではEntityの移動速度を強制でゼロにして足止めしてしまう効果を作っている。
  * */
+@Deprecated
 public class PotionConfinement extends PotionLivingBase
 {
 	

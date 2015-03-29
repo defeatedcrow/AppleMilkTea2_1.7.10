@@ -1,6 +1,7 @@
 package mods.defeatedcrow.common.entity.edible;
 
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

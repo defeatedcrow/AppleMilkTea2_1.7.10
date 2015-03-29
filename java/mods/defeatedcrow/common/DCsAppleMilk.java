@@ -70,7 +70,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.4c",
+		version = "1.7.10_2.4g",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -234,6 +234,7 @@ public class DCsAppleMilk{
 	public static ItemIncenseSandalwood  incenseSandalwood;
 	public static ItemIncenseAgar  incenseAgar;
 	public static ItemIncenseFrankincense  incenseFrank;
+	public static ItemIncenseYuzu incenseYuzu;
 	
 	//液体
 	public static Fluid  vegitableOil;
@@ -271,12 +272,19 @@ public class DCsAppleMilk{
 	public static Item  dummyTeppan;
 	
 	//以下は没アイテム。クラスだけ残してある関係でインスタンスもとってあるが、中身はnullである
+	@Deprecated
 	public static Block  emptyPan;
+	@Deprecated
 	public static Block  filledPan;
+	@Deprecated
 	public static Block  filledPan2;
+	@Deprecated
 	public static Block  canister;
+	@Deprecated
 	public static Item   emptyWallMug;
+	@Deprecated
 	public static Item   wallMug;
+	@Deprecated
 	public static Block  teppann;
 	
 	//ポーションのインスタンス
@@ -665,6 +673,11 @@ public class DCsAppleMilk{
 			(new LoadModHandler()).loadAppleMilk();
 		}
 		
+		//addon
+		AddonIntegration.load();
+		AddonIntegration.addRecipe();
+		
+		//other mods
 	    if (Loader.isModLoaded("IC2"))
 	    {
 	    	AMTLogger.loadingModInfo("IC2");
@@ -1058,7 +1071,7 @@ public class DCsAppleMilk{
 	
 	public String getRivision()
 	{
-		return "c";
+		return "g";
 	}
 	
 	public String getModName()

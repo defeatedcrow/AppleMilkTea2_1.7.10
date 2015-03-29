@@ -148,7 +148,7 @@ public class ItemPrincessClam extends Item {
 	                {
 						AMTLogger.debugInfo("warp");
 						
-						thisPlayer.setPositionAndUpdate(X, Y + 1, Z);
+						thisPlayer.setPositionAndUpdate(X + 0.5D, Y + 1, Z + 0.5D);
 						thisPlayer.fallDistance = 0.0F;
 						world.playSoundAtEntity(thisPlayer, "defeatedcrow:suzu", 1.0F, 1.2F);
 						
@@ -218,7 +218,7 @@ public class ItemPrincessClam extends Item {
 			                {
 								AMTLogger.debugInfo("warp");
 								
-								thisPlayer.setPositionAndUpdate(x1, y1, z1);
+								thisPlayer.setPositionAndUpdate(x1 + 0.5D, y1, z1 + 0.5D);
 								thisPlayer.fallDistance = 0.0F;
 								world.playSoundAtEntity(thisPlayer, "defeatedcrow:suzu", 1.0F, 1.2F);
 								thisPlayer.addChatMessage(new ChatComponentText("Succeeded to warp near the registered player : " + target.getDisplayName()));
@@ -308,7 +308,7 @@ public class ItemPrincessClam extends Item {
 	                {
 						AMTLogger.debugInfo("warp");
 						
-						thisPlayer.setPositionAndUpdate(X, y1 + 1, Z);
+						thisPlayer.setPositionAndUpdate(X + 0.5D, y1 + 1, Z + 0.5D);
 						thisPlayer.fallDistance = 0.0F;
 						world.playSoundAtEntity(thisPlayer, "defeatedcrow:suzu", 1.0F, 1.2F);
 						return itemstack;

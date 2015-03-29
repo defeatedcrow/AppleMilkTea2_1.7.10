@@ -1,6 +1,7 @@
 package mods.defeatedcrow.common.entity.edible;
 
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -23,5 +24,17 @@ public class PlaceableCup2 extends PlaceableFoods{
 	protected ItemStack returnItem() {
 		return new ItemStack(DCsAppleMilk.teaCup2, 1, this.getItemMetadata());
 	}
+	
+	@Override
+	protected float getScale()
+    {
+    	return Util.getCupScale();
+    }
+	
+	@Override
+	protected float getSize()
+    {
+    	return Util.getCupSize();
+    }
 
 }

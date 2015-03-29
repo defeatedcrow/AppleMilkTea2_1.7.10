@@ -8,6 +8,7 @@ public class PlaceableBowlJP extends PlaceableFoods{
 	
 	public PlaceableBowlJP(World world){
     	super(world);
+    	this.setSize(0.5F, 0.3F);
     }
 
 	public PlaceableBowlJP(World world, ItemStack item) {

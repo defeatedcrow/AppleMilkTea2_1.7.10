@@ -123,6 +123,7 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.incenseSandalwood,"defeatedcrow.incense_sandalwood");
 		GameRegistry.registerItem(DCsAppleMilk.incenseAgar,"defeatedcrow.incense_aloeswood");
 		GameRegistry.registerItem(DCsAppleMilk.incenseFrank,"defeatedcrow.incense_frankincense");
+		GameRegistry.registerItem(DCsAppleMilk.incenseYuzu,"defeatedcrow.incense_yuzu");
 		
 		//そのほか
 		GameRegistry.registerItem(DCsAppleMilk.inkStick, "defeatedcrow.inkStick");
@@ -947,6 +948,10 @@ public class MaterialRegister {
 		
 		DCsAppleMilk.incenseFrank = (ItemIncenseFrankincense) (new ItemIncenseFrankincense()).
 				setUnlocalizedName("defeatedcrow.incense_frankincense").
+				setCreativeTab(DCsAppleMilk.applemilkMagic);
+		
+		DCsAppleMilk.incenseYuzu = (ItemIncenseYuzu) (new ItemIncenseYuzu()).
+				setUnlocalizedName("defeatedcrow.incense_yuzu").
 				setCreativeTab(DCsAppleMilk.applemilkMagic);
 		
 	}

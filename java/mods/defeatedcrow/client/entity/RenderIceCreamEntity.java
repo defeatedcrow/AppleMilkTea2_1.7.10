@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.client.model.model.ModelIceCream;
 import mods.defeatedcrow.common.entity.edible.PlaceableIcecream;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.entity.Render;
@@ -35,12 +36,15 @@ public class RenderIceCreamEntity extends Render
     {
     	ModelIceCream model = this.model;
         byte l = (byte)par1Entity.getItemMetadata();
+        float size = Util.getCupScale();
+        float y = (float)par4 + 1.55F * size - 0.10F * size;
 
         this.bindTexture(texture);
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glColor4f(2.0F, 2.0F, 2.0F, 1.0F);
-        GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
+        GL11.glTranslatef((float)par2, (float)y, (float)par6);
+        GL11.glScalef(size, size, size);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(180.0F - par8, 0.0F, 1.0F, 0.0F);
         model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, l);
@@ -62,7 +66,8 @@ public class RenderIceCreamEntity extends Render
         GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
         
         GL11.glColor4f(2.0F, 2.0F, 2.0F, 1.0F);
-        GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
+        GL11.glTranslatef((float)par2, (float)y, (float)par6);
+        GL11.glScalef(size, size, size);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(180.0F - par8, 0.0F, 1.0F, 0.0F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.9F);

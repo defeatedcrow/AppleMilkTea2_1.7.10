@@ -21,8 +21,10 @@ import net.minecraftforge.common.MinecraftForge;
 import mods.defeatedcrow.api.edibles.IEdibleItem;
 import mods.defeatedcrow.api.events.EatEdiblesEvent;
 import mods.defeatedcrow.client.entity.IEdibleRenderHandler;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.entity.edible.PlaceableFoods;
+import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
 
 public class EdibleEntityItem extends Item implements IEdibleItem{
 	
@@ -142,8 +144,7 @@ public class EdibleEntityItem extends Item implements IEdibleItem{
 
 	/**
 	 * 飲食時のポーション効果をメタデータ毎に定義する。
-	 * <br>注意点として、ItemFoodのような空腹度回復効果ではなく、
-	 * ポーション効果のSaturationを利用して空腹度回復を行っている。
+	 * <br>空腹度回復効果とは別途で発生する。
 	 */
 	@Override
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer player, int meta) {
@@ -152,9 +153,31 @@ public class EdibleEntityItem extends Item implements IEdibleItem{
 		return ret;
 	}
 	
+	/**
+	 * 空腹度回復量を定義する。
+	 * */
 	@Override
 	public int[] hungerOnEaten(int meta) {
 		return new int[] {4,2};
+	}
+	
+	/**
+	 * SextiarySector導入時にのみはたらくメソッド。
+	 * 水分やスタミナが増減する。
+	 * <br>int i にマイナス数値が入れば自動的に減少メソッドになる。
+	 * */
+	protected void addSSMoisture(int i, float f, EntityPlayer par3EntityPlayer) {
+		if (DCsAppleMilk.SuccessLoadSSector)
+		{
+			LoadSSectorPlugin.addStatus(i, f, 0, 0, par3EntityPlayer);
+		}
+	}
+	
+	protected void addSSStamina(int i, float f, EntityPlayer par3EntityPlayer) {
+		if (DCsAppleMilk.SuccessLoadSSector)
+		{
+			LoadSSectorPlugin.addStatus(0, 0, i, f, par3EntityPlayer);
+		}
 	}
 	
 	/*ここからEntity/Blockの設置メソッド*/

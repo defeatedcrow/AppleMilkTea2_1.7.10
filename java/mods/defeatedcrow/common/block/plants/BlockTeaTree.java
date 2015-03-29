@@ -264,4 +264,14 @@ public class BlockTeaTree extends Block implements IPlantable, IRightClickHarves
 		return -1;
 	}
 
+	@Override
+	public int getGrownMetadata(World world, int x, int y, int z) {
+		return 3;
+	}
+
+	@Override
+	public int getInitialMetadata(World world, int x, int y, int z) {
+		return 0;
+	}
+
 }

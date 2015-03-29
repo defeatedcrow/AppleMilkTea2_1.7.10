@@ -1,5 +1,6 @@
 package mods.defeatedcrow.common.tile.energy;
 
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import cofh.api.energy.IEnergyConnection;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.tileentity.IEnergyInfo;
@@ -26,10 +27,10 @@ import net.minecraftforge.common.util.ForgeDirection;
 	{
 		@Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHCore"),
 		@Optional.Interface(iface = "cofh.api.tileentity.IEnergyInfo", modid = "CoFHCore"),
-		@Optional.Interface(iface = "shift.sextiarysector.api.machine.energy.IEnergyHandler", modid = "SextiarySector")
+		@Optional.Interface(iface = "shift.sextiarysector.api.machine.energy.IGFEnergyHandler", modid = "SextiarySector")
 	}
 )
-public class TileChargerDevice extends TileChargerBase implements IEnergyHandler, IEnergyInfo, shift.sextiarysector.api.machine.energy.IEnergyHandler{
+public class TileChargerDevice extends TileChargerBase implements IEnergyHandler, IEnergyInfo, IGFEnergyHandler{
 	
 	protected IEUSinkChannel EUChannel;
 	
@@ -298,7 +299,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 
 	@Optional.Method(modid = "SextiarySector")
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getSpeedStored(ForgeDirection from) {
 		int eng = this.getChargeAmount();
 		int get = eng * this.exchangeRateGF();
 		return get;
@@ -312,7 +313,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 
 	@Optional.Method(modid = "SextiarySector")
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
+	public int getMaxSpeedStored(ForgeDirection from) {
 		int eng = this.getMaxChargeAmount();
 		int get = eng * this.exchangeRateGF();
 		return get;
