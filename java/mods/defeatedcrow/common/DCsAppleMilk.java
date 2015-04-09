@@ -70,7 +70,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.4g",
+		version = "1.7.10_2.4h",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -1049,7 +1049,7 @@ public class DCsAppleMilk{
 	    	try
 	        {
 	          this.SuccessLoadCGuide = true;
-	          (new LoadCraftGuidePlugin()).load();;
+	          (new LoadCraftGuidePlugin()).load();
 	          AMTLogger.loadedModInfo("craftguide");
 	        }
 	        catch (Exception e) {
@@ -1071,7 +1071,7 @@ public class DCsAppleMilk{
 	
 	public String getRivision()
 	{
-		return "g";
+		return "h";
 	}
 	
 	public String getModName()

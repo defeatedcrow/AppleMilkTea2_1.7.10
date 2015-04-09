@@ -36,10 +36,10 @@ public class ItemYuzuGatling extends ItemBow implements IBattery{
 	}
 	
 	//文字色
-		public EnumRarity getRarity(ItemStack par1ItemStack)
-	    {
-	        return EnumRarity.rare;
-	    }
+	public EnumRarity getRarity(ItemStack par1ItemStack)
+	{
+	    return EnumRarity.rare;
+	}
 
 	//IBatteryのメソッド
 	@Override
@@ -60,32 +60,32 @@ public class ItemYuzuGatling extends ItemBow implements IBattery{
 	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		boolean flag = par3EntityPlayer.capabilities.isCreativeMode;
+		boolean creative = par3EntityPlayer.capabilities.isCreativeMode;
 		  
-		boolean flag2 = false;
+		boolean hasYuzu = false;
 		boolean inf = EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
-		if (!flag){
+		int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, par1ItemStack);
+		int fire = EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, par1ItemStack);
+		
+		if (!creative){
 			if (par3EntityPlayer.inventory.hasItemStack(new ItemStack(DCsAppleMilk.leafTea, 1, 3))){
-				flag2 = true;
+				hasYuzu = true;
 			}
-			else
+			else if (inf)
 			{
-				flag = inf;
+				hasYuzu = true;
 			}
 		}
-		boolean flag3 = false;
+		boolean hasCharge = false;
 		if (par1ItemStack.getItem() == this){
-			int c2 = this.discharge(par1ItemStack, 2, false);
-			if (c2 > 0) flag3 = true;
+			int c2 = this.discharge(par1ItemStack, 2 + power, false);
+			if (c2 > 0) hasCharge = true;
 		}
 		
-		if (flag || (flag2 && flag3))
+		if (creative || (hasYuzu && hasCharge))
 		{
-			boolean loose = flag || inf || this.looseYuzu(par3EntityPlayer, DCsAppleMilk.leafTea, 3);
-			if (!flag) this.discharge(par1ItemStack, 2, true);
-			
-			int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, par1ItemStack);
-			int fire = EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, par1ItemStack);
+			boolean loose = creative || inf || this.looseYuzu(par3EntityPlayer, DCsAppleMilk.leafTea, 3);
+			if (!creative) this.discharge(par1ItemStack, 2, true);
 			
 			EntityYuzuBullet bullet = new EntityYuzuBullet(par2World, par3EntityPlayer, 3.0F, 0.0F, 0.0F, 0.0F, 0.0F);
 			

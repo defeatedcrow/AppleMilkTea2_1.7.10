@@ -344,7 +344,7 @@ public class BlockCPanel extends BlockContainer{
                 {
 					AMTLogger.debugInfo("warp");
 					
-					player.setPositionAndUpdate(x1, y1, z1);
+					player.setPositionAndUpdate(x1 + 0.5D, y1, z1 + 0.5D);
 					player.fallDistance = 0.0F;
 					world.playSoundAtEntity(player, "defeatedcrow:suzu", 1.0F, 1.2F);
 					player.addChatMessage(new ChatComponentText("Succeeded to warp near the registered player : " + target.getDisplayName()));
@@ -375,7 +375,7 @@ public class BlockCPanel extends BlockContainer{
         {
 			AMTLogger.debugInfo("warp");
 			
-			player.setPositionAndUpdate(x, y + 1, z);
+			player.setPositionAndUpdate(x + 0.5D, y + 1, z + 0.5D);
 			player.fallDistance = 0.0F;
 			world.playSoundAtEntity(player, "defeatedcrow:suzu", 1.0F, 1.2F);
 			
@@ -418,7 +418,7 @@ public class BlockCPanel extends BlockContainer{
             {
 				AMTLogger.debugInfo("warp");
 				
-				player.setPositionAndUpdate(X, y1 + 1, Z);
+				player.setPositionAndUpdate(X + 0.5D, y1 + 1, Z + 0.5D);
 				player.fallDistance = 0.0F;
 				world.playSoundAtEntity(player, "defeatedcrow:suzu", 1.0F, 1.2F);
 				return true;

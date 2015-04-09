@@ -22,7 +22,7 @@ group= "mods.defeatedcrow.DCsAppleMilk" // http://maven.apache.org/guides/mini/g
 archivesBaseName = "AppleMilkTea2"
 
 minecraft {
-    version = "1.7.10-10.13.2.1230"
+    version = "1.7.10-10.13.2.1291"
     runDir = "eclipse/assets"
 }
 
@@ -67,7 +67,7 @@ compileJava {
     options.encoding = defaultEncoding
 }
 
-[compileJava, compileTestJava,compileApiJava,recompMinecraft, makeStart].each{
+[compileJava, compileTestJava,compileApiJava,recompMinecraft].each{
     it.options.encoding = 'UTF-8'
     it.options.compilerArgs += ['-source', '1.7', '-target', '1.7'] 
 }

@@ -25,6 +25,20 @@ public class RFItemHandler {
 		return false;
 	}
 	
+	public static int getAmount(ItemStack item)
+	{
+		if (item == null) return 0;	
+		
+		if (item.getItem() instanceof IEnergyContainerItem){
+			IEnergyContainerItem cont = (IEnergyContainerItem) item.getItem();
+			
+			int cur = cont.getEnergyStored(item);
+			
+			return cur;
+		}
+		return 0;
+	}
+	
 	public static int chargeAmount(ItemStack item, int get, boolean isSimulate)
 	{
 		if (item == null) return 0;	
@@ -36,6 +50,22 @@ public class RFItemHandler {
 			int j = Math.min(i, get);
 			
 			return cont.receiveEnergy(item, j, isSimulate);
+		}
+		
+		return 0;
+	}
+	
+	public static int dischargeAmount(ItemStack item, int ret, boolean isSimulate)
+	{
+		if (item == null) return 0;	
+		
+		if (item.getItem() instanceof IEnergyContainerItem){
+			IEnergyContainerItem cont = (IEnergyContainerItem) item.getItem();
+			
+			int i = cont.getEnergyStored(item);
+			int j = Math.min(i, ret);
+			
+			return cont.extractEnergy(item, j, isSimulate);
 		}
 		
 		return 0;

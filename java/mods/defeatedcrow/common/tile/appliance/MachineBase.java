@@ -4,7 +4,10 @@ import mods.defeatedcrow.api.charge.*;
 import mods.defeatedcrow.api.energy.IBattery;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.DCsConfig;
+import mods.defeatedcrow.common.config.PropertyHandler;
 import mods.defeatedcrow.plugin.IC2.*;
+import mods.defeatedcrow.plugin.SSector.SS2ItemHandler;
+import mods.defeatedcrow.plugin.cofh.RFItemHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,6 +26,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -49,10 +53,22 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		if (DCsAppleMilk.SuccessLoadIC2) EUChannel = EUSinkManager.getChannel(this, this.getMaxChargeAmount(), 3);
 	}
 	
-	private int exchangeRateEU()
+	private static int exchangeRateRF()
+	{
+		//RF -> Charge
+		return PropertyHandler.rateRF();
+	}
+	
+	private static int exchangeRateEU()
 	{
 		//EU -> Charge
-		return 2;
+		return PropertyHandler.rateEU();
+	}
+	
+	private static int exchangeRateGF()
+	{
+		//GF -> Charge
+		return PropertyHandler.rateGF();
 	}
  
 	@Override
@@ -207,6 +223,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 				{
 					//チャージ残量＋アイテムのチャージ量
 					int i = this.chargeAmount + getItemBurnTime(this.itemstacks[0]);
+					int j = getItemBurnTime(this.itemstacks[0]);
 	 
 					if (i <= this.getMaxChargeAmount())//指定したチャージ上限より小さいかどうか
 					{
@@ -221,7 +238,12 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 						}
 						else//スロット1のアイテムを減らす
 						{
-							this.decrStackSize(0, 1);
+							int ret = this.discharge(this.itemstacks[0], j, 0);
+							if (ret > 0)
+							{
+								this.chargeAmount += ret;
+								flag = true;
+							}
 						}
 					}
 					
@@ -316,19 +338,38 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 		}
 		else
 		{
-			if (ChargeItemManager.chargeItem.getChargeAmount(par0ItemStack) > 0)
-			{
-				return ChargeItemManager.chargeItem.getChargeAmount(par0ItemStack);
-			}
-			else if (par0ItemStack.getItem() instanceof IBattery)
-			{
-				//充電池の場合、16/4tickずつ減少する。
-				IBattery bat = (IBattery) par0ItemStack.getItem();
-				int ret = bat.discharge(par0ItemStack, 16, false);
-				return ret;
-			}
+			int ret = 0;
+			int inc = 16; //速度はチャージバッテリーと同じ
 			
-			return 0;
+			if (Loader.isModLoaded("SextiarySector") && ret == 0)
+			{
+				int i  = SS2ItemHandler.dischargeAmount(par0ItemStack, inc * exchangeRateGF(), true);
+				ret = Math.round(i / exchangeRateGF());
+			}
+			if (Loader.isModLoaded("CoFHCore") && ret == 0)
+			{
+				int i  = RFItemHandler.dischargeAmount(par0ItemStack, inc * exchangeRateRF(), true);
+				ret = Math.round(i / exchangeRateRF());
+			}
+			if (Loader.isModLoaded("IC2") && ret == 0)
+			{
+				int i  = EUItemHandler.dischargeAmount(par0ItemStack, inc * exchangeRateEU(), true);
+				ret = Math.round(i / exchangeRateEU());
+			}
+			if (ret == 0)
+			{
+				if (ChargeItemManager.chargeItem.getChargeAmount(par0ItemStack) > 0)
+				{
+					ret = ChargeItemManager.chargeItem.getChargeAmount(par0ItemStack);
+				}
+				else if (par0ItemStack.getItem() instanceof IBattery)
+				{
+					//充電池の場合、16/4tickずつ減少する。
+					IBattery bat = (IBattery) par0ItemStack.getItem();
+					ret = bat.discharge(par0ItemStack, 16, false);
+				}
+			}
+			return ret;
 		}
 	}
  
@@ -339,6 +380,86 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	public static boolean isItemFuel(ItemStack par0ItemStack)
 	{
 		return getItemBurnTime(par0ItemStack) > 0;
+	}
+	
+	/**
+	 * 燃料スロットの電池アイテムを処理するメソッド
+	 */
+	public int discharge(ItemStack item, int amount, int slot)
+	{
+		if (item == null)
+		{
+			return 0;
+		}
+		else
+		{
+			int ret = 0;
+			int inc = amount;
+			
+			if (Loader.isModLoaded("SextiarySector") && ret == 0)
+			{
+				int i  = SS2ItemHandler.dischargeAmount(item, inc * exchangeRateGF(), false);
+				ret = Math.round(i / exchangeRateGF());
+				
+				if (ret > 0 && SS2ItemHandler.getAmount(item) == 0 && this.itemstacks[1] == null)
+				{
+					if (item == null || item.stackSize == 0)
+					{
+						this.setInventorySlotContents(0, null);
+					}
+					else
+					{
+						this.setInventorySlotContents(1, item.copy());
+						this.decrStackSize(slot, 1);
+					}
+				}
+			}
+			if (Loader.isModLoaded("CoFHCore") && ret == 0)
+			{
+				int i  = RFItemHandler.dischargeAmount(item, inc * exchangeRateRF(), false);
+				ret = Math.round(i / exchangeRateRF());
+				
+				if (ret > 0 && RFItemHandler.getAmount(item) == 0 && this.itemstacks[1] == null)
+				{
+					if (item == null || item.stackSize == 0)
+					{
+						this.setInventorySlotContents(0, null);
+					}
+					else
+					{
+						this.setInventorySlotContents(1, item.copy());
+						this.decrStackSize(slot, 1);
+					}
+					
+				}
+			}
+			if (Loader.isModLoaded("IC2") && ret == 0)
+			{
+				int i  = EUItemHandler.dischargeAmount(item, inc * exchangeRateEU(), false);
+				ret = Math.round(i / exchangeRateEU());
+				
+				if (ret > 0 && EUItemHandler.getAmount(item) == 0 && this.itemstacks[1] == null)
+				{
+					if (item == null || item.stackSize == 0)
+					{
+						this.setInventorySlotContents(0, null);
+					}
+					else
+					{
+						this.setInventorySlotContents(1, item.copy());
+						this.decrStackSize(slot, 1);
+					}
+				}
+			}
+			
+			if (ret == 0)
+			{
+				this.decrStackSize(slot, 1);
+				ret = amount;
+			}
+			
+			return ret;
+		}
 	}
 	
 	/**

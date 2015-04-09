@@ -1,6 +1,7 @@
 package mods.defeatedcrow.plugin.nei;
 
 import net.minecraft.item.Item;
+import mods.defeatedcrow.client.gui.*;
 import mods.defeatedcrow.common.AMTLogger;
 import codechicken.nei.api.API;
 
@@ -35,7 +36,7 @@ public class LoadNEIPlugin {
 		
 		API.registerRecipeHandler(iceRecipe);
 		API.registerUsageHandler(iceRecipe);
-		API.registerGuiOverlay(GuiRecipe.class, iceRecipe.getOverlayIdentifier(), 0, 0);
+		API.registerGuiOverlay(GuiIceMaker.class, iceRecipe.getOverlayIdentifier(), 0, 0);
 		
 		API.registerRecipeHandler(panRecipe);
 		API.registerUsageHandler(panRecipe);
@@ -43,15 +44,15 @@ public class LoadNEIPlugin {
 		
 		API.registerRecipeHandler(processorRecipe);
 		API.registerUsageHandler(processorRecipe);
-		API.registerGuiOverlay(GuiRecipe.class, processorRecipe.getOverlayIdentifier(), 0, 0);
+		API.registerGuiOverlay(GuiProsessor.class, processorRecipe.getOverlayIdentifier(), 0, 0);
 		
 		API.registerRecipeHandler(advProcessorRecipe);
 		API.registerUsageHandler(advProcessorRecipe);
-		API.registerGuiOverlay(GuiRecipe.class, advProcessorRecipe.getOverlayIdentifier(), 0, 0);
+		API.registerGuiOverlay(GuiAdvProsessor.class, advProcessorRecipe.getOverlayIdentifier(), 0, 0);
 		
 		API.registerRecipeHandler(evaporatorRecipe);
 		API.registerUsageHandler(evaporatorRecipe);
-		API.registerGuiOverlay(GuiRecipe.class, evaporatorRecipe.getOverlayIdentifier(), 0, 0);
+		API.registerGuiOverlay(GuiEvaporator.class, evaporatorRecipe.getOverlayIdentifier(), 0, 0);
 		
 		API.registerRecipeHandler(plateRecipe);
 		API.registerUsageHandler(plateRecipe);

@@ -1,15 +1,17 @@
 package mods.defeatedcrow.common.tile.energy;
 
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
 import cofh.api.energy.IEnergyConnection;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.tileentity.IEnergyInfo;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
+import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.PropertyHandler;
 import mods.defeatedcrow.plugin.*;
 import mods.defeatedcrow.plugin.IC2.*;
+import mods.defeatedcrow.plugin.SSector.SS2ItemHandler;
 import mods.defeatedcrow.plugin.cofh.RFItemHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,10 +29,10 @@ import net.minecraftforge.common.util.ForgeDirection;
 	{
 		@Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHCore"),
 		@Optional.Interface(iface = "cofh.api.tileentity.IEnergyInfo", modid = "CoFHCore"),
-		@Optional.Interface(iface = "shift.sextiarysector.api.machine.energy.IGFEnergyHandler", modid = "SextiarySector")
+		@Optional.Interface(iface = "shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler", modid = "SextiarySector")
 	}
 )
-public class TileChargerDevice extends TileChargerBase implements IEnergyHandler, IEnergyInfo, IGFEnergyHandler{
+public class TileChargerDevice extends TileChargerBase implements IEnergyHandler, IEnergyInfo, IGearForceHandler{
 	
 	protected IEUSinkChannel EUChannel;
 	
@@ -71,19 +73,19 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	
 	/* Modごとの変換レート。コンフィグ変更可能にしました。バランスは投げ捨てました。諸事情により問い合わせは拒否します。 */
 	
-	private int exchangeRateRF()
+	private static int exchangeRateRF()
 	{
 		//RF -> Charge
 		return PropertyHandler.rateRF();
 	}
 	
-	private int exchangeRateEU()
+	private static int exchangeRateEU()
 	{
 		//EU -> Charge
 		return PropertyHandler.rateEU();
 	}
 	
-	private int exchangeRateGF()
+	private static int exchangeRateGF()
 	{
 		//GF -> Charge
 		return PropertyHandler.rateGF();
@@ -100,11 +102,15 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	{
 		boolean flag = false;
 		
-		if (Loader.isModLoaded("CoFHCore"))
+		if (Loader.isModLoaded("SextiarySector"))
+		{
+			flag = SS2ItemHandler.isGFItem(item);
+		}
+		if (Loader.isModLoaded("CoFHCore") && !flag)
 		{
 			flag = RFItemHandler.isChargeable(item);
 		}
-		if (!flag && Loader.isModLoaded("IC2"))
+		if (!flag && Loader.isModLoaded("IC2") && !flag)
 		{
 			flag = EUItemHandler.isChargeable(item);
 		}
@@ -122,7 +128,12 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	public int chargeAnotherBattery(ItemStack item, int inc, boolean flag)
 	{
 		int ret = 0;
-		if (Loader.isModLoaded("CoFHCore"))
+		if (Loader.isModLoaded("SextiarySector"))
+		{
+			int i  = SS2ItemHandler.chargeAmount(item, inc * this.exchangeRateGF(), flag);
+			ret = Math.round(i / this.exchangeRateGF());
+		}
+		if (Loader.isModLoaded("CoFHCore") && ret == 0)
 		{
 			int i  = RFItemHandler.chargeAmount(item, inc * this.exchangeRateRF(), flag);
 			ret = Math.round(i / this.exchangeRateRF());
@@ -162,6 +173,124 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		
 	}
 	
+	/* 他MODの電池を燃料スロットで溶かすための操作 */
+	
+	// 燃料判定
+	@Override
+	public int getItemBurnTime(ItemStack item)
+	{
+		if (item == null)
+		{
+			return 0;
+		}
+		else
+		{
+			int ret = 0;
+			int inc = 16; //速度はチャージバッテリーと同じ
+			
+			if (Loader.isModLoaded("SextiarySector") && ret == 0)
+			{
+				int i  = SS2ItemHandler.dischargeAmount(item, inc * exchangeRateGF(), true);
+				ret = Math.round(i / exchangeRateGF());
+			}
+			if (Loader.isModLoaded("CoFHCore") && ret == 0)
+			{
+				int i  = RFItemHandler.dischargeAmount(item, inc * exchangeRateRF(), true);
+				ret = Math.round(i / exchangeRateRF());
+			}
+			if (Loader.isModLoaded("IC2") && ret == 0)
+			{
+				int i  = EUItemHandler.dischargeAmount(item, inc * exchangeRateEU(), true);
+				ret = Math.round(i / exchangeRateEU());
+			}
+			if (ret == 0)
+			{
+				return super.getItemBurnTime(item);
+			}
+			return ret;
+		}
+	}
+	
+	@Override
+	public int discharge(ItemStack item, int amount, int slot)
+	{
+		if (item == null)
+		{
+			return 0;
+		}
+		else
+		{
+			int ret = 0;
+			int inc = amount;
+			
+			if (Loader.isModLoaded("SextiarySector") && ret == 0)
+			{
+				int i  = SS2ItemHandler.dischargeAmount(item, inc * exchangeRateGF(), false);
+				ret = Math.round(i / exchangeRateGF());
+				
+				if (ret > 0 && SS2ItemHandler.getAmount(item) == 0 && this.itemstacks[1] == null)
+				{
+					if (item == null || item.stackSize == 0)
+					{
+						this.setInventorySlotContents(0, null);
+					}
+					else
+					{
+						this.setInventorySlotContents(1, item.copy());
+						this.decrStackSize(slot, 1);
+					}
+				}
+			}
+			if (Loader.isModLoaded("CoFHCore") && ret == 0)
+			{
+				int i  = RFItemHandler.dischargeAmount(item, inc * exchangeRateRF(), false);
+				ret = Math.round(i / exchangeRateRF());
+				
+				if (ret > 0 && RFItemHandler.getAmount(item) == 0 && this.itemstacks[1] == null)
+				{
+					if (item == null || item.stackSize == 0)
+					{
+						this.setInventorySlotContents(0, null);
+					}
+					else
+					{
+						this.setInventorySlotContents(1, item.copy());
+						this.decrStackSize(slot, 1);
+					}
+					
+				}
+			}
+			if (Loader.isModLoaded("IC2") && ret == 0)
+			{
+				int i  = EUItemHandler.dischargeAmount(item, inc * exchangeRateEU(), false);
+				ret = Math.round(i / exchangeRateEU());
+				
+				if (ret > 0 && EUItemHandler.getAmount(item) == 0 && this.itemstacks[1] == null)
+				{
+					if (item == null || item.stackSize == 0)
+					{
+						this.setInventorySlotContents(0, null);
+					}
+					else
+					{
+						this.setInventorySlotContents(1, item.copy());
+						this.decrStackSize(slot, 1);
+					}
+				}
+			}
+			
+			if (ret == 0)
+			{
+				this.decrStackSize(slot, 1);
+				ret = super.getItemBurnTime(item);
+			}
+			
+			return ret;
+		}
+	}
+	
+	/* for EU */
+	
 	@Override
 	public void invalidate() {
 		if (EUChannel != null) EUChannel.invalidate2();
@@ -184,7 +313,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		super.updateEntity();
 	}
 	
-	/* RF用 */
+	/* for RF */
 
 	@Optional.Method(modid = "CoFHCore")
 	@Override
@@ -263,7 +392,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		return get;
 	}
 	
-	/* GF用 */
+	/* for GF */
 
 	@Optional.Method(modid = "SextiarySector")
 	@Override
@@ -272,7 +401,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		//エネルギーの受け入れ
 		int eng = this.getChargeAmount();
 		int get = speed;
-		if (this.isFullCharged() || speed < this.exchangeRateEU()) return 0;
+		if (this.isFullCharged() || speed < this.exchangeRateGF()) return 0;
 				
 		int ret = Math.min((this.getMaxChargeAmount() - eng) * this.exchangeRateGF(), get);
 				

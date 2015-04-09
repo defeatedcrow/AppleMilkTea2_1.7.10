@@ -7,6 +7,7 @@ import mods.defeatedcrow.api.charge.IChargeGenerator;
 import mods.defeatedcrow.api.charge.IChargeItem;
 import mods.defeatedcrow.api.charge.IChargeableMachine;
 import mods.defeatedcrow.api.energy.IBattery;
+import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.handler.Util;
@@ -149,6 +150,7 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 				{
 					//チャージ残量＋アイテムのチャージ量
 					int i = this.chargeAmount + getItemBurnTime(this.itemstacks[0]);
+					int j = getItemBurnTime(this.itemstacks[0]);
 	 
 					if (i <= this.getMaxChargeAmount())//指定したチャージ上限より小さいかどうか
 					{
@@ -176,9 +178,12 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 						}
 						else//スロット1のアイテムを減らす
 						{
-							this.decrStackSize(0, 1);
-							this.chargeAmount = i;
-							flag1 = true;
+							int ret = this.discharge(this.itemstacks[0], j, 0);
+							if (ret > 0)
+							{
+								this.chargeAmount += ret;
+								flag = true;
+							}
 						}
 					}
 					
@@ -331,7 +336,7 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 	 * このアイテムのチャージ量
 	 * @param par0ItemStack チェック対象アイテム
 	 */
-	public static int getItemBurnTime(ItemStack par0ItemStack)
+	public int getItemBurnTime(ItemStack par0ItemStack)
 	{
 		if (par0ItemStack == null)
 		{
@@ -359,9 +364,18 @@ public class TileChargerBase extends TileEntity implements ISidedInventory, ICha
 	 * このアイテムがチャージできる燃料であるかどうか
 	 * @param par0ItemStack チェック対象アイテム
 	 */
-	public static boolean isItemFuel(ItemStack par0ItemStack)
+	public boolean isItemFuel(ItemStack par0ItemStack)
 	{
 		return getItemBurnTime(par0ItemStack) > 0;
+	}
+	
+	/**
+	 * 燃料スロットの電池アイテムを処理するメソッド
+	 */
+	public int discharge(ItemStack item, int amount, int slot)
+	{
+		this.decrStackSize(slot, 1);
+		return amount;
 	}
 	
 	/**

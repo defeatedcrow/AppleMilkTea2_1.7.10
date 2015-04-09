@@ -118,7 +118,7 @@ public class ContainerBatBox extends Container {
 			else if (par2 > 9)
 			{
 				//燃料である
-				if (TileChargerBase.isItemFuel(itemstack))
+				if (tile.isItemFuel(itemstack))
 				{
 					//アイテムの移動(スロット0～1へ)
 					if (!this.mergeItemStack(itemstack1, 0, 1, false))

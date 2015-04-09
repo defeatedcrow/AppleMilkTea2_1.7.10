@@ -1,5 +1,6 @@
 package mods.defeatedcrow.common.block;
 
+import static net.minecraftforge.common.util.ForgeDirection.UP;
 import net.minecraft.block.Block;
 
 import java.util.Random;
@@ -16,6 +17,7 @@ import net.minecraft.src.*;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockFlint extends BlockBreakable{
 	
@@ -80,7 +82,11 @@ public class BlockFlint extends BlockBreakable{
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
 		this.blockIcon = Blocks.stone_slab.getBlockTextureFromSide(1);
-		
 	}
+	
+	public boolean isSideSolid(IBlockAccess world, int x, int y, int z, ForgeDirection side)
+    {
+		return side != UP;
+    }
 
 }

@@ -1,5 +1,6 @@
 package mods.defeatedcrow.event;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -20,10 +21,6 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 
 public class DCsLivingEvent {
 	
-	private int remain = 0;//カウントダウン用
-	private int type = 0;
-	private static boolean remaining;
-	
 	@SubscribeEvent
 	  public void onLivingUpdate(LivingEvent.LivingUpdateEvent event)
 	  {
@@ -34,6 +31,8 @@ public class DCsLivingEvent {
 		{
 			EntityPlayer player = (EntityPlayer)event.entity;
 			
+			ArrayList<PotionEffect> immunities = new ArrayList<PotionEffect>();
+			
 			if(player != null)
 			{
 				//PotionEffectのリスト
@@ -43,11 +42,20 @@ public class DCsLivingEvent {
 				{
 					PotionEffect effect = (PotionEffect)iterator.next();
 					
-					int newID = effect.getPotionID();
+					int id = effect.getPotionID();
+					Potion potion = Potion.potionTypes[id];
 					
-					Potion potion = Potion.potionTypes[newID];
-					int amp = effect.getAmplifier();
-					int dur = effect.getDuration();
+					if(potion != null && potion instanceof PotionImmunityBase)
+					{
+						immunities.add(effect);
+					}
+				}
+				
+				for (PotionEffect eff : immunities)
+				{
+					Potion potion = Potion.potionTypes[eff.getPotionID()];
+					int amp = eff.getAmplifier();
+					int dur = eff.getDuration();
 					
 					if(potion != null && potion instanceof PotionImmunityBase)
 					{
@@ -58,23 +66,6 @@ public class DCsLivingEvent {
 						}
 					}
 				}
-				
-				if (this.remain > 0 && this.remaining)
-				{
-					this.remain--;
-					
-					if (this.remain == 0)
-					{
-						player.addChatMessage(new ChatComponentText("remain : 0"));
-						this.remaining = false;
-					}
-				}
-				
-				if (!player.isEntityAlive())//生存確認
-				{
-					this.remain = 0;
-					this.remaining = false;
-				}
 			}
 		}
 		
@@ -82,6 +73,7 @@ public class DCsLivingEvent {
 		if ((entity instanceof EntityLivingBase))
 		{
 			EntityLivingBase living = (EntityLivingBase)event.entity;
+			ArrayList<PotionEffect> potions = new ArrayList<PotionEffect>();
 			
 			if(living != null && !living.worldObj.isRemote)
 			{
@@ -92,24 +84,33 @@ public class DCsLivingEvent {
 				{
 					PotionEffect effect = (PotionEffect)iterator.next();
 					
-					int newID = effect.getPotionID();
+					int id = effect.getPotionID();
+					Potion potion = Potion.potionTypes[id];
 					
-					Potion potion = Potion.potionTypes[newID];
-					int amp = effect.getAmplifier();
-					int dur = effect.getDuration();
-					
-					if(potion != null && potion instanceof PotionLivingBase)
+					if(potion != null && potion instanceof PotionImmunityBase)
 					{
-						PotionLivingBase immunity = (PotionLivingBase) potion;
-						
-						if (immunity.formPotionEffect(amp, immunity.id, living)) {
-							AMTLogger.debugInfo("Succeeded to form effect of PotionLivingBase.");
-						}
+						potions.add(effect);
 					}
 					
 					if (potion != null && potion.id == potion.jump.id)
 					{
 						living.fallDistance = 0.0F;
+					}
+				}
+			}
+			
+			for (PotionEffect eff : potions)
+			{
+				Potion potion = Potion.potionTypes[eff.getPotionID()];
+				int amp = eff.getAmplifier();
+				int dur = eff.getDuration();
+				
+				if(potion != null && potion instanceof PotionLivingBase)
+				{
+					PotionLivingBase immunity = (PotionLivingBase) potion;
+					
+					if (immunity.formPotionEffect(amp, immunity.id, living)) {
+						AMTLogger.debugInfo("Succeeded to form effect of PotionLivingBase.");
 					}
 				}
 			}

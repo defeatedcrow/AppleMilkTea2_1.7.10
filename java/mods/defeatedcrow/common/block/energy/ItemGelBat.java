@@ -1,8 +1,12 @@
 package mods.defeatedcrow.common.block.energy;
 
+import cpw.mods.fml.common.Optional;
+import shift.sextiarysector.api.gearforce.item.IGearForceItemManager;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import mods.defeatedcrow.api.energy.BatteyItemBlockBase;
+import mods.defeatedcrow.common.config.PropertyHandler;
 
 public class ItemGelBat extends BatteyItemBlockBase{
 
@@ -15,5 +19,4 @@ public class ItemGelBat extends BatteyItemBlockBase{
 	public int getMaxAmount(ItemStack item) {
 		return 12800;
 	}
-
 }
