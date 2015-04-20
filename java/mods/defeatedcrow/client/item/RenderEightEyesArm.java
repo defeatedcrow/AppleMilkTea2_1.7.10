@@ -111,11 +111,13 @@ public class RenderEightEyesArm implements IItemRenderer{
 	
 	private void glMatrixForFirstPerson()
 	{
-		GL11.glRotatef(180F, 1.0F, 0.0F, 0.0F);
-		GL11.glRotatef(-100F, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(-170F, 1.0F, 0.0F, 0.0F);
+		GL11.glRotatef(-80F, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(0F, 0.0F, 1.0F, 0.0F);
-		GL11.glTranslatef(-0.2F, 0.2F, 0.0F);
+		GL11.glScalef(1.0F, -1.0F, 1.0F);
+		GL11.glTranslatef(-0.2F, -0.5F, 0.5F);
 	}
+	
 	/*
 	* ドロップ状態での描画位置の調整.
 	*/

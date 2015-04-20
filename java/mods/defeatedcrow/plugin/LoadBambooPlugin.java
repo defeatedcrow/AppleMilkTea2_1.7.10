@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import ruby.bamboo.BambooInit;
+import ruby.bamboo.api.crafting.CookingRegistory;
+import ruby.bamboo.api.crafting.grind.GrindRegistory;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -156,6 +161,45 @@ public class LoadBambooPlugin {
 		}
         catch (Exception e) {
         	AMTLogger.debugInfo("Failed to register ModItems");
+          e.printStackTrace(System.err);
+        }
+	}
+	
+	public static void loadBambooRecipes(boolean flag) // BambooMod様の石臼、囲炉裏にレシピを追加
+	{
+		if (!flag) return;
+		
+		try
+		{
+			GrindRegistory.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 2, 0),
+					new ItemStack(DCsAppleMilk.leafTea));
+			
+			GrindRegistory.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 2, 6),
+					new ItemStack(DCsAppleMilk.clam));
+			
+			GrindRegistory.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 1),
+					new ItemStack(Items.coal, 1, 1));
+			
+			GrindRegistory.addRecipe(new ItemStack(DCsAppleMilk.EXItems, 2, 4),
+					new ItemStack(Blocks.ice, 1, 0));
+			
+			CookingRegistory.addShapelessRecipe(new ItemStack(DCsAppleMilk.appleSandwich, 3, 0),
+					new ItemStack(Items.apple), "foodDough");
+			
+			CookingRegistory.addShapelessRecipe(new ItemStack(DCsAppleMilk.appleTart, 2, 0),
+					new ItemStack(Items.apple), "foodDough", "foodSugar");
+			
+			CookingRegistory.addShapelessRecipe(new ItemStack(DCsAppleMilk.appleSandwich, 3, 1),
+					new ItemStack(Items.egg), "foodDough");
+			
+			CookingRegistory.addShapelessRecipe(new ItemStack(DCsAppleMilk.appleSandwich, 3, 2),
+					"foodSugar", "foodDough", new ItemStack(DCsAppleMilk.leafTea, 1, 2));
+			
+			CookingRegistory.addShapelessRecipe(new ItemStack(DCsAppleMilk.appleSandwich, 3, 3),
+					"foodSugar", "foodDough", new ItemStack(DCsAppleMilk.leafTea, 1, 3));
+		}
+		catch (Exception e) {
+        	AMTLogger.debugInfo("Failed to register Bamboo recipes");
           e.printStackTrace(System.err);
         }
 	}

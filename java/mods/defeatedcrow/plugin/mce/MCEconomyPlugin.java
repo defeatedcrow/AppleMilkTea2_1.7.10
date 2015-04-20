@@ -152,6 +152,7 @@ public class MCEconomyPlugin extends ProductList{
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (5 + amount[i])), 80);
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (6 + amount[i])), 120);
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (7 + amount[i])), 120);
+			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (8 + amount[i])), 120);
 		}
 		
 		//tree

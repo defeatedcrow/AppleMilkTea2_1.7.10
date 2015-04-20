@@ -81,12 +81,25 @@ public class LoadIC2Plugin {
             	Recipes.semiFluidGenerator.addFluid("camellia_oil", 1, 1.2D);
             	AMTLogger.debugInfo("Succeeded to register fuel for IC2 Semifluid Generator : camellia_oil");
             }
-        	
-        	//NTGはnullのままでも別にいいのかもしれない
-    		RecipeInputItemStack input = new RecipeInputItemStack(new ItemStack(DCsAppleMilk.woodBox, 1, 4), 1);
+            
+        }
+        catch (Exception e) {
+          AMTLogger.debugInfo("Failed to register IC2machines recipe");
+          e.printStackTrace(System.err);
+        }
+		
+	}
+	
+	public static void loadRecipes(boolean flag)
+	{
+		if (!flag) return;
+		
+		try
+		{
+			RecipeInputItemStack input = new RecipeInputItemStack(new ItemStack(DCsAppleMilk.woodBox, 1, 4), 1);
             NBTTagCompound metadata = new NBTTagCompound();
             metadata.setInteger("extractor", 2000);
-            ItemStack outputs = new ItemStack(this.IC2dropRubber.getItem(), 9, 0);
+            ItemStack outputs = new ItemStack(IC2dropRubber.getItem(), 9, 0);
             
             Recipes.extractor.addRecipe(input, metadata, outputs);
             
@@ -109,12 +122,27 @@ public class LoadIC2Plugin {
             Recipes.macerator.addRecipe(input4, metadata2, outputs4);
             if (!Loader.isModLoaded("Railcraft")) Recipes.macerator.addRecipe(input5, metadata2, outputs5);
             AMTLogger.debugInfo("Succeeded to register IC2machines recipe");
-        }
-        catch (Exception e) {
-          AMTLogger.debugInfo("Failed to register IC2machines recipe");
-          e.printStackTrace(System.err);
-        }
-		
+            
+            RecipeInputItemStack input6 = new RecipeInputItemStack(new ItemStack(DCsAppleMilk.leafTea, 1, 3), 2);
+            NBTTagCompound metadata3 = new NBTTagCompound();
+            metadata2.setInteger("macerater", 2000);
+            ItemStack outputs6 = new ItemStack(DCsAppleMilk.yuzuGel, 1, 0);
+            
+            RecipeInputItemStack input7 = new RecipeInputItemStack(new ItemStack(Blocks.melon_block, 1, 0), 9);
+            ItemStack outputs7 = new ItemStack(DCsAppleMilk.silkyMelon, 1, 0);
+            
+            RecipeInputItemStack input8 = new RecipeInputItemStack(new ItemStack(DCsAppleMilk.flintBlock, 1, 0), 4);
+            ItemStack outputs8 = new ItemStack(DCsAppleMilk.chalcedony, 1, 0);
+            
+            Recipes.compressor.addRecipe(input6, metadata3, outputs6);
+            Recipes.compressor.addRecipe(input7, metadata3, outputs7);
+            Recipes.compressor.addRecipe(input8, metadata3, outputs8);
+		}
+		catch (Exception e)
+		{
+	          AMTLogger.debugInfo("Failed to register IC2machines recipe");
+	          e.printStackTrace(System.err);
+	    }
 	}
 	
 	/**

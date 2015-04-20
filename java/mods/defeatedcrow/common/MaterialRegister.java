@@ -149,7 +149,7 @@ public class MaterialRegister {
 		//エネルギー
 		GameRegistry.registerBlock(DCsAppleMilk.redGel, "defeatedcrow.redGel");
 		GameRegistry.registerBlock(DCsAppleMilk.yuzuGel, "defeatedcrow.lightGel");
-		GameRegistry.registerBlock(DCsAppleMilk.yuzuBat, "defeatedcrow.yuzuBatContainer");
+		GameRegistry.registerBlock(DCsAppleMilk.yuzuBat, ItemBatBox.class, "defeatedcrow.yuzuBatContainer");
 		GameRegistry.registerBlock(DCsAppleMilk.gelBat, ItemGelBat.class, "defeatedcrow.gelBatContainer");
 		GameRegistry.registerBlock(DCsAppleMilk.batBox, ItemBatBox.class, "defeatedcrow.batBox");
 		GameRegistry.registerBlock(DCsAppleMilk.handleEngine, "defeatedcrow.EHandle");
@@ -187,6 +187,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.flintBlock, "defeatedcrow.flintBlock");
 		GameRegistry.registerBlock(DCsAppleMilk.chalcedony, ItemChalcedony.class, "defeatedcrow.chalcedony");
 		GameRegistry.registerBlock(DCsAppleMilk.cLamp, ItemChalcedonyLamp.class, "defeatedcrow.chalcedonyLamp");
+		GameRegistry.registerBlock(DCsAppleMilk.cLampOpaque, ItemCLampOp.class, "defeatedcrow.chalcedonyLampOp");
 		GameRegistry.registerBlock(DCsAppleMilk.chalcenonyPanel, "defeatedcrow.chalcedonyPanel");
 		GameRegistry.registerBlock(DCsAppleMilk.incenseBase, "defeatedcrow.incenseBase");
 		
@@ -202,6 +203,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.wipeBox2, ItemWipeBox2.class, "defeatedcrow.wipeBox2");
 		GameRegistry.registerBlock(DCsAppleMilk.rotaryDial, "defeatedcrow.rotaryDial");
 		GameRegistry.registerBlock(DCsAppleMilk.yuzuFence, "defeatedcrow.yuzuFence");
+		GameRegistry.registerBlock(DCsAppleMilk.woodPanel, ItemWoodPanel.class, "defeatedcrow.woodPanel");
 		
 		//食べ物
 		GameRegistry.registerBlock(DCsAppleMilk.filledChocoPan, "defeatedcrow.soupPan3");
@@ -729,6 +731,10 @@ public class MaterialRegister {
 				setBlockName("defeatedcrow.chalcedonyLamp").
 				setCreativeTab(DCsAppleMilk.applemilkContainer);
 		
+		DCsAppleMilk.cLampOpaque = (new BlockChalcedonyLampOp(Material.glass, false)).
+				setBlockName("defeatedcrow.chalcedonyLampOp").
+				setCreativeTab(DCsAppleMilk.applemilkContainer);
+		
 		DCsAppleMilk.rotaryDial = (new BlockRotaryDial()).
 				setBlockName("defeatedcrow.rotaryDial").
 				setCreativeTab(DCsAppleMilk.applemilk);
@@ -740,6 +746,10 @@ public class MaterialRegister {
 		DCsAppleMilk.yuzuFence = (new BlockYuzuFence()).
 				setBlockName("defeatedcrow.yuzuFence").
 				setCreativeTab(DCsAppleMilk.applemilk);
+		
+		DCsAppleMilk.woodPanel = (new BlockWoodPanel()).
+				setBlockName("defeatedcrow.woodPanel").
+				setCreativeTab(DCsAppleMilk.applemilkContainer);
 	}
 	
 	static void addPlants()

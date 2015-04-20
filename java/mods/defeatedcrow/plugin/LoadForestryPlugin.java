@@ -4,13 +4,16 @@ import ic2.api.recipe.Recipes;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.fuels.EngineBronzeFuel;
 import forestry.api.fuels.FuelManager;
+import forestry.api.recipes.RecipeManagers;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -78,7 +81,7 @@ public class LoadForestryPlugin {
 				GameRegistry.addRecipe(
 						 new ShapedOreRecipe(
 						  new ItemStack(register.getItem(), 4, register.getItemDamage()),
-			    		  new Object[]{" X ","XYX"," X ",
+			    		  new Object[]{"XXX","XYX","XXX",
 			    			  Character.valueOf('Y'), new ItemStack(Items.bread, 1, 0),
 			    			  Character.valueOf('X'), "dropHoney"}));
 				AMTLogger.debugInfo("Succeeded to get Forestry Honeyed Slice");
@@ -92,7 +95,7 @@ public class LoadForestryPlugin {
 				
 				GameRegistry.addRecipe(
 						 new ShapelessOreRecipe(
-			    		  register,
+						  new ItemStack(register.getItem(), 2, register.getItemDamage()),
 			    		  new Object[]{
 			    			  "dustOilCake",
 				    		  new ItemStack(Items.dye, 1, 15),
@@ -101,12 +104,37 @@ public class LoadForestryPlugin {
 				
 				GameRegistry.addRecipe(
 						 new ShapelessOreRecipe(
-			    		  register,
+			    		  new ItemStack(register.getItem(), 2, register.getItemDamage()),
 			    		  new Object[]{
 			    			  "dustOilCake",
 				    		  "dustClam",
 				    		  "dustAsh"
 							 }));
+				
+				ItemStack mulch = new ItemStack(Util.getModItem("Forestry", "mulch"), 1);
+				if (mulch != null)
+				{
+					LoadModHandler.registerModItems("mulch", mulch);
+					
+					GameRegistry.addRecipe(
+							 new ShapelessOreRecipe(
+							  new ItemStack(register.getItem(), 2, register.getItemDamage()),
+				    		  new Object[]{
+				    			  mulch,
+					    		  new ItemStack(Items.dye, 1, 15),
+					    		  "dustAsh"
+								 }));
+					
+					GameRegistry.addRecipe(
+							 new ShapelessOreRecipe(
+				    		  new ItemStack(register.getItem(), 2, register.getItemDamage()),
+				    		  new Object[]{
+				    			  mulch,
+					    		  "dustClam",
+					    		  "dustAsh"
+								 }));
+				}
+				
 				AMTLogger.debugInfo("Succeeded to get Forestry fertilizer");
 			}
 		}
@@ -123,6 +151,34 @@ public class LoadForestryPlugin {
         			new EngineBronzeFuel(DCsAppleMilk.camelliaOil, 4, 2500, 1));
         	AMTLogger.debugInfo("Succeeded to register fuel for Forestry Bronze Engine : camellia_oil");
         }
+	}
+	
+	public static void loadRecipes(boolean flag)
+	{
+		if (!flag) return;
+		
+		// 製油
+		RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.leafTea, 8, 4)},
+				new FluidStack(DCsAppleMilk.camelliaOil, 100), new ItemStack(DCsAppleMilk.dustWood, 1, 3), 70);
+		
+		// エッセンス
+		Fluid juice = FluidRegistry.getFluid("juice");
+		Fluid biomass = FluidRegistry.getFluid("biomass");
+		Fluid ice = FluidRegistry.getFluid("ice");
+		if (juice != null && biomass != null && ice != null)
+		{
+			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.leafTea, 8, 0)},
+					new FluidStack(juice, 100), new ItemStack(DCsAppleMilk.essentialOil, 1, 2), 20);
+			
+			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.leafTea, 8, 3)},
+					new FluidStack(juice, 200), new ItemStack(DCsAppleMilk.essentialOil, 1, 3), 20);
+			
+			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.clam, 8, 0)},
+					new FluidStack(biomass, 50), new ItemStack(DCsAppleMilk.essentialOil, 1, 4), 20);
+			
+			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.icyCrystal, 1, 0)},
+					new FluidStack(ice, 100), new ItemStack(DCsAppleMilk.essentialOil, 1, 5), 20);
+		}
 	}
 
 }

@@ -3,6 +3,7 @@ package mods.defeatedcrow.common.item.magic;
 import java.util.List;
 
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModAPIManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -82,7 +83,7 @@ public class ItemDebugArm extends Item implements IBattery{
         	}
         }
         //RF
-        else if (Loader.isModLoaded("CoFHCore") && RFDeviceHandler.isRFDevice(tile))
+        else if (ModAPIManager.INSTANCE.hasAPI("CoFHAPI|energy") && RFDeviceHandler.isRFDevice(tile))
         {
         	se = RFDeviceHandler.inputEnergy(ForgeDirection.UP, tile, 1000, false) > 0;
         }

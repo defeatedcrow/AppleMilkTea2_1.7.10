@@ -5,6 +5,7 @@ import cofh.api.energy.IEnergyConnection;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.tileentity.IEnergyInfo;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModAPIManager;
 import cpw.mods.fml.common.Optional;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
@@ -27,8 +28,8 @@ import net.minecraftforge.common.util.ForgeDirection;
  * 他MODのエネルギー受け入れのために用意したもの。*/
 @Optional.InterfaceList(
 	{
-		@Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHCore"),
-		@Optional.Interface(iface = "cofh.api.tileentity.IEnergyInfo", modid = "CoFHCore"),
+		@Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHAPI|energy"),
+		@Optional.Interface(iface = "cofh.api.tileentity.IEnergyInfo", modid = "CoFHAPI|energy"),
 		@Optional.Interface(iface = "shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler", modid = "SextiarySector")
 	}
 )
@@ -39,7 +40,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	//このTileにはコンストラクタが要る
 	public TileChargerDevice() {
 		super();
-		if (DCsAppleMilk.SuccessLoadIC2) EUChannel = EUSinkManager.getChannel(this, MAX_CHARGE, 3);
+		if (ModAPIManager.INSTANCE.hasAPI("IC2API")) EUChannel = EUSinkManager.getChannel(this, MAX_CHARGE, 3);
 	}
 	
 	//このへんはオーバーライドしとかないとイマイチ動きが悪い
@@ -106,11 +107,11 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		{
 			flag = SS2ItemHandler.isGFItem(item);
 		}
-		if (Loader.isModLoaded("CoFHCore") && !flag)
+		if (ModAPIManager.INSTANCE.hasAPI("CoFHAPI|energy") && !flag)
 		{
 			flag = RFItemHandler.isChargeable(item);
 		}
-		if (!flag && Loader.isModLoaded("IC2") && !flag)
+		if (!flag && ModAPIManager.INSTANCE.hasAPI("IC2API") && !flag)
 		{
 			flag = EUItemHandler.isChargeable(item);
 		}
@@ -133,12 +134,12 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 			int i  = SS2ItemHandler.chargeAmount(item, inc * this.exchangeRateGF(), flag);
 			ret = Math.round(i / this.exchangeRateGF());
 		}
-		if (Loader.isModLoaded("CoFHCore") && ret == 0)
+		if (ModAPIManager.INSTANCE.hasAPI("CoFHAPI|energy") && ret == 0)
 		{
 			int i  = RFItemHandler.chargeAmount(item, inc * this.exchangeRateRF(), flag);
 			ret = Math.round(i / this.exchangeRateRF());
 		}
-		if (Loader.isModLoaded("IC2") && ret == 0)
+		if (ModAPIManager.INSTANCE.hasAPI("IC2API") && ret == 0)
 		{
 			int i  = EUItemHandler.chargeAmount(item, inc * this.exchangeRateEU(), flag);
 			ret = Math.round(i / this.exchangeRateEU());
@@ -193,12 +194,12 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 				int i  = SS2ItemHandler.dischargeAmount(item, inc * exchangeRateGF(), true);
 				ret = Math.round(i / exchangeRateGF());
 			}
-			if (Loader.isModLoaded("CoFHCore") && ret == 0)
+			if (ModAPIManager.INSTANCE.hasAPI("CoFHAPI|energy") && ret == 0)
 			{
 				int i  = RFItemHandler.dischargeAmount(item, inc * exchangeRateRF(), true);
 				ret = Math.round(i / exchangeRateRF());
 			}
-			if (Loader.isModLoaded("IC2") && ret == 0)
+			if (ModAPIManager.INSTANCE.hasAPI("IC2API") && ret == 0)
 			{
 				int i  = EUItemHandler.dischargeAmount(item, inc * exchangeRateEU(), true);
 				ret = Math.round(i / exchangeRateEU());
@@ -241,7 +242,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 					}
 				}
 			}
-			if (Loader.isModLoaded("CoFHCore") && ret == 0)
+			if (ModAPIManager.INSTANCE.hasAPI("CoFHAPI|energy") && ret == 0)
 			{
 				int i  = RFItemHandler.dischargeAmount(item, inc * exchangeRateRF(), false);
 				ret = Math.round(i / exchangeRateRF());
@@ -260,7 +261,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 					
 				}
 			}
-			if (Loader.isModLoaded("IC2") && ret == 0)
+			if (ModAPIManager.INSTANCE.hasAPI("IC2API") && ret == 0)
 			{
 				int i  = EUItemHandler.dischargeAmount(item, inc * exchangeRateEU(), false);
 				ret = Math.round(i / exchangeRateEU());
@@ -315,7 +316,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	
 	/* for RF */
 
-	@Optional.Method(modid = "CoFHCore")
+	@Optional.Method(modid = "CoFHAPI|energy")
 	@Override
 	public boolean canConnectEnergy(ForgeDirection dir) {
 		//向きごとにコネクト可能か見ているっぽい
@@ -324,7 +325,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		return flag;
 	}
 
-	@Optional.Method(modid = "CoFHCore")
+	@Optional.Method(modid = "CoFHAPI|energy")
 	@Override
 	public int receiveEnergy(ForgeDirection dir, int in, boolean flag) {
 		//エネルギーの受け入れ
@@ -342,7 +343,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		return ret;
 	}
 
-	@Optional.Method(modid = "CoFHCore")
+	@Optional.Method(modid = "CoFHAPI|energy")
 	@Override
 	public int extractEnergy(ForgeDirection paramForgeDirection, int paramInt,
 			boolean paramBoolean) {
@@ -350,33 +351,33 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		return 0;
 	}
 
-	@Optional.Method(modid = "CoFHCore")
+	@Optional.Method(modid = "CoFHAPI|energy")
 	@Override
 	public int getEnergyStored(ForgeDirection paramForgeDirection) {
 		//10倍になる
 		return this.getChargeAmount() * this.exchangeRateRF();
 	}
 
-	@Optional.Method(modid = "CoFHCore")
+	@Optional.Method(modid = "CoFHAPI|energy")
 	@Override
 	public int getMaxEnergyStored(ForgeDirection paramForgeDirection) {
 		//10倍
 		return this.getMaxChargeAmount() * this.exchangeRateRF();
 	}
 
-	@Optional.Method(modid = "CoFHCore")
+	@Optional.Method(modid = "CoFHAPI|energy")
 	@Override
 	public int getInfoEnergyPerTick() {
 		return 0;
 	}
 
-	@Optional.Method(modid = "CoFHCore")
+	@Optional.Method(modid = "CoFHAPI|energy")
 	@Override
 	public int getInfoMaxEnergyPerTick() {
 		return 0;
 	}
 
-	@Optional.Method(modid = "CoFHCore")
+	@Optional.Method(modid = "CoFHAPI|energy")
 	@Override
 	public int getInfoEnergyStored() {
 		int eng = this.getChargeAmount();
@@ -384,7 +385,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		return get;
 	}
 
-	@Optional.Method(modid = "CoFHCore")
+	@Optional.Method(modid = "CoFHAPI|energy")
 	@Override
 	public int getInfoMaxEnergyStored() {
 		int eng = this.getMaxChargeAmount();

@@ -2,6 +2,7 @@ package mods.defeatedcrow.common.tile.energy;
 
 import cofh.api.energy.IEnergyProvider;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModAPIManager;
 import cpw.mods.fml.common.Optional;
 import mods.defeatedcrow.api.charge.IChargeGenerator;
 import mods.defeatedcrow.api.charge.IChargeableMachine;
@@ -18,7 +19,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 @Optional.InterfaceList(
 		{
-			@Optional.Interface(iface = "cofh.api.energy.IEnergyProvider", modid = "CoFHCore"),
+			@Optional.Interface(iface = "cofh.api.energy.IEnergyProvider", modid = "CoFHAPI|energy"),
 		}
 	)
 public class TileHandleEngine extends TileEntity implements IChargeGenerator, IEnergyProvider{
@@ -142,7 +143,7 @@ public class TileHandleEngine extends TileEntity implements IChargeGenerator, IE
 					b = true;
 				}
 			}
-			if (!b && Loader.isModLoaded("CoFHCore"))
+			if (!b && ModAPIManager.INSTANCE.hasAPI("CoFHAPI|energy"))
 			{
 				int ext2 = ext * PropertyHandler.rateRF();
 				ext2 = RFDeviceHandler.inputEnergy(ForgeDirection.UP, tile, ext2, true);

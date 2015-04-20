@@ -60,8 +60,9 @@ public class RenderItemFossilCannon implements IItemRenderer{
 			{
 			case INVENTORY:
 				glMatrixForRenderInInventory(); break;
-			case EQUIPPED:
 			case EQUIPPED_FIRST_PERSON:
+				glMatrixForRenderInFirstPerson();
+			case EQUIPPED:
 				glMatrixForRenderInEquipped();
 				break;
 			case ENTITY:
@@ -103,15 +104,22 @@ public class RenderItemFossilCannon implements IItemRenderer{
 		GL11.glRotatef(-270F, 1.0F, 0.0F, 0.0F);
 		GL11.glRotatef(0F, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(-60F, 0.0F, 1.0F, 0.0F);
-		GL11.glScalef(1.1F, 1.1F, 1.1F);
-		GL11.glTranslatef(0.2F, -1.5F, -0.4F);
+		GL11.glScalef(-1.1F, 1.1F, 1.1F);
+		GL11.glTranslatef(-0.2F, -1.5F, -0.4F);
+	}
+	
+	private void glMatrixForRenderInFirstPerson()
+	{
+		GL11.glScalef(1.0F, 1.0F, -1.0F);
+		GL11.glRotatef(30F, 1.0F, 0.0F, 0.0F);
+		GL11.glTranslatef(0.2F, 0.2F, -0.0F);
 	}
 	/*
 	* ドロップ状態での描画位置の調整.
 	*/
 	private void glMatrixForRenderInEntity()
 	{
-		GL11.glRotatef(-180F, 1.0F, 0.0F, 0.0F);
+		GL11.glScalef(1.0F, -1.0F, 1.0F);
 		GL11.glTranslatef(0.0F, -1.5F, 0.0F);
 	}
 

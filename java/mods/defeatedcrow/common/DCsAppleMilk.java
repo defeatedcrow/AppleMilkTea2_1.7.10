@@ -70,7 +70,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.4h",
+		version = "1.7.10_2.5a",
 		dependencies = "required-after:Forge@[10.13.0.1207,);after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 public class DCsAppleMilk{
@@ -157,12 +157,14 @@ public class DCsAppleMilk{
 	public static Block  bowlRack;
 	public static Block  Basket;
 	public static Block  chopsticksBox;
+	public static Block  woodPanel;
 	//カルセドニー
 	public static Block  flintBlock;
 	public static Block  chalcedony;
 	public static Block  cLamp;
 	public static Block  rotaryDial;
 	public static Block  chalcenonyPanel;
+	public static Block  cLampOpaque;
 	
 	//アイテムのインスタンス
 	//食べ物アイテム
@@ -385,6 +387,7 @@ public class DCsAppleMilk{
 	public static int modelFlowerPot;
 	public static int modelYuzuFence;
 	public static int modelHandleEngine;
+	public static int modelWoodPanel;
 	
 	public static final String[] TEX_PASS = new String[] {
 		"defeatedcrow:",
@@ -428,7 +431,8 @@ public class DCsAppleMilk{
 		//Material
 		//ツール属性の内容を登録する
 		enumToolMaterialChalcedony = EnumHelper.addToolMaterial("CHALCEDONY", 2, 128, 5.0F, 4.0F, 18);
-		enumToolMaterialChalcedony.customCraftingMaterial = Items.flint;
+//		enumToolMaterialChalcedony.customCraftingMaterial = Items.flint;
+		enumToolMaterialChalcedony.setRepairItem(new ItemStack(Items.flint));
 		
 		//ブロックやアイテムの読み込みと登録
 		MaterialRegister.instance.load();
@@ -621,6 +625,7 @@ public class DCsAppleMilk{
 		this.modelFlowerPot = proxy.getRenderID();
 		this.modelYuzuFence = proxy.getRenderID();
 		this.modelHandleEngine = proxy.getRenderID();
+		this.modelWoodPanel = proxy.getRenderID();
 		proxy.registerRenderers();
 	    
 	    //ティーメーカーのレシピ数の無限化のため、専用のレシピ登録クラスを用意した
@@ -685,6 +690,7 @@ public class DCsAppleMilk{
 	        {
 	          this.SuccessLoadIC2 = true;
 	          (new LoadIC2Plugin()).load();
+	          LoadIC2Plugin.loadRecipes(DCsConfig.altModRecipe);
 	          AMTLogger.loadedModInfo("IC2");
 	        }
 	        catch (Exception e) {
@@ -700,6 +706,7 @@ public class DCsAppleMilk{
 	        {
 	          this.SuccessLoadFFM = true;
 	          (new LoadForestryPlugin()).load();
+	          LoadForestryPlugin.loadRecipes(DCsConfig.altModRecipe);
 	          AMTLogger.loadedModInfo("Forestry");
 	        }
 	        catch (Exception e) {
@@ -730,6 +737,7 @@ public class DCsAppleMilk{
 	        {
 	          this.SuccessLoadBamboo = true;
 	          (new LoadBambooPlugin()).loadBambooItems();
+	          LoadBambooPlugin.loadBambooRecipes(DCsConfig.altModRecipe);
 	          AMTLogger.loadedModInfo("BambooMod");
 	          
 	        }
@@ -842,6 +850,7 @@ public class DCsAppleMilk{
 	        {
 	          this.SuccessLoadSSector = true;
 	          (new LoadSSectorPlugin()).load();
+	          LoadSSectorPlugin.loadSS2Recipes(DCsConfig.altModRecipe);
 	          AMTLogger.loadedModInfo("SextiarySector");
 	          
 	        }
@@ -1066,12 +1075,12 @@ public class DCsAppleMilk{
 	
 	public int getMinorVersion()
 	{
-		return 4;
+		return 5;
 	}
 	
 	public String getRivision()
 	{
-		return "h";
+		return "a";
 	}
 	
 	public String getModName()

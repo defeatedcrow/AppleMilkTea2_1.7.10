@@ -61,7 +61,8 @@ public class DCsConfig {
 	//難易度関係
 	public static int dustDif = 1;
 	public static int chargeDif = 1;
-	public static int exchangeDif = 1;
+	public static int exchangeDif = 2;
+	public static boolean altModRecipe = true;
 	
 	public static boolean useEXRecipe = false;
 	public static boolean notGenTeaTree = false;
@@ -221,6 +222,9 @@ public class DCsConfig {
 					+ "please set 0-4. smaller are fewer conversion, "
 					+ BR + "and bigger are need more energy to exchange to AMT-Charge.");
 			
+			Property altModR = cfg.get("difficulty setting", "Another Mod Recipe", altModRecipe,
+					"Enable Recipes added the another mod machines.");
+			
 			
 			Property entityIce = cfg.get("entityid", "EntityIDIceCream", entityIdIce);
 			Property entityCup = cfg.get("entityid", "EntityIDCup", entityIdCup);
@@ -267,6 +271,7 @@ public class DCsConfig {
 			dustDif = dustDifP.getInt();
 			chargeDif = chargeDifP.getInt();
 			exchangeDif = exchangeDifP.getInt();
+			altModRecipe = altModR.getBoolean();
 			
 			setCupScale = cupScale.getDouble();
 			

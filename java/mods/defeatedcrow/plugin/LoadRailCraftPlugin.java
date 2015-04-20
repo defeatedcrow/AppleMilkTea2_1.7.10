@@ -2,6 +2,7 @@ package mods.defeatedcrow.plugin;
 
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.config.DCsConfig;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.api.fuel.FuelManager;
 import net.minecraft.item.ItemStack;
@@ -18,7 +19,7 @@ public class LoadRailCraftPlugin {
 		{
 			int id = FluidRegistry.getFluidID("creosote");
 			this.creosote = new FluidStack(id, 500);
-			if (this.creosote != null)
+			if (DCsConfig.altModRecipe && this.creosote != null)
 			{
 				RailcraftCraftingManager.cokeOven.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 0), false, false,
 						new ItemStack(DCsAppleMilk.charcoalBox, 1, 0), this.creosote, 1800);

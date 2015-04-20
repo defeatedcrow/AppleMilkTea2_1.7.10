@@ -27,6 +27,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModAPIManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -50,7 +51,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	
 	public MachineBase() {
 		super();
-		if (DCsAppleMilk.SuccessLoadIC2) EUChannel = EUSinkManager.getChannel(this, this.getMaxChargeAmount(), 3);
+		if (ModAPIManager.INSTANCE.hasAPI("IC2API")) EUChannel = EUSinkManager.getChannel(this, this.getMaxChargeAmount(), 3);
 	}
 	
 	private static int exchangeRateRF()
@@ -346,12 +347,12 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 				int i  = SS2ItemHandler.dischargeAmount(par0ItemStack, inc * exchangeRateGF(), true);
 				ret = Math.round(i / exchangeRateGF());
 			}
-			if (Loader.isModLoaded("CoFHCore") && ret == 0)
+			if (ModAPIManager.INSTANCE.hasAPI("CoFHAPI|energy") && ret == 0)
 			{
 				int i  = RFItemHandler.dischargeAmount(par0ItemStack, inc * exchangeRateRF(), true);
 				ret = Math.round(i / exchangeRateRF());
 			}
-			if (Loader.isModLoaded("IC2") && ret == 0)
+			if (ModAPIManager.INSTANCE.hasAPI("IC2API") && ret == 0)
 			{
 				int i  = EUItemHandler.dischargeAmount(par0ItemStack, inc * exchangeRateEU(), true);
 				ret = Math.round(i / exchangeRateEU());
@@ -414,7 +415,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 					}
 				}
 			}
-			if (Loader.isModLoaded("CoFHCore") && ret == 0)
+			if (ModAPIManager.INSTANCE.hasAPI("CoFHAPI|energy") && ret == 0)
 			{
 				int i  = RFItemHandler.dischargeAmount(item, inc * exchangeRateRF(), false);
 				ret = Math.round(i / exchangeRateRF());
@@ -433,7 +434,7 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 					
 				}
 			}
-			if (Loader.isModLoaded("IC2") && ret == 0)
+			if (ModAPIManager.INSTANCE.hasAPI("IC2API") && ret == 0)
 			{
 				int i  = EUItemHandler.dischargeAmount(item, inc * exchangeRateEU(), false);
 				ret = Math.round(i / exchangeRateEU());

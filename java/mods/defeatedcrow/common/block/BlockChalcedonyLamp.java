@@ -42,7 +42,7 @@ public class BlockChalcedonyLamp extends BlockContainer{
 	@SideOnly(Side.CLIENT)
     private IIcon inner;
 	
-	public BlockChalcedonyLamp  (Material material, boolean flag)
+	public BlockChalcedonyLamp (Material material, boolean flag)
 	{
 		super(Material.glass);
 		this.setHardness(0.5F);

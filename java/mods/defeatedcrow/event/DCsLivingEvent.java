@@ -87,7 +87,7 @@ public class DCsLivingEvent {
 					int id = effect.getPotionID();
 					Potion potion = Potion.potionTypes[id];
 					
-					if(potion != null && potion instanceof PotionImmunityBase)
+					if(potion != null && potion instanceof PotionLivingBase)
 					{
 						potions.add(effect);
 					}
