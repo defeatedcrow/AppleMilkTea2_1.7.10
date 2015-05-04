@@ -167,17 +167,17 @@ public class LoadForestryPlugin {
 		Fluid ice = FluidRegistry.getFluid("ice");
 		if (juice != null && biomass != null && ice != null)
 		{
-			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.leafTea, 8, 0)},
-					new FluidStack(juice, 100), new ItemStack(DCsAppleMilk.essentialOil, 1, 2), 20);
+			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.leafTea, 8, 1)},
+					new FluidStack(juice, 100), new ItemStack(DCsAppleMilk.essentialOil, 1, 2), 10);
 			
 			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.leafTea, 8, 3)},
-					new FluidStack(juice, 200), new ItemStack(DCsAppleMilk.essentialOil, 1, 3), 20);
+					new FluidStack(juice, 200), new ItemStack(DCsAppleMilk.essentialOil, 1, 3), 10);
 			
 			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.clam, 8, 0)},
-					new FluidStack(biomass, 50), new ItemStack(DCsAppleMilk.essentialOil, 1, 4), 20);
+					new FluidStack(biomass, 100), new ItemStack(DCsAppleMilk.essentialOil, 1, 4), 10);
 			
 			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.icyCrystal, 1, 0)},
-					new FluidStack(ice, 100), new ItemStack(DCsAppleMilk.essentialOil, 1, 5), 20);
+					new FluidStack(ice, 100), new ItemStack(DCsAppleMilk.essentialOil, 1, 5), 10);
 		}
 	}
 
