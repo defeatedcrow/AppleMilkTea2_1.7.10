@@ -21,12 +21,16 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModAPIManager;
 import cpw.mods.fml.common.Optional;
 
-/*TileChargerBaseの発展型。
- * 他MODのエネルギー受け入れのために用意したもの。*/
+/*
+ * TileChargerBaseの発展型。
+ * 他MODのエネルギー受け入れのために用意したもの。
+ */
 @Optional.InterfaceList({
 		@Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHAPI|energy"),
-		@Optional.Interface(iface = "cofh.api.tileentity.IEnergyInfo", modid = "CoFHAPI|energy"),
-		@Optional.Interface(iface = "shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler", modid = "SextiarySector") })
+		@Optional.Interface(iface = "cofh.api.tileentity.IEnergyInfo", modid = "CoFHAPI|tileentity"),
+		@Optional.Interface(
+				iface = "shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler",
+				modid = "SextiarySector") })
 public class TileChargerDevice extends TileChargerBase implements IEnergyHandler, IEnergyInfo, IGearForceHandler {
 
 	protected IEUSinkChannel EUChannel;
@@ -88,7 +92,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	/**
 	 * 他MODの電池アイテムを対応させるためのメソッド。
 	 * フル充電でもtrueを返す。
-	 * */
+	 */
 	@Override
 	public boolean isChargeableBattery(ItemStack item) {
 		boolean flag = false;
@@ -111,7 +115,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	 * ここで充電を増やす。 <br>
 	 * 減らす方はTileChargerBaseで行っているので不要。 <br>
 	 * シミュレート可能。
-	 * */
+	 */
 	@Override
 	public int chargeAnotherBattery(ItemStack item, int inc, boolean flag) {
 		int ret = 0;
@@ -319,19 +323,19 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		return this.getMaxChargeAmount() * this.exchangeRateRF();
 	}
 
-	@Optional.Method(modid = "CoFHAPI|energy")
+	@Optional.Method(modid = "CoFHAPI|tileentity")
 	@Override
 	public int getInfoEnergyPerTick() {
 		return 0;
 	}
 
-	@Optional.Method(modid = "CoFHAPI|energy")
+	@Optional.Method(modid = "CoFHAPI|tileentity")
 	@Override
 	public int getInfoMaxEnergyPerTick() {
 		return 0;
 	}
 
-	@Optional.Method(modid = "CoFHAPI|energy")
+	@Optional.Method(modid = "CoFHAPI|tileentity")
 	@Override
 	public int getInfoEnergyStored() {
 		int eng = this.getChargeAmount();
@@ -339,7 +343,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		return get;
 	}
 
-	@Optional.Method(modid = "CoFHAPI|energy")
+	@Optional.Method(modid = "CoFHAPI|tileentity")
 	@Override
 	public int getInfoMaxEnergyStored() {
 		int eng = this.getMaxChargeAmount();
