@@ -21,9 +21,9 @@ public class TileEntityAlcoholCupRenderer extends TileEntitySpecialRenderer
     public static TileEntityAlcoholCupRenderer cupRenderer;
     private ModelAlcoholCup cupModel = new ModelAlcoholCup();
 
-    public void renderTileEntityCupAt(TileAlcoholCup par1Tile, double par2, double par4, double par6, float par8)
+    public void renderTileEntityCupAt(TileAlcoholCup par1Tile, double x, double y, double z, float round)
     {
-        this.setRotation(par1Tile, (float)par2, (float)par4, (float)par6);
+        this.setRotation(par1Tile, (float)x, (float)y, (float)z);
     }
 
     /**
@@ -35,7 +35,7 @@ public class TileEntityAlcoholCupRenderer extends TileEntitySpecialRenderer
         cupRenderer = this;
     }
 
-    public void setRotation(TileAlcoholCup par0Tile, float par1, float par2, float par3)
+    public void setRotation(TileAlcoholCup par0Tile, float posX, float posY, float posZ)
     {
         ModelAlcoholCup model = this.cupModel;
         byte l = (byte)par0Tile.getBlockMetadata();
@@ -56,7 +56,7 @@ public class TileEntityAlcoholCupRenderer extends TileEntitySpecialRenderer
 //        GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
         
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-        GL11.glTranslatef((float)par1 + 0.5F, (float)par2 + 1.5F, (float)par3 + 0.5F);
+        GL11.glTranslatef((float)posX + 0.5F, (float)posY + 1.5F, (float)posZ + 0.5F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
         model.renderGlass((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, l);

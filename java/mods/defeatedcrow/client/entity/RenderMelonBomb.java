@@ -30,13 +30,13 @@ public class RenderMelonBomb extends Render
     /**
      * The render method used in RenderBoat that renders the boat model.
      */
-    public void renderMelonBomb(EntityMelonBomb par1EntityMelon, double par2, double par4, double par6, float par8, float par9)
+    public void renderMelonBomb(EntityMelonBomb par1EntityMelon, double posX, double posY, double posZ, float round, float yaw)
     {
         GL11.glPushMatrix();
-        GL11.glTranslatef((float)par2, (float)par4, (float)par6);
-        GL11.glRotatef(180.0F - par8, 0.0F, 1.0F, 0.0F);
-        float f2 = (float)par1EntityMelon.getTimeSinceHit() - par9;
-        float f3 = par1EntityMelon.getDamageTaken() - par9;
+        GL11.glTranslatef((float)posX, (float)posY, (float)posZ);
+        GL11.glRotatef(180.0F - round, 0.0F, 1.0F, 0.0F);
+        float f2 = (float)par1EntityMelon.getTimeSinceHit() - yaw;
+        float f3 = par1EntityMelon.getDamageTaken() - yaw;
 
         if (f3 < 0.0F)
         {

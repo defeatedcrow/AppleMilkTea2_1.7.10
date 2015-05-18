@@ -21,9 +21,9 @@ public class TileEntityAutoMakerRenderer extends TileEntitySpecialRenderer
     public static TileEntityAutoMakerRenderer autoRenderer;
     private ModelAutoMaker autoModel = new ModelAutoMaker();
 
-    public void renderTileEntityAutoAt(TileAutoMaker par1Tile, double par2, double par4, double par6, float par8)
+    public void renderTileEntityAutoAt(TileAutoMaker par1Tile, double posX, double posY, double posZ, float round)
     {
-        this.setRotation(par1Tile, (float)par2, (float)par4, (float)par6);
+        this.setRotation(par1Tile, (float)posX, (float)posY, (float)posZ);
     }
 
     /**
@@ -35,7 +35,7 @@ public class TileEntityAutoMakerRenderer extends TileEntitySpecialRenderer
         autoRenderer = this;
     }
 
-    public void setRotation(TileAutoMaker par0Tile, float par1, float par2, float par3)
+    public void setRotation(TileAutoMaker par0Tile, float posX, float posY, float posZ)
     {
         ModelAutoMaker model = this.autoModel;
         boolean i = false;
@@ -52,7 +52,7 @@ public class TileEntityAutoMakerRenderer extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GL11.glTranslatef((float)par1 + 0.5F, (float)par2 + 1.5F, (float)par3 + 0.5F);
+        GL11.glTranslatef((float)posX + 0.5F, (float)posY + 1.5F, (float)posZ + 0.5F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
         model.render((Entity)null, 0.0F, 0.0F, 0.0F, j, 0.0F, 0.0625F);

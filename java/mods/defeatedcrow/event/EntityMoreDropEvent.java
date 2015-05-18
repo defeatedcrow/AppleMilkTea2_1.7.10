@@ -1,9 +1,7 @@
 package mods.defeatedcrow.event;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.GenkotuHandler;
@@ -18,51 +16,65 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class EntityMoreDropEvent {
-	
+
 	@SubscribeEvent
-	public void EntityDropEvent(LivingDropsEvent event)
-	{
+	public void EntityDropEvent(LivingDropsEvent event) {
 		EntityLivingBase entity = event.entityLiving;
 		DamageSource thisSource = event.source;
 		ArrayList<EntityItem> items = event.drops;
-		
-		//以下、死んだモブの位置情報
+
+		// 以下、死んだモブの位置情報
 		World world = entity.worldObj;
 		double posX = entity.posX;
 		double posY = entity.posY;
 		double posZ = entity.posZ;
-		
-		if (thisSource instanceof EntityDamageSource)
-		{
+
+		if (thisSource instanceof EntityDamageSource) {
 			EntityDamageSource entityDamage = (EntityDamageSource) thisSource;
 			Entity destroyer = entityDamage.getEntity();
-			
+
 			/**
 			 * EntityPlayerによる攻撃の時に判定する。
 			 * 間接攻撃でも大丈夫だと思う
-			 * */
-			if (destroyer instanceof EntityPlayer)
-			{
+			 */
+			if (destroyer instanceof EntityPlayer) {
 				Item radenID = DCsAppleMilk.princessClam;
 				EntityPlayer player = (EntityPlayer) destroyer;
-				
-				if (player.inventory.hasItemStack(new ItemStack(radenID, 1, 1)))
-				{
-					//まずは作ってみたリフレクションクラスで叩く
-					ItemStack get = GenkotuHandler.getMobsDrop(entity);
-					if (get != null && world.rand.nextInt(2) == 0)
-					{
-						AMTLogger.debugInfo("Genkotu!");
-						world.spawnEntityInWorld(new EntityItem(world, posX, posY, posZ, get));
+
+				int flowerCount = 0;
+				int butterflyCount = 0;
+
+				for (int i = 0; i < player.inventory.mainInventory.length; i++) {
+					ItemStack item = player.inventory.getStackInSlot(i);
+					if (item != null && item.getItem() != null && item.getItem() == radenID) {
+						if (item.getItemDamage() == 1) {
+							flowerCount++;
+						} else if (item.getItemDamage() == 2) {
+							butterflyCount++;
+						}
 					}
 				}
-				
-				if (player.inventory.hasItemStack(new ItemStack(radenID, 1, 2)))
-				{
-					AMTLogger.debugInfo("daden (exp)");
-					int exp = 1 + world.rand.nextInt(5);//1~5
+
+				if (flowerCount > 0) {
+					// まずは作ってみたリフレクションクラスで叩く
+					ItemStack get = GenkotuHandler.getMobsDrop(entity);
+					if (get != null && world.rand.nextInt(2) < flowerCount) {
+						int count = 1 + world.rand.nextInt(flowerCount);
+						int size = get.stackSize;
+						size *= count;
+						AMTLogger.debugInfo("Genkotu!" + size);
+						world.spawnEntityInWorld(new EntityItem(world, posX, posY, posZ, new ItemStack(get.getItem(),
+								size, get.getItemDamage())));
+					}
+				}
+
+				if (butterflyCount > 0) {
+					int count = 5 * butterflyCount;
+					int exp = 1 + world.rand.nextInt(count);
+					AMTLogger.debugInfo("daden (exp)" + exp);
 					world.spawnEntityInWorld(new EntityXPOrb(world, posX, posY, posZ, exp));
 				}
 			}

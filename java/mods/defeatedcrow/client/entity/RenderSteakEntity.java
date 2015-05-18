@@ -44,7 +44,7 @@ public class RenderSteakEntity extends Render
     /**
      * The render method used in RenderBoat that renders the boat model.
      */
-    public void render(PlaceableSteak entity, double par2, double par4, double par6, float par8, float par9)
+    public void render(PlaceableSteak entity, double posX, double posY, double posZ, float round, float yaw)
     {
     	ModelSteak model = this.model;
         byte l = (byte)entity.getItemMetadata();
@@ -62,9 +62,9 @@ public class RenderSteakEntity extends Render
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glColor4f(2.0F, 2.0F, 2.0F, 1.0F);
-        GL11.glTranslatef((float)par2, (float)par4 + 1.20F, (float)par6);
+        GL11.glTranslatef((float)posX, (float)posY + 1.20F, (float)posZ);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
-        GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(round, 0.0F, 1.0F, 0.0F);
         model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, l);
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();
@@ -75,9 +75,9 @@ public class RenderSteakEntity extends Render
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glColor4f(2.0F, 2.0F, 2.0F, 1.0F);
-        GL11.glTranslatef((float)par2, (float)par4 + 1.25F, (float)par6);
+        GL11.glTranslatef((float)posX, (float)posY + 1.25F, (float)posZ);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
-        GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(round, 0.0F, 1.0F, 0.0F);
         this.model.renderPlate((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, l);
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();

@@ -34,12 +34,12 @@ public class RenderCocktailSPEntity extends Render
     /**
      * The render method used in RenderBoat that renders the boat model.
      */
-    public void render(PlaceableCocktailSP entity, double par2, double par4, double par6, float par8, float par9)
+    public void render(PlaceableCocktailSP entity, double posX, double posY, double posZ, float round, float yaw)
     {
     	ModelCocktail model = this.model;
         byte l = (byte)entity.getItemMetadata();
         float size = Util.getCupScale();
-        float y = (float)par4 + 1.55F * size - 0.10F * size;
+        float y = (float)posY + 1.55F * size - 0.10F * size;
         
         ModelType type = BlockCocktailSP.getGlassType(l);
         DecorationType deco = BlockCocktailSP.getDecoType(l);
@@ -56,10 +56,10 @@ public class RenderCocktailSPEntity extends Render
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
         GL11.glColor4f(color[0], color[1], color[2], color[3]);
-        GL11.glTranslatef((float)par2, (float)y, (float)par6);
+        GL11.glTranslatef((float)posX, (float)y, (float)posZ);
         GL11.glScalef(size, size, size);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
-        GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(round, 0.0F, 1.0F, 0.0F);
         model.renderInnerSP((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, type);
         
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
@@ -72,10 +72,10 @@ public class RenderCocktailSPEntity extends Render
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GL11.glTranslatef((float)par2, (float)y, (float)par6);
+        GL11.glTranslatef((float)posX, (float)y, (float)posZ);
         GL11.glScalef(size, size, size);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
-        GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(round, 0.0F, 1.0F, 0.0F);
         model.renderDecoSP((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, deco);
         
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
@@ -87,10 +87,10 @@ public class RenderCocktailSPEntity extends Render
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-        GL11.glTranslatef((float)par2, (float)y, (float)par6);
+        GL11.glTranslatef((float)posX, (float)y, (float)posZ);
         GL11.glScalef(size, size, size);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
-        GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(round, 0.0F, 1.0F, 0.0F);
         model.renderGlassSP((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, type);
         
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);

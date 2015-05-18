@@ -18,13 +18,16 @@ public class GuiBatBox extends GuiContainer {
 
 	private TileChargerBase tile;
 
+	private int upperGauge;
+	private int lowerGauge;
+
 	public GuiBatBox(EntityPlayer player, TileChargerBase tileentity) {
 		super(new ContainerBatBox(player, tileentity));
 		this.tile = tileentity;
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
+	protected void drawGuiContainerForegroundLayer(int x, int y) {
 		// インベントリ名の描画
 		String s = this.tile.hasCustomInventoryName() ? this.tile.getInventoryName() : I18n.format(
 				this.tile.getInventoryName(), new Object[0]);
@@ -34,11 +37,11 @@ public class GuiBatBox extends GuiContainer {
 	}
 
 	@Override
-	public void drawScreen(int par1, int par2, float par3) {
-		super.drawScreen(par1, par2, par3);
+	public void drawScreen(int x, int y, float par3) {
+		super.drawScreen(x, y, par3);
 
 		// チャージゲージのマウスオーバー
-		boolean b1 = this.func_146978_c(11, 26, 12, 27, par1, par2);
+		boolean b1 = this.func_146978_c(11, 26, 12, 27, x, y);
 		if (b1) {
 			int charge = this.tile.getChargeAmount();
 			ArrayList<String> list1 = new ArrayList<String>();
@@ -55,12 +58,12 @@ public class GuiBatBox extends GuiContainer {
 				list1.add(EnumChatFormatting.ITALIC + "LShift: Expand tooltip.");
 			}
 
-			this.drawHoveringText(list1, par1, par2, fontRendererObj);
+			this.drawHoveringText(list1, x, y, fontRendererObj);
 		}
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
+	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
 		// テクスチャの指定

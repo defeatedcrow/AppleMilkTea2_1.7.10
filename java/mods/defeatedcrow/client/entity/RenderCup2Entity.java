@@ -41,12 +41,12 @@ public class RenderCup2Entity extends Render
     /**
      * The render method used in RenderBoat that renders the boat model.
      */
-    public void render(PlaceableCup2 entity, double par2, double par4, double par6, float par8, float par9)
+    public void render(PlaceableCup2 entity, double posX, double posY, double posZ, float round, float yaw)
     {
     	ModelTeaCup model = this.model;
         byte l = (byte)entity.getItemMetadata();
         float size = Util.getCupScale();
-        float y = (float)par4 + 1.55F * size - 0.10F * size;
+        float y = (float)posY + 1.55F * size - 0.10F * size;
 
         String innerTexPass = "defeatedcrow:textures/blocks/contents" + BlockFilledCup2.contents[l] + ".png";
         ResourceLocation innerTex = new ResourceLocation(innerTexPass);
@@ -56,10 +56,10 @@ public class RenderCup2Entity extends Render
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         
         GL11.glColor4f(1.5F, 1.5F, 1.5F, 0.8F);
-        GL11.glTranslatef((float)par2, (float)y, (float)par6);
+        GL11.glTranslatef((float)posX, (float)y, (float)posZ);
         GL11.glScalef(size, size, size);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
-        GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(round, 0.0F, 1.0F, 0.0F);
         model.renderContents((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
         
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
@@ -75,10 +75,10 @@ public class RenderCup2Entity extends Render
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-            GL11.glTranslatef((float)par2, (float)y, (float)par6);
+            GL11.glTranslatef((float)posX, (float)y, (float)posZ);
             GL11.glScalef(size, size, size);
             GL11.glScalef(1.0F, -1.0F, -1.0F);
-            GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(round, 0.0F, 1.0F, 0.0F);
             model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
             
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
@@ -93,10 +93,10 @@ public class RenderCup2Entity extends Render
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
             
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            GL11.glTranslatef((float)par2, (float)y, (float)par6);
+            GL11.glTranslatef((float)posX, (float)y, (float)posZ);
             GL11.glScalef(size, size, size);
             GL11.glScalef(1.0F, -1.0F, -1.0F);
-            GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(round, 0.0F, 1.0F, 0.0F);
             model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
             
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);

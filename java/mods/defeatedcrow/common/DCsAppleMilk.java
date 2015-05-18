@@ -1,7 +1,6 @@
 /**
  * Copyright (c) defeatedcrow, 2013
  * URL:http://forum.minecraftuser.jp/viewtopic.php?f=13&t=17657
- *
  * Apple&Milk&Tea! is distributed under the terms of the Minecraft Mod Public License 1.0, or MMPL.
  * Please check the License(MMPL_1.0).txt included in the package file of this Mod.
  */
@@ -113,7 +112,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.6a",
+		version = "1.7.10_2.6d",
 		dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class DCsAppleMilk {
 
@@ -433,8 +432,7 @@ public class DCsAppleMilk {
 	public static int modelHandleEngine;
 	public static int modelWoodPanel;
 
-	public static final String[] TEX_PASS =
-			new String[] { "defeatedcrow:", "defeatedcrow:x32/", "defeatedcrow:x32alt/" };
+	public static final String[] TEX_PASS = new String[] { "defeatedcrow:", "defeatedcrow:x32/", "defeatedcrow:x32alt/" };
 
 	public static final String[] TEX_PASS_ENTITY = new String[] { "defeatedcrow:textures/entity/",
 			"defeatedcrow:textures/entity/x32/", "defeatedcrow:textures/entity/x32alt/" };
@@ -453,8 +451,8 @@ public class DCsAppleMilk {
 		Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
 		(new DCsConfig()).config(cfg);
 
-		Configuration cfg2 =
-				new Configuration(new File(event.getModConfigurationDirectory(), getModID() + "-cocktail.cfg"));
+		Configuration cfg2 = new Configuration(new File(event.getModConfigurationDirectory(), getModID()
+				+ "-cocktail.cfg"));
 		(new DCsConfigCocktail()).config(cfg2);
 
 		// デバッグモードのチェック
@@ -1104,7 +1102,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "a";
+		return "d";
 	}
 
 	public String getModName() {

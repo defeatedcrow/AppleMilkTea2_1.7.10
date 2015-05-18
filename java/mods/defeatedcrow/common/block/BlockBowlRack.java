@@ -32,13 +32,13 @@ public class BlockBowlRack extends Block{
 		this.setResistance(1.0F);
 	}
 	
-	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
-        int currentMeta = par1World.getBlockMetadata(par2, par3, par4);
-        Block bottomBlockID = par1World.getBlock(par2, par3 - 1, par4);
+        int currentMeta = par1World.getBlockMetadata(x, y, z);
+        Block bottomBlockID = par1World.getBlock(x, y - 1, z);
         
-        AMTBlockRightCrickEvent event = new AMTBlockRightCrickEvent(par1World, par5EntityPlayer, itemstack, par2, par3, par4);
+        AMTBlockRightCrickEvent event = new AMTBlockRightCrickEvent(par1World, par5EntityPlayer, itemstack, x, y, z);
         MinecraftForge.EVENT_BUS.post(event);
         
         if (event.isCanceled())
@@ -55,7 +55,7 @@ public class BlockBowlRack extends Block{
     		else
     		{
     			this.getBowl(par5EntityPlayer, currentMeta);
-    			par1World.setBlockMetadataWithNotify(par2, par3, par4, (currentMeta - 1), 3);
+    			par1World.setBlockMetadataWithNotify(x, y, z, (currentMeta - 1), 3);
         		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
         		return true;
     		}
@@ -72,7 +72,7 @@ public class BlockBowlRack extends Block{
                 {
             		par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, (ItemStack)null);
                 }
-            	par1World.setBlockMetadataWithNotify(par2, par3, par4, (currentMeta + 1), 3);
+            	par1World.setBlockMetadataWithNotify(x, y, z, (currentMeta + 1), 3);
         		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
         		return true;
         	}

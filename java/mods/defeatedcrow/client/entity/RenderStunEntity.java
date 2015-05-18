@@ -8,25 +8,22 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderStunEntity extends Render
-{
-	//仮
+public class RenderStunEntity extends Render {
+	// 仮
 	private static final ResourceLocation tex = new ResourceLocation("defeatedcrow:textures/entity/kinoko_red.png");
 
 	@Override
-	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
-	{
-		//なにもしない
+	public void doRender(Entity par1Entity, double posX, double posY, double posZ, float round, float yaw) {
+		// なにもしない
 	}
-	
-	protected ResourceLocation getStunTextures(EntityStunEffect par1Entity)
-    {
-        return tex;
-    }
+
+	protected ResourceLocation getStunTextures(EntityStunEffect par1Entity) {
+		return tex;
+	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
-		return this.getStunTextures((EntityStunEffect)entity);
+		return this.getStunTextures((EntityStunEffect) entity);
 	}
 
 }
