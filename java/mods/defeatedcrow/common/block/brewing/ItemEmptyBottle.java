@@ -3,11 +3,16 @@ package mods.defeatedcrow.common.block.brewing;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.plugin.IC2.LoadIC2Plugin;
 import net.minecraft.block.Block;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import com.google.common.collect.Multimap;
+
 import cpw.mods.fml.common.Loader;
 
 public class ItemEmptyBottle extends ItemBlock {
@@ -47,6 +52,15 @@ public class ItemEmptyBottle extends ItemBlock {
 		}
 
 		return super.onItemUse(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10);
+	}
+
+	// mobを殴ったときの挙動
+	@Override
+	public Multimap getItemAttributeModifiers() {
+		Multimap multimap = super.getItemAttributeModifiers();
+		multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(
+				field_111210_e, "Tool modifier", 2.0D, 0));
+		return multimap;
 	}
 
 }

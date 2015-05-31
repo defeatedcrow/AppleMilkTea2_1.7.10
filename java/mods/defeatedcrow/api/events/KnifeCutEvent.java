@@ -6,6 +6,10 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import cpw.mods.fml.common.eventhandler.Event;
 
+/**
+ * ChalcedonyKnifeがブロックを破壊する直前に呼ばれるイベント。 <br>
+ * キャンセル可能。
+ */
 @Cancelable
 @Event.HasResult
 public class KnifeCutEvent extends Event {

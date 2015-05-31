@@ -3,7 +3,7 @@ package mods.defeatedcrow.common.block.edible;
 import java.util.List;
 import java.util.Random;
 
-import mods.defeatedcrow.api.events.AMTBlockRightCrickEvent;
+import mods.defeatedcrow.api.events.AMTBlockRightClickEvent;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.tile.TileAlcoholCup;
 import net.minecraft.block.Block;
@@ -53,7 +53,7 @@ public class BlockAlcoholCup extends BlockContainer {
 		int currentMeta = par1World.getBlockMetadata(par2, par3, par4);
 		Block bottomBlockID = par1World.getBlock(par2, par3 - 1, par4);
 
-		AMTBlockRightCrickEvent event = new AMTBlockRightCrickEvent(par1World, par5EntityPlayer, itemstack, par2, par3,
+		AMTBlockRightClickEvent event = new AMTBlockRightClickEvent(par1World, par5EntityPlayer, itemstack, par2, par3,
 				par4);
 		MinecraftForge.EVENT_BUS.post(event);
 

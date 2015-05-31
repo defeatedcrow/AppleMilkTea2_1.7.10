@@ -297,9 +297,10 @@ public class BlockTeppanII extends BlockContainer {
 			}
 			if (tep.isFinishCooking() && tep.plateItems[1] != null) {
 				ItemStack ret = tep.plateItems[1];
-				if (ret != null && !par5EntityPlayer.inventory.addItemStackToInventory(ret)) {
-					if (!par1World.isRemote)
-						par5EntityPlayer.entityDropItem(ret, 1.0F);
+				if (ret != null && !par1World.isRemote) {
+					EntityItem entity = new EntityItem(par1World, par5EntityPlayer.posX, par5EntityPlayer.posY,
+							par5EntityPlayer.posZ, ret);
+					par1World.spawnEntityInWorld(entity);
 				}
 				if (ret != null && ret.getItem() == Item.getItemFromBlock(DCsAppleMilk.foodPlate)
 						&& ret.getItemDamage() == 3) {
@@ -316,9 +317,10 @@ public class BlockTeppanII extends BlockContainer {
 			}
 			if (tep.isFailed() && tep.plateItems[2] != null) {
 				ItemStack ret = tep.plateItems[2];
-				if (ret != null && !par5EntityPlayer.inventory.addItemStackToInventory(ret)) {
-					if (!par1World.isRemote)
-						par5EntityPlayer.entityDropItem(ret, 1.0F);
+				if (ret != null && !par1World.isRemote) {
+					EntityItem entity = new EntityItem(par1World, par5EntityPlayer.posX, par5EntityPlayer.posY,
+							par5EntityPlayer.posZ, ret);
+					par1World.spawnEntityInWorld(entity);
 				}
 				par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
 				// if (!par1World.isRemote){
@@ -335,9 +337,10 @@ public class BlockTeppanII extends BlockContainer {
 
 				if (recipe == null || (!this.isOvenMode(par1World, par2, par3, par4) && recipe.useOvenRecipe())) {
 					ItemStack ret = tep.plateItems[0];
-					if (ret != null && !par5EntityPlayer.inventory.addItemStackToInventory(ret)) {
-						if (!par1World.isRemote)
-							par5EntityPlayer.entityDropItem(ret, 1.0F);
+					if (ret != null && !par1World.isRemote) {
+						EntityItem entity = new EntityItem(par1World, par5EntityPlayer.posX, par5EntityPlayer.posY,
+								par5EntityPlayer.posZ, ret);
+						par1World.spawnEntityInWorld(entity);
 					}
 					par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
 					if (!par1World.isRemote) {

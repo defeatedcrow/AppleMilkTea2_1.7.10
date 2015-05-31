@@ -31,6 +31,7 @@ import mods.defeatedcrow.client.model.tileentity.TileEntityAutoMakerRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityBarrelRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityBottleRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityBowlJPRenderer;
+import mods.defeatedcrow.client.model.tileentity.TileEntityBowlRackRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityBreadRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCLampRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCanisterRenderer;
@@ -128,6 +129,7 @@ import mods.defeatedcrow.common.entity.edible.PlaceableSteak;
 import mods.defeatedcrow.common.entity.edible.PlaceableTart;
 import mods.defeatedcrow.common.tile.TileAlcoholCup;
 import mods.defeatedcrow.common.tile.TileAutoMaker;
+import mods.defeatedcrow.common.tile.TileBowlRack;
 import mods.defeatedcrow.common.tile.TileBread;
 import mods.defeatedcrow.common.tile.TileBrewingBarrel;
 import mods.defeatedcrow.common.tile.TileCLamp;
@@ -259,6 +261,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerTileEntity(TileTeppanII.class, "TileTeppanII", new TileEntityTeppanIIRenderer());
 		ClientRegistry.registerTileEntity(TileCocktailSP.class, "TileCocktailSP", new TileEntityCocktailSPRenderer());
 		ClientRegistry.registerTileEntity(TileHandleEngine.class, "TileEHandle", new TileEntityEHandleRenderer());
+		ClientRegistry.registerTileEntity(TileBowlRack.class, "TileBowlRack", new TileEntityBowlRackRenderer());
 
 		GameRegistry.registerTileEntity(TileChargerBase.class, "TileChargerBase");
 		GameRegistry.registerTileEntity(TileGelBat.class, "TileGelBattery");

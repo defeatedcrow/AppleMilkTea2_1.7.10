@@ -112,7 +112,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.6d",
+		version = "1.7.10_2.6e",
 		dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class DCsAppleMilk {
 
@@ -436,6 +436,8 @@ public class DCsAppleMilk {
 
 	public static final String[] TEX_PASS_ENTITY = new String[] { "defeatedcrow:textures/entity/",
 			"defeatedcrow:textures/entity/x32/", "defeatedcrow:textures/entity/x32alt/" };
+
+	public static final String[] TEX_PASS_ALT = new String[] { "defeatedcrow:textures/entity/x32alt/" };
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -1102,7 +1104,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "d";
+		return "e";
 	}
 
 	public String getModName() {

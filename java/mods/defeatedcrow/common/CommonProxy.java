@@ -9,6 +9,7 @@ import mods.defeatedcrow.client.gui.GuiProsessor;
 import mods.defeatedcrow.common.tile.ContainerAutoMaker;
 import mods.defeatedcrow.common.tile.TileAlcoholCup;
 import mods.defeatedcrow.common.tile.TileAutoMaker;
+import mods.defeatedcrow.common.tile.TileBowlRack;
 import mods.defeatedcrow.common.tile.TileBread;
 import mods.defeatedcrow.common.tile.TileBrewingBarrel;
 import mods.defeatedcrow.common.tile.TileCLamp;
@@ -115,6 +116,7 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileTeppanII.class, "TileTeppanII");
 		GameRegistry.registerTileEntity(TileCocktailSP.class, "TileCocktailSP");
 		GameRegistry.registerTileEntity(TileHandleEngine.class, "TileEHandle");
+		GameRegistry.registerTileEntity(TileBowlRack.class, "TileBowlRack");
 	}
 
 	// レンダーIDには-1を返す

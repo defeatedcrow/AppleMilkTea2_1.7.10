@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import mods.defeatedcrow.api.plants.IRightClickHarvestable;
+import mods.defeatedcrow.api.plants.PlantsClickEvent;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
@@ -26,6 +27,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.IShearable;
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -62,7 +65,23 @@ public class BlockTeaTree extends Block implements IShearable, IPlantable, IRigh
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer,
 			int par6, float par7, float par8, float par9) {
 		ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
+		Block block = par1World.getBlock(par2, par3, par4);
 		int meta = par1World.getBlockMetadata(par2, par3, par4);
+
+		// event
+		PlantsClickEvent event = new PlantsClickEvent(par1World, par5EntityPlayer, itemstack, block, this, meta, par2,
+				par3, par4);
+
+		MinecraftForge.EVENT_BUS.post(event);
+
+		if (event.hasResult() && event.getResult() == Result.ALLOW) {
+			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+			return true;
+		}
+
+		if (event.isCanceled()) {
+			return false;
+		}
 
 		InventoryPlayer inventory = par5EntityPlayer.inventory;
 
