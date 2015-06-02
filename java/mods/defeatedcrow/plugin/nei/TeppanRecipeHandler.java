@@ -22,18 +22,19 @@ import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
 public class TeppanRecipeHandler extends TemplateRecipeHandler {
-	
+
 	private List<PlateRecipe> recipes;
-	
+
 	private List<PlateRecipe> recipeLoader() {
-		if (RecipeRegisterManager.plateRecipe.getRecipeList() != null && !RecipeRegisterManager.plateRecipe.getRecipeList().isEmpty()) {
+		if (RecipeRegisterManager.plateRecipe.getRecipeList() != null
+				&& !RecipeRegisterManager.plateRecipe.getRecipeList().isEmpty()) {
 			this.recipes = (List<PlateRecipe>) RecipeRegisterManager.plateRecipe.getRecipeList();
 		}
 		return this.recipes;
 	}
-	
+
 	public class TeppanRecipeCacher extends CachedRecipe {
-		
+
 		private PositionedStack input;
 		private PositionedStack result;
 		private PositionedStack dummy;
@@ -41,13 +42,10 @@ public class TeppanRecipeHandler extends TemplateRecipeHandler {
 		public TeppanRecipeCacher(ItemStack in, ItemStack out, boolean b) {
 			in.stackSize = 1;
 			this.input = new PositionedStack(in, 48, 21);
-			this.result= new PositionedStack(out, 102, 21);
-			if (b)
-			{
+			this.result = new PositionedStack(out, 102, 21);
+			if (b) {
 				this.dummy = new PositionedStack(new ItemStack(DCsAppleMilk.dummyTeppan, 1, 1), 74, 37);
-			}
-			else
-			{
+			} else {
 				this.dummy = new PositionedStack(new ItemStack(DCsAppleMilk.dummyTeppan, 1, 0), 74, 37);
 			}
 		}
@@ -56,105 +54,93 @@ public class TeppanRecipeHandler extends TemplateRecipeHandler {
 		public PositionedStack getResult() {
 			return this.result;
 		}
-		
+
 		@Override
-		public PositionedStack getIngredient()
-        {
-            return this.input;
-        }
-		
+		public PositionedStack getIngredient() {
+			return this.input;
+		}
+
 		@Override
-		public PositionedStack getOtherStack()
-        {
-            return this.dummy;
-        }
-		
+		public PositionedStack getOtherStack() {
+			return this.dummy;
+		}
+
 	}
-	
+
 	public PositionedStack getResult() {
-	    return null;
+		return null;
 	}
 
 	@Override
 	public Class<? extends GuiContainer> getGuiClass() {
-	    return GuiRecipe.class;
+		return GuiRecipe.class;
 	}
-	
+
 	@Override
 	public String getOverlayIdentifier() {
-	  return "DCsTeppan";
+		return "DCsTeppan";
 	}
-	
+
 	@Override
 	public void loadTransferRects() {
-	    transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(72, 15, 20, 20), "DCsTeppan"));
+		transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(72, 15, 20, 20), "DCsTeppan"));
 	}
-	
-	@Override
-    public void loadCraftingRecipes(String outputId, Object... results)
-    {
-        if(outputId.equals("DCsTeppan") && getClass() == TeppanRecipeHandler.class)
-        {
-        	List<PlateRecipe> recipes = this.recipeLoader();
 
-            if(recipes == null || recipes.isEmpty())return;
-            for(PlateRecipe recipe : this.recipes)
-            {
-                ItemStack items = recipe.getOutput();
-                ItemStack in = recipe.getInput();
-                boolean b = recipe.useOvenRecipe();
-                arecipes.add(new TeppanRecipeCacher(in, items, b));
-            }
-        }
-        else
-        {
-            super.loadCraftingRecipes(outputId, results);
-        }
-    }
-	
 	@Override
-    public void loadCraftingRecipes(ItemStack result)
-    {
+	public void loadCraftingRecipes(String outputId, Object... results) {
+		if (outputId.equals("DCsTeppan") && getClass() == TeppanRecipeHandler.class) {
+			List<PlateRecipe> recipes = this.recipeLoader();
+
+			if (recipes == null || recipes.isEmpty())
+				return;
+			for (PlateRecipe recipe : this.recipes) {
+				ItemStack items = recipe.getOutput();
+				ItemStack in = recipe.getInput();
+				boolean b = recipe.useOvenRecipe();
+				arecipes.add(new TeppanRecipeCacher(in, items, b));
+			}
+		} else {
+			super.loadCraftingRecipes(outputId, results);
+		}
+	}
+
+	@Override
+	public void loadCraftingRecipes(ItemStack result) {
 		List<PlateRecipe> recipes = this.recipeLoader();
 
-        if(recipes == null || recipes.isEmpty())return;
-        for(PlateRecipe recipe : this.recipes)
-        {
-            ItemStack items = recipe.getOutput();
-            ItemStack in = recipe.getInput();
-            boolean b = recipe.useOvenRecipe();
-            if(NEIServerUtils.areStacksSameType(items, result))
-            {
-            	arecipes.add(new TeppanRecipeCacher(in, items, b));
-            }
-            
-        }
-    }
-	
+		if (recipes == null || recipes.isEmpty())
+			return;
+		for (PlateRecipe recipe : this.recipes) {
+			ItemStack items = recipe.getOutput();
+			ItemStack in = recipe.getInput();
+			boolean b = recipe.useOvenRecipe();
+			if (NEIServerUtils.areStacksSameType(items, result)) {
+				arecipes.add(new TeppanRecipeCacher(in, items, b));
+			}
+
+		}
+	}
+
 	@Override
-    public void loadUsageRecipes(ItemStack ingredient)
-    {
+	public void loadUsageRecipes(ItemStack ingredient) {
 
 		List<PlateRecipe> recipes = this.recipeLoader();
 
-        if(recipes == null || recipes.isEmpty())return;
-        for(PlateRecipe recipe : this.recipes)
-        {
-        	ItemStack items = recipe.getOutput();
-            ItemStack in = recipe.getInput();
-            boolean b = recipe.useOvenRecipe();
-            if(ingredient.getItem() == in.getItem() && ingredient.getItemDamage() == in.getItemDamage())
-            {
-                arecipes.add(new TeppanRecipeCacher(ingredient, items, b));
-            }
-            else if (ingredient.getItem() == Item.getItemFromBlock(DCsAppleMilk.teppanII)){
-            	arecipes.add(new TeppanRecipeCacher(in, items, b));
-            }
-            else if (ingredient.getItem() == DCsAppleMilk.dummyTeppan){
-            	arecipes.add(new TeppanRecipeCacher(in, items, b));
-            }
-        }
-    }
+		if (recipes == null || recipes.isEmpty())
+			return;
+		for (PlateRecipe recipe : this.recipes) {
+			ItemStack items = recipe.getOutput();
+			ItemStack in = recipe.getInput();
+			boolean b = recipe.useOvenRecipe();
+			if (ingredient.getItem() == in.getItem() && ingredient.getItemDamage() == in.getItemDamage()) {
+				arecipes.add(new TeppanRecipeCacher(ingredient, items, b));
+			} else if (ingredient.getItem() == Item.getItemFromBlock(DCsAppleMilk.teppanII)) {
+				arecipes.add(new TeppanRecipeCacher(in, items, b));
+			} else if (ingredient.getItem() == DCsAppleMilk.dummyTeppan) {
+				arecipes.add(new TeppanRecipeCacher(in, items, b));
+			}
+		}
+	}
 
 	@Override
 	public String getRecipeName() {

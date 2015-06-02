@@ -18,6 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityDialRenderer extends TileEntitySpecialRenderer {
+
 	private static final ResourceLocation dialTex = new ResourceLocation(Util.getEntityTexturePassNoAlt()
 			+ "rotarydial.png");
 	private static final ResourceLocation altTex = new ResourceLocation(Util.getEntityTexturePassAlt()

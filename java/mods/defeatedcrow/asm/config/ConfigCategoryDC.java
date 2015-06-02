@@ -14,260 +14,256 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+
+import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.base.Splitter;
 
-public class ConfigCategoryDC implements Map<String, PropertyDC>
-{
-    private String name;
-    private String comment;
-    private ArrayList<ConfigCategoryDC> children = new ArrayList<ConfigCategoryDC>();
-    private Map<String, PropertyDC> properties = new TreeMap<String, PropertyDC>();
-    public final ConfigCategoryDC parent;
-    private boolean changed = false;
+public class ConfigCategoryDC implements Map<String, PropertyDC> {
+	private String name;
+	private String comment;
+	private ArrayList<ConfigCategoryDC> children = new ArrayList<ConfigCategoryDC>();
+	private Map<String, PropertyDC> properties = new TreeMap<String, PropertyDC>();
+	public final ConfigCategoryDC parent;
+	private boolean changed = false;
 
-    public ConfigCategoryDC(String name)
-    {
-        this(name, null);
-    }
+	public ConfigCategoryDC(String name) {
+		this(name, null);
+	}
 
-    public ConfigCategoryDC(String name, ConfigCategoryDC parent)
-    {
-        this.name = name;
-        this.parent = parent;
-        if (parent != null)
-        {
-            parent.children.add(this);
-        }
-    }
+	public ConfigCategoryDC(String name, ConfigCategoryDC parent) {
+		this.name = name;
+		this.parent = parent;
+		if (parent != null) {
+			parent.children.add(this);
+		}
+	}
 
-    public boolean equals(Object obj)
-    {
-        if (obj instanceof ConfigCategoryDC)
-        {
-            ConfigCategoryDC cat = (ConfigCategoryDC)obj;
-            return name.equals(cat.name) && children.equals(cat.children);  
-        }
-        
-        return false;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof ConfigCategoryDC) {
+			ConfigCategoryDC cat = (ConfigCategoryDC) obj;
+			return name.equals(cat.name) && children.equals(cat.children);
+		}
 
-    public String getQualifiedName()
-    {
-        return getQualifiedName(name, parent);
-    }
+		return false;
+	}
 
-    public static String getQualifiedName(String name, ConfigCategoryDC parent)
-    {
-        return (parent == null ? name : parent.getQualifiedName() + DCsConfiguration.CATEGORY_SPLITTER + name);
-    }
+	public String getQualifiedName() {
+		return getQualifiedName(name, parent);
+	}
 
-    public ConfigCategoryDC getFirstParent()
-    {
-        return (parent == null ? this : parent.getFirstParent());
-    }
+	public static String getQualifiedName(String name, ConfigCategoryDC parent) {
+		return (parent == null ? name : parent.getQualifiedName() + DCsConfiguration.CATEGORY_SPLITTER + name);
+	}
 
-    public boolean isChild()
-    {
-        return parent != null;
-    }
+	public ConfigCategoryDC getFirstParent() {
+		return (parent == null ? this : parent.getFirstParent());
+	}
 
-    public Map<String, PropertyDC> getValues()
-    {
-        return ImmutableMap.copyOf(properties);
-    }
+	public boolean isChild() {
+		return parent != null;
+	}
 
-    public void setComment(String comment)
-    {
-        this.comment = comment;
-    }
+	public Map<String, PropertyDC> getValues() {
+		return ImmutableMap.copyOf(properties);
+	}
 
-    public boolean containsKey(String key)
-    {
-        return properties.containsKey(key);
-    }
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 
-    public PropertyDC get(String key)
-    {
-        return properties.get(key);
-    }
+	public boolean containsKey(String key) {
+		return properties.containsKey(key);
+	}
 
-    private void write(BufferedWriter out, String... data) throws IOException
-    {
-        write(out, true, data);
-    }
+	public PropertyDC get(String key) {
+		return properties.get(key);
+	}
 
-    private void write(BufferedWriter out, boolean new_line, String... data) throws IOException
-    {
-        for (int x = 0; x < data.length; x++)
-        {
-            out.write(data[x]);
-        }
-        if (new_line) out.write(NEW_LINE);
-    }
+	private void write(BufferedWriter out, String... data) throws IOException {
+		write(out, true, data);
+	}
 
-    public void write(BufferedWriter out, int indent) throws IOException
-    {
-        String pad0 = getIndent(indent);
-        String pad1 = getIndent(indent + 1);
-        String pad2 = getIndent(indent + 2);
+	private void write(BufferedWriter out, boolean new_line, String... data) throws IOException {
+		for (int x = 0; x < data.length; x++) {
+			out.write(data[x]);
+		}
+		if (new_line)
+			out.write(NEW_LINE);
+	}
 
-        write(out, pad0, "####################");
-        write(out, pad0, "# ", name);
+	public void write(BufferedWriter out, int indent) throws IOException {
+		String pad0 = getIndent(indent);
+		String pad1 = getIndent(indent + 1);
+		String pad2 = getIndent(indent + 2);
 
-        if (comment != null)
-        {
-            write(out, pad0, "#===================");
-            Splitter splitter = Splitter.onPattern("\r?\n");
+		write(out, pad0, "####################");
+		write(out, pad0, "# ", name);
 
-            for (String line : splitter.split(comment))
-            {
-                write(out, pad0, "# ", line);
-            }
-        }
+		if (comment != null) {
+			write(out, pad0, "#===================");
+			Splitter splitter = Splitter.onPattern("\r?\n");
 
-        write(out, pad0, "####################", NEW_LINE);
+			for (String line : splitter.split(comment)) {
+				write(out, pad0, "# ", line);
+			}
+		}
 
-        if (!allowedProperties.matchesAllOf(name))
-        {
-            name = '"' + name + '"';
-        }
+		write(out, pad0, "####################", NEW_LINE);
 
-        write(out, pad0, name, " {");
+		if (!allowedProperties.matchesAllOf(name)) {
+			name = '"' + name + '"';
+		}
 
-        PropertyDC[] props = properties.values().toArray(new PropertyDC[properties.size()]);
+		write(out, pad0, name, " {");
 
-        for (int x = 0; x < props.length; x++)
-        {
-            PropertyDC prop = props[x];
+		PropertyDC[] props = properties.values().toArray(new PropertyDC[properties.size()]);
 
-            if (prop.comment != null)
-            {
-                if (x != 0)
-                {
-                    out.newLine();
-                }
+		for (int x = 0; x < props.length; x++) {
+			PropertyDC prop = props[x];
 
-                Splitter splitter = Splitter.onPattern("\r?\n");
-                for (String commentLine : splitter.split(prop.comment))
-                {
-                    write(out, pad1, "# ", commentLine);
-                }
-            }
+			if (prop.comment != null) {
+				if (x != 0) {
+					out.newLine();
+				}
 
-            String propName = prop.getName();
+				Splitter splitter = Splitter.onPattern("\r?\n");
+				for (String commentLine : splitter.split(prop.comment)) {
+					write(out, pad1, "# ", commentLine);
+				}
+			}
 
-            if (!allowedProperties.matchesAllOf(propName))
-            {
-                propName = '"' + propName + '"';
-            }
+			String propName = prop.getName();
 
-            if (prop.isList())
-            {
-                char type = prop.getType().getID();
-                
-                write(out, pad1, String.valueOf(type), ":", propName, " <");
+			if (!allowedProperties.matchesAllOf(propName)) {
+				propName = '"' + propName + '"';
+			}
 
-                for (String line : prop.getStringList())
-                {
-                    write(out, pad2, line);
-                }
+			if (prop.isList()) {
+				char type = prop.getType().getID();
 
-                write(out, pad1, " >");
-            }
-            else if (prop.getType() == null)
-            {
-                write(out, pad1, propName, "=", prop.getString());
-            }
-            else
-            {
-                char type = prop.getType().getID();
-                write(out, pad1, String.valueOf(type), ":", propName, "=", prop.getString());
-            }
-        }
+				write(out, pad1, String.valueOf(type), ":", propName, " <");
 
-        for (ConfigCategoryDC child : children)
-        {
-            child.write(out, indent + 1);
-        }
+				for (String line : prop.getStringList()) {
+					write(out, pad2, line);
+				}
 
-        write(out, pad0, "}", NEW_LINE);
-    }
+				write(out, pad1, " >");
+			} else if (prop.getType() == null) {
+				write(out, pad1, propName, "=", prop.getString());
+			} else {
+				char type = prop.getType().getID();
+				write(out, pad1, String.valueOf(type), ":", propName, "=", prop.getString());
+			}
+		}
 
-    private String getIndent(int indent)
-    {
-        StringBuilder buf = new StringBuilder("");
-        for (int x = 0; x < indent; x++)
-        {
-            buf.append("    ");
-        }
-        return buf.toString();
-    }
+		for (ConfigCategoryDC child : children) {
+			child.write(out, indent + 1);
+		}
 
-    public boolean hasChanged()
-    {
-        if (changed) return true;
-        for (PropertyDC prop : properties.values())
-        {
-            if (prop.hasChanged()) return true;
-        }
-        return false;
-    }
+		write(out, pad0, "}", NEW_LINE);
+	}
 
-    void resetChangedState()
-    {
-        changed = false;
-        for (PropertyDC prop : properties.values())
-        {
-            prop.resetChangedState();
-        }
-    }
+	private String getIndent(int indent) {
+		StringBuilder buf = new StringBuilder("");
+		for (int x = 0; x < indent; x++) {
+			buf.append("    ");
+		}
+		return buf.toString();
+	}
 
+	public boolean hasChanged() {
+		if (changed)
+			return true;
+		for (PropertyDC prop : properties.values()) {
+			if (prop.hasChanged())
+				return true;
+		}
+		return false;
+	}
 
-    //Map bouncer functions for compatibility with older mods, to be removed once all mods stop using it.
-    @Override public int size(){ return properties.size(); }
-    @Override public boolean isEmpty() { return properties.isEmpty(); }
-    @Override public boolean containsKey(Object key) { return properties.containsKey(key); }
-    @Override public boolean containsValue(Object value){ return properties.containsValue(value); }
-    @Override public PropertyDC get(Object key) { return properties.get(key); }
-    @Override public PropertyDC put(String key, PropertyDC value)
-    {
-        changed = true;
-        return properties.put(key, value);
-    }
-    @Override public PropertyDC remove(Object key)
-    {
-        changed = true;
-        return properties.remove(key);
-    }
-    @Override public void putAll(Map<? extends String, ? extends PropertyDC> m)
-    {
-        changed = true;
-        properties.putAll(m);
-    }
-    @Override public void clear()
-    {
-        changed = true;
-        properties.clear();
-    }
-    @Override public Set<String> keySet() { return properties.keySet(); }
-    @Override public Collection<PropertyDC> values() { return properties.values(); }
+	void resetChangedState() {
+		changed = false;
+		for (PropertyDC prop : properties.values()) {
+			prop.resetChangedState();
+		}
+	}
 
-    @Override //Immutable copy, changes will NOT be reflected in this category
-    public Set<java.util.Map.Entry<String, PropertyDC>> entrySet()
-    {
-        return ImmutableSet.copyOf(properties.entrySet());
-    }
+	// Map bouncer functions for compatibility with older mods, to be removed once all mods stop using it.
+	@Override
+	public int size() {
+		return properties.size();
+	}
 
-    public Set<ConfigCategoryDC> getChildren(){ return ImmutableSet.copyOf(children); }
-    
-    public void removeChild(ConfigCategoryDC child)
-    {
-        if (children.contains(child))
-        {
-            children.remove(child);
-            changed = true;
-        }
-    }
+	@Override
+	public boolean isEmpty() {
+		return properties.isEmpty();
+	}
+
+	@Override
+	public boolean containsKey(Object key) {
+		return properties.containsKey(key);
+	}
+
+	@Override
+	public boolean containsValue(Object value) {
+		return properties.containsValue(value);
+	}
+
+	@Override
+	public PropertyDC get(Object key) {
+		return properties.get(key);
+	}
+
+	@Override
+	public PropertyDC put(String key, PropertyDC value) {
+		changed = true;
+		return properties.put(key, value);
+	}
+
+	@Override
+	public PropertyDC remove(Object key) {
+		changed = true;
+		return properties.remove(key);
+	}
+
+	@Override
+	public void putAll(Map<? extends String, ? extends PropertyDC> m) {
+		changed = true;
+		properties.putAll(m);
+	}
+
+	@Override
+	public void clear() {
+		changed = true;
+		properties.clear();
+	}
+
+	@Override
+	public Set<String> keySet() {
+		return properties.keySet();
+	}
+
+	@Override
+	public Collection<PropertyDC> values() {
+		return properties.values();
+	}
+
+	@Override
+	// Immutable copy, changes will NOT be reflected in this category
+	public Set<java.util.Map.Entry<String, PropertyDC>> entrySet() {
+		return ImmutableSet.copyOf(properties.entrySet());
+	}
+
+	public Set<ConfigCategoryDC> getChildren() {
+		return ImmutableSet.copyOf(children);
+	}
+
+	public void removeChild(ConfigCategoryDC child) {
+		if (children.contains(child)) {
+			children.remove(child);
+			changed = true;
+		}
+	}
 }

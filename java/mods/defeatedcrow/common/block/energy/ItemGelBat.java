@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import mods.defeatedcrow.api.energy.BatteyItemBlockBase;
 import mods.defeatedcrow.common.config.PropertyHandler;
 
-public class ItemGelBat extends BatteyItemBlockBase{
+public class ItemGelBat extends BatteyItemBlockBase {
 
 	public ItemGelBat(Block block) {
 		super(block);

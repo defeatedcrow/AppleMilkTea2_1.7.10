@@ -14,6 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderTartEntity extends Render {
+
 	private static final ResourceLocation tartTex = new ResourceLocation("defeatedcrow:textures/entity/tart.png");
 	private static final ResourceLocation plateTex = new ResourceLocation("defeatedcrow:textures/entity/tartbase.png");
 	private static final ResourceLocation mousseTex = new ResourceLocation(

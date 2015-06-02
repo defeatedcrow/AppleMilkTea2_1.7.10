@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 
 /**
  * StrangeSlagの使用時に出てくるアイテムを追加するためのインターフェイス。
- * */
+ */
 public interface ISlagResultLoot {
-	
+
 	/*
 	 * <Tierについて>
 	 * 
@@ -20,17 +20,18 @@ public interface ISlagResultLoot {
 	 * Tier3(10%):貴金属や生成数の低い鉱石の粉末系アイテム
 	 * Tier4(4%):宝石系のアイテム
 	 * Tier5(1%):隠し枠のレアアイテム
-	 * */
-	
+	 */
+
 	/**
 	 * Lootを追加する。
-	 * @param item : 追加するItemStack
-	 * @param tier : 追加するアイテムのtier
-	 * */
+	 * 
+	 * @param item
+	 *            : 追加するItemStack
+	 * @param tier
+	 *            : 追加するアイテムのtier
+	 */
 	void addLoot(ItemStack item, int tier);
-	
+
 	List<ItemStack> getLootList(int tier);
-	
-	
 
 }

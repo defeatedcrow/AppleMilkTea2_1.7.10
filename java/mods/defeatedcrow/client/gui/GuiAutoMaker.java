@@ -16,6 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 @Deprecated
 public class GuiAutoMaker extends GuiContainer {
+
 	private static final ResourceLocation guiTextures = new ResourceLocation("defeatedcrow",
 			"textures/gui/automakergui.png");
 	private IInventory playerInv;

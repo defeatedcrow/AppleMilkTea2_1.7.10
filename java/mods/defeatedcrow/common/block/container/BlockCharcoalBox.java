@@ -16,48 +16,45 @@ import net.minecraft.util.IIcon;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.handler.Util;
 
-public class BlockCharcoalBox extends Block implements IFuelHandler{
-	
+public class BlockCharcoalBox extends Block implements IFuelHandler {
+
 	@SideOnly(Side.CLIENT)
-    private IIcon charcoalBoxTop;
+	private IIcon charcoalBoxTop;
 	@SideOnly(Side.CLIENT)
 	private IIcon charcoalBoxSide;
-	
-	public BlockCharcoalBox ()
-	{
+
+	public BlockCharcoalBox() {
 		super(Material.ground);
 		this.setStepSound(Block.soundTypeStone);
 		this.setHardness(1.0F);
 		this.setResistance(2.0F);
 	}
-	
+
 	@Override
 	public int getBurnTime(ItemStack fuel) {
-		
+
 		Item i = fuel.getItem();
 		return i == Item.getItemFromBlock(this) ? 16000 : 0;
 	}
-	
+
 	@Override
-	public Item getItemDropped(int metadata, Random rand, int fortune)
-	{
+	public Item getItemDropped(int metadata, Random rand, int fortune) {
 		return Item.getItemFromBlock(this);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
-    public IIcon getIcon(int par1, int par2)
-    {
-        return par1 == 1 ? this.charcoalBoxTop : (par1 == 0 ? this.charcoalBoxSide : (par1 != 2 && par1 != 4 ? this.blockIcon : this.charcoalBoxSide));
-    }
-	
+	public IIcon getIcon(int par1, int par2) {
+		return par1 == 1 ? this.charcoalBoxTop : (par1 == 0 ? this.charcoalBoxSide
+				: (par1 != 2 && par1 != 4 ? this.blockIcon : this.charcoalBoxSide));
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IIconRegister)
-	{
+	public void registerBlockIcons(IIconRegister par1IIconRegister) {
 		this.blockIcon = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "container_S");
 		this.charcoalBoxTop = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "container_charcoal_T");
 		this.charcoalBoxSide = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "container_S");
-		
+
 	}
 
 }

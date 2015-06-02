@@ -7,9 +7,8 @@ import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.potion.PotionGetter;
 
 public class RegisterManager {
-	
-	public static void load()
-	{
+
+	public static void load() {
 		RecipeRegisterManager.teaRecipe = new TeaRecipeRegister();
 		RecipeRegisterManager.iceRecipe = new IceRecipeRegister();
 		RecipeRegisterManager.processorRecipe = new ProcessorRecipeRegister();
@@ -18,13 +17,14 @@ public class RegisterManager {
 		RecipeRegisterManager.panRecipe = new PanRecipeRegister();
 		RecipeRegisterManager.chocoRecipe = new ChocolateRecipe();
 		RecipeRegisterManager.plateRecipe = new PlateRecipeRegister();
-		
+
 		ChargeItemManager.chargeItem = new ChargeItemRegister();
 		RecipeRegisterManager.slagLoot = new SlagResultLoot();
-		
+
 		AMTPotionManager.manager = new PotionGetter();
 	}
-	
-	private RegisterManager(){}
+
+	private RegisterManager() {
+	}
 
 }

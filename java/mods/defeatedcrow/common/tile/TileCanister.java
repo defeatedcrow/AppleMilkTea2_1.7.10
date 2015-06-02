@@ -1,5 +1,5 @@
 package mods.defeatedcrow.common.tile;
 
-public class TileCanister extends TileHasRemain2{
+public class TileCanister extends TileHasRemain2 {
 
 }

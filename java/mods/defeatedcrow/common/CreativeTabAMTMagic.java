@@ -6,16 +6,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class CreativeTabAMTMagic extends CreativeTabs {
-	
-	public CreativeTabAMTMagic(String type)
-	{
+
+	public CreativeTabAMTMagic(String type) {
 		super(type);
 	}
- 
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getTranslatedTabLabel()
-	{
+	public String getTranslatedTabLabel() {
 		return "Apple&Milk&Tea:Charms";
 	}
 

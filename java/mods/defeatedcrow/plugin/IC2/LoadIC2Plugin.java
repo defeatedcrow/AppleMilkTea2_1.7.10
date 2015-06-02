@@ -34,19 +34,17 @@ public class LoadIC2Plugin {
 
 		// IC2apiの機能によりアイテムを取得している
 		this.IC2Cell = new ItemStack(IC2Items.getItem("cell").getItem(), 1, IC2Items.getItem("cell").getItemDamage());
-		this.IC2WaterCell =
-				new ItemStack(IC2Items.getItem("waterCell").getItem(), 1, IC2Items.getItem("waterCell").getItemDamage());
-		this.IC2Coffeepowder =
-				new ItemStack(IC2Items.getItem("coffeePowder").getItem(), 1, IC2Items.getItem("coffeePowder")
-						.getItemDamage());
+		this.IC2WaterCell = new ItemStack(IC2Items.getItem("waterCell").getItem(), 1, IC2Items.getItem("waterCell")
+				.getItemDamage());
+		this.IC2Coffeepowder = new ItemStack(IC2Items.getItem("coffeePowder").getItem(), 1, IC2Items.getItem(
+				"coffeePowder").getItemDamage());
 		this.IC2Mug = new ItemStack(IC2Items.getItem("mugEmpty").getItem(), 1, 0);
 		this.IC2MugCoffee = new ItemStack(IC2Items.getItem("mugCoffee").getItem(), 1, 1);
 		this.IC2MugCoffeeMilk = new ItemStack(IC2Items.getItem("mugCoffee").getItem(), 1, 2);
-		this.IC2dropRubber =
-				new ItemStack(IC2Items.getItem("rubber").getItem(), 1, IC2Items.getItem("rubber").getItemDamage());
-		this.IC2Furnace =
-				new ItemStack(IC2Items.getItem("ironFurnace").getItem(), 1, IC2Items.getItem("ironFurnace")
-						.getItemDamage());
+		this.IC2dropRubber = new ItemStack(IC2Items.getItem("rubber").getItem(), 1, IC2Items.getItem("rubber")
+				.getItemDamage());
+		this.IC2Furnace = new ItemStack(IC2Items.getItem("ironFurnace").getItem(), 1, IC2Items.getItem("ironFurnace")
+				.getItemDamage());
 
 		if (IC2Coffeepowder != null) {
 			RecipeRegisterManager.teaRecipe.registerCanMilk(IC2Coffeepowder, new ItemStack(DCsAppleMilk.teacupBlock, 1,
@@ -144,7 +142,7 @@ public class LoadIC2Plugin {
 
 	/**
 	 * simulate=trueの場合、樽を空にする
-	 * */
+	 */
 	public static boolean isRumBarrel(TileEntity tile, boolean simulate) {
 		// if (tile instanceof TileEntityBarrel) {
 		// TileEntityBarrel barrel = (TileEntityBarrel) tile;

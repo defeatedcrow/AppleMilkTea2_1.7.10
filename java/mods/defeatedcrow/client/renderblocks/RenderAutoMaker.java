@@ -1,69 +1,68 @@
 package mods.defeatedcrow.client.renderblocks;
 
-import org.lwjgl.opengl.GL11;
-
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderAutoMaker implements ISimpleBlockRenderingHandler{
-	
+public class RenderAutoMaker implements ISimpleBlockRenderingHandler {
+
 	private IIcon boxIcon;
 
 	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelID,
-			RenderBlocks renderer) {
-		
+	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+
 		int meta = metadata;
 		this.boxIcon = DCsAppleMilk.emptyCup.getBlockTextureFromSide(0);
-		
-		if (modelID == this.getRenderId())
-		{
-			//bottom
-			renderInvCuboid(renderer, block,  7.0F/16.0F, 0.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 1.0F/16.0F, 9.0F/16.0F,  this.boxIcon);
-			renderInvCuboid(renderer, block,  6.0F/16.0F, 1.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 2.0F/16.0F, 10.0F/16.0F,  this.boxIcon);
-			renderInvCuboid(renderer, block,  5.0F/16.0F, 2.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F,  this.boxIcon);
+
+		if (modelID == this.getRenderId()) {
+			// bottom
+			renderInvCuboid(renderer, block, 7.0F / 16.0F, 0.0F / 16.0F, 7.0F / 16.0F, 9.0F / 16.0F, 1.0F / 16.0F,
+					9.0F / 16.0F, this.boxIcon);
+			renderInvCuboid(renderer, block, 6.0F / 16.0F, 1.0F / 16.0F, 6.0F / 16.0F, 10.0F / 16.0F, 2.0F / 16.0F,
+					10.0F / 16.0F, this.boxIcon);
+			renderInvCuboid(renderer, block, 5.0F / 16.0F, 2.0F / 16.0F, 5.0F / 16.0F, 11.0F / 16.0F, 5.0F / 16.0F,
+					11.0F / 16.0F, this.boxIcon);
 		}
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,
-			Block block, int modelId, RenderBlocks renderer) {
-		
-		if (modelId == this.getRenderId())
-		{
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+			RenderBlocks renderer) {
+
+		if (modelId == this.getRenderId()) {
 			renderer.clearOverrideBlockTexture();
 			block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			return true;
 		}
-			
+
 		return false;
 	}
 
 	@Override
 	public boolean shouldRender3DInInventory(int a) {
-		
+
 		return true;
 	}
 
 	@Override
 	public int getRenderId() {
-		
+
 		return DCsAppleMilk.modelAutoMaker;
 	}
-	
-	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, IIcon icon)
-	{
+
+	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX,
+			float maxY, float maxZ, IIcon icon) {
 		Tessellator tessellator = Tessellator.instance;
 		block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		renderer.setRenderBoundsFromBlock(block);

@@ -22,129 +22,110 @@ import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.TileCardBoard;
 import mods.defeatedcrow.handler.Util;
 
-public class BlockCardboard extends BlockContainer{
-	
-	private static final String[] bagVegi = new String[] {"_mint", "_cassis", "_yuzu", "_camellia"};
-	
+public class BlockCardboard extends BlockContainer {
+
+	private static final String[] bagVegi = new String[] { "_mint", "_cassis", "_yuzu", "_camellia" };
+
 	@SideOnly(Side.CLIENT)
-    private IIcon texTop;
+	private IIcon texTop;
 	@SideOnly(Side.CLIENT)
-    private IIcon texBottom;
+	private IIcon texBottom;
 	@SideOnly(Side.CLIENT)
-    private IIcon texFront;
+	private IIcon texFront;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] texSide;
-	
-	public BlockCardboard ()
-	{
+
+	public BlockCardboard() {
 		super(Material.wood);
 		this.setStepSound(Block.soundTypeWood);
 	}
-	
+
 	@Override
-	public boolean isOpaqueCube()
-    {
-        return false;
-    }
-	
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
 	@Override
-	public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-	
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+
 	@SideOnly(Side.CLIENT)
-    public IIcon getIcon(int par1, int par2)
-    {
-        int i = par2 & 7;
-        boolean flag = par2 > 7;
-        if (i > 3) i = 3;
-        if (par1 == 1)
-        {
-        	return this.texTop;
-        }
-        else if (par1 == 0)
-        {
-        	return this.texBottom;
-        }
-        else if (par1 == 2 || par1 == 3)
-        {
-        	return flag ? this.texFront : this.texSide[i];
-        }
-        else
-        {
-        	return flag ? this.texSide[i] : this.texFront;
-        }
-		
-    }
-	
-	public int damageDropped(int par1)
-    {
-        return par1 & 7;
-    }
-	
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
-    {
-        int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        int meta = par6ItemStack.getItemDamage();
-        byte facing = 0;
+	public IIcon getIcon(int par1, int par2) {
+		int i = par2 & 7;
+		boolean flag = par2 > 7;
+		if (i > 3)
+			i = 3;
+		if (par1 == 1) {
+			return this.texTop;
+		} else if (par1 == 0) {
+			return this.texBottom;
+		} else if (par1 == 2 || par1 == 3) {
+			return flag ? this.texFront : this.texSide[i];
+		} else {
+			return flag ? this.texSide[i] : this.texFront;
+		}
 
-        if (l == 0)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, meta | 8, 3);
-            facing = 0;
-        }
+	}
 
-        if (l == 1)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, meta, 3);
-            facing = 1;
-        }
+	public int damageDropped(int par1) {
+		return par1 & 7;
+	}
 
-        if (l == 2)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, meta | 8, 3);
-            facing = 2;
-        }
+	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase,
+			ItemStack par6ItemStack) {
+		int l = MathHelper.floor_double((double) (par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		int meta = par6ItemStack.getItemDamage();
+		byte facing = 0;
 
-        if (l == 3)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, meta, 3);
-            facing = 4;
-        }
-        
-        TileEntity tileEntity = par1World.getTileEntity(par2, par3, par4);
-		if (tileEntity != null && tileEntity instanceof TileCardBoard)
-		{
-			((TileCardBoard)tileEntity).setDirectionByte(facing);
+		if (l == 0) {
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, meta | 8, 3);
+			facing = 0;
+		}
+
+		if (l == 1) {
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, meta, 3);
+			facing = 1;
+		}
+
+		if (l == 2) {
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, meta | 8, 3);
+			facing = 2;
+		}
+
+		if (l == 3) {
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, meta, 3);
+			facing = 4;
+		}
+
+		TileEntity tileEntity = par1World.getTileEntity(par2, par3, par4);
+		if (tileEntity != null && tileEntity instanceof TileCardBoard) {
+			((TileCardBoard) tileEntity).setDirectionByte(facing);
 			par1World.markBlockForUpdate(par2, par3, par4);
 		}
-    }
-	
+	}
+
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
-        par3List.add(new ItemStack(par1, 1, 3));
-    }
-	
+	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+		par3List.add(new ItemStack(par1, 1, 0));
+		par3List.add(new ItemStack(par1, 1, 1));
+		par3List.add(new ItemStack(par1, 1, 2));
+		par3List.add(new ItemStack(par1, 1, 3));
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
 		this.blockIcon = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_S_yuzu");
-        this.texFront = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_F");
-        this.texTop = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_T");
-        this.texBottom = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_B");
-        this.texSide = new IIcon[4];
-        
-        for (int i = 0; i < 4; ++i)
-        {
-            this.texSide[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_S" + bagVegi[i]);
-        }
-        
+		this.texFront = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_F");
+		this.texTop = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_T");
+		this.texBottom = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_B");
+		this.texSide = new IIcon[4];
+
+		for (int i = 0; i < 4; ++i) {
+			this.texSide[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_S" + bagVegi[i]);
+		}
+
 	}
 
 	@Override

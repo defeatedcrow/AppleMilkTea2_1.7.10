@@ -8,17 +8,15 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 public class CreativeTabAMT extends CreativeTabs {
-	
-	//クリエイティブタブのアイコン画像や名称の登録クラス
-	public CreativeTabAMT(String type)
-	{
+
+	// クリエイティブタブのアイコン画像や名称の登録クラス
+	public CreativeTabAMT(String type) {
 		super(type);
 	}
- 
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getTranslatedTabLabel()
-	{
+	public String getTranslatedTabLabel() {
 		return "Apple&Milk&Tea:Core";
 	}
 
@@ -26,6 +24,5 @@ public class CreativeTabAMT extends CreativeTabs {
 	public Item getTabIconItem() {
 		return Item.getItemFromBlock(DCsAppleMilk.teaMakerNext);
 	}
-	
 
 }

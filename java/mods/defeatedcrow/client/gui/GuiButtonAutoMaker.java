@@ -11,6 +11,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 @Deprecated
 public class GuiButtonAutoMaker extends GuiButton {
+
 	protected static int buttonType = 0;
 
 	public GuiButtonAutoMaker(int x, int y, int par3, int par4) {

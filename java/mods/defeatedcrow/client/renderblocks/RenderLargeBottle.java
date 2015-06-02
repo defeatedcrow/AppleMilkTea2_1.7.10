@@ -17,68 +17,71 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderLargeBottle implements ISimpleBlockRenderingHandler{
-	
+public class RenderLargeBottle implements ISimpleBlockRenderingHandler {
+
 	private IIcon boxIIcon;
 	private IIcon capIIcon;
 	private IIcon sideIIcon;
 	private IIcon woodIIcon;
 
 	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelID,
-			RenderBlocks renderer) {
-		
+	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+
 		int meta = metadata;
 		this.boxIIcon = block.getIcon(2, meta);
 		this.sideIIcon = block.getIcon(3, meta);
 		this.capIIcon = Blocks.iron_block.getBlockTextureFromSide(0);
-		
-		if (modelID == this.getRenderId())
-		{
-			renderInvCuboid(renderer, block,  5.0F/16.0F, 0.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 1.0F/16.0F, 11.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  5.0F/16.0F, 1.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 7.0F/16.0F, 11.0F/16.0F,  this.sideIIcon);
-			renderInvCuboid(renderer, block,  6.0F/16.0F, 7.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 9.0F/16.0F, 10.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  6.5F/16.0F, 9.0F/16.0F, 6.5F/16.0F, 9.5F/16.0F, 10.0F/16.0F, 9.5F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  7.0F/16.0F, 10.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 14.0F/16.0F, 9.0F/16.0F,  this.boxIIcon);
-			//cap
-			renderInvCuboid(renderer, block,  7.0F/16.0F, 14.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 15.0F/16.0F, 9.0F/16.0F,  this.capIIcon);
-			
+
+		if (modelID == this.getRenderId()) {
+			renderInvCuboid(renderer, block, 5.0F / 16.0F, 0.0F / 16.0F, 5.0F / 16.0F, 11.0F / 16.0F, 1.0F / 16.0F,
+					11.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 5.0F / 16.0F, 1.0F / 16.0F, 5.0F / 16.0F, 11.0F / 16.0F, 7.0F / 16.0F,
+					11.0F / 16.0F, this.sideIIcon);
+			renderInvCuboid(renderer, block, 6.0F / 16.0F, 7.0F / 16.0F, 6.0F / 16.0F, 10.0F / 16.0F, 9.0F / 16.0F,
+					10.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 6.5F / 16.0F, 9.0F / 16.0F, 6.5F / 16.0F, 9.5F / 16.0F, 10.0F / 16.0F,
+					9.5F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 7.0F / 16.0F, 10.0F / 16.0F, 7.0F / 16.0F, 9.0F / 16.0F, 14.0F / 16.0F,
+					9.0F / 16.0F, this.boxIIcon);
+			// cap
+			renderInvCuboid(renderer, block, 7.0F / 16.0F, 14.0F / 16.0F, 7.0F / 16.0F, 9.0F / 16.0F, 15.0F / 16.0F,
+					9.0F / 16.0F, this.capIIcon);
+
 		}
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,
-			Block block, int modelId, RenderBlocks renderer) {
-		
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+			RenderBlocks renderer) {
+
 		int meta = world.getBlockMetadata(x, y, z);
 		this.boxIIcon = block.getIcon(1, meta);
 		this.woodIIcon = Blocks.planks.getBlockTextureFromSide(0);
-		
-		if (modelId == this.getRenderId())
-		{
+
+		if (modelId == this.getRenderId()) {
 			renderer.clearOverrideBlockTexture();
 			block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			return true;
 		}
-			
+
 		return false;
 	}
 
 	@Override
 	public boolean shouldRender3DInInventory(int a) {
-		
+
 		return true;
 	}
 
 	@Override
 	public int getRenderId() {
-		
+
 		return DCsAppleMilk.modelLargeBottle;
 	}
-	
-	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, IIcon icon)
-	{
+
+	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX,
+			float maxY, float maxZ, IIcon icon) {
 		Tessellator tessellator = Tessellator.instance;
 		block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		renderer.setRenderBoundsFromBlock(block);

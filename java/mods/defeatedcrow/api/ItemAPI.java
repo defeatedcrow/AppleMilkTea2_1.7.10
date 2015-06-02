@@ -203,5 +203,4 @@ public class ItemAPI {
 	private static final String packageName() {
 		return "mods.defeatedcrow.common.DCsAppleMilk";
 	}
-
 }

@@ -15,12 +15,11 @@ import uristqwerty.CraftGuide.api.RecipeTemplate;
 import uristqwerty.CraftGuide.api.Slot;
 import uristqwerty.CraftGuide.api.SlotType;
 
-public class EvaporatorRecipeHandlerCG implements RecipeProvider{
-	
+public class EvaporatorRecipeHandlerCG implements RecipeProvider {
+
 	private final Slot[] slots = new Slot[4];
-	
-	public EvaporatorRecipeHandlerCG()
-	{
+
+	public EvaporatorRecipeHandlerCG() {
 		this.slots[0] = new ItemSlot(6, 21, 16, 16, true);
 		this.slots[1] = new ItemSlot(54, 32, 16, 16, true).setSlotType(SlotType.OUTPUT_SLOT);
 		this.slots[2] = new LiquidSlot(54, 8).setSlotType(SlotType.OUTPUT_SLOT);
@@ -29,23 +28,24 @@ public class EvaporatorRecipeHandlerCG implements RecipeProvider{
 
 	@Override
 	public void generateRecipes(RecipeGenerator generator) {
-		
+
 		RecipeTemplate template;
 		ItemStack machine = new ItemStack(DCsAppleMilk.evaporator, 1, 0);
-		template = generator.createRecipeTemplate(this.slots, machine, "defeatedcrow:textures/gui/craftguidegui.png", 1, 179, 82, 179);
-		List<EvaporatorRecipe> recipeGet = (List<EvaporatorRecipe>) RecipeRegisterManager.evaporatorRecipe.getRecipeList();
-		for(EvaporatorRecipe recipe : recipeGet)
-		{
+		template = generator.createRecipeTemplate(this.slots, machine, "defeatedcrow:textures/gui/craftguidegui.png",
+				1, 179, 82, 179);
+		List<EvaporatorRecipe> recipeGet = (List<EvaporatorRecipe>) RecipeRegisterManager.evaporatorRecipe
+				.getRecipeList();
+		for (EvaporatorRecipe recipe : recipeGet) {
 			ItemStack input = recipe.getInput();
 			ItemStack output = recipe.getOutput();
 			FluidStack second = recipe.getSecondary();
 			Object[] items = new Object[4];
 			items[0] = input;
-	        items[1] = output;
-	        items[2] = second;
-	        items[3] = machine;
-	        generator.addRecipe(template, items);
+			items[1] = output;
+			items[2] = second;
+			items[3] = machine;
+			generator.addRecipe(template, items);
 		}
-		
+
 	}
 }

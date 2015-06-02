@@ -10,17 +10,14 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class LoadRailCraftPlugin {
-	
+
 	private static FluidStack creosote;
-	
-	public void load()
-	{
-		if (FluidRegistry.isFluidRegistered("creosote"))
-		{
+
+	public void load() {
+		if (FluidRegistry.isFluidRegistered("creosote")) {
 			int id = FluidRegistry.getFluidID("creosote");
 			this.creosote = new FluidStack(id, 500);
-			if (DCsConfig.altModRecipe && this.creosote != null)
-			{
+			if (DCsConfig.altModRecipe && this.creosote != null) {
 				RailcraftCraftingManager.cokeOven.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 0), false, false,
 						new ItemStack(DCsAppleMilk.charcoalBox, 1, 0), this.creosote, 1800);
 				RailcraftCraftingManager.cokeOven.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 1), false, false,
@@ -34,9 +31,9 @@ public class LoadRailCraftPlugin {
 				RailcraftCraftingManager.cokeOven.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 12), false, false,
 						new ItemStack(DCsAppleMilk.charcoalBox, 1, 0), this.creosote, 1800);
 			}
-			
+
 		}
-		
+
 		FuelManager.addBoilerFuel(DCsAppleMilk.vegitableOil, 3200);
 		AMTLogger.debugInfo("Add fuel for RC Boiler : vegitable_oil, 3200 fuel");
 		FuelManager.addBoilerFuel(DCsAppleMilk.camelliaOil, 6400);

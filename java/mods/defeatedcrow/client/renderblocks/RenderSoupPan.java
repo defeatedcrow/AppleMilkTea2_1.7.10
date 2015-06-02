@@ -18,158 +18,165 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderSoupPan implements ISimpleBlockRenderingHandler{
-	
+public class RenderSoupPan implements ISimpleBlockRenderingHandler {
+
 	private IIcon boxIIcon;
 	private IIcon contentsIIcon;
 	private IIcon contentsIIcon2;
 	private IIcon chainTex;
-	
+
 	public static int modelPan = -1;
 
 	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelID,
-			RenderBlocks renderer) {
-		
+	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+
 		int meta = metadata;
-		if (meta > 12)meta = 12;
+		if (meta > 12)
+			meta = 12;
 		this.boxIIcon = Blocks.hardened_clay.getBlockTextureFromSide(1);
-//		this.contentsIIcon = DCsAppleMilk.filledPan.getIcon(0, meta);
-//		this.contentsIIcon2 = DCsAppleMilk.filledPan2.getIcon(0, meta);
-		
-		if (modelID == this.getRenderId())
-		{
-			//box
-			renderInvCuboid(renderer, block,  3.0F/16.0F, 0.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 2.0F/16.0F, 13.0F/16.0F,  this.boxIIcon);
-			
-			renderInvCuboid(renderer, block,  0.0F/16.0F, 7.0F/16.0F, 7.0F/16.0F, 2.0F/16.0F, 8.0F/16.0F, 9.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  14.0F/16.0F, 7.0F/16.0F, 7.0F/16.0F, 16.0F/16.0F, 8.0F/16.0F, 9.0F/16.0F,  this.boxIIcon);
-			
-			renderInvCuboid(renderer, block,  2.0F/16.0F, 0.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 8.0F/16.0F, 14.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  13.0F/16.0F, 0.0F/16.0F, 2.0F/16.0F, 14.0F/16.0F, 8.0F/16.0F, 14.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  3.0F/16.0F, 0.0F/16.0F, 2.0F/16.0F, 13.0F/16.0F, 8.0F/16.0F, 4.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  3.0F/16.0F, 0.0F/16.0F, 13.0F/16.0F, 13.0F/16.0F, 8.0F/16.0F, 14.0F/16.0F,  this.boxIIcon);
-			
-			//contents
-//			if (block == DCsAppleMilk.filledPan)
-//			{
-//				renderInvCuboid(renderer, block,  3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 6.0F/16.0F, 13.0F/16.0F,  this.contentsIIcon);
-//			}
-//			if (block == DCsAppleMilk.filledPan2)
-//			{
-//				renderInvCuboid(renderer, block,  3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 6.0F/16.0F, 13.0F/16.0F,  this.contentsIIcon2);
-//			}
+		// this.contentsIIcon = DCsAppleMilk.filledPan.getIcon(0, meta);
+		// this.contentsIIcon2 = DCsAppleMilk.filledPan2.getIcon(0, meta);
+
+		if (modelID == this.getRenderId()) {
+			// box
+			renderInvCuboid(renderer, block, 3.0F / 16.0F, 0.0F / 16.0F, 3.0F / 16.0F, 13.0F / 16.0F, 2.0F / 16.0F,
+					13.0F / 16.0F, this.boxIIcon);
+
+			renderInvCuboid(renderer, block, 0.0F / 16.0F, 7.0F / 16.0F, 7.0F / 16.0F, 2.0F / 16.0F, 8.0F / 16.0F,
+					9.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 14.0F / 16.0F, 7.0F / 16.0F, 7.0F / 16.0F, 16.0F / 16.0F, 8.0F / 16.0F,
+					9.0F / 16.0F, this.boxIIcon);
+
+			renderInvCuboid(renderer, block, 2.0F / 16.0F, 0.0F / 16.0F, 2.0F / 16.0F, 3.0F / 16.0F, 8.0F / 16.0F,
+					14.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 13.0F / 16.0F, 0.0F / 16.0F, 2.0F / 16.0F, 14.0F / 16.0F, 8.0F / 16.0F,
+					14.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 3.0F / 16.0F, 0.0F / 16.0F, 2.0F / 16.0F, 13.0F / 16.0F, 8.0F / 16.0F,
+					4.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 3.0F / 16.0F, 0.0F / 16.0F, 13.0F / 16.0F, 13.0F / 16.0F, 8.0F / 16.0F,
+					14.0F / 16.0F, this.boxIIcon);
+
+			// contents
+			// if (block == DCsAppleMilk.filledPan)
+			// {
+			// renderInvCuboid(renderer, block, 3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 6.0F/16.0F,
+			// 13.0F/16.0F, this.contentsIIcon);
+			// }
+			// if (block == DCsAppleMilk.filledPan2)
+			// {
+			// renderInvCuboid(renderer, block, 3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 6.0F/16.0F,
+			// 13.0F/16.0F, this.contentsIIcon2);
+			// }
 		}
-		
+
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,
-			Block block, int modelId, RenderBlocks renderer) {
-		
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+			RenderBlocks renderer) {
+
 		int meta = world.getBlockMetadata(x, y, z);
-		if (meta > 12)meta = 12;
+		if (meta > 12)
+			meta = 12;
 		this.boxIIcon = Blocks.hardened_clay.getBlockTextureFromSide(1);
-//		this.contentsIIcon = DCsAppleMilk.filledPan.getIcon(0, meta);
-//		this.contentsIIcon2 = DCsAppleMilk.filledPan2.getIcon(0, meta);
+		// this.contentsIIcon = DCsAppleMilk.filledPan.getIcon(0, meta);
+		// this.contentsIIcon2 = DCsAppleMilk.filledPan2.getIcon(0, meta);
 		this.chainTex = DCsAppleMilk.emptyPanGaiden.getBlockTextureFromSide(0);
-		
-		if (modelId == this.getRenderId())
-		{
-			if (!world.isAirBlock(x, y + 1, z) && world.getBlock(x, y + 1, z).getMaterial() != Material.water)
-			{
+
+		if (modelId == this.getRenderId()) {
+			if (!world.isAirBlock(x, y + 1, z) && world.getBlock(x, y + 1, z).getMaterial() != Material.water) {
 				renderer.setOverrideBlockTexture(this.chainTex);
-				block.setBlockBounds(0.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F);
+				block.setBlockBounds(0.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 16.0F / 16.0F, 16.0F / 16.0F,
+						16.0F / 16.0F);
 				renderer.setRenderBoundsFromBlock(block);
 				renderer.renderCrossedSquares(block, x, y, z);
 			}
-			
-			//box
+
+			// box
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(3.0F/16.0F, 0.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 2.0F/16.0F, 13.0F/16.0F);
+			block.setBlockBounds(3.0F / 16.0F, 0.0F / 16.0F, 3.0F / 16.0F, 13.0F / 16.0F, 2.0F / 16.0F, 13.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
-			
-//			if (DCsConfig.noUseCupDirection){
-//			renderer.setOverrideBlockTexture(this.boxIIcon);
-//			block.setBlockBounds(0.0F/16.0F, 7.0F/16.0F, 6.0F/16.0F, 2.0F/16.0F, 8.0F/16.0F, 10.0F/16.0F);
-//			renderer.setRenderBoundsFromBlock(block);
-//			renderer.renderStandardBlock(block, x, y, z);
-//			
-//			renderer.setOverrideBlockTexture(this.boxIIcon);
-//			block.setBlockBounds(14.0F/16.0F, 7.0F/16.0F, 6.0F/16.0F, 16.0F/16.0F, 8.0F/16.0F, 10.0F/16.0F);
-//			renderer.setRenderBoundsFromBlock(block);
-//			renderer.renderStandardBlock(block, x, y, z);
-//			}
-			
-			//contents
-//			if (block == DCsAppleMilk.filledPan)
-//			{
-//				if (meta < 4)
-//				{
-//					renderer.setOverrideBlockTexture(this.contentsIIcon);
-//					block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F);
-//					renderer.setRenderBoundsFromBlock(block);
-//					renderer.renderStandardBlock(block, x, y, z);
-//				}
-//				else if (meta < 8)
-//				{
-//					renderer.setOverrideBlockTexture(this.contentsIIcon);
-//					block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 5.0F/16.0F, 13.0F/16.0F);
-//					renderer.setRenderBoundsFromBlock(block);
-//					renderer.renderStandardBlock(block, x, y, z);
-//				}
-//				else
-//				{
-//					renderer.setOverrideBlockTexture(this.contentsIIcon);
-//					block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 7.0F/16.0F, 13.0F/16.0F);
-//					renderer.setRenderBoundsFromBlock(block);
-//					renderer.renderStandardBlock(block, x, y, z);
-//				}
-//			}
-//			if (block == DCsAppleMilk.filledPan2)
-//			{
-//				if (meta < 4)
-//				{
-//					renderer.setOverrideBlockTexture(this.contentsIIcon2);
-//					block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F);
-//					renderer.setRenderBoundsFromBlock(block);
-//					renderer.renderStandardBlock(block, x, y, z);
-//				}
-//				else if (meta < 8)
-//				{
-//					renderer.setOverrideBlockTexture(this.contentsIIcon2);
-//					block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 5.0F/16.0F, 13.0F/16.0F);
-//					renderer.setRenderBoundsFromBlock(block);
-//					renderer.renderStandardBlock(block, x, y, z);
-//				}
-//				else
-//				{
-//					renderer.setOverrideBlockTexture(this.contentsIIcon2);
-//					block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 7.0F/16.0F, 13.0F/16.0F);
-//					renderer.setRenderBoundsFromBlock(block);
-//					renderer.renderStandardBlock(block, x, y, z);
-//				}
-//			}
-			
+
+			// if (DCsConfig.noUseCupDirection){
+			// renderer.setOverrideBlockTexture(this.boxIIcon);
+			// block.setBlockBounds(0.0F/16.0F, 7.0F/16.0F, 6.0F/16.0F, 2.0F/16.0F, 8.0F/16.0F, 10.0F/16.0F);
+			// renderer.setRenderBoundsFromBlock(block);
+			// renderer.renderStandardBlock(block, x, y, z);
+			//
+			// renderer.setOverrideBlockTexture(this.boxIIcon);
+			// block.setBlockBounds(14.0F/16.0F, 7.0F/16.0F, 6.0F/16.0F, 16.0F/16.0F, 8.0F/16.0F, 10.0F/16.0F);
+			// renderer.setRenderBoundsFromBlock(block);
+			// renderer.renderStandardBlock(block, x, y, z);
+			// }
+
+			// contents
+			// if (block == DCsAppleMilk.filledPan)
+			// {
+			// if (meta < 4)
+			// {
+			// renderer.setOverrideBlockTexture(this.contentsIIcon);
+			// block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F);
+			// renderer.setRenderBoundsFromBlock(block);
+			// renderer.renderStandardBlock(block, x, y, z);
+			// }
+			// else if (meta < 8)
+			// {
+			// renderer.setOverrideBlockTexture(this.contentsIIcon);
+			// block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 5.0F/16.0F, 13.0F/16.0F);
+			// renderer.setRenderBoundsFromBlock(block);
+			// renderer.renderStandardBlock(block, x, y, z);
+			// }
+			// else
+			// {
+			// renderer.setOverrideBlockTexture(this.contentsIIcon);
+			// block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 7.0F/16.0F, 13.0F/16.0F);
+			// renderer.setRenderBoundsFromBlock(block);
+			// renderer.renderStandardBlock(block, x, y, z);
+			// }
+			// }
+			// if (block == DCsAppleMilk.filledPan2)
+			// {
+			// if (meta < 4)
+			// {
+			// renderer.setOverrideBlockTexture(this.contentsIIcon2);
+			// block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F);
+			// renderer.setRenderBoundsFromBlock(block);
+			// renderer.renderStandardBlock(block, x, y, z);
+			// }
+			// else if (meta < 8)
+			// {
+			// renderer.setOverrideBlockTexture(this.contentsIIcon2);
+			// block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 5.0F/16.0F, 13.0F/16.0F);
+			// renderer.setRenderBoundsFromBlock(block);
+			// renderer.renderStandardBlock(block, x, y, z);
+			// }
+			// else
+			// {
+			// renderer.setOverrideBlockTexture(this.contentsIIcon2);
+			// block.setBlockBounds(3.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 7.0F/16.0F, 13.0F/16.0F);
+			// renderer.setRenderBoundsFromBlock(block);
+			// renderer.renderStandardBlock(block, x, y, z);
+			// }
+			// }
+
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(2.0F/16.0F, 0.0F/16.0F, 2.0F/16.0F, 3.0F/16.0F, 8.0F/16.0F, 14.0F/16.0F);
-			renderer.setRenderBoundsFromBlock(block);
-			renderer.renderStandardBlock(block, x, y, z);
-			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(13.0F/16.0F, 0.0F/16.0F, 2.0F/16.0F, 14.0F/16.0F, 8.0F/16.0F, 14.0F/16.0F);
+			block.setBlockBounds(2.0F / 16.0F, 0.0F / 16.0F, 2.0F / 16.0F, 3.0F / 16.0F, 8.0F / 16.0F, 14.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(3.0F/16.0F, 0.0F/16.0F, 2.0F/16.0F, 13.0F/16.0F, 8.0F/16.0F, 3.0F/16.0F);
+			block.setBlockBounds(13.0F / 16.0F, 0.0F / 16.0F, 2.0F / 16.0F, 14.0F / 16.0F, 8.0F / 16.0F, 14.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(3.0F/16.0F, 0.0F/16.0F, 13.0F/16.0F, 13.0F/16.0F, 8.0F/16.0F, 14.0F/16.0F);
+			block.setBlockBounds(3.0F / 16.0F, 0.0F / 16.0F, 2.0F / 16.0F, 13.0F / 16.0F, 8.0F / 16.0F, 3.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
-			
-			
+			renderer.setOverrideBlockTexture(this.boxIIcon);
+			block.setBlockBounds(3.0F / 16.0F, 0.0F / 16.0F, 13.0F / 16.0F, 13.0F / 16.0F, 8.0F / 16.0F, 14.0F / 16.0F);
+			renderer.setRenderBoundsFromBlock(block);
+			renderer.renderStandardBlock(block, x, y, z);
+
 			renderer.clearOverrideBlockTexture();
 			block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 			renderer.setRenderBoundsFromBlock(block);
@@ -180,18 +187,18 @@ public class RenderSoupPan implements ISimpleBlockRenderingHandler{
 
 	@Override
 	public boolean shouldRender3DInInventory(int a) {
-		
+
 		return true;
 	}
 
 	@Override
 	public int getRenderId() {
-		
+
 		return DCsAppleMilk.modelPan;
 	}
-	
-	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, IIcon icon)
-	{
+
+	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX,
+			float maxY, float maxZ, IIcon icon) {
 		Tessellator tessellator = Tessellator.instance;
 		block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		renderer.setRenderBoundsFromBlock(block);
@@ -227,5 +234,3 @@ public class RenderSoupPan implements ISimpleBlockRenderingHandler{
 		renderer.setRenderBoundsFromBlock(block);
 	}
 }
-
-

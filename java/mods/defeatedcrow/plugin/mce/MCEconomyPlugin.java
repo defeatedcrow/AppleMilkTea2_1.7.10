@@ -10,16 +10,14 @@ import shift.mceconomy2.api.shop.IProductItem;
 import shift.mceconomy2.api.shop.ProductItem;
 import shift.mceconomy2.api.shop.ProductList;
 
+public class MCEconomyPlugin extends ProductList {
 
-public class MCEconomyPlugin extends ProductList{
-	
 	private static ArrayList<IProductItem> DCsProduct = new ArrayList<IProductItem>();
 	public static int DCshopId = -1;
-	
-	public void registerSellable()
-	{
-		//無限化手段があるものは無価値又は安値。
-		//container
+
+	public void registerSellable() {
+		// 無限化手段があるものは無価値又は安値。
+		// container
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.appleBox, 1, 0), 3);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.woodBox, 1, 0), 3);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.woodBox, 1, 1), 3);
@@ -66,18 +64,17 @@ public class MCEconomyPlugin extends ProductList{
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.flowerPot, 1, 0), 10);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.flowerPot, 1, 1), 10);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.yuzuFence, 1, 0), 10);
-		
-		
-		//baskets
-		for (int i = 0; i < 15 ; i++) {
+
+		// baskets
+		for (int i = 0; i < 15; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.Basket, 1, i), (5 + i));
 		}
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chopsticksBox), 5);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chocoBlock, 1, 0), 50);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chocoBlock, 1, 1), 500);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.bowlRack), 5);
-		
-		//chalcedony
+
+		// chalcedony
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chalcedony, 1, 0), 50);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chalcedony, 1, 1), 50);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chalcedony, 1, 2), 50);
@@ -96,8 +93,8 @@ public class MCEconomyPlugin extends ProductList{
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.cLamp, 1, 10), -1);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.cLamp, 1, 11), -1);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chalcenonyPanel, 1, 0), 90);
-		
-		//Maker
+
+		// Maker
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.teaMakerNext), 200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.emptyCup), 10);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.emptyPanGaiden), 50);
@@ -106,44 +103,43 @@ public class MCEconomyPlugin extends ProductList{
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.prosessor), 200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.evaporator), 200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.advProsessor), 400);
-		
+
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.gelBat), 50);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.batBox), 250);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.yuzuBat), 100);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.yuzuGel), 10);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.redGel), 15);
-		
+
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.filledChocoPan), -1);
-		
-		//foodblock
-		for (int i = 0; i < 14 ; i++) {
+
+		// foodblock
+		for (int i = 0; i < 14; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.teacupBlock, 1, i), 20);
 		}
-		for (int i = 0; i < 13 ; i++) {
+		for (int i = 0; i < 13; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.teaCup2, 1, i), 24);
 		}
-		for (int i = 0; i < 8 ; i++) {
+		for (int i = 0; i < 8; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.bowlBlock, 1, i), 8);
 		}
-		for (int i = 0; i < 8 ; i++) {
+		for (int i = 0; i < 8; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.bowlJP, 1, i), 10);
 		}
-		for (int i = 0; i < 14 ; i++) {
+		for (int i = 0; i < 14; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.blockIcecream, 1, i), 25);
 		}
-		for (int i = 0; i < 4 ; i++) {
+		for (int i = 0; i < 4; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.foodPlate, 1, i), 8);
 		}
-		for (int i = 0; i < 15 ; i++) {
+		for (int i = 0; i < 15; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.cocktail, 1, i), 30);
 		}
-		
-		//bottle
+
+		// bottle
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), 10);
-		
-		int[] amount = {0, 16, 32, 48};
-		for (int i = 0 ; i < amount.length ; i++)
-		{
+
+		int[] amount = { 0, 16, 32, 48 };
+		for (int i = 0; i < amount.length; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (amount[i])), 50);
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (1 + amount[i])), 50);
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (2 + amount[i])), 50);
@@ -154,8 +150,8 @@ public class MCEconomyPlugin extends ProductList{
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (7 + amount[i])), 120);
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (8 + amount[i])), 120);
 		}
-		
-		//tree
+
+		// tree
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.saplingTea), 10);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.saplingTea, 1, 1), 15);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.saplingTea, 1, 2), 15);
@@ -165,8 +161,8 @@ public class MCEconomyPlugin extends ProductList{
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.cassisTree, 1, 3), 50);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.cassisTree, 1, 7), 50);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.leavesYuzu, 1, 3), 50);
-		
-		//fooditem
+
+		// fooditem
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.bakedApple), 2);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.appleTart), 3);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.appleTart, 1, 1), 3);
@@ -174,29 +170,29 @@ public class MCEconomyPlugin extends ProductList{
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.appleSandwich), 2);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.appleSandwich, 1, 1), 2);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.appleSandwich, 1, 2), 2);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.appleSandwich, 1 ,3), 2);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.appleSandwich, 1, 3), 2);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.toffyApple), 2);
-		
-		for (int i = 0; i < 4 ; i++) {
+
+		for (int i = 0; i < 4; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.icyToffyApple, 1, i), 5);
 		}
-		
-		for (int i = 0; i < 4 ; i++) {
+
+		for (int i = 0; i < 4; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.condensedMIlk, 1, i), i);
 		}
-		
-		for (int i = 0; i < 13 ; i++) {
+
+		for (int i = 0; i < 13; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chocolateFruits, 1, i), 8);
 		}
-		
-		for (int i = 0; i < 9 ; i++) {
+
+		for (int i = 0; i < 9; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.mincedFoods, 1, i), 5);
 		}
-		
-		for (int i = 0; i < 9 ; i++) {
+
+		for (int i = 0; i < 9; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.gratedApple, 1, i), 5);
 		}
-		
+
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.foodTea, 1, 0), 2);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.foodTea, 1, 1), 3);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.foodTea, 1, 2), 5);
@@ -211,15 +207,15 @@ public class MCEconomyPlugin extends ProductList{
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.EXItems, 1, 8), 5);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.EXItems, 1, 9), 5);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.inkStick), 8);
-		
-		for (int i = 0; i < 5 ; i++) {
+
+		for (int i = 0; i < 5; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.leafTea, 1, i), 1);
 		}
-		
+
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chopsticks), -1);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chopsticks, 1, 1), -1);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.icyCrystal), 150);
-		
+
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chalcedonyKnife), 80);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.chalcedonyHammer), 120);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.firestarter), 50);
@@ -227,31 +223,30 @@ public class MCEconomyPlugin extends ProductList{
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.monocle), 120);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.onixSword), 150);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.pruningShears), 160);
-		
+
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.batteryItem, 1, 0), 100);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.batteryItem, 1, 1), 200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.batteryItem, 1, 2), 10);
-		
+
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.princessClam, 1, 0), 400);
-		for (int i = 0; i < 4 ; i++) {
+		for (int i = 0; i < 4; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.princessClam, 1, i + 1), -1);
 		}
-		
+
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.strangeSlag, 1, 0), 20);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.fossilScale, 1, 0), 300);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.yuzuGatling, 1, 0), 120);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.fossilCannon, 1, 0), 500);
-		
+
 		AMTLogger.trace("Succeeded to register the price for MCEconomy2");
-		
+
 		DCshopId = MCEconomyAPI.registerProductList(this);
 		this.registerProducts();
-		
+
 		AMTLogger.trace("Succeeded to register the shop ID. ID: " + DCshopId);
 	}
-	
-	static void registerProducts()
-	{
+
+	static void registerProducts() {
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.saplingTea, 1, 0), 25));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.saplingTea, 1, 1), 50));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.saplingTea, 1, 2), 50));
@@ -286,10 +281,10 @@ public class MCEconomyPlugin extends ProductList{
 
 	@Override
 	public String getProductListName() {
-		
+
 		return "AppleMilkTea's Delivery Service";
 	}
-	
+
 	@Override
 	public void addItemProduct(IProductItem item) {
 		DCsProduct.add(item);

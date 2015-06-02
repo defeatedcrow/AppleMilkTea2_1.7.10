@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 public class ModelAltCatoraryBox extends ModelBase {
+
 	// fields
 	ModelRenderer bottom;
 	ModelRenderer sideL;

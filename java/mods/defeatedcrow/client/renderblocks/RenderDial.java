@@ -1,6 +1,5 @@
 package mods.defeatedcrow.client.renderblocks;
 
-
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -19,52 +18,49 @@ import cpw.mods.fml.relauncher.SideOnly;
  * ブロックのモデルはTileEntityのレンダーのみを使う。
  */
 @SideOnly(Side.CLIENT)
-public class RenderDial implements ISimpleBlockRenderingHandler{
-	
+public class RenderDial implements ISimpleBlockRenderingHandler {
+
 	private IIcon boxIIcon;
 
 	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelID,
-			RenderBlocks renderer) {
-		
+	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+
 		int meta = metadata;
 		this.boxIIcon = block.getBlockTextureFromSide(0);
-		
-		if (modelID == this.getRenderId())
-		{
-			
+
+		if (modelID == this.getRenderId()) {
+
 		}
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,
-			Block block, int modelId, RenderBlocks renderer) {
-		
-		if (modelId == this.getRenderId())
-		{
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+			RenderBlocks renderer) {
+
+		if (modelId == this.getRenderId()) {
 			renderer.clearOverrideBlockTexture();
 			block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			return true;
 		}
-			
+
 		return false;
 	}
 
 	@Override
 	public boolean shouldRender3DInInventory(int a) {
-		
+
 		return false;
 	}
 
 	@Override
 	public int getRenderId() {
-		
+
 		return DCsAppleMilk.modelDial;
 	}
-	
-	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, IIcon icon)
-	{
+
+	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX,
+			float maxY, float maxZ, IIcon icon) {
 		Tessellator tessellator = Tessellator.instance;
 		block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		renderer.setRenderBoundsFromBlock(block);

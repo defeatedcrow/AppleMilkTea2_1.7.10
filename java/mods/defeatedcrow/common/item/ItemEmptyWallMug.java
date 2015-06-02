@@ -6,16 +6,15 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
 public class ItemEmptyWallMug extends Item {
-	
-	public ItemEmptyWallMug (){
-		super ();
+
+	public ItemEmptyWallMug() {
+		super();
 		maxStackSize = 8;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
+	public void registerIcons(IIconRegister par1IconRegister) {
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:wallmug");
 	}
 }

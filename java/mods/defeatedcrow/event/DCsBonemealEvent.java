@@ -14,47 +14,31 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 
-public class DCsBonemealEvent
-{
+public class DCsBonemealEvent {
 	@SubscribeEvent
-	public void useBoneMeal(BonemealEvent event)
-	{
+	public void useBoneMeal(BonemealEvent event) {
 		Block id = event.world.getBlock(event.x, event.y, event.z);
-		if(id == DCsAppleMilk.cropMint)
-		{
-			if(((BlockMintCrop)DCsAppleMilk.cropMint).fertilize(event.world, event.x, event.y, event.z))
-			{
+		if (id == DCsAppleMilk.cropMint) {
+			if (((BlockMintCrop) DCsAppleMilk.cropMint).fertilize(event.world, event.x, event.y, event.z)) {
 				event.setResult(Result.ALLOW);
 			}
-		}
-		else if (id == DCsAppleMilk.cassisTree)
-		{
-			if(((BlockCassisTree)DCsAppleMilk.cassisTree).fertilize(event.world, event.x, event.y, event.z))
-			{
+		} else if (id == DCsAppleMilk.cassisTree) {
+			if (((BlockCassisTree) DCsAppleMilk.cassisTree).fertilize(event.world, event.x, event.y, event.z)) {
 				event.setResult(Result.ALLOW);
 			}
-		}
-		else if (id == DCsAppleMilk.teaTree)
-		{
-			if(((BlockTeaTree)DCsAppleMilk.teaTree).fertilize(event.world, event.x, event.y, event.z))
-			{
+		} else if (id == DCsAppleMilk.teaTree) {
+			if (((BlockTeaTree) DCsAppleMilk.teaTree).fertilize(event.world, event.x, event.y, event.z)) {
 				event.setResult(Result.ALLOW);
 			}
-		}
-		else if (id == DCsAppleMilk.saplingTea)
-		{
-			if(((BlockSaplingTea)DCsAppleMilk.saplingTea).fertilize(event.world, event.x, event.y, event.z))
-			{
+		} else if (id == DCsAppleMilk.saplingTea) {
+			if (((BlockSaplingTea) DCsAppleMilk.saplingTea).fertilize(event.world, event.x, event.y, event.z)) {
 				event.setResult(Result.ALLOW);
 			}
-		}
-		else if (id == DCsAppleMilk.saplingYuzu)
-		{
-			if(((BlockYuzuSapling)DCsAppleMilk.saplingYuzu).fertilize(event.world, event.x, event.y, event.z))
-			{
+		} else if (id == DCsAppleMilk.saplingYuzu) {
+			if (((BlockYuzuSapling) DCsAppleMilk.saplingYuzu).fertilize(event.world, event.x, event.y, event.z)) {
 				event.setResult(Result.ALLOW);
 			}
 		}
 	}
- 
+
 }

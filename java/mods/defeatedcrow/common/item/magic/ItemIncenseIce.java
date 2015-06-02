@@ -22,26 +22,26 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-//氷結のインセンス
-public class ItemIncenseIce extends Item implements IIncenseEffect{
-	
-	public ItemIncenseIce (){
-		super ();
+// 氷結のインセンス
+public class ItemIncenseIce extends Item implements IIncenseEffect {
+
+	public ItemIncenseIce() {
+		super();
 		this.setMaxStackSize(64);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister){
+	public void registerIcons(IIconRegister par1IconRegister) {
 
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:incense_ice");
 	}
-	
+
 	/*
 	 * 以下はIncenseの効果を定義する部分。
 	 * Item側に実装したほうが追加が容易だと思う。
-	 * */
-	
+	 */
+
 	@Override
 	public int effectAreaRange() {
 		return 5;
@@ -53,25 +53,22 @@ public class ItemIncenseIce extends Item implements IIncenseEffect{
 	}
 
 	@Override
-	public boolean formEffect(World world, int x, int y, int z,
-			EntityLivingBase entity, IIncenseEffect incense) {
-		
-		if (incense.getEffectType() == this.getEffectType())
-		{
+	public boolean formEffect(World world, int x, int y, int z, EntityLivingBase entity, IIncenseEffect incense) {
+
+		if (incense.getEffectType() == this.getEffectType()) {
 			Block block = world.getBlock(x, y, z);
 			int meta = world.getBlockMetadata(x, y, z);
-			if (block != null && meta == 0)//水源のみ
+			if (block != null && meta == 0)// 水源のみ
 			{
-				if (block == Blocks.water){
+				if (block == Blocks.water) {
 					world.setBlock(x, y, z, Blocks.ice);
 					return true;
-				}
-				else if (block == Blocks.lava){
+				} else if (block == Blocks.lava) {
 					world.setBlock(x, y, z, Blocks.obsidian);
 					return true;
 				}
 			}
-			
+
 		}
 		return false;
 	}

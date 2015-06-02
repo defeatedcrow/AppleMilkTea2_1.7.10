@@ -22,26 +22,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-//成長のインセンス
-public class ItemIncenseClam extends Item implements IIncenseEffect{
-	
-	public ItemIncenseClam (){
-		super ();
+// 成長のインセンス
+public class ItemIncenseClam extends Item implements IIncenseEffect {
+
+	public ItemIncenseClam() {
+		super();
 		this.setMaxStackSize(64);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister){
+	public void registerIcons(IIconRegister par1IconRegister) {
 
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:incense_clam");
 	}
-	
+
 	/*
 	 * 以下はIncenseの効果を定義する部分。
 	 * Item側に実装したほうが追加が容易だと思う。
-	 * */
-	
+	 */
+
 	@Override
 	public int effectAreaRange() {
 		return 5;
@@ -53,56 +53,45 @@ public class ItemIncenseClam extends Item implements IIncenseEffect{
 	}
 
 	@Override
-	public boolean formEffect(World world, int x, int y, int z,
-			EntityLivingBase entity, IIncenseEffect incense) {
-		
-		if (incense.getEffectType() == this.getEffectType())
-		{
+	public boolean formEffect(World world, int x, int y, int z, EntityLivingBase entity, IIncenseEffect incense) {
+
+		if (incense.getEffectType() == this.getEffectType()) {
 			Block block = world.getBlock(x, y, z);
-			
+
 			/*
 			 * 3パターンの効果を持つ。
 			 * ・ハマグリ発生効果
 			 * ・醸造樽の熟成促進効果
 			 * ・骨粉効果
-			 * 上から順に試すため、優先度は上ほど高い。 
+			 * 上から順に試すため、優先度は上ほど高い。
 			 */
-			if (block != null)
-			{
+			if (block != null) {
 				boolean flag = false;
-				
-				if (block.getMaterial() == Material.water && world.getBlock(x, y - 1, z) == Blocks.sand)
-				{
+
+				if (block.getMaterial() == Material.water && world.getBlock(x, y - 1, z) == Blocks.sand) {
 					world.setBlock(x, y - 1, z, DCsAppleMilk.clamSand, 0, 3);
 					world.playAuxSFX(2005, x, y + 1, z, 0);
 					flag = true;
-				}
-				else if (block == DCsAppleMilk.barrel)
-				{
+				} else if (block == DCsAppleMilk.barrel) {
 					TileBrewingBarrel barrel = (TileBrewingBarrel) world.getTileEntity(x, y, z);
-					if (barrel != null)
-					{
+					if (barrel != null) {
 						int currentStage = barrel.getAgingStage();
-						if (!barrel.productTank.isEmpty() && !barrel.getAged() && currentStage < 4)
-						{
+						if (!barrel.productTank.isEmpty() && !barrel.getAged() && currentStage < 4) {
 							barrel.setAgingStage(currentStage + 1);
 							barrel.markDirty();
 							world.markBlockForUpdate(x, y, z);
 							flag = true;
 						}
 					}
-				}
-				else if (BlockGunpowderContainer.likeBonemeal(world, x, y, z))
-				{
+				} else if (BlockGunpowderContainer.likeBonemeal(world, x, y, z)) {
 					flag = true;
 				}
-				
-				if (flag)
-				{
+
+				if (flag) {
 					world.playAuxSFX(2005, x, y + 1, z, 0);
 				}
 			}
-			
+
 		}
 		return false;
 	}

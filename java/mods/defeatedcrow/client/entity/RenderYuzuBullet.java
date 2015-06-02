@@ -15,6 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderYuzuBullet extends Render {
+
 	private static final ResourceLocation melonTextures = new ResourceLocation(
 			"defeatedcrow:textures/entity/yuzubullet.png");
 

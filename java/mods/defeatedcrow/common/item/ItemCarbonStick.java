@@ -6,16 +6,16 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemCarbonStick extends Item {
-	
-	public ItemCarbonStick (){
-		super ();
+
+	public ItemCarbonStick() {
+		super();
 		maxStackSize = 64;
 
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister){
+	public void registerIcons(IIconRegister par1IconRegister) {
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:stick_carbon");
 	}
 

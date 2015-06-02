@@ -7,18 +7,17 @@ import mods.defeatedcrow.handler.Util;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class PlaceableIcecream extends PlaceableFoods{
-	
-	public PlaceableIcecream(World world){
-    	super(world);
-    }
+public class PlaceableIcecream extends PlaceableFoods {
+
+	public PlaceableIcecream(World world) {
+		super(world);
+	}
 
 	public PlaceableIcecream(World world, boolean chops, ItemStack item) {
 		super(world, chops, item);
 	}
 
-	public PlaceableIcecream(World world, boolean chops, ItemStack item,
-			double x, double y, double z) {
+	public PlaceableIcecream(World world, boolean chops, ItemStack item, double x, double y, double z) {
 		super(world, chops, item, x, y, z);
 	}
 
@@ -26,23 +25,20 @@ public class PlaceableIcecream extends PlaceableFoods{
 	protected ItemStack returnItem() {
 		return new ItemStack(DCsAppleMilk.blockIcecream, 1, this.getItemMetadata());
 	}
-	
+
 	@Override
-	protected byte particleNumber()
-    {
-    	return 1;
-    }
-	
+	protected byte particleNumber() {
+		return 1;
+	}
+
 	@Override
-	protected float getScale()
-    {
-    	return Util.getCupScale();
-    }
-	
+	protected float getScale() {
+		return Util.getCupScale();
+	}
+
 	@Override
-	protected float getSize()
-    {
-    	return Util.getCupSize();
-    }
+	protected float getSize() {
+		return Util.getCupSize();
+	}
 
 }

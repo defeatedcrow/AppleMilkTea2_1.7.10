@@ -6,13 +6,13 @@ import net.minecraftforge.common.MinecraftForge;
 import ic2.api.energy.prefab.BasicSink;
 import ic2.api.info.Info;
 
-//該当のTileEntityクラスに直接BasicSinkを置かないための中継点。
-public class EUSinkChannel extends BasicSink implements IEUSinkChannel{
+// 該当のTileEntityクラスに直接BasicSinkを置かないための中継点。
+public class EUSinkChannel extends BasicSink implements IEUSinkChannel {
 
 	public EUSinkChannel(TileEntity parent1, int capacity1, int tier1) {
 		super(parent1, capacity1, tier1);
 	}
-	
+
 	@Override
 	public void readFromNBT2(NBTTagCompound par1NBTTagCompound) {
 		super.readFromNBT(par1NBTTagCompound);
@@ -21,7 +21,7 @@ public class EUSinkChannel extends BasicSink implements IEUSinkChannel{
 
 		energyStored = data.getDouble("energy");
 	}
-	
+
 	@Override
 	public void writeToNBT2(NBTTagCompound par1NBTTagCompound) {
 		try {

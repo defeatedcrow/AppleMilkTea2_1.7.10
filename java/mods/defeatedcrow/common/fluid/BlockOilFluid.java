@@ -15,7 +15,7 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 
 public class BlockOilFluid extends BlockFluidClassic {
-	
+
 	@SideOnly(Side.CLIENT)
 	protected IIcon baseIcon;
 	@SideOnly(Side.CLIENT)
@@ -24,24 +24,23 @@ public class BlockOilFluid extends BlockFluidClassic {
 	public BlockOilFluid(Fluid fluid, Material material) {
 		super(fluid, material);
 		this.setQuantaPerBlock(6);
-		this.displacements.put(Blocks.water,false);
-		this.displacements.put(Blocks.lava,false);
+		this.displacements.put(Blocks.water, false);
+		this.displacements.put(Blocks.lava, false);
 	}
-	
+
 	@Override
 	public IIcon getIcon(int side, int meta) {
 		return side != 0 && side != 1 ? this.sideIcon : this.baseIcon;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
 		this.baseIcon = par1IconRegister.registerIcon("defeatedcrow:fluid/oil_still");
 		this.sideIcon = par1IconRegister.registerIcon("defeatedcrow:fluid/oil_still");
-		
+
 	}
-	
+
 	@Override
 	public boolean canDisplace(IBlockAccess world, int x, int y, int z) {
 		Material mat = world.getBlock(x, y, z).getMaterial();

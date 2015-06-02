@@ -1,8 +1,5 @@
 package mods.defeatedcrow.common.tile;
 
+public class TileMakerHandle extends TileHasDirection {
 
-public class TileMakerHandle extends TileHasDirection
-{
-	
 }
-

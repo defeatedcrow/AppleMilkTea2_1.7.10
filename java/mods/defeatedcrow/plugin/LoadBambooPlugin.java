@@ -55,8 +55,8 @@ public class LoadBambooPlugin {
 	}
 
 	// 専用クラスにお引っ越し
-	public void loadBambooItems()// BambooMod様のアイテムのうち、鉱石辞書登録されていないものはココを使う
-	{
+	// BambooMod様のアイテムのうち、鉱石辞書登録されていないものはココを使う
+	public void loadBambooItems() {
 		try {
 			// Item item = Util.getModItem("BambooMod", "Bamboo:rawrice");
 			Object obj = Class.forName("ruby.bamboo.BambooInit").getField("rawrice").get(null);

@@ -15,13 +15,13 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 
 /**
-* This Class was created based on the BucketHander.class (BuildCraft).
-* Original code was created by SpaceToad and BuildCraft Team.
-*/
+ * This Class was created based on the BucketHander.class (BuildCraft).
+ * Original code was created by SpaceToad and BuildCraft Team.
+ */
 public class BucketFillEvent {
-	
+
 	public static Map<Block, Item> buckets = new HashMap<Block, Item>();
-	
+
 	@SubscribeEvent
 	public void onBucketFill(FillBucketEvent event) {
 		ItemStack result = fillCustomBucket(event.world, event.target);
@@ -38,7 +38,7 @@ public class BucketFillEvent {
 		Block block = world.getBlock(pos.blockX, pos.blockY, pos.blockZ);
 
 		Item bucket = buckets.get(block);
-		if (bucket != null){
+		if (bucket != null) {
 			AMTLogger.debugInfo("bucket event : " + bucket.getUnlocalizedName());
 		}
 
@@ -49,9 +49,8 @@ public class BucketFillEvent {
 			return null;
 		}
 	}
-	
-	public void register()
-	{
+
+	public void register() {
 		buckets.put(DCsAppleMilk.blockVegitableOil, DCsAppleMilk.bucketVegiOil);
 		buckets.put(DCsAppleMilk.blockCamelliaOil, DCsAppleMilk.bucketCamOil);
 	}

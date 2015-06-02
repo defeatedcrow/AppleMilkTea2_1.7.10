@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderStunEntity extends Render {
+
 	// 仮
 	private static final ResourceLocation tex = new ResourceLocation("defeatedcrow:textures/entity/kinoko_red.png");
 

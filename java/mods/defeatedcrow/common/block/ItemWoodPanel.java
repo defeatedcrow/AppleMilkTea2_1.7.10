@@ -10,42 +10,36 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import static net.minecraftforge.common.util.ForgeDirection.*;
 
-public class ItemWoodPanel extends ItemBlock{
-	
-	public ItemWoodPanel(Block block)
-	{
+public class ItemWoodPanel extends ItemBlock {
+
+	public ItemWoodPanel(Block block) {
 		super(block);
 		setMaxDamage(0);
 		setHasSubtypes(true);
-		
+
 	}
-	
+
 	@Override
-	public int getMetadata(int par1)
-	{
+	public int getMetadata(int par1) {
 		return par1;
 	}
-	
-	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata)
-	{
+
+	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+			float hitX, float hitY, float hitZ, int metadata) {
 		ForgeDirection dir = ForgeDirection.getOrientation(side).getOpposite();
 		int oX = dir.offsetX;
 		int oY = dir.offsetY;
 		int oZ = dir.offsetZ;
-		int facing = MathHelper.floor_double((double)((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+		int facing = MathHelper.floor_double((double) ((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
 		Block target = world.getBlock(x + oX, y + oY, z + oZ);
 		int targetMeta = world.getBlockMetadata(x + oX, y + oY, z + oZ);
-		
+
 		int nextMeta = 0;
-		
-		if (target == field_150939_a && !player.isSneaking())
-		{
+
+		if (target == field_150939_a && !player.isSneaking()) {
 			nextMeta = targetMeta;
-		}
-		else if (dir != UP && dir != DOWN)
-		{
-			switch(side)
-			{
+		} else if (dir != UP && dir != DOWN) {
+			switch (side) {
 			case 2:
 				nextMeta = 0;
 				break;
@@ -62,11 +56,8 @@ public class ItemWoodPanel extends ItemBlock{
 				nextMeta = 0;
 				break;
 			}
-		}
-		else
-		{
-			switch(facing)
-			{
+		} else {
+			switch (facing) {
 			case 0:
 				nextMeta = 0;
 				break;
@@ -85,20 +76,18 @@ public class ItemWoodPanel extends ItemBlock{
 			}
 		}
 
-	    if (!world.setBlock(x, y, z, field_150939_a, nextMeta, 3))
-	    {
-	        return false;
-	    }
+		if (!world.setBlock(x, y, z, field_150939_a, nextMeta, 3)) {
+			return false;
+		}
 
-	    if (world.getBlock(x, y, z) == field_150939_a)
-	    {
-	        field_150939_a.onBlockPlacedBy(world, x, y, z, player, stack);
-	        field_150939_a.onPostBlockPlaced(world, x, y, z, nextMeta);
-	    }
+		if (world.getBlock(x, y, z) == field_150939_a) {
+			field_150939_a.onBlockPlacedBy(world, x, y, z, player, stack);
+			field_150939_a.onPostBlockPlaced(world, x, y, z, nextMeta);
+		}
 
-	    AMTLogger.debugInfo("player facing :" + facing);
-	    AMTLogger.debugInfo("current meta :" + nextMeta);
-	    return true;
+		AMTLogger.debugInfo("player facing :" + facing);
+		AMTLogger.debugInfo("current meta :" + nextMeta);
+		return true;
 	}
 
 }

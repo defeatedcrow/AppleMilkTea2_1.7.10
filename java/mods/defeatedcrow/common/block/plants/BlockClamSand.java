@@ -206,7 +206,7 @@ public class BlockClamSand extends Block implements IRightClickHarvestable {
 					{
 						// プリンセス誕生
 						par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 3);
-						s += "prencess gen";
+						s += "princess gen";
 						AMTLogger.debugInfo(s);
 					} else {
 						// 自身が衰退ハマグリ砂になる
@@ -228,7 +228,7 @@ public class BlockClamSand extends Block implements IRightClickHarvestable {
 				if (par1World.getBlockMetadata(X1, Y1, Z1) != 2 && flag3 && flag4) {
 					par1World.setBlock(X1, Y1, Z1, DCsAppleMilk.clamSand);
 				}
-				s += "prencess";
+				s += "princess";
 				AMTLogger.debugInfo(s);
 			}
 

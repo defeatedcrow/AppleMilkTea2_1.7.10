@@ -13,7 +13,7 @@ public class ItemBucketCamOil extends ItemBucket {
 		super(block);
 		this.setContainerItem(Items.bucket);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {

@@ -19,26 +19,26 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-//治癒のインセンス
-public class ItemIncenseLavender extends Item implements IIncenseEffect{
-	
-	public ItemIncenseLavender (){
-		super ();
+// 治癒のインセンス
+public class ItemIncenseLavender extends Item implements IIncenseEffect {
+
+	public ItemIncenseLavender() {
+		super();
 		this.setMaxStackSize(64);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister){
+	public void registerIcons(IIconRegister par1IconRegister) {
 
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:incense_lavender");
 	}
-	
+
 	/*
 	 * 以下はIncenseの効果を定義する部分。
 	 * Item側に実装したほうが追加が容易だと思う。
-	 * */
-	
+	 */
+
 	@Override
 	public int effectAreaRange() {
 		return 3;
@@ -50,15 +50,13 @@ public class ItemIncenseLavender extends Item implements IIncenseEffect{
 	}
 
 	@Override
-	public boolean formEffect(World world, int x, int y, int z,
-			EntityLivingBase entity, IIncenseEffect incense) {
-		
-		if (incense.getEffectType() == this.getEffectType() && entity != null)
-		{
-			if (!entity.isPotionActive(Potion.moveSlowdown.id)){
+	public boolean formEffect(World world, int x, int y, int z, EntityLivingBase entity, IIncenseEffect incense) {
+
+		if (incense.getEffectType() == this.getEffectType() && entity != null) {
+			if (!entity.isPotionActive(Potion.moveSlowdown.id)) {
 				entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 200, 1));
 			}
-			if (!entity.isPotionActive(Potion.weakness.id)){
+			if (!entity.isPotionActive(Potion.weakness.id)) {
 				entity.addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 1));
 			}
 			return true;

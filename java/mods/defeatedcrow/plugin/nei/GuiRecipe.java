@@ -6,11 +6,11 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiRecipe extends GuiContainer{
+public class GuiRecipe extends GuiContainer {
 
 	public GuiRecipe(Container par1Container) {
 		super(par1Container);
-		
+
 	}
 
 	@Override

@@ -5,18 +5,17 @@ import mods.defeatedcrow.handler.Util;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class PlaceableBowl extends PlaceableFoods{
-	
-	public PlaceableBowl(World world){
-    	super(world);
-    }
+public class PlaceableBowl extends PlaceableFoods {
+
+	public PlaceableBowl(World world) {
+		super(world);
+	}
 
 	public PlaceableBowl(World world, ItemStack item) {
 		super(world, true, item);
 	}
 
-	public PlaceableBowl(World world, ItemStack item,
-			double x, double y, double z) {
+	public PlaceableBowl(World world, ItemStack item, double x, double y, double z) {
 		super(world, true, item, x, y, z);
 	}
 
@@ -24,11 +23,10 @@ public class PlaceableBowl extends PlaceableFoods{
 	protected ItemStack returnItem() {
 		return new ItemStack(DCsAppleMilk.bowlBlock, 1, this.getItemMetadata());
 	}
-	
+
 	@Override
-	protected byte particleNumber()
-    {
-    	return 2;
-    }
+	protected byte particleNumber() {
+		return 2;
+	}
 
 }

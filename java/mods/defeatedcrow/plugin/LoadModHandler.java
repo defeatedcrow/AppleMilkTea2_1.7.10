@@ -26,16 +26,15 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
  * 各ModのAPI、あるいは単に鉱石辞書を使う場合は別のクラスを使う。
  */
 public class LoadModHandler {
-	
-	//ArrayList型に変更。複数のModのアイテムを共通名で管理するため。
+
+	// ArrayList型に変更。複数のModのアイテムを共通名で管理するため。
 	private static HashMap<String, ArrayList<ItemStack>> modItems = new HashMap<String, ArrayList<ItemStack>>();
-	
+
 	private static Random rand = new Random();
-	
-	public void loadAppleMilk() //動作確認用
+
+	public void loadAppleMilk() // 動作確認用
 	{
-		try
-		{
+		try {
 			Item item = Util.getModItem("DCsAppleMilk", "defeatedcrow.bakedApple");
 			if (item != null) {
 				ItemStack registerItem = new ItemStack(item, 1, 0);
@@ -43,36 +42,29 @@ public class LoadModHandler {
 					AMTLogger.debugInfo("Succeeded to get bakedApple");
 				}
 			}
-			
+
 			ItemStack api = ItemAPI.getItem("appleSandwich", 0);
 			if (api != null) {
 				AMTLogger.debugInfo("Succeeded to get " + api.getDisplayName());
 			}
+		} catch (Exception e) {
+			AMTLogger.debugInfo("Failed to register ModItems");
+			e.printStackTrace(System.err);
 		}
-        catch (Exception e) {
-          AMTLogger.debugInfo("Failed to register ModItems");
-          e.printStackTrace(System.err);
-        }
 	}
-	
-	public void loadGummi()//GummiMod様のアイテムを読み込む
+
+	public void loadGummi()// GummiMod様のアイテムを読み込む
 	{
-		try
-		{
+		try {
 			Item item = Util.getModItem("AndanteMod_Gummi", "Gummi:Peach");
 			if (item != null) {
 				ItemStack registerItem = new ItemStack(item, 1, 0);
 				if (this.registerModItems("peach", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get peach");
 				}
-				
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 1),
-			    		  new Object[]{
-			    			  "toolGrater",
-				    		  new ItemStack(item, 1)
-							 }));
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 1),
+						new Object[] { "toolGrater", new ItemStack(item, 1) }));
 			}
 			Item item2 = Util.getModItem("AndanteMod_Gummi", "Gummi:Grape");
 			if (item2 != null) {
@@ -80,14 +72,9 @@ public class LoadModHandler {
 				if (this.registerModItems("grape", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get grape");
 				}
-				
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 8),
-			    		  new Object[]{
-			    			  "toolGrater",
-				    		  new ItemStack(item2, 1)
-							 }));
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 8),
+						new Object[] { "toolGrater", new ItemStack(item2, 1) }));
 			}
 			Item item3 = Util.getModItem("AndanteMod_Gummi", "Gummi:Pineapple");
 			if (item3 != null) {
@@ -95,61 +82,35 @@ public class LoadModHandler {
 				if (this.registerModItems("pineapple", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get pineapple");
 				}
-				
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.gratedApple, 1, 1),
-			    		  new Object[]{
-			    			  "toolGrater",
-				    		  new ItemStack(item3, 1)
-							 }));
-				
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.cocktail, 1, 6),
-			    		  new Object[]{
-			    			  "bottleRum",
-				    		  new ItemStack(item3, 1),
-				    		  "cropCoconut",
-				    		  "foodCrushedIce"
-							 }));
-				
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.cocktail, 1, 6),
-			    		  new Object[]{
-			    			  "bottleRum",
-				    		  new ItemStack(item3, 1),
-				    		  new ItemStack(Items.milk_bucket, 1),
-				    		  "foodCrushedIce"
-							 }));
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 1),
+						new Object[] { "toolGrater", new ItemStack(item3, 1) }));
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 6), new Object[] {
+						"bottleRum", new ItemStack(item3, 1), "cropCoconut", "foodCrushedIce" }));
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 6), new Object[] {
+						"bottleRum", new ItemStack(item3, 1), new ItemStack(Items.milk_bucket, 1), "foodCrushedIce" }));
 			}
+		} catch (Exception e) {
+			AMTLogger.debugInfo("Failed to register ModItems");
+			e.printStackTrace(System.err);
 		}
-        catch (Exception e) {
-        	AMTLogger.debugInfo("Failed to register ModItems");
-          e.printStackTrace(System.err);
-        }
 	}
-	
-	public void loadGrowthGrape()//GrowthCraft様のアイテムを読み込む。
+
+	public void loadGrowthGrape()// GrowthCraft様のアイテムを読み込む。
 	{
-		try
-		{
+		try {
 			Item item = Util.getModItem("Growthcraft|Grapes", "grc.grapeWine");
 			if (item != null) {
 				ItemStack registerItem = new ItemStack(item, 1, 1);
 				if (this.registerModItems("smallWine", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get grc wine");
 				}
-				
-				//当MODのビンに一旦詰める。ガラス瓶は残量2、バケツ入りは残量4になる。
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 19),
-			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
-				    		  new ItemStack(item, 1, 32767)
-							 }));
+
+				// 当MODのビンに一旦詰める。ガラス瓶は残量2、バケツ入りは残量4になる。
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 19),
+						new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), new ItemStack(item, 1, 32767) }));
 			}
 			Item item2 = Util.getModItem("Growthcraft|Grapes", "grc.grapeWine_bucket");
 			if (item2 != null) {
@@ -158,41 +119,31 @@ public class LoadModHandler {
 					AMTLogger.debugInfo("Succeeded to get grc wine bucket");
 					this.registerModItems("bucketWine", registerItem);
 				}
-				
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 51),
-			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
-				    		  new ItemStack(item2, 1, 32767)
-							 }));
+
+				GameRegistry
+						.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 51),
+								new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+										new ItemStack(item2, 1, 32767) }));
 			}
+		} catch (Exception e) {
+			AMTLogger.debugInfo("Failed to register ModItems");
+			e.printStackTrace(System.err);
 		}
-        catch (Exception e) {
-        	AMTLogger.debugInfo("Failed to register ModItems");
-          e.printStackTrace(System.err);
-        }
 	}
-	
-	public void loadGrowthHops()//GrowthCraft様のアイテムを読み込む。
+
+	public void loadGrowthHops()// GrowthCraft様のアイテムを読み込む。
 	{
-		try
-		{
+		try {
 			Item item = Util.getModItem("Growthcraft|Hops", "grc.hopAle");
 			if (item != null) {
 				ItemStack registerItem = new ItemStack(item, 1, 1);
 				if (this.registerModItems("smallBeer", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get grc ale");
 				}
-				
-				//当MODのビンに一旦詰める。ガラス瓶は残量2、バケツ入りは残量4になる。
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 18),
-			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
-				    		  new ItemStack(item, 1, 32767)
-							 }));
+
+				// 当MODのビンに一旦詰める。ガラス瓶は残量2、バケツ入りは残量4になる。
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 18),
+						new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), new ItemStack(item, 1, 32767) }));
 			}
 			Item item2 = Util.getModItem("Growthcraft|Hops", "grc.hopAle_bucket");
 			if (item2 != null) {
@@ -201,41 +152,31 @@ public class LoadModHandler {
 					AMTLogger.debugInfo("Succeeded to get grc ale bucket");
 					this.registerModItems("bucketBeer", registerItem);
 				}
-				
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 50),
-			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
-				    		  new ItemStack(item2, 1, 32767)
-							 }));
+
+				GameRegistry
+						.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 50),
+								new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+										new ItemStack(item2, 1, 32767) }));
 			}
+		} catch (Exception e) {
+			AMTLogger.debugInfo("Failed to register ModItems");
+			e.printStackTrace(System.err);
 		}
-        catch (Exception e) {
-        	AMTLogger.debugInfo("Failed to register ModItems");
-          e.printStackTrace(System.err);
-        }
 	}
-	
-	public void loadGrowthRice()//GrowthCraft様のアイテムを読み込む。
+
+	public void loadGrowthRice()// GrowthCraft様のアイテムを読み込む。
 	{
-		try
-		{
+		try {
 			Item item = Util.getModItem("Growthcraft|Rice", "grc.riceSake");
 			if (item != null) {
 				ItemStack registerItem = new ItemStack(item, 1, 1);
 				if (this.registerModItems("smallSake", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get grc sake");
 				}
-				
-				//当MODのビンに一旦詰める。ガラス瓶は残量2、バケツ入りは残量4になる。
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 17),
-			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
-				    		  new ItemStack(item, 1, 32767)
-							 }));
+
+				// 当MODのビンに一旦詰める。ガラス瓶は残量2、バケツ入りは残量4になる。
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 17),
+						new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), new ItemStack(item, 1, 32767) }));
 			}
 			Item item2 = Util.getModItem("Growthcraft|Rice", "grc.riceSake_bucket");
 			if (item2 != null) {
@@ -244,34 +185,29 @@ public class LoadModHandler {
 					AMTLogger.debugInfo("Succeeded to get grc sake bucket");
 					this.registerModItems("bucketSake", registerItem);
 				}
-				
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 49),
-			    		  new Object[]{
-			    			  new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
-				    		  new ItemStack(item2, 1, 32767)
-							 }));
-			}	
+
+				GameRegistry
+						.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 49),
+								new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+										new ItemStack(item2, 1, 32767) }));
+			}
+		} catch (Exception e) {
+			AMTLogger.debugInfo("Failed to register ModItems");
+			e.printStackTrace(System.err);
 		}
-        catch (Exception e) {
-        	AMTLogger.debugInfo("Failed to register ModItems");
-          e.printStackTrace(System.err);
-        }
 	}
-	
-	public void loadMaple() { //モミジMOD様のアイテム。
-		
-		try
-		{
+
+	public void loadMaple() { // モミジMOD様のアイテム。
+
+		try {
 			Item item = Util.getModItem("mod_ecru_MapleTree", "mapleSyrup");
-//			Object obj = Class.forName("ecru.MapleTree.mod_ecru_MapleTree").getField("Item_mapleSyrup").get(null);
+			// Object obj = Class.forName("ecru.MapleTree.mod_ecru_MapleTree").getField("Item_mapleSyrup").get(null);
 			if (item != null) {
 				ItemStack registerItem = new ItemStack(item, 1, 0);
 				if (this.registerModItems("maple", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get maplesyrup");
 				}
-				
+
 			}
 			Block block = Util.getModBlock("mod_ecru_MapleTree", "ecru_BlockMapleWood");
 			if (block != null) {
@@ -279,24 +215,14 @@ public class LoadModHandler {
 				if (this.registerModItems("mapleWood", registerItem2)) {
 					AMTLogger.debugInfo("Succeeded to get mapleWood");
 				}
-				
-				GameRegistry.addRecipe(
-						 new ShapedOreRecipe(
-			    		  new ItemStack(DCsAppleMilk.woodBox, 1, 9),
-			    		  new Object[]{
-								 "XXX",
-								 "XXX",
-								 "XXX",
-								 Character.valueOf('X'), registerItem2}));
-				
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-								 new ItemStack(block, 9, 0),
-			    		  new Object[]{
-						  new ItemStack(DCsAppleMilk.woodBox, 1, 9)
-							 }));
+
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 9), new Object[] {
+						"XXX", "XXX", "XXX", Character.valueOf('X'), registerItem2 }));
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(block, 9, 0), new Object[] { new ItemStack(
+						DCsAppleMilk.woodBox, 1, 9) }));
 			}
-			
+
 			Block block2 = Util.getModBlock("mod_ecru_MapleTree", "ecru_BlockFallenLeavesFire");
 			if (block2 != null) {
 				ItemStack registerItem2 = new ItemStack(block2, 1, 0);
@@ -306,119 +232,89 @@ public class LoadModHandler {
 					AMTLogger.debugInfo("Succeeded to get mapleLeavesFire");
 				}
 			}
-			
+
 			ArrayList<ItemStack> rape = OreDictionary.getOres("rapeSeeds");
-			if (rape.size() > 0){
+			if (rape.size() > 0) {
 				ItemStack rapeseed = new ItemStack(rape.get(0).getItem(), 1, rape.get(0).getItemDamage());
 				if (rapeseed != null) {
 					LoadModHandler.registerModItems("rapes", rapeseed);
-					
+
 					RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 3),
 							new FluidStack(DCsAppleMilk.vegitableOil, 25), rapeseed);
 				}
 			}
-			
+
 			ArrayList<ItemStack> milk180 = OreDictionary.getOres("milk180");
-			if (milk180.size() > 0){
+			if (milk180.size() > 0) {
 				ItemStack milk = new ItemStack(milk180.get(0).getItem(), 1, milk180.get(0).getItemDamage());
 				if (milk != null) {
 					LoadModHandler.registerModItems("milk180", milk);
-					
+
 					OreDictionary.registerOre("listAllmilk", milk);
 				}
 			}
+		} catch (Exception e) {
+			AMTLogger.debugInfo("Failed to register ModItems");
+			e.printStackTrace(System.err);
 		}
-        catch (Exception e) {
-        	AMTLogger.debugInfo("Failed to register ModItems");
-          e.printStackTrace(System.err);
-        }
 	}
-	
-	public void loadSugi()//SugiForest様の杉
+
+	public void loadSugi()// SugiForest様の杉
 	{
-		try
-		{
+		try {
 			Block block = Util.getModBlock("kegare.sugiforest", "sugi_log");
-			if (block != null)
-			{
+			if (block != null) {
 				ItemStack registerItem = new ItemStack(block, 1, 0);
 				if (this.registerModItems("sugiWood", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get sugi_log");
 				}
-				
-				if (registerItem != null)
-				{
-					GameRegistry.addRecipe(
-							 new ShapedOreRecipe(
-				    		  new ItemStack(DCsAppleMilk.woodBox, 1, 10),
-				    		  new Object[]{
-									 "XXX",
-									 "XXX",
-									 "XXX",
-									 Character.valueOf('X'), registerItem}));
-					
-					GameRegistry.addRecipe(
-							 new ShapelessOreRecipe(
-									 new ItemStack(block, 9, 0),
-				    		  new Object[]{
-							  new ItemStack(DCsAppleMilk.woodBox, 1, 10)
-								 }));
+
+				if (registerItem != null) {
+					GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 10),
+							new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'), registerItem }));
+
+					GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(block, 9, 0),
+							new Object[] { new ItemStack(DCsAppleMilk.woodBox, 1, 10) }));
 				}
 			}
+		} catch (Exception e) {
+			AMTLogger.debugInfo("Failed to register ModItems");
+			e.printStackTrace(System.err);
 		}
-		catch (Exception e) {
-        	AMTLogger.debugInfo("Failed to register ModItems");
-          e.printStackTrace(System.err);
-        }
 	}
-	
-	public void loadForce()//DartCraft様のアイテム取得
+
+	public void loadForce()// DartCraft様のアイテム取得
 	{
-		try
-		{
+		try {
 			Block block = Util.getModBlock("DartCraft", "forceLog");
-			if (block != null)
-			{
+			if (block != null) {
 				ItemStack registerItem = new ItemStack(block, 1, 0);
 				if (this.registerModItems("forceWood", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get forceLog");
 				}
-				
-				if (registerItem != null)
-				{
-					GameRegistry.addRecipe(
-							 new ShapedOreRecipe(
-				    		  new ItemStack(DCsAppleMilk.woodBox, 1, 7),
-				    		  new Object[]{
-									 "XXX",
-									 "XXX",
-									 "XXX",
-									 Character.valueOf('X'), registerItem}));
-					
-					GameRegistry.addRecipe(
-							 new ShapelessOreRecipe(
-									 new ItemStack(block, 9, 0),
-				    		  new Object[]{
-							  new ItemStack(DCsAppleMilk.woodBox, 1, 7)
-								 }));
+
+				if (registerItem != null) {
+					GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 7), new Object[] {
+							"XXX", "XXX", "XXX", Character.valueOf('X'), registerItem }));
+
+					GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(block, 9, 0),
+							new Object[] { new ItemStack(DCsAppleMilk.woodBox, 1, 7) }));
 				}
 			}
+		} catch (Exception e) {
+			AMTLogger.debugInfo("Failed to register ModItems");
+			e.printStackTrace(System.err);
 		}
-		catch (Exception e) {
-        	AMTLogger.debugInfo("Failed to register ModItems");
-          e.printStackTrace(System.err);
-        }
 	}
-	
-	public void loadExtraTrees() { //ExtraTree様のアイテム。
-		
-		try
-		{
+
+	public void loadExtraTrees() { // ExtraTree様のアイテム。
+
+		try {
 			Object obj = Class.forName("binnie.extratrees.ExtraTrees").getField("itemFood").get(null);
-			//binniemods様の食材アイテムは同じIDでメタデータ違いなので、メタデータ毎に取得。
+			// binniemods様の食材アイテムは同じIDでメタデータ違いなので、メタデータ毎に取得。
 			if (obj instanceof Item) {
 				Item item = (Item) obj;
-				
+
 				ItemStack cassis = new ItemStack(item, 1, 41);
 				if (this.registerModItems("binnieCassis", cassis)) {
 					OreDictionary.registerOre("cropCassis", cassis);
@@ -448,174 +344,154 @@ public class LoadModHandler {
 					OreDictionary.registerOre("cropChilipepper", chili);
 				}
 			}
+		} catch (Exception e) {
+			AMTLogger.debugInfo("Failed to register ModItems");
+			e.printStackTrace(System.err);
 		}
-        catch (Exception e) {
-        	AMTLogger.debugInfo("Failed to register ModItems");
-          e.printStackTrace(System.err);
-        }
-		
+
 	}
-	
-	public void loadWa() { //和風MOD様のアイテム。
-		
-		try
-		{
-			//Gameregistry.registerItem()を通していない場合FMLの機能が使えないため、仕方なしにリフレクションで殴っている。(二回目)
+
+	public void loadWa() { // 和風MOD様のアイテム。
+
+		try {
+			// Gameregistry.registerItem()を通していない場合FMLの機能が使えないため、仕方なしにリフレクションで殴っている。(二回目)
 			Object obj = Class.forName("wa.Items").getField("梅の実").get(null);
 			if (obj instanceof Item) {
-				ItemStack registerItem = new ItemStack((Item)obj, 1, 0);
+				ItemStack registerItem = new ItemStack((Item) obj, 1, 0);
 				if (this.registerModItems("plum", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get wa_plum");
 				}
-				//まずは辞書登録
+				// まずは辞書登録
 				OreDictionary.registerOre("cropPlum", registerItem);
 			}
 			Object obj2 = Class.forName("wa.Items").getField("米").get(null);
 			if (obj2 instanceof Item) {
-				Item rice = (Item)obj2;
+				Item rice = (Item) obj2;
 				ItemStack registerItem2 = new ItemStack(rice, 1, 0);
 				if (this.registerModItems("rice", registerItem2)) {
 					AMTLogger.debugInfo("Succeeded to get wa_rice");
 				}
 				OreDictionary.registerOre("cropRice", registerItem2);
 			}
-			
+
 			Item item4 = Util.getModItem("Wa", "tamahagane");
-			if (item4 == null)
-			{
+			if (item4 == null) {
 				AMTLogger.debugInfo("tamahagane is null...");
-			}
-			else
-			{
+			} else {
 				AMTLogger.debugInfo("tamahagane! " + item4.getUnlocalizedName());
 				ItemStack hagane = new ItemStack(item4, 1, 0);
-				if (this.registerModItems("hagane", hagane))
-				{
+				if (this.registerModItems("hagane", hagane)) {
 					AMTLogger.debugInfo("Succeeded to get wa_tamahagane");
-					GameRegistry.addRecipe(
-							 new ShapedOreRecipe(
-				    		  new ItemStack(DCsAppleMilk.cLamp, 1, 11),
-				    		  new Object[]{" X ","XYX"," X ",
-				    			  Character.valueOf('Y'), new ItemStack(DCsAppleMilk.cLamp, 1, 3),
-				    			  Character.valueOf('X'), hagane}));
+					GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, 11), new Object[] {
+							" X ", "XYX", " X ", Character.valueOf('Y'), new ItemStack(DCsAppleMilk.cLamp, 1, 3),
+							Character.valueOf('X'), hagane }));
 				}
 			}
+		} catch (Exception e) {
+			AMTLogger.debugInfo("Failed to register ModItems");
+			e.printStackTrace(System.err);
 		}
-        catch (Exception e) {
-        	AMTLogger.debugInfo("Failed to register ModItems");
-          e.printStackTrace(System.err);
-        }
 	}
-	
-	public void loadEnchantChanger()//EnchantChanger様の魔晄バケツ
+
+	public void loadEnchantChanger()// EnchantChanger様の魔晄バケツ
 	{
-		try
-		{
+		try {
 			Item item = Util.getModItem("EnchantChanger", "bucket_lifestream");
-			if (item != null)
-			{
+			if (item != null) {
 				ItemStack registerItem = new ItemStack(item, 1, 0);
 				if (this.registerModItems("bucketMako", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get bucket_lifestream");
 				}
-				
-				if (registerItem != null)
-				{
-					GameRegistry.addRecipe(
-							 new ShapelessOreRecipe(
-				    		  new ItemStack(DCsAppleMilk.cocktail2, 1, 0),
-				    		  new Object[]{
-				    			  "bottleShothu",
-				    			  new ItemStack(DCsAppleMilk.teaCup2, 1, 12),
-				    			  registerItem
-								 }));
+
+				if (registerItem != null) {
+					GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail2, 1, 0),
+							new Object[] { "bottleShothu", new ItemStack(DCsAppleMilk.teaCup2, 1, 12), registerItem }));
 				}
 			}
+		} catch (Exception e) {
+			AMTLogger.debugInfo("Failed to register ModItems");
+			e.printStackTrace(System.err);
 		}
-		catch (Exception e) {
-        	AMTLogger.debugInfo("Failed to register ModItems");
-          e.printStackTrace(System.err);
-        }
 	}
-	
+
 	/**
-     * Stringを引数にしてアイテムを取得。
-     * Stringは他MOD様とは無関係な当MOD専用の登録名。
-     * 失敗時にはnullを返す。
-     */
-	public static ItemStack getItem(String name)
-	{
+	 * Stringを引数にしてアイテムを取得。
+	 * Stringは他MOD様とは無関係な当MOD専用の登録名。
+	 * 失敗時にはnullを返す。
+	 */
+	public static ItemStack getItem(String name) {
 		ArrayList<ItemStack> ret = modItems.get(name);
-		if (ret != null && !ret.isEmpty()) return ret.get(0);
-		else return (ItemStack)null;
+		if (ret != null && !ret.isEmpty())
+			return ret.get(0);
+		else
+			return (ItemStack) null;
 	}
-	
+
 	/**
-     * Stringを引数にしてアイテムを取得。
-     * Stringは他MOD様とは無関係な当MOD専用の登録名。
-     * 失敗時にはnullを返す。
-     */
-	public static ArrayList<ItemStack> getArray(String name)
-	{
+	 * Stringを引数にしてアイテムを取得。
+	 * Stringは他MOD様とは無関係な当MOD専用の登録名。
+	 * 失敗時にはnullを返す。
+	 */
+	public static ArrayList<ItemStack> getArray(String name) {
 		ArrayList<ItemStack> ret = modItems.get(name);
-		if (ret != null && !ret.isEmpty()) return ret;
-		else return null;
+		if (ret != null && !ret.isEmpty())
+			return ret;
+		else
+			return null;
 	}
-	
+
 	/**
-     * Stringを引数にしてアイテムを取得。
-     * こちらは登録されたItemStackのうち一つをランダムに返す。
-     * 失敗時にはnullを返す。
-     */
-	public static ItemStack getRandomItem(String name)
-	{
+	 * Stringを引数にしてアイテムを取得。
+	 * こちらは登録されたItemStackのうち一つをランダムに返す。
+	 * 失敗時にはnullを返す。
+	 */
+	public static ItemStack getRandomItem(String name) {
 		ArrayList<ItemStack> ret = modItems.get(name);
 		if (ret != null && !ret.isEmpty()) {
 			int random = rand.nextInt(ret.size());
 			return ret.get(random);
-		}
-		else return (ItemStack)null;
+		} else
+			return (ItemStack) null;
 	}
-	
+
 	/**
-     * Stringを引数にしてアイテムを取得し、
-     * targetのアイテムと同一かどうかを返すメソッド。
-     * 登録済みアイテムのいずれかと一致すればtrueを返す。
-     */
-	public static boolean matchItem(String name, ItemStack target)
-	{
+	 * Stringを引数にしてアイテムを取得し、
+	 * targetのアイテムと同一かどうかを返すメソッド。
+	 * 登録済みアイテムのいずれかと一致すればtrueを返す。
+	 */
+	public static boolean matchItem(String name, ItemStack target) {
 		ArrayList<ItemStack> ret = modItems.get(name);
 		boolean flag = false;
-		
-		if (ret == null || ret.isEmpty()) return false;
-		
-		for (ItemStack items : ret)
-		{
+
+		if (ret == null || ret.isEmpty())
+			return false;
+
+		for (ItemStack items : ret) {
 			if (items.getItem() == target.getItem() && (items.getItemDamage() == target.getItemDamage())) {
 				flag = true;
 				break;
 			}
 		}
-		
+
 		return flag;
 	}
-	
+
 	/**
-     * このクラスのHashMapを使って他MOD様のアイテムを独自名に紐付け、一括管理する。
-     * OreDictionaryのみでは右クリック時の取得メソッドが煩雑になるため。
-     * @param name 独自名
-     * @param item　登録対象
-     */
-	public static boolean registerModItems(String name, ItemStack item)
-	{
-		if (name != null && item != null)
-		{
+	 * このクラスのHashMapを使って他MOD様のアイテムを独自名に紐付け、一括管理する。
+	 * OreDictionaryのみでは右クリック時の取得メソッドが煩雑になるため。
+	 * 
+	 * @param name
+	 *            独自名
+	 * @param item
+	 *            　登録対象
+	 */
+	public static boolean registerModItems(String name, ItemStack item) {
+		if (name != null && item != null) {
 			ArrayList<ItemStack> list = modItems.get(name);
 			if (list != null) {
 				list.add(item.copy());
 				modItems.put(name, list);
-			}
-			else {
+			} else {
 				ArrayList<ItemStack> val = new ArrayList<ItemStack>();
 				val.add(item.copy());
 				modItems.put(name, val);
@@ -624,23 +500,23 @@ public class LoadModHandler {
 		}
 		return false;
 	}
-	
+
 	/**
-     * このクラスのHashMapを使って他MOD様のアイテムを独自名に紐付け、一括管理する。
-     * ArrayList型で登録する場合に使用するメソッド。
-     * @param name 独自名
-     * @param newList　登録対象
-     */
-	public static boolean registerArray(String name, ArrayList<ItemStack> newList)
-	{
-		if (name != null && !newList.isEmpty())
-		{
+	 * このクラスのHashMapを使って他MOD様のアイテムを独自名に紐付け、一括管理する。
+	 * ArrayList型で登録する場合に使用するメソッド。
+	 * 
+	 * @param name
+	 *            独自名
+	 * @param newList
+	 *            　登録対象
+	 */
+	public static boolean registerArray(String name, ArrayList<ItemStack> newList) {
+		if (name != null && !newList.isEmpty()) {
 			ArrayList<ItemStack> list = modItems.get(name);
 			if (list != null) {
 				list.addAll(newList);
 				modItems.put(name, list);
-			}
-			else {
+			} else {
 				ArrayList<ItemStack> val = new ArrayList<ItemStack>();
 				val.addAll(newList);
 				modItems.put(name, val);

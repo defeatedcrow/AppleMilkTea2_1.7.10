@@ -26,7 +26,9 @@ import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Optional.InterfaceList({ @Optional.Interface(iface = "buildcraft.api.transport.IPipeConnection", modid = "BuildCraft|Core"), })
+@Optional.InterfaceList({ @Optional.Interface(
+		iface = "buildcraft.api.transport.IPipeConnection",
+		modid = "BuildCraft|Core"), })
 public class TileEvaporator extends MachineBase implements IFluidHandler, IPipeConnection {
 
 	public DCsTank productTank = new DCsTank(4000);
@@ -126,7 +128,6 @@ public class TileEvaporator extends MachineBase implements IFluidHandler, IPipeC
 			} else {
 				int amo = productTank.getFluidAmount();
 				productTank.setFluidById(val);
-				productTank.getFluid().amount = amo;
 			}
 		} else if (id == 3)// amount
 		{

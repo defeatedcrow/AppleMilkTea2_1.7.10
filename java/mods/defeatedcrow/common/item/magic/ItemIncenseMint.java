@@ -19,26 +19,26 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-//採掘速度上昇のインセンス
-public class ItemIncenseMint extends Item implements IIncenseEffect{
-	
-	public ItemIncenseMint (){
-		super ();
+// 採掘速度上昇のインセンス
+public class ItemIncenseMint extends Item implements IIncenseEffect {
+
+	public ItemIncenseMint() {
+		super();
 		this.setMaxStackSize(64);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister){
+	public void registerIcons(IIconRegister par1IconRegister) {
 
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:incense_mint");
 	}
-	
+
 	/*
 	 * 以下はIncenseの効果を定義する部分。
 	 * Item側に実装したほうが追加が容易だと思う。
-	 * */
-	
+	 */
+
 	@Override
 	public int effectAreaRange() {
 		return 5;
@@ -50,12 +50,10 @@ public class ItemIncenseMint extends Item implements IIncenseEffect{
 	}
 
 	@Override
-	public boolean formEffect(World world, int x, int y, int z,
-			EntityLivingBase entity, IIncenseEffect incense) {
-		
-		if (incense.getEffectType() == this.getEffectType() && entity != null)
-		{
-			if (!entity.isPotionActive(Potion.digSpeed.id)){
+	public boolean formEffect(World world, int x, int y, int z, EntityLivingBase entity, IIncenseEffect incense) {
+
+		if (incense.getEffectType() == this.getEffectType() && entity != null) {
+			if (!entity.isPotionActive(Potion.digSpeed.id)) {
 				entity.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 200, 0));
 				return true;
 			}

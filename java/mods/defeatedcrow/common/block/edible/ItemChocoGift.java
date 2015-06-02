@@ -16,59 +16,55 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class ItemChocoGift extends EdibleItemBlock{
-	
-	private static final String[] type = new String[] {"", "_heartfelt"};
-	
-	public ItemChocoGift(Block block)
-	{
+public class ItemChocoGift extends EdibleItemBlock {
+
+	private static final String[] type = new String[] { "", "_heartfelt" };
+
+	public ItemChocoGift(Block block) {
 		super(block);
 		setMaxDamage(0);
 		setHasSubtypes(true);
 	}
-	
+
 	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack)
-	{
+	public String getUnlocalizedName(ItemStack par1ItemStack) {
 		int m = (par1ItemStack.getItemDamage());
-		if (m < 2) return super.getUnlocalizedName() + type[m];
-		else return super.getUnlocalizedName() + m;
+		if (m < 2)
+			return super.getUnlocalizedName() + type[m];
+		else
+			return super.getUnlocalizedName() + m;
 	}
-	
+
 	@Override
-	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-	{
+	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
 		int meta = par1ItemStack.getItemDamage();
-		
-		if (!par2World.isRemote && meta == 1)
-		{
-			if (!DCsConfig.safetyChocolate)
-			{
+
+		if (!par2World.isRemote && meta == 1) {
+			if (!DCsConfig.safetyChocolate) {
 				this.explode(par2World, par3EntityPlayer);
 				par3EntityPlayer.triggerAchievement(AchievementRegister.eatChocoGift);
 			}
 		}
-		
+
 		return super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
 	}
-	
-	private void explode(World par1World, EntityPlayer par2EntityPlayer)
-    {
-        float f = 3.0F;
-        par1World.createExplosion(par2EntityPlayer, par2EntityPlayer.posX, par2EntityPlayer.posY, par2EntityPlayer.posZ, f, false);
-        
-    }
-	
+
+	private void explode(World par1World, EntityPlayer par2EntityPlayer) {
+		float f = 3.0F;
+		par1World.createExplosion(par2EntityPlayer, par2EntityPlayer.posX, par2EntityPlayer.posY,
+				par2EntityPlayer.posZ, f, false);
+
+	}
+
 	@Override
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer player, int meta) {
 		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
 		ret.add(new PotionEffect(Potion.heal.id, 2, 2));
 		return ret;
 	}
-	
+
 	@Override
-	public int getMetadata(int par1)
-	{
+	public int getMetadata(int par1) {
 		return par1;
 	}
 

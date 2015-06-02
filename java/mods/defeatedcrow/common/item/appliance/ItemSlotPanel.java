@@ -6,17 +6,17 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSlotPanel extends Item {
-	
-	public ItemSlotPanel (){
-		super ();
+
+	public ItemSlotPanel() {
+		super();
 		this.setMaxStackSize(1);
 
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister){
-	this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:slotpanel");
+	public void registerIcons(IIconRegister par1IconRegister) {
+		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:slotpanel");
 	}
 
 }

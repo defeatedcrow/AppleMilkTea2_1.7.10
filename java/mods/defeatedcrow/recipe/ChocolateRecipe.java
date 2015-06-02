@@ -10,17 +10,15 @@ import mods.defeatedcrow.api.recipe.IChocoFruitsRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 
-public class ChocolateRecipe implements IChocoFruitsRecipe{
-	
+public class ChocolateRecipe implements IChocoFruitsRecipe {
+
 	private final HashMap<Object, ItemStack> recipes;
-	
-	public ChocolateRecipe()
-	{
+
+	public ChocolateRecipe() {
 		this.recipes = new HashMap<Object, ItemStack>();
 	}
-	
-	public IChocoFruitsRecipe instance()
-	{
+
+	public IChocoFruitsRecipe instance() {
 		return RecipeRegisterManager.chocoRecipe;
 	}
 
@@ -31,64 +29,55 @@ public class ChocolateRecipe implements IChocoFruitsRecipe{
 
 	@Override
 	public ItemStack getOutput(ItemStack input) {
-		if (input == null || input.getItem() == null) return null;
-		
+		if (input == null || input.getItem() == null)
+			return null;
+
 		ItemStack ret = null;
-		
-		for (Object key : recipes.keySet())
-		{
-			if (key instanceof String)
-			{
+
+		for (Object key : recipes.keySet()) {
+			if (key instanceof String) {
 				String s = (String) key;
 				List<ItemStack> items = OreDictionary.getOres(s);
-				for (int i = 0 ; i < items.size() ; i++)
-				{
-					if (matchItem(input, items.get(i)))
-					{
+				for (int i = 0; i < items.size(); i++) {
+					if (matchItem(input, items.get(i))) {
 						ret = recipes.get(key);
 						break;
 					}
 				}
-			}
-			else if (key instanceof ItemStack)
-			{
+			} else if (key instanceof ItemStack) {
 				ItemStack item = (ItemStack) key;
-				
-				if (matchItem(input, (ItemStack)key))
-				{
+
+				if (matchItem(input, (ItemStack) key)) {
 					ret = recipes.get(key);
 					break;
 				}
 			}
-			
+
 		}
-		
+
 		return ret == null ? null : ret.copy();
 	}
-	
-	protected static boolean matchItem (ItemStack input, ItemStack key)
-	{
-		if (input == null || key == null) return false;
-		if (input.getItem() == null || key.getItem() == null) return false;
-		else
-		{
-			return (input.getItem() == key.getItem()
-					&& (input.getItemDamage() == key.getItemDamage() || key.getItemDamage() == OreDictionary.WILDCARD_VALUE));
+
+	protected static boolean matchItem(ItemStack input, ItemStack key) {
+		if (input == null || key == null)
+			return false;
+		if (input.getItem() == null || key.getItem() == null)
+			return false;
+		else {
+			return (input.getItem() == key.getItem() && (input.getItemDamage() == key.getItemDamage() || key
+					.getItemDamage() == OreDictionary.WILDCARD_VALUE));
 		}
 	}
-	
-	
 
 	@Override
 	public void register(ItemStack input, ItemStack output) {
-		if (input == null || output == null) return;
-		if (input.getItem() == null || output.getItem() == null) return;
-		for (Object key : recipes.keySet())
-		{
-			if (key instanceof ItemStack)
-			{
-				if (matchItem(input, (ItemStack)key))
-				{
+		if (input == null || output == null)
+			return;
+		if (input.getItem() == null || output.getItem() == null)
+			return;
+		for (Object key : recipes.keySet()) {
+			if (key instanceof ItemStack) {
+				if (matchItem(input, (ItemStack) key)) {
 					return;
 				}
 			}
@@ -98,10 +87,11 @@ public class ChocolateRecipe implements IChocoFruitsRecipe{
 
 	@Override
 	public void register(String input, ItemStack output) {
-		if (input == null || output == null) return;
-		if (output.getItem() == null) return;
+		if (input == null || output == null)
+			return;
+		if (output.getItem() == null)
+			return;
 		recipes.put(input, output);
 	}
-	
 
 }

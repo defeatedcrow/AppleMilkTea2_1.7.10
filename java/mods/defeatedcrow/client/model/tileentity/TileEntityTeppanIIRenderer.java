@@ -1,7 +1,5 @@
 package mods.defeatedcrow.client.model.tileentity;
 
-import org.lwjgl.opengl.GL11;
-
 import mods.defeatedcrow.common.tile.appliance.TileTeppanII;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -12,72 +10,67 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.relauncher.*;
+
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class TileEntityTeppanIIRenderer extends TileEntitySpecialRenderer
-{
+public class TileEntityTeppanIIRenderer extends TileEntitySpecialRenderer {
+
 	public static TileEntityTeppanIIRenderer teppanRenderer;
-	
-	public void renderTileEntityCaseAt(TileTeppanII par1Tile, double par2, double par4, double par6, float par8)
-	{
-		this.setRotation(par1Tile, (float)par2, (float)par4, (float)par6);
+
+	public void renderTileEntityCaseAt(TileTeppanII par1Tile, double par2, double par4, double par6, float par8) {
+		this.setRotation(par1Tile, (float) par2, (float) par4, (float) par6);
 	}
-	
-	public void setTileEntityRenderer(TileEntityRendererDispatcher par1TileEntityRenderer)
-	{
+
+	public void setTileEntityRenderer(TileEntityRendererDispatcher par1TileEntityRenderer) {
 		super.func_147497_a(par1TileEntityRenderer);
 		teppanRenderer = this;
 	}
-	
-	public void setRotation(TileTeppanII par0Tile, float par1, float par2, float par3)
-	{
+
+	public void setRotation(TileTeppanII par0Tile, float par1, float par2, float par3) {
 		int i = par0Tile.getCookTime();
 		float f = MathHelper.clamp_int(i, 0, 360);
-		//inner
-		if (par0Tile.getWorldObj() != null)
-		{
+		// inner
+		if (par0Tile.getWorldObj() != null) {
 			GL11.glPushMatrix();
-			GL11.glTranslatef((float)par1 + 0.5F, (float)par2 + 0.15F, (float)par3 + 0.5F);
+			GL11.glTranslatef((float) par1 + 0.5F, (float) par2 + 0.15F, (float) par3 + 0.5F);
 			GL11.glRotatef(f, 0.0F, 1.0F, 0.0F);
 			this.renderInner(par0Tile);
 			GL11.glPopMatrix();
 		}
 	}
-	private void renderInner(TileTeppanII par0Tile)
-	{
+
+	private void renderInner(TileTeppanII par0Tile) {
 		ItemStack item = null;
-		if (par0Tile.isFailed()){
+		if (par0Tile.isFailed()) {
 			item = par0Tile.plateItems[2];
-		}
-		else if (par0Tile.isFinishCooking()){
+		} else if (par0Tile.isFinishCooking()) {
 			item = par0Tile.plateItems[1];
-		}
-		else{
+		} else {
 			item = par0Tile.plateItems[0];
 		}
-		
-		if (item != null)
-		{
+
+		if (item != null) {
 			EntityItem entityitem = new EntityItem(par0Tile.getWorldObj(), 0.0D, 0.0D, 0.0D, item);
 			entityitem.getEntityItem().stackSize = 1;
 			entityitem.hoverStart = 0.0F;
-			if (item.getItem() instanceof ItemBlock){
+			if (item.getItem() instanceof ItemBlock) {
 				GL11.glScalef(1.2F, 1.2F, 1.2F);
-			}
-			else{
+			} else {
 				GL11.glScalef(0.8F, 0.8F, 0.8F);
 			}
-				
+
 			RenderItem.renderInFrame = false;
 			RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 			RenderItem.renderInFrame = false;
 		}
 	}
-	
-	public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8)
-	{
-		this.renderTileEntityCaseAt((TileTeppanII)par1TileEntity, par2, par4, par6, par8);
+
+	@Override
+	public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8) {
+		this.renderTileEntityCaseAt((TileTeppanII) par1TileEntity, par2, par4, par6, par8);
 	}
 }

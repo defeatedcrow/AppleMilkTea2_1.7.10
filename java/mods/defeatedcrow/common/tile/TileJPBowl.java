@@ -1,7 +1,5 @@
 package mods.defeatedcrow.common.tile;
 
+public class TileJPBowl extends TileHasDirection {
 
-public class TileJPBowl extends TileHasDirection
-{
-	
 }

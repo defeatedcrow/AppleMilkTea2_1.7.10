@@ -16,58 +16,58 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderFlowerPot implements ISimpleBlockRenderingHandler{
-	
+public class RenderFlowerPot implements ISimpleBlockRenderingHandler {
+
 	private IIcon flowerIcon;
 	private IIcon bottomIcon;
 
 	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelID,
-			RenderBlocks renderer) {
-		
+	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+
 		int meta = metadata;
 		this.flowerIcon = DCsAppleMilk.flowerPot.getIcon(1, meta);
 		this.bottomIcon = DCsAppleMilk.flowerPot.getIcon(0, 0);
-		
-		if (modelID == this.getRenderId())
-		{
-			//bottom
-			renderInvCuboid(renderer, block,  4.0F/16.0F, 0.0F/16.0F, 4.0F/16.0F, 12.0F/16.0F, 4.0F/16.0F, 12.0F/16.0F,  this.bottomIcon);
-			//flower
-			renderInvCuboid(renderer, block,  8.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 8.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F,  this.flowerIcon);
-			renderInvCuboid(renderer, block,  0.0F/16.0F, 0.0F/16.0F, 8.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F, 8.0F/16.0F,  this.flowerIcon);
+
+		if (modelID == this.getRenderId()) {
+			// bottom
+			renderInvCuboid(renderer, block, 4.0F / 16.0F, 0.0F / 16.0F, 4.0F / 16.0F, 12.0F / 16.0F, 4.0F / 16.0F,
+					12.0F / 16.0F, this.bottomIcon);
+			// flower
+			renderInvCuboid(renderer, block, 8.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 8.0F / 16.0F, 16.0F / 16.0F,
+					16.0F / 16.0F, this.flowerIcon);
+			renderInvCuboid(renderer, block, 0.0F / 16.0F, 0.0F / 16.0F, 8.0F / 16.0F, 16.0F / 16.0F, 16.0F / 16.0F,
+					8.0F / 16.0F, this.flowerIcon);
 		}
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,
-			Block block, int modelId, RenderBlocks renderer) {
-		
-		if (modelId == this.getRenderId())
-		{
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+			RenderBlocks renderer) {
+
+		if (modelId == this.getRenderId()) {
 			renderer.clearOverrideBlockTexture();
 			block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			return true;
 		}
-			
+
 		return false;
 	}
 
 	@Override
 	public boolean shouldRender3DInInventory(int a) {
-		
+
 		return true;
 	}
 
 	@Override
 	public int getRenderId() {
-		
+
 		return DCsAppleMilk.modelFlowerPot;
 	}
-	
-	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, IIcon icon)
-	{
+
+	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX,
+			float maxY, float maxZ, IIcon icon) {
 		Tessellator tessellator = Tessellator.instance;
 		block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		renderer.setRenderBoundsFromBlock(block);

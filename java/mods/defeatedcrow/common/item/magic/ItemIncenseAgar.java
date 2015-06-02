@@ -25,26 +25,26 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-//鎮静のインセンス
-public class ItemIncenseAgar extends Item implements IIncenseEffect{
-	
-	public ItemIncenseAgar (){
-		super ();
+// 鎮静のインセンス
+public class ItemIncenseAgar extends Item implements IIncenseEffect {
+
+	public ItemIncenseAgar() {
+		super();
 		this.setMaxStackSize(64);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister){
+	public void registerIcons(IIconRegister par1IconRegister) {
 
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:incense_aloeswood");
 	}
-	
+
 	/*
 	 * 以下はIncenseの効果を定義する部分。
 	 * Item側に実装したほうが追加が容易だと思う。
-	 * */
-	
+	 */
+
 	@Override
 	public int effectAreaRange() {
 		return 5;
@@ -56,28 +56,26 @@ public class ItemIncenseAgar extends Item implements IIncenseEffect{
 	}
 
 	@Override
-	public boolean formEffect(World world, int x, int y, int z,
-			EntityLivingBase entity, IIncenseEffect incense) {
-		
-		if (incense.getEffectType() == this.getEffectType() && entity != null)
-		{
-			if (entity instanceof EntityLiving)//対象はEntityLiving
+	public boolean formEffect(World world, int x, int y, int z, EntityLivingBase entity, IIncenseEffect incense) {
+
+		if (incense.getEffectType() == this.getEffectType() && entity != null) {
+			if (entity instanceof EntityLiving)// 対象はEntityLiving
 			{
 				EntityLiving living = (EntityLiving) entity;
-				
-//				if (DCsAppleMilk.confinement != null)//ポーション効果が追加されているか
-//				{
-//					living.addPotionEffect(new PotionEffect(DCsAppleMilk.confinement.id, 200, 0));
-//				}
-				
-				/*動きを止めてしまう効果に変更。*/
+
+				// if (DCsAppleMilk.confinement != null)//ポーション効果が追加されているか
+				// {
+				// living.addPotionEffect(new PotionEffect(DCsAppleMilk.confinement.id, 200, 0));
+				// }
+
+				/* 動きを止めてしまう効果に変更。 */
 				EntityStunEffect stun = new EntityStunEffect(world, living, null, 20);
-				if (!world.isRemote){
+				if (!world.isRemote) {
 					world.spawnEntityInWorld(stun);
 				}
-				
+
 			}
-			
+
 		}
 		return false;
 	}

@@ -8,15 +8,13 @@ import net.minecraft.util.MathHelper;
 import mods.defeatedcrow.api.recipe.ISlagResultLoot;
 import mods.defeatedcrow.handler.Util;
 
-public class SlagResultLoot implements ISlagResultLoot{
+public class SlagResultLoot implements ISlagResultLoot {
 
 	@Override
 	public void addLoot(ItemStack item, int tier) {
-		
-		if (Util.notEmptyItem(item))
-		{
-			switch(tier)
-			{
+
+		if (Util.notEmptyItem(item)) {
+			switch (tier) {
 			case 1:
 				OreCrushRecipe.tier1.add(item);
 				break;
@@ -43,8 +41,7 @@ public class SlagResultLoot implements ISlagResultLoot{
 	public List<ItemStack> getLootList(int tier) {
 		int i = MathHelper.clamp_int(tier, 1, 5);
 		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-		switch(tier)
-		{
+		switch (tier) {
 		case 1:
 			return OreCrushRecipe.tier1;
 		case 2:
@@ -58,7 +55,7 @@ public class SlagResultLoot implements ISlagResultLoot{
 		default:
 			break;
 		}
-		
+
 		return ret;
 	}
 

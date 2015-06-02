@@ -4,18 +4,17 @@ import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class PlaceableSteak extends PlaceableFoods{
-	
-	public PlaceableSteak(World world){
-    	super(world);
-    }
+public class PlaceableSteak extends PlaceableFoods {
+
+	public PlaceableSteak(World world) {
+		super(world);
+	}
 
 	public PlaceableSteak(World world, ItemStack item) {
 		super(world, true, item);
 	}
 
-	public PlaceableSteak(World world, ItemStack item,
-			double x, double y, double z) {
+	public PlaceableSteak(World world, ItemStack item, double x, double y, double z) {
 		super(world, true, item, x, y, z);
 	}
 
@@ -23,11 +22,10 @@ public class PlaceableSteak extends PlaceableFoods{
 	protected ItemStack returnItem() {
 		return new ItemStack(DCsAppleMilk.foodPlate, 1, this.getItemMetadata());
 	}
-	
+
 	@Override
-	protected byte particleNumber()
-    {
-    	return 2;
-    }
+	protected byte particleNumber() {
+		return 2;
+	}
 
 }

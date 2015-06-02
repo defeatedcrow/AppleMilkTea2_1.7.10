@@ -1,5 +1,5 @@
 package mods.defeatedcrow.common.tile;
 
-public class TileEmptyBottle extends TileDummy{
+public class TileEmptyBottle extends TileDummy {
 
 }

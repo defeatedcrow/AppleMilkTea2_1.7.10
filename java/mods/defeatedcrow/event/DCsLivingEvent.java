@@ -60,7 +60,7 @@ public class DCsLivingEvent {
 		// こちらはEntityLivingBaseの監視用
 		if ((entity instanceof EntityLivingBase)) {
 			EntityLivingBase living = (EntityLivingBase) event.entity;
-			EntityLivingBase riding = (EntityLivingBase) event.entity.ridingEntity;
+
 			ArrayList<PotionEffect> potions = new ArrayList<PotionEffect>();
 
 			if (living != null && !living.worldObj.isRemote) {
@@ -81,9 +81,13 @@ public class DCsLivingEvent {
 						living.fallDistance = 0.0F;
 					}
 
-					if (riding != null && potion != null) {
-						riding.addPotionEffect(effect);
+					if (living.ridingEntity != null && living.ridingEntity instanceof EntityLivingBase) {
+						EntityLivingBase riding = (EntityLivingBase) event.entity.ridingEntity;
+						if (potion != null) {
+							riding.addPotionEffect(effect);
+						}
 					}
+
 				}
 			}
 

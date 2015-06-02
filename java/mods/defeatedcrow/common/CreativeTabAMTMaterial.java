@@ -7,15 +7,13 @@ import net.minecraft.item.Item;
 
 public class CreativeTabAMTMaterial extends CreativeTabs {
 
-	public CreativeTabAMTMaterial(String type)
-	{
+	public CreativeTabAMTMaterial(String type) {
 		super(type);
 	}
- 
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getTranslatedTabLabel()
-	{
+	public String getTranslatedTabLabel() {
 		return "Apple&Milk&Tea:Materials";
 	}
 

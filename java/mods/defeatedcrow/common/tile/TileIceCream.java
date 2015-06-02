@@ -1,6 +1,5 @@
 package mods.defeatedcrow.common.tile;
 
-
-public class TileIceCream extends TileHasDirection{
+public class TileIceCream extends TileHasDirection {
 
 }

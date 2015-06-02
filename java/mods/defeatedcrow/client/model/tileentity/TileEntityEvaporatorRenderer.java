@@ -16,6 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityEvaporatorRenderer extends TileEntitySpecialRenderer {
+
 	private static final ResourceLocation machineTex = new ResourceLocation(
 			"defeatedcrow:textures/entity/evaporator.png");
 	private static final ResourceLocation glassTex = new ResourceLocation("defeatedcrow:textures/blocks/blueglass.png");

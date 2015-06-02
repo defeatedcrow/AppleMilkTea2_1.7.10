@@ -1,6 +1,5 @@
 package mods.defeatedcrow.client.renderblocks;
 
-
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -16,55 +15,58 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderCordial implements ISimpleBlockRenderingHandler{
-	
+public class RenderCordial implements ISimpleBlockRenderingHandler {
+
 	private IIcon boxIIcon;
 	private IIcon innerIIcon;
 	private IIcon drinkIIcon;
 	private IIcon woodIIcon;
 
 	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelID,
-			RenderBlocks renderer) {
-		
+	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+
 		int meta = metadata;
 		this.boxIIcon = DCsAppleMilk.blockIcecream.getBlockTextureFromSide(0);
 		this.innerIIcon = DCsAppleMilk.cordial.getIcon(0, meta);
 		this.drinkIIcon = DCsAppleMilk.cordial.getIcon(1, meta);
 		this.woodIIcon = Blocks.planks.getBlockTextureFromSide(0);
-		
-		if (modelID == this.getRenderId())
-		{
-			renderInvCuboid(renderer, block,  3.0F/16.0F, 0.0F/16.0F, 3.0F/16.0F, 13.0F/16.0F, 10.0F/16.0F, 13.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  5.0F/16.0F, 10.0F/16.0F, 5.0F/16.0F, 11.0F/16.0F, 11.0F/16.0F, 11.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  6.0F/16.0F, 11.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 12.0F/16.0F, 10.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  4.0F/16.0F, 12.0F/16.0F, 4.0F/16.0F, 12.0F/16.0F, 13.0F/16.0F, 12.0F/16.0F,  this.woodIIcon);
-			
-			renderInvCuboid(renderer, block,  4.5F/16.0F, 1.0F/16.0F, 4.5F/16.0F, 11.5F/16.0F, 4.0F/16.0F, 11.5F/16.0F,  this.innerIIcon);
-			renderInvCuboid(renderer, block,  4.0F/16.0F, 1.0F/16.0F, 4.0F/16.0F, 12.0F/16.0F, 9.0F/16.0F, 12.0F/16.0F,  this.drinkIIcon);
-			
+
+		if (modelID == this.getRenderId()) {
+			renderInvCuboid(renderer, block, 3.0F / 16.0F, 0.0F / 16.0F, 3.0F / 16.0F, 13.0F / 16.0F, 10.0F / 16.0F,
+					13.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 5.0F / 16.0F, 10.0F / 16.0F, 5.0F / 16.0F, 11.0F / 16.0F, 11.0F / 16.0F,
+					11.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 6.0F / 16.0F, 11.0F / 16.0F, 6.0F / 16.0F, 10.0F / 16.0F, 12.0F / 16.0F,
+					10.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 4.0F / 16.0F, 12.0F / 16.0F, 4.0F / 16.0F, 12.0F / 16.0F, 13.0F / 16.0F,
+					12.0F / 16.0F, this.woodIIcon);
+
+			renderInvCuboid(renderer, block, 4.5F / 16.0F, 1.0F / 16.0F, 4.5F / 16.0F, 11.5F / 16.0F, 4.0F / 16.0F,
+					11.5F / 16.0F, this.innerIIcon);
+			renderInvCuboid(renderer, block, 4.0F / 16.0F, 1.0F / 16.0F, 4.0F / 16.0F, 12.0F / 16.0F, 9.0F / 16.0F,
+					12.0F / 16.0F, this.drinkIIcon);
+
 		}
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,
-			Block block, int modelId, RenderBlocks renderer) {
-		
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+			RenderBlocks renderer) {
+
 		int meta = world.getBlockMetadata(x, y, z);
 		this.boxIIcon = DCsAppleMilk.blockIcecream.getBlockTextureFromSide(0);
 		this.innerIIcon = DCsAppleMilk.cordial.getIcon(0, meta);
 		this.drinkIIcon = DCsAppleMilk.cordial.getIcon(1, meta);
 		this.woodIIcon = Blocks.planks.getBlockTextureFromSide(0);
-		
-		if (modelId == this.getRenderId())
-		{
+
+		if (modelId == this.getRenderId()) {
 			renderer.setOverrideBlockTexture(this.woodIIcon);
-			block.setBlockBounds(4.0F/16.0F, 13.0F/16.0F, 4.0F/16.0F, 12.0F/16.0F, 15.0F/16.0F, 12.0F/16.0F);
+			block.setBlockBounds(4.0F / 16.0F, 13.0F / 16.0F, 4.0F / 16.0F, 12.0F / 16.0F, 15.0F / 16.0F, 12.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
-			
+
 			renderer.setOverrideBlockTexture(this.innerIIcon);
-			block.setBlockBounds(4.5F/16.0F, 1.0F/16.0F, 4.5F/16.0F, 11.5F/16.0F, 4.0F/16.0F, 11.5F/16.0F);
+			block.setBlockBounds(4.5F / 16.0F, 1.0F / 16.0F, 4.5F / 16.0F, 11.5F / 16.0F, 4.0F / 16.0F, 11.5F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 
@@ -73,24 +75,24 @@ public class RenderCordial implements ISimpleBlockRenderingHandler{
 			renderer.setRenderBoundsFromBlock(block);
 			return true;
 		}
-			
+
 		return false;
 	}
 
 	@Override
 	public boolean shouldRender3DInInventory(int a) {
-		
+
 		return true;
 	}
 
 	@Override
 	public int getRenderId() {
-		
+
 		return DCsAppleMilk.modelCordial;
 	}
-	
-	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, IIcon icon)
-	{
+
+	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX,
+			float maxY, float maxZ, IIcon icon) {
 		Tessellator tessellator = Tessellator.instance;
 		block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		renderer.setRenderBoundsFromBlock(block);

@@ -10,17 +10,17 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemInkStick extends Item {
-	
-	public ItemInkStick (){
-		super ();
+
+	public ItemInkStick() {
+		super();
 		maxStackSize = 64;
 
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister){
-	this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:inkstick");
+	public void registerIcons(IIconRegister par1IconRegister) {
+		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:inkstick");
 	}
 
 }

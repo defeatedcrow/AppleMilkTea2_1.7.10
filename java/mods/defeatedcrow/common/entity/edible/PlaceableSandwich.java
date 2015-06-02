@@ -4,18 +4,17 @@ import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class PlaceableSandwich extends PlaceableFoods{
-	
-	public PlaceableSandwich(World world){
-    	super(world);
-    }
+public class PlaceableSandwich extends PlaceableFoods {
+
+	public PlaceableSandwich(World world) {
+		super(world);
+	}
 
 	public PlaceableSandwich(World world, ItemStack item) {
 		super(world, true, item);
 	}
 
-	public PlaceableSandwich(World world, ItemStack item,
-			double x, double y, double z) {
+	public PlaceableSandwich(World world, ItemStack item, double x, double y, double z) {
 		super(world, true, item, x, y, z);
 	}
 

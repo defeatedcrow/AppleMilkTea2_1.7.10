@@ -19,26 +19,26 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-//跳躍のインセンス
-public class ItemIncenseApple extends Item implements IIncenseEffect{
-	
-	public ItemIncenseApple (){
-		super ();
+// 跳躍のインセンス
+public class ItemIncenseApple extends Item implements IIncenseEffect {
+
+	public ItemIncenseApple() {
+		super();
 		this.setMaxStackSize(64);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister){
+	public void registerIcons(IIconRegister par1IconRegister) {
 
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:incense_apple");
 	}
-	
+
 	/*
 	 * 以下はIncenseの効果を定義する部分。
 	 * Item側に実装したほうが追加が容易だと思う。
-	 * */
-	
+	 */
+
 	@Override
 	public int effectAreaRange() {
 		return 5;
@@ -50,12 +50,10 @@ public class ItemIncenseApple extends Item implements IIncenseEffect{
 	}
 
 	@Override
-	public boolean formEffect(World world, int x, int y, int z,
-			EntityLivingBase entity, IIncenseEffect incense) {
-		
-		if (incense.getEffectType() == this.getEffectType() && entity != null)
-		{
-			if (!entity.isPotionActive(Potion.jump.id)){
+	public boolean formEffect(World world, int x, int y, int z, EntityLivingBase entity, IIncenseEffect incense) {
+
+		if (incense.getEffectType() == this.getEffectType() && entity != null) {
+			if (!entity.isPotionActive(Potion.jump.id)) {
 				entity.addPotionEffect(new PotionEffect(Potion.jump.id, 200, 1));
 				return true;
 			}

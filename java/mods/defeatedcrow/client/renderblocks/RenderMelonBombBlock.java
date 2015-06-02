@@ -16,59 +16,59 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderMelonBombBlock implements ISimpleBlockRenderingHandler{
-	
+public class RenderMelonBombBlock implements ISimpleBlockRenderingHandler {
+
 	private IIcon boxIIcon;
 	private IIcon coverIIcon1;
 	private IIcon coverIIcon2;
 
 	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelID,
-			RenderBlocks renderer) {
-		
+	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+
 		int meta = metadata;
 		this.boxIIcon = Blocks.melon_block.getBlockTextureFromSide(2);
 		this.coverIIcon1 = Blocks.melon_block.getBlockTextureFromSide(1);
 		this.coverIIcon2 = Blocks.melon_block.getBlockTextureFromSide(0);
-		
-		if (modelID == this.getRenderId())
-		{
-			//box
-			renderInvCuboid(renderer, block,  1.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 14.0F/16.0F, 15.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  1.0F/16.0F, 14.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F,  this.coverIIcon1);
-			renderInvCuboid(renderer, block,  1.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F,  this.coverIIcon2);
-			
+
+		if (modelID == this.getRenderId()) {
+			// box
+			renderInvCuboid(renderer, block, 1.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F, 15.0F / 16.0F, 14.0F / 16.0F,
+					15.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 1.0F / 16.0F, 14.0F / 16.0F, 1.0F / 16.0F, 15.0F / 16.0F, 15.0F / 16.0F,
+					15.0F / 16.0F, this.coverIIcon1);
+			renderInvCuboid(renderer, block, 1.0F / 16.0F, 0.0F / 16.0F, 1.0F / 16.0F, 15.0F / 16.0F, 1.0F / 16.0F,
+					15.0F / 16.0F, this.coverIIcon2);
+
 		}
-		
+
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,
-			Block block, int modelId, RenderBlocks renderer) {
-		
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+			RenderBlocks renderer) {
+
 		int meta = world.getBlockMetadata(x, y, z);
 		this.boxIIcon = Blocks.melon_block.getBlockTextureFromSide(2);
 		this.coverIIcon1 = Blocks.melon_block.getBlockTextureFromSide(1);
 		this.coverIIcon2 = Blocks.melon_block.getBlockTextureFromSide(0);
-		
-		if (modelId == this.getRenderId())
-		{
-			//box
+
+		if (modelId == this.getRenderId()) {
+			// box
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(2.0F/16.0F, 1.0F/16.0F, 2.0F/16.0F, 14.0F/16.0F, 13.0F/16.0F, 14.0F/16.0F);
+			block.setBlockBounds(2.0F / 16.0F, 1.0F / 16.0F, 2.0F / 16.0F, 14.0F / 16.0F, 13.0F / 16.0F, 14.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
-			
+
 			renderer.setOverrideBlockTexture(this.coverIIcon1);
-			block.setBlockBounds(2.0F/16.0F, 13.0F/16.0F, 2.0F/16.0F, 14.0F/16.0F, 14.0F/16.0F, 14.0F/16.0F);
+			block.setBlockBounds(2.0F / 16.0F, 13.0F / 16.0F, 2.0F / 16.0F, 14.0F / 16.0F, 14.0F / 16.0F, 14.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
-			
+
 			renderer.setOverrideBlockTexture(this.coverIIcon2);
-			block.setBlockBounds(2.0F/16.0F, 0.0F/16.0F, 2.0F/16.0F, 14.0F/16.0F, 1.0F/16.0F, 14.0F/16.0F);
+			block.setBlockBounds(2.0F / 16.0F, 0.0F / 16.0F, 2.0F / 16.0F, 14.0F / 16.0F, 1.0F / 16.0F, 14.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
-			
+
 			renderer.clearOverrideBlockTexture();
 			block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 			renderer.setRenderBoundsFromBlock(block);
@@ -79,18 +79,18 @@ public class RenderMelonBombBlock implements ISimpleBlockRenderingHandler{
 
 	@Override
 	public boolean shouldRender3DInInventory(int a) {
-		
+
 		return true;
 	}
 
 	@Override
 	public int getRenderId() {
-		
+
 		return DCsAppleMilk.modelMelonBomb;
 	}
-	
-	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, IIcon icon)
-	{
+
+	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX,
+			float maxY, float maxZ, IIcon icon) {
 		Tessellator tessellator = Tessellator.instance;
 		block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		renderer.setRenderBoundsFromBlock(block);

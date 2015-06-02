@@ -12,13 +12,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 
-public class PlateRecipeRegister implements IPlateRecipeRegister{
-	
+public class PlateRecipeRegister implements IPlateRecipeRegister {
+
 	private static List<PlateRecipe> recipes;
 	private static List<ItemStack> heatSource;
-	
-	public PlateRecipeRegister()
-	{
+
+	public PlateRecipeRegister() {
 		this.recipes = new ArrayList<PlateRecipe>();
 		this.heatSource = new ArrayList<ItemStack>();
 	}
@@ -27,58 +26,49 @@ public class PlateRecipeRegister implements IPlateRecipeRegister{
 	public List<PlateRecipe> getRecipeList() {
 		return this.recipes;
 	}
-	
+
 	@Override
-	public List<ItemStack> getHeatSourceList()
-	{
+	public List<ItemStack> getHeatSourceList() {
 		return this.heatSource;
 	}
-	
-	public IPlateRecipeRegister instance()
-	{
+
+	public IPlateRecipeRegister instance() {
 		return RecipeRegisterManager.plateRecipe;
 	}
 
 	@Override
 	public PlateRecipe getRecipe(ItemStack item) {
-		if (item == null) return null;
-		for (PlateRecipe recipe : this.recipes)
-		{
-			if (this.isItemEqual(item, recipe.getInput().getItem(), recipe.getInput().getItemDamage()))
-			{
+		if (item == null)
+			return null;
+		for (PlateRecipe recipe : this.recipes) {
+			if (this.isItemEqual(item, recipe.getInput().getItem(), recipe.getInput().getItemDamage())) {
 				return recipe;
 			}
 		}
 		return null;
 	}
-	
+
 	@Override
-	public boolean isHeatSource(Block block, int meta)
-	{
-		if (block == null) return false;
+	public boolean isHeatSource(Block block, int meta) {
+		if (block == null)
+			return false;
 		int m = MathHelper.clamp_int(meta, 0, 15);
-		for (ItemStack source : this.heatSource)
-		{
-			if (this.isItemEqual(source, Item.getItemFromBlock(block), m))
-			{
+		for (ItemStack source : this.heatSource) {
+			if (this.isItemEqual(source, Item.getItemFromBlock(block), m)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	private boolean isItemEqual(ItemStack a, Item b, int meta)
-	{
-		if (a == null)return false;
+
+	private boolean isItemEqual(ItemStack a, Item b, int meta) {
+		if (a == null)
+			return false;
 		boolean flag = false;
-		if (a.getItem() == b)
-		{
-			if (a.getItemDamage() == meta)
-			{
+		if (a.getItem() == b) {
+			if (a.getItemDamage() == meta) {
 				flag = true;
-			}
-			else if (a.getItemDamage() == 32767)
-			{
+			} else if (a.getItemDamage() == 32767) {
 				flag = true;
 			}
 		}
@@ -87,39 +77,35 @@ public class PlateRecipeRegister implements IPlateRecipeRegister{
 
 	@Override
 	public void register(ItemStack input, ItemStack output, int time, boolean isOven) {
-		if (input != null && output != null)
-		{
+		if (input != null && output != null) {
 			this.recipes.add(new PlateRecipe(input, output, time, isOven));
-			AMTLogger.debugInfo("Add Plate Recipe: input " + input.getDisplayName() + ", output " + output.getDisplayName());
+			AMTLogger.debugInfo("Add Plate Recipe: input " + input.getDisplayName() + ", output "
+					+ output.getDisplayName());
 		}
 	}
-	
+
 	@Override
-	public void registerHeatSource(Block block, int meta)
-	{
-		if (block != null)
-		{
+	public void registerHeatSource(Block block, int meta) {
+		if (block != null) {
 			int m = MathHelper.clamp_int(meta, -1, 15);
 			if (m == -1) {
 				this.heatSource.add(new ItemStack(block, 1, 32767));
-			}
-			else {
+			} else {
 				this.heatSource.add(new ItemStack(block, 1, m));
 			}
-			
+
 			AMTLogger.debugInfo("Add heat source : " + block.getLocalizedName());
 		}
 	}
-	
+
 	public class PlateRecipe implements IPlateRecipe {
-		
+
 		private final ItemStack input;
 		private final ItemStack output;
 		private final int cookTime;
 		private final boolean isOven;
-		
-		public PlateRecipe(ItemStack inputItem, ItemStack outputItem, int time, boolean flag)
-		{
+
+		public PlateRecipe(ItemStack inputItem, ItemStack outputItem, int time, boolean flag) {
 			this.input = inputItem;
 			this.output = outputItem;
 			this.cookTime = time;
@@ -133,7 +119,8 @@ public class PlateRecipeRegister implements IPlateRecipeRegister{
 
 		@Override
 		public ItemStack getOutput() {
-			if (this.output == null)return null;
+			if (this.output == null)
+				return null;
 			return this.output.copy();
 		}
 
@@ -146,7 +133,7 @@ public class PlateRecipeRegister implements IPlateRecipeRegister{
 		public boolean useOvenRecipe() {
 			return this.isOven;
 		}
-		
+
 	}
 
 }

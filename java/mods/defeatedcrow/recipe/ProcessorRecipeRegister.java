@@ -20,38 +20,41 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProsessorRecipeRegister{
+public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProsessorRecipeRegister {
 
 	private static List<ProcessorRecipe> recipes;
-	
-	public ProcessorRecipeRegister()
-	{
+
+	public ProcessorRecipeRegister() {
 		this.recipes = new ArrayList<ProcessorRecipe>();
 	}
-	
-	public IProcessorRecipeRegister instance()
-	{
+
+	public IProcessorRecipeRegister instance() {
 		return RecipeRegisterManager.processorRecipe;
 	}
-	
+
 	@Override
-	public void addRecipe(ItemStack output, boolean isFood, boolean forceReturn, ItemStack secondary, float secondaryChance, Object... input){
+	public void addRecipe(ItemStack output, boolean isFood, boolean forceReturn, ItemStack secondary,
+			float secondaryChance, Object... input) {
 		float c = MathHelper.clamp_float(0.0F, secondaryChance, 1.0F);
-		if (output == null || output.stackSize == 0) output = null;
-		if (secondary == null || secondary.stackSize == 0) secondary = null; 
+		if (output == null || output.stackSize == 0)
+			output = null;
+		if (secondary == null || secondary.stackSize == 0)
+			secondary = null;
 		recipes.add(new ProcessorRecipe(output, secondary, isFood, forceReturn, c, input));
 		AMTLogger.debugInfo("Add Prosessor recipe: output " + (output == null ? "null" : output.getDisplayName()));
 	}
-	
+
 	@Override
-	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, float secondaryChance, Object... input){
+	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, float secondaryChance, Object... input) {
 		float c = MathHelper.clamp_float(0.0F, secondaryChance, 1.0F);
-		if (output == null || output.stackSize == 0) output = null;
-		if (secondary == null || secondary.stackSize == 0) secondary = null; 
+		if (output == null || output.stackSize == 0)
+			output = null;
+		if (secondary == null || secondary.stackSize == 0)
+			secondary = null;
 		recipes.add(new ProcessorRecipe(output, secondary, flag, false, c, input));
 		AMTLogger.debugInfo("Add Prosessor recipe: output " + (output == null ? "null" : output.getDisplayName()));
 	}
-	
+
 	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, Object... input) {
 		addRecipe(output, flag, secondary, 1.0F, input);
 	}
@@ -60,20 +63,20 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 	public List<ProcessorRecipe> getRecipes() {
 		return this.recipes;
 	}
-	
-	public class ProcessorRecipe implements IProcessorRecipe{
-		
+
+	public class ProcessorRecipe implements IProcessorRecipe {
+
 		public final ItemStack output;
 		public final ItemStack secondary;
 		private final Object[] input;
 		private final ArrayList<Object> processedInput;
 		private final float chance;
 		private final boolean forceContainer;
-		
+
 		public final boolean foodRecipe;
-		
-		public ProcessorRecipe(ItemStack output, ItemStack sec, boolean flag, boolean flag2, float secondaryChance, Object... inputs)
-		{
+
+		public ProcessorRecipe(ItemStack output, ItemStack sec, boolean flag, boolean flag2, float secondaryChance,
+				Object... inputs) {
 			this.output = output;
 			this.input = inputs;
 			this.secondary = sec;
@@ -85,17 +88,17 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 				if (inputs[i] instanceof String) {
 					processedInput.add(OreDictionary.getOres((String) inputs[i]));
 				} else if (inputs[i] instanceof ItemStack) {
-					processedInput.add(((ItemStack)inputs[i]).copy());
+					processedInput.add(((ItemStack) inputs[i]).copy());
 				} else if (inputs[i] instanceof Item) {
-					processedInput.add(new ItemStack((Item)inputs[i], 1, 0));
+					processedInput.add(new ItemStack((Item) inputs[i], 1, 0));
 				} else if (inputs[i] instanceof Block) {
-					processedInput.add(new ItemStack((Block)inputs[i], 1, 0));
+					processedInput.add(new ItemStack((Block) inputs[i], 1, 0));
 				} else {
 					throw new IllegalArgumentException("Unknown Object passed to recipe!");
 				}
 			}
 		}
-		
+
 		@Override
 		public Object[] getInput() {
 			return this.input;
@@ -105,36 +108,31 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 		public ItemStack getOutput() {
 			return this.output == null ? null : this.output.copy();
 		}
-		
+
 		@Override
-		public float getChance()
-		{
+		public float getChance() {
 			return this.chance;
 		}
-		
+
 		@Override
 		public ItemStack getSecondary() {
-			if (this.secondary != null){
+			if (this.secondary != null) {
 				return this.secondary.copy();
-			}
-			else {
+			} else {
 				return null;
 			}
 		}
-		
+
 		@Override
-		public ItemStack getContainerItem(List<ItemStack> items)
-		{
+		public ItemStack getContainerItem(List<ItemStack> items) {
 			ItemStack cont = null;
-			for (int i = 0 ; i < items.size() ; i++)
-			{
+			for (int i = 0; i < items.size(); i++) {
 				ItemStack next = items.get(i);
 				if (next != null) {
 					cont = next.getItem().getContainerItem(next);
 					if (cont != null && cont.getItem() != next.getItem()) {
 						break;
-					}
-					else {
+					} else {
 						cont = FluidContainerRegistry.drainFluidContainer(next);
 						if (cont != null) {
 							break;
@@ -142,97 +140,81 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 					}
 				}
 			}
-			
+
 			return cont == null ? null : cont;
 		}
-		
+
 		@Override
-		public boolean isFoodRecipe()
-		{
+		public boolean isFoodRecipe() {
 			return this.foodRecipe;
 		}
-		
+
 		@Override
-		public boolean forceReturnContainer()
-		{
+		public boolean forceReturnContainer() {
 			return this.forceContainer;
 		}
-		
+
 		@Override
-		public List<Object> getProcessedInput()
-		{
+		public List<Object> getProcessedInput() {
 			return new ArrayList<Object>(this.processedInput);
 		}
-		
+
 		@Deprecated
 		@Override
-		public List<Object> getProsessedInput()
-		{
+		public List<Object> getProsessedInput() {
 			return new ArrayList<Object>(this.processedInput);
 		}
-		
+
 		@Override
-		public int getRecipeSize()
-		{
+		public int getRecipeSize() {
 			return this.processedInput.size();
 		}
-		
+
 		@Override
-	    public boolean matches(List<ItemStack> items)
-	    {
-	        ArrayList<Object> required = new ArrayList<Object>(this.processedInput);
-	        boolean food = this.isFoodRecipe();
+		public boolean matches(List<ItemStack> items) {
+			ArrayList<Object> required = new ArrayList<Object>(this.processedInput);
+			boolean food = this.isFoodRecipe();
 
-	        for (int x = 0; x < items.size(); x++)
-	        {
-	            ItemStack slot = items.get(x);
+			for (int x = 0; x < items.size(); x++) {
+				ItemStack slot = items.get(x);
 
-	            if (slot != null)
-	            {
-	                boolean inRecipe = false;
-	                Iterator<Object> req = required.iterator();
-	                
-	                if (slot.getItem() == DCsAppleMilk.slotPanel)
-	                {
-	                	inRecipe = true;
-	                	continue;
-	                }
+				if (slot != null) {
+					boolean inRecipe = false;
+					Iterator<Object> req = required.iterator();
 
-	                while (req.hasNext())
-	                {
-	                    boolean match = false;
+					if (slot.getItem() == DCsAppleMilk.slotPanel) {
+						inRecipe = true;
+						continue;
+					}
 
-	                    Object next = req.next();
+					while (req.hasNext()) {
+						boolean match = false;
 
-	                    if (next instanceof ItemStack)
-	                    {
-	                        match = OreDictionary.itemMatches((ItemStack)next, slot, false);
-	                    }
-	                    else if (next instanceof ArrayList)
-	                    {
-	                        Iterator<ItemStack> itr = ((ArrayList<ItemStack>)next).iterator();
-	                        while (itr.hasNext() && !match)
-	                        {
-	                            match = OreDictionary.itemMatches(itr.next(), slot, false);
-	                        }
-	                    }
+						Object next = req.next();
 
-	                    if (match)
-	                    {
-	                        inRecipe = true;
-	                        required.remove(next);
-	                        break;
-	                    }
-	                }
+						if (next instanceof ItemStack) {
+							match = OreDictionary.itemMatches((ItemStack) next, slot, false);
+						} else if (next instanceof ArrayList) {
+							Iterator<ItemStack> itr = ((ArrayList<ItemStack>) next).iterator();
+							while (itr.hasNext() && !match) {
+								match = OreDictionary.itemMatches(itr.next(), slot, false);
+							}
+						}
 
-	                if (!inRecipe)
-	                {
-	                    return false;
-	                }
-	            }
-	        }
+						if (match) {
+							inRecipe = true;
+							required.remove(next);
+							break;
+						}
+					}
 
-	        return required.isEmpty();
-	    }
+					if (!inRecipe) {
+						return false;
+					}
+				}
+			}
+
+			return required.isEmpty();
+		}
 	}
 }

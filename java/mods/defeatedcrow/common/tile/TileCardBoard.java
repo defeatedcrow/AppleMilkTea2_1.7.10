@@ -1,5 +1,5 @@
 package mods.defeatedcrow.common.tile;
 
-public class TileCardBoard extends TileHasDirection{
+public class TileCardBoard extends TileHasDirection {
 
 }

@@ -19,9 +19,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class LoadForestryPlugin {
-	
-	public void load()
-	{
+
+	public void load() {
 		ItemStack item = new ItemStack(Util.getModItem("Forestry", "waxCapsule"), 1);
 		if (item != null) {
 			ItemStack register = new ItemStack(item.getItem());
@@ -78,12 +77,9 @@ public class LoadForestryPlugin {
 			ItemStack register = new ItemStack(item7.getItem());
 			if (register != null) {
 				LoadModHandler.registerModItems("honeyedSlice", register);
-				GameRegistry.addRecipe(
-						 new ShapedOreRecipe(
-						  new ItemStack(register.getItem(), 4, register.getItemDamage()),
-			    		  new Object[]{"XXX","XYX","XXX",
-			    			  Character.valueOf('Y'), new ItemStack(Items.bread, 1, 0),
-			    			  Character.valueOf('X'), "dropHoney"}));
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(register.getItem(), 4, register
+						.getItemDamage()), new Object[] { "XXX", "XYX", "XXX", Character.valueOf('Y'),
+						new ItemStack(Items.bread, 1, 0), Character.valueOf('X'), "dropHoney" }));
 				AMTLogger.debugInfo("Succeeded to get Forestry Honeyed Slice");
 			}
 		}
@@ -92,92 +88,65 @@ public class LoadForestryPlugin {
 			ItemStack register = new ItemStack(item8.getItem());
 			if (register != null) {
 				LoadModHandler.registerModItems("fertilizer", register);
-				
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-						  new ItemStack(register.getItem(), 2, register.getItemDamage()),
-			    		  new Object[]{
-			    			  "dustOilCake",
-				    		  new ItemStack(Items.dye, 1, 15),
-				    		  "dustAsh"
-							 }));
-				
-				GameRegistry.addRecipe(
-						 new ShapelessOreRecipe(
-			    		  new ItemStack(register.getItem(), 2, register.getItemDamage()),
-			    		  new Object[]{
-			    			  "dustOilCake",
-				    		  "dustClam",
-				    		  "dustAsh"
-							 }));
-				
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(register.getItem(), 2, register
+						.getItemDamage()), new Object[] { "dustOilCake", new ItemStack(Items.dye, 1, 15), "dustAsh" }));
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(register.getItem(), 2, register
+						.getItemDamage()), new Object[] { "dustOilCake", "dustClam", "dustAsh" }));
+
 				ItemStack mulch = new ItemStack(Util.getModItem("Forestry", "mulch"), 1);
-				if (mulch != null)
-				{
+				if (mulch != null) {
 					LoadModHandler.registerModItems("mulch", mulch);
-					
-					GameRegistry.addRecipe(
-							 new ShapelessOreRecipe(
-							  new ItemStack(register.getItem(), 2, register.getItemDamage()),
-				    		  new Object[]{
-				    			  mulch,
-					    		  new ItemStack(Items.dye, 1, 15),
-					    		  "dustAsh"
-								 }));
-					
-					GameRegistry.addRecipe(
-							 new ShapelessOreRecipe(
-				    		  new ItemStack(register.getItem(), 2, register.getItemDamage()),
-				    		  new Object[]{
-				    			  mulch,
-					    		  "dustClam",
-					    		  "dustAsh"
-								 }));
+
+					GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(register.getItem(), 2, register
+							.getItemDamage()), new Object[] { mulch, new ItemStack(Items.dye, 1, 15), "dustAsh" }));
+
+					GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(register.getItem(), 2, register
+							.getItemDamage()), new Object[] { mulch, "dustClam", "dustAsh" }));
 				}
-				
+
 				AMTLogger.debugInfo("Succeeded to get Forestry fertilizer");
 			}
 		}
-		
-		if (FluidRegistry.isFluidRegistered("vegitable_oil"))
-        {
-        	FuelManager.bronzeEngineFuel.put(DCsAppleMilk.vegitableOil,
-        			new EngineBronzeFuel(DCsAppleMilk.vegitableOil, 2, 2500, 1));
-        	AMTLogger.debugInfo("Succeeded to register fuel for Forestry Bronze Engine : vegitable_oil");
-        }
-		if (FluidRegistry.isFluidRegistered("camellia_oil"))
-        {
-        	FuelManager.bronzeEngineFuel.put(DCsAppleMilk.camelliaOil,
-        			new EngineBronzeFuel(DCsAppleMilk.camelliaOil, 4, 2500, 1));
-        	AMTLogger.debugInfo("Succeeded to register fuel for Forestry Bronze Engine : camellia_oil");
-        }
+
+		if (FluidRegistry.isFluidRegistered("vegitable_oil")) {
+			FuelManager.bronzeEngineFuel.put(DCsAppleMilk.vegitableOil, new EngineBronzeFuel(DCsAppleMilk.vegitableOil,
+					2, 2500, 1));
+			AMTLogger.debugInfo("Succeeded to register fuel for Forestry Bronze Engine : vegitable_oil");
+		}
+		if (FluidRegistry.isFluidRegistered("camellia_oil")) {
+			FuelManager.bronzeEngineFuel.put(DCsAppleMilk.camelliaOil, new EngineBronzeFuel(DCsAppleMilk.camelliaOil,
+					4, 2500, 1));
+			AMTLogger.debugInfo("Succeeded to register fuel for Forestry Bronze Engine : camellia_oil");
+		}
 	}
-	
-	public static void loadRecipes(boolean flag)
-	{
-		if (!flag) return;
-		
+
+	public static void loadRecipes(boolean flag) {
+		if (!flag)
+			return;
+
 		// 製油
-		RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.leafTea, 8, 4)},
+		RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[] { new ItemStack(DCsAppleMilk.leafTea, 8, 4) },
 				new FluidStack(DCsAppleMilk.camelliaOil, 100), new ItemStack(DCsAppleMilk.dustWood, 1, 3), 70);
-		
+
 		// エッセンス
 		Fluid juice = FluidRegistry.getFluid("juice");
 		Fluid biomass = FluidRegistry.getFluid("biomass");
 		Fluid ice = FluidRegistry.getFluid("ice");
-		if (juice != null && biomass != null && ice != null)
-		{
-			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.leafTea, 8, 1)},
+		if (juice != null && biomass != null && ice != null) {
+			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[] { new ItemStack(DCsAppleMilk.leafTea, 8, 1) },
 					new FluidStack(juice, 100), new ItemStack(DCsAppleMilk.essentialOil, 1, 2), 10);
-			
-			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.leafTea, 8, 3)},
+
+			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[] { new ItemStack(DCsAppleMilk.leafTea, 8, 3) },
 					new FluidStack(juice, 200), new ItemStack(DCsAppleMilk.essentialOil, 1, 3), 10);
-			
-			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.clam, 8, 0)},
+
+			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[] { new ItemStack(DCsAppleMilk.clam, 8, 0) },
 					new FluidStack(biomass, 100), new ItemStack(DCsAppleMilk.essentialOil, 1, 4), 10);
-			
-			RecipeManagers.squeezerManager.addRecipe(4, new ItemStack[]{new ItemStack(DCsAppleMilk.icyCrystal, 1, 0)},
-					new FluidStack(ice, 100), new ItemStack(DCsAppleMilk.essentialOil, 1, 5), 10);
+
+			RecipeManagers.squeezerManager.addRecipe(4,
+					new ItemStack[] { new ItemStack(DCsAppleMilk.icyCrystal, 1, 0) }, new FluidStack(ice, 100),
+					new ItemStack(DCsAppleMilk.essentialOil, 1, 5), 10);
 		}
 	}
 

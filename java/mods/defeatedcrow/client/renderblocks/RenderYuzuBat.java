@@ -15,103 +15,116 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderYuzuBat implements ISimpleBlockRenderingHandler{
-	
+public class RenderYuzuBat implements ISimpleBlockRenderingHandler {
+
 	private IIcon boxIIcon;
 	private IIcon innerIIcon;
 
 	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelID,
-			RenderBlocks renderer) {
-		
+	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+
 		int meta = metadata;
 		this.boxIIcon = DCsAppleMilk.teppann.getBlockTextureFromSide(1);
 		this.innerIIcon = DCsAppleMilk.yuzuBat.getBlockTextureFromSide(0);
-		
-		if (modelID == this.getRenderId())
-		{
-			renderInvCuboid(renderer, block,  0.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F, 1.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  0.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  15.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F, 1.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  15.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F,  this.boxIIcon);
-			
-			renderInvCuboid(renderer, block,  0.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  15.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  1.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  1.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F,  this.boxIIcon);
-			
-			renderInvCuboid(renderer, block,  0.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F, 15.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  15.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F, 15.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  1.0F/16.0F, 15.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 16.0F/16.0F, 1.0F/16.0F,  this.boxIIcon);
-			renderInvCuboid(renderer, block,  1.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F,  this.boxIIcon);
-			
-			renderInvCuboid(renderer, block,  1.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F,  this.innerIIcon);
+
+		if (modelID == this.getRenderId()) {
+			renderInvCuboid(renderer, block, 0.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 1.0F / 16.0F, 16.0F / 16.0F,
+					1.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 0.0F / 16.0F, 0.0F / 16.0F, 15.0F / 16.0F, 1.0F / 16.0F, 16.0F / 16.0F,
+					16.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 15.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 16.0F / 16.0F, 16.0F / 16.0F,
+					1.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 15.0F / 16.0F, 0.0F / 16.0F, 15.0F / 16.0F, 16.0F / 16.0F, 16.0F / 16.0F,
+					16.0F / 16.0F, this.boxIIcon);
+
+			renderInvCuboid(renderer, block, 0.0F / 16.0F, 0.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F,
+					15.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 15.0F / 16.0F, 0.0F / 16.0F, 1.0F / 16.0F, 16.0F / 16.0F, 1.0F / 16.0F,
+					15.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 1.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 15.0F / 16.0F, 1.0F / 16.0F,
+					1.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 1.0F / 16.0F, 0.0F / 16.0F, 15.0F / 16.0F, 15.0F / 16.0F, 1.0F / 16.0F,
+					16.0F / 16.0F, this.boxIIcon);
+
+			renderInvCuboid(renderer, block, 0.0F / 16.0F, 15.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F, 16.0F / 16.0F,
+					15.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 15.0F / 16.0F, 15.0F / 16.0F, 1.0F / 16.0F, 16.0F / 16.0F, 16.0F / 16.0F,
+					15.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 1.0F / 16.0F, 15.0F / 16.0F, 0.0F / 16.0F, 15.0F / 16.0F, 16.0F / 16.0F,
+					1.0F / 16.0F, this.boxIIcon);
+			renderInvCuboid(renderer, block, 1.0F / 16.0F, 15.0F / 16.0F, 15.0F / 16.0F, 15.0F / 16.0F, 16.0F / 16.0F,
+					16.0F / 16.0F, this.boxIIcon);
+
+			renderInvCuboid(renderer, block, 1.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F, 15.0F / 16.0F, 15.0F / 16.0F,
+					15.0F / 16.0F, this.innerIIcon);
 		}
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,
-			Block block, int modelId, RenderBlocks renderer) {
-		
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+			RenderBlocks renderer) {
+
 		int meta = world.getBlockMetadata(x, y, z);
 		this.boxIIcon = DCsAppleMilk.teppann.getBlockTextureFromSide(1);
 		this.innerIIcon = DCsAppleMilk.yuzuBat.getBlockTextureFromSide(0);
-		
-		if (modelId == this.getRenderId())
-		{
+
+		if (modelId == this.getRenderId()) {
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(0.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F, 1.0F/16.0F);
+			block.setBlockBounds(0.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 1.0F / 16.0F, 16.0F / 16.0F, 1.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(0.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F);
+			block.setBlockBounds(0.0F / 16.0F, 0.0F / 16.0F, 15.0F / 16.0F, 1.0F / 16.0F, 16.0F / 16.0F, 16.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(15.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F, 1.0F/16.0F);
+			block.setBlockBounds(15.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 16.0F / 16.0F, 16.0F / 16.0F, 1.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(15.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F);
+			block.setBlockBounds(15.0F / 16.0F, 0.0F / 16.0F, 15.0F / 16.0F, 16.0F / 16.0F, 16.0F / 16.0F,
+					16.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
-			
+
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(0.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F);
-			renderer.setRenderBoundsFromBlock(block);
-			renderer.renderStandardBlock(block, x, y, z);
-			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(15.0F/16.0F, 0.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F);
+			block.setBlockBounds(0.0F / 16.0F, 0.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F, 15.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(1.0F/16.0F, 0.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F);
+			block.setBlockBounds(15.0F / 16.0F, 0.0F / 16.0F, 1.0F / 16.0F, 16.0F / 16.0F, 1.0F / 16.0F, 15.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(1.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F);
-			renderer.setRenderBoundsFromBlock(block);
-			renderer.renderStandardBlock(block, x, y, z);
-			
-			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(0.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F, 15.0F/16.0F);
+			block.setBlockBounds(1.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 15.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(15.0F/16.0F, 15.0F/16.0F, 1.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F, 15.0F/16.0F);
+			block.setBlockBounds(1.0F / 16.0F, 0.0F / 16.0F, 15.0F / 16.0F, 15.0F / 16.0F, 1.0F / 16.0F, 16.0F / 16.0F);
+			renderer.setRenderBoundsFromBlock(block);
+			renderer.renderStandardBlock(block, x, y, z);
+
+			renderer.setOverrideBlockTexture(this.boxIIcon);
+			block.setBlockBounds(0.0F / 16.0F, 15.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F, 16.0F / 16.0F, 15.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(1.0F/16.0F, 15.0F/16.0F, 0.0F/16.0F, 15.0F/16.0F, 16.0F/16.0F, 1.0F/16.0F);
+			block.setBlockBounds(15.0F / 16.0F, 15.0F / 16.0F, 1.0F / 16.0F, 16.0F / 16.0F, 16.0F / 16.0F,
+					15.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 			renderer.setOverrideBlockTexture(this.boxIIcon);
-			block.setBlockBounds(1.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 16.0F/16.0F, 16.0F/16.0F);
+			block.setBlockBounds(1.0F / 16.0F, 15.0F / 16.0F, 0.0F / 16.0F, 15.0F / 16.0F, 16.0F / 16.0F, 1.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
-			
+			renderer.setOverrideBlockTexture(this.boxIIcon);
+			block.setBlockBounds(1.0F / 16.0F, 15.0F / 16.0F, 15.0F / 16.0F, 15.0F / 16.0F, 16.0F / 16.0F,
+					16.0F / 16.0F);
+			renderer.setRenderBoundsFromBlock(block);
+			renderer.renderStandardBlock(block, x, y, z);
+
 			renderer.setOverrideBlockTexture(this.innerIIcon);
-			block.setBlockBounds(1.0F/16.0F, 1.0F/16.0F, 1.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F, 15.0F/16.0F);
+			block.setBlockBounds(1.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F, 15.0F / 16.0F, 15.0F / 16.0F, 15.0F / 16.0F);
 			renderer.setRenderBoundsFromBlock(block);
 			renderer.renderStandardBlock(block, x, y, z);
 
@@ -120,24 +133,24 @@ public class RenderYuzuBat implements ISimpleBlockRenderingHandler{
 			renderer.setRenderBoundsFromBlock(block);
 			return true;
 		}
-			
+
 		return false;
 	}
 
 	@Override
 	public boolean shouldRender3DInInventory(int a) {
-		
+
 		return true;
 	}
 
 	@Override
 	public int getRenderId() {
-		
+
 		return DCsAppleMilk.modelYuzuBat;
 	}
-	
-	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX, float maxY, float maxZ, IIcon icon)
-	{
+
+	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX,
+			float maxY, float maxZ, IIcon icon) {
 		Tessellator tessellator = Tessellator.instance;
 		block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		renderer.setRenderBoundsFromBlock(block);

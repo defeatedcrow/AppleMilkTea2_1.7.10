@@ -10,32 +10,28 @@ import net.minecraft.item.ItemStack;
 
 /**
  * グーで殴る
- * */
+ */
 public class GenkotuHandler {
-	
-	public static ItemStack getMobsDrop(EntityLivingBase entity)
-	{
+
+	public static ItemStack getMobsDrop(EntityLivingBase entity) {
 		Method method;
 		ItemStack ret = null;
-		if (entity instanceof EntityLiving)
-		{
+		if (entity instanceof EntityLiving) {
 			EntityLiving living = (EntityLiving) entity;
 			String packageName = entity.getClass().getName();
-			
+
 			try {
 				method = entity.getClass().getDeclaredMethod("getDropItem");
 				method.setAccessible(true);
 				Object obj = method.invoke(entity);
-				if (obj != null && obj instanceof Item)
-				{
-					Item ID = (Item)obj;
-					if (ID != null)
-					{
+				if (obj != null && obj instanceof Item) {
+					Item ID = (Item) obj;
+					if (ID != null) {
 						ret = new ItemStack(ID, 1, 0);
 						AMTLogger.debugInfo("Item name : " + ret.getDisplayName());
 					}
 				}
-				
+
 			} catch (Exception e) {
 				AMTLogger.info("Failed to get drop : " + entity.getCommandSenderName());
 				return null;

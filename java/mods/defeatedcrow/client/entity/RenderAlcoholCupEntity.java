@@ -16,6 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderAlcoholCupEntity extends Render {
+
 	private static final ResourceLocation cocktailTex = new ResourceLocation(
 			"defeatedcrow:textures/entity/cocktail.png");
 	private static final ResourceLocation atukanTex = new ResourceLocation("defeatedcrow:textures/entity/atukan.png");

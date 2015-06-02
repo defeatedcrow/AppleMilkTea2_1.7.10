@@ -13,13 +13,12 @@ import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.event.DispenserEvent;
 
-public class PanRecipeRegister implements IPanRecipeRegister{
-	
+public class PanRecipeRegister implements IPanRecipeRegister {
+
 	private static List<PanRecipe> recipes;
 	private static List<ItemStack> heatSource;
-	
-	public PanRecipeRegister()
-	{
+
+	public PanRecipeRegister() {
 		this.recipes = new ArrayList<PanRecipe>();
 		this.heatSource = new ArrayList<ItemStack>();
 	}
@@ -28,58 +27,49 @@ public class PanRecipeRegister implements IPanRecipeRegister{
 	public List<PanRecipe> getRecipeList() {
 		return this.recipes;
 	}
-	
+
 	@Override
-	public List<ItemStack> getHeatSourceList()
-	{
+	public List<ItemStack> getHeatSourceList() {
 		return this.heatSource;
 	}
-	
-	public IPanRecipeRegister instance()
-	{
+
+	public IPanRecipeRegister instance() {
 		return RecipeRegisterManager.panRecipe;
 	}
 
 	@Override
 	public PanRecipe getRecipe(ItemStack item) {
-		if (item == null) return null;
-		for (PanRecipe recipe : this.recipes)
-		{
-			if (this.isItemEqual(item, recipe.getInput().getItem(), recipe.getInput().getItemDamage()))
-			{
+		if (item == null)
+			return null;
+		for (PanRecipe recipe : this.recipes) {
+			if (this.isItemEqual(item, recipe.getInput().getItem(), recipe.getInput().getItemDamage())) {
 				return recipe;
 			}
 		}
 		return null;
 	}
-	
+
 	@Override
-	public boolean isHeatSource(Block block, int meta)
-	{
-		if (block == null) return false;
+	public boolean isHeatSource(Block block, int meta) {
+		if (block == null)
+			return false;
 		int m = MathHelper.clamp_int(meta, 0, 15);
-		for (ItemStack source : this.heatSource)
-		{
-			if (this.isItemEqual(source, Item.getItemFromBlock(block), m))
-			{
+		for (ItemStack source : this.heatSource) {
+			if (this.isItemEqual(source, Item.getItemFromBlock(block), m)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	private boolean isItemEqual(ItemStack a, Item b, int meta)
-	{
-		if (a == null)return false;
+
+	private boolean isItemEqual(ItemStack a, Item b, int meta) {
+		if (a == null)
+			return false;
 		boolean flag = false;
-		if (a.getItem() == b)
-		{
-			if (a.getItemDamage() == meta)
-			{
+		if (a.getItem() == b) {
+			if (a.getItemDamage() == meta) {
 				flag = true;
-			}
-			else if (a.getItemDamage() == 32767)
-			{
+			} else if (a.getItemDamage() == 32767) {
 				flag = true;
 			}
 		}
@@ -88,49 +78,42 @@ public class PanRecipeRegister implements IPanRecipeRegister{
 
 	@Override
 	public void register(ItemStack input, ItemStack output, String tex, String disp) {
-		if (input != null)
-		{
+		if (input != null) {
 			register(input, output, output, tex, disp);
 		}
 	}
 
 	@Override
-	public void register(ItemStack input, ItemStack output,
-			ItemStack output2, String tex, String disp) {
-		if (input != null)
-		{
+	public void register(ItemStack input, ItemStack output, ItemStack output2, String tex, String disp) {
+		if (input != null) {
 			this.recipes.add(new PanRecipe(input, output, output2, tex, disp));
 		}
 		AMTLogger.debugInfo("Add Pan Recipe: input " + input.getDisplayName() + ", output " + output.getDisplayName());
 	}
-	
+
 	@Override
-	public void registerHeatSource(Block block, int meta)
-	{
-		if (block != null)
-		{
+	public void registerHeatSource(Block block, int meta) {
+		if (block != null) {
 			int m = MathHelper.clamp_int(meta, -1, 15);
 			if (m == -1) {
 				this.heatSource.add(new ItemStack(block, 1, 32767));
-			}
-			else {
+			} else {
 				this.heatSource.add(new ItemStack(block, 1, m));
 			}
-			
+
 			AMTLogger.debugInfo("Add heat source : " + block.getLocalizedName());
 		}
 	}
-	
+
 	public class PanRecipe implements IPanRecipe {
-		
+
 		private final ItemStack input;
 		private final ItemStack output;
 		private final ItemStack outputJP;
 		private final String Tex;
 		private final String display;
-		
-		public PanRecipe(ItemStack inputItem, ItemStack outputItem, ItemStack jpItem, String tex, String disp)
-		{
+
+		public PanRecipe(ItemStack inputItem, ItemStack outputItem, ItemStack jpItem, String tex, String disp) {
 			this.input = inputItem;
 			this.output = outputItem;
 			this.outputJP = jpItem;
@@ -145,26 +128,29 @@ public class PanRecipeRegister implements IPanRecipeRegister{
 
 		@Override
 		public ItemStack getOutput() {
-			if (this.output == null)return null;
+			if (this.output == null)
+				return null;
 			return this.output.copy();
 		}
-		
+
 		@Override
 		public ItemStack getOutputJP() {
-			if (this.outputJP == null)return null;
+			if (this.outputJP == null)
+				return null;
 			return this.outputJP.copy();
 		}
 
 		@Override
 		public String getTex() {
-			if (this.Tex == null)return "rice";
+			if (this.Tex == null)
+				return "rice";
 			return this.Tex;
 		}
-		
+
 		@Override
-		public String getDisplayName()
-		{
-			if (this.display == null)return "Rice";
+		public String getDisplayName() {
+			if (this.display == null)
+				return "Rice";
 			return this.display;
 		}
 	}

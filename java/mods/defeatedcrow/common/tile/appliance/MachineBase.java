@@ -30,7 +30,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * ChargeItemを燃料とするTileEntityのベースクラス。 <br>
  * チャージ管理部分のみを共通処理としてここで作っている。 <br>
  * レシピとアイテム生産については個々のクラスで作る。
- * */
+ */
 public abstract class MachineBase extends TileEntity implements ISidedInventory, IChargeableMachine {
 
 	// 現在のチャージ量

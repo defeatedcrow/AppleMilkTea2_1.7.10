@@ -1,6 +1,5 @@
 package mods.defeatedcrow.common.tile.appliance;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,48 +17,46 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class TileProsessor extends MachineBase{
+public class TileProsessor extends MachineBase {
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
-	{
+	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
 		super.readFromNBT(par1NBTTagCompound);
 	}
-	
+
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
-	{
+	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
 		super.writeToNBT(par1NBTTagCompound);
 	}
-	
+
 	@Override
 	public Packet getDescriptionPacket() {
-        return super.getDescriptionPacket();
+		return super.getDescriptionPacket();
 	}
- 
+
 	@Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-        super.onDataPacket(net, pkt);
-    }
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+		super.onDataPacket(net, pkt);
+	}
 
 	@Override
 	public boolean canSmelt() {
 		boolean flag1 = false;
 		boolean flag2 = false;
-		
+
 		List<ItemStack> items = new ArrayList<ItemStack>(this.getCurrentContains());
-		List<IProcessorRecipe> recipes = new ArrayList<IProcessorRecipe>((List<IProcessorRecipe>) RecipeRegisterManager.processorRecipe.getRecipes());
-		if (recipes == null || recipes.isEmpty()) return false;
-		
+		List<IProcessorRecipe> recipes = new ArrayList<IProcessorRecipe>(
+				(List<IProcessorRecipe>) RecipeRegisterManager.processorRecipe.getRecipes());
+		if (recipes == null || recipes.isEmpty())
+			return false;
+
 		ItemStack output = null;
 		ItemStack sec = null;
 		ItemStack cont = null;
 		float chance = 1.0F;
-		
-		for(IProcessorRecipe recipe : recipes)
-		{
-			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && recipe.matches(items))
-			{
+
+		for (IProcessorRecipe recipe : recipes) {
+			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && recipe.matches(items)) {
 				output = recipe.getOutput();
 				sec = recipe.getSecondary();
 				chance = recipe.getChance();
@@ -67,228 +64,183 @@ public class TileProsessor extends MachineBase{
 				break;
 			}
 		}
-		
-		if (output == null && sec == null) return false;
-		
-		if (output == null) flag1 = true;
-		else
-		{
-			if (this.itemstacks[11] == null)
-			{
+
+		if (output == null && sec == null)
+			return false;
+
+		if (output == null)
+			flag1 = true;
+		else {
+			if (this.itemstacks[11] == null) {
 				flag1 = true;
-			}
-			else
-			{
-				if (this.itemstacks[11].isItemEqual(output))
-				{
+			} else {
+				if (this.itemstacks[11].isItemEqual(output)) {
 					int result = this.itemstacks[11].stackSize + output.stackSize;
 					flag1 = (result <= this.getInventoryStackLimit() && result <= output.getMaxStackSize());
 				}
 			}
 		}
-		
-		if (flag1)
-		{
-			if (sec != null)
-			{
-				if (this.itemstacks[12] == null)
-				{
+
+		if (flag1) {
+			if (sec != null) {
+				if (this.itemstacks[12] == null) {
 					flag2 = true;
-				}
-				else
-				{
-					if (this.itemstacks[12].isItemEqual(sec))
-					{
+				} else {
+					if (this.itemstacks[12].isItemEqual(sec)) {
 						int result = this.itemstacks[12].stackSize + sec.stackSize;
 						flag2 = (result <= this.getInventoryStackLimit() && result <= sec.getMaxStackSize());
 					}
 				}
-			}
-			else if (cont != null)
-			{
-				if (this.itemstacks[12] == null)
-				{
+			} else if (cont != null) {
+				if (this.itemstacks[12] == null) {
 					flag2 = true;
-				}
-				else
-				{
-					if (this.itemstacks[12].isItemEqual(cont))
-					{
+				} else {
+					if (this.itemstacks[12].isItemEqual(cont)) {
 						int result = this.itemstacks[12].stackSize + cont.stackSize;
 						flag2 = (result <= this.getInventoryStackLimit() && result <= cont.getMaxStackSize());
 					}
 				}
-			}
-			else
-			{
+			} else {
 				flag2 = true;
 			}
 		}
-		
+
 		return flag1 && flag2;
 	}
-	
-	protected List<ItemStack> getCurrentContains()
-	{
+
+	protected List<ItemStack> getCurrentContains() {
 		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-		for (int i = 2; i < 11; i++)
-		{
-			if (this.itemstacks[i] != null)
-			{
+		for (int i = 2; i < 11; i++) {
+			if (this.itemstacks[i] != null) {
 				items.add(this.itemstacks[i].copy());
 			}
 		}
 		return items;
 	}
-	
-	public boolean acceptFoodRecipe()
-	{
+
+	public boolean acceptFoodRecipe() {
 		return true;
 	}
 
 	@Override
 	public void onProgress() {
-		//結局canSmelt()と同じことをしていて無駄な感じはする
+		// 結局canSmelt()と同じことをしていて無駄な感じはする
 		List<ItemStack> items = new ArrayList<ItemStack>(this.getCurrentContains());
-		List<IProcessorRecipe> recipes = new ArrayList<IProcessorRecipe>((List<IProcessorRecipe>) RecipeRegisterManager.prosessorRecipe.getRecipes());
-		if (recipes == null || recipes.isEmpty()) return;
-		
+		List<IProcessorRecipe> recipes = new ArrayList<IProcessorRecipe>(
+				(List<IProcessorRecipe>) RecipeRegisterManager.prosessorRecipe.getRecipes());
+		if (recipes == null || recipes.isEmpty())
+			return;
+
 		IProcessorRecipe activeRecipe = null;
 		boolean flag = false;
-		
-		for(IProcessorRecipe recipe : recipes)
-		{
-			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && recipe.matches(items))
-			{
+
+		for (IProcessorRecipe recipe : recipes) {
+			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && recipe.matches(items)) {
 				activeRecipe = recipe;
 				flag = true;
 			}
 		}
-		
-		if (flag && activeRecipe != null)
-		{
-			//まずは材料を減らす
+
+		if (flag && activeRecipe != null) {
+			// まずは材料を減らす
 			List<Object> required = new ArrayList<Object>(activeRecipe.getProcessedInput());
 			ItemStack output = activeRecipe.getOutput();
 			ItemStack sec = activeRecipe.getSecondary();
 			ItemStack cont = activeRecipe.getContainerItem(items);
 			float chance = activeRecipe.getChance();
 			boolean getSec = worldObj.rand.nextFloat() <= chance;
-			
-			for (int i = 2; i < 11; i++)
-			{
+
+			for (int i = 2; i < 11; i++) {
 				ItemStack slot = this.itemstacks[i];
 
-	            if (slot != null)
-	            {
-	                boolean inRecipe = false;
-	                Iterator<Object> req = required.iterator();
-	                
-	                if (slot.getItem() == DCsAppleMilk.slotPanel)
-	                {
-	                	inRecipe = true;
-	                	continue;
-	                }
+				if (slot != null) {
+					boolean inRecipe = false;
+					Iterator<Object> req = required.iterator();
 
-	                //9スロットについて、要求材料の数だけ回す
-	                while (req.hasNext())
-	                {
-	                    boolean match = false;
-	                    Object next = req.next();
-	                    int count = 1;
+					if (slot.getItem() == DCsAppleMilk.slotPanel) {
+						inRecipe = true;
+						continue;
+					}
 
-	                    if (next instanceof ItemStack)
-	                    {
-	                    	count = ((ItemStack)next).stackSize;
-	                    	
-	                        match = OreDictionary.itemMatches((ItemStack)next, slot, false)
-	                        		&& slot.stackSize >= count;
-	                    }
-	                    else if (next instanceof ArrayList)
-	                    {
-	                        ArrayList<ItemStack> list = new ArrayList<ItemStack>((ArrayList<ItemStack>)next);
-	                        count = 1;
-	                        if (list != null && !list.isEmpty())
-	                        {
-	                        	for (ItemStack item : list)
-		                        {
-		                            boolean f = OreDictionary.itemMatches(item, slot, false)
-		                            		&& slot.stackSize > 0;
-		                            if (f) match = true;
-		                        }
-	                        }
-	                    }
+					// 9スロットについて、要求材料の数だけ回す
+					while (req.hasNext()) {
+						boolean match = false;
+						Object next = req.next();
+						int count = 1;
 
-	                    if (match)
-	                    {
-	                        inRecipe = true;
-	                        required.remove(next);
-	                        this.itemstacks[i].stackSize -= count;;
-	                        if (this.itemstacks[i].stackSize < 1) this.itemstacks[i] = null;
-	                        this.markDirty();
-	                        break;
-	                    }
-	                }
+						if (next instanceof ItemStack) {
+							count = ((ItemStack) next).stackSize;
 
-	                if (!inRecipe)
-	                {
-	                    return;//中断
-	                }
-	            }
-			}
-			
-			if (output != null)
-			{
-				AMTLogger.debugInfo("current recipe : " + output.toString());
-				
-				//次に完成品を完成品スロットへ
-				if (this.itemstacks[11] == null)
-				{
-					this.itemstacks[11] = output.copy();
+							match = OreDictionary.itemMatches((ItemStack) next, slot, false) && slot.stackSize >= count;
+						} else if (next instanceof ArrayList) {
+							ArrayList<ItemStack> list = new ArrayList<ItemStack>((ArrayList<ItemStack>) next);
+							count = 1;
+							if (list != null && !list.isEmpty()) {
+								for (ItemStack item : list) {
+									boolean f = OreDictionary.itemMatches(item, slot, false) && slot.stackSize > 0;
+									if (f)
+										match = true;
+								}
+							}
+						}
+
+						if (match) {
+							inRecipe = true;
+							required.remove(next);
+							this.itemstacks[i].stackSize -= count;
+							;
+							if (this.itemstacks[i].stackSize < 1)
+								this.itemstacks[i] = null;
+							this.markDirty();
+							break;
+						}
+					}
+
+					if (!inRecipe) {
+						return;// 中断
+					}
 				}
-				else if (this.itemstacks[11].isItemEqual(output))
-				{
+			}
+
+			if (output != null) {
+				AMTLogger.debugInfo("current recipe : " + output.toString());
+
+				// 次に完成品を完成品スロットへ
+				if (this.itemstacks[11] == null) {
+					this.itemstacks[11] = output.copy();
+				} else if (this.itemstacks[11].isItemEqual(output)) {
 					this.itemstacks[11].stackSize += output.stackSize;
 				}
 			}
-			
-			if (sec != null && getSec)
-			{
-				if (this.itemstacks[12] == null)
-				{
-					this.itemstacks[12] =sec.copy();
-				}
-				else if (this.itemstacks[12].isItemEqual(sec))
-				{
+
+			if (sec != null && getSec) {
+				if (this.itemstacks[12] == null) {
+					this.itemstacks[12] = sec.copy();
+				} else if (this.itemstacks[12].isItemEqual(sec)) {
 					this.itemstacks[12].stackSize += sec.stackSize;
 				}
-			}
-			else if (cont != null)
-			{
-				if (this.itemstacks[12] == null)
-				{
-					this.itemstacks[12] =cont.copy();
-				}
-				else if (this.itemstacks[12].isItemEqual(cont))
-				{
+			} else if (cont != null) {
+				if (this.itemstacks[12] == null) {
+					this.itemstacks[12] = cont.copy();
+				} else if (this.itemstacks[12].isItemEqual(cont)) {
 					this.itemstacks[12].stackSize += cont.stackSize;
 				}
 			}
-			
+
 			this.markDirty();
 		}
 	}
-	
-	/*====== 以下、インベントリ関係 ======*/
-	
+
+	/* ====== 以下、インベントリ関係 ====== */
+
 	/*
 	 * フードプロセッサーの場合
 	 * 燃料スロット：0
 	 * 燃料空容器の排出スロット：1
 	 * 材料スロット：2～10
 	 * 完成品スロット：11,12
-	 * */
-	
+	 */
+
 	@Override
 	public int getSizeInventory() {
 		return 13;
@@ -296,19 +248,19 @@ public class TileProsessor extends MachineBase{
 
 	@Override
 	protected int[] slotsTop() {
-		return new int[]{0,2,3,4,5,6,7,8,9,10};
+		return new int[] { 0, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 	}
 
 	@Override
 	protected int[] slotsBottom() {
-		return new int[]{1,11,12};
+		return new int[] { 1, 11, 12 };
 	}
 
 	@Override
 	protected int[] slotsSides() {
-		return new int[]{0,1,2,3,4,5,6,7,8,9,10,11,12};
+		return new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 	}
-	
+
 	@Override
 	public String getInventoryName() {
 		return "Food Processor";

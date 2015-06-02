@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 public class ModelAltBowl extends ModelBase {
+
 	// fields
 	ModelRenderer plate1;
 	ModelRenderer plate2;
