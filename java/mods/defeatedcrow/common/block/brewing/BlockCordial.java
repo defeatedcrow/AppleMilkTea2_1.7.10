@@ -3,8 +3,9 @@ package mods.defeatedcrow.common.block.brewing;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.tile.TileCordial;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -16,17 +17,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.src.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import mods.defeatedcrow.common.*;
-import mods.defeatedcrow.common.tile.TileCordial;
-import mods.defeatedcrow.common.tile.TileLargeBottle;
-import mods.defeatedcrow.handler.Util;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /*
  * Cordialの中身はメタデータに任せている。
@@ -45,6 +43,7 @@ public class BlockCordial extends BlockContainer {
 	public BlockCordial() {
 		super(Material.glass);
 		this.setStepSound(Block.soundTypeGlass);
+		this.setHardness(0.2F);
 	}
 
 	@Override
@@ -152,10 +151,12 @@ public class BlockCordial extends BlockContainer {
 		return false;
 	}
 
+	@Override
 	public boolean isOpaqueCube() {
 		return false;
 	}
 
+	@Override
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
@@ -165,17 +166,20 @@ public class BlockCordial extends BlockContainer {
 		return DCsAppleMilk.modelCordial;
 	}
 
+	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
 		this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
 		return super.getCollisionBoundingBoxFromPool(par1World, par2, par3, par4);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
 		this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
 		return super.getSelectedBoundingBoxFromPool(par1World, par2, par3, par4);
 	}
 
+	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
 		this.thisBoundingBox(par1IBlockAccess.getBlockMetadata(par2, par3, par4));
 	}
@@ -185,6 +189,7 @@ public class BlockCordial extends BlockContainer {
 		this.setBlockBounds(0.0F + f, 0.0F, 0.0F + f, 1.0F - f, 1.0F, 1.0F - f);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2) {
 		int i = Math.min(par2, 4);
@@ -206,6 +211,7 @@ public class BlockCordial extends BlockContainer {
 		return Item.getItemFromBlock(this);
 	}
 
+	@Override
 	public int quantityDropped(Random random) {
 		return 0;
 	}

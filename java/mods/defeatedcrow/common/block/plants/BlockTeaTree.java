@@ -45,6 +45,7 @@ public class BlockTeaTree extends Block implements IShearable, IPlantable, IRigh
 		super(Material.wood);
 		this.setStepSound(Block.soundTypeGrass);
 		this.setTickRandomly(true);
+		this.setHardness(0.1F);
 	}
 
 	@Override

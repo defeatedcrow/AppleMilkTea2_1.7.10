@@ -1,23 +1,17 @@
 package mods.defeatedcrow.common.block.container;
 
 import java.util.List;
-import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.src.*;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
-import mods.defeatedcrow.common.*;
-import mods.defeatedcrow.handler.Util;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockMobDrop extends Block {
 
@@ -29,8 +23,10 @@ public class BlockMobDrop extends Block {
 	public BlockMobDrop() {
 		super(Material.wood);
 		this.setStepSound(Block.soundTypeWood);
+		this.setHardness(0.1F);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2) {
 		int i = par2 & 7;
@@ -40,10 +36,12 @@ public class BlockMobDrop extends Block {
 
 	}
 
+	@Override
 	public int damageDropped(int par1) {
 		return par1 & 7;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
 		par3List.add(new ItemStack(par1, 1, 0));

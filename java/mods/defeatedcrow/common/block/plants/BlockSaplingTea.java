@@ -1,8 +1,6 @@
 package mods.defeatedcrow.common.block.plants;
 
 import static net.minecraftforge.common.EnumPlantType.Plains;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.Random;
@@ -10,7 +8,6 @@ import java.util.Random;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,15 +20,10 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
-import net.minecraft.world.gen.feature.WorldGenForest;
-import net.minecraft.world.gen.feature.WorldGenHugeTrees;
-import net.minecraft.world.gen.feature.WorldGenTaiga2;
-import net.minecraft.world.gen.feature.WorldGenTrees;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.event.terraingen.TerrainGen;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockSaplingTea extends Block implements IPlantable {
 	@SideOnly(Side.CLIENT)
@@ -47,14 +39,17 @@ public class BlockSaplingTea extends Block implements IPlantable {
 		this.setStepSound(soundTypeGrass);
 	}
 
+	@Override
 	public boolean isOpaqueCube() {
 		return false;
 	}
 
+	@Override
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
 
+	@Override
 	public int getRenderType() {
 		return 1;
 	}
@@ -68,6 +63,7 @@ public class BlockSaplingTea extends Block implements IPlantable {
 	/**
 	 * Ticks the block if it's been scheduled
 	 */
+	@Override
 	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		if (!par1World.isRemote) {
 			super.updateTick(par1World, par2, par3, par4, par5Random);
@@ -115,16 +111,19 @@ public class BlockSaplingTea extends Block implements IPlantable {
 				|| (block != null && block.getMaterial() == Material.grass);
 	}
 
+	@Override
 	public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
 		Block soil = par1World.getBlock(par2, par3 - 1, par4);
 		return (par1World.getFullBlockLightValue(par2, par3, par4) >= 11 || par1World.canBlockSeeTheSky(par2, par3,
 				par4)) && this.canThisPlantGrowOnThisBlockID(par1World.getBlock(par2, par3 - 1, par4));
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
 		return super.canPlaceBlockAt(par1World, par2, par3, par4) && canBlockStay(par1World, par2, par3, par4);
 	}
 
+	@Override
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer,
 			int par6, float par7, float par8, float par9) {
 		ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
@@ -155,10 +154,12 @@ public class BlockSaplingTea extends Block implements IPlantable {
 	/**
 	 * Determines the damage on the item the block drops. Used in cloth and wood.
 	 */
+	@Override
 	public int damageDropped(int par1) {
 		return Math.min(par1, 2);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
 		par3List.add(new ItemStack(par1, 1, 0));
@@ -166,6 +167,7 @@ public class BlockSaplingTea extends Block implements IPlantable {
 		par3List.add(new ItemStack(par1, 1, 2));
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2) {
 		int meta = MathHelper.clamp_int(par2, 0, 2);

@@ -44,6 +44,7 @@ public class BlockCassisTree extends Block implements IShearable, IPlantable, IR
 		super(Material.wood);
 		this.setStepSound(Block.soundTypeGrass);
 		this.setTickRandomly(true);
+		this.setHardness(0.1F);
 	}
 
 	@Override

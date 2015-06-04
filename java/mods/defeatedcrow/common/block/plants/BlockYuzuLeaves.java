@@ -45,7 +45,7 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable, IRig
 		super(Material.leaves, false);
 		this.setTickRandomly(true);
 		this.setCreativeTab(DCsAppleMilk.applemilk);
-		this.setHardness(0.2F);
+		this.setHardness(0.1F);
 		this.setLightOpacity(1);
 		this.setStepSound(soundTypeGrass);
 

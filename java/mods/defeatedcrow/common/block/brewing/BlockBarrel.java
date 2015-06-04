@@ -38,6 +38,7 @@ public class BlockBarrel extends BlockContainer {
 	public BlockBarrel() {
 		super(Material.wood);
 		this.setStepSound(Block.soundTypeWood);
+		this.setHardness(0.3F);
 	}
 
 	@Override

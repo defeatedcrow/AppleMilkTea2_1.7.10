@@ -3,18 +3,16 @@ package mods.defeatedcrow.common.block.container;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.src.*;
 import net.minecraft.util.IIcon;
-import mods.defeatedcrow.common.*;
-import mods.defeatedcrow.handler.Util;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockWoodBox extends Block {
 
@@ -29,6 +27,7 @@ public class BlockWoodBox extends Block {
 	public BlockWoodBox() {
 		super(Material.wood);
 		this.setStepSound(Block.soundTypeWood);
+		this.setHardness(0.1F);
 	}
 
 	@Override
@@ -36,6 +35,7 @@ public class BlockWoodBox extends Block {
 		return par1;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2) {
 		int i = par2;

@@ -1,10 +1,9 @@
 package mods.defeatedcrow.common.block.container;
 
 import java.util.List;
-import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.common.tile.TileVegiBag;
+import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -13,14 +12,12 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.src.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import mods.defeatedcrow.common.*;
-import mods.defeatedcrow.common.tile.TileVegiBag;
-import mods.defeatedcrow.handler.Util;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockVegiBag extends BlockContainer {
 
@@ -37,6 +34,7 @@ public class BlockVegiBag extends BlockContainer {
 	public BlockVegiBag() {
 		super(Material.wood);
 		this.setStepSound(Block.soundTypeWood);
+		this.setHardness(0.1F);
 	}
 
 	@Override
@@ -49,6 +47,7 @@ public class BlockVegiBag extends BlockContainer {
 		return false;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2) {
 		int i = par2;
@@ -64,10 +63,12 @@ public class BlockVegiBag extends BlockContainer {
 
 	}
 
+	@Override
 	public int damageDropped(int par1) {
 		return par1;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
 		par3List.add(new ItemStack(par1, 1, 0));
@@ -95,6 +96,7 @@ public class BlockVegiBag extends BlockContainer {
 
 	}
 
+	@Override
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase,
 			ItemStack par6ItemStack) {
 		int playerFacing = MathHelper.floor_double((double) ((par5EntityLivingBase.rotationYaw * 4F) / 360F) + 0.5D) & 3;

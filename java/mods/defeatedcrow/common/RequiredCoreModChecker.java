@@ -1,12 +1,7 @@
 package mods.defeatedcrow.common;
 
-import java.io.IOException;
 import java.util.List;
 
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.relauncher.CoreModManager;
 
 public class RequiredCoreModChecker {
@@ -17,8 +12,8 @@ public class RequiredCoreModChecker {
 	private static boolean completed = false;
 	private final String BR = System.getProperty("line.separator");
 
-	public static final String VERSION = "1.7.10-1.0.4";
-	public static final String FILE_NAME = "PotionExtension-1.7.10-1.0.4.jar";
+	public static final String VERSION = "1.7.10-1.1.0";
+	public static final String FILE_NAME = "PotionExtension-1.7.10-1.1.0.jar";
 
 	public static boolean getCompleted() {
 		return completed;
