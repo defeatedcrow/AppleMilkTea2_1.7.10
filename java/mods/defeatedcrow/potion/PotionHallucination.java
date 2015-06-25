@@ -2,12 +2,10 @@ package mods.defeatedcrow.potion;
 
 import java.util.Random;
 
-import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.api.potion.PotionImmunityBase;
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.entity.dummy.EntityIllusionMobs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -21,8 +19,8 @@ public class PotionHallucination extends PotionImmunityBase {
 			"creeper.primed", "mob.skeleton.say", "mob.spider.say", "mob.endermen.idle" };
 	private final String[] netherMobs = new String[] { "mob.blaze.breathe", "mob.ghast.moan" };
 
-	public PotionHallucination(int par1, boolean par2, int par3) {
-		super(par1, par2, par3);
+	public PotionHallucination(int par1, boolean par2, int par3, int x, int y) {
+		super(par1, par2, par3, x, y);
 	}
 
 	/**

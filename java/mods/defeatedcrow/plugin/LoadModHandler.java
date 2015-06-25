@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.api.ItemAPI;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,6 +17,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * 他MOD様のアイテムの収集・管理用クラス。
@@ -253,6 +252,17 @@ public class LoadModHandler {
 					OreDictionary.registerOre("listAllmilk", milk);
 				}
 			}
+
+			Item vanilla = Util.getModItem("mod_ecru_MapleTree", "vanillaBeans");
+			if (vanilla != null) {
+				ItemStack va = new ItemStack(vanilla, 1, 0);
+				if (va != null) {
+					LoadModHandler.registerModItems("vanilla", va);
+					RecipeRegisterManager.evaporatorRecipe.addRecipe(new ItemStack(DCsAppleMilk.essentialOil, 1, 7),
+							null, new ItemStack(va.getItem(), 8, 0));
+				}
+			}
+
 		} catch (Exception e) {
 			AMTLogger.debugInfo("Failed to register ModItems");
 			e.printStackTrace(System.err);

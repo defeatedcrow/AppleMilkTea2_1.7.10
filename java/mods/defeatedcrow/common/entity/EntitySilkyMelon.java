@@ -142,7 +142,7 @@ public class EntitySilkyMelon extends Entity {
 				}
 
 				this.setDead();
-			} else if (explode) {
+			} else if (explode && this.getExploded() < 1) {
 				// 起爆条件を満たしたので爆発
 				this.explode(igniter);
 			}

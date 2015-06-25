@@ -1,17 +1,16 @@
 package mods.defeatedcrow.api.potion;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
 
 /**
  * ただ単に継承して使えるようにするだけのもの。 <br>
  * Immunityとは名ばかりで、実際はかかっている間はTick毎に一回ずつ処理が呼び出される。 <br>
  * したがって実情はプレイヤーの常時監視用システムである。
  */
-public abstract class PotionImmunityBase extends Potion {
+public abstract class PotionImmunityBase extends PotionBaseAMT {
 
-	protected PotionImmunityBase(int id, boolean flag, int color) {
-		super(id, flag, color);
+	protected PotionImmunityBase(int id, boolean flag, int color, int x, int y) {
+		super(id, flag, color, x, y);
 	}
 
 	/**

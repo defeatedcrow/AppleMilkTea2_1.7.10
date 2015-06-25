@@ -1,12 +1,8 @@
 package mods.defeatedcrow.potion;
 
-import mods.defeatedcrow.common.*;
-import mods.defeatedcrow.api.potion.PotionImmunityBase;
 import mods.defeatedcrow.api.potion.PotionLivingBase;
-import mods.defeatedcrow.common.config.DCsConfig;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
 
 /**
  * ここではEntityの移動速度を強制でゼロにして足止めしてしまう効果を作っている。
@@ -14,8 +10,8 @@ import net.minecraft.potion.Potion;
 @Deprecated
 public class PotionConfinement extends PotionLivingBase {
 
-	public PotionConfinement(int par1, boolean par2, int par3) {
-		super(par1, par2, par3);
+	public PotionConfinement(int par1, boolean par2, int par3, int x, int y) {
+		super(par1, par2, par3, x, y);
 	}
 
 	/**

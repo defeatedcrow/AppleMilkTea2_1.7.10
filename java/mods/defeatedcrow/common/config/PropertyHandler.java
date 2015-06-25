@@ -1,7 +1,5 @@
 package mods.defeatedcrow.common.config;
 
-import net.minecraft.util.MathHelper;
-
 public class PropertyHandler {
 
 	private PropertyHandler() {
@@ -51,7 +49,9 @@ public class PropertyHandler {
 		}
 
 		public static DustDifficulty getDifficulty(int id) {
-			int i = MathHelper.clamp_int(id, 0, DIFFICULTY.length);
+			int i = id;
+			if (i < 0 || i > DIFFICULTY.length)
+				i = 1;
 			return DIFFICULTY[i];
 		}
 
@@ -69,7 +69,9 @@ public class PropertyHandler {
 		}
 
 		public static ChargeDifficulty getDifficulty(int id) {
-			int i = MathHelper.clamp_int(id, 0, DIFFICULTY.length);
+			int i = id;
+			if (i < 0 || i > DIFFICULTY.length)
+				i = 1;
 			return DIFFICULTY[i];
 		}
 
@@ -92,7 +94,9 @@ public class PropertyHandler {
 		}
 
 		public static ConversionRate getRate(int id) {
-			int i = MathHelper.clamp_int(id, 0, DIFFICULTY.length);
+			int i = id;
+			if (i < 0 || i > DIFFICULTY.length)
+				i = 2;
 			return DIFFICULTY[i];
 		}
 

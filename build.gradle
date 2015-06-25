@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10_2.0"
+version = "1.7.10_2.7"
 group= "mods.defeatedcrow.DCsAppleMilk" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AppleMilkTea2"
 
@@ -32,14 +32,8 @@ dependencies {
     compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24'
 }
 
-task sourceJar(type: Jar) {
-    from sourceSets.main.allSource
-    classifier = 'sources'
-}
-
-task deobfJar(type: Jar) {
-    from sourceSets.main.output
-   classifier = 'dev'
+jar {
+    exclude '**/Thumbs.db'
 }
 
 processResources
@@ -77,4 +71,14 @@ jar {
     manifest {
         attributes 'FMLCorePlugin' : 'mods.defeatedcrow.asm.AppleMilkCorePlugin','FMLCorePluginContainsFMLMod':'true'
     }
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+   classifier = 'dev'
 }

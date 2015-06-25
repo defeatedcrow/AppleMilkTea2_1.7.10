@@ -149,8 +149,7 @@ public class BlockBarrel extends BlockContainer {
 			if (!par1World.isRemote) {
 				int age = tile.getAgingStage();
 				boolean flag = tile.getAged();
-				boolean flag2 = tile.isColdBiome() || tile.isDryBiome()
-						|| par1World.canBlockSeeTheSky(par2, par3, par4);
+				boolean flag2 = tile.isDryBiome() || par1World.canBlockSeeTheSky(par2, par3, par4);
 
 				if (!tile.productTank.isEmpty()) {
 					String type = "empty";

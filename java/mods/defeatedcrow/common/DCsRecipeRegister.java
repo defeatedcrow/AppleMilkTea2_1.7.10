@@ -750,6 +750,12 @@ public class DCsRecipeRegister {
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.appleSandwich, 2, 3), new Object[] {
 				"foodYuzuMarmalade", new ItemStack(Items.bread, 1) }));
+
+		GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 1), new ItemStack(DCsAppleMilk.foodTea,
+				1, 0));
+
+		GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 4), new ItemStack(DCsAppleMilk.foodTea,
+				1, 1));
 	}
 
 	static void addChalcedony() {
@@ -1130,13 +1136,10 @@ public class DCsRecipeRegister {
 
 		final Item[] incenses = new Item[] { DCsAppleMilk.incenseApple, DCsAppleMilk.incenseRose,
 				DCsAppleMilk.incenseMint, DCsAppleMilk.incenseYuzu, DCsAppleMilk.incenseClam, DCsAppleMilk.incenseIce,
-				DCsAppleMilk.incenseLavender, DCsAppleMilk.incenseMint, DCsAppleMilk.incenseSandalwood,
+				DCsAppleMilk.incenseLavender, DCsAppleMilk.incenseVanilla, DCsAppleMilk.incenseSandalwood,
 				DCsAppleMilk.incenseAgar, DCsAppleMilk.incenseFrank, };
 
 		for (int i = 0; i < 11; i++) {
-			if (i == 7)
-				continue;
-
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(incenses[i], 1, 0), new Object[] { "dustWood",
 					new ItemStack(DCsAppleMilk.bottleCamOil, 1, 0), new ItemStack(DCsAppleMilk.essentialOil, 1, i) }));
 
@@ -1249,8 +1252,8 @@ public class DCsRecipeRegister {
 		String[] string3 = DCsConfigCocktail.recipe3;
 
 		Object[] rec1 = new Object[string1.length];
-		Object[] rec2 = new Object[string1.length];
-		Object[] rec3 = new Object[string1.length];
+		Object[] rec2 = new Object[string2.length];
+		Object[] rec3 = new Object[string3.length];
 
 		for (int i = 0; i < string1.length; i++) {
 			String str = string1[i];

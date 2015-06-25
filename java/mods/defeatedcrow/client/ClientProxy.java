@@ -175,7 +175,6 @@ import mods.defeatedcrow.common.tile.energy.TileGelBat;
 import mods.defeatedcrow.common.tile.energy.TileHandleEngine;
 import mods.defeatedcrow.handler.NetworkUtil;
 import mods.defeatedcrow.handler.Util;
-import mods.defeatedcrow.plugin.nei.LoadNEIPlugin;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -190,7 +189,6 @@ import org.lwjgl.input.Keyboard;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
@@ -376,19 +374,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerTex() {
 		MinecraftForge.EVENT_BUS.register(ParticleTex.getInstance());
-	}
-
-	@Override
-	public void loadNEI() {
-		if (Loader.isModLoaded("NotEnoughItems")) {
-			AMTLogger.loadingModInfo("NotEnoughItems");
-			try {
-				LoadNEIPlugin.load();
-			} catch (Exception e) {
-				AMTLogger.failLoadingModInfo("NotEnoughItems");
-				e.printStackTrace(System.err);
-			}
-		}
 	}
 
 	@Override

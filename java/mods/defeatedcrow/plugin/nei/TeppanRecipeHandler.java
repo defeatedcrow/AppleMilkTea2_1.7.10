@@ -1,22 +1,15 @@
 package mods.defeatedcrow.plugin.nei;
 
 import java.awt.Rectangle;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.plugin.nei.EvaporatorRecipeHandler.EvaporatorRecipeCacher;
-import mods.defeatedcrow.plugin.nei.TeaRecipeHandler.recipeCacher;
 import mods.defeatedcrow.recipe.PlateRecipeRegister.PlateRecipe;
-import mods.defeatedcrow.recipe.RegisteredRecipeGet;
-import mods.defeatedcrow.recipe.EvaporatorRecipeRegister.EvaporatorRecipe;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;

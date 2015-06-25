@@ -3,12 +3,10 @@ package mods.defeatedcrow.potion;
 import java.util.ArrayList;
 import java.util.List;
 
-import mods.defeatedcrow.common.*;
-import mods.defeatedcrow.api.potion.PotionImmunityBase;
 import mods.defeatedcrow.api.potion.PotionLivingBase;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 
 /**
@@ -17,8 +15,8 @@ import net.minecraft.potion.Potion;
  */
 public class PotionImmunity extends PotionLivingBase {
 
-	public PotionImmunity(int par1, boolean par2, int par3) {
-		super(par1, par2, par3);
+	public PotionImmunity(int par1, boolean par2, int par3, int x, int y) {
+		super(par1, par2, par3, x, y);
 	}
 
 	/**

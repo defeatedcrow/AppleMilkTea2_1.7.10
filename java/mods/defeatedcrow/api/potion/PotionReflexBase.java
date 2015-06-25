@@ -1,7 +1,6 @@
 package mods.defeatedcrow.api.potion;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 
@@ -11,12 +10,12 @@ import net.minecraft.util.DamageSource;
  * プレイヤーを含むEntityLivingBaseのダメージ処理時に呼び出される。(amplifier現象機能は廃止済み) <br>
  * 呼び出されたあとの処理はこのクラス内で定義できます。
  */
-public abstract class PotionReflexBase extends Potion {
+public abstract class PotionReflexBase extends PotionBaseAMT {
 
 	public boolean endlessly = false;
 
-	protected PotionReflexBase(int id, boolean flag, int color, boolean isInfinity) {
-		super(id, flag, color);
+	protected PotionReflexBase(int id, boolean flag, int color, boolean isInfinity, int x, int y) {
+		super(id, flag, color, x, y);
 		this.endlessly = isInfinity;
 	}
 

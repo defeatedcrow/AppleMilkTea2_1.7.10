@@ -1,17 +1,13 @@
 package mods.defeatedcrow.potion;
 
 import mods.defeatedcrow.api.potion.PotionReflexBase;
-import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.MathHelper;
 
 /**
@@ -20,8 +16,8 @@ import net.minecraft.util.MathHelper;
  */
 public class PotionReflex extends PotionReflexBase {
 
-	public PotionReflex(int par1, boolean par2, int par3, boolean par4) {
-		super(par1, par2, par3, par4);
+	public PotionReflex(int par1, boolean par2, int par3, boolean par4, int x, int y) {
+		super(par1, par2, par3, par4, x, y);
 	}
 
 	@Override

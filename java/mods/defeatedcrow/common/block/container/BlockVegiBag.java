@@ -13,8 +13,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -35,6 +37,7 @@ public class BlockVegiBag extends BlockContainer {
 		super(Material.wood);
 		this.setStepSound(Block.soundTypeWood);
 		this.setHardness(0.1F);
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
 	@Override
@@ -100,6 +103,7 @@ public class BlockVegiBag extends BlockContainer {
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase,
 			ItemStack par6ItemStack) {
 		int playerFacing = MathHelper.floor_double((double) ((par5EntityLivingBase.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+		boolean sneak = par5EntityLivingBase.isSneaking();
 
 		byte facing = 0;
 		if (playerFacing == 0) {
@@ -118,6 +122,7 @@ public class BlockVegiBag extends BlockContainer {
 		TileEntity tileEntity = par1World.getTileEntity(par2, par3, par4);
 		if (tileEntity != null && tileEntity instanceof TileVegiBag) {
 			((TileVegiBag) tileEntity).setDirectionByte(facing);
+			((TileVegiBag) tileEntity).setSneaking(sneak);
 			par1World.markBlockForUpdate(par2, par3, par4);
 		}
 	}
@@ -125,6 +130,42 @@ public class BlockVegiBag extends BlockContainer {
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new TileVegiBag();
+	}
+
+	@Override
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
+		this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
+		return super.getCollisionBoundingBoxFromPool(par1World, par2, par3, par4);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
+		this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
+		return super.getSelectedBoundingBoxFromPool(par1World, par2, par3, par4);
+	}
+
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
+		TileEntity tile = par1IBlockAccess.getTileEntity(par2, par3, par4);
+		boolean b = false;
+		if (tile != null && tile instanceof TileVegiBag) {
+			b = ((TileVegiBag) tile).getSneaking();
+		}
+		this.updateThisBounds(b);
+	}
+
+	public void updateThisBounds(boolean b) {
+		if (b) {
+			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+		} else {
+			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+		}
+	}
+
+	@Override
+	public void setBlockBoundsForItemRender() {
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
 }

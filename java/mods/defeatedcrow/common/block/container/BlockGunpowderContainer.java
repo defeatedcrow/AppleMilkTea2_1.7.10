@@ -10,10 +10,13 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
@@ -38,17 +41,13 @@ public class BlockGunpowderContainer extends Block {
 		this.setResistance(2.0F);
 		this.setStepSound(Block.soundTypeStone);
 		this.setTickRandomly(true);
-	}
-
-	@Override
-	public int damageDropped(int par1) {
-		return par1;
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2) {
-		int i = par2;
+		int i = par2 & 3;
 		if (i > 3)
 			i = 3;
 		if (par1 == 1) {
@@ -176,6 +175,67 @@ public class BlockGunpowderContainer extends Block {
 			this.boxTex[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "container_" + boxType[i]
 					+ "_T");
 		}
+	}
+
+	// ハーフブロック化
+
+	@Override
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	@Override
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+
+	@Override
+	public int damageDropped(int par1) {
+		return par1 & 3;
+	}
+
+	@Override
+	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase,
+			ItemStack par6ItemStack) {
+		int meta = par6ItemStack.getItemDamage();
+		int next = meta;
+
+		if (par5EntityLivingBase.isSneaking()) {
+			next = next | 4;
+		}
+
+		par1World.setBlockMetadataWithNotify(par2, par3, par4, next, 3);
+	}
+
+	@Override
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
+		this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
+		return super.getCollisionBoundingBoxFromPool(par1World, par2, par3, par4);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
+		this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
+		return super.getSelectedBoundingBoxFromPool(par1World, par2, par3, par4);
+	}
+
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
+		this.updateThisBounds(par1IBlockAccess.getBlockMetadata(par2, par3, par4));
+	}
+
+	public void updateThisBounds(int meta) {
+		if ((meta & 4) == 4) {
+			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+		} else {
+			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+		}
+	}
+
+	@Override
+	public void setBlockBoundsForItemRender() {
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
 }

@@ -1,16 +1,15 @@
 package mods.defeatedcrow.api.potion;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.Potion;
 
 /**
  * ただ単に継承して使えるようにするだけのもの。 <br>
  * ImmunityBaseと違い、EntityLivingBaseに影響がある。
  */
-public abstract class PotionLivingBase extends Potion {
+public abstract class PotionLivingBase extends PotionBaseAMT {
 
-	protected PotionLivingBase(int id, boolean flag, int color) {
-		super(id, flag, color);
+	protected PotionLivingBase(int id, boolean flag, int color, int x, int y) {
+		super(id, flag, color, x, y);
 	}
 
 	/**

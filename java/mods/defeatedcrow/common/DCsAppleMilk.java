@@ -35,6 +35,8 @@ import mods.defeatedcrow.common.entity.edible.PlaceableIcecream;
 import mods.defeatedcrow.common.entity.edible.PlaceableSandwich;
 import mods.defeatedcrow.common.entity.edible.PlaceableSteak;
 import mods.defeatedcrow.common.entity.edible.PlaceableTart;
+import mods.defeatedcrow.common.item.ItemDummyForTeppan;
+import mods.defeatedcrow.common.item.ItemDummyForTooltip;
 import mods.defeatedcrow.common.item.magic.ItemIncenseAgar;
 import mods.defeatedcrow.common.item.magic.ItemIncenseApple;
 import mods.defeatedcrow.common.item.magic.ItemIncenseClam;
@@ -44,6 +46,7 @@ import mods.defeatedcrow.common.item.magic.ItemIncenseLavender;
 import mods.defeatedcrow.common.item.magic.ItemIncenseMint;
 import mods.defeatedcrow.common.item.magic.ItemIncenseRose;
 import mods.defeatedcrow.common.item.magic.ItemIncenseSandalwood;
+import mods.defeatedcrow.common.item.magic.ItemIncenseVanilla;
 import mods.defeatedcrow.common.item.magic.ItemIncenseYuzu;
 import mods.defeatedcrow.common.world.AddChestGen;
 import mods.defeatedcrow.common.world.WorldgenClam;
@@ -112,7 +115,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.7b",
+		version = "1.7.10_2.7e",
 		dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class DCsAppleMilk {
 
@@ -280,6 +283,7 @@ public class DCsAppleMilk {
 	public static ItemIncenseAgar incenseAgar;
 	public static ItemIncenseFrankincense incenseFrank;
 	public static ItemIncenseYuzu incenseYuzu;
+	public static ItemIncenseVanilla incenseVanilla;
 
 	// 液体
 	public static Fluid vegitableOil;
@@ -477,6 +481,13 @@ public class DCsAppleMilk {
 		// ブロックやアイテムの読み込みと登録
 		MaterialRegister.instance.load();
 		MaterialRegister.instance.addFluid();
+
+		// NEI用ダミー
+		dummyItem = (new ItemDummyForTooltip()).setUnlocalizedName("defeatedcrow.dummyItem");
+		GameRegistry.registerItem(dummyItem, "defeatedcrow.dummyItem");
+
+		dummyTeppan = (new ItemDummyForTeppan()).setUnlocalizedName("defeatedcrow.dummyPlate");
+		GameRegistry.registerItem(dummyTeppan, "defeatedcrow.dummyPlate");
 
 		// ポーションIDが拡張出来ているかのチェックを行い、成功時のみポーションを追加する。
 		int potion = Potion.potionTypes.length;
@@ -755,6 +766,10 @@ public class DCsAppleMilk {
 		// 樽での醸造レシピ
 		(new RegisterMakerRecipe()).registerBrewing();
 		AMTLogger.trace("Registered new brewing recipe");
+
+		// addonとの干渉レシピは、initの段階で追加する
+		AddonIntegration.load();
+		AddonIntegration.addRecipe();
 
 		// デバッグテスト用
 		if (debugMode) {
@@ -1078,9 +1093,6 @@ public class DCsAppleMilk {
 		// レシピ閲覧系MODの連携要素
 		(new RegisteredRecipeGet()).setRecipeList();
 
-		// NEIのみクライアントサイドで読み込む
-		proxy.loadNEI();
-
 		// CraftGuideへのレシピ登録
 		if (Loader.isModLoaded("craftguide")) {
 			AMTLogger.loadingModInfo("craftguide");
@@ -1104,7 +1116,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "b";
+		return "d";
 	}
 
 	public String getModName() {

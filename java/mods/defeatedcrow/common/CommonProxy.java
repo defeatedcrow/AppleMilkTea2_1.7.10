@@ -203,9 +203,6 @@ public class CommonProxy implements IGuiHandler {
 	public void registerTex() {
 	}
 
-	public void loadNEI() {
-	}
-
 	public void registerFluidTex() {
 	}
 

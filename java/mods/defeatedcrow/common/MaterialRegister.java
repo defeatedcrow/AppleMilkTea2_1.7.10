@@ -167,6 +167,7 @@ import mods.defeatedcrow.common.item.magic.ItemIncenseLavender;
 import mods.defeatedcrow.common.item.magic.ItemIncenseMint;
 import mods.defeatedcrow.common.item.magic.ItemIncenseRose;
 import mods.defeatedcrow.common.item.magic.ItemIncenseSandalwood;
+import mods.defeatedcrow.common.item.magic.ItemIncenseVanilla;
 import mods.defeatedcrow.common.item.magic.ItemIncenseYuzu;
 import mods.defeatedcrow.common.item.magic.ItemPrincessClam;
 import mods.defeatedcrow.common.item.magic.ItemStrangeSlag;
@@ -174,8 +175,6 @@ import mods.defeatedcrow.common.item.magic.ItemWoodDust;
 import mods.defeatedcrow.event.BucketFillEvent;
 import mods.defeatedcrow.event.DispenserEvent;
 import mods.defeatedcrow.event.FluidDispenser;
-import mods.defeatedcrow.plugin.nei.ItemDummyForTeppan;
-import mods.defeatedcrow.plugin.nei.ItemDummyForTooltip;
 import mods.defeatedcrow.potion.PotionConfinement;
 import mods.defeatedcrow.potion.PotionHallucination;
 import mods.defeatedcrow.potion.PotionImmunity;
@@ -282,6 +281,7 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.incenseAgar, "defeatedcrow.incense_aloeswood");
 		GameRegistry.registerItem(DCsAppleMilk.incenseFrank, "defeatedcrow.incense_frankincense");
 		GameRegistry.registerItem(DCsAppleMilk.incenseYuzu, "defeatedcrow.incense_yuzu");
+		GameRegistry.registerItem(DCsAppleMilk.incenseVanilla, "defeatedcrow.incense_vanilla");
 
 		// そのほか
 		GameRegistry.registerItem(DCsAppleMilk.inkStick, "defeatedcrow.inkStick");
@@ -386,44 +386,44 @@ public class MaterialRegister {
 		// ポーション効果の追加
 		// コンフィグでIDが~127の範囲内の時のみ追加する。
 		if (Potion.potionTypes[DCsConfig.potionIDImmunity] == null && DCsConfig.potionIDImmunity < lim) {
-			DCsAppleMilk.Immunization = (new PotionImmunity(DCsConfig.potionIDImmunity, false, 7889559))
+			DCsAppleMilk.Immunization = (new PotionImmunity(DCsConfig.potionIDImmunity, false, 0xFEC0C0, 0, 0))
 					.setPotionName("DCs.potion.immunization");
 		}
 		if (Potion.potionTypes[DCsConfig.potionIDPrvExplode] == null && DCsConfig.potionIDPrvExplode < lim) {
-			DCsAppleMilk.prvExplode = (new PotionProtectionEX(DCsConfig.potionIDPrvExplode, false, 3237665, false,
-					true, false, DamageSource.anvil)).setPotionName("DCs.potion.protectionExplode");
+			DCsAppleMilk.prvExplode = (new PotionProtectionEX(DCsConfig.potionIDPrvExplode, false, 0x646464, false,
+					true, false, DamageSource.anvil, 2, 0)).setPotionName("DCs.potion.protectionExplode");
 		}
 		if (Potion.potionTypes[DCsConfig.potionIDPrvProjectile] == null && DCsConfig.potionIDPrvProjectile < lim) {
-			DCsAppleMilk.prvProjectile = (new PotionProtectionEX(DCsConfig.potionIDPrvProjectile, false, 1151526,
-					false, false, true, DamageSource.magic)).setPotionName("DCs.potion.protectionProjectile");
+			DCsAppleMilk.prvProjectile = (new PotionProtectionEX(DCsConfig.potionIDPrvProjectile, false, 0x996420,
+					false, false, true, DamageSource.magic, 1, 0)).setPotionName("DCs.potion.protectionProjectile");
 		}
 		if (Potion.potionTypes[DCsConfig.potionIDReflex] == null && DCsConfig.potionIDReflex < lim) {
-			DCsAppleMilk.reflex = (new PotionReflex(DCsConfig.potionIDReflex, false, 999999, false))
+			DCsAppleMilk.reflex = (new PotionReflex(DCsConfig.potionIDReflex, false, 0x0064FF, false, 3, 0))
 					.setPotionName("DCs.potion.reflex");
 		}
 		if (Potion.potionTypes[DCsConfig.potionIDAbsEXP] == null && DCsConfig.potionIDAbsEXP < lim) {
-			DCsAppleMilk.absEXP = (new PotionReflex(DCsConfig.potionIDAbsEXP, false, 5599557, false))
+			DCsAppleMilk.absEXP = (new PotionReflex(DCsConfig.potionIDAbsEXP, false, 0X00FF64, false, 4, 0))
 					.setPotionName("DCs.potion.absorptionEXP");
 		}
 		if (Potion.potionTypes[DCsConfig.potionIDAbsHeal] == null && DCsConfig.potionIDAbsHeal < lim) {
-			DCsAppleMilk.absHeal = (new PotionReflex(DCsConfig.potionIDAbsHeal, false, 9933221, false))
+			DCsAppleMilk.absHeal = (new PotionReflex(DCsConfig.potionIDAbsHeal, false, 0xFF32C0, false, 5, 0))
 					.setPotionName("DCs.potion.absorptionHeal");
 		}
 		if (Potion.potionTypes[DCsConfig.potionIDSuffocation] == null && DCsConfig.potionIDSuffocation < lim) {
-			DCsAppleMilk.suffocation = (new PotionSuffocation(DCsConfig.potionIDSuffocation, true, 9933221))
+			DCsAppleMilk.suffocation = (new PotionSuffocation(DCsConfig.potionIDSuffocation, true, 0x161616, 6, 0))
 					.setPotionName("DCs.potion.suffocation");
 		}
 		if (Potion.potionTypes[DCsConfig.potionIDPrvSuffocation] == null && DCsConfig.potionIDPrvSuffocation < lim) {
 			DCsAppleMilk.prvSuffocation = (PotionProtectionEX) (new PotionProtectionEX(
-					DCsConfig.potionIDPrvSuffocation, true, 9933221, false, false, false, DamageSource.inWall))
+					DCsConfig.potionIDPrvSuffocation, true, 0xC064FF, false, false, false, DamageSource.inWall, 7, 0))
 					.setProtectSuffocation().setPotionName("DCs.potion.protectionSuffocation");
 		}
 		if (Potion.potionTypes[DCsConfig.potionIDHallucinations] == null && DCsConfig.potionIDHallucinations < lim) {
-			DCsAppleMilk.hallucinations = new PotionHallucination(DCsConfig.potionIDHallucinations, true, 1114405)
-					.setPotionName("DCs.potion.hallucination");
+			DCsAppleMilk.hallucinations = new PotionHallucination(DCsConfig.potionIDHallucinations, true, 0xFF32FF, 8,
+					0).setPotionName("DCs.potion.hallucination");
 		}
 		if (Potion.potionTypes[DCsConfig.potionIDConfinement] == null && DCsConfig.potionIDConfinement < lim) {
-			DCsAppleMilk.confinement = new PotionConfinement(DCsConfig.potionIDConfinement, true, 550099)
+			DCsAppleMilk.confinement = new PotionConfinement(DCsConfig.potionIDConfinement, true, 0X646464, 9, 0)
 					.setPotionName("DCs.potion.confinement");
 		}
 	}
@@ -606,9 +606,6 @@ public class MaterialRegister {
 		(new BucketFillEvent()).register();
 		DispenserEvent.instance.registerFluidDispence();
 		FluidDispenser.load();
-
-		DCsAppleMilk.dummyItem = (new ItemDummyForTooltip()).setUnlocalizedName("defeatedcrow.dummyItem");
-		GameRegistry.registerItem(DCsAppleMilk.dummyItem, "defeatedcrow.dummyItem");
 
 	}
 
@@ -920,9 +917,6 @@ public class MaterialRegister {
 		DCsAppleMilk.teppanII = (new BlockTeppanII()).setBlockName("defeatedcrow.cookingIronPlateII").setCreativeTab(
 				DCsAppleMilk.applemilk);
 
-		DCsAppleMilk.dummyTeppan = (new ItemDummyForTeppan()).setUnlocalizedName("defeatedcrow.dummyPlate");
-		GameRegistry.registerItem(DCsAppleMilk.dummyTeppan, "defeatedcrow.dummyPlate");
-
 		DCsAppleMilk.iceMaker = (new BlockIceMaker()).setBlockName("defeatedcrow.iceMaker").setCreativeTab(
 				DCsAppleMilk.applemilk);
 
@@ -999,6 +993,9 @@ public class MaterialRegister {
 
 		DCsAppleMilk.incenseYuzu = (ItemIncenseYuzu) (new ItemIncenseYuzu()).setUnlocalizedName(
 				"defeatedcrow.incense_yuzu").setCreativeTab(DCsAppleMilk.applemilkMagic);
+
+		DCsAppleMilk.incenseVanilla = (ItemIncenseVanilla) (new ItemIncenseVanilla()).setUnlocalizedName(
+				"defeatedcrow.incense_vanilla").setCreativeTab(DCsAppleMilk.applemilkMagic);
 
 	}
 

@@ -1,13 +1,13 @@
 package mods.defeatedcrow.potion;
 
+import mods.defeatedcrow.api.potion.PotionBaseAMT;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 
-public class PotionSuffocation extends Potion {
+public class PotionSuffocation extends PotionBaseAMT {
 
-	public PotionSuffocation(int par1, boolean par2, int par3) {
-		super(par1, par2, par3);
+	public PotionSuffocation(int par1, boolean par2, int par3, int x, int y) {
+		super(par1, par2, par3, x, y);
 	}
 
 	@Override

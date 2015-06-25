@@ -135,7 +135,19 @@ public class EvaporatorRecipeHandler extends TemplateRecipeHandler {
 			ItemStack items = recipe.getOutput();
 			ItemStack in = recipe.getInput();
 			FluidStack f = recipe.getSecondary();
-			if (NEIServerUtils.areStacksSameType(items, result)) {
+
+			boolean flag = false;
+
+			if (f != null && result.getItem() == DCsAppleMilk.dummyItem) {
+				NBTTagCompound tag = result.getTagCompound();
+				if (tag != null && tag.hasKey("fluid")) {
+					String id = tag.getString("fluid");
+					String name = f.getFluid().getLocalizedName(f);
+					flag = id.equalsIgnoreCase(name);
+				}
+			}
+
+			if (NEIServerUtils.areStacksSameType(items, result) || flag) {
 				arecipes.add(new EvaporatorRecipeCacher(in, items, null, f));
 			}
 		}
@@ -152,6 +164,7 @@ public class EvaporatorRecipeHandler extends TemplateRecipeHandler {
 			ItemStack items = recipe.getOutput();
 			ItemStack in = recipe.getInput();
 			FluidStack f = recipe.getSecondary();
+
 			if (ingredient.getItem() == in.getItem() && ingredient.getItemDamage() == in.getItemDamage()) {
 				arecipes.add(new EvaporatorRecipeCacher(in, items, null, f));
 			}

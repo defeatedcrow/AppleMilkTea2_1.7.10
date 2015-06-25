@@ -1,9 +1,10 @@
 package mods.defeatedcrow.plugin;
 
+import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 // defeatedcrow製add-onとの調整が必要な部分をここに置く
 public class AddonIntegration {
@@ -16,18 +17,19 @@ public class AddonIntegration {
 	}
 
 	public static void load() {
-		isJPLoaded = Loader.isModLoaded("AddonAMTJP");
-		isMagicLoaded = Loader.isModLoaded("AddonAMTMagic");
-		isSweetLoaded = Loader.isModLoaded("AddonAMTSweet");
+		isJPLoaded = Loader.isModLoaded("AMTAddonJP");
+		isMagicLoaded = Loader.isModLoaded("AMTAddonMagic");
+		isSweetLoaded = Loader.isModLoaded("AMTAddonSweet");
+	}
+
+	public static boolean loadedJP() {
+		return isJPLoaded;
 	}
 
 	public static void addRecipe() {
 		if (!isJPLoaded) {
-			GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 1), new ItemStack(
-					DCsAppleMilk.foodTea, 1, 0));
-
-			GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 4), new ItemStack(
-					DCsAppleMilk.foodTea, 1, 1));
+			RecipeRegisterManager.evaporatorRecipe.addRecipe(null, new FluidStack(DCsAppleMilk.shothu_young, 100),
+					new ItemStack(DCsAppleMilk.moromi, 1, 0), true);
 		}
 	}
 }

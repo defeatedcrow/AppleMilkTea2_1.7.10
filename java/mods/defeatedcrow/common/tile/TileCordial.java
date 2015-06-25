@@ -1,7 +1,5 @@
 package mods.defeatedcrow.common.tile;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -9,7 +7,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeDictionary.Type;
 
 /*
  * 熟成時間の処理と、完了したかどうかの判定を持つ。
@@ -21,6 +18,7 @@ public class TileCordial extends TileEntity {
 	private boolean isAged = false;
 
 	// NBT
+	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
 		super.readFromNBT(par1NBTTagCompound);
 		this.aging = par1NBTTagCompound.getInteger("Remaining");
@@ -30,6 +28,7 @@ public class TileCordial extends TileEntity {
 	/**
 	 * Writes a tile entity to NBT.
 	 */
+	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
 		super.writeToNBT(par1NBTTagCompound);
 		par1NBTTagCompound.setInteger("Remaining", this.aging);
@@ -75,13 +74,13 @@ public class TileCordial extends TileEntity {
 		this.aging = i;
 	}
 
+	@Override
 	public void updateEntity() {
 		if (this.worldObj != null) {
 			if (!this.isAged)// まだ熟成未完了
 			{
 				// 直射日光が当たっていない・常温でのみ熟成する。
-				if (!this.worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord) && !this.isColdBiome()
-						&& !this.isDryBiome()) {
+				if (!this.worldObj.canBlockSeeTheSky(xCoord, yCoord, zCoord) && !this.isDryBiome()) {
 					this.aging++;
 
 					if (this.aging > 24000)// 4日間で熟成完了する

@@ -436,9 +436,6 @@ public class RegisterMakerRecipe {
 				new ItemStack(DCsAppleMilk.icyCrystal, 1, 0));
 
 		// 酒
-		RecipeRegisterManager.evaporatorRecipe.addRecipe(null, new FluidStack(DCsAppleMilk.shothu_young, 100),
-				new ItemStack(DCsAppleMilk.moromi, 1, 0), true);
-
 		RecipeRegisterManager.evaporatorRecipe.addRecipe(null, new FluidStack(DCsAppleMilk.whiskey_young, 100),
 				new ItemStack(DCsAppleMilk.moromi, 1, 1), true);
 

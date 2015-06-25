@@ -32,13 +32,15 @@ public class TileEntityVegiBagRenderer extends TileEntitySpecialRenderer {
 	public void setRotation(TileVegiBag tile, float par1, float par2, float par3) {
 		byte meta = (byte) tile.getBlockMetadata();
 		byte dir = tile.getDirectionByte();
+		boolean b = tile.getSneaking();
 
 		Tessellator tessellator = Tessellator.instance;
 
+		float fY = b ? 0.0F : 0.5F;
 		GL11.glPushMatrix();
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glColor4f(2.0F, 2.0F, 2.0F, 1.0F);
-		GL11.glTranslatef((float) par1, (float) par2 + 0.5F, (float) par3);
+		GL11.glTranslatef((float) par1, (float) par2 + fY, (float) par3);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
 

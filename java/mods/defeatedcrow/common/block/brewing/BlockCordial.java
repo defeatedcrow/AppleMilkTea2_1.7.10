@@ -58,7 +58,7 @@ public class BlockCordial extends BlockContainer {
 		} else {
 			int age = tile.getAgingStage();
 			boolean flag = tile.getAged();
-			boolean flag2 = tile.isColdBiome() || tile.isDryBiome() || par1World.canBlockSeeTheSky(par2, par3, par4);
+			boolean flag2 = tile.isDryBiome() || par1World.canBlockSeeTheSky(par2, par3, par4);
 
 			String s = "Cordial bottle : ";
 			if (flag) {

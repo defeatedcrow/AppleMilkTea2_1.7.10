@@ -15,6 +15,7 @@ public class LoadCraftGuidePlugin extends CraftGuideAPIObject {
 	public static EvaporatorRecipeHandlerCG evaporatorRecipeCG;
 	public static TeppanRecipeHandlerCG plateRecipeCG;
 	public static ChocoRecipeHandlerCG chocoRecipeCG;
+	public static BrewRecipeHandlerCG brewRecipeCG;
 
 	public void load() {
 		try {
@@ -26,6 +27,7 @@ public class LoadCraftGuidePlugin extends CraftGuideAPIObject {
 			advProcessorRecipeCG = new AdvProcessorRecipeHandlerCG();
 			plateRecipeCG = new TeppanRecipeHandlerCG();
 			chocoRecipeCG = new ChocoRecipeHandlerCG();
+			brewRecipeCG = new BrewRecipeHandlerCG();
 
 			Class api = Class.forName("uristqwerty.CraftGuide.ReflectionAPI");
 			Method register = api.getMethod("registerAPIObject", new Class[] { Object.class });
@@ -37,6 +39,7 @@ public class LoadCraftGuidePlugin extends CraftGuideAPIObject {
 			register.invoke(null, new Object[] { advProcessorRecipeCG });
 			register.invoke(null, new Object[] { plateRecipeCG });
 			register.invoke(null, new Object[] { chocoRecipeCG });
+			register.invoke(null, new Object[] { brewRecipeCG });
 
 			AMTLogger.loadedModInfo("CraftGuide");
 		} catch (Exception e) {

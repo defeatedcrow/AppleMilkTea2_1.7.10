@@ -1,15 +1,13 @@
 package mods.defeatedcrow.potion;
 
-import java.util.ArrayList;
-
-import net.minecraft.potion.Potion;
+import mods.defeatedcrow.api.potion.PotionBaseAMT;
 import net.minecraft.util.DamageSource;
 
 /**
  * 中身はゲッターセッターだけ。
  * 実際の動作はDamage時のイベントに依存する。
  */
-public class PotionProtectionEX extends Potion {
+public class PotionProtectionEX extends PotionBaseAMT {
 
 	// これがtrueだと全ての効果をあわせもつ。特殊条件で5秒程度付くような使い方をする予定。
 	private boolean allProtection = false;
@@ -27,8 +25,8 @@ public class PotionProtectionEX extends Potion {
 	private DamageSource preventSource;
 
 	public PotionProtectionEX(int par1, boolean par2, int par3, boolean all, boolean exp, boolean proj,
-			DamageSource source) {
-		super(par1, par2, par3);
+			DamageSource source, int x, int y) {
+		super(par1, par2, par3, x, y);
 		this.allProtection = all;
 		this.explodeProtection = exp;
 		this.projectileProtection = proj;
