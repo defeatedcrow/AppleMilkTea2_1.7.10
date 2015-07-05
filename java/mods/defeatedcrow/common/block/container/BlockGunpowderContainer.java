@@ -63,23 +63,25 @@ public class BlockGunpowderContainer extends Block {
 			super.updateTick(par1World, par2, par3, par4, par5Random);
 
 			int meta = par1World.getBlockMetadata(par2, par3, par4);
+			int m = meta & 3;
+			boolean isHalf = (meta & 4) != 0;
 
-			if (!DCsConfig.noWetGContainer) {
-				if (meta < 2 && this.isRaining(par1World, par2, par3, par4)
+			if (!isHalf && !DCsConfig.noWetGContainer) {
+				if (m < 2 && this.isRaining(par1World, par2, par3, par4)
 						&& par1World.canBlockSeeTheSky(par2, par3 + 1, par4)) {
-					if (meta == 0)
+					if (m == 0)
 						par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 2);
-					else if (meta == 1)
+					else if (m == 1)
 						par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
 				} else if (this.isDryBiome(par1World, par2, par3, par4)) {
-					if (meta == 1)
+					if (m == 1)
 						par1World.setBlockMetadataWithNotify(par2, par3, par4, 0, 2);
-					else if (meta == 2)
+					else if (m == 2)
 						par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 2);
 				}
 			}
 
-			if (meta == 3 && DCsConfig.bonemealClam) {
+			if (m == 3 && DCsConfig.bonemealClam) {
 				boolean flag = false;
 				int y = 0;
 				// 2,3,4マス上についてチェックする

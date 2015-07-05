@@ -1,12 +1,11 @@
 package mods.defeatedcrow.common.item.magic;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.api.events.UseSlagEvent;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.recipe.OreCrushRecipe;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
@@ -14,9 +13,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemStrangeSlag extends Item {
 
@@ -147,5 +150,16 @@ public class ItemStrangeSlag extends Item {
 		}
 
 		return result;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
+		if (par1ItemStack != null && DCsAppleMilk.proxy.isShiftKeyDown()) { // shiftキー押下時
+			par3List.add("Please use this with right-click.");
+		} else {
+			par3List.add(EnumChatFormatting.ITALIC + "LShift: Expand tooltip.");
+		}
 	}
 }

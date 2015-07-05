@@ -115,7 +115,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.7e",
+		version = "1.7.10_2.7g",
 		dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class DCsAppleMilk {
 
@@ -401,6 +401,7 @@ public class DCsAppleMilk {
 	public static int modelBowl;
 	public static int modelRack;
 	public static int modelCLamp;
+	public static int modelCLampOp;
 	public static int modelBasket;
 	public static int modelFoodPlate;
 	public static int modelTeppann;
@@ -733,6 +734,7 @@ public class DCsAppleMilk {
 		this.modelYuzuFence = proxy.getRenderID();
 		this.modelHandleEngine = proxy.getRenderID();
 		this.modelWoodPanel = proxy.getRenderID();
+		this.modelCLampOp = proxy.getRenderID();
 		proxy.registerRenderers();
 
 		// ティーメーカーのレシピ数の無限化のため、専用のレシピ登録クラスを用意した
@@ -1116,7 +1118,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "d";
+		return "g";
 	}
 
 	public String getModName() {

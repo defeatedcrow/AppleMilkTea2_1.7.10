@@ -1,20 +1,14 @@
 package mods.defeatedcrow.common.block;
 
-import mods.defeatedcrow.client.particle.EntityDCCloudFX;
-import mods.defeatedcrow.client.particle.EntityOrbFX;
-import mods.defeatedcrow.client.particle.ParticleTex;
-import mods.defeatedcrow.common.*;
-import mods.defeatedcrow.common.config.DCsConfig;
-import mods.defeatedcrow.common.tile.TileCLamp;
-import net.minecraft.block.Block;
-
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.BlockBreakable;
+import mods.defeatedcrow.client.particle.EntityOrbFX;
+import mods.defeatedcrow.client.particle.ParticleTex;
+import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.config.DCsConfig;
+import mods.defeatedcrow.common.tile.TileCLamp;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,12 +16,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.src.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockChalcedonyLamp extends BlockContainer {
 
@@ -56,6 +52,7 @@ public class BlockChalcedonyLamp extends BlockContainer {
 		return Item.getItemFromBlock(this);
 	}
 
+	@Override
 	public int damageDropped(int par1) {
 		return par1;
 	}
@@ -70,10 +67,12 @@ public class BlockChalcedonyLamp extends BlockContainer {
 		return false;
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
 		return super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, 1 - par5);
 	}
 
+	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
 		this.LampBoundingBox(par1IBlockAccess.getBlockMetadata(par2, par3, par4));
 	}
@@ -88,6 +87,7 @@ public class BlockChalcedonyLamp extends BlockContainer {
 
 	}
 
+	@Override
 	public int getMobilityFlag() {
 		return 0;
 	}
@@ -142,6 +142,7 @@ public class BlockChalcedonyLamp extends BlockContainer {
 	// }
 	// }
 
+	@Override
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase,
 			ItemStack par6ItemStack) {
 		int playerFacing = MathHelper.floor_double((double) ((par5EntityLivingBase.rotationYaw * 4F) / 360F) + 0.5D) & 3;
@@ -170,6 +171,7 @@ public class BlockChalcedonyLamp extends BlockContainer {
 	}
 
 	// rendering
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2) {
 		/*
@@ -212,6 +214,7 @@ public class BlockChalcedonyLamp extends BlockContainer {
 		return DCsAppleMilk.modelCLamp;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
 		return 1;

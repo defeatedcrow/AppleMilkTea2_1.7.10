@@ -36,23 +36,19 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler {
 		this.IIcon0 = DCsAppleMilk.cLamp.getIcon(0, meta);
 		this.IIcon2 = DCsAppleMilk.cLamp.getIcon(2, meta);
 		this.IIcon3 = DCsAppleMilk.cLamp.getIcon(3, meta);
-		this.IIcon4 = DCsAppleMilk.teppann.getBlockTextureFromSide(0);
+		this.IIcon4 = DCsAppleMilk.teppanII.getBlockTextureFromSide(2);
 
 		if (modelID == this.getRenderId()) {
 			if (meta < 4) // for normal glass lamp
 			{
-				renderInvCuboid(renderer, block, 0.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 16.0F / 16.0F,
+				renderInvCuboidAlpha(renderer, block, 0.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 16.0F / 16.0F,
 						16.0F / 16.0F, 16.0F / 16.0F, this.boxIIcon);
-				renderInvCuboid(renderer, block, 7.0F / 16.0F, 7.0F / 16.0F, 7.0F / 16.0F, 9.0F / 16.0F, 9.0F / 16.0F,
-						9.0F / 16.0F, this.IIcon0);
 			} else if (meta > 3 && meta < 8) // for inner glass lamp
 			{
+				renderInvCuboidAlpha(renderer, block, 3.0F / 16.0F, 3.0F / 16.0F, 3.0F / 16.0F, 13.0F / 16.0F,
+						13.0F / 16.0F, 13.0F / 16.0F, this.boxIIcon);
 				renderInvCuboid(renderer, block, 0.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 16.0F / 16.0F,
 						16.0F / 16.0F, 16.0F / 16.0F, this.glassIIcon);
-				renderInvCuboid(renderer, block, 3.0F / 16.0F, 3.0F / 16.0F, 3.0F / 16.0F, 13.0F / 16.0F,
-						13.0F / 16.0F, 13.0F / 16.0F, this.boxIIcon);
-				renderInvCuboid(renderer, block, 7.0F / 16.0F, 7.0F / 16.0F, 7.0F / 16.0F, 9.0F / 16.0F, 9.0F / 16.0F,
-						9.0F / 16.0F, this.IIcon0);
 			} else if (meta == 8) {
 
 				// wing1
@@ -83,13 +79,13 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler {
 				renderInvCuboid(renderer, block, 14.0F / 16.0F, 1.0F / 16.0F, 7.0F / 16.0F, 15.0F / 16.0F,
 						3.0F / 16.0F, 9.0F / 16.0F, this.IIcon2);
 				// blade
-				renderInvCuboid(renderer, block, 7.0F / 16.0F, 5.0F / 16.0F, 1.0F / 16.0F, 9.0F / 16.0F, 9.0F / 16.0F,
-						2.0F / 16.0F, this.IIcon3);
-				renderInvCuboid(renderer, block, 7.0F / 16.0F, 5.0F / 16.0F, 14.0F / 16.0F, 9.0F / 16.0F, 9.0F / 16.0F,
-						15.0F / 16.0F, this.IIcon3);
-				renderInvCuboid(renderer, block, 1.0F / 16.0F, 5.0F / 16.0F, 7.0F / 16.0F, 2.0F / 16.0F, 9.0F / 16.0F,
-						9.0F / 16.0F, this.IIcon3);
-				renderInvCuboid(renderer, block, 14.0F / 16.0F, 5.0F / 16.0F, 7.0F / 16.0F, 15.0F / 16.0F,
+				renderInvCuboidAlpha(renderer, block, 7.0F / 16.0F, 5.0F / 16.0F, 1.0F / 16.0F, 9.0F / 16.0F,
+						9.0F / 16.0F, 2.0F / 16.0F, this.IIcon3);
+				renderInvCuboidAlpha(renderer, block, 7.0F / 16.0F, 5.0F / 16.0F, 14.0F / 16.0F, 9.0F / 16.0F,
+						9.0F / 16.0F, 15.0F / 16.0F, this.IIcon3);
+				renderInvCuboidAlpha(renderer, block, 1.0F / 16.0F, 5.0F / 16.0F, 7.0F / 16.0F, 2.0F / 16.0F,
+						9.0F / 16.0F, 9.0F / 16.0F, this.IIcon3);
+				renderInvCuboidAlpha(renderer, block, 14.0F / 16.0F, 5.0F / 16.0F, 7.0F / 16.0F, 15.0F / 16.0F,
 						9.0F / 16.0F, 9.0F / 16.0F, this.IIcon3);
 				// plate
 				renderInvCuboid(renderer, block, 5.0F / 16.0F, 3.0F / 16.0F, 1.0F / 16.0F, 11.0F / 16.0F, 5.0F / 16.0F,
@@ -130,7 +126,7 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler {
 
 			} else if (meta == 9) {
 				// force
-				renderInvCuboid(renderer, block, 4.0F / 16.0F, 7.0F / 16.0F, 4.0F / 16.0F, 12.0F / 16.0F,
+				renderInvCuboidAlpha(renderer, block, 4.0F / 16.0F, 7.0F / 16.0F, 4.0F / 16.0F, 12.0F / 16.0F,
 						15.0F / 16.0F, 12.0F / 16.0F, this.boxIIcon);
 
 				// rod
@@ -175,34 +171,38 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler {
 						12.0F / 16.0F, this.IIcon0);
 			} else if (meta == 10) {
 				// たて
-				renderInvCuboid(renderer, block, 2.0F / 16.0F, 2.0F / 16.0F, 2.0F / 16.0F, 4.0F / 16.0F, 14.0F / 16.0F,
-						4.0F / 16.0F, this.boxIIcon);
-				renderInvCuboid(renderer, block, 2.0F / 16.0F, 2.0F / 16.0F, 12.0F / 16.0F, 4.0F / 16.0F,
-						14.0F / 16.0F, 14.0F / 16.0F, this.boxIIcon);
-				renderInvCuboid(renderer, block, 12.0F / 16.0F, 2.0F / 16.0F, 2.0F / 16.0F, 14.0F / 16.0F,
+				renderInvCuboidAlpha(renderer, block, 2.0F / 16.0F, 2.0F / 16.0F, 2.0F / 16.0F, 4.0F / 16.0F,
 						14.0F / 16.0F, 4.0F / 16.0F, this.boxIIcon);
-				renderInvCuboid(renderer, block, 12.0F / 16.0F, 2.0F / 16.0F, 12.0F / 16.0F, 14.0F / 16.0F,
+				renderInvCuboidAlpha(renderer, block, 2.0F / 16.0F, 2.0F / 16.0F, 12.0F / 16.0F, 4.0F / 16.0F,
+						14.0F / 16.0F, 14.0F / 16.0F, this.boxIIcon);
+				renderInvCuboidAlpha(renderer, block, 12.0F / 16.0F, 2.0F / 16.0F, 2.0F / 16.0F, 14.0F / 16.0F,
+						14.0F / 16.0F, 4.0F / 16.0F, this.boxIIcon);
+				renderInvCuboidAlpha(renderer, block, 12.0F / 16.0F, 2.0F / 16.0F, 12.0F / 16.0F, 14.0F / 16.0F,
 						14.0F / 16.0F, 14.0F / 16.0F, this.boxIIcon);
 
 				// よこ
-				renderInvCuboid(renderer, block, 2.0F / 16.0F, 2.0F / 16.0F, 4.0F / 16.0F, 4.0F / 16.0F, 4.0F / 16.0F,
-						12.0F / 16.0F, this.boxIIcon);
-				renderInvCuboid(renderer, block, 12.0F / 16.0F, 2.0F / 16.0F, 4.0F / 16.0F, 14.0F / 16.0F,
+				renderInvCuboidAlpha(renderer, block, 2.0F / 16.0F, 2.0F / 16.0F, 4.0F / 16.0F, 4.0F / 16.0F,
 						4.0F / 16.0F, 12.0F / 16.0F, this.boxIIcon);
-				renderInvCuboid(renderer, block, 4.0F / 16.0F, 2.0F / 16.0F, 2.0F / 16.0F, 12.0F / 16.0F, 4.0F / 16.0F,
-						4.0F / 16.0F, this.boxIIcon);
-				renderInvCuboid(renderer, block, 4.0F / 16.0F, 2.0F / 16.0F, 12.0F / 16.0F, 12.0F / 16.0F,
+				renderInvCuboidAlpha(renderer, block, 12.0F / 16.0F, 2.0F / 16.0F, 4.0F / 16.0F, 14.0F / 16.0F,
+						4.0F / 16.0F, 12.0F / 16.0F, this.boxIIcon);
+				renderInvCuboidAlpha(renderer, block, 4.0F / 16.0F, 2.0F / 16.0F, 2.0F / 16.0F, 12.0F / 16.0F,
+						4.0F / 16.0F, 4.0F / 16.0F, this.boxIIcon);
+				renderInvCuboidAlpha(renderer, block, 4.0F / 16.0F, 2.0F / 16.0F, 12.0F / 16.0F, 12.0F / 16.0F,
 						4.0F / 16.0F, 14.0F / 16.0F, this.boxIIcon);
 
-				renderInvCuboid(renderer, block, 2.0F / 16.0F, 12.0F / 16.0F, 4.0F / 16.0F, 4.0F / 16.0F,
+				renderInvCuboidAlpha(renderer, block, 2.0F / 16.0F, 12.0F / 16.0F, 4.0F / 16.0F, 4.0F / 16.0F,
 						14.0F / 16.0F, 12.0F / 16.0F, this.boxIIcon);
-				renderInvCuboid(renderer, block, 12.0F / 16.0F, 12.0F / 16.0F, 4.0F / 16.0F, 14.0F / 16.0F,
+				renderInvCuboidAlpha(renderer, block, 12.0F / 16.0F, 12.0F / 16.0F, 4.0F / 16.0F, 14.0F / 16.0F,
 						14.0F / 16.0F, 12.0F / 16.0F, this.boxIIcon);
-				renderInvCuboid(renderer, block, 4.0F / 16.0F, 12.0F / 16.0F, 2.0F / 16.0F, 12.0F / 16.0F,
+				renderInvCuboidAlpha(renderer, block, 4.0F / 16.0F, 12.0F / 16.0F, 2.0F / 16.0F, 12.0F / 16.0F,
 						14.0F / 16.0F, 4.0F / 16.0F, this.boxIIcon);
-				renderInvCuboid(renderer, block, 4.0F / 16.0F, 12.0F / 16.0F, 12.0F / 16.0F, 12.0F / 16.0F,
+				renderInvCuboidAlpha(renderer, block, 4.0F / 16.0F, 12.0F / 16.0F, 12.0F / 16.0F, 12.0F / 16.0F,
 						14.0F / 16.0F, 14.0F / 16.0F, this.boxIIcon);
 			} else if (meta == 11) {
+				// 中身
+				renderInvCuboidAlpha(renderer, block, 4.0F / 16.0F, 3.0F / 16.0F, 4.0F / 16.0F, 12.0F / 16.0F,
+						13.0F / 16.0F, 12.0F / 16.0F, this.IIcon0);
+
 				// 頂点部分
 				renderInvCuboid(renderer, block, 5.0F / 16.0F, 14.0F / 16.0F, 5.0F / 16.0F, 11.0F / 16.0F,
 						16.0F / 16.0F, 11.0F / 16.0F, this.IIcon4);
@@ -236,10 +236,6 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler {
 						14.0F / 16.0F, 4.0F / 16.0F, this.IIcon4);
 				renderInvCuboid(renderer, block, 3.0F / 16.0F, 13.0F / 16.0F, 12.0F / 16.0F, 13.0F / 16.0F,
 						14.0F / 16.0F, 13.0F / 16.0F, this.IIcon4);
-
-				// 中身
-				renderInvCuboid(renderer, block, 4.0F / 16.0F, 3.0F / 16.0F, 4.0F / 16.0F, 12.0F / 16.0F,
-						13.0F / 16.0F, 12.0F / 16.0F, this.IIcon0);
 			}
 		}
 
@@ -257,7 +253,7 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler {
 		this.IIcon0 = DCsAppleMilk.cLamp.getIcon(0, meta);
 		this.IIcon2 = DCsAppleMilk.cLamp.getIcon(2, meta);
 		this.IIcon3 = DCsAppleMilk.cLamp.getIcon(3, meta);
-		this.IIcon4 = DCsAppleMilk.teppann.getBlockTextureFromSide(0);
+		this.IIcon4 = DCsAppleMilk.teppanII.getBlockTextureFromSide(2);
 
 		if (modelId == this.getRenderId()) {
 			if (meta < 4) {
@@ -265,7 +261,7 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler {
 				block.setBlockBounds(0.0F / 16.0F, 0.0F / 16.0F, 0.0F / 16.0F, 16.0F / 16.0F, 16.0F / 16.0F,
 						16.0F / 16.0F);
 				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
+				renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 2.0F, 2.0F, 2.0F);
 
 			} else if (meta > 3 && meta < 8) {
 				renderer.setOverrideBlockTexture(this.glassIIcon);
@@ -278,7 +274,7 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler {
 				block.setBlockBounds(3.0F / 16.0F, 3.0F / 16.0F, 3.0F / 16.0F, 13.0F / 16.0F, 13.0F / 16.0F,
 						13.0F / 16.0F);
 				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
+				renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 2.0F, 2.0F, 2.0F);
 			} else if (meta == 8) {
 				// is using x32Texture?
 				if (DCsConfig.setAltTexturePass == 1) {
@@ -780,7 +776,6 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler {
 				}
 
 			}
-
 			renderer.clearOverrideBlockTexture();
 			block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 			renderer.setRenderBoundsFromBlock(block);
@@ -833,6 +828,45 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler {
 		tessellator.setNormal(1.0F, 0.0F, 0.0F);
 		renderer.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, icon);
 		tessellator.draw();
+		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+		block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+		renderer.setRenderBoundsFromBlock(block);
+	}
+
+	private void renderInvCuboidAlpha(RenderBlocks renderer, Block block, float minX, float minY, float minZ,
+			float maxX, float maxY, float maxZ, IIcon icon) {
+		Tessellator tessellator = Tessellator.instance;
+		block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+		renderer.setRenderBoundsFromBlock(block);
+		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+		GL11.glColor4f(2.0F, 2.0F, 2.0F, 0.9F);
+		block.setBlockBounds(minX, minY, minZ, maxX, maxY, maxZ);
+		renderer.setRenderBoundsFromBlock(block);
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, -1F, 0.0F);
+		renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, icon);
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 1.0F, 0.0F);
+		renderer.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, icon);
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 0.0F, -1F);
+		renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, icon);
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 0.0F, 1.0F);
+		renderer.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, icon);
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(-1F, 0.0F, 0.0F);
+		renderer.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, icon);
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(1.0F, 0.0F, 0.0F);
+		renderer.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, icon);
+		tessellator.draw();
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 		block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		renderer.setRenderBoundsFromBlock(block);

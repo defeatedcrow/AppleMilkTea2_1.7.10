@@ -5,8 +5,8 @@ import static net.minecraftforge.common.util.ForgeDirection.UP;
 import java.util.List;
 import java.util.Random;
 
+import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -34,10 +34,16 @@ public class BlockChalcedonyLampOp extends Block {
 	}
 
 	@Override
+	public int getRenderType() {
+		return DCsAppleMilk.modelCLampOp;
+	}
+
+	@Override
 	public Item getItemDropped(int metadata, Random rand, int fortune) {
 		return Item.getItemFromBlock(this);
 	}
 
+	@Override
 	public int damageDropped(int par1) {
 		return par1;
 	}
@@ -57,14 +63,17 @@ public class BlockChalcedonyLampOp extends Block {
 		return super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, 1 - par5);
 	}
 
+	@Override
 	public int getMobilityFlag() {
 		return 0;
 	}
 
+	@Override
 	public boolean isSideSolid(IBlockAccess world, int x, int y, int z, ForgeDirection side) {
 		return side != UP;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2) {
 		int type = par2 & 3;

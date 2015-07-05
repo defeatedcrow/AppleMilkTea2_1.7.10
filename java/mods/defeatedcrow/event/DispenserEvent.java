@@ -5,7 +5,6 @@ import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.tile.TileIncenseBase;
 import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
@@ -15,9 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
 
 public class DispenserEvent {
 
@@ -34,6 +30,7 @@ public class DispenserEvent {
 			/**
 			 * Dispense the specified stack, play the dispense sound and spawn particles.
 			 */
+			@Override
 			protected ItemStack dispenseStack(IBlockSource block, ItemStack item) {
 				EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
 				World world = block.getWorld();
@@ -73,6 +70,7 @@ public class DispenserEvent {
 			/**
 			 * Play the dispense sound from the specified block.
 			 */
+			@Override
 			protected void playDispenseSound(IBlockSource block) {
 				if (this.flag) {
 					block.getWorld().playAuxSFX(1000, block.getXInt(), block.getYInt(), block.getZInt(), 0);
@@ -85,6 +83,9 @@ public class DispenserEvent {
 	}
 
 	public void registerTeaMakerEvent(ItemStack item) {
+		// cocoaは登録禁止!
+		if (item.getItem() == Items.dye)
+			return;
 		// ティーメーカー動作
 		BlockDispenser.dispenseBehaviorRegistry.putObject(item.getItem(), new BehaviorDefaultDispenseItem() {
 			private boolean flag = true;
@@ -92,6 +93,7 @@ public class DispenserEvent {
 			/**
 			 * Dispense the specified stack, play the dispense sound and spawn particles.
 			 */
+			@Override
 			protected ItemStack dispenseStack(IBlockSource block, ItemStack item) {
 				EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
 				World world = block.getWorld();
@@ -121,12 +123,13 @@ public class DispenserEvent {
 					this.flag = false;
 				}
 
-				return item;
+				return flag ? item : super.dispenseStack(block, item);
 			}
 
 			/**
 			 * Play the dispense sound from the specified block.
 			 */
+			@Override
 			protected void playDispenseSound(IBlockSource block) {
 				if (this.flag) {
 					block.getWorld().playAuxSFX(1009, block.getXInt(), block.getYInt(), block.getZInt(), 0);
@@ -143,6 +146,7 @@ public class DispenserEvent {
 		BlockDispenser.dispenseBehaviorRegistry.putObject(DCsAppleMilk.bucketCamOil, new BehaviorDefaultDispenseItem() {
 			private boolean flag = true;
 
+			@Override
 			protected ItemStack dispenseStack(IBlockSource block, ItemStack itemstack) {
 				EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
 				World world = block.getWorld();
@@ -163,6 +167,7 @@ public class DispenserEvent {
 				}
 			}
 
+			@Override
 			protected void playDispenseSound(IBlockSource block) {
 				if (this.flag) {
 					block.getWorld().playAuxSFX(1009, block.getXInt(), block.getYInt(), block.getZInt(), 0);
@@ -177,6 +182,7 @@ public class DispenserEvent {
 				new BehaviorDefaultDispenseItem() {
 					private boolean flag = true;
 
+					@Override
 					protected ItemStack dispenseStack(IBlockSource block, ItemStack itemstack) {
 						EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
 						World world = block.getWorld();
@@ -197,6 +203,7 @@ public class DispenserEvent {
 						}
 					}
 
+					@Override
 					protected void playDispenseSound(IBlockSource block) {
 						if (this.flag) {
 							block.getWorld().playAuxSFX(1009, block.getXInt(), block.getYInt(), block.getZInt(), 0);
@@ -215,6 +222,7 @@ public class DispenserEvent {
 		private final BehaviorDefaultDispenseItem defaultReturnItem = new BehaviorDefaultDispenseItem();
 		private boolean flag = true;
 
+		@Override
 		protected ItemStack dispenseStack(IBlockSource block, ItemStack itemstack) {
 			EnumFacing enumfacing = BlockDispenser.func_149937_b(block.getBlockMetadata());
 			World world = block.getWorld();
@@ -255,6 +263,7 @@ public class DispenserEvent {
 			return itemstack;
 		}
 
+		@Override
 		protected void playDispenseSound(IBlockSource block) {
 			if (this.flag) {
 				block.getWorld().playAuxSFX(1009, block.getXInt(), block.getYInt(), block.getZInt(), 0);

@@ -69,6 +69,7 @@ import mods.defeatedcrow.client.renderblocks.RenderAlcoholCup;
 import mods.defeatedcrow.client.renderblocks.RenderAutoMaker;
 import mods.defeatedcrow.client.renderblocks.RenderBowlRack;
 import mods.defeatedcrow.client.renderblocks.RenderBreadBasket;
+import mods.defeatedcrow.client.renderblocks.RenderCLampOp;
 import mods.defeatedcrow.client.renderblocks.RenderCPanel;
 import mods.defeatedcrow.client.renderblocks.RenderCassisTree;
 import mods.defeatedcrow.client.renderblocks.RenderChalcedonyLamp;
@@ -311,6 +312,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerBlockHandler(new RenderYuzuFence());
 		RenderingRegistry.registerBlockHandler(new RenderEHandle());
 		RenderingRegistry.registerBlockHandler(new RenderWoodPanel());
+		RenderingRegistry.registerBlockHandler(new RenderCLampOp());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMelonBomb.class, new RenderMelonBomb());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySilkyMelon.class, new RenderSilkyMelon());

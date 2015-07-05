@@ -3,20 +3,14 @@ package mods.defeatedcrow.common.item.magic;
 import mods.defeatedcrow.api.charm.EffectType;
 import mods.defeatedcrow.api.charm.IIncenseEffect;
 import mods.defeatedcrow.handler.Util;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -61,9 +55,8 @@ public class ItemIncenseSandalwood extends Item implements IIncenseEffect {
 
 				if (living instanceof EntityTameable || living instanceof EntityAgeable) {
 					return false;// 味方の可能性があるので何もしない
-				} else// 装備剥がし
-				{
-					int slot = 1 + world.rand.nextInt(4);// 1~4、防具スロット
+				} else {// 装備剥がし
+					int slot = world.rand.nextInt(5);// 0~4、手持ちと防具スロット
 					ItemStack equip = living.getEquipmentInSlot(slot);
 					if (Util.notEmptyItem(equip)) {
 						ItemStack drop = equip.copy();
