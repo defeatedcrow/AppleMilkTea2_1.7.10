@@ -2,6 +2,7 @@ package mods.defeatedcrow.common.block.edible;
 
 import java.util.ArrayList;
 
+import mods.defeatedcrow.api.potion.AMTPotionManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.entity.edible.PlaceableAlcoholCup;
 import net.minecraft.block.Block;
@@ -64,53 +65,61 @@ public class EntityItemAlcoholCup extends EdibleEntityItemBlock2 {
 	}
 
 	protected static ArrayList<PotionEffect> getPotionWithIce(EntityPlayer par1EntityPlayer, int meta) {
-		PotionEffect potion = new PotionEffect(Potion.heal.id, 1, 1);
-		int tick = 2400;
-		boolean flag = false;
-
 		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
+		int id[] = { Potion.regeneration.id, 2400, 0 };
 
-		if ((meta == 0 || meta == 11) && DCsAppleMilk.reflex != null)// sake
-		{
-			potion = new PotionEffect(DCsAppleMilk.reflex.id, 600, 0);
-		} else if (meta == 1)// beer
-		{
-			potion = new PotionEffect(Potion.digSpeed.id, 2400, 0);
-		} else if (meta == 2 && DCsAppleMilk.absHeal != null)// wine
-		{
-			potion = new PotionEffect(DCsAppleMilk.absHeal.id, 600, 0);
-		} else if (meta == 4)// rum
-		{
-			potion = new PotionEffect(Potion.resistance.id, 2400, 1);
-		} else if (meta == 3 || meta == 13)// gin
-		{
-			potion = new PotionEffect(Potion.damageBoost.id, 2400, 0);
-		} else if (meta == 5)// vodka
-		{
-			potion = new PotionEffect(Potion.damageBoost.id, 2400, 1);
-		} else if (meta == 6)// wiskey
-		{
-			potion = new PotionEffect(Potion.digSpeed.id, 2400, 1);
-		} else if (meta == 7)// apple
-		{
-			potion = new PotionEffect(Potion.jump.id, 2400, 1);
-		} else if (meta == 8)// tea
-		{
-			potion = new PotionEffect(Potion.heal.id, 1, 1);
-		} else if (meta == 9)// cassis
-		{
-			potion = new PotionEffect(Potion.fireResistance.id, 2400, 0);
-		} else if (meta == 12)// brandy
-		{
-			potion = new PotionEffect(Potion.regeneration.id, 1200, 1);
-		} else if (meta == 10 && DCsAppleMilk.prvSuffocation != null)// plum
-		{
-			potion = new PotionEffect(DCsAppleMilk.prvSuffocation.id, 2400, 0);
-		} else {
-			potion = new PotionEffect(Potion.heal.id, 1, 1);
+		if (meta == 0 || meta == 11) {
+			id[0] = AMTPotionManager.manager.AMTgetPotion("reflex").getId();
+			id[1] = 600;
+		} else if (meta == 1) {
+			id[0] = Potion.digSpeed.id;
+		} else if (meta == 2) {
+			id[0] = AMTPotionManager.manager.AMTgetPotion("absorb_heal").getId();
+			id[1] = 600;
+		} else if (meta == 3 || meta == 13) {
+			id[0] = Potion.damageBoost.id;
+		} else if (meta == 4) {
+			id[0] = Potion.resistance.id;
+		} else if (meta == 5) {
+			id[0] = Potion.damageBoost.id;
+			id[2] = 1;
+		} else if (meta == 6) {
+			id[0] = Potion.digSpeed.id;
+		} else if (meta == 7) {
+			id[0] = Potion.jump.id;
+		} else if (meta == 8) {
+			id[0] = Potion.heal.id;
+			id[1] = 1;
+			id[2] = 1;
+		} else if (meta == 9) {
+			id[0] = Potion.fireResistance.id;
+		} else if (meta == 10) {
+			id[0] = AMTPotionManager.manager.AMTgetPotion("suffocation_resist").getId();
+		} else if (meta == 12) {
+			id[0] = Potion.regeneration.id;
+			id[1] = 1200;
+			id[2] = 1;
+		} else {// 例外用
+			id[0] = Potion.heal.id;
+			id[1] = 1;
 		}
 
-		ret.add(potion);
+		if (id[0] != 0) {
+			Potion p = Potion.potionTypes[id[0]];
+			if (p != null) {
+
+			}
+			if (par1EntityPlayer.isPotionActive(id[0])) {
+				id[1] += par1EntityPlayer.getActivePotionEffect(p).getDuration();
+				ret.add(new PotionEffect(id[0], id[1], id[2]));
+			} else {
+				ret.add(new PotionEffect(id[0], id[1], id[2]));
+			}
+		}
+
+		// if (ret.isEmpty()) {
+		// ret.add(new PotionEffect(Potion.heal.id, 1, 1));
+		// }
 		return ret;
 	}
 

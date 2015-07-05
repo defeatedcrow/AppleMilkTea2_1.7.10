@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import mods.defeatedcrow.api.potion.AMTPotionManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.entity.edible.*;
+import mods.defeatedcrow.common.entity.edible.PlaceableCup2;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,7 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -35,6 +35,7 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock2 {
 		setContainerItem(Item.getItemFromBlock(DCsAppleMilk.emptyCup));
 	}
 
+	@Override
 	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
 		int meta = par1ItemStack.getItemDamage();
 
@@ -67,20 +68,42 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock2 {
 			dur = 1200;
 		}
 
-		if ((meta == 0 || meta == 1) && DCsAppleMilk.Immunization != null) {
-			ret.add(new PotionEffect(DCsAppleMilk.Immunization.id, dur, 1));
-		} else if ((meta == 2 || meta == 3) && DCsAppleMilk.Immunization != null) {
-			ret.add(new PotionEffect(DCsAppleMilk.Immunization.id, dur, 0));
+		int id[] = { Potion.regeneration.id, dur, 0 };
+
+		if (meta == 0 || meta == 1) {
+			id[0] = AMTPotionManager.manager.AMTgetPotion("immunization").getId();
+			id[2] = 1;
+		} else if (meta == 2 || meta == 3) {
+			id[0] = AMTPotionManager.manager.AMTgetPotion("immunization").getId();
 		} else if (meta == 5) {
-			ret.add(new PotionEffect(Potion.damageBoost.id, dur, 0));
+			id[0] = Potion.damageBoost.id;
 		} else if (meta == 6 || meta == 7) {
-			ret.add(new PotionEffect(Potion.resistance.id, dur, 0));
+			id[0] = Potion.resistance.id;
 		} else if (meta == 8 || meta == 12) {
-			ret.add(new PotionEffect(Potion.moveSpeed.id, dur, 0));
+			id[0] = Potion.moveSpeed.id;
 		} else if (meta == 11) {
-			ret.add(new PotionEffect(Potion.jump.id, dur, 1));
-		} else {
-			ret.add(new PotionEffect(Potion.heal.id, 1, 0));
+			id[0] = Potion.jump.id;
+			id[2] = 1;
+		} else {// 例外用
+			id[0] = Potion.heal.id;
+			id[1] = 1;
+		}
+
+		if (id[0] != 0) {
+			Potion p = Potion.potionTypes[id[0]];
+			if (p != null) {
+
+			}
+			if (player.isPotionActive(id[0])) {
+				id[1] += player.getActivePotionEffect(p).getDuration();
+				ret.add(new PotionEffect(id[0], id[1], id[2]));
+			} else {
+				ret.add(new PotionEffect(id[0], id[1], id[2]));
+			}
+		}
+
+		if ((meta & 1) == 1 || ret.isEmpty()) {
+			ret.add(new PotionEffect(Potion.regeneration.id, 200, 0));
 		}
 		return ret;
 	}
@@ -132,19 +155,17 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock2 {
 			increaseDuration(par1EntityPlayer);
 		}
 
-		if ((meta & 1) == 1) {
-			par1EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
-		}
-
 		if (DCsAppleMilk.suffocation != null && par1EntityPlayer.isPotionActive(DCsAppleMilk.suffocation)) {
 			par1EntityPlayer.removePotionEffect(DCsAppleMilk.suffocation.id);
 		}
 	}
 
+	@Override
 	public int getMaxItemUseDuration(ItemStack par1ItemStack) {
 		return 16;
 	}
 
+	@Override
 	public EnumAction getItemUseAction(ItemStack par1ItemStack) {
 		return EnumAction.drink;
 	}
@@ -176,6 +197,7 @@ public class EntityItemTeaCup2 extends EdibleEntityItemBlock2 {
 		return false;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	// マウスオーバー時の表示情報
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {

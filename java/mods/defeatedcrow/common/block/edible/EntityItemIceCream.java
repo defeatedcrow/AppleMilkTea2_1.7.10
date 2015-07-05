@@ -3,18 +3,16 @@ package mods.defeatedcrow.common.block.edible;
 import java.util.ArrayList;
 import java.util.List;
 
+import mods.defeatedcrow.api.potion.AMTPotionManager;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.entity.edible.*;
+import mods.defeatedcrow.common.entity.edible.PlaceableIcecream;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
@@ -50,8 +48,7 @@ public class EntityItemIceCream extends EdibleEntityItemBlock2 {
 	@Override
 	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
 		if (!par2World.isRemote) {
-			if (par1ItemStack.getItemDamage() == 7)// lime
-			{
+			if (par1ItemStack.getItemDamage() == 7) { // lime
 				EntityItemTeaCup2.clearNegativePotion(par3EntityPlayer);
 			}
 
@@ -77,62 +74,57 @@ public class EntityItemIceCream extends EdibleEntityItemBlock2 {
 
 	@Override
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer player, int meta) {
-
 		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
-		if (this.iceEffect(meta) != null) {
-			ret.add(this.iceEffect(meta));
+		int tick = 1800;
+		boolean flag = false;
+		int id[] = { Potion.fireResistance.id, 0 };
+
+		if (meta == 0) {// milk
+			id[0] = Potion.fireResistance.id;
+		} else if (meta == 1) {// tea
+			id[0] = Potion.heal.id;
+		} else if (meta == 2) {// greentea
+			id[0] = Potion.digSpeed.id;
+		} else if (meta == 3 || meta == 4) {// cocoa,coffee
+			id[0] = Potion.nightVision.id;
+		} else if ((meta == 5)) {// fruit
+			id[0] = AMTPotionManager.manager.AMTgetPotion("immunization").getId();
+		} else if ((meta == 6) && DCsAppleMilk.Immunization != null) {// lemon
+			id[0] = AMTPotionManager.manager.AMTgetPotion("immunization").getId();
+			id[1] = 1;
+		} else if (meta == 7) {// lime
+			id[0] = 0;
+		} else if (meta == 8) {// tomato
+			id[0] = Potion.damageBoost.id;
+		} else if (meta == 9) {// berry
+			id[0] = Potion.resistance.id;
+		} else if (meta == 10 || meta == 13) {// grape
+			id[0] = Potion.moveSpeed.id;
+		} else if (meta == 11) {// mint
+			id[0] = 0;
+		} else if (meta == 12) {// orange
+			id[0] = Potion.jump.id;
+		} else {// 例外用
+			id[0] = Potion.heal.id;
 		}
 
-		if (ret.isEmpty()) {
-			ret.add(new PotionEffect(Potion.regeneration.id, 1, 0));
+		if (id[0] != 0) {
+			Potion p = Potion.potionTypes[id[0]];
+			if (p != null) {
+
+			}
+			if (player.isPotionActive(id[0])) {
+				tick += player.getActivePotionEffect(p).getDuration();
+				ret.add(new PotionEffect(id[0], tick, id[1]));
+			} else {
+				ret.add(new PotionEffect(id[0], tick, id[1]));
+			}
+		}
+
+		if (flag || ret.isEmpty()) {
+			ret.add(new PotionEffect(Potion.regeneration.id, 300, 0));
 		}
 		return ret;
-	}
-
-	public PotionEffect iceEffect(int meta) {
-
-		int dur = 1800;
-
-		if (meta == 0)// milk
-		{
-			return new PotionEffect(Potion.fireResistance.id, dur, 0);
-		} else if (meta == 1)// tea
-		{
-			return new PotionEffect(Potion.heal.id, 1, 0);
-		} else if (meta == 2)// greentea
-		{
-			return new PotionEffect(Potion.digSpeed.id, dur, 0);
-		} else if (meta == 3 || meta == 4)// cocoa,coffee
-		{
-			return new PotionEffect(Potion.nightVision.id, dur, 0);
-		} else if ((meta == 5) && DCsAppleMilk.Immunization != null)// fruit
-		{
-			return new PotionEffect(DCsAppleMilk.Immunization.id, dur, 0);
-		} else if ((meta == 6) && DCsAppleMilk.Immunization != null)// lemon
-		{
-			return new PotionEffect(DCsAppleMilk.Immunization.id, dur, 1);
-		} else if (meta == 7)// lime
-		{
-			return null;
-		} else if (meta == 8)// tomato
-		{
-			return new PotionEffect(Potion.damageBoost.id, dur, 0);
-		} else if (meta == 9)// berry
-		{
-			return new PotionEffect(Potion.resistance.id, dur, 1);
-		} else if (meta == 10 || meta == 13)// grape
-		{
-			return new PotionEffect(Potion.moveSpeed.id, dur, 0);
-		} else if (meta == 11)// mint
-		{
-			return null;
-		} else if (meta == 12)// orange
-		{
-			return new PotionEffect(Potion.jump.id, dur, 0);
-		} else// 例外用
-		{
-			return new PotionEffect(Potion.heal.id, 1, 0);
-		}
 	}
 
 	@Override
@@ -140,6 +132,7 @@ public class EntityItemIceCream extends EdibleEntityItemBlock2 {
 		return par1;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	// マウスオーバー時の表示情報
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
