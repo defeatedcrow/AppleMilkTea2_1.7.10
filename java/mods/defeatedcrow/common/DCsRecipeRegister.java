@@ -1212,6 +1212,9 @@ public class DCsRecipeRegister {
 
 		for (ItemStack water : waterContainer) {
 
+			if (water == null || water.getItem() == null)
+				continue;
+
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.teacupBlock, 1, 4),// greentea
 					new Object[] { new ItemStack(DCsAppleMilk.emptyCup, 1, 0), water,
 							new ItemStack(DCsAppleMilk.foodTea, 1, 0) }));

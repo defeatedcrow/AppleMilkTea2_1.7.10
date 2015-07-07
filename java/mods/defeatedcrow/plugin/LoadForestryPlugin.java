@@ -1,10 +1,5 @@
 package mods.defeatedcrow.plugin;
 
-import ic2.api.recipe.Recipes;
-import cpw.mods.fml.common.registry.GameRegistry;
-import forestry.api.fuels.EngineBronzeFuel;
-import forestry.api.fuels.FuelManager;
-import forestry.api.recipes.RecipeManagers;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
@@ -14,37 +9,40 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import cpw.mods.fml.common.registry.GameRegistry;
+import forestry.api.fuels.EngineBronzeFuel;
+import forestry.api.fuels.FuelManager;
+import forestry.api.recipes.RecipeManagers;
 
 public class LoadForestryPlugin {
 
 	public void load() {
-		ItemStack item = new ItemStack(Util.getModItem("Forestry", "waxCapsule"), 1);
+		Item item = Util.getModItem("Forestry", "waxCapsule");
 		if (item != null) {
-			ItemStack register = new ItemStack(item.getItem());
+			ItemStack register = new ItemStack(item, 1);
 			if (register != null) {
 				LoadModHandler.registerModItems("emptyCapsule", register);
 			}
 		}
-		ItemStack item2 = new ItemStack(Util.getModItem("Forestry", "refractoryEmpty"), 1);
+		Item item2 = Util.getModItem("Forestry", "refractoryEmpty");
 		if (item2 != null) {
-			ItemStack register = new ItemStack(item2.getItem());
+			ItemStack register = new ItemStack(item2, 1);
 			if (register != null) {
 				LoadModHandler.registerModItems("emptyRefractory", register);
 			}
 		}
-		ItemStack item3 = new ItemStack(Util.getModItem("Forestry", "canEmpty"), 1);
+		Item item3 = Util.getModItem("Forestry", "canEmpty");
 		if (item3 != null) {
-			ItemStack register = new ItemStack(item3.getItem());
+			ItemStack register = new ItemStack(item3, 1);
 			if (register != null) {
 				LoadModHandler.registerModItems("emptyCan", register);
 			}
 		}
-		ItemStack item4 = new ItemStack(Util.getModItem("Forestry", "waxCapsuleWater"), 1);
+		Item item4 = Util.getModItem("Forestry", "waxCapsuleWater");
 		if (item4 != null) {
-			ItemStack register = new ItemStack(item4.getItem());
+			ItemStack register = new ItemStack(item4, 1);
 			if (register != null) {
 				LoadModHandler.registerModItems("waterCapsule", register);
 				if (LoadModHandler.registerModItems("containerWater", register)) {
@@ -52,9 +50,9 @@ public class LoadForestryPlugin {
 				}
 			}
 		}
-		ItemStack item5 = new ItemStack(Util.getModItem("Forestry", "refractoryWater"), 1);
+		Item item5 = Util.getModItem("Forestry", "refractoryWater");
 		if (item5 != null) {
-			ItemStack register = new ItemStack(item5.getItem());
+			ItemStack register = new ItemStack(item5, 1);
 			if (register != null) {
 				LoadModHandler.registerModItems("waterRefractory", register);
 				if (LoadModHandler.registerModItems("containerWater", register)) {
@@ -62,9 +60,9 @@ public class LoadForestryPlugin {
 				}
 			}
 		}
-		ItemStack item6 = new ItemStack(Util.getModItem("Forestry", "waterCan"), 1);
+		Item item6 = Util.getModItem("Forestry", "canWater");
 		if (item6 != null) {
-			ItemStack register = new ItemStack(item6.getItem());
+			ItemStack register = new ItemStack(item6, 1);
 			if (register != null) {
 				LoadModHandler.registerModItems("waterCan", register);
 				if (LoadModHandler.registerModItems("containerWater", register)) {
@@ -72,9 +70,9 @@ public class LoadForestryPlugin {
 				}
 			}
 		}
-		ItemStack item7 = new ItemStack(Util.getModItem("Forestry", "honeyedSlice"), 1);
+		Item item7 = Util.getModItem("Forestry", "honeyedSlice");
 		if (item7 != null) {
-			ItemStack register = new ItemStack(item7.getItem());
+			ItemStack register = new ItemStack(item7, 1);
 			if (register != null) {
 				LoadModHandler.registerModItems("honeyedSlice", register);
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(register.getItem(), 4, register
@@ -83,9 +81,9 @@ public class LoadForestryPlugin {
 				AMTLogger.debugInfo("Succeeded to get Forestry Honeyed Slice");
 			}
 		}
-		ItemStack item8 = new ItemStack(Util.getModItem("Forestry", "fertilizerCompound"), 1);
+		Item item8 = Util.getModItem("Forestry", "fertilizerCompound");
 		if (item8 != null) {
-			ItemStack register = new ItemStack(item8.getItem());
+			ItemStack register = new ItemStack(item8, 1);
 			if (register != null) {
 				LoadModHandler.registerModItems("fertilizer", register);
 

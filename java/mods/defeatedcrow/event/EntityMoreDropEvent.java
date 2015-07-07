@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.handler.GenkotuHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -59,22 +58,19 @@ public class EntityMoreDropEvent {
 				}
 
 				if (flowerCount > 0) {
-					// まずは作ってみたリフレクションクラスで叩く
-					ItemStack get = GenkotuHandler.getMobsDrop(entity);
-					if (get != null && world.rand.nextInt(2) < flowerCount) {
+					for (EntityItem get : items) {
+						if (get == null || get.getEntityItem() == null)
+							continue;
 						int count = 1 + world.rand.nextInt(flowerCount);
-						int size = get.stackSize;
-						size *= count;
-						AMTLogger.debugInfo("Genkotu!" + size);
-						world.spawnEntityInWorld(new EntityItem(world, posX, posY, posZ, new ItemStack(get.getItem(),
-								size, get.getItemDamage())));
+						get.getEntityItem().stackSize += count;
+						AMTLogger.debugInfo("increase drops :" + get.getEntityItem().getDisplayName() + " +" + count);
 					}
 				}
 
 				if (butterflyCount > 0) {
 					int count = 5 * butterflyCount;
 					int exp = 1 + world.rand.nextInt(count);
-					AMTLogger.debugInfo("daden (exp)" + exp);
+					AMTLogger.debugInfo("raden (exp)" + exp);
 					world.spawnEntityInWorld(new EntityXPOrb(world, posX, posY, posZ, exp));
 				}
 			}

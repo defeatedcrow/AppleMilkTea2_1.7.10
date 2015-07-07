@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 
 /**
  * グーで殴る
@@ -14,16 +15,18 @@ import net.minecraft.item.ItemStack;
 public class GenkotuHandler {
 
 	public static ItemStack getMobsDrop(EntityLivingBase entity) {
-		Method method;
 		ItemStack ret = null;
 		if (entity instanceof EntityLiving) {
 			EntityLiving living = (EntityLiving) entity;
-			String packageName = entity.getClass().getName();
+			String packageName = living.getClass().getName();
 
 			try {
-				method = entity.getClass().getDeclaredMethod("getDropItem");
+				Class clazz = living.getClass();
+				String[] s = { "getDropItem" };
+				Method method = ReflectionHelper.findMethod(clazz, living, s, Item.class);
+				/* living.getClass().getDeclaredMethod("u"); */
 				method.setAccessible(true);
-				Object obj = method.invoke(entity);
+				Object obj = method.invoke(living);
 				if (obj != null && obj instanceof Item) {
 					Item ID = (Item) obj;
 					if (ID != null) {
@@ -33,7 +36,7 @@ public class GenkotuHandler {
 				}
 
 			} catch (Exception e) {
-				AMTLogger.info("Failed to get drop : " + entity.getCommandSenderName());
+				AMTLogger.info("Failed to get drop : " + living.getCommandSenderName());
 				return null;
 			}
 		}
