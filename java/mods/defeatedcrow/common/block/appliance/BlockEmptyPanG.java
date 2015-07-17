@@ -2,14 +2,17 @@ package mods.defeatedcrow.common.block.appliance;
 
 import java.util.Random;
 
+import mods.defeatedcrow.api.appliance.SoupType;
+import mods.defeatedcrow.api.recipe.IFondueSource;
 import mods.defeatedcrow.api.recipe.IPanRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.client.particle.EntityDCCloudFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
+import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.DCsConfig;
-import mods.defeatedcrow.common.tile.TileChocoPan;
+import mods.defeatedcrow.common.tile.appliance.TileFilledSoupPan;
 import mods.defeatedcrow.common.tile.appliance.TilePanG;
 import mods.defeatedcrow.handler.Util;
 import mods.defeatedcrow.plugin.LoadBambooPlugin;
@@ -17,6 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,6 +37,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -55,9 +60,13 @@ public class BlockEmptyPanG extends BlockContainer {
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer,
 			int par6, float par7, float par8, float par9) {
 		ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
-		TilePanG tile = (TilePanG) par1World.getTileEntity(par2, par3, par4);
-		if (tile == null)
+		TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
+		TilePanG tile = null;
+		if (tileentity instanceof TilePanG) {
+			tile = (TilePanG) tileentity;
+		} else {
 			return false;
+		}
 
 		if (itemstack == null || itemstack.getItem() == Item.getItemFromBlock(this)) {
 			ItemStack drop = new ItemStack(DCsAppleMilk.emptyPanGaiden, 1, 0);
@@ -147,20 +156,19 @@ public class BlockEmptyPanG extends BlockContainer {
 				}
 			}
 			return true;
-		} else// その他のアイテムはすべて材料判定に回す
-		{
+		} else { // その他のアイテムはすべて材料判定に回す
 			Item ID = itemstack.getItem();
 			int IDm = itemstack.getItemDamage();
 
 			if (this.onFurnace(par1World, par2, par3 - 1, par4) && tile.getItemStack() == null) {
 				ItemStack input = new ItemStack(ID, 1, IDm);
 
-				if (ID == DCsAppleMilk.mincedFoods && IDm == 8)// チョコ鍋だけは旧仕様
-				{
-					par1World.removeTileEntity(par2, par3, par4);
-					par1World.setBlock(par2, par3, par4, DCsAppleMilk.filledChocoPan);
-					TileChocoPan tile2 = (TileChocoPan) par1World.getTileEntity(par2, par3, par4);
-					tile2.setRemainByte((byte) 11);
+				IPanRecipe recipe = RecipeRegisterManager.panRecipe.getRecipe(input);
+				if (recipe != null) {
+					tile.setItemStack(input);
+					tile.setRemainByte((byte) 3);
+					tile.markDirty();
+					par1World.markBlockForUpdate(par2, par3, par4);
 
 					if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0) {
 						par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem,
@@ -168,29 +176,13 @@ public class BlockEmptyPanG extends BlockContainer {
 					}
 
 					par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
+					par5EntityPlayer.triggerAchievement(AchievementRegister.makeRice);
 					return true;
 				} else {
-					IPanRecipe recipe = RecipeRegisterManager.panRecipe.getRecipe(input);
-					if (recipe != null) {
-						tile.setItemStack(input);
-						tile.setRemainByte((byte) 3);
-						tile.markDirty();
-						par1World.markBlockForUpdate(par2, par3, par4);
-
-						if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0) {
-							par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem,
-									(ItemStack) null);
-						}
-
-						par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
-						par5EntityPlayer.triggerAchievement(AchievementRegister.makeRice);
-						return true;
-					} else {
-						if (par1World.isRemote)
-							par5EntityPlayer.addChatMessage(new ChatComponentText(StatCollector
-									.translateToLocal("dc.panMessage.noRecipe")));
-						return true;
-					}
+					if (par1World.isRemote)
+						par5EntityPlayer.addChatMessage(new ChatComponentText(StatCollector
+								.translateToLocal("dc.panMessage.noRecipe")));
+					return true;
 				}
 			} else {
 				if (!this.onFurnace(par1World, par2, par3 - 1, par4)) {
@@ -209,7 +201,57 @@ public class BlockEmptyPanG extends BlockContainer {
 		}
 	}
 
-	private boolean onFurnace(World world, int x, int y, int z) {
+	// change soup type
+	@Override
+	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
+		if (world.isRemote || !this.onFurnace(world, x, y - 1, z) || entity == null)
+			return;
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if (tile == null || !(tile instanceof TilePanG))
+			return;
+
+		TilePanG pan = (TilePanG) tile;
+		boolean flag = false;
+		if (entity instanceof EntityItem) {
+			ItemStack input = ((EntityItem) entity).getEntityItem();
+			IFondueSource recipe = RecipeRegisterManager.fondueRecipe.getType(input);
+			if (recipe != null && recipe.beforeType() == SoupType.EMPTY && recipe.matches(input)) {
+				this.setSoupType(world, x, y, z, recipe.afterType());
+				world.playSoundAtEntity(entity, "random.pop", 0.4F, 1.8F);
+
+				ItemStack container = null;
+				if (FluidContainerRegistry.isFilledContainer(input)) {
+					container = FluidContainerRegistry.drainFluidContainer(input);
+				} else {
+					container = input.getItem().getContainerItem(input);
+				}
+
+				if (container != null) {
+					EntityItem cont = new EntityItem(world, x, y + 1.0D, z, container);
+					world.spawnEntityInWorld(cont);
+				}
+
+				if (input.stackSize > 1) {
+					((EntityItem) entity).getEntityItem().stackSize--;
+				} else {
+					entity.setDead();
+				}
+			}
+		}
+	}
+
+	public void setSoupType(World world, int x, int y, int z, SoupType type) {
+		world.removeTileEntity(x, y, z);
+		world.setBlock(x, y, z, DCsAppleMilk.filledSoupPan);
+		TileFilledSoupPan tile2 = (TileFilledSoupPan) world.getTileEntity(x, y, z);
+		tile2.setType(type);
+		tile2.setRemainByte((byte) 8);
+		world.playAuxSFX(2005, x, y, z, 0);
+		world.markBlockForUpdate(x, y, z);
+		AMTLogger.debugInfo("current type : " + type.display);
+	}
+
+	public boolean onFurnace(World world, int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
 		int meta = world.getBlockMetadata(x, y, z);
 

@@ -47,6 +47,7 @@ import mods.defeatedcrow.common.tile.appliance.ContainerIceMaker;
 import mods.defeatedcrow.common.tile.appliance.ContainerProsessor;
 import mods.defeatedcrow.common.tile.appliance.TileAdvProsessor;
 import mods.defeatedcrow.common.tile.appliance.TileEvaporator;
+import mods.defeatedcrow.common.tile.appliance.TileFilledSoupPan;
 import mods.defeatedcrow.common.tile.appliance.TileIceMaker;
 import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
 import mods.defeatedcrow.common.tile.appliance.TilePanG;
@@ -85,6 +86,7 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileMakerHandle.class, "TileMakerHandle");
 		GameRegistry.registerTileEntity(TilePanHandle.class, "TilePanHandle");
 		GameRegistry.registerTileEntity(TileChocoPan.class, "TileChocoPan");
+		GameRegistry.registerTileEntity(TileFilledSoupPan.class, "TileFilledSoupPan");
 		GameRegistry.registerTileEntity(TileMakerNext.class, "TileMakerNext");
 		GameRegistry.registerTileEntity(TileAutoMaker.class, "TileAutoMaker");
 		GameRegistry.registerTileEntity(TileWipeBox.class, "TileWipeBox");

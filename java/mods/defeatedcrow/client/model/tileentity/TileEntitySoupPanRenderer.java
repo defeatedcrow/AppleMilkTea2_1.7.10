@@ -1,12 +1,16 @@
 package mods.defeatedcrow.client.model.tileentity;
 
+import mods.defeatedcrow.api.appliance.SoupType;
 import mods.defeatedcrow.client.model.model.ModelPanHandle;
-import mods.defeatedcrow.common.tile.appliance.TilePanG;
+import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.tile.appliance.TileFilledSoupPan;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -16,14 +20,15 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class TileEntityPanGRenderer extends TileEntitySpecialRenderer {
+public class TileEntitySoupPanRenderer extends TileEntitySpecialRenderer {
 
 	private static final ResourceLocation PanGTex = new ResourceLocation("textures/blocks/hardened_clay.png");
-	private static ResourceLocation contentsTex = new ResourceLocation("defeatedcrow:textures/blocks/contents_rice.png");
-	public static TileEntityPanGRenderer panRenderer;
+	private static ResourceLocation contentsTex = new ResourceLocation(
+			"defeatedcrow:textures/blocks/contents/water.png");
+	public static TileEntitySoupPanRenderer panRenderer;
 	private ModelPanHandle PanGModel = new ModelPanHandle();
 
-	public void renderTileEntityPanAt(TilePanG par1TilePanG, double par2, double par4, double par6, float par8) {
+	public void renderTileEntityPanAt(TileFilledSoupPan par1TilePanG, double par2, double par4, double par6, float par8) {
 		this.setRotation((float) par2, (float) par4, (float) par6, par1TilePanG);
 	}
 
@@ -35,14 +40,16 @@ public class TileEntityPanGRenderer extends TileEntitySpecialRenderer {
 		panRenderer = this;
 	}
 
-	public void setRotation(float par1, float par2, float par3, TilePanG tile) {
+	public void setRotation(float par1, float par2, float par3, TileFilledSoupPan tile) {
 		ModelPanHandle model = this.PanGModel;
 		String tex = tile.getCurrentTexture();
 		boolean dir = tile.getDirection();
 		byte rem = tile.getRemainByte();
-		boolean hasRecipe = (tile.getRecipe() != null);
+		SoupType type = tile.getType();
 
 		byte d = (byte) (dir ? 1 : 0);
+		if (rem > 8)
+			rem = 8;
 
 		this.bindTexture(PanGTex);
 		GL11.glPushMatrix();
@@ -61,13 +68,13 @@ public class TileEntityPanGRenderer extends TileEntitySpecialRenderer {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
 		// 中身
-		if (hasRecipe) {
+		if (type != SoupType.EMPTY) {
 			Tessellator tessellator = Tessellator.instance;
 			contentsTex = new ResourceLocation(tex);
 
 			GL11.glPushMatrix();
 			GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-			GL11.glColor4f(2.0F, 2.0F, 2.0F, 1.0F);
+			GL11.glColor4f(2.0F, 2.0F, 2.0F, 0.9F);
 			GL11.glTranslatef((float) par1, (float) par2 + 0.5F, (float) par3);
 			GL11.glScalef(1.0F, -1.0F, -1.0F);
 			GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
@@ -75,38 +82,32 @@ public class TileEntityPanGRenderer extends TileEntitySpecialRenderer {
 			GL11.glPolygonOffset(-1, -1);
 			GL11.glEnable(GL11.GL_POLYGON_OFFSET_FILL);
 
-			float f14 = 0F;
-			float f15 = 1F;
-			float f4 = 0F;
-			float f5 = 1F;
-			this.bindTexture(contentsTex);
+			/*
+			 * float f14 = 0F;
+			 * float f15 = 1F;
+			 * float f4 = 0F;
+			 * float f5 = 0.03125F;
+			 * this.bindTexture(contentsTex);
+			 */
 
-			if (rem == 1) {
-				tessellator.startDrawingQuads();
-				tessellator.setNormal(1.0F, 0.0F, 0.0F);
-				tessellator.addVertexWithUV(0.21D, 0.3D, -0.79D, (double) f14, (double) f4);
-				tessellator.addVertexWithUV(0.79D, 0.3D, -0.79D, (double) f14, (double) f5);
-				tessellator.addVertexWithUV(0.79D, 0.3D, -0.21D, (double) f15, (double) f5);
-				tessellator.addVertexWithUV(0.21D, 0.3D, -0.21D, (double) f15, (double) f4);
-				tessellator.draw();
-			} else if (rem == 2) {
-				tessellator.startDrawingQuads();
-				tessellator.setNormal(1.0F, 0.0F, 0.0F);
-				tessellator.addVertexWithUV(0.21D, 0.2D, -0.79D, (double) f14, (double) f4);
-				tessellator.addVertexWithUV(0.79D, 0.2D, -0.79D, (double) f14, (double) f5);
-				tessellator.addVertexWithUV(0.79D, 0.2D, -0.21D, (double) f15, (double) f5);
-				tessellator.addVertexWithUV(0.21D, 0.2D, -0.21D, (double) f15, (double) f4);
-				tessellator.draw();
-			} else {
-				tessellator.startDrawingQuads();
-				tessellator.setNormal(1.0F, 0.0F, 0.0F);
-				tessellator.addVertexWithUV(0.21D, 0.1D, -0.79D, (double) f14, (double) f4);
-				tessellator.addVertexWithUV(0.79D, 0.1D, -0.79D, (double) f14, (double) f5);
-				tessellator.addVertexWithUV(0.79D, 0.1D, -0.21D, (double) f15, (double) f5);
-				tessellator.addVertexWithUV(0.21D, 0.1D, -0.21D, (double) f15, (double) f4);
-				tessellator.draw();
-			}
+			IIcon iicon = DCsAppleMilk.filledSoupPan.getIcon(1, type.id);
+			float f14 = iicon.getMinU();
+			float f15 = iicon.getMaxU();
+			float f4 = iicon.getMinV();
+			float f5 = iicon.getMaxV();
+			this.bindTexture(TextureMap.locationBlocksTexture);
 
+			double y = 0.4D - 0.0375D * rem;
+
+			tessellator.startDrawingQuads();
+			tessellator.setNormal(1.0F, 0.0F, 0.0F);
+			tessellator.addVertexWithUV(0.15D, y, -0.85D, (double) f14, (double) f4);
+			tessellator.addVertexWithUV(0.85D, y, -0.85D, (double) f14, (double) f5);
+			tessellator.addVertexWithUV(0.85D, y, -0.15D, (double) f15, (double) f5);
+			tessellator.addVertexWithUV(0.15D, y, -0.15D, (double) f15, (double) f4);
+			tessellator.draw();
+
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 			GL11.glDisable(GL11.GL_POLYGON_OFFSET_FILL);
 			GL11.glPopMatrix();
@@ -115,6 +116,6 @@ public class TileEntityPanGRenderer extends TileEntitySpecialRenderer {
 
 	@Override
 	public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8) {
-		this.renderTileEntityPanAt((TilePanG) par1TileEntity, par2, par4, par6, par8);
+		this.renderTileEntityPanAt((TileFilledSoupPan) par1TileEntity, par2, par4, par6, par8);
 	}
 }

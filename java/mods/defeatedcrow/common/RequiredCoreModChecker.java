@@ -27,6 +27,9 @@ public class RequiredCoreModChecker {
 			if (name.equalsIgnoreCase(FILE_NAME)) {
 				completed = true;
 				AMTLogger.info("Required CoreMod was loaded successfully : " + FILE_NAME);
+			} else if (name.contains("ExtendedPotions")) {
+				completed = true;
+				AMTLogger.info("Found another potion extension mod. : " + "ExtendedPotions");
 			}
 		}
 

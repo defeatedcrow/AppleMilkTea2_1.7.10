@@ -1,12 +1,16 @@
 package mods.defeatedcrow.plugin.nei;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.List;
 
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.recipe.PanRecipeRegister.PanRecipe;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
@@ -26,15 +30,19 @@ public class PanRecipeHandler extends TemplateRecipeHandler {
 		return panRecipes;
 	}
 
-	public class recipeCacher extends CachedRecipe {
+	public class RecipeCatcher extends CachedRecipe {
 
 		private PositionedStack input;
 		private PositionedStack result;
+		private PositionedStack pan;
+		private PositionedStack bowl;
 
-		public recipeCacher(ItemStack in, ItemStack out) {
+		public RecipeCatcher(ItemStack in, ItemStack out) {
 			in.stackSize = 1;
-			this.input = new PositionedStack(in, 48, 21);
-			this.result = new PositionedStack(out, 102, 21);
+			this.input = new PositionedStack(in, 40, 8);
+			this.result = new PositionedStack(out, 118, 33);
+			this.pan = new PositionedStack(new ItemStack(DCsAppleMilk.emptyPanGaiden, 1, 0), 77, 33);
+			this.bowl = new PositionedStack(new ItemStack(Items.bowl, 1, 0), 98, 18);
 		}
 
 		@Override
@@ -47,6 +55,14 @@ public class PanRecipeHandler extends TemplateRecipeHandler {
 			return this.input;
 		}
 
+		@Override
+		public List<PositionedStack> getOtherStacks() {
+			ArrayList<PositionedStack> stacks = new ArrayList<PositionedStack>();
+			stacks.add(this.pan);
+			stacks.add(this.bowl);
+			return stacks;
+		}
+
 	}
 
 	public PositionedStack getResult() {
@@ -55,7 +71,7 @@ public class PanRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public Class<? extends GuiContainer> getGuiClass() {
-		return GuiRecipe.class;
+		return GuiAppliance.class;
 	}
 
 	@Override
@@ -65,7 +81,7 @@ public class PanRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void loadTransferRects() {
-		transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(65, 25, 20, 20), "DCsFilledPan"));
+		transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(62, 8, 20, 20), "DCsFilledPan"));
 	}
 
 	@Override
@@ -78,7 +94,7 @@ public class PanRecipeHandler extends TemplateRecipeHandler {
 			for (PanRecipe recipe : recipes) {
 				ItemStack item = recipe.getOutput();
 				ItemStack in = recipe.getInput();
-				arecipes.add(new recipeCacher(in, item));
+				arecipes.add(new RecipeCatcher(in, item));
 			}
 		} else {
 			super.loadCraftingRecipes(outputId, results);
@@ -96,7 +112,7 @@ public class PanRecipeHandler extends TemplateRecipeHandler {
 			ItemStack item = recipe.getOutput();
 			ItemStack in = recipe.getInput();
 			if (NEIServerUtils.areStacksSameType(item, result)) {
-				arecipes.add(new recipeCacher(in, item));
+				arecipes.add(new RecipeCatcher(in, item));
 			}
 		}
 	}
@@ -112,9 +128,9 @@ public class PanRecipeHandler extends TemplateRecipeHandler {
 			ItemStack item = recipe.getOutput();
 			ItemStack in = recipe.getInput();
 			if (ingredient.getItem() == in.getItem() && ingredient.getItemDamage() == in.getItemDamage()) {
-				arecipes.add(new recipeCacher(ingredient, item));
+				arecipes.add(new RecipeCatcher(ingredient, item));
 			} else if (ingredient.getItem() == Item.getItemFromBlock(DCsAppleMilk.emptyPanGaiden)) {
-				arecipes.add(new recipeCacher(in, item));
+				arecipes.add(new RecipeCatcher(in, item));
 			}
 		}
 	}
@@ -126,7 +142,15 @@ public class PanRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getGuiTexture() {
-		return "defeatedcrow:textures/gui/dummygui.png";
+		return "defeatedcrow:textures/gui/appliancegui_nei.png";
+	}
+
+	@Override
+	public void drawExtras(int recipe) {
+		// message
+		Minecraft mc = Minecraft.getMinecraft();
+		String d = "Use by Right-Click";
+		mc.fontRenderer.drawString(I18n.format(d, new Object[0]), 4, 32, 0x000000);
 	}
 
 }

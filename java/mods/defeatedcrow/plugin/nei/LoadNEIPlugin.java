@@ -16,8 +16,11 @@ public class LoadNEIPlugin {
 	public static AdvProcessorRecipeHandler advProcessorRecipe;
 	public static EvaporatorRecipeHandler evaporatorRecipe;
 	public static TeppanRecipeHandler plateRecipe;
+	@Deprecated
 	public static ChocoRecipeHandler chocoRecipe;
 	public static BrewingRecipeHandler brewRecipe;
+	public static FondueSourceHandler fondueSource;
+	public static FondueRecipeHandler fondueRecipe;
 
 	public static void load() {
 
@@ -28,12 +31,14 @@ public class LoadNEIPlugin {
 		advProcessorRecipe = new AdvProcessorRecipeHandler();
 		evaporatorRecipe = new EvaporatorRecipeHandler();
 		plateRecipe = new TeppanRecipeHandler();
-		chocoRecipe = new ChocoRecipeHandler();
+		// chocoRecipe = new ChocoRecipeHandler();
 		brewRecipe = new BrewingRecipeHandler();
+		fondueSource = new FondueSourceHandler();
+		fondueRecipe = new FondueRecipeHandler();
 
 		API.registerRecipeHandler(teaRecipe);
 		API.registerUsageHandler(teaRecipe);
-		API.registerGuiOverlay(GuiRecipe.class, teaRecipe.getOverlayIdentifier(), 0, 0);
+		API.registerGuiOverlay(GuiAppliance.class, teaRecipe.getOverlayIdentifier(), 0, 0);
 
 		API.registerRecipeHandler(iceRecipe);
 		API.registerUsageHandler(iceRecipe);
@@ -41,7 +46,7 @@ public class LoadNEIPlugin {
 
 		API.registerRecipeHandler(panRecipe);
 		API.registerUsageHandler(panRecipe);
-		API.registerGuiOverlay(GuiRecipe.class, panRecipe.getOverlayIdentifier(), 0, 0);
+		API.registerGuiOverlay(GuiAppliance.class, panRecipe.getOverlayIdentifier(), 0, 0);
 
 		API.registerRecipeHandler(processorRecipe);
 		API.registerUsageHandler(processorRecipe);
@@ -59,13 +64,21 @@ public class LoadNEIPlugin {
 		API.registerUsageHandler(plateRecipe);
 		API.registerGuiOverlay(GuiRecipe.class, plateRecipe.getOverlayIdentifier(), 0, 0);
 
-		API.registerRecipeHandler(chocoRecipe);
-		API.registerUsageHandler(chocoRecipe);
-		API.registerGuiOverlay(GuiRecipe.class, chocoRecipe.getOverlayIdentifier(), 0, 0);
+		// API.registerRecipeHandler(chocoRecipe);
+		// API.registerUsageHandler(chocoRecipe);
+		// API.registerGuiOverlay(GuiRecipe.class, chocoRecipe.getOverlayIdentifier(), 0, 0);
 
 		API.registerRecipeHandler(brewRecipe);
 		API.registerUsageHandler(brewRecipe);
 		API.registerGuiOverlay(GuiRecipe.class, brewRecipe.getOverlayIdentifier(), 0, 0);
+
+		API.registerRecipeHandler(fondueSource);
+		API.registerUsageHandler(fondueSource);
+		API.registerGuiOverlay(GuiAppliance.class, fondueSource.getOverlayIdentifier(), 0, 0);
+
+		API.registerRecipeHandler(fondueRecipe);
+		API.registerUsageHandler(fondueRecipe);
+		API.registerGuiOverlay(GuiAppliance.class, fondueRecipe.getOverlayIdentifier(), 0, 0);
 
 		AMTLogger.loadedModInfo("NEI");
 

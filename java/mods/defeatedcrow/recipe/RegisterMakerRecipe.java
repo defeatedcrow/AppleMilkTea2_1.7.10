@@ -2,6 +2,7 @@ package mods.defeatedcrow.recipe;
 
 import java.util.ArrayList;
 
+import mods.defeatedcrow.api.appliance.SoupType;
 import mods.defeatedcrow.api.charge.ChargeItemManager;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
@@ -559,6 +560,13 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.chocoRecipe.register(new ItemStack(DCsAppleMilk.EXItems, 1, 0), new ItemStack(
 				DCsAppleMilk.chocolateFruits, 1, 11));
 
+	}
+
+	public static void registerSoupSource() {
+		RecipeRegisterManager.fondueRecipe.registerSource(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8),
+				SoupType.EMPTY, SoupType.CHOCO);
+		RecipeRegisterManager.fondueRecipe.registerSource(new ItemStack(Items.water_bucket), SoupType.EMPTY,
+				SoupType.WATER);
 	}
 
 	public static void testRecipe() {

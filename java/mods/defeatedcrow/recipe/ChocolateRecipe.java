@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
+import mods.defeatedcrow.api.appliance.SoupType;
 import mods.defeatedcrow.api.recipe.IChocoFruitsRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
-import mods.defeatedcrow.common.AMTLogger;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ChocolateRecipe implements IChocoFruitsRecipe {
 
@@ -18,6 +18,9 @@ public class ChocolateRecipe implements IChocoFruitsRecipe {
 		this.recipes = new HashMap<Object, ItemStack>();
 	}
 
+	/**
+	 * Now it's empty. Please use IFondueRecipe.
+	 */
 	public IChocoFruitsRecipe instance() {
 		return RecipeRegisterManager.chocoRecipe;
 	}
@@ -75,14 +78,15 @@ public class ChocolateRecipe implements IChocoFruitsRecipe {
 			return;
 		if (input.getItem() == null || output.getItem() == null)
 			return;
-		for (Object key : recipes.keySet()) {
-			if (key instanceof ItemStack) {
-				if (matchItem(input, (ItemStack) key)) {
-					return;
-				}
-			}
-		}
-		recipes.put(input, output);
+		// for (Object key : recipes.keySet()) {
+		// if (key instanceof ItemStack) {
+		// if (matchItem(input, (ItemStack) key)) {
+		// return;
+		// }
+		// }
+		// }
+		// recipes.put(input, output);
+		RecipeRegisterManager.fondueRecipe.register(input, output, SoupType.CHOCO);
 	}
 
 	@Override
@@ -91,7 +95,8 @@ public class ChocolateRecipe implements IChocoFruitsRecipe {
 			return;
 		if (output.getItem() == null)
 			return;
-		recipes.put(input, output);
+		// recipes.put(input, output);
+		RecipeRegisterManager.fondueRecipe.registerByOre(input, output, SoupType.CHOCO);
 	}
 
 }

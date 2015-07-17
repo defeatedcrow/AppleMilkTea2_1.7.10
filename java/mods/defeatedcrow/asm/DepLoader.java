@@ -44,6 +44,8 @@ import javax.swing.WindowConstants;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
+import mods.defeatedcrow.asm.config.DCsConfiguration;
+import mods.defeatedcrow.asm.config.PropertyDC;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 
 import org.apache.logging.log4j.LogManager;
@@ -73,6 +75,8 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 	private static DepLoadInst inst;
 	private static Logger logger = LogManager.getLogger("CBsDepLorder");
 	private final static String BR = System.getProperty("line.separator");
+
+	protected static boolean active = false;
 
 	public interface IDownloadDisplay {
 		void resetProgress(int sizeGuess);
@@ -490,6 +494,8 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 			scanDepInfos();
 			if (depMap.isEmpty())
 				return;
+			if (!active)
+				return;
 
 			loadDeps();
 			activateDeps();
@@ -538,6 +544,9 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 			for (File file : modFiles()) {
 				if (!file.getName().endsWith(".jar") && !file.getName().endsWith(".zip"))
 					continue;
+
+				if (file.getName().contains("ExtendedPotions"))
+					active = false;
 
 				scanDepInfo(file);
 			}
@@ -650,6 +659,14 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 
 	@Override
 	public void injectData(Map<String, Object> data) {
+		// config
+		if (data.containsKey("mcLocation")) {
+			File mcLocation = (File) data.get("mcLocation");
+			File configLocation = new File(mcLocation, "config");
+			File configFile = new File(configLocation, "AppleMilkCore.cfg");
+
+			loadConfig(configFile);
+		}
 	}
 
 	@Override
@@ -662,5 +679,20 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 	@Override
 	public String getAccessTransformerClass() {
 		return null;
+	}
+
+	private void loadConfig(File configFile) {
+		DCsConfiguration config = new DCsConfiguration(configFile);
+		try {
+			config.load();
+			PropertyDC b = config.get("general", "EnableAutoDownload", true,
+					"Enable automatically downloading of PotionExtension mod.");
+
+			active = b.getBoolean(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			config.save();
+		}
 	}
 }

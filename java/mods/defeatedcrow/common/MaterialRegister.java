@@ -24,12 +24,15 @@ import mods.defeatedcrow.common.block.appliance.BlockEmptyCup;
 import mods.defeatedcrow.common.block.appliance.BlockEmptyPanG;
 import mods.defeatedcrow.common.block.appliance.BlockEvaporator;
 import mods.defeatedcrow.common.block.appliance.BlockFilledChocoPan;
+import mods.defeatedcrow.common.block.appliance.BlockFilledSoupPan;
 import mods.defeatedcrow.common.block.appliance.BlockIceMaker;
 import mods.defeatedcrow.common.block.appliance.BlockProsessor;
 import mods.defeatedcrow.common.block.appliance.BlockTeaMakerBlack;
 import mods.defeatedcrow.common.block.appliance.BlockTeaMakerNext;
 import mods.defeatedcrow.common.block.appliance.BlockTeppanII;
 import mods.defeatedcrow.common.block.appliance.BlockTeppann;
+import mods.defeatedcrow.common.block.appliance.ItemAppliance;
+import mods.defeatedcrow.common.block.appliance.ItemFilledSoupPan;
 import mods.defeatedcrow.common.block.appliance.ItemMachineBlock;
 import mods.defeatedcrow.common.block.appliance.ItemPanG;
 import mods.defeatedcrow.common.block.appliance.ItemTeppann;
@@ -293,13 +296,14 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.fossilScale, "defeatedcrow.fossilScale");
 
 		// 基本ツール
-		GameRegistry.registerBlock(DCsAppleMilk.teaMakerNext, "defeatedcrow.teaMakerNext");
-		GameRegistry.registerBlock(DCsAppleMilk.teaMakerBlack, "defeatedcrow.teaMakerBlack");
+		GameRegistry.registerBlock(DCsAppleMilk.teaMakerNext, ItemAppliance.class, "defeatedcrow.teaMakerNext");
+		GameRegistry.registerBlock(DCsAppleMilk.teaMakerBlack, ItemAppliance.class, "defeatedcrow.teaMakerBlack");
 		GameRegistry.registerBlock(DCsAppleMilk.emptyCup, "defeatedcrow.emptyCup");
 		GameRegistry.registerBlock(DCsAppleMilk.emptyPanGaiden, ItemPanG.class, "defeatedcrow.emptyPanG");
+		GameRegistry.registerBlock(DCsAppleMilk.filledSoupPan, ItemFilledSoupPan.class, "defeatedcrow.filledSoupPan");
 		GameRegistry.registerBlock(DCsAppleMilk.iceMaker, "defeatedcrow.iceMaker");
 		GameRegistry.registerBlock(DCsAppleMilk.teppann, ItemTeppann.class, "defeatedcrow.teppann");
-		GameRegistry.registerBlock(DCsAppleMilk.teppanII, "defeatedcrow.teppanII");
+		GameRegistry.registerBlock(DCsAppleMilk.teppanII, ItemAppliance.class, "defeatedcrow.teppanII");
 		GameRegistry.registerBlock(DCsAppleMilk.prosessor, ItemMachineBlock.class, "defeatedcrow.prosessor");
 		GameRegistry.registerBlock(DCsAppleMilk.advProsessor, ItemMachineBlock.class, "defeatedcrow.advProsessor");
 		GameRegistry.registerBlock(DCsAppleMilk.evaporator, ItemMachineBlock.class, "defeatedcrow.evaporator");
@@ -338,7 +342,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.emptyBottle, ItemEmptyBottle.class, "defeatedcrow.emptyBottle");
 		GameRegistry.registerBlock(DCsAppleMilk.largeBottle, ItemBlockBottle.class, "defeatedcrow.largeBottle");
 		GameRegistry.registerBlock(DCsAppleMilk.cordial, ItemBlockCordial.class, "defeatedcrow.blockCordial");
-		GameRegistry.registerBlock(DCsAppleMilk.barrel, "defeatedcrow.blockBarrel");
+		GameRegistry.registerBlock(DCsAppleMilk.barrel, ItemAppliance.class, "defeatedcrow.blockBarrel");
 		GameRegistry.registerBlock(DCsAppleMilk.blockDummyAlcohol, ItemDummyFluid.class,
 				"defeatedcrow.blockDummyAlcohol");
 		GameRegistry.registerBlock(DCsAppleMilk.blockDummyAlcohol2, ItemDummyFluid2.class,
@@ -381,8 +385,10 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.cocktailSP, EntityItemCocktailSP.class, "defeatedcrow.cocktailSP");
 	}
 
-	public void addPotion() {
-		int lim = DCsAppleMilk.debugMode ? 128 : 128;
+	public boolean addPotion() {
+		int lim = 128;
+		if (Potion.potionTypes.length < lim)
+			return false;
 		// ポーション効果の追加
 		// コンフィグでIDが~127の範囲内の時のみ追加する。
 		if (Potion.potionTypes[DCsConfig.potionIDImmunity] == null && DCsConfig.potionIDImmunity < lim) {
@@ -426,6 +432,7 @@ public class MaterialRegister {
 			DCsAppleMilk.confinement = new PotionConfinement(DCsConfig.potionIDConfinement, true, 0X646464, 9, 0)
 					.setPotionName("DCs.potion.confinement");
 		}
+		return true;
 	}
 
 	public void addFluid() {
@@ -911,6 +918,8 @@ public class MaterialRegister {
 
 		DCsAppleMilk.emptyPanGaiden = (new BlockEmptyPanG()).setBlockName("defeatedcrow.soupPanG").setCreativeTab(
 				DCsAppleMilk.applemilk);
+
+		DCsAppleMilk.filledSoupPan = (new BlockFilledSoupPan()).setBlockName("defeatedcrow.filledSoupPan");
 
 		DCsAppleMilk.teppann = (new BlockTeppann()).setBlockName("defeatedcrow.cookingIronPlate");
 

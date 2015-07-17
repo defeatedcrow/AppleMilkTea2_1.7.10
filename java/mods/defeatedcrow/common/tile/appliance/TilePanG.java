@@ -1,11 +1,7 @@
 package mods.defeatedcrow.common.tile.appliance;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
-
-import mods.defeatedcrow.api.recipe.*;
-import mods.defeatedcrow.common.DCsAppleMilk;
-import net.minecraft.item.Item;
+import mods.defeatedcrow.api.recipe.IPanRecipe;
+import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -23,6 +19,7 @@ public class TilePanG extends TileEntity {
 	private byte coolTime = 0;
 
 	// NBT
+	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
 		super.readFromNBT(par1NBTTagCompound);
 
@@ -39,6 +36,7 @@ public class TilePanG extends TileEntity {
 	/**
 	 * Writes a tile entity to NBT.
 	 */
+	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
 		super.writeToNBT(par1NBTTagCompound);
 

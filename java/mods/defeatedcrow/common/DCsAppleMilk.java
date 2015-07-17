@@ -74,6 +74,7 @@ import mods.defeatedcrow.plugin.LoadExBucketPlugin;
 import mods.defeatedcrow.plugin.LoadForestryPlugin;
 import mods.defeatedcrow.plugin.LoadModHandler;
 import mods.defeatedcrow.plugin.LoadOreDicHandler;
+import mods.defeatedcrow.plugin.LoadPPCPlugin;
 import mods.defeatedcrow.plugin.LoadRailCraftPlugin;
 import mods.defeatedcrow.plugin.LoadThaumcraftPlugin;
 import mods.defeatedcrow.plugin.LoadTofuPlugin;
@@ -115,7 +116,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.7i",
+		version = "1.7.10_2.8a",
 		dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class DCsAppleMilk {
 
@@ -143,7 +144,9 @@ public class DCsAppleMilk {
 	public static Block emptyCup;
 	public static Block iceMaker;
 	public static Block emptyPanGaiden;
+	@Deprecated
 	public static Block filledChocoPan;
+	public static Block filledSoupPan;
 	public static Block teppanII;
 	public static Block prosessor;
 	public static Block evaporator;
@@ -384,6 +387,7 @@ public class DCsAppleMilk {
 	public static boolean SuccessLoadFFM = false;
 	public static boolean SuccessLoadBC = false;
 	public static boolean SuccessLoadACore = false;
+	public static boolean SuccessLoadPPC = false;
 
 	// 内部処理用
 	public static boolean debugMode = false;
@@ -436,6 +440,7 @@ public class DCsAppleMilk {
 	public static int modelYuzuFence;
 	public static int modelHandleEngine;
 	public static int modelWoodPanel;
+	public static int modelSoupPan;
 
 	public static final String[] TEX_PASS = new String[] { "defeatedcrow:", "defeatedcrow:x32/", "defeatedcrow:x32alt/" };
 
@@ -491,10 +496,8 @@ public class DCsAppleMilk {
 		GameRegistry.registerItem(dummyTeppan, "defeatedcrow.dummyPlate");
 
 		// ポーションIDが拡張出来ているかのチェックを行い、成功時のみポーションを追加する。
-		int potion = Potion.potionTypes.length;
 		try {
-			MaterialRegister.instance.addPotion();
-			this.succeedAddPotion = true;
+			this.succeedAddPotion = MaterialRegister.instance.addPotion();
 			AMTLogger.debugInfo("Succeed to add new potion effect.");
 		} catch (Exception e) {
 			AMTLogger.debugInfo("Failed to add new potion effect.");
@@ -735,6 +738,7 @@ public class DCsAppleMilk {
 		this.modelHandleEngine = proxy.getRenderID();
 		this.modelWoodPanel = proxy.getRenderID();
 		this.modelCLampOp = proxy.getRenderID();
+		this.modelSoupPan = proxy.getRenderID();
 		proxy.registerRenderers();
 
 		// ティーメーカーのレシピ数の無限化のため、専用のレシピ登録クラスを用意した
@@ -1075,11 +1079,25 @@ public class DCsAppleMilk {
 			}
 		}
 
+		if (Loader.isModLoaded("peaceplantcraft")) {
+			AMTLogger.loadingModInfo("peaceplantcraft");
+			try {
+				// ここでは、専用のフラグを切り替えるだけ。
+				this.SuccessLoadPPC = true;
+				LoadPPCPlugin.load();
+				AMTLogger.loadedModInfo("peaceplantcraft");
+			} catch (Exception e) {
+				AMTLogger.failLoadingModInfo("peaceplantcraft");
+				e.printStackTrace(System.err);
+			}
+		}
+
 		// Checking another mods
 		// 他のMODのブロック・アイテム登録クラスに先行しないよう、postInitメソッドでロードする
 		// 当MODで勝手に追加する鉱石辞書も含めるように、読み込む位置を他MODのロード処理より後にした
 		(new LoadOreDicHandler()).load();
 		OreCrushRecipe.searchOreName();
+		RegisterMakerRecipe.registerSoupSource();
 		RegisterMakerRecipe.registerChocolate();
 
 		// インスタントティーレシピ

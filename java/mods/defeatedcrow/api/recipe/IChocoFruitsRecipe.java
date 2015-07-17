@@ -5,8 +5,9 @@ import java.util.Map;
 import net.minecraft.item.ItemStack;
 
 /**
- * Chocolate fondue recipes for pan.
+ * This API has migrated to IFondueRecipe.
  */
+@Deprecated
 public interface IChocoFruitsRecipe {
 
 	// The input objects include ItemStack or String (ore dictionary name).
