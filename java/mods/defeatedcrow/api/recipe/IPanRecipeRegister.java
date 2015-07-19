@@ -12,7 +12,10 @@ public interface IPanRecipeRegister {
 	 */
 	List<? extends IPanRecipe> getRecipeList();
 
+	@Deprecated
 	List<ItemStack> getHeatSourceList();
+
+	List<? extends ICookingHeatSource> getHeatSourcesList();
 
 	/**
 	 * ItemStackに登録されたレシピを返すメソッド。

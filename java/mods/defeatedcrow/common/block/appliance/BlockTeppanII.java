@@ -105,7 +105,6 @@ public class BlockTeppanII extends BlockContainer {
 		if (tep instanceof TileTeppanII && !par1World.isAirBlock(par2, par3 - 1, par4)) {
 			return ((TileTeppanII) tep).isOnHeatSource();
 		}
-
 		return false;
 	}
 
@@ -135,30 +134,24 @@ public class BlockTeppanII extends BlockContainer {
 	}
 
 	/* 更新処理 */
-	@Override
-	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
-		boolean flag = this.isOvenMode(par1World, par2, par3, par4);
-		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
-		// if (tile instanceof TileTeppanII){
-		// ((TileTeppanII)tile).setOvenMode(flag);
-		// }
-		par1World.scheduleBlockUpdate(par2, par3, par4, this, this.tickRate(par1World));
-	}
+	// @Override
+	// public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
+	// boolean flag = this.isOvenMode(par1World, par2, par3, par4);
+	// TileEntity tile = par1World.getTileEntity(par2, par3, par4);
+	// par1World.scheduleBlockUpdate(par2, par3, par4, this, this.tickRate(par1World));
+	// }
 
 	@Override
 	public int tickRate(World p_149738_1_) {
 		return 20;// 1秒毎の間隔で処理を実行。
 	}
 
-	@Override
-	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
-		boolean flag = this.isOvenMode(par1World, par2, par3, par4);
-		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
-		// if (tile instanceof TileTeppanII){
-		// ((TileTeppanII)tile).setOvenMode(flag);
-		// }
-		par1World.scheduleBlockUpdate(par2, par3, par4, this, this.tickRate(par1World));
-	}
+	// @Override
+	// public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5) {
+	// boolean flag = this.isOvenMode(par1World, par2, par3, par4);
+	// TileEntity tile = par1World.getTileEntity(par2, par3, par4);
+	// par1World.scheduleBlockUpdate(par2, par3, par4, this, this.tickRate(par1World));
+	// }
 
 	public boolean isOvenMode(World world, int x, int y, int z) {
 		int count = 0;
@@ -237,7 +230,7 @@ public class BlockTeppanII extends BlockContainer {
 
 		if (DCsAppleMilk.debugMode) {
 			AMTLogger.debugInfo("teppan info:");
-			String s = "";
+			String s = "failed";
 			if (tep.isOnHeatSource())
 				s += "ready to cooking,";
 			if (this.isOvenMode(par1World, par2, par3, par4))
@@ -256,11 +249,10 @@ public class BlockTeppanII extends BlockContainer {
 			AMTLogger.debugInfo("cooking flag fin:" + tep.isFinishCooking() + " fail:" + tep.isFailed());
 		}
 
-		if (tep != null) {
+		if (!par1World.isRemote && tep != null) {
 			if (!tep.isOnHeatSource()) {
-				if (par1World.isRemote)
-					par5EntityPlayer.addChatMessage(new ChatComponentText(StatCollector
-							.translateToLocal("dc.plateMessage.noHeatSource")));
+				par5EntityPlayer.addChatMessage(new ChatComponentText(StatCollector
+						.translateToLocal("dc.plateMessage.noHeatSource")));
 				return true;
 			}
 

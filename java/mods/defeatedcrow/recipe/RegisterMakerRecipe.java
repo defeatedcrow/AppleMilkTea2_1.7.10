@@ -509,6 +509,7 @@ public class RegisterMakerRecipe {
 
 	public static void registerPlate() {
 		RecipeRegisterManager.plateRecipe.registerHeatSource(Blocks.lava, -1);
+		RecipeRegisterManager.plateRecipe.registerHeatSource(Blocks.flowing_lava, -1);
 		RecipeRegisterManager.plateRecipe.registerHeatSource(Blocks.fire, -1);
 
 		RecipeRegisterManager.plateRecipe.register(new ItemStack(Items.beef), new ItemStack(DCsAppleMilk.foodPlate, 1,

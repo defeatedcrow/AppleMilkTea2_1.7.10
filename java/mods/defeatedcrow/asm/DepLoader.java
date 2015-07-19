@@ -65,8 +65,8 @@ import cpw.mods.fml.relauncher.IFMLCallHook;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 /**
- * For autodownloading stuff.
- * This is really unoriginal, mostly ripped off FML, credits to cpw.
+ * The majority of this source code was created by FML staff and chickenbone.
+ * My work is not nearly.
  */
 public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 
@@ -75,8 +75,6 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 	private static DepLoadInst inst;
 	private static Logger logger = LogManager.getLogger("CBsDepLorder");
 	private final static String BR = System.getProperty("line.separator");
-
-	protected static boolean active = false;
 
 	public interface IDownloadDisplay {
 		void resetProgress(int sizeGuess);
@@ -298,11 +296,14 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 	public static class DepLoadInst {
 		private File modsDir;
 		private File v_modsDir;
+		private File configDir;
 		private IDownloadDisplay downloadMonitor;
 		private JDialog popupWindow;
 
 		private Map<String, Dependency> depMap = new HashMap<String, Dependency>();
 		private HashSet<String> depSet = new HashSet<String>();
+
+		private static boolean active = true;
 
 		public DepLoadInst() {
 			String mcVer = (String) FMLInjectionData.data()[4];
@@ -310,8 +311,17 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 
 			modsDir = new File(mcDir, "mods");
 			v_modsDir = new File(mcDir, "mods/" + mcVer);
+			configDir = new File(mcDir, "config");
 			if (!v_modsDir.exists())
 				v_modsDir.mkdirs();
+
+			try {
+				File configFile = new File(configDir, "AppleMilkCore.cfg");
+				active = loadConfig(configFile);
+				logger.debug("Active : " + active);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		private void addClasspath(String name) {
@@ -526,7 +536,7 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 
 		private void load(Dependency dep) {
 			dep.existing = checkExisting(dep);
-			if (dep.existing == null)// download dep
+			if (dep.existing == null && active)// download dep
 			{
 				download(dep);
 				dep.existing = dep.file.filename;
@@ -545,8 +555,8 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 				if (!file.getName().endsWith(".jar") && !file.getName().endsWith(".zip"))
 					continue;
 
-				if (file.getName().contains("ExtendedPotions"))
-					active = false;
+				// if (file.getName().contains("ExtendedPotions"))
+				// active = false;
 
 				scanDepInfo(file);
 			}
@@ -555,9 +565,9 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 		private void scanDepInfo(File file) {
 			try {
 				ZipFile zip = new ZipFile(file);
-				ZipEntry e = zip.getEntry("dependancies.info");
+				ZipEntry e = zip.getEntry("AMTdependancies.info");
 				if (e == null)
-					e = zip.getEntry("dependencies.info");
+					e = zip.getEntry("AMTdependencies.info");
 				if (e != null)
 					loadJSon(zip.getInputStream(e));
 				zip.close();
@@ -659,14 +669,6 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 
 	@Override
 	public void injectData(Map<String, Object> data) {
-		// config
-		if (data.containsKey("mcLocation")) {
-			File mcLocation = (File) data.get("mcLocation");
-			File configLocation = new File(mcLocation, "config");
-			File configFile = new File(configLocation, "AppleMilkCore.cfg");
-
-			loadConfig(configFile);
-		}
 	}
 
 	@Override
@@ -681,8 +683,9 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 		return null;
 	}
 
-	private void loadConfig(File configFile) {
+	private static boolean loadConfig(File configFile) {
 		DCsConfiguration config = new DCsConfiguration(configFile);
+		boolean active = true;
 		try {
 			config.load();
 			PropertyDC b = config.get("general", "EnableAutoDownload", true,
@@ -694,5 +697,6 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 		} finally {
 			config.save();
 		}
+		return active;
 	}
 }

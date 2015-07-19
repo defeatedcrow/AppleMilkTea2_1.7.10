@@ -1,18 +1,14 @@
 package mods.defeatedcrow.common.tile.appliance;
 
-import buildcraft.api.transport.IPipeConnection;
-import buildcraft.api.transport.IPipeConnection.ConnectOverride;
-import buildcraft.api.transport.IPipeTile.PipeType;
-import cpw.mods.fml.common.Optional;
 import mods.defeatedcrow.api.recipe.IPlateRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
+import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -22,6 +18,9 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
+import buildcraft.api.transport.IPipeConnection;
+import buildcraft.api.transport.IPipeTile.PipeType;
+import cpw.mods.fml.common.Optional;
 
 @Optional.InterfaceList({ @Optional.Interface(
 		iface = "buildcraft.api.transport.IPipeConnection",
@@ -216,7 +215,10 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 		Block block = this.worldObj.getBlock(xCoord, yCoord - 1, zCoord);
 		int meta = this.worldObj.getBlockMetadata(xCoord, yCoord - 1, zCoord);
 		if (block != null) {
+			AMTLogger.debugInfo("Current block : " + block.getUnlocalizedName() + ":" + meta);
 			return RecipeRegisterManager.plateRecipe.isHeatSource(block, meta);
+		} else {
+			AMTLogger.debugInfo("Current block is null");
 		}
 		return false;
 	}

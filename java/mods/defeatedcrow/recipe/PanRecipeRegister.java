@@ -3,24 +3,26 @@ package mods.defeatedcrow.recipe;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
+import mods.defeatedcrow.api.recipe.ICookingHeatSource;
 import mods.defeatedcrow.api.recipe.IPanRecipe;
 import mods.defeatedcrow.api.recipe.IPanRecipeRegister;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
-import mods.defeatedcrow.event.DispenserEvent;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class PanRecipeRegister implements IPanRecipeRegister {
 
 	private static List<PanRecipe> recipes;
+	@Deprecated
 	private static List<ItemStack> heatSource;
+	private static List<PanHeatSource> sources;
 
 	public PanRecipeRegister() {
 		this.recipes = new ArrayList<PanRecipe>();
 		this.heatSource = new ArrayList<ItemStack>();
+		this.sources = new ArrayList<PanHeatSource>();
 	}
 
 	@Override
@@ -31,6 +33,11 @@ public class PanRecipeRegister implements IPanRecipeRegister {
 	@Override
 	public List<ItemStack> getHeatSourceList() {
 		return this.heatSource;
+	}
+
+	@Override
+	public List<PanHeatSource> getHeatSourcesList() {
+		return this.sources;
 	}
 
 	public IPanRecipeRegister instance() {
@@ -53,10 +60,11 @@ public class PanRecipeRegister implements IPanRecipeRegister {
 	public boolean isHeatSource(Block block, int meta) {
 		if (block == null)
 			return false;
-		int m = MathHelper.clamp_int(meta, 0, 15);
-		for (ItemStack source : this.heatSource) {
-			if (this.isItemEqual(source, Item.getItemFromBlock(block), m)) {
-				return true;
+		for (PanHeatSource source : this.sources) {
+			if (block == source.block) {
+				if (source.metadata == -1 || source.metadata == meta) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -94,14 +102,8 @@ public class PanRecipeRegister implements IPanRecipeRegister {
 	@Override
 	public void registerHeatSource(Block block, int meta) {
 		if (block != null) {
-			int m = MathHelper.clamp_int(meta, -1, 15);
-			if (m == -1) {
-				this.heatSource.add(new ItemStack(block, 1, 32767));
-			} else {
-				this.heatSource.add(new ItemStack(block, 1, m));
-			}
-
-			AMTLogger.debugInfo("Add heat source : " + block.getLocalizedName());
+			this.sources.add(new PanHeatSource(block, meta));
+			AMTLogger.debugInfo("Add pan heat source : " + block.getLocalizedName() + ":" + meta);
 		}
 	}
 
@@ -153,6 +155,28 @@ public class PanRecipeRegister implements IPanRecipeRegister {
 				return "Rice";
 			return this.display;
 		}
+	}
+
+	public class PanHeatSource implements ICookingHeatSource {
+
+		private final Block block;
+		private final int metadata;
+
+		public PanHeatSource(Block b, int m) {
+			block = b;
+			metadata = m;
+		}
+
+		@Override
+		public Block getBlock() {
+			return block;
+		}
+
+		@Override
+		public int getMetadata() {
+			return metadata;
+		}
+
 	}
 
 }
