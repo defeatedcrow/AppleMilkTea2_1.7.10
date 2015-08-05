@@ -348,6 +348,9 @@ public class RegisterMakerRecipe {
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.sand), false, new ItemStack(
 				Items.rotten_flesh), new Object[] { new ItemStack(Blocks.soul_sand) });
 
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.clay_ball), false, null,
+				new Object[] { new ItemStack(Blocks.dirt) });
+
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, null, new Object[] {
 				"dustAsh", "dustOilCake", new ItemStack(Items.dye, 1, 15), new ItemStack(Blocks.sand) });
 

@@ -116,7 +116,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.8a",
+		version = "1.7.10_2.8c",
 		dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class DCsAppleMilk {
 
@@ -193,6 +193,10 @@ public class DCsAppleMilk {
 	public static Block silkyMelon;
 	public static Block flowerPot;
 	public static Block yuzuFence;
+
+	public static Block containerWBottle;
+	public static Block containerSaddle;
+
 	// 自然
 	public static Block saplingTea;
 	public static Block teaTree;
@@ -272,6 +276,10 @@ public class DCsAppleMilk {
 	public static Item fossilScale;
 	public static Item fossilCannon;
 	public static Item yuzuGatling;
+
+	// Item型コンテナ
+	public static Item containerItemDoorW;
+	public static Item containerItemDoorI;
 
 	// クソヤロー専用アイテム
 	public static Item eightEyesArm;
@@ -374,7 +382,10 @@ public class DCsAppleMilk {
 	public static boolean SuccessLoadEconomy = false;
 	public static boolean SuccessLoadSSector = false;
 	public static boolean SuccessLoadGummi = false;
-	public static boolean[] SuccessLoadGrowth = new boolean[] { false, false, false };
+	public static boolean[] SuccessLoadGrowth = new boolean[] {
+			false,
+			false,
+			false };
 	public static boolean SuccessLoadMapleTree = false;
 	public static boolean SuccessLoadExtraTrees = false;
 	public static boolean SuccessLoadExBucket = false;
@@ -441,11 +452,20 @@ public class DCsAppleMilk {
 	public static int modelHandleEngine;
 	public static int modelWoodPanel;
 	public static int modelSoupPan;
+	public static int modelCWBottle;
+	public static int modelCSaddle;
+	public static int modelCWDoor;
+	public static int modelCIDoor;
 
-	public static final String[] TEX_PASS = new String[] { "defeatedcrow:", "defeatedcrow:x32/", "defeatedcrow:x32alt/" };
+	public static final String[] TEX_PASS = new String[] {
+			"defeatedcrow:",
+			"defeatedcrow:x32/",
+			"defeatedcrow:x32alt/" };
 
-	public static final String[] TEX_PASS_ENTITY = new String[] { "defeatedcrow:textures/entity/",
-			"defeatedcrow:textures/entity/x32/", "defeatedcrow:textures/entity/x32alt/" };
+	public static final String[] TEX_PASS_ENTITY = new String[] {
+			"defeatedcrow:textures/entity/",
+			"defeatedcrow:textures/entity/x32/",
+			"defeatedcrow:textures/entity/x32alt/" };
 
 	public static final String[] TEX_PASS_ALT = new String[] { "defeatedcrow:textures/entity/x32alt/" };
 
@@ -739,6 +759,7 @@ public class DCsAppleMilk {
 		this.modelWoodPanel = proxy.getRenderID();
 		this.modelCLampOp = proxy.getRenderID();
 		this.modelSoupPan = proxy.getRenderID();
+		this.modelCWBottle = proxy.getRenderID();
 		proxy.registerRenderers();
 
 		// ティーメーカーのレシピ数の無限化のため、専用のレシピ登録クラスを用意した
@@ -1132,11 +1153,11 @@ public class DCsAppleMilk {
 	}
 
 	public int getMinorVersion() {
-		return 7;
+		return 8;
 	}
 
 	public String getRivision() {
-		return "i";
+		return "c";
 	}
 
 	public String getModName() {

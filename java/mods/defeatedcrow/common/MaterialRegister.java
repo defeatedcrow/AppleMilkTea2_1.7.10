@@ -48,6 +48,8 @@ import mods.defeatedcrow.common.block.brewing.ItemLargeBottle;
 import mods.defeatedcrow.common.block.container.BlockAppleBox;
 import mods.defeatedcrow.common.block.container.BlockCardboard;
 import mods.defeatedcrow.common.block.container.BlockCharcoalBox;
+import mods.defeatedcrow.common.block.container.BlockContainerSaddle;
+import mods.defeatedcrow.common.block.container.BlockContainerWaterBottle;
 import mods.defeatedcrow.common.block.container.BlockEggBasket;
 import mods.defeatedcrow.common.block.container.BlockFlowerPot;
 import mods.defeatedcrow.common.block.container.BlockGunpowderContainer;
@@ -60,6 +62,7 @@ import mods.defeatedcrow.common.block.container.BlockWipeBox;
 import mods.defeatedcrow.common.block.container.BlockWipeBox2;
 import mods.defeatedcrow.common.block.container.BlockWoodBox;
 import mods.defeatedcrow.common.block.container.ItemCardboard;
+import mods.defeatedcrow.common.block.container.ItemContainerBase;
 import mods.defeatedcrow.common.block.container.ItemEggBasket;
 import mods.defeatedcrow.common.block.container.ItemFlowerPot;
 import mods.defeatedcrow.common.block.container.ItemGunpowderContainer;
@@ -132,6 +135,7 @@ import mods.defeatedcrow.common.item.ItemChalcedonyKnife;
 import mods.defeatedcrow.common.item.ItemChalcedonyMonocle;
 import mods.defeatedcrow.common.item.ItemChalcedonyShears;
 import mods.defeatedcrow.common.item.ItemChopsticks;
+import mods.defeatedcrow.common.item.ItemContainerDoor;
 import mods.defeatedcrow.common.item.ItemEXItem;
 import mods.defeatedcrow.common.item.ItemFireStarter;
 import mods.defeatedcrow.common.item.ItemFoodTea;
@@ -185,6 +189,7 @@ import mods.defeatedcrow.potion.PotionProtectionEX;
 import mods.defeatedcrow.potion.PotionReflex;
 import mods.defeatedcrow.potion.PotionSuffocation;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -295,6 +300,9 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.strangeSlag, "defeatedcrow.strangeSlag");
 		GameRegistry.registerItem(DCsAppleMilk.fossilScale, "defeatedcrow.fossilScale");
 
+		GameRegistry.registerItem(DCsAppleMilk.containerItemDoorW, "defeatedcrow.containeritemDoorW");
+		GameRegistry.registerItem(DCsAppleMilk.containerItemDoorI, "defeatedcrow.containeritemDoorI");
+
 		// 基本ツール
 		GameRegistry.registerBlock(DCsAppleMilk.teaMakerNext, ItemAppliance.class, "defeatedcrow.teaMakerNext");
 		GameRegistry.registerBlock(DCsAppleMilk.teaMakerBlack, ItemAppliance.class, "defeatedcrow.teaMakerBlack");
@@ -327,6 +335,10 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.mobBlock, ItemMobDropBox.class, "defeatedcrow.mobDropBox");
 		GameRegistry.registerFuelHandler(DCsAppleMilk.charcoalBox);
 		GameRegistry.registerBlock(DCsAppleMilk.flowerPot, ItemFlowerPot.class, "defeatedcrow.flowerPot");
+		GameRegistry.registerBlock(DCsAppleMilk.containerWBottle, ItemContainerBase.class,
+				"defeatedcrow.containerBottleW");
+		GameRegistry.registerBlock(DCsAppleMilk.containerSaddle, ItemContainerBase.class,
+				"defeatedcrow.containerSaddle");
 
 		// 自然
 		GameRegistry.registerBlock(DCsAppleMilk.saplingTea, ItemTeaSapling.class, "defeatedcrow.saplingTea");
@@ -804,6 +816,20 @@ public class MaterialRegister {
 
 		DCsAppleMilk.flowerPot = (new BlockFlowerPot()).setBlockName("defeatedcrow.flowerPot").setCreativeTab(
 				DCsAppleMilk.applemilkContainer);
+
+		DCsAppleMilk.containerWBottle = (new BlockContainerWaterBottle()).setBlockName("defeatedcrow.containerbottleW")
+				.setCreativeTab(DCsAppleMilk.applemilkContainer);
+
+		DCsAppleMilk.containerSaddle = (new BlockContainerSaddle()).setBlockName("defeatedcrow.containerSaddle")
+				.setCreativeTab(DCsAppleMilk.applemilkContainer);
+
+		DCsAppleMilk.containerItemDoorW = (new ItemContainerDoor(Blocks.wooden_door))
+				.setUnlocalizedName("defeatedcrow:containeritemDoorW")
+				.setTextureName("defeatedcrow:containeritem_doorW").setCreativeTab(DCsAppleMilk.applemilkContainer);
+
+		DCsAppleMilk.containerItemDoorI = (new ItemContainerDoor(Blocks.iron_door))
+				.setUnlocalizedName("defeatedcrow:containeritemDoorI")
+				.setTextureName("defeatedcrow:containeritem_doorI").setCreativeTab(DCsAppleMilk.applemilkContainer);
 
 	}
 

@@ -28,7 +28,9 @@ public class DCsRecipeRegister {
 		OreDictionary.registerOre("cropWheat", new ItemStack(Items.wheat, 1, 0));
 		OreDictionary.registerOre("cropApple", new ItemStack(Items.apple, 1, 0));
 		OreDictionary.registerOre("foodEgg", new ItemStack(Items.egg, 1, 0));
+		OreDictionary.registerOre("bucketWater", new ItemStack(Items.water_bucket, 1, 0));
 		OreDictionary.registerOre("bucketMilk", new ItemStack(Items.milk_bucket, 1, 0));
+		OreDictionary.registerOre("bucketLava", new ItemStack(Items.lava_bucket, 1, 0));
 		OreDictionary.registerOre("gemCoal", new ItemStack(Items.coal, 1, 0));
 
 		this.addContainerRecipe();
@@ -47,8 +49,13 @@ public class DCsRecipeRegister {
 
 		// extra recipe
 		if (DCsConfig.useEXRecipe) {
-			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.saplingTea, 1), new Object[] { "XXX", "XYX", "XXX",
-					Character.valueOf('X'), new ItemStack(Items.gold_nugget, 1), Character.valueOf('Y'),
+			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.saplingTea, 1), new Object[] {
+					"XXX",
+					"XYX",
+					"XXX",
+					Character.valueOf('X'),
+					new ItemStack(Items.gold_nugget, 1),
+					Character.valueOf('Y'),
 					new ItemStack(Blocks.sapling, 1, 0) });
 		}
 
@@ -59,15 +66,31 @@ public class DCsRecipeRegister {
 
 		// add extra recipe if nether is disabled.
 		if (!NetworkUtilServer.INSTANCE.enableNether()) {
-			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0), new Object[] { "XYX", "ZYZ", "XWX",
-					Character.valueOf('X'), new ItemStack(Blocks.stained_hardened_clay, 1, 0), Character.valueOf('Y'),
-					new ItemStack(Items.water_bucket, 1), Character.valueOf('Z'), new ItemStack(Blocks.glass, 1),
-					Character.valueOf('W'), new ItemStack(Items.lava_bucket, 1) });
+			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0), new Object[] {
+					"XYX",
+					"ZYZ",
+					"XWX",
+					Character.valueOf('X'),
+					new ItemStack(Blocks.stained_hardened_clay, 1, 0),
+					Character.valueOf('Y'),
+					new ItemStack(Items.water_bucket, 1),
+					Character.valueOf('Z'),
+					new ItemStack(Blocks.glass, 1),
+					Character.valueOf('W'),
+					new ItemStack(Items.lava_bucket, 1) });
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0), new Object[] {
-					"XYX", "ZYZ", "XWX", Character.valueOf('X'), "ingotSilver", Character.valueOf('Y'),
-					new ItemStack(Items.water_bucket, 1), Character.valueOf('Z'), new ItemStack(Blocks.glass, 1),
-					Character.valueOf('W'), new ItemStack(Items.lava_bucket, 1) }));
+					"XYX",
+					"ZYZ",
+					"XWX",
+					Character.valueOf('X'),
+					"ingotSilver",
+					Character.valueOf('Y'),
+					new ItemStack(Items.water_bucket, 1),
+					Character.valueOf('Z'),
+					new ItemStack(Blocks.glass, 1),
+					Character.valueOf('W'),
+					new ItemStack(Items.lava_bucket, 1) }));
 		}
 
 	}
@@ -77,19 +100,31 @@ public class DCsRecipeRegister {
 		for (int i = 0; i < 4; i++) {
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.log, 9, i), new ItemStack(DCsAppleMilk.woodBox, 1, i));
 
-			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, i), new Object[] { "UUU", "UUU", "UUU",
-					Character.valueOf('U'), new ItemStack(Blocks.log, 1, i) });
+			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, i), new Object[] {
+					"UUU",
+					"UUU",
+					"UUU",
+					Character.valueOf('U'),
+					new ItemStack(Blocks.log, 1, i) });
 		}
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.log2, 9, 1), new ItemStack(DCsAppleMilk.woodBox, 1, 11));
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 11), new Object[] { "UUU", "UUU", "UUU",
-				Character.valueOf('U'), new ItemStack(Blocks.log2, 1, 1) });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 11), new Object[] {
+				"UUU",
+				"UUU",
+				"UUU",
+				Character.valueOf('U'),
+				new ItemStack(Blocks.log2, 1, 1) });
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.log2, 9, 0), new ItemStack(DCsAppleMilk.woodBox, 1, 12));
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 12), new Object[] { "UUU", "UUU", "UUU",
-				Character.valueOf('U'), new ItemStack(Blocks.log2, 1, 0) });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 12), new Object[] {
+				"UUU",
+				"UUU",
+				"UUU",
+				Character.valueOf('U'),
+				new ItemStack(Blocks.log2, 1, 0) });
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.apple, 9), new ItemStack(DCsAppleMilk.appleBox, 1));
 
@@ -121,13 +156,21 @@ public class DCsRecipeRegister {
 			GameRegistry.addShapelessRecipe(itemStack, new ItemStack(DCsAppleMilk.vegiBag, 1, i));
 
 			if (i >= 0) {
-				GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.vegiBag, 1, i), new Object[] { "TTT", "TTT", "TTT",
-						Character.valueOf('T'), itemStack });
+				GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.vegiBag, 1, i), new Object[] {
+						"TTT",
+						"TTT",
+						"TTT",
+						Character.valueOf('T'),
+						itemStack });
 			}
 		}
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.vegiBag, 1, 9), new Object[] { "XXX",
-				"XXX", "XXX", Character.valueOf('X'), "dustSugar" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.vegiBag, 1, 9), new Object[] {
+				"XXX",
+				"XXX",
+				"XXX",
+				Character.valueOf('X'),
+				"dustSugar" }));
 
 		for (int i = 0; i < 4; i++) {
 			ItemStack item = new ItemStack(Items.gunpowder, 9);
@@ -143,8 +186,12 @@ public class DCsRecipeRegister {
 			GameRegistry.addShapelessRecipe(item, new ItemStack(DCsAppleMilk.gunpowderContainer, 1, i));
 
 			if (i >= 0) {
-				GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.gunpowderContainer, 1, i), new Object[] { "TTT",
-						"TTT", "TTT", Character.valueOf('T'), item });
+				GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.gunpowderContainer, 1, i), new Object[] {
+						"TTT",
+						"TTT",
+						"TTT",
+						Character.valueOf('T'),
+						item });
 			}
 		}
 
@@ -162,8 +209,12 @@ public class DCsRecipeRegister {
 			GameRegistry.addShapelessRecipe(item, new ItemStack(DCsAppleMilk.cardboard, 1, i));
 
 			if (i >= 0) {
-				GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.cardboard, 1, i), new Object[] { "TTT", "TTT", "TTT",
-						Character.valueOf('T'), item });
+				GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.cardboard, 1, i), new Object[] {
+						"TTT",
+						"TTT",
+						"TTT",
+						Character.valueOf('T'),
+						item });
 			}
 		}
 
@@ -185,46 +236,84 @@ public class DCsRecipeRegister {
 					GameRegistry.addShapelessRecipe(item, new ItemStack(DCsAppleMilk.mobBlock, 1, i));
 
 					if (i >= 0) {
-						GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.mobBlock, 1, i), new Object[] { "TTT", "T T",
-								"TTT", Character.valueOf('T'), item });
+						GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.mobBlock, 1, i), new Object[] {
+								"TTT",
+								"T T",
+								"TTT",
+								Character.valueOf('T'),
+								item });
 					}
 				}
 			}
 		}
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.appleBox, 1),
-				new Object[] { "UUU", "UUU", "UUU", Character.valueOf('U'), Items.apple });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.appleBox, 1), new Object[] {
+				"UUU",
+				"UUU",
+				"UUU",
+				Character.valueOf('U'),
+				Items.apple });
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.appleBox, 1, 0), new Object[] { "XXX",
-				"XXX", "XXX", Character.valueOf('X'), "cropApple" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.appleBox, 1, 0), new Object[] {
+				"XXX",
+				"XXX",
+				"XXX",
+				Character.valueOf('X'),
+				"cropApple" }));
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.charcoalBox, 1), new Object[] { "UUU", "UUU", "UUU",
-				Character.valueOf('U'), new ItemStack(Items.coal, 1, 1) });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.charcoalBox, 1), new Object[] {
+				"UUU",
+				"UUU",
+				"UUU",
+				Character.valueOf('U'),
+				new ItemStack(Items.coal, 1, 1) });
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.egg, 8, 0), new ItemStack(DCsAppleMilk.eggBasket, 1, 0));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.clam, 8, 3), new ItemStack(DCsAppleMilk.eggBasket,
 				1, 1));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.eggBasket, 1, 0), new Object[] { "XXX",
-				"X X", "XXX", Character.valueOf('X'), new ItemStack(Items.egg, 1, 0) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.eggBasket, 1, 0), new Object[] {
+				"XXX",
+				"X X",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(Items.egg, 1, 0) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.eggBasket, 1, 1), new Object[] { "XXX",
-				"X X", "XXX", Character.valueOf('X'), new ItemStack(DCsAppleMilk.clam, 1, 3) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.eggBasket, 1, 1), new Object[] {
+				"XXX",
+				"X X",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(DCsAppleMilk.clam, 1, 3) }));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.melon_block, 9, 0), new ItemStack(DCsAppleMilk.melonBomb,
 				1, 0));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.melonBomb, 1, 0), new Object[] { "XXX",
-				"XXX", "XXX", Character.valueOf('X'), new ItemStack(Blocks.melon_block, 1, 0) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.melonBomb, 1, 0), new Object[] {
+				"XXX",
+				"XXX",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.melon_block, 1, 0) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.silkyMelon, 1, 0), new Object[] { " X ",
-				"XYX", " X ", Character.valueOf('Y'), new ItemStack(DCsAppleMilk.melonBomb, 1, 0),
-				Character.valueOf('X'), new ItemStack(Items.string, 1, 0) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.silkyMelon, 1, 0), new Object[] {
+				" X ",
+				"XYX",
+				" X ",
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.melonBomb, 1, 0),
+				Character.valueOf('X'),
+				new ItemStack(Items.string, 1, 0) }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.chopsticksBox, 1, 4), new Object[] {
-				"XXX", "XYX", "XXX", Character.valueOf('Y'), new ItemStack(DCsAppleMilk.Basket, 1, 0),
-				Character.valueOf('X'), "stickWood" }));
+				"XXX",
+				"XYX",
+				"XXX",
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.Basket, 1, 0),
+				Character.valueOf('X'),
+				"stickWood" }));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.red_mushroom, 9), new ItemStack(DCsAppleMilk.mushroomBox,
 				1, 0));
@@ -232,35 +321,67 @@ public class DCsRecipeRegister {
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.brown_mushroom, 9), new ItemStack(
 				DCsAppleMilk.mushroomBox, 1, 1));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.mushroomBox, 1, 0), new Object[] { "XXX",
-				"XXX", "XXX", Character.valueOf('X'), new ItemStack(Blocks.red_mushroom, 1) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.mushroomBox, 1, 0), new Object[] {
+				"XXX",
+				"XXX",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.red_mushroom, 1) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.mushroomBox, 1, 1), new Object[] { "XXX",
-				"XXX", "XXX", Character.valueOf('X'), new ItemStack(Blocks.brown_mushroom, 1) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.mushroomBox, 1, 1), new Object[] {
+				"XXX",
+				"XXX",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.brown_mushroom, 1) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.chocoBlock, 1, 0), new Object[] { "XXX",
-				"XYX", "XXX", Character.valueOf('Y'), new ItemStack(Items.gold_ingot, 1), Character.valueOf('X'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.chocoBlock, 1, 0), new Object[] {
+				"XXX",
+				"XYX",
+				"XXX",
+				Character.valueOf('Y'),
+				new ItemStack(Items.gold_ingot, 1),
+				Character.valueOf('X'),
 				"foodFruitsChocolate" }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.chocoBlock, 1, 1), new Object[] { "XXX",
-				"XYX", "XXX", Character.valueOf('Y'), new ItemStack(Items.diamond, 1), Character.valueOf('X'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.chocoBlock, 1, 1), new Object[] {
+				"XXX",
+				"XYX",
+				"XXX",
+				Character.valueOf('Y'),
+				new ItemStack(Items.diamond, 1),
+				Character.valueOf('X'),
 				"foodFruitsChocolate" }));
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.wipeBox, 1, 0),
-				new Object[] { "UUU", "UUU", "UUU", Character.valueOf('U'), Items.paper });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.wipeBox, 1, 0), new Object[] {
+				"UUU",
+				"UUU",
+				"UUU",
+				Character.valueOf('U'),
+				Items.paper });
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.paper, 9), new ItemStack(DCsAppleMilk.wipeBox, 1, 0));
 
-		GameRegistry
-				.addRecipe(new ItemStack(DCsAppleMilk.wipeBox, 1, 1),
-						new Object[] { "UUU", "UUU", "UUU", Character.valueOf('U'),
-								new ItemStack(DCsAppleMilk.wipeBox, 1, 0) });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.wipeBox, 1, 1), new Object[] {
+				"UUU",
+				"UUU",
+				"UUU",
+				Character.valueOf('U'),
+				new ItemStack(DCsAppleMilk.wipeBox, 1, 0) });
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.flowerPot, 1, 0), new Object[] { "UUU", "UUU", "UUU",
-				Character.valueOf('U'), new ItemStack(Blocks.red_flower) });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.flowerPot, 1, 0), new Object[] {
+				"UUU",
+				"UUU",
+				"UUU",
+				Character.valueOf('U'),
+				new ItemStack(Blocks.red_flower) });
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.flowerPot, 1, 4), new Object[] { "UUU", "UUU", "UUU",
-				Character.valueOf('U'), new ItemStack(Blocks.yellow_flower) });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.flowerPot, 1, 4), new Object[] {
+				"UUU",
+				"UUU",
+				"UUU",
+				Character.valueOf('U'),
+				new ItemStack(Blocks.yellow_flower) });
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.red_flower, 9),
 				new ItemStack(DCsAppleMilk.flowerPot, 1, 0));
@@ -268,234 +389,454 @@ public class DCsRecipeRegister {
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.yellow_flower, 9), new ItemStack(DCsAppleMilk.flowerPot,
 				1, 4));
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.yuzuFence, 1, 0), new Object[] { "UUU", 'U',
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.yuzuFence, 1, 0), new Object[] {
+				"UUU",
+				'U',
 				new ItemStack(DCsAppleMilk.logYuzu, 1, 0) });
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.woodPanel, 1, 0), new Object[] { "XXX",
-				"XYX", "XXX", 'X', "dustWood", 'Y', "plankWood" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.woodPanel, 1, 0), new Object[] {
+				"XXX",
+				"XYX",
+				"XXX",
+				'X',
+				"dustWood",
+				'Y',
+				"plankWood" }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.woodPanel, 1, 0), new Object[] { "XXX",
-				"XYX", "XXX", 'X', "dustAnyWood", 'Y', "plankWood" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.woodPanel, 1, 0), new Object[] {
+				"XXX",
+				"XYX",
+				"XXX",
+				'X',
+				"dustAnyWood",
+				'Y',
+				"plankWood" }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.woodPanel, 1, 0), new Object[] { "XXX",
-				"XYX", "XXX", 'X', "pulpWood", 'Y', "plankWood" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.woodPanel, 1, 0), new Object[] {
+				"XXX",
+				"XYX",
+				"XXX",
+				'X',
+				"pulpWood",
+				'Y',
+				"plankWood" }));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.dustWood, 8), new ItemStack(DCsAppleMilk.woodPanel,
 				1, 0));
+
+		// 特殊コンテナ
+		Item[] rets = {
+				Item.getItemFromBlock(DCsAppleMilk.containerWBottle),
+				Item.getItemFromBlock(DCsAppleMilk.containerSaddle),
+				DCsAppleMilk.containerItemDoorW,
+				DCsAppleMilk.containerItemDoorI };
+
+		Item[] items = {
+				Items.potionitem,
+				Items.saddle,
+				Items.wooden_door,
+				Items.iron_door };
+
+		for (int i = 0; i < 4; i++) {
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(rets[i], 1, 3), new Object[] {
+					"XX",
+					"XX",
+					'X',
+					new ItemStack(items[i], 1, 0) }));
+
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(rets[i], 1, 7), new Object[] {
+					"XXX",
+					"X X",
+					"XXX",
+					'X',
+					new ItemStack(items[i], 1, 0) }));
+
+			GameRegistry.addShapelessRecipe(new ItemStack(items[i], 8, 0), new ItemStack(rets[i], 1, 7));
+
+			for (int j = 0; j < 7; j++) {
+				GameRegistry.addShapelessRecipe(new ItemStack(rets[i], 1, j + 1), new ItemStack(rets[i], 1, j),
+						new ItemStack(items[i], 1, 0));
+			}
+		}
 	}
 
 	static void addTablewareRecipe() {
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.emptyCup, 1), new Object[] { "XXX",
-				"XX ", Character.valueOf('X'), "ingotSilver" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.emptyCup, 1), new Object[] {
+				"XXX",
+				"XX ",
+				Character.valueOf('X'),
+				"ingotSilver" }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.emptyCup, 1), new Object[] { "XXX",
-				"XX ", Character.valueOf('X'), new ItemStack(Blocks.stained_hardened_clay, 1, 0) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.emptyCup, 1), new Object[] {
+				"XXX",
+				"XX ",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.stained_hardened_clay, 1, 0) }));
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.teaMakerNext, 1),
-				new Object[] { "XYX", "ZYZ", "XWX", Character.valueOf('X'),
-						new ItemStack(Blocks.stained_hardened_clay, 1, 0), Character.valueOf('Y'),
-						new ItemStack(Items.water_bucket, 1), Character.valueOf('Z'), new ItemStack(Blocks.glass, 1),
-						Character.valueOf('W'), new ItemStack(Items.blaze_rod, 1) });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.teaMakerNext, 1), new Object[] {
+				"XYX",
+				"ZYZ",
+				"XWX",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.stained_hardened_clay, 1, 0),
+				Character.valueOf('Y'),
+				new ItemStack(Items.water_bucket, 1),
+				Character.valueOf('Z'),
+				new ItemStack(Blocks.glass, 1),
+				Character.valueOf('W'),
+				new ItemStack(Items.blaze_rod, 1) });
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.teaMakerNext, 1), new Object[] { "XYX",
-				"ZYZ", "XWX", Character.valueOf('X'), "ingotSilver", Character.valueOf('Y'),
-				new ItemStack(Items.water_bucket, 1), Character.valueOf('Z'), new ItemStack(Blocks.glass, 1),
-				Character.valueOf('W'), new ItemStack(Items.blaze_rod, 1) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.teaMakerNext, 1), new Object[] {
+				"XYX",
+				"ZYZ",
+				"XWX",
+				Character.valueOf('X'),
+				"ingotSilver",
+				Character.valueOf('Y'),
+				new ItemStack(Items.water_bucket, 1),
+				Character.valueOf('Z'),
+				new ItemStack(Blocks.glass, 1),
+				Character.valueOf('W'),
+				new ItemStack(Items.blaze_rod, 1) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.teaMakerBlack, 1), new Object[] { " X ",
-				"XYX", " X ", Character.valueOf('X'), new ItemStack(Blocks.obsidian, 1), Character.valueOf('Y'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.teaMakerBlack, 1), new Object[] {
+				" X ",
+				"XYX",
+				" X ",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.obsidian, 1),
+				Character.valueOf('Y'),
 				new ItemStack(DCsAppleMilk.teaMakerNext, 1) }));
 
-		GameRegistry
-				.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.iceMaker, 1), new Object[] { " X ", "ZYZ",
-						"Z Z", Character.valueOf('X'), "gearIron", Character.valueOf('Z'),
-						new ItemStack(Items.iron_ingot, 1), Character.valueOf('Y'),
-						new ItemStack(DCsAppleMilk.icyCrystal, 1) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.iceMaker, 1), new Object[] {
+				" X ",
+				"ZYZ",
+				"Z Z",
+				Character.valueOf('X'),
+				"gearIron",
+				Character.valueOf('Z'),
+				new ItemStack(Items.iron_ingot, 1),
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.icyCrystal, 1) }));
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.emptyPanGaiden, 1), new Object[] { "X X", "X X", "XXX",
-				Character.valueOf('X'), new ItemStack(Blocks.hardened_clay, 1) });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.emptyPanGaiden, 1), new Object[] {
+				"X X",
+				"X X",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.hardened_clay, 1) });
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.DCgrater, 1, 0), new Object[] { " X ", "XYX", "XYX",
-				Character.valueOf('X'), new ItemStack(Items.stick, 1), Character.valueOf('Y'),
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.DCgrater, 1, 0), new Object[] {
+				" X ",
+				"XYX",
+				"XYX",
+				Character.valueOf('X'),
+				new ItemStack(Items.stick, 1),
+				Character.valueOf('Y'),
 				new ItemStack(Blocks.iron_bars, 1) });
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.bowlRack, 1), new Object[] { "X X",
-				"X X", "YYY", Character.valueOf('X'), "stickWood", Character.valueOf('Y'), "plankWood" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.bowlRack, 1), new Object[] {
+				"X X",
+				"X X",
+				"YYY",
+				Character.valueOf('X'),
+				"stickWood",
+				Character.valueOf('Y'),
+				"plankWood" }));
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.Basket, 1),
-				new Object[] { "X X", "X X", "XXX", Character.valueOf('X'), new ItemStack(Items.reeds, 1) });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.Basket, 1), new Object[] {
+				"X X",
+				"X X",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(Items.reeds, 1) });
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.teppanII, 1, 0), new Object[] { "X X", "XXX", " Y ",
-				Character.valueOf('X'), new ItemStack(Items.iron_ingot, 1), Character.valueOf('Y'),
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.teppanII, 1, 0), new Object[] {
+				"X X",
+				"XXX",
+				" Y ",
+				Character.valueOf('X'),
+				new ItemStack(Items.iron_ingot, 1),
+				Character.valueOf('Y'),
 				new ItemStack(Blocks.furnace, 1) });
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), new Object[] { " Y ", "X X", " X ",
-				Character.valueOf('X'), new ItemStack(Blocks.glass, 1), Character.valueOf('Y'),
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), new Object[] {
+				" Y ",
+				"X X",
+				" X ",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.glass, 1),
+				Character.valueOf('Y'),
 				new ItemStack(Items.iron_ingot, 1) });
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), new Object[] { " Y ",
-				"X X", " X ", Character.valueOf('X'), new ItemStack(Blocks.glass, 1), Character.valueOf('Y'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), new Object[] {
+				" Y ",
+				"X X",
+				" X ",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.glass, 1),
+				Character.valueOf('Y'),
 				"ingotTin" }));
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.Basket, 1, 14),
-				new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'),
-						new ItemStack(DCsAppleMilk.emptyBottle, 1, 0) });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.Basket, 1, 14), new Object[] {
+				"XXX",
+				"XXX",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(DCsAppleMilk.emptyBottle, 1, 0) });
 	}
 
 	static void addGraterRecipe() {
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 0), new Object[] {
-				"toolGrater", new ItemStack(Items.apple, 1, 0) }));
+				"toolGrater",
+				new ItemStack(Items.apple, 1, 0) }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 0), new Object[] {
-				"toolGrater", "cropApple" }));
+				"toolGrater",
+				"cropApple" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 1), new Object[] {
-				"toolGrater", "cropPeach" }));
+				"toolGrater",
+				"cropPeach" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 1), new Object[] {
-				"toolGrater", "cropBanana" }));
+				"toolGrater",
+				"cropBanana" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 9), new Object[] {
-				"toolGrater", "cropOrange" }));
+				"toolGrater",
+				"cropOrange" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 1), new Object[] {
-				"toolGrater", "cropPlum" }));
+				"toolGrater",
+				"cropPlum" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 2), new Object[] {
-				"toolGrater", "cropLemon", "dropHoney" }));
+				"toolGrater",
+				"cropLemon",
+				"dropHoney" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 3), new Object[] {
-				"toolGrater", "cropCoffee", }));
+				"toolGrater",
+				"cropCoffee", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 5), new Object[] {
-				"toolGrater", "cropLime", }));
+				"toolGrater",
+				"cropLime", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 5), new Object[] {
-				"toolGrater", "cropCitron", }));
+				"toolGrater",
+				"cropCitron", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 6), new Object[] {
-				"toolGrater", "cropTomato", }));
+				"toolGrater",
+				"cropTomato", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 6), new Object[] {
-				"toolGrater", "tomato", }));
+				"toolGrater",
+				"tomato", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), new Object[] {
-				"toolGrater", "cropStrawberry", }));
+				"toolGrater",
+				"cropStrawberry", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), new Object[] {
-				"toolGrater", "cropBlueberry", }));
+				"toolGrater",
+				"cropBlueberry", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), new Object[] {
-				"toolGrater", "cropRaspberry", }));
+				"toolGrater",
+				"cropRaspberry", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), new Object[] {
-				"toolGrater", "cropBlackberry", }));
+				"toolGrater",
+				"cropBlackberry", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), new Object[] {
-				"toolGrater", "cropCassis", }));
+				"toolGrater",
+				"cropCassis", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), new Object[] {
-				"toolGrater", "listAllberry", }));
+				"toolGrater",
+				"listAllberry", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 8), new Object[] {
-				"toolGrater", "cropGrape", }));
+				"toolGrater",
+				"cropGrape", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 8), new Object[] {
-				"toolGrater", "grape", }));
+				"toolGrater",
+				"grape", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 2), new Object[] {
-				"toolGrater", new ItemStack(DCsAppleMilk.foodTea, 1, 1), "cropOrange", }));
+				"toolGrater",
+				new ItemStack(DCsAppleMilk.foodTea, 1, 1),
+				"cropOrange", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 2), new Object[] {
-				"toolGrater", new ItemStack(DCsAppleMilk.foodTea, 1, 1), "cropCitron", }));
+				"toolGrater",
+				new ItemStack(DCsAppleMilk.foodTea, 1, 1),
+				"cropCitron", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 3), new Object[] {
-				"toolGrater", new ItemStack(DCsAppleMilk.foodTea, 1, 1), new ItemStack(Items.apple, 1, 0) }));
+				"toolGrater",
+				new ItemStack(DCsAppleMilk.foodTea, 1, 1),
+				new ItemStack(Items.apple, 1, 0) }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 3), new Object[] {
-				"toolGrater", new ItemStack(DCsAppleMilk.foodTea, 1, 1), "cropApple" }));
+				"toolGrater",
+				new ItemStack(DCsAppleMilk.foodTea, 1, 1),
+				"cropApple" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 0), new Object[] {
-				"toolGrater", new ItemStack(Blocks.brown_mushroom, 1, 0), new ItemStack(Blocks.red_mushroom, 1, 0) }));
+				"toolGrater",
+				new ItemStack(Blocks.brown_mushroom, 1, 0),
+				new ItemStack(Blocks.red_mushroom, 1, 0) }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), new Object[] {
-				"toolGrater", new ItemStack(Items.fish, 1, 0), new ItemStack(Items.carrot, 1),
-				new ItemStack(Items.potato, 1), "bucketMilk" }));
+				"toolGrater",
+				new ItemStack(Items.fish, 1, 0),
+				new ItemStack(Items.carrot, 1),
+				new ItemStack(Items.potato, 1),
+				"bucketMilk" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), new Object[] {
-				"toolGrater", new ItemStack(Items.fish, 1, 1), new ItemStack(Items.carrot, 1),
-				new ItemStack(Items.potato, 1), "bucketMilk" }));
+				"toolGrater",
+				new ItemStack(Items.fish, 1, 1),
+				new ItemStack(Items.carrot, 1),
+				new ItemStack(Items.potato, 1),
+				"bucketMilk" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), new Object[] {
-				"toolGrater", new ItemStack(Items.fish, 1, 0), new ItemStack(Items.carrot, 1, 0),
-				new ItemStack(Items.potato, 1, 0), "listAllmilk" }));
+				"toolGrater",
+				new ItemStack(Items.fish, 1, 0),
+				new ItemStack(Items.carrot, 1, 0),
+				new ItemStack(Items.potato, 1, 0),
+				"listAllmilk" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 2), new Object[] {
-				"toolGrater", new ItemStack(Items.egg, 1, 0), new ItemStack(Items.chicken, 1, 0), "cropWheat" }));
+				"toolGrater",
+				new ItemStack(Items.egg, 1, 0),
+				new ItemStack(Items.chicken, 1, 0),
+				"cropWheat" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 2), new Object[] {
-				"toolGrater", new ItemStack(Items.egg, 1, 0), new ItemStack(Items.chicken, 1, 0), "cropRice" }));
+				"toolGrater",
+				new ItemStack(Items.egg, 1, 0),
+				new ItemStack(Items.chicken, 1, 0),
+				"cropRice" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 3), new Object[] {
-				"toolGrater", "cropRice", "cropRice", "cropRice" }));
+				"toolGrater",
+				"cropRice",
+				"cropRice",
+				"cropRice" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 3), new Object[] {
-				"toolGrater", "cropWheat", "cropWheat", "cropWheat" }));
+				"toolGrater",
+				"cropWheat",
+				"cropWheat",
+				"cropWheat" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), new Object[] {
-				"toolGrater", new ItemStack(DCsAppleMilk.EXItems, 1, 2), "cropRice" }));
+				"toolGrater",
+				new ItemStack(DCsAppleMilk.EXItems, 1, 2),
+				"cropRice" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), new Object[] {
-				"toolGrater", new ItemStack(DCsAppleMilk.EXItems, 1, 2), "cropWheat" }));
+				"toolGrater",
+				new ItemStack(DCsAppleMilk.EXItems, 1, 2),
+				"cropWheat" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), new Object[] {
-				"toolGrater", new ItemStack(Items.chicken, 1, 0), "leek", "bucketSoymilk", "tofuKinu" }));
+				"toolGrater",
+				new ItemStack(Items.chicken, 1, 0),
+				"leek",
+				"bucketSoymilk",
+				"tofuKinu" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), new Object[] {
-				"toolGrater", new ItemStack(Items.chicken, 1, 0), "leek", "bucketSoymilk", "tofuMomen" }));
+				"toolGrater",
+				new ItemStack(Items.chicken, 1, 0),
+				"leek",
+				"bucketSoymilk",
+				"tofuMomen" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), new Object[] {
-				"toolGrater", new ItemStack(Items.chicken, 1, 0), "cropLeek", "foodSoymilk", "foodSilkentofu" }));
+				"toolGrater",
+				new ItemStack(Items.chicken, 1, 0),
+				"cropLeek",
+				"foodSoymilk",
+				"foodSilkentofu" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 6), new Object[] {
-				"toolGrater", new ItemStack(Blocks.pumpkin, 1, 0), "bucketMilk" }));
+				"toolGrater",
+				new ItemStack(Blocks.pumpkin, 1, 0),
+				"bucketMilk" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 6), new Object[] {
-				"toolGrater", new ItemStack(Blocks.pumpkin, 1, 0), "listAllmilk" }));
+				"toolGrater",
+				new ItemStack(Blocks.pumpkin, 1, 0),
+				"listAllmilk" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), new Object[] {
-				"toolGrater", new ItemStack(Items.porkchop, 1, 0), "cropLettuce", "cropTomato", }));
+				"toolGrater",
+				new ItemStack(Items.porkchop, 1, 0),
+				"cropLettuce",
+				"cropTomato", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), new Object[] {
-				"toolGrater", new ItemStack(Items.porkchop, 1, 0), "cabbage", "tomato", }));
-
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8),
-				new Object[] { "toolGrater", "bucketMilk", "dustSugar", new ItemStack(Items.dye, 9, 3),
-						new ItemStack(Items.dye, 9, 3) }));
+				"toolGrater",
+				new ItemStack(Items.porkchop, 1, 0),
+				"cabbage",
+				"tomato", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), new Object[] {
-				"toolGrater", "listAllmilk", "dustSugar", new ItemStack(Items.dye, 9, 3),
+				"toolGrater",
+				"bucketMilk",
+				"dustSugar",
+				new ItemStack(Items.dye, 9, 3),
+				new ItemStack(Items.dye, 9, 3) }));
+
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), new Object[] {
+				"toolGrater",
+				"listAllmilk",
+				"dustSugar",
+				new ItemStack(Items.dye, 9, 3),
 				new ItemStack(Items.dye, 9, 3) }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), new Object[] {
-				"toolGrater", "miso", "cropSeaWeed", "tofuKinu" }));
+				"toolGrater",
+				"miso",
+				"cropSeaWeed",
+				"tofuKinu" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), new Object[] {
-				"toolGrater", "miso", "cropSeaWeed", "tofuMomen" }));
+				"toolGrater",
+				"miso",
+				"cropSeaWeed",
+				"tofuMomen" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), new Object[] {
-				"toolGrater", new ItemStack(DCsAppleMilk.clam, 1, 0), "cropSeaWeed" }));
+				"toolGrater",
+				new ItemStack(DCsAppleMilk.clam, 1, 0),
+				"cropSeaWeed" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 4), new Object[] {
-				new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), "bucketMilk" }));
+				new ItemStack(DCsAppleMilk.mincedFoods, 1, 8),
+				"bucketMilk" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 4), new Object[] {
-				new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), "listAllmilk" }));
+				new ItemStack(DCsAppleMilk.mincedFoods, 1, 8),
+				"listAllmilk" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.yeast, 1, 1), new Object[] {
-				new ItemStack(DCsAppleMilk.yeast, 1, 0), "dustSugar", "dustSugar", "dustSugar" }));
+				new ItemStack(DCsAppleMilk.yeast, 1, 0),
+				"dustSugar",
+				"dustSugar",
+				"dustSugar" }));
 
 	}
 
@@ -503,202 +844,292 @@ public class DCsRecipeRegister {
 
 		// フローズン・ダイキリ
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 0), new Object[] {
-				new ItemStack(DCsAppleMilk.teaCup2, 1, 4), "foodCrushedIce", "dustSugar", "bottleRum" }));
+				new ItemStack(DCsAppleMilk.teaCup2, 1, 4),
+				"foodCrushedIce",
+				"dustSugar",
+				"bottleRum" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 0), new Object[] {
-				"foodLimejuice", "foodCrushedIce", "dustSugar", "bottleRum" }));
+				"foodLimejuice",
+				"foodCrushedIce",
+				"dustSugar",
+				"bottleRum" }));
 
 		// サケティーニ
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 2), new Object[] {
-				"bottleGin", "bottleSake" }));
+				"bottleGin",
+				"bottleSake" }));
 
 		// ギムレット
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 3), new Object[] {
-				new ItemStack(DCsAppleMilk.teaCup2, 1, 4), "dustSugar", "bottleGin" }));
+				new ItemStack(DCsAppleMilk.teaCup2, 1, 4),
+				"dustSugar",
+				"bottleGin" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 3), new Object[] {
-				"foodLimejuice", "dustSugar", "bottleGin" }));
+				"foodLimejuice",
+				"dustSugar",
+				"bottleGin" }));
 
 		// ブラック・ローズ
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 4), new Object[] {
-				new ItemStack(DCsAppleMilk.teacupBlock, 1, 12), "bottleRum" }));
+				new ItemStack(DCsAppleMilk.teacupBlock, 1, 12),
+				"bottleRum" }));
 
 		// レッドアイ
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 5), new Object[] {
-				new ItemStack(DCsAppleMilk.teaCup2, 1, 5), "bottleBeer" }));
+				new ItemStack(DCsAppleMilk.teaCup2, 1, 5),
+				"bottleBeer" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 5), new Object[] {
-				"foodTomatojuice", "bottleBeer" }));
+				"foodTomatojuice",
+				"bottleBeer" }));
 
 		// ピニャ・コラーダ
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 6), new Object[] {
-				"bottleRum", "cropPineapple", "cropCoconut", "foodCrushedIce" }));
+				"bottleRum",
+				"cropPineapple",
+				"cropCoconut",
+				"foodCrushedIce" }));
 
 		// アメリカン・レモネード
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 7), new Object[] {
-				new ItemStack(DCsAppleMilk.teacupBlock, 1, 10), "bottleWine" }));
+				new ItemStack(DCsAppleMilk.teacupBlock, 1, 10),
+				"bottleWine" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 7), new Object[] {
-				"foodLemonaid", "bottleWine" }));
+				"foodLemonaid",
+				"bottleWine" }));
 
 		// モスコミュール
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 8), new Object[] {
-				new ItemStack(DCsAppleMilk.teaCup2, 1, 4), "bottleVodka", "drinkCider" }));
+				new ItemStack(DCsAppleMilk.teaCup2, 1, 4),
+				"bottleVodka",
+				"drinkCider" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 8), new Object[] {
-				new ItemStack(DCsAppleMilk.teaCup2, 1, 4), "bottleVodka", "foodGingersoda" }));
+				new ItemStack(DCsAppleMilk.teaCup2, 1, 4),
+				"bottleVodka",
+				"foodGingersoda" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 8), new Object[] {
-				"foodLimejuice", "bottleVodka", "foodGingersoda" }));
+				"foodLimejuice",
+				"bottleVodka",
+				"foodGingersoda" }));
 
 		// ミント・ジュレップ
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 9), new Object[] {
-				"dustSugar", "bottleWhiskey", "cropSpiceleaf", "foodCrushedIce" }));
+				"dustSugar",
+				"bottleWhiskey",
+				"cropSpiceleaf",
+				"foodCrushedIce" }));
 
 		// キール
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 10), new Object[] {
-				"bottleCassisliqueur", "bottleWine" }));
+				"bottleCassisliqueur",
+				"bottleWine" }));
 
 		// カシスミルク
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 11), new Object[] {
-				"bottleCassisliqueur", "bucketSoymilk" }));
+				"bottleCassisliqueur",
+				"bucketSoymilk" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 11), new Object[] {
-				"bottleCassisliqueur", "bucketMilk" }));
+				"bottleCassisliqueur",
+				"bucketMilk" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 11), new Object[] {
-				"bottleCassisliqueur", "listAllmilk" }));
+				"bottleCassisliqueur",
+				"listAllmilk" }));
 
 		// ブラッディメアリー
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 12), new Object[] {
-				"bottleVodka", "blackPepper", new ItemStack(DCsAppleMilk.teaCup2, 1, 5) }));
+				"bottleVodka",
+				"blackPepper",
+				new ItemStack(DCsAppleMilk.teaCup2, 1, 5) }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 12), new Object[] {
-				"bottleVodka", "whitePepper", new ItemStack(DCsAppleMilk.teaCup2, 1, 5) }));
+				"bottleVodka",
+				"whitePepper",
+				new ItemStack(DCsAppleMilk.teaCup2, 1, 5) }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 12), new Object[] {
-				"bottleVodka", "cropChilipepper", new ItemStack(DCsAppleMilk.teaCup2, 1, 5) }));
+				"bottleVodka",
+				"cropChilipepper",
+				new ItemStack(DCsAppleMilk.teaCup2, 1, 5) }));
 
 		// カシスティーカクテル
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 13), new Object[] {
-				"bottleTealiqueur", "bottleCassisliqueur", "foodCrushedIce" }));
+				"bottleTealiqueur",
+				"bottleCassisliqueur",
+				"foodCrushedIce" }));
 
 		// ダブルアップル
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 14), new Object[] {
-				"bottleAppleliqueur", "cropApple", new ItemStack(DCsAppleMilk.teacupBlock, 1, 8), }));
+				"bottleAppleliqueur",
+				"cropApple",
+				new ItemStack(DCsAppleMilk.teacupBlock, 1, 8), }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 14), new Object[] {
-				"bottleAppleliqueur", "cropApple", "foodApplejuice" }));
+				"bottleAppleliqueur",
+				"cropApple",
+				"foodApplejuice" }));
 
 		// 豆乳梅酒
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 15), new Object[] {
-				"bottlePlumliqueur", "bucketSoymilk" }));
+				"bottlePlumliqueur",
+				"bucketSoymilk" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail, 1, 15), new Object[] {
-				"bottlePlumliqueur", "foodSoymilk" }));
+				"bottlePlumliqueur",
+				"foodSoymilk" }));
 
 		// パナシェ
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail2, 1, 1), new Object[] {
-				"bottleBeer", new ItemStack(DCsAppleMilk.teacupBlock, 1, 10) }));
+				"bottleBeer",
+				new ItemStack(DCsAppleMilk.teacupBlock, 1, 10) }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail2, 1, 1), new Object[] {
-				"bottleBeer", "foodLemonaid" }));
+				"bottleBeer",
+				"foodLemonaid" }));
 
 		// スプリッツァー
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail2, 1, 2), new Object[] {
-				"bottleWine", new ItemStack(DCsAppleMilk.teaCup2, 1, 12) }));
+				"bottleWine",
+				new ItemStack(DCsAppleMilk.teaCup2, 1, 12) }));
 
 		// スクリュードライバー
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail2, 1, 3), new Object[] {
-				"bottleVodka", new ItemStack(DCsAppleMilk.teaCup2, 1, 11) }));
+				"bottleVodka",
+				new ItemStack(DCsAppleMilk.teaCup2, 1, 11) }));
 
 		// ゴッドファーザー
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail2, 1, 4), new Object[] {
-				"bottleWhiskey", "bottleAmarettoliqueur" }));
+				"bottleWhiskey",
+				"bottleAmarettoliqueur" }));
 
 		// トムアンドジェリー
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail2, 1, 5), new Object[] {
-				"bottleBrandy", "bucketMilk", "bottleRum", "dustSugar", new ItemStack(Items.egg) }));
+				"bottleBrandy",
+				"bucketMilk",
+				"bottleRum",
+				"dustSugar",
+				new ItemStack(Items.egg) }));
 
 		// アレクサンドラ
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail2, 1, 6), new Object[] {
-				"bottleBrandy", "dustSugar", new ItemStack(Items.dye, 1, 3) }));
+				"bottleBrandy",
+				"dustSugar",
+				new ItemStack(Items.dye, 1, 3) }));
 
 		// ズーム
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail2, 1, 7), new Object[] {
-				"bottleBrandy", "dropHoney", "dustSugar" }));
+				"bottleBrandy",
+				"dropHoney",
+				"dustSugar" }));
 
 		// アマレットミルクティー
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail2, 1, 8), new Object[] {
-				new ItemStack(DCsAppleMilk.teaCup2, 1, 1), "bottleAmarettoliqueur" }));
+				new ItemStack(DCsAppleMilk.teaCup2, 1, 1),
+				"bottleAmarettoliqueur" }));
 
 		// スノウ・サローノ
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cocktail2, 1, 9), new Object[] {
-				"bucketMilk", "bottleAmarettoliqueur" }));
+				"bucketMilk",
+				"bottleAmarettoliqueur" }));
 
 		// 以下、ストレートで飲むレシピ
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 0), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleSake", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleSake", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 1), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleBeer", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleBeer", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 2), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleWine", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleWine", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 4), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleRum", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleRum", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 3), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleGin", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleGin", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 5), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleVodka", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleVodka", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 6), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleWhiskey", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleWhiskey", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 12), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleBrandy", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleBrandy", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 7), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleAppleliqueur", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleAppleliqueur", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 8), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleTealiqueur", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleTealiqueur", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 9), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleCassisliqueur", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleCassisliqueur", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 10), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottlePlumliqueur", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottlePlumliqueur", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 11), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleShothu", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleShothu", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.alcoholCup, 1, 13), new Object[] {
-				new ItemStack(DCsAppleMilk.emptyCup, 1, 0), "bottleAmarettoliqueur", }));
+				new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+				"bottleAmarettoliqueur", }));
 	}
 
 	static void addFoodRecipe() {
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.appleTart, 1, 0), new Object[] {
-				"cropApple", "dustSugar", "cropWheat" }));
+				"cropApple",
+				"dustSugar",
+				"cropWheat" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.appleTart, 1, 1), new Object[] {
-				"cropCassis", "dustSugar", "cropWheat" }));
+				"cropCassis",
+				"dustSugar",
+				"cropWheat" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.appleTart, 1, 2), new Object[] {
-				"cropYuzu", "dustSugar", "bucketMilk", Items.egg }));
+				"cropYuzu",
+				"dustSugar",
+				"bucketMilk",
+				Items.egg }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.appleTart, 1, 3), new Object[] {
-				"cropApricot", "dustSugar", "bucketMilk", Items.egg }));
+				"cropApricot",
+				"dustSugar",
+				"bucketMilk",
+				Items.egg }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.appleTart, 1, 3), new Object[] {
-				"apricot", "dustSugar", "bucketMilk", Items.egg }));
+				"apricot",
+				"dustSugar",
+				"bucketMilk",
+				Items.egg }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.toffyApple, 1, 0), new Object[] {
-				"cropApple", "dustSugar", "stickWood" }));
+				"cropApple",
+				"dustSugar",
+				"stickWood" }));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.icyToffyApple, 1, 0), new ItemStack(
 				DCsAppleMilk.toffyApple, 1), new ItemStack(Items.snowball, 1));
@@ -713,22 +1144,28 @@ public class DCsRecipeRegister {
 				DCsAppleMilk.toffyApple, 1), new ItemStack(Blocks.leaves, 1, 32767)));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.icyToffyApple, 1, 3), new Object[] {
-				new ItemStack(DCsAppleMilk.toffyApple, 1), "leavesWood" }));
+				new ItemStack(DCsAppleMilk.toffyApple, 1),
+				"leavesWood" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 0), new Object[] {
-				"bucketMilk", "dustSugar" }));
+				"bucketMilk",
+				"dustSugar" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 0), new Object[] {
-				"listAllmilk", "dustSugar" }));
+				"listAllmilk",
+				"dustSugar" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 1), new Object[] {
-				"cropCassis", "dustSugar" }));
+				"cropCassis",
+				"dustSugar" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 2), new Object[] {
-				"cropSpiceleaf", "dustSugar" }));
+				"cropSpiceleaf",
+				"dustSugar" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.condensedMIlk, 1, 3), new Object[] {
-				"cropYuzu", "dustSugar" }));
+				"cropYuzu",
+				"dustSugar" }));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.inkStick, 1), new ItemStack(DCsAppleMilk.EXItems, 1,
 				1), new ItemStack(Items.coal, 1, 1));
@@ -740,16 +1177,19 @@ public class DCsRecipeRegister {
 				new ItemStack(Items.bread, 1));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.appleSandwich, 2, 0), new Object[] {
-				"cropApple", new ItemStack(Items.bread, 1) }));
+				"cropApple",
+				new ItemStack(Items.bread, 1) }));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.appleSandwich, 2, 1), new ItemStack(Items.egg, 1),
 				new ItemStack(Items.bread, 1));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.appleSandwich, 2, 2), new Object[] {
-				"foodCassisPreserve", new ItemStack(Items.bread, 1) }));
+				"foodCassisPreserve",
+				new ItemStack(Items.bread, 1) }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.appleSandwich, 2, 3), new Object[] {
-				"foodYuzuMarmalade", new ItemStack(Items.bread, 1) }));
+				"foodYuzuMarmalade",
+				new ItemStack(Items.bread, 1) }));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 1), new ItemStack(DCsAppleMilk.foodTea,
 				1, 0));
@@ -760,76 +1200,153 @@ public class DCsRecipeRegister {
 
 	static void addChalcedony() {
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.flintBlock, 1),
-				new Object[] { "UU", "UU", Character.valueOf('U'), Items.flint });
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.flintBlock, 1), new Object[] {
+				"UU",
+				"UU",
+				Character.valueOf('U'),
+				Items.flint });
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.flint, 4), new Object[] { new ItemStack(
 				DCsAppleMilk.flintBlock, 1) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.chalcedonyKnife, 1), new Object[] { "X",
-				"X", "Y", Character.valueOf('Y'), "stickWood", Character.valueOf('X'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.chalcedonyKnife, 1), new Object[] {
+				"X",
+				"X",
+				"Y",
+				Character.valueOf('Y'),
+				"stickWood",
+				Character.valueOf('X'),
 				new ItemStack(DCsAppleMilk.chalcedony, 1, 0) }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.chalcedonyHammer, 1), new Object[] {
-				"XXX", " Y ", " Y ", Character.valueOf('Y'), "stickWood", Character.valueOf('X'),
+				"XXX",
+				" Y ",
+				" Y ",
+				Character.valueOf('Y'),
+				"stickWood",
+				Character.valueOf('X'),
 				new ItemStack(DCsAppleMilk.chalcedony, 1, 0) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.monocle, 1), new Object[] { " X ", "XZX",
-				" XY", Character.valueOf('X'), new ItemStack(Items.iron_ingot, 1, 0), Character.valueOf('Y'),
-				new ItemStack(DCsAppleMilk.chalcedony, 1, 0), Character.valueOf('Z'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.monocle, 1), new Object[] {
+				" X ",
+				"XZX",
+				" XY",
+				Character.valueOf('X'),
+				new ItemStack(Items.iron_ingot, 1, 0),
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.chalcedony, 1, 0),
+				Character.valueOf('Z'),
 				new ItemStack(Blocks.glass_pane, 1, 0) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.pruningShears, 1), new Object[] { " XX",
-				" Y ", "YZ ", Character.valueOf('X'), new ItemStack(DCsAppleMilk.chalcedonyKnife, 1, 0),
-				Character.valueOf('Y'), "stickCarbon", Character.valueOf('Z'), new ItemStack(Items.leather, 1, 0) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.pruningShears, 1), new Object[] {
+				" XX",
+				" Y ",
+				"YZ ",
+				Character.valueOf('X'),
+				new ItemStack(DCsAppleMilk.chalcedonyKnife, 1, 0),
+				Character.valueOf('Y'),
+				"stickCarbon",
+				Character.valueOf('Z'),
+				new ItemStack(Items.leather, 1, 0) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.onixSword, 1), new Object[] { "X", "X",
-				"Y", Character.valueOf('Y'), new ItemStack(Items.iron_ingot), Character.valueOf('X'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.onixSword, 1), new Object[] {
+				"X",
+				"X",
+				"Y",
+				Character.valueOf('Y'),
+				new ItemStack(Items.iron_ingot),
+				Character.valueOf('X'),
 				new ItemStack(DCsAppleMilk.chalcedony, 1, 3) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.EXItems, 1, 3), new Object[] { " X ",
-				"X X", " X ", Character.valueOf('X'), new ItemStack(DCsAppleMilk.chalcedony, 1, 0) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.EXItems, 1, 3), new Object[] {
+				" X ",
+				"X X",
+				" X ",
+				Character.valueOf('X'),
+				new ItemStack(DCsAppleMilk.chalcedony, 1, 0) }));
 
 		if (!DCsConfig.disableFireSteater) {
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.firestarter, 1), new Object[] {
-					new ItemStack(DCsAppleMilk.chalcedony, 1, 0), new ItemStack(Items.iron_ingot, 1), }));
+					new ItemStack(DCsAppleMilk.chalcedony, 1, 0),
+					new ItemStack(Items.iron_ingot, 1), }));
 		}
 
-		String[] dyes = { "dyeBlue", "dyeOrange", "dyeWhite", "dyeBlack" };
+		String[] dyes = {
+				"dyeBlue",
+				"dyeOrange",
+				"dyeWhite",
+				"dyeBlack" };
 		for (int i = 0; i < 4; i++) {
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.chalcedony, 1, i), new Object[] {
-					new ItemStack(DCsAppleMilk.chalcedony, 1, 32767), dyes[i] }));
+					new ItemStack(DCsAppleMilk.chalcedony, 1, 32767),
+					dyes[i] }));
 
-			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, i), new Object[] { " U ", "UXU", " U ",
-					Character.valueOf('U'), Items.redstone, Character.valueOf('X'),
+			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, i), new Object[] {
+					" U ",
+					"UXU",
+					" U ",
+					Character.valueOf('U'),
+					Items.redstone,
+					Character.valueOf('X'),
 					new ItemStack(DCsAppleMilk.chalcedony, 1, i) });
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.cLampOpaque, 1, i), new Object[] {
-					new ItemStack(DCsAppleMilk.cLamp, 1, i), Blocks.gravel }));
+					new ItemStack(DCsAppleMilk.cLamp, 1, i),
+					Blocks.gravel }));
 
-			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, i + 4), new Object[] { " U ", "UXU", " U ",
-					Character.valueOf('U'), Blocks.glass, Character.valueOf('X'),
+			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, i + 4), new Object[] {
+					" U ",
+					"UXU",
+					" U ",
+					Character.valueOf('U'),
+					Blocks.glass,
+					Character.valueOf('X'),
 					new ItemStack(DCsAppleMilk.cLamp, 1, i) });
 		}
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, 8), new Object[] { " X ",
-				"XYX", " X ", Character.valueOf('Y'), new ItemStack(DCsAppleMilk.cLamp, 1, 0), Character.valueOf('X'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, 8), new Object[] {
+				" X ",
+				"XYX",
+				" X ",
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.cLamp, 1, 0),
+				Character.valueOf('X'),
 				"ingotSilver" }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, 9), new Object[] { " X ",
-				"XYX", " X ", Character.valueOf('Y'), new ItemStack(DCsAppleMilk.cLamp, 1, 1), Character.valueOf('X'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, 9), new Object[] {
+				" X ",
+				"XYX",
+				" X ",
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.cLamp, 1, 1),
+				Character.valueOf('X'),
 				"ingotLead" }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, 10), new Object[] { " X ",
-				"XYX", " X ", Character.valueOf('Y'), new ItemStack(DCsAppleMilk.cLamp, 1, 2), Character.valueOf('X'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, 10), new Object[] {
+				" X ",
+				"XYX",
+				" X ",
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.cLamp, 1, 2),
+				Character.valueOf('X'),
 				new ItemStack(Items.gold_ingot, 1, 0) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, 11), new Object[] { " X ",
-				"XYX", " X ", Character.valueOf('Y'), new ItemStack(DCsAppleMilk.cLamp, 1, 3), Character.valueOf('X'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, 11), new Object[] {
+				" X ",
+				"XYX",
+				" X ",
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.cLamp, 1, 3),
+				Character.valueOf('X'),
 				"ingotSteel" }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, 11), new Object[] { " X ",
-				"XYX", " X ", Character.valueOf('Y'), new ItemStack(DCsAppleMilk.cLamp, 1, 3), Character.valueOf('X'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cLamp, 1, 11), new Object[] {
+				" X ",
+				"XYX",
+				" X ",
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.cLamp, 1, 3),
+				Character.valueOf('X'),
 				"ingotBlackSteel" }));
 
 	}
@@ -838,33 +1355,68 @@ public class DCsRecipeRegister {
 
 		if (DCsConfig.useEXRecipe) {
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.princessClam, 1, 0), new Object[] {
-					"XYX", " Z ", Character.valueOf('Z'), new ItemStack(DCsAppleMilk.clam, 1, 0),
-					Character.valueOf('Y'), new ItemStack(Items.diamond, 1, 0), Character.valueOf('X'), "ingotGold" }));
+					"XYX",
+					" Z ",
+					Character.valueOf('Z'),
+					new ItemStack(DCsAppleMilk.clam, 1, 0),
+					Character.valueOf('Y'),
+					new ItemStack(Items.diamond, 1, 0),
+					Character.valueOf('X'),
+					"ingotGold" }));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.princessClam, 1, 0), new Object[] {
-					"XYX", " Z ", Character.valueOf('Z'), new ItemStack(DCsAppleMilk.clam, 1, 0),
-					Character.valueOf('Y'), new ItemStack(Items.diamond, 1, 0), Character.valueOf('X'),
+					"XYX",
+					" Z ",
+					Character.valueOf('Z'),
+					new ItemStack(DCsAppleMilk.clam, 1, 0),
+					Character.valueOf('Y'),
+					new ItemStack(Items.diamond, 1, 0),
+					Character.valueOf('X'),
 					new ItemStack(Items.gold_ingot, 1, 0) }));
 		}
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.princessClam, 1, 1), new Object[] {
-				" Y ", "XZX", " Y ", Character.valueOf('Z'), new ItemStack(DCsAppleMilk.princessClam, 1, 0),
-				Character.valueOf('Y'), new ItemStack(Items.diamond, 1, 0), Character.valueOf('X'),
+				" Y ",
+				"XZX",
+				" Y ",
+				Character.valueOf('Z'),
+				new ItemStack(DCsAppleMilk.princessClam, 1, 0),
+				Character.valueOf('Y'),
+				new ItemStack(Items.diamond, 1, 0),
+				Character.valueOf('X'),
 				new ItemStack(Blocks.obsidian, 1, 0) }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.princessClam, 1, 2), new Object[] {
-				" Y ", "XZX", " Y ", Character.valueOf('Z'), new ItemStack(DCsAppleMilk.princessClam, 1, 0),
-				Character.valueOf('Y'), new ItemStack(Items.emerald, 1, 0), Character.valueOf('X'),
+				" Y ",
+				"XZX",
+				" Y ",
+				Character.valueOf('Z'),
+				new ItemStack(DCsAppleMilk.princessClam, 1, 0),
+				Character.valueOf('Y'),
+				new ItemStack(Items.emerald, 1, 0),
+				Character.valueOf('X'),
 				new ItemStack(Blocks.obsidian, 1, 0) }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.princessClam, 1, 3), new Object[] {
-				" Y ", "XZX", " Y ", Character.valueOf('Z'), new ItemStack(DCsAppleMilk.princessClam, 1, 0),
-				Character.valueOf('Y'), new ItemStack(Items.quartz, 1, 0), Character.valueOf('X'),
+				" Y ",
+				"XZX",
+				" Y ",
+				Character.valueOf('Z'),
+				new ItemStack(DCsAppleMilk.princessClam, 1, 0),
+				Character.valueOf('Y'),
+				new ItemStack(Items.quartz, 1, 0),
+				Character.valueOf('X'),
 				new ItemStack(Blocks.obsidian, 1, 0) }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.princessClam, 1, 4), new Object[] {
-				" Y ", "XZX", " Y ", Character.valueOf('Z'), new ItemStack(DCsAppleMilk.princessClam, 1, 0),
-				Character.valueOf('Y'), new ItemStack(Items.dye, 1, 4), Character.valueOf('X'),
+				" Y ",
+				"XZX",
+				" Y ",
+				Character.valueOf('Z'),
+				new ItemStack(DCsAppleMilk.princessClam, 1, 0),
+				Character.valueOf('Y'),
+				new ItemStack(Items.dye, 1, 4),
+				Character.valueOf('X'),
 				new ItemStack(Blocks.obsidian, 1, 0) }));
 
 		if (DCsConfig.charmRemain == 0) {
@@ -876,129 +1428,247 @@ public class DCsRecipeRegister {
 	static void addBottle() {
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (48 + 1)),
-				new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), "drinkSake", }));
+				new Object[] {
+						new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+						"drinkSake", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (48 + 2)),
-				new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), "drinkBeer", }));
+				new Object[] {
+						new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+						"drinkBeer", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (48 + 3)),
-				new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), "drinkWine", }));
+				new Object[] {
+						new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+						"drinkWine", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (48 + 5)),
-				new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), "drinkRum", }));
+				new Object[] {
+						new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+						"drinkRum", }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (48 + 4)),
-				new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), "drinkGin", }));
+				new Object[] {
+						new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+						"drinkGin", }));
 	}
 
 	static void addCordial() {// 酒別にレシピがあり、量が多いので、for文で回しつつ個別メソッドを用意した
 
-		String[] alcohol = new String[] { "bottleShothu", "bottleGin", "bottleRum", "bottleVodka", "bottleWhiskey",
+		String[] alcohol = new String[] {
+				"bottleShothu",
+				"bottleGin",
+				"bottleRum",
+				"bottleVodka",
+				"bottleWhiskey",
 				"bottleBrandy" };
 
 		for (int i = 0; i < 6; i++) {
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemCordial, 1, 0), new Object[] {
-					"dustSugar", alcohol[i], "cropApple" }));
+					"dustSugar",
+					alcohol[i],
+					"cropApple" }));
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemCordial, 1, 4), new Object[] {
-					"dustSugar", alcohol[i], "foodTea" }));
+					"dustSugar",
+					alcohol[i],
+					"foodTea" }));
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemCordial, 1, 8), new Object[] {
-					"dustSugar", alcohol[i], "cropCassis" }));
+					"dustSugar",
+					alcohol[i],
+					"cropCassis" }));
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemCordial, 1, 12), new Object[] {
-					"dustSugar", alcohol[i], "cropPlum" }));
+					"dustSugar",
+					alcohol[i],
+					"cropPlum" }));
 		}
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemCordial, 1, 16), new Object[] {
-				"dustSugar", "bottleBrandy", "apricotSeed" }));
+				"dustSugar",
+				"bottleBrandy",
+				"apricotSeed" }));
 
 		// 酒造関係の素材もここ
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.moromi, 1, 0), new Object[] {
-				"cropRice", "cropRice", "cropRice", new ItemStack(Items.bucket, 1, 0), "foodYeast" }));
+				"cropRice",
+				"cropRice",
+				"cropRice",
+				new ItemStack(Items.bucket, 1, 0),
+				"foodYeast" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.moromi, 1, 1), new Object[] {
-				new ItemStack(Items.wheat, 1, 0), new ItemStack(Items.wheat, 1, 0), new ItemStack(Items.wheat, 1, 0),
-				new ItemStack(Items.bucket, 1, 0), "foodYeast" }));
-
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.moromi, 1, 2), new Object[] { "grape",
-				"grape", "grape", new ItemStack(Items.bucket, 1, 0), "foodYeast" }));
+				new ItemStack(Items.wheat, 1, 0),
+				new ItemStack(Items.wheat, 1, 0),
+				new ItemStack(Items.wheat, 1, 0),
+				new ItemStack(Items.bucket, 1, 0),
+				"foodYeast" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.moromi, 1, 2), new Object[] {
-				"cropGrape", "cropGrape", "cropGrape", new ItemStack(Items.bucket, 1, 0), "foodYeast" }));
+				"grape",
+				"grape",
+				"grape",
+				new ItemStack(Items.bucket, 1, 0),
+				"foodYeast" }));
+
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.moromi, 1, 2), new Object[] {
+				"cropGrape",
+				"cropGrape",
+				"cropGrape",
+				new ItemStack(Items.bucket, 1, 0),
+				"foodYeast" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.moromi, 1, 3), new Object[] {
-				"cropReed", "cropReed", "cropReed", new ItemStack(Items.bucket, 1, 0), "foodYeast" }));
+				"cropReed",
+				"cropReed",
+				"cropReed",
+				new ItemStack(Items.bucket, 1, 0),
+				"foodYeast" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.moromi, 1, 3), new Object[] {
-				new ItemStack(Items.reeds), new ItemStack(Items.reeds), new ItemStack(Items.reeds),
-				new ItemStack(Items.bucket, 1, 0), "foodYeast" }));
+				new ItemStack(Items.reeds),
+				new ItemStack(Items.reeds),
+				new ItemStack(Items.reeds),
+				new ItemStack(Items.bucket, 1, 0),
+				"foodYeast" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.moromi, 1, 4), new Object[] {
-				"cropPotato", "cropPotato", "cropPotato", new ItemStack(Items.bucket, 1, 0), "foodYeast" }));
+				"cropPotato",
+				"cropPotato",
+				"cropPotato",
+				new ItemStack(Items.bucket, 1, 0),
+				"foodYeast" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.moromi, 1, 4), new Object[] {
-				new ItemStack(Items.potato), new ItemStack(Items.potato), new ItemStack(Items.potato),
-				new ItemStack(Items.bucket, 1, 0), "foodYeast" }));
+				new ItemStack(Items.potato),
+				new ItemStack(Items.potato),
+				new ItemStack(Items.potato),
+				new ItemStack(Items.bucket, 1, 0),
+				"foodYeast" }));
 
 		// vodka
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (48 + 6)),
-				new Object[] { new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
-						new ItemStack(DCsAppleMilk.bucketYoungAlcohol, 1, 4), new ItemStack(Items.coal, 1, 1), }));
+				new Object[] {
+						new ItemStack(DCsAppleMilk.emptyBottle, 1, 0),
+						new ItemStack(DCsAppleMilk.bucketYoungAlcohol, 1, 4),
+						new ItemStack(Items.coal, 1, 1), }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.barrel, 1, 0), new Object[] { " X ",
-				"XZX", " X ", Character.valueOf('Z'), "slimeball", Character.valueOf('X'), "logWood" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.barrel, 1, 0), new Object[] {
+				" X ",
+				"XZX",
+				" X ",
+				Character.valueOf('Z'),
+				"slimeball",
+				Character.valueOf('X'),
+				"logWood" }));
 
 	}
 
 	static void addMachines() {
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.prosessor, 1), new Object[] { "XXX",
-				"ZYZ", "ZWZ", Character.valueOf('W'), "gearIron", Character.valueOf('Z'),
-				new ItemStack(Items.iron_ingot, 1), Character.valueOf('Y'), new ItemStack(Items.iron_sword, 1),
-				Character.valueOf('X'), new ItemStack(Blocks.glass, 1) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.prosessor, 1), new Object[] {
+				"XXX",
+				"ZYZ",
+				"ZWZ",
+				Character.valueOf('W'),
+				"gearIron",
+				Character.valueOf('Z'),
+				new ItemStack(Items.iron_ingot, 1),
+				Character.valueOf('Y'),
+				new ItemStack(Items.iron_sword, 1),
+				Character.valueOf('X'),
+				new ItemStack(Blocks.glass, 1) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.advProsessor, 1),
-				new Object[] { "ZXZ", "ZYZ", "ZWZ", Character.valueOf('W'),
-						new ItemStack(DCsAppleMilk.batteryItem, 1, 0), Character.valueOf('Z'),
-						new ItemStack(Items.iron_ingot, 1), Character.valueOf('Y'),
-						new ItemStack(DCsAppleMilk.prosessor, 1), Character.valueOf('X'),
-						new ItemStack(Items.diamond_sword, 1) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.advProsessor, 1), new Object[] {
+				"ZXZ",
+				"ZYZ",
+				"ZWZ",
+				Character.valueOf('W'),
+				new ItemStack(DCsAppleMilk.batteryItem, 1, 0),
+				Character.valueOf('Z'),
+				new ItemStack(Items.iron_ingot, 1),
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.prosessor, 1),
+				Character.valueOf('X'),
+				new ItemStack(Items.diamond_sword, 1) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.advProsessor, 1), new Object[] { "ZXZ",
-				"ZYZ", "ZWZ", Character.valueOf('W'), new ItemStack(DCsAppleMilk.gelBat, 1, 0), Character.valueOf('Z'),
-				new ItemStack(Items.iron_ingot, 1), Character.valueOf('Y'), new ItemStack(DCsAppleMilk.prosessor, 1),
-				Character.valueOf('X'), new ItemStack(Items.diamond_sword, 1) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.advProsessor, 1), new Object[] {
+				"ZXZ",
+				"ZYZ",
+				"ZWZ",
+				Character.valueOf('W'),
+				new ItemStack(DCsAppleMilk.gelBat, 1, 0),
+				Character.valueOf('Z'),
+				new ItemStack(Items.iron_ingot, 1),
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.prosessor, 1),
+				Character.valueOf('X'),
+				new ItemStack(Items.diamond_sword, 1) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.evaporator, 1), new Object[] { " X ",
-				"ZYZ", "XWX", Character.valueOf('W'), "gearIron", Character.valueOf('Z'),
-				new ItemStack(Items.glass_bottle, 1), Character.valueOf('Y'), new ItemStack(Items.blaze_rod, 1),
-				Character.valueOf('X'), new ItemStack(Blocks.stained_hardened_clay, 1, 0) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.evaporator, 1), new Object[] {
+				" X ",
+				"ZYZ",
+				"XWX",
+				Character.valueOf('W'),
+				"gearIron",
+				Character.valueOf('Z'),
+				new ItemStack(Items.glass_bottle, 1),
+				Character.valueOf('Y'),
+				new ItemStack(Items.blaze_rod, 1),
+				Character.valueOf('X'),
+				new ItemStack(Blocks.stained_hardened_clay, 1, 0) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.rotaryDial, 1, 0),
-				new Object[] { "XXX", "ZYZ", "XXX", Character.valueOf('X'),
-						new ItemStack(Blocks.stained_hardened_clay, 1, 15), Character.valueOf('Y'), "ingotGold",
-						Character.valueOf('Z'), new ItemStack(DCsAppleMilk.EXItems, 1, 3) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.rotaryDial, 1, 0), new Object[] {
+				"XXX",
+				"ZYZ",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.stained_hardened_clay, 1, 15),
+				Character.valueOf('Y'),
+				"ingotGold",
+				Character.valueOf('Z'),
+				new ItemStack(DCsAppleMilk.EXItems, 1, 3) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.rotaryDial, 1, 0), new Object[] { "XXX",
-				"ZYZ", "XXX", Character.valueOf('X'), new ItemStack(Blocks.stained_hardened_clay, 1, 15),
-				Character.valueOf('Y'), new ItemStack(Items.gold_ingot, 1, 0), Character.valueOf('Z'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.rotaryDial, 1, 0), new Object[] {
+				"XXX",
+				"ZYZ",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.stained_hardened_clay, 1, 15),
+				Character.valueOf('Y'),
+				new ItemStack(Items.gold_ingot, 1, 0),
+				Character.valueOf('Z'),
 				new ItemStack(DCsAppleMilk.EXItems, 1, 3) }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.chalcenonyPanel, 1, 0), new Object[] {
-				"XX", Character.valueOf('X'), new ItemStack(DCsAppleMilk.chalcedony, 1, 0) }));
+				"XX",
+				Character.valueOf('X'),
+				new ItemStack(DCsAppleMilk.chalcedony, 1, 0) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.slotPanel, 4, 0), new Object[] { "X X",
-				" Y ", "X X", Character.valueOf('X'), new ItemStack(DCsAppleMilk.chalcedony, 1, 0),
-				Character.valueOf('Y'), new ItemStack(Items.iron_ingot, 1, 0) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.slotPanel, 4, 0), new Object[] {
+				"X X",
+				" Y ",
+				"X X",
+				Character.valueOf('X'),
+				new ItemStack(DCsAppleMilk.chalcedony, 1, 0),
+				Character.valueOf('Y'),
+				new ItemStack(Items.iron_ingot, 1, 0) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.stickCarbon, 1), new Object[] { "  X",
-				" X ", "X  ", Character.valueOf('X'), "dustCoal" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.stickCarbon, 1), new Object[] {
+				"  X",
+				" X ",
+				"X  ",
+				Character.valueOf('X'),
+				"dustCoal" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.redGel, 1, 0), new Object[] {
-				"cropYuzu", new ItemStack(Items.redstone, 1, 0), "slimeball" }));
+				"cropYuzu",
+				new ItemStack(Items.redstone, 1, 0),
+				"slimeball" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.yuzuGel, 1, 0), new Object[] {
-				"cropYuzu", "slimeball" }));
+				"cropYuzu",
+				"slimeball" }));
 
 		// 柚子電池
 		GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.batteryItem, 1, 2), new ItemStack(
@@ -1006,54 +1676,111 @@ public class DCsRecipeRegister {
 				DCsAppleMilk.EXItems, 1, 7));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.batteryItem, 1, 2), new Object[] {
-				"nuggetTin", new ItemStack(DCsAppleMilk.leafTea, 1, 3), "nuggetCopper" }));
+				"nuggetTin",
+				new ItemStack(DCsAppleMilk.leafTea, 1, 3),
+				"nuggetCopper" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.batteryItem, 1, 2), new Object[] {
-				"nuggetIron", new ItemStack(DCsAppleMilk.leafTea, 1, 3), "stickCarbon" }));
+				"nuggetIron",
+				new ItemStack(DCsAppleMilk.leafTea, 1, 3),
+				"stickCarbon" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.batteryItem, 1, 2), new Object[] {
-				"nuggetCopper", new ItemStack(DCsAppleMilk.leafTea, 1, 3), "stickCarbon" }));
+				"nuggetCopper",
+				new ItemStack(DCsAppleMilk.leafTea, 1, 3),
+				"stickCarbon" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.batteryItem, 1, 2), new Object[] {
-				"nuggetGold", new ItemStack(DCsAppleMilk.leafTea, 1, 3), "stickCarbon" }));
+				"nuggetGold",
+				new ItemStack(DCsAppleMilk.leafTea, 1, 3),
+				"stickCarbon" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.batteryItem, 1, 2), new Object[] {
-				"nuggetSilver", new ItemStack(DCsAppleMilk.leafTea, 1, 3), "stickCarbon" }));
+				"nuggetSilver",
+				new ItemStack(DCsAppleMilk.leafTea, 1, 3),
+				"stickCarbon" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.batteryItem, 1, 2), new Object[] {
-				"nuggetLead", new ItemStack(DCsAppleMilk.leafTea, 1, 3), "stickCarbon" }));
+				"nuggetLead",
+				new ItemStack(DCsAppleMilk.leafTea, 1, 3),
+				"stickCarbon" }));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.batteryItem, 1, 2), new Object[] {
-				"nuggetFlint", new ItemStack(DCsAppleMilk.leafTea, 1, 3), "stickCarbon" }));
+				"nuggetFlint",
+				new ItemStack(DCsAppleMilk.leafTea, 1, 3),
+				"stickCarbon" }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.yuzuBat, 1, 0), new Object[] { "XXX",
-				"XYX", "XXX", Character.valueOf('X'), new ItemStack(DCsAppleMilk.batteryItem, 1, 2),
-				Character.valueOf('Y'), "stickCarbon" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.yuzuBat, 1, 0), new Object[] {
+				"XXX",
+				"XYX",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(DCsAppleMilk.batteryItem, 1, 2),
+				Character.valueOf('Y'),
+				"stickCarbon" }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.gelBat, 1, 0), new Object[] { "XYX",
-				"YZY", "XYX", Character.valueOf('X'), "stickCarbon", Character.valueOf('Y'),
-				new ItemStack(Blocks.glass_pane, 1, 0), Character.valueOf('Z'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.gelBat, 1, 0), new Object[] {
+				"XYX",
+				"YZY",
+				"XYX",
+				Character.valueOf('X'),
+				"stickCarbon",
+				Character.valueOf('Y'),
+				new ItemStack(Blocks.glass_pane, 1, 0),
+				Character.valueOf('Z'),
 				new ItemStack(DCsAppleMilk.redGel, 1, 0) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.batBox, 1, 0), new Object[] { "XYX",
-				"WZW", "XVX", Character.valueOf('X'), new ItemStack(Items.iron_ingot, 1, 0), Character.valueOf('Y'),
-				new ItemStack(Items.redstone, 1, 0), Character.valueOf('Z'), new ItemStack(DCsAppleMilk.gelBat, 1, 0),
-				Character.valueOf('V'), new ItemStack(Blocks.chest, 1, 0), Character.valueOf('W'), "gearIron" }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.batBox, 1, 0), new Object[] {
+				"XYX",
+				"WZW",
+				"XVX",
+				Character.valueOf('X'),
+				new ItemStack(Items.iron_ingot, 1, 0),
+				Character.valueOf('Y'),
+				new ItemStack(Items.redstone, 1, 0),
+				Character.valueOf('Z'),
+				new ItemStack(DCsAppleMilk.gelBat, 1, 0),
+				Character.valueOf('V'),
+				new ItemStack(Blocks.chest, 1, 0),
+				Character.valueOf('W'),
+				"gearIron" }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.handleEngine, 1, 0), new Object[] {
-				" X ", " Y ", "XZX", Character.valueOf('X'), "ingotIron", Character.valueOf('Y'), "gearChalcedony",
-				Character.valueOf('Z'), new ItemStack(DCsAppleMilk.redGel, 1, 0) }));
+				" X ",
+				" Y ",
+				"XZX",
+				Character.valueOf('X'),
+				"ingotIron",
+				Character.valueOf('Y'),
+				"gearChalcedony",
+				Character.valueOf('Z'),
+				new ItemStack(DCsAppleMilk.redGel, 1, 0) }));
 
 		// カノン
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.yuzuGatling, 1, 0), new Object[] { "  X",
-				"YXZ", "WV ", Character.valueOf('X'), "blockChalcedony", Character.valueOf('Y'), "gearIron",
-				Character.valueOf('V'), new ItemStack(DCsAppleMilk.gelBat, 1, 0), Character.valueOf('Z'),
-				new ItemStack(DCsAppleMilk.firestarter, 1, 32767), Character.valueOf('W'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.yuzuGatling, 1, 0), new Object[] {
+				"  X",
+				"YXZ",
+				"WV ",
+				Character.valueOf('X'),
+				"blockChalcedony",
+				Character.valueOf('Y'),
+				"gearIron",
+				Character.valueOf('V'),
+				new ItemStack(DCsAppleMilk.gelBat, 1, 0),
+				Character.valueOf('Z'),
+				new ItemStack(DCsAppleMilk.firestarter, 1, 32767),
+				Character.valueOf('W'),
 				new ItemStack(DCsAppleMilk.cardboard, 1, 2) }));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.fossilCannon, 1, 0), new Object[] {
-				"  X", "YX ", "W  ", Character.valueOf('X'), new ItemStack(DCsAppleMilk.fossilScale),
-				Character.valueOf('Y'), new ItemStack(Items.nether_star), Character.valueOf('W'),
+				"  X",
+				"YX ",
+				"W  ",
+				Character.valueOf('X'),
+				new ItemStack(DCsAppleMilk.fossilScale),
+				Character.valueOf('Y'),
+				new ItemStack(Items.nether_star),
+				Character.valueOf('W'),
 				new ItemStack(DCsAppleMilk.yuzuGatling, 1) }));
 	}
 
@@ -1073,9 +1800,16 @@ public class DCsRecipeRegister {
 				Items.wheat_seeds, 1, 0), new ItemStack(DCsAppleMilk.leafTea, 1, 1));
 
 		// misc
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.icyCrystal, 1), new Object[] { "XYX",
-				"YZY", "XYX", Character.valueOf('X'), new ItemStack(Items.snowball, 1), Character.valueOf('Y'),
-				new ItemStack(Blocks.ice, 1), Character.valueOf('Z'), new ItemStack(Items.emerald, 1) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.icyCrystal, 1), new Object[] {
+				"XYX",
+				"YZY",
+				"XYX",
+				Character.valueOf('X'),
+				new ItemStack(Items.snowball, 1),
+				Character.valueOf('Y'),
+				new ItemStack(Blocks.ice, 1),
+				Character.valueOf('Z'),
+				new ItemStack(Items.emerald, 1) }));
 
 		// oilの詰め替えレシピ
 		GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.bottleCamOil, 5, 0), new ItemStack(
@@ -1099,11 +1833,19 @@ public class DCsRecipeRegister {
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.EXItems, 9, 14), new ItemStack(
 				Items.flint, 1), "toolGrater"));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.iron_ingot, 1), new Object[] { "XXX", "XXX",
-				"XXX", Character.valueOf('X'), new ItemStack(DCsAppleMilk.EXItems, 1, 7) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.iron_ingot, 1), new Object[] {
+				"XXX",
+				"XXX",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(DCsAppleMilk.EXItems, 1, 7) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.flint, 1), new Object[] { "XXX", "XXX", "XXX",
-				Character.valueOf('X'), new ItemStack(DCsAppleMilk.EXItems, 1, 14) }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.flint, 1), new Object[] {
+				"XXX",
+				"XXX",
+				"XXX",
+				Character.valueOf('X'),
+				new ItemStack(DCsAppleMilk.EXItems, 1, 14) }));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.sticky_piston, 1), new ItemStack(DCsAppleMilk.EXItems, 1,
 				1), new ItemStack(Blocks.piston, 1));
@@ -1117,8 +1859,13 @@ public class DCsRecipeRegister {
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.EXItems, 1, 6), "toolGrater",
 				new ItemStack(DCsAppleMilk.clam, 1, 0)));
 
-		GameRegistry.addRecipe(new ItemStack(Items.lead, 1), new Object[] { "TT ", "TS ", "  T",
-				Character.valueOf('T'), Items.string, Character.valueOf('S'),
+		GameRegistry.addRecipe(new ItemStack(Items.lead, 1), new Object[] {
+				"TT ",
+				"TS ",
+				"  T",
+				Character.valueOf('T'),
+				Items.string,
+				Character.valueOf('S'),
 				new ItemStack(DCsAppleMilk.EXItems, 1, 1), });
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.string, 3, 0), new ItemStack(Blocks.wool, 1,
@@ -1129,22 +1876,40 @@ public class DCsRecipeRegister {
 	}
 
 	static void addCharms() {
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.incenseBase, 1), new Object[] { " X ",
-				"XYX", "ZZZ", Character.valueOf('X'), new ItemStack(DCsAppleMilk.chalcedony, 1, 0),
-				Character.valueOf('Y'), new ItemStack(DCsAppleMilk.princessClam, 1, 0), Character.valueOf('Z'),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.incenseBase, 1), new Object[] {
+				" X ",
+				"XYX",
+				"ZZZ",
+				Character.valueOf('X'),
+				new ItemStack(DCsAppleMilk.chalcedony, 1, 0),
+				Character.valueOf('Y'),
+				new ItemStack(DCsAppleMilk.princessClam, 1, 0),
+				Character.valueOf('Z'),
 				new ItemStack(Items.iron_ingot, 1, 0) }));
 
-		final Item[] incenses = new Item[] { DCsAppleMilk.incenseApple, DCsAppleMilk.incenseRose,
-				DCsAppleMilk.incenseMint, DCsAppleMilk.incenseYuzu, DCsAppleMilk.incenseClam, DCsAppleMilk.incenseIce,
-				DCsAppleMilk.incenseLavender, DCsAppleMilk.incenseVanilla, DCsAppleMilk.incenseSandalwood,
-				DCsAppleMilk.incenseAgar, DCsAppleMilk.incenseFrank, };
+		final Item[] incenses = new Item[] {
+				DCsAppleMilk.incenseApple,
+				DCsAppleMilk.incenseRose,
+				DCsAppleMilk.incenseMint,
+				DCsAppleMilk.incenseYuzu,
+				DCsAppleMilk.incenseClam,
+				DCsAppleMilk.incenseIce,
+				DCsAppleMilk.incenseLavender,
+				DCsAppleMilk.incenseVanilla,
+				DCsAppleMilk.incenseSandalwood,
+				DCsAppleMilk.incenseAgar,
+				DCsAppleMilk.incenseFrank, };
 
 		for (int i = 0; i < 11; i++) {
-			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(incenses[i], 1, 0), new Object[] { "dustWood",
-					new ItemStack(DCsAppleMilk.bottleCamOil, 1, 0), new ItemStack(DCsAppleMilk.essentialOil, 1, i) }));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(incenses[i], 1, 0), new Object[] {
+					"dustWood",
+					new ItemStack(DCsAppleMilk.bottleCamOil, 1, 0),
+					new ItemStack(DCsAppleMilk.essentialOil, 1, i) }));
 
-			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(incenses[i], 1, 0), new Object[] { "dustWood",
-					new ItemStack(DCsAppleMilk.bottleVegiOil, 1, 0), new ItemStack(DCsAppleMilk.essentialOil, 1, i) }));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(incenses[i], 1, 0), new Object[] {
+					"dustWood",
+					new ItemStack(DCsAppleMilk.bottleVegiOil, 1, 0),
+					new ItemStack(DCsAppleMilk.essentialOil, 1, i) }));
 		}
 
 	}
@@ -1216,32 +1981,45 @@ public class DCsRecipeRegister {
 				continue;
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.teacupBlock, 1, 4),// greentea
-					new Object[] { new ItemStack(DCsAppleMilk.emptyCup, 1, 0), water,
+					new Object[] {
+							new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+							water,
 							new ItemStack(DCsAppleMilk.foodTea, 1, 0) }));
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.teacupBlock, 1, 2),// tea
-					new Object[] { new ItemStack(DCsAppleMilk.emptyCup, 1, 0), water,
+					new Object[] {
+							new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+							water,
 							new ItemStack(DCsAppleMilk.foodTea, 1, 1) }));
 
-			GameRegistry
-					.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.teacupBlock, 1, 6),// cocoa
-							new Object[] { new ItemStack(DCsAppleMilk.emptyCup, 1, 0), water,
-									new ItemStack(Items.dye, 1, 3) }));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.teacupBlock, 1, 6),// cocoa
+					new Object[] {
+							new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+							water,
+							new ItemStack(Items.dye, 1, 3) }));
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.teacupBlock, 1, 8),// juice
-					new Object[] { new ItemStack(DCsAppleMilk.emptyCup, 1, 0), water,
+					new Object[] {
+							new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+							water,
 							new ItemStack(DCsAppleMilk.gratedApple, 1, 0) }));
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.teacupBlock, 1, 8),// juice
-					new Object[] { new ItemStack(DCsAppleMilk.emptyCup, 1, 0), water,
+					new Object[] {
+							new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+							water,
 							new ItemStack(DCsAppleMilk.gratedApple, 1, 1) }));
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.teacupBlock, 1, 10),// lemon
-					new Object[] { new ItemStack(DCsAppleMilk.emptyCup, 1, 0), water,
+					new Object[] {
+							new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+							water,
 							new ItemStack(DCsAppleMilk.gratedApple, 1, 2) }));
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.teacupBlock, 1, 12),// coffee
-					new Object[] { new ItemStack(DCsAppleMilk.emptyCup, 1, 0), water,
+					new Object[] {
+							new ItemStack(DCsAppleMilk.emptyCup, 1, 0),
+							water,
 							new ItemStack(DCsAppleMilk.gratedApple, 1, 3) }));
 
 		}
@@ -1368,13 +2146,21 @@ public class DCsRecipeRegister {
 
 		for (ItemStack kelp : seaWeed) {
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), new Object[] {
-					"toolGrater", "miso", kelp, "tofuKinu" }));
+					"toolGrater",
+					"miso",
+					kelp,
+					"tofuKinu" }));
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), new Object[] {
-					"toolGrater", "miso", kelp, "tofuMomen" }));
+					"toolGrater",
+					"miso",
+					kelp,
+					"tofuMomen" }));
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), new Object[] {
-					"toolGrater", new ItemStack(DCsAppleMilk.clam, 1, 0), kelp }));
+					"toolGrater",
+					new ItemStack(DCsAppleMilk.clam, 1, 0),
+					kelp }));
 		}
 	}
 
@@ -1387,11 +2173,17 @@ public class DCsRecipeRegister {
 			if (d == OreDictionary.WILDCARD_VALUE)
 				d = 0;
 
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ret.getItem(), 9, d), new Object[] { "X", 'X',
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ret.getItem(), 9, d), new Object[] {
+					"X",
+					'X',
 					new ItemStack(DCsAppleMilk.woodBox, 1, 4) }));
 
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 4), new Object[] { "XXX",
-					"XXX", "XXX", Character.valueOf('X'), "woodRubber" }));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 4), new Object[] {
+					"XXX",
+					"XXX",
+					"XXX",
+					Character.valueOf('X'),
+					"woodRubber" }));
 		}
 
 		ArrayList<ItemStack> ingotTin = OreDictionary.getOres("ingotTin");
@@ -1399,10 +2191,15 @@ public class DCsRecipeRegister {
 			ItemStack ret = ingotTin.get(0);
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.EXItems, 9, 8), new Object[] {
-					"ingotTin", "toolGrater" }));
+					"ingotTin",
+					"toolGrater" }));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ret.getItem(), 1, ret.getItemDamage()),
-					new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'),
+					new Object[] {
+							"XXX",
+							"XXX",
+							"XXX",
+							Character.valueOf('X'),
 							new ItemStack(DCsAppleMilk.EXItems, 1, 8) }));
 		}
 
@@ -1411,10 +2208,15 @@ public class DCsRecipeRegister {
 			ItemStack ret = ingotCopper.get(0);
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.EXItems, 9, 9), new Object[] {
-					"ingotCopper", "toolGrater" }));
+					"ingotCopper",
+					"toolGrater" }));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ret.getItem(), 1, ret.getItemDamage()),
-					new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'),
+					new Object[] {
+							"XXX",
+							"XXX",
+							"XXX",
+							Character.valueOf('X'),
 							new ItemStack(DCsAppleMilk.EXItems, 1, 9) }));
 		}
 
@@ -1423,10 +2225,15 @@ public class DCsRecipeRegister {
 			ItemStack ret = ingotSilver.get(0);
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.EXItems, 9, 10), new Object[] {
-					"ingotSilver", "toolGrater" }));
+					"ingotSilver",
+					"toolGrater" }));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ret.getItem(), 1, ret.getItemDamage()),
-					new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'),
+					new Object[] {
+							"XXX",
+							"XXX",
+							"XXX",
+							Character.valueOf('X'),
 							new ItemStack(DCsAppleMilk.EXItems, 1, 10) }));
 		}
 
@@ -1435,10 +2242,15 @@ public class DCsRecipeRegister {
 			ItemStack ret = ingotSteel.get(0);
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.EXItems, 9, 11), new Object[] {
-					"ingotSteel", "toolGrater" }));
+					"ingotSteel",
+					"toolGrater" }));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ret.getItem(), 1, ret.getItemDamage()),
-					new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'),
+					new Object[] {
+							"XXX",
+							"XXX",
+							"XXX",
+							Character.valueOf('X'),
 							new ItemStack(DCsAppleMilk.EXItems, 1, 11) }));
 		}
 
@@ -1447,10 +2259,15 @@ public class DCsRecipeRegister {
 			ItemStack ret = ingotLead.get(0);
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.EXItems, 9, 12), new Object[] {
-					"ingotLead", "toolGrater" }));
+					"ingotLead",
+					"toolGrater" }));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ret.getItem(), 1, ret.getItemDamage()),
-					new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'),
+					new Object[] {
+							"XXX",
+							"XXX",
+							"XXX",
+							Character.valueOf('X'),
 							new ItemStack(DCsAppleMilk.EXItems, 1, 12) }));
 		}
 
@@ -1459,10 +2276,15 @@ public class DCsRecipeRegister {
 			ItemStack ret = ingotBronze.get(0);
 
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(DCsAppleMilk.EXItems, 9, 13), new Object[] {
-					"ingotBronze", "toolGrater" }));
+					"ingotBronze",
+					"toolGrater" }));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ret.getItem(), 1, ret.getItemDamage()),
-					new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'),
+					new Object[] {
+							"XXX",
+							"XXX",
+							"XXX",
+							Character.valueOf('X'),
 							new ItemStack(DCsAppleMilk.EXItems, 1, 13) }));
 		}
 	}

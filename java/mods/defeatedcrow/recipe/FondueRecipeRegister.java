@@ -8,11 +8,11 @@ import mods.defeatedcrow.api.appliance.SoupType;
 import mods.defeatedcrow.api.recipe.IFondueRecipe;
 import mods.defeatedcrow.api.recipe.IFondueRegister;
 import mods.defeatedcrow.api.recipe.IFondueSource;
+import mods.defeatedcrow.common.AMTLogger;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import defeatedcrow.addonforamt.jpaddon.AJPLogger;
 
 public class FondueRecipeRegister implements IFondueRegister {
 
@@ -28,7 +28,7 @@ public class FondueRecipeRegister implements IFondueRegister {
 	public void register(ItemStack input, ItemStack output, SoupType type) {
 		if (output != null && input != null && type != null) {
 			recipes.add(new FondueRecipe(input, output, type));
-			AJPLogger.debugTrace("Add Fondue recipe: output " + output.getDisplayName());
+			AMTLogger.debugInfo("Add Fondue recipe: output " + output.getDisplayName());
 		}
 	}
 
@@ -36,7 +36,7 @@ public class FondueRecipeRegister implements IFondueRegister {
 	public void registerByOre(String input, ItemStack output, SoupType type) {
 		if (output != null && input != null && type != null) {
 			recipes.add(new FondueRecipe(input, output, type));
-			AJPLogger.debugTrace("Add Fondue recipe: output " + output.getDisplayName());
+			AMTLogger.debugInfo("Add Fondue recipe: output " + output.getDisplayName());
 		}
 	}
 
@@ -44,7 +44,7 @@ public class FondueRecipeRegister implements IFondueRegister {
 	public void registerSource(Object input, SoupType before, SoupType result) {
 		if (result != null && input != null && before != null) {
 			sources.add(new FondueSource(input, before, result));
-			AJPLogger.debugTrace("Add Fondue source: result " + result.display);
+			AMTLogger.debugInfo("Add Fondue source: result " + result.display);
 		}
 	}
 

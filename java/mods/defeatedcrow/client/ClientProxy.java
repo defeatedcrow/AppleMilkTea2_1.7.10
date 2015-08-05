@@ -42,6 +42,7 @@ import mods.defeatedcrow.client.model.tileentity.TileEntityChopsticksRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCocktail2Renderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCocktailRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCocktailSPRenderer;
+import mods.defeatedcrow.client.model.tileentity.TileEntityContainerBaseRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCordialRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCupHandleRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityDialRenderer;
@@ -78,6 +79,7 @@ import mods.defeatedcrow.client.renderblocks.RenderChargerDevice;
 import mods.defeatedcrow.client.renderblocks.RenderChocoPan;
 import mods.defeatedcrow.client.renderblocks.RenderChopsticksBox;
 import mods.defeatedcrow.client.renderblocks.RenderCocktail;
+import mods.defeatedcrow.client.renderblocks.RenderContainerWBottle;
 import mods.defeatedcrow.client.renderblocks.RenderCordial;
 import mods.defeatedcrow.client.renderblocks.RenderCupSummer;
 import mods.defeatedcrow.client.renderblocks.RenderDial;
@@ -144,6 +146,7 @@ import mods.defeatedcrow.common.tile.TileChopsticksBox;
 import mods.defeatedcrow.common.tile.TileCocktail;
 import mods.defeatedcrow.common.tile.TileCocktail2;
 import mods.defeatedcrow.common.tile.TileCocktailSP;
+import mods.defeatedcrow.common.tile.TileContainerBase;
 import mods.defeatedcrow.common.tile.TileCordial;
 import mods.defeatedcrow.common.tile.TileCupHandle;
 import mods.defeatedcrow.common.tile.TileDummy;
@@ -269,6 +272,8 @@ public class ClientProxy extends CommonProxy {
 
 		GameRegistry.registerTileEntity(TileChargerBase.class, "TileChargerBase");
 		GameRegistry.registerTileEntity(TileGelBat.class, "TileGelBattery");
+		ClientRegistry.registerTileEntity(TileContainerBase.class, "TileDCContainerBase",
+				new TileEntityContainerBaseRenderer());
 	}
 
 	@Override
@@ -319,6 +324,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerBlockHandler(new RenderWoodPanel());
 		RenderingRegistry.registerBlockHandler(new RenderCLampOp());
 		RenderingRegistry.registerBlockHandler(new RenderSoupPanFilled());
+		RenderingRegistry.registerBlockHandler(new RenderContainerWBottle());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMelonBomb.class, new RenderMelonBomb());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySilkyMelon.class, new RenderSilkyMelon());

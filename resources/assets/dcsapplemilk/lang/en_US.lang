@@ -277,6 +277,8 @@ tile.defeatedcrow.filledSoupPan_TONKOTU.name=Clay Pan (Tonkotu Soup)
 tile.defeatedcrow.filledSoupPan_SHOYU.name=Clay Pan (Shoyu Soup)
 tile.defeatedcrow.filledSoupPan_BLOOD.name=Clay Pan (Blood)
 tile.defeatedcrow.filledSoupPan_PURPLE.name=Clay Pan (Darkness)
+tile.defeatedcrow.containerBottleW.name=Water Bottle Container
+tile.defeatedcrow.containerSaddle.name=Saddle Container
 
 item.defeatedcrow.bakedApple.name=Baked Apple
 item.defeatedcrow.appleTart_0.name=Apple Tart
@@ -503,6 +505,8 @@ item.defeatedcrow.bucketYoungAlcohol_4.name=Unfiltered Vodka Bucket
 item.defeatedcrow.dummyItem.name=Fluid
 item.defeatedcrow.dummyPlate_0.name=Plate Mode
 item.defeatedcrow.dummyPlate_1.name=Oven Mode
+item.defeatedcrow.containeritemDoorW.name=Bundle of Wooden Door
+item.defeatedcrow.containeritemDoorI.name=Bundle of Iron Door
 
 entity.compressedMelon.name=Compressed Melon
 entity.compressedSilkMelon.name=Compressed Silk Melon
@@ -523,8 +527,8 @@ fluid.brandy_dc=Brandy
 fluid.sake_dc=Sake
 fluid.beer_dc=Beer
 fluid.wine_dc=Wine
-fluid.rum=Rum
-fluid.vodka=Vodka
+fluid.rum_dc=Rum
+fluid.vodka_dc=Vodka
 
 DCs.potion.immunization=Immunization
 DCs.potion.protectionExplode=Explosion Resistance

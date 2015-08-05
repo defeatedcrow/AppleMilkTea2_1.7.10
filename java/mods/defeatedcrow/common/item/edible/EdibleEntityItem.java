@@ -3,28 +3,26 @@ package mods.defeatedcrow.common.item.edible;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.api.edibles.IEdibleItem;
+import mods.defeatedcrow.api.events.EatEdiblesEvent;
+import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.config.DCsConfig;
+import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
 import net.minecraft.block.Block;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.*;
-import net.minecraft.item.*;
-import net.minecraft.potion.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import mods.defeatedcrow.api.edibles.IEdibleItem;
-import mods.defeatedcrow.api.events.EatEdiblesEvent;
-import mods.defeatedcrow.client.entity.IEdibleRenderHandler;
-import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.config.DCsConfig;
-import mods.defeatedcrow.common.entity.edible.PlaceableFoods;
-import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EdibleEntityItem extends Item implements IEdibleItem {
 
@@ -84,6 +82,7 @@ public class EdibleEntityItem extends Item implements IEdibleItem {
 	/**
 	 * ガリガリ咀嚼する時間
 	 */
+	@Override
 	public int getMaxItemUseDuration(ItemStack par1ItemStack) {
 		return 32;
 	}
@@ -91,6 +90,7 @@ public class EdibleEntityItem extends Item implements IEdibleItem {
 	/**
 	 * 飲食時のエフェクト。
 	 */
+	@Override
 	public EnumAction getItemUseAction(ItemStack par1ItemStack) {
 		return EnumAction.eat;
 	}
@@ -100,6 +100,7 @@ public class EdibleEntityItem extends Item implements IEdibleItem {
 	 * カーソルが特定のブロックをターゲットしている時は呼び出されないので、
 	 * 何もない方向を向いておく必要がある。
 	 */
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
 		par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
 		return par1ItemStack;
@@ -164,8 +165,36 @@ public class EdibleEntityItem extends Item implements IEdibleItem {
 		}
 	}
 
+	@Override
+	@SideOnly(Side.CLIENT)
+	// マウスオーバー時の表示情報
+	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
+		int l = par1ItemStack.getItemDamage();
+		ArrayList<PotionEffect> effect = this.effectOnEaten(par2EntityPlayer, l);
+		if (effect != null && this.showTooltip) {
+			for (PotionEffect p : effect) {
+				String s = StatCollector.translateToLocal(p.getEffectName()).trim();
+				if (p.getAmplifier() > 0) {
+					if (p.getAmplifier() < 4) {
+						s = s + " " + StatCollector.translateToLocal("potion.potency." + p.getAmplifier()).trim();
+					} else {
+						s = s + " " + p.getAmplifier();
+					}
+				}
+
+				if (p.getDuration() > 20) {
+					s = s + " (" + Potion.getDurationString(p) + ")";
+				}
+
+				par3List.add(s);
+			}
+		}
+	}
+
 	/* ここからEntity/Blockの設置メソッド */
 
+	@Override
 	public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int side,
 			float p_77648_8_, float p_77648_9_, float p_77648_10_) {
 		if (player != null && player.isSneaking()) {

@@ -21,6 +21,7 @@ public class LoadNEIPlugin {
 	public static BrewingRecipeHandler brewRecipe;
 	public static FondueSourceHandler fondueSource;
 	public static FondueRecipeHandler fondueRecipe;
+	public static HeatSourceHandler heatSource;
 
 	public static void load() {
 
@@ -35,6 +36,7 @@ public class LoadNEIPlugin {
 		brewRecipe = new BrewingRecipeHandler();
 		fondueSource = new FondueSourceHandler();
 		fondueRecipe = new FondueRecipeHandler();
+		heatSource = new HeatSourceHandler();
 
 		API.registerRecipeHandler(teaRecipe);
 		API.registerUsageHandler(teaRecipe);
@@ -78,7 +80,11 @@ public class LoadNEIPlugin {
 
 		API.registerRecipeHandler(fondueRecipe);
 		API.registerUsageHandler(fondueRecipe);
-		API.registerGuiOverlay(GuiAppliance.class, fondueRecipe.getOverlayIdentifier(), 0, 0);
+		API.registerGuiOverlay(GuiRecipe.class, fondueRecipe.getOverlayIdentifier(), 0, 0);
+
+		API.registerRecipeHandler(heatSource);
+		API.registerUsageHandler(heatSource);
+		API.registerGuiOverlay(GuiRecipe.class, heatSource.getOverlayIdentifier(), 0, 0);
 
 		AMTLogger.loadedModInfo("NEI");
 
