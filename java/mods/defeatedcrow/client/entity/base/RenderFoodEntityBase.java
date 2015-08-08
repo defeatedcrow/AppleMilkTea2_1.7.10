@@ -21,8 +21,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public abstract class RenderFoodEntityBase extends Render {
-	protected static final String[] PASS = { "foods", "foods/x32" };
+public class RenderFoodEntityBase extends Render {
+	protected static final String[] PASS = {
+			"foods",
+			"foods/x32" };
 
 	protected static final ResourceLocation BOWL_RICE_TEX = new ResourceLocation("defeatedcrow:textures/entity/"
 			+ getPass() + "/bowlJP_rice.png");
@@ -79,7 +81,7 @@ public abstract class RenderFoodEntityBase extends Render {
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glTranslatef((float) par2, (float) par4 + 1.3F, (float) par6);
+		GL11.glTranslatef((float) par2, (float) par4 + 1.25F, (float) par6);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
 
@@ -110,7 +112,7 @@ public abstract class RenderFoodEntityBase extends Render {
 		} else if (dish == Dish.White) {
 			this.bindTexture(DISH_WHITE_TEX);
 			modelDishW.render((Entity) null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
-		} else if (dish == Dish.Mag) {
+		} else if (dish == Dish.Mug) {
 			this.bindTexture(MAG_WHITE_TEX);
 			modelCup.render((Entity) null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 		}
@@ -144,7 +146,7 @@ public abstract class RenderFoodEntityBase extends Render {
 		} else {
 			GL11.glColor4f(2.0F, 2.0F, 2.0F, 1.0F);
 		}
-		GL11.glTranslatef((float) par2, (float) par4 + 0.5F, (float) par6);
+		GL11.glTranslatef((float) par2, (float) par4 + 0.4F, (float) par6);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
 
@@ -270,7 +272,7 @@ public abstract class RenderFoodEntityBase extends Render {
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glTranslatef((float) par2, (float) par4 + 1.3F, (float) par6);
+		GL11.glTranslatef((float) par2, (float) par4 + 1.25F, (float) par6);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
 

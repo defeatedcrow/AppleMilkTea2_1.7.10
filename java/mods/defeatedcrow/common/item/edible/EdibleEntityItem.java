@@ -10,6 +10,7 @@ import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumAction;
@@ -145,7 +146,9 @@ public class EdibleEntityItem extends Item implements IEdibleItem {
 	 */
 	@Override
 	public int[] hungerOnEaten(int meta) {
-		return new int[] { 4, 2 };
+		return new int[] {
+				4,
+				2 };
 	}
 
 	/**
@@ -162,6 +165,33 @@ public class EdibleEntityItem extends Item implements IEdibleItem {
 	protected void addSSStamina(int i, float f, EntityPlayer par3EntityPlayer) {
 		if (DCsAppleMilk.SuccessLoadSSector) {
 			LoadSSectorPlugin.addStatus(0, 0, i, f, par3EntityPlayer);
+		}
+	}
+
+	/** これを継承しているItemBlockは右クリックでモブにポーション効果を与えられる */
+	@Override
+	public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity) {
+		if (entity.worldObj.isRemote || entity == null) {
+			return false;
+		} else {
+			ArrayList<PotionEffect> effect = this.effectOnEaten(player, itemstack.getItemDamage());
+			ItemStack ret = this.getReturnContainer(itemstack.getItemDamage());
+
+			if (effect != null) {
+				for (PotionEffect p : effect) {
+					entity.addPotionEffect(p);
+				}
+			}
+
+			entity.worldObj.playSoundAtEntity(entity, "random.pop", 0.4F, 1.8F);
+
+			if (!player.capabilities.isCreativeMode) {
+				--itemstack.stackSize;
+			}
+			if (ret != null && !player.inventory.addItemStackToInventory(ret)) {
+				player.entityDropItem(ret, 1);
+			}
+			return true;
 		}
 	}
 

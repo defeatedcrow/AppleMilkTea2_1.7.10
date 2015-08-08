@@ -9,7 +9,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -28,7 +27,9 @@ public class FoodBaseItem extends EdibleEntityItem2 {
 	/** 空腹度回復量 */
 	@Override
 	public int[] hungerOnEaten(int meta) {
-		return new int[] { 4, 2 };
+		return new int[] {
+				4,
+				2 };
 	}
 
 	/**
@@ -38,7 +39,6 @@ public class FoodBaseItem extends EdibleEntityItem2 {
 	@Override
 	public ArrayList<PotionEffect> effectOnEaten(EntityPlayer par1EntityPlayer, int meta) {
 		ArrayList<PotionEffect> list = new ArrayList<PotionEffect>();
-		list.add(new PotionEffect(Potion.digSpeed.id, 600, 0));
 		return list;
 	}
 
@@ -84,11 +84,6 @@ public class FoodBaseItem extends EdibleEntityItem2 {
 	 */
 	@Override
 	public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player) {
-		if (!world.isRemote) {
-			if (player.isPotionActive(Potion.blindness)) {
-				player.removePotionEffect(Potion.blindness.id);
-			}
-		}
 		return super.onEaten(itemStack, world, player);
 	}
 

@@ -13,7 +13,7 @@ public class FoodModelType {
 		SoupBowl,
 		RiceBowl,
 		WoodBowl,
-		Mag,
+		Mug,
 		None;
 	}
 

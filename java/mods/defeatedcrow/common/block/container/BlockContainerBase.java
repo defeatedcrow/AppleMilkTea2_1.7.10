@@ -1,14 +1,18 @@
 package mods.defeatedcrow.common.block.container;
 
+import java.util.List;
+
 import mods.defeatedcrow.api.events.AMTBlockRightClickEvent;
 import mods.defeatedcrow.common.tile.TileContainerBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -146,6 +150,12 @@ public abstract class BlockContainerBase extends BlockContainer {
 		this.sideIcon = par1IconRegister.registerIcon("defeatedcrow:x32/basket_S1");
 		this.topIcon = par1IconRegister.registerIcon("defeatedcrow:x32/basket_T1");
 		this.blockIcon = par1IconRegister.registerIcon("defeatedcrow:x32/basket_B1");
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+		par3List.add(new ItemStack(this, 1, 7));
 	}
 
 	@Override

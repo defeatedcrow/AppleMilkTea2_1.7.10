@@ -28,12 +28,16 @@ public class HeatSourceHandler extends TemplateRecipeHandler {
 		}
 		if (RecipeRegisterManager.panRecipe.getHeatSourcesList() != null
 				&& !RecipeRegisterManager.panRecipe.getHeatSourcesList().isEmpty()) {
+			List<ICookingHeatSource> list = new ArrayList<ICookingHeatSource>();
 			for (ICookingHeatSource r : RecipeRegisterManager.panRecipe.getHeatSourcesList()) {
 				for (ICookingHeatSource c : sources) {
 					if (r.getBlock() != c.getBlock() && r.getMetadata() != c.getMetadata()) {
-						this.sources.add((ICookingHeatSource) c);
+						list.add((ICookingHeatSource) c);
 					}
 				}
+			}
+			if (!list.isEmpty()) {
+				this.sources.addAll(list);
 			}
 		}
 		return this.sources;

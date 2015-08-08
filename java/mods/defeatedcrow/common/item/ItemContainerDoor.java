@@ -3,6 +3,7 @@ package mods.defeatedcrow.common.item;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -32,6 +33,12 @@ public class ItemContainerDoor extends Item {
 	@Override
 	public int getMetadata(int par1) {
 		return par1;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+		par3List.add(new ItemStack(this, 1, 7));
 	}
 
 	@Override
@@ -84,7 +91,6 @@ public class ItemContainerDoor extends Item {
 			EntityItem drop = new EntityItem(world, player.posX, player.posY + 0.25D, player.posZ, item.copy());
 			world.spawnEntityInWorld(drop);
 		}
-
 	}
 
 }

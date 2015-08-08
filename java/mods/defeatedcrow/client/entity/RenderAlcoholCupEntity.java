@@ -47,7 +47,7 @@ public class RenderAlcoholCupEntity extends Render {
 			GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			GL11.glTranslatef((float) posX, (float) posY + 1.5F * size - 0.20F, (float) posZ);
+			GL11.glTranslatef((float) posX, (float) posY + 1.5F * size - 0.1F, (float) posZ);
 			GL11.glScalef(size, size, size);
 			GL11.glScalef(1.0F, -1.0F, -1.0F);
 			GL11.glRotatef(round, 0.0F, 1.0F, 0.0F);

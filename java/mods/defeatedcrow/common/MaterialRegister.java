@@ -817,18 +817,18 @@ public class MaterialRegister {
 		DCsAppleMilk.flowerPot = (new BlockFlowerPot()).setBlockName("defeatedcrow.flowerPot").setCreativeTab(
 				DCsAppleMilk.applemilkContainer);
 
-		DCsAppleMilk.containerWBottle = (new BlockContainerWaterBottle()).setBlockName("defeatedcrow.containerbottleW")
+		DCsAppleMilk.containerWBottle = (new BlockContainerWaterBottle()).setBlockName("defeatedcrow.containerBottleW")
 				.setCreativeTab(DCsAppleMilk.applemilkContainer);
 
 		DCsAppleMilk.containerSaddle = (new BlockContainerSaddle()).setBlockName("defeatedcrow.containerSaddle")
 				.setCreativeTab(DCsAppleMilk.applemilkContainer);
 
 		DCsAppleMilk.containerItemDoorW = (new ItemContainerDoor(Blocks.wooden_door))
-				.setUnlocalizedName("defeatedcrow:containeritemDoorW")
+				.setUnlocalizedName("defeatedcrow.containeritemDoorW")
 				.setTextureName("defeatedcrow:containeritem_doorW").setCreativeTab(DCsAppleMilk.applemilkContainer);
 
 		DCsAppleMilk.containerItemDoorI = (new ItemContainerDoor(Blocks.iron_door))
-				.setUnlocalizedName("defeatedcrow:containeritemDoorI")
+				.setUnlocalizedName("defeatedcrow.containeritemDoorI")
 				.setTextureName("defeatedcrow:containeritem_doorI").setCreativeTab(DCsAppleMilk.applemilkContainer);
 
 	}
