@@ -3,7 +3,7 @@
     "description":"Enjoy a leisurely tea time.",
     "parent":"",
     "logoFile":"logo.png",
-    "credits":"defeatedcrow, RazzleberryFox, tsuteto, A.K., sfmiyuki, Mrkwtkr, Belgabor, zoejook8bq",
+    "credits":"defeatedcrow, RazzleberryFox, tsuteto, A.K., sfmiyuki, Mrkwtkr, Belgabor, zoejook8bq, TunkShif",
     "dependencies":[],
     "modid":"DCsAppleMilk",
     "mcversion":"1.7.10",
@@ -14,7 +14,7 @@
     "name":"Apple&Milk&Tea!",
     "url":"http://defeatedcrow.wiki.fc2.com/wiki/AppleMilkTea%20ver2",
     "updateUrl":"",
-    "version":"1.7.10_2.8d",
+    "version":"1.7.10_2.8e",
     "requiredMods":[
       "Minecraft Forge1.7.10 10.13.2.1291+, PotionExtention-1.7.10-1.1.0+"
     ]

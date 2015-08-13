@@ -214,4 +214,28 @@ public class CommonProxy implements IGuiHandler {
 		return false;
 	}
 
+	public boolean isJumpKeyDown() {
+		return false;
+	}
+
+	public boolean isSneakKeyDown() {
+		return false;
+	}
+
+	public boolean isFowardKeyDown() {
+		return false;
+	}
+
+	public boolean isBackKeyDown() {
+		return false;
+	}
+
+	public boolean isLeftKeyDown() {
+		return false;
+	}
+
+	public boolean isRightKeyDown() {
+		return false;
+	}
+
 }

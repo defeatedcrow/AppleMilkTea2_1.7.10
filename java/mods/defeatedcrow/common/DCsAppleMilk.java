@@ -24,6 +24,7 @@ import mods.defeatedcrow.common.entity.VillagerYome;
 import mods.defeatedcrow.common.entity.dummy.EntityIllusionMobs;
 import mods.defeatedcrow.common.entity.dummy.EntityStunEffect;
 import mods.defeatedcrow.common.entity.edible.PlaceableAlcoholCup;
+import mods.defeatedcrow.common.entity.edible.PlaceableBaseSoup;
 import mods.defeatedcrow.common.entity.edible.PlaceableBowl;
 import mods.defeatedcrow.common.entity.edible.PlaceableBowlJP;
 import mods.defeatedcrow.common.entity.edible.PlaceableCocktail;
@@ -116,7 +117,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.8d",
+		version = "1.7.10_2.8e",
 		dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class DCsAppleMilk {
 
@@ -227,6 +228,7 @@ public class DCsAppleMilk {
 	public static Item icyToffyApple;
 	public static Item appleSandwich;
 	public static Item chocolateFruits;
+	public static Item baseSoupBowl;
 
 	// 食材
 	public static Item leafTea;
@@ -533,6 +535,9 @@ public class DCsAppleMilk {
 		// Registering OreDictionary
 		// ForgeのOreDicyionaryの登録部分をpreInitに移した
 		(new RegisterOreHandler()).register();
+
+		// addonの存在確認
+		AddonIntegration.load();
 	}
 
 	@EventHandler
@@ -640,6 +645,8 @@ public class DCsAppleMilk {
 				this, 250, 5, true);
 		EntityRegistry.registerModEntity(PlaceableCocktailSP.class, "PlaceableCocktailSP",
 				DCsConfig.entityIdCocktailSP, this, 250, 5, true);
+		EntityRegistry.registerModEntity(PlaceableBaseSoup.class, "PlaceableBaseSoup", DCsConfig.entityIdBaseSoup,
+				this, 250, 5, true);
 
 		// Villagerの登録
 		villager = new VillagerCafe();
@@ -817,7 +824,6 @@ public class DCsAppleMilk {
 		}
 
 		// addon
-		AddonIntegration.load();
 		AddonIntegration.addRecipe();
 
 		// other mods
@@ -1157,7 +1163,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "d";
+		return "e";
 	}
 
 	public String getModName() {

@@ -218,7 +218,10 @@ public class RegisterMakerRecipe {
 				new Object[] { DCsAppleMilk.clam });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.yeast, 1, 0), true, null,
-				new Object[] { "cropApple", Items.sugar, DCsAppleMilk.bowlBlock });
+				new Object[] {
+						"cropApple",
+						Items.sugar,
+						DCsAppleMilk.bowlBlock });
 
 		// おろし金レシピの移植
 		// 茶葉
@@ -238,7 +241,9 @@ public class RegisterMakerRecipe {
 				new Object[] { "cropPlum" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 2), true, null,
-				new Object[] { "cropLemon", "dropHoney" });
+				new Object[] {
+						"cropLemon",
+						"dropHoney" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 3), true, null,
 				new Object[] { "cropCoffee" });
@@ -277,29 +282,51 @@ public class RegisterMakerRecipe {
 				new Object[] { "grape" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 2), true, null,
-				new Object[] { "cropOrange", new ItemStack(DCsAppleMilk.foodTea, 1, 1) });
+				new Object[] {
+						"cropOrange",
+						new ItemStack(DCsAppleMilk.foodTea, 1, 1) });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 2), true, null,
-				new Object[] { "cropCitron", new ItemStack(DCsAppleMilk.foodTea, 1, 1) });
+				new Object[] {
+						"cropCitron",
+						new ItemStack(DCsAppleMilk.foodTea, 1, 1) });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.foodTea, 1, 3), true, null,
-				new Object[] { "cropApple", new ItemStack(DCsAppleMilk.foodTea, 1, 1) });
+				new Object[] {
+						"cropApple",
+						new ItemStack(DCsAppleMilk.foodTea, 1, 1) });
 
 		// 鍋材料
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 0), true, null,
-				new Object[] { Blocks.brown_mushroom, Blocks.red_mushroom });
+				new Object[] {
+						Blocks.brown_mushroom,
+						Blocks.red_mushroom });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), true, null,
-				new Object[] { new ItemStack(Items.fish, 1, 0), Items.carrot, Items.potato, "bucketMilk" });
+				new Object[] {
+						new ItemStack(Items.fish, 1, 0),
+						Items.carrot,
+						Items.potato,
+						"bucketMilk" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 1), true, null,
-				new Object[] { new ItemStack(Items.fish, 1, 1), Items.carrot, Items.potato, "bucketMilk" });
+				new Object[] {
+						new ItemStack(Items.fish, 1, 1),
+						Items.carrot,
+						Items.potato,
+						"bucketMilk" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 2), true, null,
-				new Object[] { Items.egg, Items.chicken, "cropRice" });
+				new Object[] {
+						Items.egg,
+						Items.chicken,
+						"cropRice" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 2), true, null,
-				new Object[] { Items.egg, Items.chicken, "cropWheat" });
+				new Object[] {
+						Items.egg,
+						Items.chicken,
+						"cropWheat" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 3), true, null,
 				new Object[] { "cropRice" });
@@ -308,35 +335,64 @@ public class RegisterMakerRecipe {
 				new Object[] { "cropWheat" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), true, null,
-				new Object[] { new ItemStack(DCsAppleMilk.EXItems, 1, 2), "cropRice" });
+				new Object[] {
+						new ItemStack(DCsAppleMilk.EXItems, 1, 2),
+						"cropRice" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 4), true, null,
-				new Object[] { new ItemStack(DCsAppleMilk.EXItems, 1, 2), "cropWheat" });
+				new Object[] {
+						new ItemStack(DCsAppleMilk.EXItems, 1, 2),
+						"cropWheat" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
-				new Object[] { Items.chicken, "leek", "bucketSoymilk", "tofuKinu" });
+				new Object[] {
+						Items.chicken,
+						"leek",
+						"bucketSoymilk",
+						"tofuKinu" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
-				new Object[] { Items.chicken, "leek", "bucketSoymilk", "tofuMomen" });
+				new Object[] {
+						Items.chicken,
+						"leek",
+						"bucketSoymilk",
+						"tofuMomen" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), true, null,
-				new Object[] { Items.chicken, "cropLeek", "foodSoymilk", "foodSilkentofu" });
+				new Object[] {
+						Items.chicken,
+						"cropLeek",
+						"foodSoymilk",
+						"foodSilkentofu" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 6), true, null,
-				new Object[] { Blocks.pumpkin, "bucketMilk" });
+				new Object[] {
+						Blocks.pumpkin,
+						"bucketMilk" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), true, null,
-				new Object[] { Items.porkchop, "cropLettuce", "cropTomato" });
+				new Object[] {
+						Items.porkchop,
+						"cropLettuce",
+						"cropTomato" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), true, null,
-				new Object[] { Items.porkchop, "cabbage", "tomato" });
+				new Object[] {
+						Items.porkchop,
+						"cabbage",
+						"tomato" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), true, null,
-				new Object[] { new ItemStack(Items.dye, 1, 3), new ItemStack(Items.dye, 1, 3), "bucketMilk",
+				new Object[] {
+						new ItemStack(Items.dye, 1, 3),
+						new ItemStack(Items.dye, 1, 3),
+						"bucketMilk",
 						"dustSugar" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.gratedApple, 1, 4), true, null,
-				new Object[] { new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), "bucketMilk" });
+				new Object[] {
+						new ItemStack(DCsAppleMilk.mincedFoods, 1, 8),
+						"bucketMilk" });
 
 		// 砕石機
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.flint), false, new ItemStack(Blocks.sand),
@@ -352,10 +408,16 @@ public class RegisterMakerRecipe {
 				new Object[] { new ItemStack(Blocks.dirt) });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, null, new Object[] {
-				"dustAsh", "dustOilCake", new ItemStack(Items.dye, 1, 15), new ItemStack(Blocks.sand) });
+				"dustAsh",
+				"dustOilCake",
+				new ItemStack(Items.dye, 1, 15),
+				new ItemStack(Blocks.sand) });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, null, new Object[] {
-				"dustAsh", "dustOilCake", new ItemStack(DCsAppleMilk.EXItems, 1, 6), new ItemStack(Blocks.sand) });
+				"dustAsh",
+				"dustOilCake",
+				new ItemStack(DCsAppleMilk.EXItems, 1, 6),
+				new ItemStack(Blocks.sand) });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, null,
 				new Object[] { "logWood" });
@@ -484,13 +546,21 @@ public class RegisterMakerRecipe {
 
 	public void addKelpRecipe() {
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
-				new Object[] { "miso", "cropSeaWeed", "tofuKinu" });
+				new Object[] {
+						"miso",
+						"cropSeaWeed",
+						"tofuKinu" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
-				new Object[] { "miso", "cropSeaWeed", "tofuMomen" });
+				new Object[] {
+						"miso",
+						"cropSeaWeed",
+						"tofuMomen" });
 
 		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), true, null,
-				new Object[] { "foodClam", "cropSeaWeed" });
+				new Object[] {
+						"foodClam",
+						"cropSeaWeed" });
 
 		ArrayList<ItemStack> kelps = new ArrayList<ItemStack>();
 
@@ -500,13 +570,21 @@ public class RegisterMakerRecipe {
 
 		for (ItemStack kelp : kelps) {
 			RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
-					new Object[] { "miso", kelp, "tofuKinu" });
+					new Object[] {
+							"miso",
+							kelp,
+							"tofuKinu" });
 
 			RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), true, null,
-					new Object[] { "miso", kelp, "tofuMomen" });
+					new Object[] {
+							"miso",
+							kelp,
+							"tofuMomen" });
 
 			RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), true, null,
-					new Object[] { "foodClam", kelp });
+					new Object[] {
+							"foodClam",
+							kelp });
 		}
 	}
 
@@ -566,11 +644,22 @@ public class RegisterMakerRecipe {
 
 	}
 
+	// フォンデュ
 	public static void registerSoupSource() {
 		RecipeRegisterManager.fondueRecipe.registerSource(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8),
 				SoupType.EMPTY, SoupType.CHOCO);
-		RecipeRegisterManager.fondueRecipe.registerSource(new ItemStack(Items.water_bucket), SoupType.EMPTY,
-				SoupType.WATER);
+		RecipeRegisterManager.fondueRecipe.registerSource("bucketWater", SoupType.EMPTY, SoupType.WATER);
+		RecipeRegisterManager.fondueRecipe.registerSource(new ItemStack(DCsAppleMilk.bottleCamOil, 1, 0),
+				SoupType.EMPTY, SoupType.OIL);
+		RecipeRegisterManager.fondueRecipe.registerSource(new ItemStack(DCsAppleMilk.bottleVegiOil, 1, 0),
+				SoupType.EMPTY, SoupType.OIL);
+
+		RecipeRegisterManager.fondueRecipe.register(new ItemStack(Items.bowl, 1, 0), new ItemStack(
+				DCsAppleMilk.baseSoupBowl, 1, 0), SoupType.WATER);
+		RecipeRegisterManager.fondueRecipe.register(new ItemStack(Items.bowl, 1, 0), new ItemStack(
+				DCsAppleMilk.baseSoupBowl, 1, 1), SoupType.CHOCO);
+		RecipeRegisterManager.fondueRecipe.register(new ItemStack(Items.bowl, 1, 0), new ItemStack(
+				DCsAppleMilk.baseSoupBowl, 1, 2), SoupType.OIL);
 	}
 
 	public static void testRecipe() {

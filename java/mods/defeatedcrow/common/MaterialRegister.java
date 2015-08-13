@@ -152,6 +152,7 @@ import mods.defeatedcrow.common.item.appliance.ItemYuzuGatling;
 import mods.defeatedcrow.common.item.edible.ItemAppleSandwich;
 import mods.defeatedcrow.common.item.edible.ItemAppleTart;
 import mods.defeatedcrow.common.item.edible.ItemBakedApple;
+import mods.defeatedcrow.common.item.edible.ItemBaseSoupBowl;
 import mods.defeatedcrow.common.item.edible.ItemChocoFruits;
 import mods.defeatedcrow.common.item.edible.ItemClam;
 import mods.defeatedcrow.common.item.edible.ItemCondensedMilk;
@@ -273,6 +274,7 @@ public class MaterialRegister {
 		GameRegistry.registerItem(DCsAppleMilk.moromi, "defeatedcrow.moromi");
 		GameRegistry.registerItem(DCsAppleMilk.itemLargeBottle, "defeatedcrow.itemBottle");
 		GameRegistry.registerItem(DCsAppleMilk.itemCordial, "defeatedcrow.itemCordial");
+		GameRegistry.registerItem(DCsAppleMilk.baseSoupBowl, "defeatedcrow.basesoupitem");
 
 		// 装置関係
 		GameRegistry.registerItem(DCsAppleMilk.batteryItem, "defeatedcrow.battery");
@@ -769,6 +771,9 @@ public class MaterialRegister {
 
 		DCsAppleMilk.itemCordial = (new ItemCordial()).setUnlocalizedName("defeatedcrow.itemCordial").setCreativeTab(
 				DCsAppleMilk.applemilk);
+
+		DCsAppleMilk.baseSoupBowl = (new ItemBaseSoupBowl()).setUnlocalizedName("defeatedcrow.basesoupitem")
+				.setCreativeTab(DCsAppleMilk.applemilkFood);
 
 		DCsAppleMilk.blockDummyAlcohol = (new BlockDummyFluid()).setBlockName("defeatedcrow.blockDummyAlcohol");
 

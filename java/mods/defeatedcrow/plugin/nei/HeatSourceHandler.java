@@ -18,28 +18,36 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 public class HeatSourceHandler extends TemplateRecipeHandler {
 
 	private List<ICookingHeatSource> sources;
-	private List<ICookingHeatSource> pansources;
 
 	private List<ICookingHeatSource> recipeLoader() {
 		sources = new ArrayList<ICookingHeatSource>();
+		List<ICookingHeatSource> list = new ArrayList<ICookingHeatSource>();
 		if (RecipeRegisterManager.plateRecipe.getHeatSourcesList() != null
 				&& !RecipeRegisterManager.plateRecipe.getHeatSourcesList().isEmpty()) {
-			this.sources.addAll((List<ICookingHeatSource>) RecipeRegisterManager.plateRecipe.getHeatSourcesList());
+			list.addAll((List<ICookingHeatSource>) RecipeRegisterManager.plateRecipe.getHeatSourcesList());
 		}
 		if (RecipeRegisterManager.panRecipe.getHeatSourcesList() != null
 				&& !RecipeRegisterManager.panRecipe.getHeatSourcesList().isEmpty()) {
-			List<ICookingHeatSource> list = new ArrayList<ICookingHeatSource>();
-			for (ICookingHeatSource r : RecipeRegisterManager.panRecipe.getHeatSourcesList()) {
-				for (ICookingHeatSource c : sources) {
-					if (r.getBlock() != c.getBlock() && r.getMetadata() != c.getMetadata()) {
-						list.add((ICookingHeatSource) c);
+
+			list.addAll((List<ICookingHeatSource>) RecipeRegisterManager.panRecipe.getHeatSourcesList());
+		}
+
+		if (!list.isEmpty()) {
+			for (ICookingHeatSource c : list) {
+				boolean b = true;
+				for (ICookingHeatSource t : sources) {
+					if (t.getBlock() == null)
+						continue;
+					if (t.getBlock() == c.getBlock() && t.getMetadata() == c.getMetadata()) {
+						b = false;
 					}
 				}
-			}
-			if (!list.isEmpty()) {
-				this.sources.addAll(list);
+				if (b) {
+					sources.add(c);
+				}
 			}
 		}
+
 		return this.sources;
 	}
 
@@ -51,7 +59,7 @@ public class HeatSourceHandler extends TemplateRecipeHandler {
 		private final ItemStack panItem = new ItemStack(DCsAppleMilk.emptyPanGaiden);
 		private final ItemStack plateItem = new ItemStack(DCsAppleMilk.teppanII);
 
-		public HeatRecipeCacher(ItemStack in, boolean pan, boolean plate) {
+		public HeatRecipeCacher(ItemStack in, boolean plate, boolean pan) {
 			in.stackSize = 1;
 			this.input = new PositionedStack(in, 75, 37);
 			if (pan) {
@@ -170,7 +178,7 @@ public class HeatSourceHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getRecipeName() {
-		return StatCollector.translateToLocal("dc.HeatSourceGuiNameNEI");
+		return StatCollector.translateToLocal("dc.HeatSourceGuiNEI");
 	}
 
 	@Override

@@ -59,12 +59,12 @@ public class FondueRecipeRegister implements IFondueRegister {
 	}
 
 	@Override
-	public IFondueRecipe getRecipe(ItemStack input) {
+	public IFondueRecipe getRecipe(ItemStack input, SoupType type) {
 		if (recipes.isEmpty()) {
 			return null;
 		} else {
 			for (IFondueRecipe recipe : recipes) {
-				if (recipe.matches(input)) {
+				if (recipe.matches(input) && recipe.getType() == type) {
 					return recipe;
 				}
 			}

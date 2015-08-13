@@ -16,6 +16,8 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class DCsLivingEvent {
 
+	private boolean keyDown = false;;
+
 	@SubscribeEvent
 	public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
 		Entity entity = event.entity;
@@ -54,6 +56,19 @@ public class DCsLivingEvent {
 						}
 					}
 				}
+
+				// if (player.worldObj.isRemote) {
+				// if (DCsAppleMilk.debugMode && !keyDown) {
+				// if (DCsAppleMilk.proxy.isJumpKeyDown()) {
+				// keyDown = true;
+				// AMTLogger.debugInfo("Yeah!");
+				// }
+				// }
+				//
+				// if (keyDown && !DCsAppleMilk.proxy.isJumpKeyDown()) {
+				// keyDown = false;
+				// }
+				// }
 			}
 		}
 

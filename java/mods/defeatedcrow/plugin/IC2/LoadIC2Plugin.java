@@ -3,6 +3,7 @@ package mods.defeatedcrow.plugin.IC2;
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.RecipeInputItemStack;
 import ic2.api.recipe.Recipes;
+import ic2.core.block.TileEntityBarrel;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
@@ -62,7 +63,7 @@ public class LoadIC2Plugin {
 
 		if (this.IC2Furnace != null) {
 			if (LoadModHandler.registerModItems("furnaceBlock", this.IC2Furnace)) {
-				RecipeRegisterManager.panRecipe.registerHeatSource(Block.getBlockFromItem(IC2Furnace.getItem()), -1);
+				RecipeRegisterManager.panRecipe.registerHeatSource(Block.getBlockFromItem(IC2Furnace.getItem()), 1);
 				AMTLogger.debugInfo("Succeeded to get IC2 Iron Furnace");
 			}
 		}
@@ -144,30 +145,29 @@ public class LoadIC2Plugin {
 	 * simulate=trueの場合、樽を空にする
 	 */
 	public static boolean isRumBarrel(TileEntity tile, boolean simulate) {
-		// if (tile instanceof TileEntityBarrel) {
-		// TileEntityBarrel barrel = (TileEntityBarrel) tile;
-		// if (barrel.isEmpty())
-		// return false;
-		// boolean flag = false;
-		//
-		// int type = barrel.type;
-		// int boose = barrel.boozeAmount;
-		// int age = barrel.age;
-		//
-		// int progress = age * 100 / barrel.timeNedForRum(boose);
-		//
-		// if (progress > 80) {
-		// flag = true;
-		// if (!simulate) {
-		// barrel.drainLiquid(boose);
-		// }
-		// }
-		//
-		// AMTLogger.debugInfo("IC2 barrel :" + flag + " age:" + age +
-		// " progress:" + progress);
-		// return flag;
-		//
-		// }
+		if (tile instanceof TileEntityBarrel) {
+			TileEntityBarrel barrel = (TileEntityBarrel) tile;
+			if (barrel.isEmpty())
+				return false;
+			boolean flag = false;
+
+			int type = barrel.type;
+			int boose = barrel.boozeAmount;
+			int age = barrel.age;
+
+			int progress = age * 100 / barrel.timeNedForRum(boose);
+
+			if (progress > 80) {
+				flag = true;
+				if (!simulate) {
+					barrel.drainLiquid(boose);
+				}
+			}
+
+			AMTLogger.debugInfo("IC2 barrel :" + flag + " age:" + age + " progress:" + progress);
+			return flag;
+
+		}
 
 		return false;
 	}

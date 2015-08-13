@@ -43,6 +43,9 @@ public class RenderFoodEntityBase extends Render {
 	protected static final ResourceLocation MAG_WHITE_TEX = new ResourceLocation(
 			"defeatedcrow:textures/blocks/whitepanel.png");
 
+	protected static final ResourceLocation INNER_TEX_DEFAULT = new ResourceLocation("defeatedcrow:textures/entity/"
+			+ getPass() + "/bowlJP_inner.png");
+
 	protected ModelRiceBowlB modelBowlR = new ModelRiceBowlB();
 	protected ModelSoupBowlB modelBowlS = new ModelSoupBowlB();
 	protected ModelWoodBowl modelBowlW = new ModelWoodBowl();
@@ -125,7 +128,7 @@ public class RenderFoodEntityBase extends Render {
 			float par8, float par9) {
 		Tessellator tessellator = Tessellator.instance;
 		IIcon iicon = entity.getSoupIcon(meta);
-		if (iicon == null)
+		if (iicon == null || soup == Soup.None)
 			return;
 
 		float f14 = iicon.getMinU();
@@ -268,6 +271,10 @@ public class RenderFoodEntityBase extends Render {
 
 	protected void renderDeco(FoodBaseEntity entity, byte meta, Deco deco, double par2, double par4, double par6,
 			float par8, float par9) {
+		if (deco == Deco.None) {
+			return;
+		}
+
 		GL11.glPushMatrix();
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 
@@ -276,11 +283,11 @@ public class RenderFoodEntityBase extends Render {
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
 
+		this.bindTexture(getDecoTexture(entity, meta, deco));
+
 		if (deco == Deco.Kobathi) {
-			this.bindTexture(BOWL_RICE_TEX);
 			modelKobati.render((Entity) null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 		} else if (deco == Deco.SoupInner) {
-			this.bindTexture(BOWL_SOUP_TEX);
 			modelSoup.render((Entity) null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 		}
 
@@ -290,6 +297,10 @@ public class RenderFoodEntityBase extends Render {
 
 	protected ResourceLocation getBowlTextures(FoodBaseEntity par1Entity) {
 		return BOWL_RICE_TEX;
+	}
+
+	protected ResourceLocation getDecoTexture(FoodBaseEntity entity, byte meta, Deco deco) {
+		return INNER_TEX_DEFAULT;
 	}
 
 	@Override

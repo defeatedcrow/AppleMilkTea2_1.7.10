@@ -19,6 +19,7 @@ import mods.defeatedcrow.client.entity.RenderSteakEntity;
 import mods.defeatedcrow.client.entity.RenderStunEntity;
 import mods.defeatedcrow.client.entity.RenderTartEntity;
 import mods.defeatedcrow.client.entity.RenderYuzuBullet;
+import mods.defeatedcrow.client.entity.base.RenderFoodEntityBase;
 import mods.defeatedcrow.client.item.RenderEHandleItem;
 import mods.defeatedcrow.client.item.RenderEightEyesArm;
 import mods.defeatedcrow.client.item.RenderItemCocktailSP;
@@ -121,6 +122,7 @@ import mods.defeatedcrow.common.entity.EntityYuzuBullet;
 import mods.defeatedcrow.common.entity.dummy.EntityIllusionMobs;
 import mods.defeatedcrow.common.entity.dummy.EntityStunEffect;
 import mods.defeatedcrow.common.entity.edible.PlaceableAlcoholCup;
+import mods.defeatedcrow.common.entity.edible.PlaceableBaseSoup;
 import mods.defeatedcrow.common.entity.edible.PlaceableBowl;
 import mods.defeatedcrow.common.entity.edible.PlaceableBowlJP;
 import mods.defeatedcrow.common.entity.edible.PlaceableCocktail;
@@ -180,6 +182,7 @@ import mods.defeatedcrow.common.tile.energy.TileChargerBase;
 import mods.defeatedcrow.common.tile.energy.TileChargerDevice;
 import mods.defeatedcrow.common.tile.energy.TileGelBat;
 import mods.defeatedcrow.common.tile.energy.TileHandleEngine;
+import mods.defeatedcrow.handler.KeyConfigHelper;
 import mods.defeatedcrow.handler.NetworkUtil;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -347,6 +350,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityYuzuBullet.class, new RenderYuzuBullet(
 				new ModelYuzuBullet()));
 		RenderingRegistry.registerEntityRenderingHandler(PlaceableCocktailSP.class, new RenderCocktailSPEntity());
+		RenderingRegistry.registerEntityRenderingHandler(PlaceableBaseSoup.class, new RenderFoodEntityBase());
 
 		MinecraftForgeClient.registerItemRenderer(DCsAppleMilk.yuzuGatling, new RenderItemYuzuGatling());
 		MinecraftForgeClient.registerItemRenderer(DCsAppleMilk.fossilCannon, new RenderItemFossilCannon());
@@ -382,7 +386,6 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void init() {
-
 	}
 
 	@Override
@@ -422,4 +425,33 @@ public class ClientProxy extends CommonProxy {
 		return Keyboard.isKeyDown(Keyboard.KEY_LSHIFT);
 	}
 
+	@Override
+	public boolean isJumpKeyDown() {
+		return Keyboard.isKeyDown(KeyConfigHelper.getJumpKey());
+	}
+
+	@Override
+	public boolean isSneakKeyDown() {
+		return Keyboard.isKeyDown(KeyConfigHelper.getSneakKey());
+	}
+
+	@Override
+	public boolean isFowardKeyDown() {
+		return Keyboard.isKeyDown(KeyConfigHelper.getFowardKey());
+	}
+
+	@Override
+	public boolean isBackKeyDown() {
+		return Keyboard.isKeyDown(KeyConfigHelper.getBackKey());
+	}
+
+	@Override
+	public boolean isLeftKeyDown() {
+		return Keyboard.isKeyDown(KeyConfigHelper.getLeftKey());
+	}
+
+	@Override
+	public boolean isRightKeyDown() {
+		return Keyboard.isKeyDown(KeyConfigHelper.getRightKey());
+	}
 }

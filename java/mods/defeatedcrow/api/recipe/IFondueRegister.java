@@ -19,8 +19,10 @@ public abstract interface IFondueRegister {
 	 * 
 	 * @param item
 	 *            (ItemStack) 確認する対象アイテム
+	 * @param type
+	 *            (SoupType) 鍋の中身タイプ
 	 */
-	public abstract IFondueRecipe getRecipe(ItemStack item);
+	public abstract IFondueRecipe getRecipe(ItemStack item, SoupType type);
 
 	/**
 	 * 投入するとSoupTypeが変わるかどうかを返す。

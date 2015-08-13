@@ -68,9 +68,9 @@ public class BlockFilledSoupPan extends BlockContainer {
 			// old recipe api
 			ItemStack chocolate = RecipeRegisterManager.chocoRecipe.getOutput(hold);
 			// new recipe
-			IFondueRecipe food = RecipeRegisterManager.fondueRecipe.getRecipe(hold);
+			IFondueRecipe food = RecipeRegisterManager.fondueRecipe.getRecipe(hold, pan.getType());
 
-			if (chocolate != null && chocolate.getItem() != null) {
+			if (pan.getType() == SoupType.CHOCO && chocolate != null && chocolate.getItem() != null) {
 				this.getRecipeFood(world, par2, par3, par4, player, hold, chocolate);
 				this.reduceRemain(world, par2, par3, par4, pan);
 				return true;

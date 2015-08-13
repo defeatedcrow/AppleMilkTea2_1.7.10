@@ -26,6 +26,10 @@ public class AddonIntegration {
 		return isJPLoaded;
 	}
 
+	public static boolean loadedMagic() {
+		return isMagicLoaded;
+	}
+
 	public static void addRecipe() {
 		if (!isJPLoaded) {
 			RecipeRegisterManager.evaporatorRecipe.addRecipe(null, new FluidStack(DCsAppleMilk.shothu_young, 100),

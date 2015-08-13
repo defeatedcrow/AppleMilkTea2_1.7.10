@@ -38,6 +38,7 @@ public class DCsConfig {
 	public static int entityIdTart = 159;
 	public static int entityIdCocktail2 = 163;
 	public static int entityIdCocktailSP = 168;
+	public static int entityIdBaseSoup = 169;
 
 	// villager関連
 	public static int villagerRecipeID = 15;
@@ -78,7 +79,12 @@ public class DCsConfig {
 	public static boolean bonemealClam = true;
 	public static boolean allowEdibleEntities = true;
 	public static boolean fearMelon = false;
-	public static boolean enableMobBlock[] = { true, true, true, true, true };
+	public static boolean enableMobBlock[] = {
+			true,
+			true,
+			true,
+			true,
+			true };
 	public static boolean hardLeatherRecipe = true;
 	public static boolean disableMissileExplosion = false;
 	public static boolean PvPProhibitionMode = false;

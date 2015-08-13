@@ -2,10 +2,12 @@ package mods.defeatedcrow.common.item.magic;
 
 import java.util.List;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModAPIManager;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.api.energy.IBattery;
+import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.tile.TileBrewingBarrel;
+import mods.defeatedcrow.common.tile.appliance.MachineBase;
+import mods.defeatedcrow.common.tile.energy.TileChargerDevice;
+import mods.defeatedcrow.plugin.cofh.RFDeviceHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -18,19 +20,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.defeatedcrow.api.energy.IBattery;
-import mods.defeatedcrow.api.potion.AMTPotionManager;
-import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.tile.*;
-import mods.defeatedcrow.common.tile.appliance.MachineBase;
-import mods.defeatedcrow.common.tile.energy.TileChargerDevice;
-import mods.defeatedcrow.plugin.cofh.RFDeviceHandler;
+import cpw.mods.fml.common.ModAPIManager;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemDebugArm extends Item implements IBattery {
 
@@ -116,8 +112,7 @@ public class ItemDebugArm extends Item implements IBattery {
 
 	// 対Entity
 	@Override
-	public boolean itemInteractionForEntity(ItemStack p_111207_1_, EntityPlayer p_111207_2_,
-			EntityLivingBase p_111207_3_) {
+	public boolean itemInteractionForEntity(ItemStack item, EntityPlayer player, EntityLivingBase target) {
 		return false;
 	}
 
@@ -132,6 +127,7 @@ public class ItemDebugArm extends Item implements IBattery {
 		return EnumAction.none;
 	}
 
+	@Override
 	public EnumRarity getRarity(ItemStack par1ItemStack) {
 		return EnumRarity.rare;
 	}
@@ -265,6 +261,7 @@ public class ItemDebugArm extends Item implements IBattery {
 		return (double) i / (double) max;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean isFull3D() {
 		return true;
