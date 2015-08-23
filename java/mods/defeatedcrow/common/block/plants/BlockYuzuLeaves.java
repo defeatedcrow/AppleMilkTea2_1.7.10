@@ -501,4 +501,31 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable, IRig
 	public int getInitialMetadata(World world, int x, int y, int z) {
 		return 0;
 	}
+
+	@Override
+	public int getGrownMetadata(int meta) {
+		if (meta < 4)
+			return 3;
+		else if (meta < 8)
+			return 7;
+		else if (meta < 12)
+			return 11;
+		else
+			return 15;
+	}
+
+	@Override
+	public int getInitialMetadata(int meta) {
+		return 0;
+	}
+
+	@Override
+	public Block getSaplingBlock(int meta) {
+		return DCsAppleMilk.saplingYuzu;
+	}
+
+	@Override
+	public int getSaplingMeta(int meta) {
+		return 0;
+	}
 }

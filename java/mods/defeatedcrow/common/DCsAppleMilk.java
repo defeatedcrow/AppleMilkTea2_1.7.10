@@ -72,7 +72,6 @@ import mods.defeatedcrow.plugin.LoadBCPlugin;
 import mods.defeatedcrow.plugin.LoadBambooPlugin;
 import mods.defeatedcrow.plugin.LoadBoPPlugin;
 import mods.defeatedcrow.plugin.LoadExBucketPlugin;
-import mods.defeatedcrow.plugin.LoadForestryPlugin;
 import mods.defeatedcrow.plugin.LoadModHandler;
 import mods.defeatedcrow.plugin.LoadOreDicHandler;
 import mods.defeatedcrow.plugin.LoadPPCPlugin;
@@ -82,6 +81,7 @@ import mods.defeatedcrow.plugin.LoadTofuPlugin;
 import mods.defeatedcrow.plugin.IC2.LoadIC2Plugin;
 import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
 import mods.defeatedcrow.plugin.craftguide.LoadCraftGuidePlugin;
+import mods.defeatedcrow.plugin.ffm.LoadForestryPlugin;
 import mods.defeatedcrow.plugin.mce.MCEconomyPlugin;
 import mods.defeatedcrow.potion.PotionGetter;
 import mods.defeatedcrow.potion.PotionProtectionEX;
@@ -844,8 +844,9 @@ public class DCsAppleMilk {
 			AMTLogger.loadingModInfo("Forestry");
 			try {
 				this.SuccessLoadFFM = true;
-				(new LoadForestryPlugin()).load();
+				LoadForestryPlugin.load();
 				LoadForestryPlugin.loadRecipes(DCsConfig.altModRecipe);
+				LoadForestryPlugin.registerFarming();
 				AMTLogger.loadedModInfo("Forestry");
 			} catch (Exception e) {
 				AMTLogger.failLoadingModInfo("Forestry");

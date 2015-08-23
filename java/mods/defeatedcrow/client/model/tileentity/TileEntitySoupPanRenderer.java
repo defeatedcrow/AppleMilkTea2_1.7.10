@@ -101,10 +101,10 @@ public class TileEntitySoupPanRenderer extends TileEntitySpecialRenderer {
 
 			tessellator.startDrawingQuads();
 			tessellator.setNormal(1.0F, 0.0F, 0.0F);
-			tessellator.addVertexWithUV(0.15D, y, -0.85D, (double) f14, (double) f4);
-			tessellator.addVertexWithUV(0.85D, y, -0.85D, (double) f14, (double) f5);
-			tessellator.addVertexWithUV(0.85D, y, -0.15D, (double) f15, (double) f5);
-			tessellator.addVertexWithUV(0.15D, y, -0.15D, (double) f15, (double) f4);
+			tessellator.addVertexWithUV(0.16D, y, -0.84D, (double) f14, (double) f4);
+			tessellator.addVertexWithUV(0.84D, y, -0.84D, (double) f14, (double) f5);
+			tessellator.addVertexWithUV(0.84D, y, -0.16D, (double) f15, (double) f5);
+			tessellator.addVertexWithUV(0.16D, y, -0.16D, (double) f15, (double) f4);
 			tessellator.draw();
 
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

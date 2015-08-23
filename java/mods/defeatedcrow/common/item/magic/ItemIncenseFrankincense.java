@@ -2,24 +2,11 @@ package mods.defeatedcrow.common.item.magic;
 
 import mods.defeatedcrow.api.charm.EffectType;
 import mods.defeatedcrow.api.charm.IIncenseEffect;
-import mods.defeatedcrow.handler.Util;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -81,22 +68,22 @@ public class ItemIncenseFrankincense extends Item implements IIncenseEffect {
 
 	@Override
 	public String particleIcon() {
-		return "orb";
+		return "cloud";
 	}
 
 	@Override
 	public float particleColorR() {
-		return 1.0F;
+		return 2.0F;
 	}
 
 	@Override
 	public float particleColorG() {
-		return 1.0F;
+		return 2.0F;
 	}
 
 	@Override
 	public float particleColorB() {
-		return 0.8F;
+		return 2.0F;
 	}
 
 }

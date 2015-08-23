@@ -159,6 +159,35 @@ public class BlockCassisTree extends Block implements IShearable, IPlantable, IR
 	}
 
 	@Override
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+		int chance = this.getChance(metadata);
+		ItemStack crop = this.getCropItem(metadata);
+
+		ret.add(new ItemStack(this.getItemDropped(metadata, world.rand, fortune), this.quantityDropped(world.rand),
+				this.damageDropped(metadata)));
+
+		if (fortune > 0) {
+			chance -= 10 << fortune;
+			if (chance < 2)
+				chance = 2;
+		}
+
+		if (crop != null) {
+			ret.add(crop);
+			if (world.rand.nextInt(chance) == 0) {
+				ret.add(crop);
+			}
+		}
+
+		return ret;
+	}
+
+	protected int getChance(int meta) {
+		return meta == 3 ? 2 : 10;
+	}
+
+	@Override
 	protected boolean canSilkHarvest() {
 		return true;
 	}
@@ -287,19 +316,13 @@ public class BlockCassisTree extends Block implements IShearable, IPlantable, IR
 	@Override
 	public int getGrownMetadata(World world, int x, int y, int z) {
 		int meta = world.getBlockMetadata(x, y, z);
-		if (meta < 4)
-			return 3;
-		else
-			return 7;
+		return getGrownMetadata(meta);
 	}
 
 	@Override
 	public int getInitialMetadata(World world, int x, int y, int z) {
 		int meta = world.getBlockMetadata(x, y, z);
-		if (meta < 4)
-			return 0;
-		else
-			return 4;
+		return this.getInitialMetadata(meta);
 	}
 
 	@Override
@@ -317,6 +340,26 @@ public class BlockCassisTree extends Block implements IShearable, IPlantable, IR
 			m = 4;
 		ret.add(new ItemStack(this, 1, m));
 		return ret;
+	}
+
+	@Override
+	public int getGrownMetadata(int meta) {
+		return meta < 4 ? 3 : 7;
+	}
+
+	@Override
+	public int getInitialMetadata(int meta) {
+		return meta < 4 ? 0 : 4;
+	}
+
+	@Override
+	public Block getSaplingBlock(int meta) {
+		return DCsAppleMilk.saplingTea;
+	}
+
+	@Override
+	public int getSaplingMeta(int meta) {
+		return meta < 4 ? 1 : 2;
 	}
 
 }

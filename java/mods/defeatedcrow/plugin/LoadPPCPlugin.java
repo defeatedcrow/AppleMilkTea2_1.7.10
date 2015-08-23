@@ -7,6 +7,9 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class LoadPPCPlugin {
 
+	private LoadPPCPlugin() {
+	}
+
 	public static void load() {
 		Item rad = Util.getModItem("peaceplantcraft", "DAIKON");
 		if (rad != null) {
@@ -97,7 +100,7 @@ public class LoadPPCPlugin {
 				OreDictionary.registerOre("cropLeek", register);
 			}
 		}
-		Item cab = Util.getModItem("peaceplantcraft", "KYABETU");
+		Item cab = Util.getModItem("peaceplantcraft", "KYABETSU");
 		if (cab != null) {
 			ItemStack register = new ItemStack(cab, 1);
 			if (register != null) {

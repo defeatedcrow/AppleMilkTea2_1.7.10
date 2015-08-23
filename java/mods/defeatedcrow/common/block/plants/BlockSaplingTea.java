@@ -29,7 +29,10 @@ public class BlockSaplingTea extends Block implements IPlantable {
 	@SideOnly(Side.CLIENT)
 	private IIcon[] saplingIcon;
 
-	private static final String[] index = new String[] { "tea", "cassis", "camellia" };
+	private static final String[] index = new String[] {
+			"tea",
+			"cassis",
+			"camellia" };
 
 	public BlockSaplingTea() {
 		super(Material.plants);

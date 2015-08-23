@@ -645,3 +645,6 @@ dc.BrewingGuiNEI=Brewing Recipe
 dc.FondueSourceGuiNEI=Base Soup Recipe
 dc.FondueRecipeGuiNEI=Fondue Recipe
 dc.HeatSourceGuiNEI=Heat Sources
+
+item.defeatedcrow.circuit_chalcedony.name=Chalcedony Electron Circuit
+for.circuit.manualAMT.name=AMT Manual Plantation

@@ -18,7 +18,12 @@ public class ParticleTex {
 	private ParticleTex() {
 	}
 
-	private static String[] iconNames = { "blink", "orb", "cloud", "flower" };
+	private static String[] iconNames = {
+			"blink",
+			"orb",
+			"cloud",
+			"flower",
+			"feather" };
 	static IIcon icons[];
 
 	public static ParticleTex getInstance() {

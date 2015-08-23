@@ -648,3 +648,5 @@ dc.BrewingGuiNEI=樽での醸造
 dc.FondueSourceGuiNEI=ベーススープの素
 dc.FondueRecipeGuiNEI=スープとフォンデュのレシピ
 dc.HeatSourceGuiNEI=鍋と鉄板の熱源
+
+item.defeatedcrow.circuit_chalcedony.name=玉髄の電子回路

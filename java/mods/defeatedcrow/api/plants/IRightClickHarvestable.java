@@ -1,12 +1,14 @@
 package mods.defeatedcrow.api.plants;
 
+import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 /**
  * 植物系ブロック用のインターフェイス。
- * 収穫時の動作、収穫可能判定、収穫物の3つを返すためのもの。
+ * 収穫時の動作、収穫可能判定、収穫物を返すためのもの。
+ * 苗との関連づけも追加。
  */
 public interface IRightClickHarvestable {
 
@@ -35,10 +37,21 @@ public interface IRightClickHarvestable {
 	 */
 	int getGrownMetadata(World world, int x, int y, int z);
 
+	int getGrownMetadata(int meta);
+
 	/**
 	 * この座標の植物ブロックの初期状態のメタデータ。
 	 * このメタデータに変更することで、成長段階を初期状態に戻すことも出来る。
 	 */
 	int getInitialMetadata(World world, int x, int y, int z);
+
+	int getInitialMetadata(int meta);
+
+	/**
+	 * この座標の植物ブロックの苗にあたるBlockを返す。
+	 */
+	Block getSaplingBlock(int meta);
+
+	int getSaplingMeta(int meta);
 
 }

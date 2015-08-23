@@ -389,7 +389,7 @@ public class DCsRecipeRegister {
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.yellow_flower, 9), new ItemStack(DCsAppleMilk.flowerPot,
 				1, 4));
 
-		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.yuzuFence, 1, 0), new Object[] {
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.yuzuFence, 4, 0), new Object[] {
 				"UUU",
 				'U',
 				new ItemStack(DCsAppleMilk.logYuzu, 1, 0) });

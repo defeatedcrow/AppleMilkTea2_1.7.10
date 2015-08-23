@@ -144,6 +144,35 @@ public class BlockTeaTree extends Block implements IShearable, IPlantable, IRigh
 	}
 
 	@Override
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+		int chance = this.getChance(metadata);
+		ItemStack crop = this.getCropItem(metadata);
+
+		ret.add(new ItemStack(this.getItemDropped(metadata, world.rand, fortune), this.quantityDropped(world.rand),
+				this.damageDropped(metadata)));
+
+		if (fortune > 0) {
+			chance -= 10 << fortune;
+			if (chance < 2)
+				chance = 2;
+		}
+
+		if (crop != null) {
+			ret.add(crop);
+			if (world.rand.nextInt(chance) == 0) {
+				ret.add(crop);
+			}
+		}
+
+		return ret;
+	}
+
+	protected int getChance(int meta) {
+		return meta == 3 ? 2 : 10;
+	}
+
+	@Override
 	protected boolean canSilkHarvest() {
 		return true;
 	}
@@ -261,11 +290,31 @@ public class BlockTeaTree extends Block implements IShearable, IPlantable, IRigh
 
 	@Override
 	public int getGrownMetadata(World world, int x, int y, int z) {
-		return 3;
+		return 1;
 	}
 
 	@Override
 	public int getInitialMetadata(World world, int x, int y, int z) {
+		return 0;
+	}
+
+	@Override
+	public int getGrownMetadata(int meta) {
+		return 1;
+	}
+
+	@Override
+	public int getInitialMetadata(int meta) {
+		return 0;
+	}
+
+	@Override
+	public Block getSaplingBlock(int meta) {
+		return DCsAppleMilk.saplingTea;
+	}
+
+	@Override
+	public int getSaplingMeta(int meta) {
 		return 0;
 	}
 

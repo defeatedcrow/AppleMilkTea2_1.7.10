@@ -37,8 +37,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockClamSand extends Block implements IRightClickHarvestable {
 
-	private final int[] sideX = new int[] { 1, -1, 0, 0 };
-	private final int[] sideZ = new int[] { 0, 0, 1, -1 };
+	private final int[] sideX = new int[] {
+			1,
+			-1,
+			0,
+			0 };
+	private final int[] sideZ = new int[] {
+			0,
+			0,
+			1,
+			-1 };
 
 	public BlockClamSand() {
 		super(Material.ground);
@@ -57,7 +65,11 @@ public class BlockClamSand extends Block implements IRightClickHarvestable {
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
 		ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
 
-		ret.add(new ItemStack(DCsAppleMilk.clam, 1, 0));
+		if (metadata == 2) {
+			ret.add(new ItemStack(DCsAppleMilk.princessClam, 1, 0));
+		} else {
+			ret.add(new ItemStack(DCsAppleMilk.clam, 1, 0));
+		}
 
 		return ret;
 	}
@@ -405,6 +417,26 @@ public class BlockClamSand extends Block implements IRightClickHarvestable {
 
 	@Override
 	public int getInitialMetadata(World world, int x, int y, int z) {
+		return 0;
+	}
+
+	@Override
+	public int getGrownMetadata(int meta) {
+		return 0;
+	}
+
+	@Override
+	public int getInitialMetadata(int meta) {
+		return 0;
+	}
+
+	@Override
+	public Block getSaplingBlock(int meta) {
+		return Blocks.sand;
+	}
+
+	@Override
+	public int getSaplingMeta(int meta) {
 		return 0;
 	}
 }

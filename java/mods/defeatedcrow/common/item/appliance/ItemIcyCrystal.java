@@ -2,17 +2,12 @@ package mods.defeatedcrow.common.item.appliance;
 
 import java.util.List;
 
-import net.minecraft.src.*;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import mods.defeatedcrow.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,7 +15,12 @@ public class ItemIcyCrystal extends Item {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon iconType[];
-	private static final String[] itemType = new String[] { "_blink", "_orb", "_cloud", "_flower" };
+	private static final String[] itemType = new String[] {
+			"_blink",
+			"_orb",
+			"_cloud",
+			"_flower",
+			"_feather" };
 
 	public ItemIcyCrystal() {
 		super();
@@ -29,9 +29,10 @@ public class ItemIcyCrystal extends Item {
 		this.setHasSubtypes(true);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1) {
-		int j = MathHelper.clamp_int(par1, 0, 4);
+		int j = MathHelper.clamp_int(par1, 0, 5);
 		return j > 0 ? this.iconType[j - 1] : this.itemIcon;
 	}
 
@@ -56,8 +57,8 @@ public class ItemIcyCrystal extends Item {
 	public void registerIcons(IIconRegister par1IconRegister) {
 
 		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:icycrystal");
-		this.iconType = new IIcon[4];
-		for (int i = 0; i < 4; ++i) {
+		this.iconType = new IIcon[5];
+		for (int i = 0; i < 5; ++i) {
 			this.iconType[i] = par1IconRegister.registerIcon("defeatedcrow:particle" + itemType[i]);
 		}
 
