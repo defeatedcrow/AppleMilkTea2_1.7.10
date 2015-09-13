@@ -1,6 +1,7 @@
 ﻿#================================================
 #語言:繁體中文
 #對應:AppleMilkTea2-1.7.10_2.8e
+#更新日:2015/9/10
 #================================================
 tile.defeatedcrow.WoodBox_oak.name=橡樹原木箱
 tile.defeatedcrow.WoodBox_spruse.name=衫樹原木箱
@@ -254,7 +255,7 @@ tile.defeatedcrow.blockCordial_1.name=茶湯瓶
 tile.defeatedcrow.blockCordial_2.name=黑加侖酒瓶
 tile.defeatedcrow.blockCordial_3.name=梅花酒酒瓶
 tile.defeatedcrow.blockCordial_4.name=阿瑪雷托酒瓶
-tile.defeatedcrow.emptyBottle.name=空瓶
+tile.defeatedcrow.emptyBottle.name=空的一升瓶
 tile.defeatedcrow.emptyBottle_0.name=空瓶
 tile.defeatedcrow.emptyBottle_1.name=空瓶
 tile.defeatedcrow.emptyBottle_2.name=空瓶
@@ -265,6 +266,15 @@ tile.defeatedcrow.emptyBottle_6.name=空瓶
 tile.defeatedcrow.emptyBottle_7.name=空瓶
 tile.defeatedcrow.emptyBottle_8.name=空瓶
 tile.defeatedcrow.largeBottle.name=酒瓶
+tile.defeatedcrow.largeBottle_0.name=酒瓶
+tile.defeatedcrow.largeBottle_1.name=酒瓶
+tile.defeatedcrow.largeBottle_2.name=酒瓶
+tile.defeatedcrow.largeBottle_3.name=酒瓶
+tile.defeatedcrow.largeBottle_4.name=酒瓶
+tile.defeatedcrow.largeBottle_5.name=酒瓶
+tile.defeatedcrow.largeBottle_6.name=酒瓶
+tile.defeatedcrow.largeBottle_7.name=酒瓶
+tile.defeatedcrow.largeBottle_8.name=酒瓶
 tile.defeatedcrow.blockBarrel.name=釀酒桶
 tile.defeatedcrow.redGel.name=紅石凝膠
 tile.defeatedcrow.lightGel.name=柚子凝膠
@@ -273,15 +283,19 @@ tile.defeatedcrow.gelBatContainer.name=電池方塊
 tile.defeatedcrow.batBox.name=充電設備
 tile.defeatedcrow.EHandle.name=手搖式充電器
 tile.defeatedcrow.woodPanel.name=碎料板
+
 tile.defeatedcrow.filledSoupPan_EMPTY.name=砂鍋
 tile.defeatedcrow.filledSoupPan_WATER.name=砂鍋(水)
 tile.defeatedcrow.filledSoupPan_CHOCO.name=砂鍋(巧克力)
 tile.defeatedcrow.filledSoupPan_OIL.name=砂鍋(油)
-tile.defeatedcrow.filledSoupPan_DASHI.name=砂鍋(燒湯)
-tile.defeatedcrow.filledSoupPan_TONKOTU.name=砂鍋(骨湯)
+tile.defeatedcrow.filledSoupPan_DASHI.name=砂鍋(高湯)
+tile.defeatedcrow.filledSoupPan_TONKOTU.name=砂鍋(豚骨)
 tile.defeatedcrow.filledSoupPan_SHOYU.name=砂鍋(醬油)
-tile.defeatedcrow.filledSoupPan_BLOOD.name=砂鍋(鮮血)
-tile.defeatedcrow.filledSoupPan_PURPLE.name=砂鍋(暗黑)
+tile.defeatedcrow.filledSoupPan_BLOOD.name=砂鍋(血)
+tile.defeatedcrow.filledSoupPan_PURPLE.name=砂鍋(闇)
+tile.defeatedcrow.containerBottleW.name=水瓶的籃子
+tile.defeatedcrow.containerSaddle.name=鞍的籃子
+
 item.defeatedcrow.bakedApple.name=烤蘋果
 item.defeatedcrow.appleTart_0.name=蘋果餡餅
 item.defeatedcrow.appleTart_1.name=黑加侖餡餅
@@ -299,6 +313,7 @@ item.defeatedcrow.icyToffyApple_3.name=綠色太妃糖蘋果
 item.defeatedcrow.icyToffyApple_4.name=黑加侖糖
 item.defeatedcrow.icyToffyApple_5.name=薄荷糖
 item.defeatedcrow.icyToffyApple_6.name=柚子糖
+
 item.defeatedcrow.chopsticks_0.name=筷子
 item.defeatedcrow.chopsticks_1.name=木勺
 item.defeatedcrow.foodTea_0.name=綠茶茶葉
@@ -364,7 +379,7 @@ item.defeatedcrow.moromi_2.name=桶裝發酵葡萄汁
 item.defeatedcrow.moromi_3.name=桶裝發酵甘蔗汁
 item.defeatedcrow.moromi_4.name=桶裝發酵土豆泥
 item.defeatedcrow.chalcedonyKnife.name=玉髓刀
-item.defeatedcrow.firestarter.name=點火器
+item.defeatedcrow.firestarter.name=玉髓點火器
 item.defeatedcrow.chalcedonyStoneCutter.name=玉髓質石材切割刃
 item.defeatedcrow.monocle.name=玉髄制單片眼鏡
 item.defeatedcrow.onixSword.name=黑玉復仇之劍
@@ -379,7 +394,7 @@ item.defeatedcrow.bucketCamOil.name=椿油桶
 item.defeatedcrow.bottleCamOil.name=瓶裝椿油
 item.defeatedcrow.clam_0.name=蛤蜊
 item.defeatedcrow.clam_1.name=烤蛤蜊
-item.defeatedcrow.clam_2.name=燒肉
+item.defeatedcrow.clam_2.name=燒焦肉片
 item.defeatedcrow.clam_3.name=黑蛋
 item.defeatedcrow.princessClam_0.name=公主蛤蜊
 item.defeatedcrow.princessClam_1.name=螺鈿細工(花)
@@ -423,8 +438,9 @@ item.defeatedcrow.incense_lavender.name=熏香(安息)
 item.defeatedcrow.incense_sandalwood.name=熏香(迷惑)
 item.defeatedcrow.incense_aloeswood.name=熏香(鎮定)
 item.defeatedcrow.incense_frankincense.name=熏香(聖域)
-item.defeatedcrow.incense_yuzu.name=熏香(清新)
-item.defeatedcrow.incense_vanilla.name=熏香 (激動)
+item.defeatedcrow.incense_yuzu.name=熏香 (清澄)
+item.defeatedcrow.incense_vanilla.name=熏香 (発酵)
+
 item.defeatedcrow.fruitsChocolate_0.name=杏仁巧克力
 item.defeatedcrow.fruitsChocolate_1.name=花生巧克力
 item.defeatedcrow.fruitsChocolate_2.name=壓碎堅果巧克力
@@ -504,21 +520,22 @@ item.defeatedcrow.bucketYoungAlcohol_1.name=桶裝小麥汁
 item.defeatedcrow.bucketYoungAlcohol_2.name=桶裝濃縮紅酒
 item.defeatedcrow.bucketYoungAlcohol_3.name=桶裝拉姆酒發酵液
 item.defeatedcrow.bucketYoungAlcohol_4.name=桶裝未過濾的伏特加
+
+item.defeatedcrow.basesoupitem_WATER.name=裝熱水的碗
+item.defeatedcrow.basesoupitem_CHOCO.name=裝巧克力的碗
+item.defeatedcrow.basesoupitem_OIL.name=裝油的碗
+item.defeatedcrow.basesoupitem_DASHI.name=高湯的碗
+item.defeatedcrow.basesoupitem_SHOYU.name=裝醬油的碗
+item.defeatedcrow.basesoupitem_TONKOTU.name=豚骨高湯的碗
+item.defeatedcrow.basesoupitem_BLOOD.name=鮮血的碗
+item.defeatedcrow.basesoupitem_PURPLE.name=黑暗汁液的碗
+
 item.defeatedcrow.dummyItem.name=液體生成
 item.defeatedcrow.dummyPlate_0.name=鐵板燒
 item.defeatedcrow.dummyPlate_1.name=烤箱
-item.defeatedcrow.basesoupitem_WATER.name=碗裝開水
-item.defeatedcrow.basesoupitem_CHOCO.name=碗裝巧克力
-item.defeatedcrow.basesoupitem_OIL.name=碗裝油
-item.defeatedcrow.basesoupitem_DASHI.name=碗裝魚湯
-item.defeatedcrow.basesoupitem_SHOYU.name=碗裝醬油
-item.defeatedcrow.basesoupitem_TONKOTU.name=碗裝豚骨湯
-item.defeatedcrow.basesoupitem_BLOOD.name=碗裝血
-item.defeatedcrow.basesoupitem_PURPLE.name=碗裝黑暗
-item.defeatedcrow.containeritemDoorW.name=木門捆
-item.defeatedcrow.containeritemDoorI.name=鐵門捆
-tile.defeatedcrow.containerBottleW.name=水瓶箱
-tile.defeatedcrow.containerSaddle.name=馬鞍箱
+item.defeatedcrow.containeritemDoorW.name=木門組合束
+item.defeatedcrow.containeritemDoorI.name=鐵門組合束
+item.defeatedcrow.debugArm.name=八眼紫龍
 
 entity.compressedMelon.name=壓縮西瓜
 entity.compressedSilkMelon.name=平滑壓縮西瓜
@@ -630,13 +647,14 @@ achievement.dc.craftCharm.desc=做一個螺鈿細工
 achievement.dc.getCordial=果酒釀成
 achievement.dc.getCordial.desc=釀造出果酒
 
-dc.panMessage.noRecipe=這個物品並沒有可用配方
-dc.panMessage.noHeatSource=這個方塊底下需要有熱源.(例如,火)
-dc.panMessage.alreadyHasRecipe=砂鍋裡面已經有食物了
-dc.panMessage.noChocolateRecipe=這個物品並沒有可用的巧克力乾酪配方
-dc.plateMessage.noRecipe=這個物品並沒有可用配方
-dc.plateMessage.noHeatSource=這個方塊底下需要有熱源.(例如火,岩漿)
-dc.plateMessage.needOvenMode=需要烤爐模式.頂面和其它三面需要被其它方塊所包圍.
+dc.panMessage.noRecipe=這個東西沒有可用的配方...
+dc.panMessage.noHeatSource=砂鍋下面需要有熱源! (熔爐或是火)
+dc.panMessage.alreadyHasRecipe=砂鍋裡面已經有食物了. (請吃光它!)
+dc.panMessage.noChocolateRecipe=這個物品沒有可用的巧克力配方...
+dc.plateMessage.noRecipe=這個東西沒有可用的配方...
+dc.plateMessage.noHeatSource=鐵板下面需要有熱源! (火或是岩漿)
+dc.plateMessage.needOvenMode=需要窯燒模式.請在鐵板左右.上方等其他3面放置方塊包圍鐵板!
+dc.panMessage.noFondueRecipe=這個東西沒有可用的配方...
 
 dc.PanGuiNameNEI=砂鍋加工
 dc.MakerGuiNEI=製茶機加工
@@ -645,7 +663,10 @@ dc.EvaporatorNEI=減壓蒸餾器加工
 dc.JawCrusherNEI=顎式粉碎機加工
 dc.IceMakerNEI=刨冰機加工
 dc.PlateGuiNameNEI=鐵板燒加工
-dc.ChocoGuiNEI=巧克力乾酪
-dc.BrewingGuiNEI=釀造
-dc.FondueSourceGuiNEI=燒湯
-dc.FondueRecipeGuiNEI=乾酪
+dc.ChocoGuiNEI=巧克力火鍋
+dc.BrewingGuiNEI=釀酒桶
+dc.FondueSourceGuiNEI=製湯元素
+dc.FondueRecipeGuiNEI=湯跟火鍋食譜
+dc.HeatSourceGuiNEI=鍋子跟燒熱的鐵板
+
+item.defeatedcrow.circuit_chalcedony.name=玉髄電子回路
