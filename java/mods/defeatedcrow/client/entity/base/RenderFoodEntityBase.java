@@ -158,7 +158,7 @@ public class RenderFoodEntityBase extends Render {
 		if (soup != Soup.Rice && soup != Soup.Rice) {
 			if (soup == Soup.Soup) {
 				x = 0.2D;
-				y = 0.45D;
+				y = 0.33D;
 				z = 0.2D;
 			} else if (soup == Soup.WoodSoup) {
 				x = 0.25D;

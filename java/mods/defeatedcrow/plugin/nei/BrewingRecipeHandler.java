@@ -1,16 +1,21 @@
 package mods.defeatedcrow.plugin.nei;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.handler.FluidContMap;
+import mods.defeatedcrow.handler.FluidContMap.BottlePack;
 import mods.defeatedcrow.recipe.BrewingRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,6 +24,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidStack;
 
 import org.lwjgl.opengl.GL11;
@@ -42,12 +48,20 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 
 	public class BrewRecipeCacher extends CachedRecipe {
 
+		public ArrayList<PositionedStack> inputList;
 		public PositionedStack input;
 		public PositionedStack result;
+		public PositionedStack barrel;
 		private FluidStack influid = null;
 		private FluidStack resfluid = null;
 
-		public BrewRecipeCacher(Fluid in, Fluid out) {
+		public BrewRecipeCacher() {
+			inputList = new ArrayList<PositionedStack>();
+		}
+
+		public BrewRecipeCacher(List<ItemStack> input, Fluid in, Fluid out) {
+			this();
+			setInput(input);
 			if (in != null) {
 				this.influid = new FluidStack(in, 1000);
 				ItemStack dummyForFluid = new ItemStack(DCsAppleMilk.dummyItem, 1, 0);
@@ -57,7 +71,7 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 				tag.setString("fluid", name);
 				tag.setShort("amount", amount);
 				dummyForFluid.setTagCompound(tag);
-				this.input = new PositionedStack(dummyForFluid, 48, 21);
+				this.input = new PositionedStack(dummyForFluid, 20, 8);
 
 			}
 			if (out != null) {
@@ -69,8 +83,17 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 				tag2.setString("fluid", name2);
 				tag2.setShort("amount", amount2);
 				dummyForFluid2.setTagCompound(tag2);
-				this.result = new PositionedStack(dummyForFluid2, 102, 21);
+				this.result = new PositionedStack(dummyForFluid2, 118, 33);
 			}
+			ItemStack item = new ItemStack(DCsAppleMilk.barrel, 1, 0);
+			this.barrel = new PositionedStack(item, 77, 33);
+		}
+
+		public void setInput(List<ItemStack> items) {
+			inputList.clear();
+			PositionedStack stack = new PositionedStack(items, 40, 8);
+			stack.setMaxSize(1);
+			inputList.add(stack);
 		}
 
 		@Override
@@ -79,13 +102,16 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 		}
 
 		@Override
-		public PositionedStack getIngredient() {
-			return this.input;
+		public List<PositionedStack> getIngredients() {
+			return getCycledIngredients(cycleticks / 20, inputList);
 		}
 
 		@Override
-		public PositionedStack getOtherStack() {
-			return null;
+		public List<PositionedStack> getOtherStacks() {
+			ArrayList<PositionedStack> stacks = new ArrayList<PositionedStack>();
+			stacks.add(input);
+			stacks.add(barrel);
+			return stacks;
 		}
 
 		public FluidStack getInFluid() {
@@ -113,7 +139,7 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void loadTransferRects() {
-		transferRects.add(new BrewingRecipeHandler.RecipeTransferRect(new Rectangle(65, 25, 20, 20), "DCsBrewing"));
+		transferRects.add(new BrewingRecipeHandler.RecipeTransferRect(new Rectangle(77, 33, 20, 20), "DCsBrewing"));
 	}
 
 	@Override
@@ -129,7 +155,12 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 				Fluid out = entry.getValue();
 
 				if (in != null && out != null) {
-					arecipes.add(new BrewRecipeCacher(in, out));
+					ArrayList<ItemStack> containers = new ArrayList<ItemStack>();
+					BottlePack pack = FluidContMap.getPack(in);
+					if (pack != null && !pack.getAllContainer().isEmpty()) {
+						containers.addAll(pack.getAllContainer());
+					}
+					arecipes.add(new BrewRecipeCacher(containers, in, out));
 				}
 			}
 		} else {
@@ -158,8 +189,13 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 				}
 			}
 
-			if (in != null && out != null && flag) {
-				arecipes.add(new BrewRecipeCacher(in, out));
+			if (in != null && out != null) {
+				ArrayList<ItemStack> containers = new ArrayList<ItemStack>();
+				BottlePack pack = FluidContMap.getPack(in);
+				if (pack != null && !pack.getAllContainer().isEmpty()) {
+					containers.addAll(pack.getAllContainer());
+				}
+				arecipes.add(new BrewRecipeCacher(containers, in, out));
 			}
 		}
 	}
@@ -187,10 +223,24 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 			}
 
 			if (flag) {
-				BrewRecipeCacher cache = new BrewRecipeCacher(in, out);
+				ArrayList<ItemStack> containers = new ArrayList<ItemStack>();
+				BottlePack pack = FluidContMap.getPack(in);
+				if (pack != null && !pack.getAllContainer().isEmpty()) {
+					containers.addAll(pack.getAllContainer());
+				}
+				BrewRecipeCacher cache = new BrewRecipeCacher(containers, in, out);
 				arecipes.add(cache);
 			} else if (in != null && ingredient.getItem() == Item.getItemFromBlock(DCsAppleMilk.barrel)) {
-				arecipes.add(new BrewRecipeCacher(in, out));
+				ArrayList<ItemStack> containers = new ArrayList<ItemStack>();
+				FluidContainerData[] data = FluidContainerRegistry.getRegisteredFluidContainerData();
+				for (FluidContainerData d : data) {
+					if (d.fluid != null && d.fluid.getFluid() == in) {
+						if (d.filledContainer == null)
+							continue;
+						containers.add(d.filledContainer.copy());
+					}
+				}
+				arecipes.add(new BrewRecipeCacher(containers, in, out));
 			}
 		}
 	}
@@ -202,7 +252,7 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getGuiTexture() {
-		return "defeatedcrow:textures/gui/dummygui.png";
+		return "defeatedcrow:textures/gui/appliancegui_nei.png";
 	}
 
 	private boolean contain(Fluid in, ItemStack check) {
@@ -223,12 +273,27 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 			return;
 
 		if (arecipes.get(recipe) instanceof BrewRecipeCacher) {
+			Minecraft mc = Minecraft.getMinecraft();
+			drawAdditionalSlot(19, 7);
+
+			String d = 4 + " days";
+			mc.fontRenderer.drawString(I18n.format(d, new Object[0]), 95, 18, 0x000000);
+
+			String r = "Use by Right-Click";
+			mc.fontRenderer.drawString(I18n.format(r, new Object[0]), 4, 32, 0x000000);
+
 			BrewRecipeCacher current = (BrewRecipeCacher) arecipes.get(recipe);
 			FluidStack in = current.influid;
 			FluidStack out = current.resfluid;
-			drawFluid(in, 16, 48, 21, 16, 16);
-			drawFluid(out, 16, 102, 21, 16, 16);
+			drawFluid(in, 16, 20, 8, 16, 16);
+			drawFluid(out, 16, 118, 33, 16, 16);
 		}
+	}
+
+	private void drawAdditionalSlot(int x, int y) {
+		ResourceLocation res = new ResourceLocation(this.getGuiTexture());
+		Minecraft.getMinecraft().getTextureManager().bindTexture(res);
+		Minecraft.getMinecraft().currentScreen.drawTexturedModalRect(x, y, 44, 18, 18, 18);
 	}
 
 	/**
@@ -281,14 +346,10 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 	public void drawTexturedModelRectFromIcon(int x, int y, IIcon icon, int width, int height) {
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV((double) (x + 0), (double) (y + height), 0.0F, (double) icon.getMinU(),
-				(double) icon.getMaxV());
-		tessellator.addVertexWithUV((double) (x + width), (double) (y + height), 0.0F, (double) icon.getMaxU(),
-				(double) icon.getMaxV());
-		tessellator.addVertexWithUV((double) (x + width), (double) (y + 0), 0.0F, (double) icon.getMaxU(),
-				(double) icon.getMinV());
-		tessellator.addVertexWithUV((double) (x + 0), (double) (y + 0), 0.0F, (double) icon.getMinU(),
-				(double) icon.getMinV());
+		tessellator.addVertexWithUV(x + 0, y + height, 0.0F, icon.getMinU(), icon.getMaxV());
+		tessellator.addVertexWithUV(x + width, y + height, 0.0F, icon.getMaxU(), icon.getMaxV());
+		tessellator.addVertexWithUV(x + width, y + 0, 0.0F, icon.getMaxU(), icon.getMinV());
+		tessellator.addVertexWithUV(x + 0, y + 0, 0.0F, icon.getMinU(), icon.getMinV());
 		tessellator.draw();
 	}
 

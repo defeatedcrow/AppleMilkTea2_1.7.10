@@ -68,7 +68,7 @@ public class ItemIncenseFrankincense extends Item implements IIncenseEffect {
 
 	@Override
 	public String particleIcon() {
-		return "cloud";
+		return "feather";
 	}
 
 	@Override

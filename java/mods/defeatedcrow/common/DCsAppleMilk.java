@@ -64,6 +64,7 @@ import mods.defeatedcrow.event.DCsLivingEvent;
 import mods.defeatedcrow.event.DispenserEvent;
 import mods.defeatedcrow.event.EatFoodEvent;
 import mods.defeatedcrow.event.EntityMoreDropEvent;
+import mods.defeatedcrow.event.FluidContainerRegisterEvent;
 import mods.defeatedcrow.event.ShowOreNameEvent;
 import mods.defeatedcrow.handler.RegisterOreHandler;
 import mods.defeatedcrow.handler.Util;
@@ -114,16 +115,12 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 
-@Mod(
-		modid = "DCsAppleMilk",
-		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.8e",
+@Mod(modid = "DCsAppleMilk", name = "Apple&Milk&Tea!", version = "1.7.10_2.8f",
 		dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class DCsAppleMilk {
 
 	// プロキシの登録
-	@SidedProxy(
-			clientSide = "mods.defeatedcrow.client.ClientProxy",
+	@SidedProxy(clientSide = "mods.defeatedcrow.client.ClientProxy",
 			serverSide = "mods.defeatedcrow.common.CommonProxy")
 	public static CommonProxy proxy;
 
@@ -505,6 +502,9 @@ public class DCsAppleMilk {
 		enumToolMaterialChalcedony = EnumHelper.addToolMaterial("CHALCEDONY", 2, 128, 5.0F, 4.0F, 18);
 		// enumToolMaterialChalcedony.customCraftingMaterial = Items.flint;
 		enumToolMaterialChalcedony.setRepairItem(new ItemStack(Items.flint));
+
+		// 液体コンテナ登録イベント
+		MinecraftForge.EVENT_BUS.register(new FluidContainerRegisterEvent());
 
 		// ブロックやアイテムの読み込みと登録
 		MaterialRegister.instance.load();
@@ -1164,7 +1164,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "e";
+		return "f";
 	}
 
 	public String getModName() {

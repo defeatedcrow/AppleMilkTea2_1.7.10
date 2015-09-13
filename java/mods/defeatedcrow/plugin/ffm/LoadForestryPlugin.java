@@ -151,6 +151,11 @@ public class LoadForestryPlugin {
 					4, 2500, 1));
 			AMTLogger.debugInfo("Succeeded to register fuel for Forestry Bronze Engine : camellia_oil");
 		}
+
+		// Item登録
+		chalCircuit = (new ItemChalcedonyCircuit()).setUnlocalizedName("defeatedcrow.circuit_chalcedony")
+				.setCreativeTab(DCsAppleMilk.applemilk);
+		GameRegistry.registerItem(chalCircuit, "defeatedcrow.circuit_chalcedony");
 	}
 
 	public static void loadRecipes(boolean flag) {
@@ -180,14 +185,14 @@ public class LoadForestryPlugin {
 					new ItemStack[] { new ItemStack(DCsAppleMilk.icyCrystal, 1, 0) }, new FluidStack(ice, 1000),
 					new ItemStack(DCsAppleMilk.essentialOil, 1, 5), 10);
 
-			if (glass == null) {
+			if (glass != null) {
 				RecipeManagers.fabricatorManager.addRecipe(null, new FluidStack(glass, 500), new ItemStack(chalCircuit,
 						1, 0), new Object[] {
 						" X ",
 						"YXY",
 						"XXX",
 						'X',
-						"blockChalcedony",
+						DCsAppleMilk.chalcedony,
 						'Y',
 						Items.redstone });
 			}
@@ -196,10 +201,6 @@ public class LoadForestryPlugin {
 	}
 
 	public static void registerFarming() {
-		// Item登録
-		chalCircuit = (new ItemChalcedonyCircuit()).setUnlocalizedName("defeatedcrow.circuit_chalcedony")
-				.setCreativeTab(DCsAppleMilk.applemilk);
-		GameRegistry.registerItem(chalCircuit, "defeatedcrow.circuit_chalcedony");
 
 		farmables = new IFarmable[] {
 				new FarmableAMT(DCsAppleMilk.teaTree, 1),

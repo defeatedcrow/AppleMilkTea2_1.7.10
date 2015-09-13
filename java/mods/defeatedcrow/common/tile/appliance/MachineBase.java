@@ -21,8 +21,12 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+import cofh.api.energy.IEnergyConnection;
+import cofh.api.energy.IEnergyHandler;
+import cofh.api.tileentity.IEnergyInfo;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModAPIManager;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -31,7 +35,11 @@ import cpw.mods.fml.relauncher.SideOnly;
  * チャージ管理部分のみを共通処理としてここで作っている。 <br>
  * レシピとアイテム生産については個々のクラスで作る。
  */
-public abstract class MachineBase extends TileEntity implements ISidedInventory, IChargeableMachine {
+@Optional.InterfaceList({
+		@Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHAPI|energy"),
+		@Optional.Interface(iface = "cofh.api.tileentity.IEnergyInfo", modid = "CoFHAPI|tileentity") })
+public abstract class MachineBase extends TileEntity implements ISidedInventory, IChargeableMachine, IEnergyHandler,
+		IEnergyInfo {
 
 	// 現在のチャージ量
 	private int chargeAmount = 0;
@@ -630,5 +638,84 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	@Override
 	public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3) {
 		return true;
+	}
+
+	/* === for RF === */
+
+	@Optional.Method(modid = "CoFHAPI|energy")
+	@Override
+	public boolean canConnectEnergy(ForgeDirection dir) {
+		// 向きごとにコネクト可能か見ているっぽい
+		TileEntity tile = this.worldObj.getTileEntity(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
+		boolean flag = (tile instanceof IEnergyConnection);
+		return flag;
+	}
+
+	@Optional.Method(modid = "CoFHAPI|energy")
+	@Override
+	public int receiveEnergy(ForgeDirection dir, int in, boolean flag) {
+		// エネルギーの受け入れ
+		int eng = this.getChargeAmount();
+		int get = in;
+		if (this.isFullCharged() || get < this.exchangeRateRF())
+			return 0;
+
+		int ret = Math.min((this.getMaxChargeAmount() - eng) * this.exchangeRateRF(), get);
+
+		if (!flag) {
+			int i = Math.round(ret / this.exchangeRateRF());// 1/10に
+			this.setChargeAmount(eng + i);
+		}
+
+		return ret;
+	}
+
+	@Optional.Method(modid = "CoFHAPI|energy")
+	@Override
+	public int extractEnergy(ForgeDirection paramForgeDirection, int paramInt, boolean paramBoolean) {
+		// 出力はしない
+		return 0;
+	}
+
+	@Optional.Method(modid = "CoFHAPI|energy")
+	@Override
+	public int getEnergyStored(ForgeDirection paramForgeDirection) {
+		// 10倍になる
+		return this.getChargeAmount() * this.exchangeRateRF();
+	}
+
+	@Optional.Method(modid = "CoFHAPI|energy")
+	@Override
+	public int getMaxEnergyStored(ForgeDirection paramForgeDirection) {
+		// 10倍
+		return this.getMaxChargeAmount() * this.exchangeRateRF();
+	}
+
+	@Optional.Method(modid = "CoFHAPI|tileentity")
+	@Override
+	public int getInfoEnergyPerTick() {
+		return 0;
+	}
+
+	@Optional.Method(modid = "CoFHAPI|tileentity")
+	@Override
+	public int getInfoMaxEnergyPerTick() {
+		return 0;
+	}
+
+	@Optional.Method(modid = "CoFHAPI|tileentity")
+	@Override
+	public int getInfoEnergyStored() {
+		int eng = this.getChargeAmount();
+		int get = eng * this.exchangeRateRF();
+		return get;
+	}
+
+	@Optional.Method(modid = "CoFHAPI|tileentity")
+	@Override
+	public int getInfoMaxEnergyStored() {
+		int eng = this.getMaxChargeAmount();
+		int get = eng * this.exchangeRateRF();
+		return get;
 	}
 }

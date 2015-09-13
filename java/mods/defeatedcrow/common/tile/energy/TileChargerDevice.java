@@ -359,7 +359,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		// エネルギーの受け入れ
 		int eng = this.getChargeAmount();
 		int get = speed;
-		if (this.isFullCharged() || speed < this.exchangeRateGF())
+		if (this.isFullCharged() || speed < this.exchangeRateGF() || power < 3)
 			return 0;
 
 		int ret = Math.min((this.getMaxChargeAmount() - eng) * this.exchangeRateGF(), get);
@@ -395,7 +395,7 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 	@Optional.Method(modid = "SextiarySector")
 	@Override
 	public int getPowerStored(ForgeDirection from) {
-		return 3;
+		return 0;
 	}
 
 	@Optional.Method(modid = "SextiarySector")
