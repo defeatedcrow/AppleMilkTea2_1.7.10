@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.config.DCsConfigCocktail;
-import mods.defeatedcrow.handler.NetworkUtilServer;
 import mods.defeatedcrow.handler.Util;
 import mods.defeatedcrow.plugin.LoadModHandler;
 import net.minecraft.init.Blocks;
@@ -65,33 +64,46 @@ public class DCsRecipeRegister {
 		}
 
 		// add extra recipe if nether is disabled.
-		if (!NetworkUtilServer.INSTANCE.enableNether()) {
-			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0), new Object[] {
-					"XYX",
-					"ZYZ",
-					"XWX",
-					Character.valueOf('X'),
-					new ItemStack(Blocks.stained_hardened_clay, 1, 0),
-					Character.valueOf('Y'),
-					new ItemStack(Items.water_bucket, 1),
-					Character.valueOf('Z'),
-					new ItemStack(Blocks.glass, 1),
-					Character.valueOf('W'),
-					new ItemStack(Items.lava_bucket, 1) });
+		// if (!NetworkUtilServer.INSTANCE.enableNether()) {
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0), new Object[] {
+				"XYX",
+				"ZYZ",
+				"XWX",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.stained_hardened_clay, 1, 0),
+				Character.valueOf('Y'),
+				new ItemStack(Items.water_bucket, 1),
+				Character.valueOf('Z'),
+				new ItemStack(Blocks.glass, 1),
+				Character.valueOf('W'),
+				new ItemStack(Items.lava_bucket, 1) });
 
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0), new Object[] {
-					"XYX",
-					"ZYZ",
-					"XWX",
-					Character.valueOf('X'),
-					"ingotSilver",
-					Character.valueOf('Y'),
-					new ItemStack(Items.water_bucket, 1),
-					Character.valueOf('Z'),
-					new ItemStack(Blocks.glass, 1),
-					Character.valueOf('W'),
-					new ItemStack(Items.lava_bucket, 1) }));
-		}
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0), new Object[] {
+				"XYX",
+				"ZYZ",
+				"XWX",
+				Character.valueOf('X'),
+				"ingotSilver",
+				Character.valueOf('Y'),
+				new ItemStack(Items.water_bucket, 1),
+				Character.valueOf('Z'),
+				new ItemStack(Blocks.glass, 1),
+				Character.valueOf('W'),
+				new ItemStack(Items.lava_bucket, 1) }));
+
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.evaporator, 1), new Object[] {
+				" X ",
+				"ZYZ",
+				"XWX",
+				Character.valueOf('W'),
+				"gearIron",
+				Character.valueOf('Z'),
+				new ItemStack(Items.glass_bottle, 1),
+				Character.valueOf('Y'),
+				"bucketLava",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.stained_hardened_clay, 1, 0) }));
+		// }
 
 	}
 

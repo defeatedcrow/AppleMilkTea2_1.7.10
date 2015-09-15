@@ -2,9 +2,9 @@ package mods.defeatedcrow.plugin.mce;
 
 import java.util.ArrayList;
 
-import net.minecraft.item.ItemStack;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import net.minecraft.item.ItemStack;
 import shift.mceconomy2.api.MCEconomyAPI;
 import shift.mceconomy2.api.shop.IProductItem;
 import shift.mceconomy2.api.shop.ProductItem;
@@ -138,7 +138,11 @@ public class MCEconomyPlugin extends ProductList {
 		// bottle
 		MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), 10);
 
-		int[] amount = { 0, 16, 32, 48 };
+		int[] amount = {
+				0,
+				16,
+				32,
+				48 };
 		for (int i = 0; i < amount.length; i++) {
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (amount[i])), 50);
 			MCEconomyAPI.addPurchaseItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, (1 + amount[i])), 50);
@@ -262,17 +266,24 @@ public class MCEconomyPlugin extends ProductList {
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.gratedApple, 1, 6), 40));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.gratedApple, 1, 7), 40));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.gratedApple, 1, 8), 40));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.gratedApple, 1, 9), 40));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.mincedFoods, 1, 5), 50));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.mincedFoods, 1, 6), 50));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), 50));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), 50));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), 50));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 51), 300));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 54), 500));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 52), 500));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.essentialOil, 1, 6), 300));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.essentialOil, 1, 7), 300));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.emptyCup, 1, 0), 25));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.teaMakerNext, 1, 0), 1000));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.DCgrater, 1, 0), 80));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.emptyPanGaiden, 1, 0), 200));
-		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.prosessor, 1, 0), 1000));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.teppanII, 1, 0), 1000));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.iceMaker, 1, 0), 1800));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.prosessor, 1, 0), 2000));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.batteryItem, 1, 1), 500));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.batteryItem, 64, 1), 30000));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.chalcedonyHammer, 1, 0), 400));

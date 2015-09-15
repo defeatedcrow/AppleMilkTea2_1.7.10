@@ -24,7 +24,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidStack;
 
 import org.lwjgl.opengl.GL11;
@@ -189,13 +188,14 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 				}
 			}
 
-			if (in != null && out != null) {
+			if (flag && in != null && out != null) {
 				ArrayList<ItemStack> containers = new ArrayList<ItemStack>();
 				BottlePack pack = FluidContMap.getPack(in);
 				if (pack != null && !pack.getAllContainer().isEmpty()) {
 					containers.addAll(pack.getAllContainer());
+					arecipes.add(new BrewRecipeCacher(containers, in, out));
 				}
-				arecipes.add(new BrewRecipeCacher(containers, in, out));
+
 			}
 		}
 	}
@@ -222,23 +222,19 @@ public class BrewingRecipeHandler extends TemplateRecipeHandler {
 				}
 			}
 
-			if (flag) {
+			if (flag && in != null && out != null) {
 				ArrayList<ItemStack> containers = new ArrayList<ItemStack>();
 				BottlePack pack = FluidContMap.getPack(in);
 				if (pack != null && !pack.getAllContainer().isEmpty()) {
 					containers.addAll(pack.getAllContainer());
+					arecipes.add(new BrewRecipeCacher(containers, in, out));
 				}
-				BrewRecipeCacher cache = new BrewRecipeCacher(containers, in, out);
-				arecipes.add(cache);
 			} else if (in != null && ingredient.getItem() == Item.getItemFromBlock(DCsAppleMilk.barrel)) {
 				ArrayList<ItemStack> containers = new ArrayList<ItemStack>();
-				FluidContainerData[] data = FluidContainerRegistry.getRegisteredFluidContainerData();
-				for (FluidContainerData d : data) {
-					if (d.fluid != null && d.fluid.getFluid() == in) {
-						if (d.filledContainer == null)
-							continue;
-						containers.add(d.filledContainer.copy());
-					}
+				BottlePack pack = FluidContMap.getPack(in);
+				if (pack != null && !pack.getAllContainer().isEmpty()) {
+					containers.addAll(pack.getAllContainer());
+					arecipes.add(new BrewRecipeCacher(containers, in, out));
 				}
 				arecipes.add(new BrewRecipeCacher(containers, in, out));
 			}

@@ -3,6 +3,7 @@ package mods.defeatedcrow.event;
 import mods.defeatedcrow.api.recipe.ITeaRecipe;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.block.appliance.BlockTeaMakerNext;
 import mods.defeatedcrow.common.tile.TileIncenseBase;
 import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
 import net.minecraft.block.BlockDispenser;
@@ -101,7 +102,7 @@ public class DispenserEvent {
 				int j = block.getYInt() + enumfacing.getFrontOffsetY();
 				int k = block.getZInt() + enumfacing.getFrontOffsetZ();
 
-				if (!world.isRemote && world.getBlock(i, j, k) == DCsAppleMilk.teaMakerNext) {
+				if (!world.isRemote && world.getBlock(i, j, k) instanceof BlockTeaMakerNext) {
 					TileMakerNext tile = (TileMakerNext) world.getTileEntity(i, j, k);
 					if (tile != null && item != null && tile.getItemStack() == null) {
 						ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(item);
@@ -215,7 +216,8 @@ public class DispenserEvent {
 				});
 
 		// 容器に汲む
-		// BlockDispenser.dispenseBehaviorRegistry.putObject(Items.bucket, new EmptyBucketDispenseItem());
+		// BlockDispenser.dispenseBehaviorRegistry.putObject(Items.bucket, new
+		// EmptyBucketDispenseItem());
 	}
 
 	private class EmptyBucketDispenseItem extends BehaviorDefaultDispenseItem {

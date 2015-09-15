@@ -2,8 +2,10 @@ package mods.defeatedcrow.common.item.appliance;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.api.energy.IBattery;
+import mods.defeatedcrow.api.events.ShootingGunEvent;
+import mods.defeatedcrow.common.DCsAppleMilk;
+import mods.defeatedcrow.common.entity.EntityYuzuBullet;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -16,10 +18,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import mods.defeatedcrow.api.energy.BatteryItemBase;
-import mods.defeatedcrow.api.energy.IBattery;
-import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.entity.EntityYuzuBullet;
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemYuzuGatling extends ItemBow implements IBattery {
 
@@ -36,6 +38,7 @@ public class ItemYuzuGatling extends ItemBow implements IBattery {
 	}
 
 	// 文字色
+	@Override
 	public EnumRarity getRarity(ItemStack par1ItemStack) {
 		return EnumRarity.rare;
 	}
@@ -47,14 +50,17 @@ public class ItemYuzuGatling extends ItemBow implements IBattery {
 	}
 
 	// 右クリ使用時
+	@Override
 	public int getMaxItemUseDuration(ItemStack par1ItemStack) {
 		return 16;
 	}
 
+	@Override
 	public EnumAction getItemUseAction(ItemStack par1ItemStack) {
 		return EnumAction.bow;
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
 		boolean creative = par3EntityPlayer.capabilities.isCreativeMode;
 
@@ -63,60 +69,72 @@ public class ItemYuzuGatling extends ItemBow implements IBattery {
 		int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, par1ItemStack);
 		int fire = EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, par1ItemStack);
 
-		if (!creative) {
-			if (par3EntityPlayer.inventory.hasItemStack(new ItemStack(DCsAppleMilk.leafTea, 1, 3))) {
-				hasYuzu = true;
-			} else if (inf) {
-				hasYuzu = true;
-			}
+		boolean looseCheck = creative || inf;
+		boolean chargeCheck = creative;
+
+		EntityYuzuBullet bullet = new EntityYuzuBullet(par2World, par3EntityPlayer, 3.0F, 0.0F, 0.0F, 0.0F, 0.0F);
+
+		float dam = (fire > 0) ? 5.0F : 3.0F;
+		dam = dam + power * 0.5F;
+
+		int yuzu = 1;
+		int charge = 2;
+
+		ShootingGunEvent event = new ShootingGunEvent(par2World, par3EntityPlayer, par1ItemStack, dam, 1, 2);
+		MinecraftForge.EVENT_BUS.post(event);
+
+		if (event.isCanceled()) {
+			return par1ItemStack;
 		}
-		boolean hasCharge = false;
-		if (par1ItemStack.getItem() == this) {
-			int c2 = this.discharge(par1ItemStack, 2 + power, false);
-			if (c2 > 0)
-				hasCharge = true;
+
+		if (event.hasResult() && event.getResult() == Result.ALLOW) {
+			dam = event.damage;
+			yuzu = event.looseBullet;
+			charge = event.looseCharge;
+			looseCheck = yuzu < 1;
+			chargeCheck = charge < 0;
 		}
 
-		if (creative || (hasYuzu && hasCharge)) {
-			boolean loose = creative || inf || this.looseYuzu(par3EntityPlayer, DCsAppleMilk.leafTea, 3);
-			if (!creative)
-				this.discharge(par1ItemStack, 2, true);
+		bullet.setDamage(dam);
 
-			EntityYuzuBullet bullet = new EntityYuzuBullet(par2World, par3EntityPlayer, 3.0F, 0.0F, 0.0F, 0.0F, 0.0F);
-
-			float dam = (fire > 0) ? 5.0F : 3.0F;
-			bullet.setDamage(dam + (double) power * 0.5D);
-
-			if (fire > 0) {
-				bullet.setFire(100);
-			}
-
-			if (loose && !par2World.isRemote) {
-				par2World.spawnEntityInWorld(bullet);
-			}
-			par2World.playSoundAtEntity(par3EntityPlayer, "random.door_close", 1.0F,
-					1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + 1.3F);
-
+		if (fire > 0) {
+			bullet.setFire(100);
 		}
+
+		if (!looseCheck && this.looseYuzu(par3EntityPlayer, DCsAppleMilk.leafTea, 3, yuzu)) {
+			looseCheck = true;
+		}
+		if (!chargeCheck && this.discharge(par1ItemStack, charge, true) > 0) {
+			chargeCheck = true;
+		}
+
+		if (dam > 0.0F && looseCheck && chargeCheck && !par2World.isRemote) {
+			par2World.spawnEntityInWorld(bullet);
+		}
+		par2World.playSoundAtEntity(par3EntityPlayer, "random.door_close", 1.0F,
+				1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + 1.3F);
 		return par1ItemStack;
 	}
 
+	@Override
 	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
 		return par1ItemStack;
 	}
 
-	private boolean looseYuzu(EntityPlayer player, Item item, int meta) {
+	private boolean looseYuzu(EntityPlayer player, Item item, int meta, int count) {
 		if (player == null)
 			return false;
 
 		for (int i = 0; i < player.inventory.mainInventory.length; ++i) {
 			if (player.inventory.mainInventory[i] != null && player.inventory.mainInventory[i].getItem() == item
 					&& player.inventory.mainInventory[i].getItemDamage() == meta) {
-				if (--player.inventory.mainInventory[i].stackSize <= 0) {
-					player.inventory.mainInventory[i] = null;
+				if (player.inventory.mainInventory[i].stackSize >= count) {
+					player.inventory.mainInventory[i].stackSize -= count;
+					if (player.inventory.mainInventory[i].stackSize <= 0) {
+						player.inventory.mainInventory[i] = null;
+					}
+					return true;
 				}
-
-				return true;
 			}
 		}
 
@@ -240,6 +258,7 @@ public class ItemYuzuGatling extends ItemBow implements IBattery {
 		return (double) i / (double) max;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean isFull3D() {
 		return true;

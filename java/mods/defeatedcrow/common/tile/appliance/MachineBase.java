@@ -438,11 +438,11 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 
 			int i = this.getChargeAmount();
 			double eu = Math.min(EUChannel.getEnergyStored2(), 512);
-			double get = eu / this.exchangeRateEU();
+			double get = eu / this.exchangeRateEU() * 1.0D;
 			if ((this.getMaxChargeAmount() - i) < get)
 				return 0;
 
-			if (EUChannel.useEnergy2(eu)) {
+			if (get > 0.0D && EUChannel.useEnergy2(eu)) {
 				ret = (int) get;
 			}
 		}

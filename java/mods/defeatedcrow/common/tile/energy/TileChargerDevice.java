@@ -28,8 +28,7 @@ import cpw.mods.fml.common.Optional;
 @Optional.InterfaceList({
 		@Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHAPI|energy"),
 		@Optional.Interface(iface = "cofh.api.tileentity.IEnergyInfo", modid = "CoFHAPI|tileentity"),
-		@Optional.Interface(
-				iface = "shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler",
+		@Optional.Interface(iface = "shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler",
 				modid = "SextiarySector") })
 public class TileChargerDevice extends TileChargerBase implements IEnergyHandler, IEnergyInfo, IGearForceHandler {
 
@@ -359,13 +358,16 @@ public class TileChargerDevice extends TileChargerBase implements IEnergyHandler
 		// エネルギーの受け入れ
 		int eng = this.getChargeAmount();
 		int get = speed;
-		if (this.isFullCharged() || speed < this.exchangeRateGF() || power < 3)
+		if (this.isFullCharged() || power < 3)
 			return 0;
 
+		if (get < this.exchangeRateGF()) {
+			get = 3;
+		}
 		int ret = Math.min((this.getMaxChargeAmount() - eng) * this.exchangeRateGF(), get);
 
 		if (!simulate) {
-			int i = Math.round(ret / this.exchangeRateGF());// 1/3に
+			int i = Math.round(1.0F * ret / this.exchangeRateGF());// 1/3に
 			this.setChargeAmount(eng + i);
 		}
 
