@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-// 惑乱のインセンス
+// 浄化のインセンス
 public class ItemIncenseFrankincense extends Item implements IIncenseEffect {
 
 	public ItemIncenseFrankincense() {

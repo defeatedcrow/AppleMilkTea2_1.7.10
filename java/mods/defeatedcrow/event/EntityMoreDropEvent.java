@@ -24,6 +24,7 @@ public class EntityMoreDropEvent {
 		EntityLivingBase entity = event.entityLiving;
 		DamageSource thisSource = event.source;
 		ArrayList<EntityItem> items = event.drops;
+		ItemStack hold = event.entityLiving.getHeldItem();
 
 		// 以下、死んだモブの位置情報
 		World world = entity.worldObj;
@@ -60,6 +61,8 @@ public class EntityMoreDropEvent {
 				if (flowerCount > 0) {
 					for (EntityItem get : items) {
 						if (get == null || get.getEntityItem() == null)
+							continue;
+						if (hold != null && hold.getItem() != null && hold.isItemEqual(get.getEntityItem()))
 							continue;
 						int count = 1 + world.rand.nextInt(flowerCount);
 						get.getEntityItem().stackSize += count;

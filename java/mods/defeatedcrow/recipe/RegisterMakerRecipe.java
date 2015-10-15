@@ -653,6 +653,8 @@ public class RegisterMakerRecipe {
 				SoupType.EMPTY, SoupType.OIL);
 		RecipeRegisterManager.fondueRecipe.registerSource(new ItemStack(DCsAppleMilk.bottleVegiOil, 1, 0),
 				SoupType.EMPTY, SoupType.OIL);
+		RecipeRegisterManager.fondueRecipe.registerSource("cheese", SoupType.EMPTY, SoupType.CHEESE);
+		RecipeRegisterManager.fondueRecipe.registerSource("foodCheese", SoupType.EMPTY, SoupType.CHEESE);
 
 		RecipeRegisterManager.fondueRecipe.register(new ItemStack(Items.bowl, 1, 0), new ItemStack(
 				DCsAppleMilk.baseSoupBowl, 1, 0), SoupType.WATER);
@@ -660,6 +662,8 @@ public class RegisterMakerRecipe {
 				DCsAppleMilk.baseSoupBowl, 1, 1), SoupType.CHOCO);
 		RecipeRegisterManager.fondueRecipe.register(new ItemStack(Items.bowl, 1, 0), new ItemStack(
 				DCsAppleMilk.baseSoupBowl, 1, 2), SoupType.OIL);
+		RecipeRegisterManager.fondueRecipe.register(new ItemStack(Items.bowl, 1, 0), new ItemStack(
+				DCsAppleMilk.baseSoupBowl, 1, 8), SoupType.CHEESE);
 	}
 
 	public static void testRecipe() {

@@ -279,6 +279,7 @@ tile.defeatedcrow.filledSoupPan_TONKOTU.name=土鍋(豚骨)
 tile.defeatedcrow.filledSoupPan_SHOYU.name=土鍋(醤油)
 tile.defeatedcrow.filledSoupPan_BLOOD.name=土鍋(鮮血)
 tile.defeatedcrow.filledSoupPan_PURPLE.name=土鍋(闇)
+tile.defeatedcrow.filledSoupPan_CHEESE.name=土鍋(チーズ)
 tile.defeatedcrow.containerBottleW.name=水ボトルのコンテナ
 tile.defeatedcrow.containerSaddle.name=サドルのコンテナ
 
@@ -512,6 +513,7 @@ item.defeatedcrow.basesoupitem_SHOYU.name=醤油スープボウル
 item.defeatedcrow.basesoupitem_TONKOTU.name=豚骨スープボウル
 item.defeatedcrow.basesoupitem_BLOOD.name=鮮血のボウル
 item.defeatedcrow.basesoupitem_PURPLE.name=暗黒のボウル
+item.defeatedcrow.basesoupitem_CHEESE.name=チーズのボウル
 item.defeatedcrow.dummyItem.name=液体の生成
 item.defeatedcrow.dummyPlate_0.name=鉄板モード
 item.defeatedcrow.dummyPlate_1.name=オーブンモード

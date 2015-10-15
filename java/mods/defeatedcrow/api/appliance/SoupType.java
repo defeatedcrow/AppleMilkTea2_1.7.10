@@ -9,7 +9,8 @@ public enum SoupType {
 	TONKOTU(5, "Tonkotu Soup", "defeatedcrow:textures/blocks/contents/tonkotu.png", "defeatedcrow:contents/tonkotu"),
 	SHOYU(6, "Shoyu Soup", "defeatedcrow:textures/blocks/contents/shoyu.png", "defeatedcrow:contents/shoyu"),
 	BLOOD(7, "Blood", "defeatedcrow:textures/blocks/contents/blood.png", "defeatedcrow:contents/blood"),
-	PURPLE(8, "Darkness", "defeatedcrow:textures/blocks/contents/purple.png", "defeatedcrow:contents/purple");
+	PURPLE(8, "Darkness", "defeatedcrow:textures/blocks/contents/purple.png", "defeatedcrow:contents/purple"),
+	CHEESE(9, "Cheese", "defeatedcrow:textures/blocks/contents/cheese.png", "defeatedcrow:contents/cheese");
 
 	public final int id;
 	public final String texture;
@@ -23,7 +24,17 @@ public enum SoupType {
 		blockTexture = b;
 	}
 
-	public static final SoupType[] types = { EMPTY, WATER, CHOCO, OIL, DASHI, TONKOTU, SHOYU, BLOOD, PURPLE };
+	public static final SoupType[] types = {
+			EMPTY,
+			WATER,
+			CHOCO,
+			OIL,
+			DASHI,
+			TONKOTU,
+			SHOYU,
+			BLOOD,
+			PURPLE,
+			CHEESE };
 
 	public static SoupType getType(int i) {
 		switch (i) {
@@ -45,6 +56,8 @@ public enum SoupType {
 			return BLOOD;
 		case 8:
 			return PURPLE;
+		case 9:
+			return CHEESE;
 		default:
 			return EMPTY;
 

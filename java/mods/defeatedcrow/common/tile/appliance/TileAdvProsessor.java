@@ -1,11 +1,5 @@
 package mods.defeatedcrow.common.tile.appliance;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import mods.defeatedcrow.api.recipe.IProcessorRecipe;
-import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
-import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -72,11 +66,23 @@ public class TileAdvProsessor extends TileProsessor {
 	@Override
 	public int[] getAccessibleSlotsFromSide(int par1) {
 		if (par1 == 2 || par1 == 3) {
-			return new int[] { 0, 2, 3, 4 };
+			return new int[] {
+					0,
+					2,
+					3,
+					4 };
 		} else if (par1 == 4) {
-			return new int[] { 0, 5, 6, 7 };
+			return new int[] {
+					0,
+					5,
+					6,
+					7 };
 		} else if (par1 == 5) {
-			return new int[] { 0, 8, 9, 10 };
+			return new int[] {
+					0,
+					8,
+					9,
+					10 };
 		} else {
 			return super.getAccessibleSlotsFromSide(par1);
 		}
@@ -86,6 +92,13 @@ public class TileAdvProsessor extends TileProsessor {
 	@Override
 	public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3) {
 		return par2ItemStack.getItem() != DCsAppleMilk.slotPanel;
+	}
+
+	// 材料欄に電池が入らないように
+	@Override
+	public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {
+		return (par1 == 1 || par1 > 10) ? false : (par1 == 0 ? this.isItemFuel(par2ItemStack) : !this
+				.isItemFuel(par2ItemStack));
 	}
 
 	@Override

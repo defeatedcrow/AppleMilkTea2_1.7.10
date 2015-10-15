@@ -36,7 +36,8 @@ public class ItemBaseSoupBowl extends EdibleEntityItem2 {
 			SoupType.SHOYU,
 			SoupType.TONKOTU,
 			SoupType.BLOOD,
-			SoupType.PURPLE };
+			SoupType.PURPLE,
+			SoupType.CHEESE };
 
 	public ItemBaseSoupBowl() {
 		super(true, false);
@@ -64,7 +65,7 @@ public class ItemBaseSoupBowl extends EdibleEntityItem2 {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int par1) {
 		int m = par1 & 15;
-		int j = MathHelper.clamp_int(m, 0, types.length);
+		int j = MathHelper.clamp_int(m, 0, types.length - 1);
 		return par1 > 15 ? this.innerType[j] : this.iconType[j];
 	}
 
@@ -85,6 +86,7 @@ public class ItemBaseSoupBowl extends EdibleEntityItem2 {
 		par3List.add(new ItemStack(this, 1, 0));
 		par3List.add(new ItemStack(this, 1, 1));
 		par3List.add(new ItemStack(this, 1, 2));
+		par3List.add(new ItemStack(this, 1, 8));
 		if (AddonIntegration.loadedJP()) {
 			par3List.add(new ItemStack(this, 1, 3));
 			par3List.add(new ItemStack(this, 1, 4));
