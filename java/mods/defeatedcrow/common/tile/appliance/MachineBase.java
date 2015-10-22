@@ -617,9 +617,11 @@ public abstract class MachineBase extends TileEntity implements ISidedInventory,
 	public void closeInventory() {
 	}
 
+	// 材料欄に電池が入らないように
 	@Override
 	public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {
-		return (par1 == 1 || par1 > 10) ? false : (par1 == 0 ? this.isItemFuel(par2ItemStack) : true);
+		return (par1 == 1 || par1 > 10) ? false : (par1 == 0 ? this.isItemFuel(par2ItemStack) : !this
+				.isItemFuel(par2ItemStack));
 	}
 
 	// ホッパーにアイテムの受け渡しをする際の優先度

@@ -116,12 +116,16 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 
-@Mod(modid = "DCsAppleMilk", name = "Apple&Milk&Tea!", version = "1.7.10_2.8g",
+@Mod(
+		modid = "DCsAppleMilk",
+		name = "Apple&Milk&Tea!",
+		version = "1.7.10_2.8j",
 		dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class DCsAppleMilk {
 
 	// プロキシの登録
-	@SidedProxy(clientSide = "mods.defeatedcrow.client.ClientProxy",
+	@SidedProxy(
+			clientSide = "mods.defeatedcrow.client.ClientProxy",
 			serverSide = "mods.defeatedcrow.common.CommonProxy")
 	public static CommonProxy proxy;
 
@@ -1168,7 +1172,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "g";
+		return "j";
 	}
 
 	public String getModName() {

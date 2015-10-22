@@ -94,13 +94,6 @@ public class TileAdvProsessor extends TileProsessor {
 		return par2ItemStack.getItem() != DCsAppleMilk.slotPanel;
 	}
 
-	// 材料欄に電池が入らないように
-	@Override
-	public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {
-		return (par1 == 1 || par1 > 10) ? false : (par1 == 0 ? this.isItemFuel(par2ItemStack) : !this
-				.isItemFuel(par2ItemStack));
-	}
-
 	@Override
 	public String getInventoryName() {
 		return "Hyper Jaw Crusher";

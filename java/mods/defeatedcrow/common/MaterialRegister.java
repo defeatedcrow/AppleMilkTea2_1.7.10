@@ -631,8 +631,8 @@ public class MaterialRegister {
 	}
 
 	static void addTools() {
-		DCsAppleMilk.DCgrater = (ItemGrater) (new ItemGrater()).setUnlocalizedName("defeatedcrow.grater")
-				.setCreativeTab(DCsAppleMilk.applemilk);
+		DCsAppleMilk.DCgrater = (new ItemGrater()).setUnlocalizedName("defeatedcrow.grater").setCreativeTab(
+				DCsAppleMilk.applemilk);
 
 		DCsAppleMilk.chopsticks = (new ItemChopsticks()).setUnlocalizedName("defeatedcrow.chopsticks").setCreativeTab(
 				DCsAppleMilk.applemilkContainer);
@@ -712,8 +712,7 @@ public class MaterialRegister {
 		// DCsAppleMilk.filledPan2 = (new BlockFilledPan2()).
 		// setBlockName("defeatedcrow.soupPan_2");
 
-		DCsAppleMilk.filledChocoPan = (new BlockFilledChocoPan()).setBlockName("defeatedcrow.soupPan_3")
-				.setCreativeTab(DCsAppleMilk.applemilk);
+		DCsAppleMilk.filledChocoPan = (new BlockFilledChocoPan()).setBlockName("defeatedcrow.soupPan_3");
 
 		DCsAppleMilk.bowlBlock = (new BlockBowl()).setBlockName("defeatedcrow.bowlBlock").setCreativeTab(
 				DCsAppleMilk.applemilkFood);

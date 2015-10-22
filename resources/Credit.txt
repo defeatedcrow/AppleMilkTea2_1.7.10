@@ -1,0 +1,24 @@
+Apple&Milk&Tea! mod is authored by defeatedcrow.
+wiki: http://defeatedcrow.wiki.fc2.com/
+forum (unofficial Japanese forum): http://forum.minecraftuser.jp/viewtopic.php?f=13&t=17657
+github: https://github.com/defeatedcrow/AppleMilkTea2_1.7.10
+
+# main author
+-defeatedcrow: created almost code and all resources (textures and sounds).
+
+# contributors
+-RazzberryFox: fixed PacketHandler at old version, and own the curseforge topic of AMT2.
+ (http://minecraft.curseforge.com/projects/applemilktea2)
+-A.K.: created coremod of AMT (AppleMilkCore), and the PotionExtension mod.
+-shift02: fixed many code. (ex. fluid icon renderer on GUI)
+-Belgabor: fixed some bugs and language file.
+
+# language file authors
+-tsuteto: ja_JP and en_US
+-sfmiyuki: zh_CN
+-TunkShif: zh_CN
+-Mrkwtkr: zh_CN
+-Belgabor: en_US
+-zoejool8bq: zh_TW
+-doublrcore: zh_CN, zh_TW
+-doushio9967: zh_CN
