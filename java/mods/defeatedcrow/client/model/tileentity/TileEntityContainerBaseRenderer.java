@@ -81,7 +81,7 @@ public class TileEntityContainerBaseRenderer extends TileEntitySpecialRenderer {
 				GL11.glScalef(1.2F, 1.2F, 1.2F);
 			}
 
-			RenderItem.renderInFrame = false;
+			RenderItem.renderInFrame = true;
 			RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 			RenderItem.renderInFrame = false;
 		}
