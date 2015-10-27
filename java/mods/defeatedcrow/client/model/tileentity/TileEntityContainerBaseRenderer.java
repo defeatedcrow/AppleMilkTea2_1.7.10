@@ -3,6 +3,7 @@ package mods.defeatedcrow.client.model.tileentity;
 import mods.defeatedcrow.common.block.container.BlockContainerBase;
 import mods.defeatedcrow.common.tile.TileContainerBase;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -33,6 +34,7 @@ public class TileEntityContainerBaseRenderer extends TileEntitySpecialRenderer {
 	public void setRotation(TileContainerBase tile, float par1, float par2, float par3) {
 		// inner
 		if (tile.getWorldObj() != null) {
+			boolean isFancy = Minecraft.isFancyGraphicsEnabled();
 			Block block = tile.getBlockType();
 			int meta = tile.getBlockMetadata();
 			if (block instanceof BlockContainerBase) {
@@ -50,6 +52,10 @@ public class TileEntityContainerBaseRenderer extends TileEntitySpecialRenderer {
 							GL11.glTranslatef(par1 + 0.125F + f1, par2 + 0.35F, par3 + 0.3F + f2);
 							GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
 							this.renderInner(tile, item);
+							if (!isFancy) {
+								GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+								this.renderInner(tile, item);
+							}
 							GL11.glPopMatrix();
 						}
 					} else {
@@ -60,9 +66,14 @@ public class TileEntityContainerBaseRenderer extends TileEntitySpecialRenderer {
 							GL11.glTranslatef(par1 + 0.3F + f2, par2 + 0.35F, par3 + 0.125F + f1);
 							GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
 							this.renderInner(tile, item);
+							if (!isFancy) {
+								GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+								this.renderInner(tile, item);
+							}
 							GL11.glPopMatrix();
 						}
 					}
+
 				}
 			}
 		}
@@ -81,9 +92,11 @@ public class TileEntityContainerBaseRenderer extends TileEntitySpecialRenderer {
 				GL11.glScalef(1.2F, 1.2F, 1.2F);
 			}
 
-			RenderItem.renderInFrame = false;
+			RenderItem.renderInFrame = true;
 			RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 			RenderItem.renderInFrame = false;
+
+			GL11.glScalef(1.0F, 1.0F, 1.0F);
 		}
 	}
 

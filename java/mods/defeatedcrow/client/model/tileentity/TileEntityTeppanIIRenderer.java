@@ -1,6 +1,7 @@
 package mods.defeatedcrow.client.model.tileentity;
 
 import mods.defeatedcrow.common.tile.appliance.TileTeppanII;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -32,13 +33,19 @@ public class TileEntityTeppanIIRenderer extends TileEntitySpecialRenderer {
 
 	public void setRotation(TileTeppanII par0Tile, float par1, float par2, float par3) {
 		int i = par0Tile.getCookTime();
+		boolean isFancy = Minecraft.isFancyGraphicsEnabled();
+
 		float f = MathHelper.clamp_int(i, 0, 360);
 		// inner
 		if (par0Tile.getWorldObj() != null) {
 			GL11.glPushMatrix();
-			GL11.glTranslatef((float) par1 + 0.5F, (float) par2 + 0.15F, (float) par3 + 0.5F);
+			GL11.glTranslatef(par1 + 0.5F, par2 + 0.15F, par3 + 0.5F);
 			GL11.glRotatef(f, 0.0F, 1.0F, 0.0F);
 			this.renderInner(par0Tile);
+			if (!isFancy) {
+				GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+				this.renderInner(par0Tile);
+			}
 			GL11.glPopMatrix();
 		}
 	}
@@ -63,7 +70,7 @@ public class TileEntityTeppanIIRenderer extends TileEntitySpecialRenderer {
 				GL11.glScalef(0.8F, 0.8F, 0.8F);
 			}
 
-			RenderItem.renderInFrame = false;
+			RenderItem.renderInFrame = true;
 			RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 			RenderItem.renderInFrame = false;
 		}

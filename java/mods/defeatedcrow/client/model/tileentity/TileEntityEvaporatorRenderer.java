@@ -60,8 +60,8 @@ public class TileEntityEvaporatorRenderer extends TileEntitySpecialRenderer {
 		GL11.glPushMatrix();
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-		GL11.glTranslatef((float) par1 + 0.5F, (float) par2 + 1.5F, (float) par3 + 0.5F);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glTranslatef(par1 + 0.5F, par2 + 1.5F, par3 + 0.5F);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
 		GL11.glRotatef(f, 0.0F, 1.0F, 0.0F);
@@ -86,7 +86,7 @@ public class TileEntityEvaporatorRenderer extends TileEntitySpecialRenderer {
 		GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-		GL11.glTranslatef((float) par1 + 0.5F, (float) par2 + 1.5F, (float) par3 + 0.5F);
+		GL11.glTranslatef(par1 + 0.5F, par2 + 1.5F, par3 + 0.5F);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
 		GL11.glRotatef(f, 0.0F, 1.0F, 0.0F);
