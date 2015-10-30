@@ -47,7 +47,7 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 		this.plateItems = new ItemStack[this.getSizeInventory()];
 
 		for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte b0 = nbttagcompound1.getByte("Slot");
 
 			if (b0 >= 0 && b0 < this.plateItems.length) {
@@ -69,7 +69,7 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 
 		// 燃焼時間や調理時間などの書き込み
 		par1NBTTagCompound.setShort("CookTime", (short) this.cookTime);
-		par1NBTTagCompound.setShort("FinishTime", (short) this.cookFinishTime);
+		par1NBTTagCompound.setShort("FinTime", (short) this.cookFinishTime);
 		par1NBTTagCompound.setShort("FailTime", (short) this.cookFailTime);
 
 		par1NBTTagCompound.setBoolean("finish", this.fisnished);
@@ -343,8 +343,13 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 	/* ========== 以下、ISidedInventoryのメソッド ========== */
 
 	private static final int[] slots_top = new int[] { 0 };
-	private static final int[] slots_bottom = new int[] { 1, 2 };
-	private static final int[] slots_sides = new int[] { 0, 1, 2 };
+	private static final int[] slots_bottom = new int[] {
+			1,
+			2 };
+	private static final int[] slots_sides = new int[] {
+			0,
+			1,
+			2 };
 
 	public ItemStack[] plateItems = new ItemStack[3];
 
@@ -437,9 +442,8 @@ public class TileTeppanII extends TileEntity implements ISidedInventory, IPipeCo
 	// par1EntityPlayerがTileEntityを使えるかどうか
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
-		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false
-				: par1EntityPlayer.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
-						(double) this.zCoord + 0.5D) <= 64.0D;
+		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer
+				.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
 	}
 
 	@Override
