@@ -19,6 +19,7 @@ import mods.defeatedcrow.common.block.ItemChalcedony;
 import mods.defeatedcrow.common.block.ItemChalcedonyLamp;
 import mods.defeatedcrow.common.block.ItemChopsticksBox;
 import mods.defeatedcrow.common.block.ItemWoodPanel;
+import mods.defeatedcrow.common.block.appliance.BlockAdvProcessor;
 import mods.defeatedcrow.common.block.appliance.BlockAdvProsessor;
 import mods.defeatedcrow.common.block.appliance.BlockEmptyCup;
 import mods.defeatedcrow.common.block.appliance.BlockEmptyPanG;
@@ -26,6 +27,7 @@ import mods.defeatedcrow.common.block.appliance.BlockEvaporator;
 import mods.defeatedcrow.common.block.appliance.BlockFilledChocoPan;
 import mods.defeatedcrow.common.block.appliance.BlockFilledSoupPan;
 import mods.defeatedcrow.common.block.appliance.BlockIceMaker;
+import mods.defeatedcrow.common.block.appliance.BlockProcessor;
 import mods.defeatedcrow.common.block.appliance.BlockProsessor;
 import mods.defeatedcrow.common.block.appliance.BlockTeaMakerBlack;
 import mods.defeatedcrow.common.block.appliance.BlockTeaMakerNext;
@@ -312,11 +314,14 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.emptyPanGaiden, ItemPanG.class, "defeatedcrow.emptyPanG");
 		GameRegistry.registerBlock(DCsAppleMilk.filledSoupPan, ItemFilledSoupPan.class, "defeatedcrow.filledSoupPan");
 		GameRegistry.registerBlock(DCsAppleMilk.iceMaker, "defeatedcrow.iceMaker");
-		GameRegistry.registerBlock(DCsAppleMilk.teppann, ItemTeppann.class, "defeatedcrow.teppann");
 		GameRegistry.registerBlock(DCsAppleMilk.teppanII, ItemAppliance.class, "defeatedcrow.teppanII");
+		GameRegistry.registerBlock(DCsAppleMilk.processor, ItemMachineBlock.class, "defeatedcrow.processor");
+		GameRegistry.registerBlock(DCsAppleMilk.advProcessor, ItemMachineBlock.class, "defeatedcrow.advProcessor");
+		GameRegistry.registerBlock(DCsAppleMilk.evaporator, ItemMachineBlock.class, "defeatedcrow.evaporator");
+		// deprecated
+		GameRegistry.registerBlock(DCsAppleMilk.teppann, ItemTeppann.class, "defeatedcrow.teppann");
 		GameRegistry.registerBlock(DCsAppleMilk.prosessor, ItemMachineBlock.class, "defeatedcrow.prosessor");
 		GameRegistry.registerBlock(DCsAppleMilk.advProsessor, ItemMachineBlock.class, "defeatedcrow.advProsessor");
-		GameRegistry.registerBlock(DCsAppleMilk.evaporator, ItemMachineBlock.class, "defeatedcrow.evaporator");
 
 		// エネルギー
 		GameRegistry.registerBlock(DCsAppleMilk.redGel, "defeatedcrow.redGel");
@@ -951,18 +956,16 @@ public class MaterialRegister {
 
 		DCsAppleMilk.filledSoupPan = (new BlockFilledSoupPan()).setBlockName("defeatedcrow.filledSoupPan");
 
-		DCsAppleMilk.teppann = (new BlockTeppann()).setBlockName("defeatedcrow.cookingIronPlate");
-
 		DCsAppleMilk.teppanII = (new BlockTeppanII()).setBlockName("defeatedcrow.cookingIronPlateII").setCreativeTab(
 				DCsAppleMilk.applemilk);
 
 		DCsAppleMilk.iceMaker = (new BlockIceMaker()).setBlockName("defeatedcrow.iceMaker").setCreativeTab(
 				DCsAppleMilk.applemilk);
 
-		DCsAppleMilk.prosessor = (new BlockProsessor()).setBlockName("defeatedcrow.prosessor").setCreativeTab(
+		DCsAppleMilk.processor = (new BlockProcessor()).setBlockName("defeatedcrow.processor").setCreativeTab(
 				DCsAppleMilk.applemilk);
 
-		DCsAppleMilk.advProsessor = (new BlockAdvProsessor()).setBlockName("defeatedcrow.advProsessor").setCreativeTab(
+		DCsAppleMilk.advProcessor = (new BlockAdvProcessor()).setBlockName("defeatedcrow.advProcessor").setCreativeTab(
 				DCsAppleMilk.applemilk);
 
 		DCsAppleMilk.evaporator = (new BlockEvaporator()).setBlockName("defeatedcrow.evaporator").setCreativeTab(
@@ -970,6 +973,14 @@ public class MaterialRegister {
 
 		DCsAppleMilk.slotPanel = (new ItemSlotPanel()).setUnlocalizedName("defeatedcrow.slotPanel").setCreativeTab(
 				DCsAppleMilk.applemilk);
+
+		// deprecated
+
+		DCsAppleMilk.teppann = (new BlockTeppann()).setBlockName("defeatedcrow.cookingIronPlate");
+
+		DCsAppleMilk.prosessor = (new BlockProsessor()).setBlockName("defeatedcrow.prosessor");
+
+		DCsAppleMilk.advProsessor = (new BlockAdvProsessor()).setBlockName("defeatedcrow.advProsessor");
 
 		// エネルギー
 		DCsAppleMilk.batteryItem = (new ItemBattery()).setUnlocalizedName("defeatedcrow.battery").setCreativeTab(

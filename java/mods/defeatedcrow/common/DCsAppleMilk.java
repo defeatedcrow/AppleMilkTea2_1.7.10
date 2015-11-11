@@ -105,6 +105,7 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLConstructionEvent;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -119,7 +120,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.8k",
+		version = "1.7.10_2.8l",
 		dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class DCsAppleMilk {
 
@@ -147,13 +148,11 @@ public class DCsAppleMilk {
 	public static Block emptyCup;
 	public static Block iceMaker;
 	public static Block emptyPanGaiden;
-	@Deprecated
-	public static Block filledChocoPan;
 	public static Block filledSoupPan;
 	public static Block teppanII;
-	public static Block prosessor;
+	public static Block processor;
 	public static Block evaporator;
-	public static Block advProsessor;
+	public static Block advProcessor;
 	public static Block incenseBase;
 	// エネルギー
 	public static Block batBox;
@@ -350,6 +349,12 @@ public class DCsAppleMilk {
 	public static Item wallMug;
 	@Deprecated
 	public static Block teppann;
+	@Deprecated
+	public static Block filledChocoPan;
+	@Deprecated
+	public static Block prosessor;
+	@Deprecated
+	public static Block advProsessor;
 
 	// ポーションのインスタンス
 	public static Potion Immunization;
@@ -366,9 +371,9 @@ public class DCsAppleMilk {
 	// gui
 	public int guiIdAutoMaker = 1;
 	public int guiIceMaker = 2;
-	public int guiProsessor = 3;
+	public int guiProcessor = 3;
 	public int guiEvaporator = 4;
-	public int guiAdvProsessor = 5;
+	public int guiAdvProcessor = 5;
 	public int guiBatBox = 6;
 
 	// villager関連
@@ -443,7 +448,7 @@ public class DCsAppleMilk {
 	public static int modelCordial;
 	public static int modelCassisTree;
 	public static int modelAlcoholCup;
-	public static int modelProsessor;
+	public static int modelProcessor;
 	public static int modelEvaporator;
 	public static int modelJawCrusher;
 	public static int modelCPanel;
@@ -759,7 +764,7 @@ public class DCsAppleMilk {
 		this.modelCordial = proxy.getRenderID();
 		this.modelCassisTree = proxy.getRenderID();
 		this.modelAlcoholCup = proxy.getRenderID();
-		this.modelProsessor = proxy.getRenderID();
+		this.modelProcessor = proxy.getRenderID();
 		this.modelEvaporator = proxy.getRenderID();
 		this.modelJawCrusher = proxy.getRenderID();
 		this.modelCPanel = proxy.getRenderID();
@@ -954,15 +959,19 @@ public class DCsAppleMilk {
 		}
 
 		if (Loader.isModLoaded("mceconomy2")) {
-			AMTLogger.loadingModInfo("MCEconomy2");
-			try {
-				this.SuccessLoadEconomy = true;
-				(new MCEconomyPlugin()).registerSellable();
-				AMTLogger.loadedModInfo("MCEconomy2");
+			ModContainer mod = Loader.instance().getIndexedModList().get("mceconomy2");
+			String s = mod.getVersion();
+			AMTLogger.loadingModInfo("MCEconomy2 " + s);
+			if (s.contains("-2.5.")) {
+				try {
+					this.SuccessLoadEconomy = true;
+					(new MCEconomyPlugin()).registerSellable();
+					AMTLogger.loadedModInfo("MCEconomy2");
 
-			} catch (Exception e) {
-				AMTLogger.failLoadingModInfo("MCEconomy");
-				e.printStackTrace(System.err);
+				} catch (Exception e) {
+					AMTLogger.failLoadingModInfo("MCEconomy2");
+					e.printStackTrace(System.err);
+				}
 			}
 		}
 
@@ -1172,7 +1181,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "k";
+		return "l";
 	}
 
 	public String getModName() {

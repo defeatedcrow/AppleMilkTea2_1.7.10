@@ -100,7 +100,7 @@ import mods.defeatedcrow.client.renderblocks.RenderIncenseBase;
 import mods.defeatedcrow.client.renderblocks.RenderJawCrusher;
 import mods.defeatedcrow.client.renderblocks.RenderKinoko;
 import mods.defeatedcrow.client.renderblocks.RenderLargeBottle;
-import mods.defeatedcrow.client.renderblocks.RenderProsessor;
+import mods.defeatedcrow.client.renderblocks.RenderProcessor;
 import mods.defeatedcrow.client.renderblocks.RenderSoupPan;
 import mods.defeatedcrow.client.renderblocks.RenderSoupPanFilled;
 import mods.defeatedcrow.client.renderblocks.RenderTeaMakerNext;
@@ -169,12 +169,14 @@ import mods.defeatedcrow.common.tile.TileSteak;
 import mods.defeatedcrow.common.tile.TileVegiBag;
 import mods.defeatedcrow.common.tile.TileWipeBox;
 import mods.defeatedcrow.common.tile.TileWipeBox2;
+import mods.defeatedcrow.common.tile.appliance.TileAdvProcessor;
 import mods.defeatedcrow.common.tile.appliance.TileAdvProsessor;
 import mods.defeatedcrow.common.tile.appliance.TileEvaporator;
 import mods.defeatedcrow.common.tile.appliance.TileFilledSoupPan;
 import mods.defeatedcrow.common.tile.appliance.TileIceMaker;
 import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
 import mods.defeatedcrow.common.tile.appliance.TilePanG;
+import mods.defeatedcrow.common.tile.appliance.TileProcessor;
 import mods.defeatedcrow.common.tile.appliance.TileProsessor;
 import mods.defeatedcrow.common.tile.appliance.TileTeppanII;
 import mods.defeatedcrow.common.tile.appliance.TileTeppann;
@@ -220,7 +222,7 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerTileEntity() {
-		GameRegistry.registerTileEntity(TileTeppann.class, "TileTeppann");
+
 		GameRegistry.registerTileEntity(TileHasDirection.class, "TileHasDirection");
 		GameRegistry.registerTileEntity(TileHasRemaining.class, "TileHasRemaining");
 		GameRegistry.registerTileEntity(TileHasRemain2.class, "TileHasRemaining2");
@@ -236,11 +238,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerTileEntity(TileSteak.class, "TileSteak", new TileEntitySteakRenderer());
 		ClientRegistry.registerTileEntity(TileMakerHandle.class, "TileMakerHandle", new TileEntityMakerRenderer());
 		ClientRegistry.registerTileEntity(TilePanHandle.class, "TilePanHandle", new TileEntityPanHandleRenderer());
-		ClientRegistry.registerTileEntity(TileChocoPan.class, "TileChocoPan", new TileEntityChocoPanRenderer());
-		ClientRegistry
-				.registerTileEntity(TileFilledSoupPan.class, "TileFilledSoupPan", new TileEntitySoupPanRenderer());
 		ClientRegistry.registerTileEntity(TileMakerNext.class, "TilemakerNext", new TileEntityMakerNextRenderer());
-		ClientRegistry.registerTileEntity(TileAutoMaker.class, "TileAutoMaker", new TileEntityAutoMakerRenderer());
 		ClientRegistry.registerTileEntity(TileWipeBox.class, "TileWipeBox", new TileEntityWipeBoxRenderer());
 		ClientRegistry.registerTileEntity(TileIceMaker.class, "TileIceMaker", new TileEntityIceMakerRenderer());
 		ClientRegistry.registerTileEntity(TileIceCream.class, "TileIceCream", new TileEntityIceCreamRenderer());
@@ -254,8 +252,8 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerTileEntity(TileCLamp.class, "TileChalcedonyLamp", new TileEntityCLampRenderer());
 		ClientRegistry.registerTileEntity(TileCordial.class, "TileCordial", new TileEntityCordialRenderer());
 		ClientRegistry.registerTileEntity(TileAlcoholCup.class, "TileAlcoholCup", new TileEntityAlcoholCupRenderer());
-		ClientRegistry.registerTileEntity(TileProsessor.class, "TileProsessor", new TileEntityProcessorRenderer());
-		ClientRegistry.registerTileEntity(TileAdvProsessor.class, "TileAdvProsessor",
+		ClientRegistry.registerTileEntity(TileProcessor.class, "TileProcessor", new TileEntityProcessorRenderer());
+		ClientRegistry.registerTileEntity(TileAdvProcessor.class, "TileAdvProcessor",
 				new TileEntityJawCrusherRenderer());
 		ClientRegistry.registerTileEntity(TileEvaporator.class, "TileEvaporator", new TileEntityEvaporatorRenderer());
 		ClientRegistry.registerTileEntity(TileVegiBag.class, "TileVegiBag", new TileEntityVegiBagRenderer());
@@ -277,6 +275,16 @@ public class ClientProxy extends CommonProxy {
 		GameRegistry.registerTileEntity(TileGelBat.class, "TileGelBattery");
 		ClientRegistry.registerTileEntity(TileContainerBase.class, "TileDCContainerBase",
 				new TileEntityContainerBaseRenderer());
+
+		// deprecated
+		GameRegistry.registerTileEntity(TileTeppann.class, "TileTeppann");
+		ClientRegistry.registerTileEntity(TileChocoPan.class, "TileChocoPan", new TileEntityChocoPanRenderer());
+		ClientRegistry
+				.registerTileEntity(TileFilledSoupPan.class, "TileFilledSoupPan", new TileEntitySoupPanRenderer());
+		ClientRegistry.registerTileEntity(TileAutoMaker.class, "TileAutoMaker", new TileEntityAutoMakerRenderer());
+		ClientRegistry.registerTileEntity(TileProsessor.class, "TileProsessor", new TileEntityProcessorRenderer());
+		ClientRegistry.registerTileEntity(TileAdvProsessor.class, "TileAdvProsessor",
+				new TileEntityJawCrusherRenderer());
 	}
 
 	@Override
@@ -313,7 +321,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerBlockHandler(new RenderCassisTree());
 		RenderingRegistry.registerBlockHandler(new RenderCordial());
 		RenderingRegistry.registerBlockHandler(new RenderAlcoholCup());
-		RenderingRegistry.registerBlockHandler(new RenderProsessor());
+		RenderingRegistry.registerBlockHandler(new RenderProcessor());
 		RenderingRegistry.registerBlockHandler(new RenderEvaporator());
 		RenderingRegistry.registerBlockHandler(new RenderJawCrusher());
 		RenderingRegistry.registerBlockHandler(new RenderCPanel());

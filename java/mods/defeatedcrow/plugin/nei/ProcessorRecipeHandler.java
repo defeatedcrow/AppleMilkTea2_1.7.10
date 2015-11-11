@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
-import mods.defeatedcrow.client.gui.GuiProsessor;
+import mods.defeatedcrow.client.gui.GuiProcessor;
 import mods.defeatedcrow.recipe.ProcessorRecipeRegister.ProcessorRecipe;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
@@ -16,8 +16,34 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 
 public class ProcessorRecipeHandler extends TemplateRecipeHandler {
 
-	public int[][] stackorder = new int[][] { { 0, 0 }, { 1, 0 }, { 0, 1 }, { 1, 1 }, { 0, 2 }, { 1, 2 }, { 2, 0 },
-			{ 2, 1 }, { 2, 2 } };
+	public int[][] stackorder = new int[][] {
+			{
+					0,
+					0 },
+			{
+					1,
+					0 },
+			{
+					0,
+					1 },
+			{
+					1,
+					1 },
+			{
+					0,
+					2 },
+			{
+					1,
+					2 },
+			{
+					2,
+					0 },
+			{
+					2,
+					1 },
+			{
+					2,
+					2 } };
 
 	private List<ProcessorRecipe> recipes;
 
@@ -87,7 +113,7 @@ public class ProcessorRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public Class<? extends GuiContainer> getGuiClass() {
-		return GuiProsessor.class;
+		return GuiProcessor.class;
 	}
 
 	@Override
@@ -118,7 +144,9 @@ public class ProcessorRecipeHandler extends TemplateRecipeHandler {
 					}
 				}
 
-				ItemStack[] out = new ItemStack[] { recipe.getOutput(), recipe.getSecondary() };
+				ItemStack[] out = new ItemStack[] {
+						recipe.getOutput(),
+						recipe.getSecondary() };
 				if (flag)
 					arecipes.add(new RecipeCacher(in, out));
 			}
@@ -145,7 +173,9 @@ public class ProcessorRecipeHandler extends TemplateRecipeHandler {
 						flag = false;
 				}
 			}
-			ItemStack[] out = new ItemStack[] { recipe.getOutput(), recipe.getSecondary() };
+			ItemStack[] out = new ItemStack[] {
+					recipe.getOutput(),
+					recipe.getSecondary() };
 			if (flag && out[0] != null && NEIServerUtils.areStacksSameType(out[0], result)) {
 				arecipes.add(new RecipeCacher(in, out));
 			}
@@ -166,7 +196,9 @@ public class ProcessorRecipeHandler extends TemplateRecipeHandler {
 			if (recipe == null)
 				continue;
 			List<Object> in = recipe.getProcessedInput();
-			ItemStack[] out = new ItemStack[] { recipe.getOutput(), recipe.getSecondary() };
+			ItemStack[] out = new ItemStack[] {
+					recipe.getOutput(),
+					recipe.getSecondary() };
 
 			boolean flag = recipe.isFoodRecipe() && this.contain(in, ingredient);
 			// input中にnullがないかチェックする。鉱石辞書レシピ用。

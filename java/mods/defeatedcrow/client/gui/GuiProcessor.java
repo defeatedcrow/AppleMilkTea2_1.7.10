@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.PropertyHandler;
-import mods.defeatedcrow.common.tile.appliance.ContainerProsessor;
-import mods.defeatedcrow.common.tile.appliance.TileProsessor;
+import mods.defeatedcrow.common.tile.appliance.ContainerProcessor;
+import mods.defeatedcrow.common.tile.appliance.TileProcessor;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,13 +14,13 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-public class GuiProsessor extends GuiContainer {
+public class GuiProcessor extends GuiContainer {
 
-	private TileProsessor tileentity;
-	private TileProsessor inventory;
+	private TileProcessor tileentity;
+	private TileProcessor inventory;
 
-	public GuiProsessor(EntityPlayer player, TileProsessor par2TileEntity) {
-		super(new ContainerProsessor(player, par2TileEntity));
+	public GuiProcessor(EntityPlayer player, TileProcessor par2TileEntity) {
+		super(new ContainerProcessor(player, par2TileEntity));
 		this.tileentity = par2TileEntity;
 		this.inventory = par2TileEntity;
 	}

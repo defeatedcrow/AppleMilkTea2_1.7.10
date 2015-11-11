@@ -1,11 +1,11 @@
 package mods.defeatedcrow.common;
 
-import mods.defeatedcrow.client.gui.GuiAdvProsessor;
+import mods.defeatedcrow.client.gui.GuiAdvProcessor;
 import mods.defeatedcrow.client.gui.GuiAutoMaker;
 import mods.defeatedcrow.client.gui.GuiBatBox;
 import mods.defeatedcrow.client.gui.GuiEvaporator;
 import mods.defeatedcrow.client.gui.GuiIceMaker;
-import mods.defeatedcrow.client.gui.GuiProsessor;
+import mods.defeatedcrow.client.gui.GuiProcessor;
 import mods.defeatedcrow.common.tile.ContainerAutoMaker;
 import mods.defeatedcrow.common.tile.TileAlcoholCup;
 import mods.defeatedcrow.common.tile.TileAutoMaker;
@@ -42,16 +42,18 @@ import mods.defeatedcrow.common.tile.TileSteak;
 import mods.defeatedcrow.common.tile.TileVegiBag;
 import mods.defeatedcrow.common.tile.TileWipeBox;
 import mods.defeatedcrow.common.tile.TileWipeBox2;
-import mods.defeatedcrow.common.tile.appliance.ContainerAdvProsessor;
+import mods.defeatedcrow.common.tile.appliance.ContainerAdvProcessor;
 import mods.defeatedcrow.common.tile.appliance.ContainerEvaporator;
 import mods.defeatedcrow.common.tile.appliance.ContainerIceMaker;
-import mods.defeatedcrow.common.tile.appliance.ContainerProsessor;
+import mods.defeatedcrow.common.tile.appliance.ContainerProcessor;
+import mods.defeatedcrow.common.tile.appliance.TileAdvProcessor;
 import mods.defeatedcrow.common.tile.appliance.TileAdvProsessor;
 import mods.defeatedcrow.common.tile.appliance.TileEvaporator;
 import mods.defeatedcrow.common.tile.appliance.TileFilledSoupPan;
 import mods.defeatedcrow.common.tile.appliance.TileIceMaker;
 import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
 import mods.defeatedcrow.common.tile.appliance.TilePanG;
+import mods.defeatedcrow.common.tile.appliance.TileProcessor;
 import mods.defeatedcrow.common.tile.appliance.TileProsessor;
 import mods.defeatedcrow.common.tile.appliance.TileTeppanII;
 import mods.defeatedcrow.common.tile.appliance.TileTeppann;
@@ -76,7 +78,6 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileHasRemaining.class, "TileHasRemaining");
 		GameRegistry.registerTileEntity(TileHasRemain2.class, "TileHasRemaining2");
 
-		GameRegistry.registerTileEntity(TileTeppann.class, "TileTeppann");
 		GameRegistry.registerTileEntity(TileCupHandle.class, "TileCupHandle");
 		GameRegistry.registerTileEntity(TileBread.class, "TileBread");
 		GameRegistry.registerTileEntity(TileDummy.class, "TileDummy");
@@ -86,10 +87,8 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileSteak.class, "TileSteak");
 		GameRegistry.registerTileEntity(TileMakerHandle.class, "TileMakerHandle");
 		GameRegistry.registerTileEntity(TilePanHandle.class, "TilePanHandle");
-		GameRegistry.registerTileEntity(TileChocoPan.class, "TileChocoPan");
-		GameRegistry.registerTileEntity(TileFilledSoupPan.class, "TileFilledSoupPan");
+
 		GameRegistry.registerTileEntity(TileMakerNext.class, "TileMakerNext");
-		GameRegistry.registerTileEntity(TileAutoMaker.class, "TileAutoMaker");
 		GameRegistry.registerTileEntity(TileWipeBox.class, "TileWipeBox");
 		GameRegistry.registerTileEntity(TileIceMaker.class, "TileIceMaker");
 		GameRegistry.registerTileEntity(TileIceCream.class, "TileIcecream");
@@ -102,9 +101,10 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileCLamp.class, "TileChalcedonyLamp");
 		GameRegistry.registerTileEntity(TileCordial.class, "TileCordial");
 		GameRegistry.registerTileEntity(TileAlcoholCup.class, "TileAlcoholCup");
-		GameRegistry.registerTileEntity(TileProsessor.class, "TileProsessor");
-		GameRegistry.registerTileEntity(TileAdvProsessor.class, "TileAdvProsessor");
+
 		GameRegistry.registerTileEntity(TileEvaporator.class, "TileEvaporator");
+		GameRegistry.registerTileEntity(TileProcessor.class, "TileProcessor");
+		GameRegistry.registerTileEntity(TileAdvProcessor.class, "TileAdvProcessor");
 		GameRegistry.registerTileEntity(TileVegiBag.class, "TileVegiBag");
 		GameRegistry.registerTileEntity(TileCardBoard.class, "TileCardboard");
 		GameRegistry.registerTileEntity(TileCPanel.class, "TileChalcedonyPanel");
@@ -121,6 +121,13 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileHandleEngine.class, "TileEHandle");
 		GameRegistry.registerTileEntity(TileBowlRack.class, "TileBowlRack");
 		GameRegistry.registerTileEntity(TileContainerBase.class, "TileDCContainerBase");
+		// deprecated
+		GameRegistry.registerTileEntity(TileFilledSoupPan.class, "TileFilledSoupPan");
+		GameRegistry.registerTileEntity(TileTeppann.class, "TileTeppann");
+		GameRegistry.registerTileEntity(TileChocoPan.class, "TileChocoPan");
+		GameRegistry.registerTileEntity(TileAutoMaker.class, "TileAutoMaker");
+		GameRegistry.registerTileEntity(TileProsessor.class, "TileProsessor");
+		GameRegistry.registerTileEntity(TileAdvProsessor.class, "TileAdvProsessor");
 	}
 
 	// レンダーIDには-1を返す
@@ -154,10 +161,10 @@ public class CommonProxy implements IGuiHandler {
 			return new ContainerAutoMaker(player.inventory, (TileAutoMaker) tileentity);
 		} else if (tileentity instanceof TileIceMaker) {
 			return new ContainerIceMaker(player, (TileIceMaker) tileentity);
-		} else if (tileentity instanceof TileAdvProsessor) {
-			return new ContainerAdvProsessor(player, (TileAdvProsessor) tileentity);
-		} else if (tileentity instanceof TileProsessor) {
-			return new ContainerProsessor(player, (TileProsessor) tileentity);
+		} else if (tileentity instanceof TileAdvProcessor) {
+			return new ContainerAdvProcessor(player, (TileAdvProcessor) tileentity);
+		} else if (tileentity instanceof TileProcessor) {
+			return new ContainerProcessor(player, (TileProcessor) tileentity);
 		} else if (tileentity instanceof TileEvaporator) {
 			return new ContainerEvaporator(player, (TileEvaporator) tileentity);
 		} else if (tileentity instanceof TileChargerBase) {
@@ -177,10 +184,10 @@ public class CommonProxy implements IGuiHandler {
 			return new GuiAutoMaker(player.inventory, (TileAutoMaker) tileentity);
 		} else if (tileentity instanceof TileIceMaker) {
 			return new GuiIceMaker(player, (TileIceMaker) tileentity);
-		} else if (tileentity instanceof TileAdvProsessor) {
-			return new GuiAdvProsessor(player, (TileAdvProsessor) tileentity);
-		} else if (tileentity instanceof TileProsessor) {
-			return new GuiProsessor(player, (TileProsessor) tileentity);
+		} else if (tileentity instanceof TileAdvProcessor) {
+			return new GuiAdvProcessor(player, (TileAdvProcessor) tileentity);
+		} else if (tileentity instanceof TileProcessor) {
+			return new GuiProcessor(player, (TileProcessor) tileentity);
 		} else if (tileentity instanceof TileEvaporator) {
 			return new GuiEvaporator(player, (TileEvaporator) tileentity);
 		} else if (tileentity instanceof TileChargerBase) {

@@ -1,7 +1,7 @@
 package mods.defeatedcrow.client.model.tileentity;
 
 import mods.defeatedcrow.client.model.model.ModelProcessor;
-import mods.defeatedcrow.common.tile.appliance.TileProsessor;
+import mods.defeatedcrow.common.tile.appliance.TileProcessor;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
@@ -23,7 +23,7 @@ public class TileEntityProcessorRenderer extends TileEntitySpecialRenderer {
 	public static TileEntityProcessorRenderer renderer;
 	private ModelProcessor model = new ModelProcessor();
 
-	public void renderTileEntityModelAt(TileProsessor par1Tile, double par2, double par4, double par6, float par8) {
+	public void renderTileEntityModelAt(TileProcessor par1Tile, double par2, double par4, double par6, float par8) {
 		this.setRotation(par1Tile, (float) par2, (float) par4, (float) par6);
 	}
 
@@ -35,7 +35,7 @@ public class TileEntityProcessorRenderer extends TileEntitySpecialRenderer {
 		renderer = this;
 	}
 
-	public void setRotation(TileProsessor par0Tile, float par1, float par2, float par3) {
+	public void setRotation(TileProcessor par0Tile, float par1, float par2, float par3) {
 		ModelProcessor model = this.model;
 		byte l = (byte) par0Tile.getBlockMetadata();
 
@@ -83,6 +83,6 @@ public class TileEntityProcessorRenderer extends TileEntitySpecialRenderer {
 
 	@Override
 	public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8) {
-		this.renderTileEntityModelAt((TileProsessor) par1TileEntity, par2, par4, par6, par8);
+		this.renderTileEntityModelAt((TileProcessor) par1TileEntity, par2, par4, par6, par8);
 	}
 }

@@ -1,7 +1,7 @@
 package mods.defeatedcrow.client.model.tileentity;
 
 import mods.defeatedcrow.client.model.model.ModelJawCrusher;
-import mods.defeatedcrow.common.tile.appliance.TileAdvProsessor;
+import mods.defeatedcrow.common.tile.appliance.TileAdvProcessor;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
@@ -22,7 +22,7 @@ public class TileEntityJawCrusherRenderer extends TileEntitySpecialRenderer {
 	public static TileEntityJawCrusherRenderer renderer;
 	private ModelJawCrusher model = new ModelJawCrusher();
 
-	public void renderTileEntityModelAt(TileAdvProsessor par1Tile, double par2, double par4, double par6, float par8) {
+	public void renderTileEntityModelAt(TileAdvProcessor par1Tile, double par2, double par4, double par6, float par8) {
 		this.setRotation(par1Tile, (float) par2, (float) par4, (float) par6);
 	}
 
@@ -34,7 +34,7 @@ public class TileEntityJawCrusherRenderer extends TileEntitySpecialRenderer {
 		renderer = this;
 	}
 
-	public void setRotation(TileAdvProsessor par0Tile, float par1, float par2, float par3) {
+	public void setRotation(TileAdvProcessor par0Tile, float par1, float par2, float par3) {
 		ModelJawCrusher model = this.model;
 		byte l = (byte) par0Tile.getBlockMetadata();
 		boolean active = par0Tile.isActive();
@@ -73,6 +73,6 @@ public class TileEntityJawCrusherRenderer extends TileEntitySpecialRenderer {
 
 	@Override
 	public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8) {
-		this.renderTileEntityModelAt((TileAdvProsessor) par1TileEntity, par2, par4, par6, par8);
+		this.renderTileEntityModelAt((TileAdvProcessor) par1TileEntity, par2, par4, par6, par8);
 	}
 }

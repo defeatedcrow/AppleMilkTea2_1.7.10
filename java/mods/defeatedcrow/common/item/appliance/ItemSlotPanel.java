@@ -2,6 +2,7 @@ package mods.defeatedcrow.common.item.appliance;
 
 import java.util.List;
 
+import mods.defeatedcrow.api.appliance.IProcessorPanel;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +12,7 @@ import net.minecraft.util.EnumChatFormatting;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSlotPanel extends Item {
+public class ItemSlotPanel extends Item implements IProcessorPanel {
 
 	public ItemSlotPanel() {
 		super();

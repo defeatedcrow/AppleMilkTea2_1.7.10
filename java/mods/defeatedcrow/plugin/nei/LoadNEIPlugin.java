@@ -1,9 +1,9 @@
 package mods.defeatedcrow.plugin.nei;
 
-import mods.defeatedcrow.client.gui.GuiAdvProsessor;
+import mods.defeatedcrow.client.gui.GuiAdvProcessor;
 import mods.defeatedcrow.client.gui.GuiEvaporator;
 import mods.defeatedcrow.client.gui.GuiIceMaker;
-import mods.defeatedcrow.client.gui.GuiProsessor;
+import mods.defeatedcrow.client.gui.GuiProcessor;
 import mods.defeatedcrow.common.AMTLogger;
 import codechicken.nei.api.API;
 
@@ -52,11 +52,11 @@ public class LoadNEIPlugin {
 
 		API.registerRecipeHandler(processorRecipe);
 		API.registerUsageHandler(processorRecipe);
-		API.registerGuiOverlay(GuiProsessor.class, processorRecipe.getOverlayIdentifier(), 0, 0);
+		API.registerGuiOverlay(GuiProcessor.class, processorRecipe.getOverlayIdentifier(), 0, 0);
 
 		API.registerRecipeHandler(advProcessorRecipe);
 		API.registerUsageHandler(advProcessorRecipe);
-		API.registerGuiOverlay(GuiAdvProsessor.class, advProcessorRecipe.getOverlayIdentifier(), 0, 0);
+		API.registerGuiOverlay(GuiAdvProcessor.class, advProcessorRecipe.getOverlayIdentifier(), 0, 0);
 
 		API.registerRecipeHandler(evaporatorRecipe);
 		API.registerUsageHandler(evaporatorRecipe);

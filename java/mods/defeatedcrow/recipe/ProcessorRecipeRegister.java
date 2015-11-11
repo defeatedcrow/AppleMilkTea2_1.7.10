@@ -4,19 +4,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import mods.defeatedcrow.api.appliance.IProcessorPanel;
 import mods.defeatedcrow.api.recipe.IProcessorRecipe;
 import mods.defeatedcrow.api.recipe.IProcessorRecipeRegister;
 import mods.defeatedcrow.api.recipe.IProsessorRecipeRegister;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
-import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -55,6 +52,7 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 		AMTLogger.debugInfo("Add Prosessor recipe: output " + (output == null ? "null" : output.getDisplayName()));
 	}
 
+	@Override
 	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, Object... input) {
 		addRecipe(output, flag, secondary, 1.0F, input);
 	}
@@ -182,7 +180,7 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 					boolean inRecipe = false;
 					Iterator<Object> req = required.iterator();
 
-					if (slot.getItem() == DCsAppleMilk.slotPanel) {
+					if (slot.getItem() instanceof IProcessorPanel) {
 						inRecipe = true;
 						continue;
 					}

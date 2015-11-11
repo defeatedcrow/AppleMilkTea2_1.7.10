@@ -32,7 +32,7 @@ public class EntityMoreDropEvent {
 		double posY = entity.posY;
 		double posZ = entity.posZ;
 
-		if (thisSource instanceof EntityDamageSource) {
+		if (!(entity instanceof EntityPlayer) && thisSource instanceof EntityDamageSource) {
 			EntityDamageSource entityDamage = (EntityDamageSource) thisSource;
 			Entity destroyer = entityDamage.getEntity();
 

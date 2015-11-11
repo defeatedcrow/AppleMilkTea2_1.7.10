@@ -4,7 +4,6 @@ import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -12,6 +11,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
+@Deprecated
 public class TileTeppann extends TileEntity {
 	private ItemStack cookingItem;
 	private int cookingTime = 0;
@@ -20,6 +20,7 @@ public class TileTeppann extends TileEntity {
 	private boolean tooLate = false;
 
 	// NBT
+	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
 		super.readFromNBT(par1NBTTagCompound);
 
@@ -39,6 +40,7 @@ public class TileTeppann extends TileEntity {
 	/**
 	 * Writes a tile entity to NBT.
 	 */
+	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
 		super.writeToNBT(par1NBTTagCompound);
 		par1NBTTagCompound.setShort("CookingTime", (short) this.cookingTime);
@@ -101,6 +103,7 @@ public class TileTeppann extends TileEntity {
 	}
 
 	// update tileentity
+	@Override
 	public void updateEntity() {
 		if (this.cookingTime > 0) {
 			--this.cookingTime;

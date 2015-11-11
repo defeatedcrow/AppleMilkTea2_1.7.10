@@ -1,22 +1,21 @@
 package mods.defeatedcrow.client.renderblocks;
 
-import org.lwjgl.opengl.GL11;
-
-import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderProsessor implements ISimpleBlockRenderingHandler {
+public class RenderProcessor implements ISimpleBlockRenderingHandler {
 
 	private IIcon boxIIcon;
 	private IIcon bottomIIcon;
@@ -26,7 +25,7 @@ public class RenderProsessor implements ISimpleBlockRenderingHandler {
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 
 		int meta = metadata;
-		this.boxIIcon = DCsAppleMilk.prosessor.getBlockTextureFromSide(0);
+		this.boxIIcon = DCsAppleMilk.processor.getBlockTextureFromSide(0);
 		this.bottomIIcon = Blocks.stained_hardened_clay.getIcon(1, 3);
 		this.glassIIcon = DCsAppleMilk.blockIcecream.getBlockTextureFromSide(0);
 
@@ -77,7 +76,7 @@ public class RenderProsessor implements ISimpleBlockRenderingHandler {
 	@Override
 	public int getRenderId() {
 
-		return DCsAppleMilk.modelProsessor;
+		return DCsAppleMilk.modelProcessor;
 	}
 
 	private void renderInvCuboid(RenderBlocks renderer, Block block, float minX, float minY, float minZ, float maxX,

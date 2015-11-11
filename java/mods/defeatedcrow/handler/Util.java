@@ -140,11 +140,23 @@ public class Util {
 
 	// 0,0=south, 1,90=west, 2,180=north, 3,-90=east
 	// 相変わらず方角を覚えられないため自分用に作ったメソッド
-	public static final int[] METAX = new int[] { 0, -1, 0, 1 };
+	public static final int[] METAX = new int[] {
+			0,
+			-1,
+			0,
+			1 };
 
-	public static final int[] METAZ = new int[] { -1, 0, 1, 0 };
+	public static final int[] METAZ = new int[] {
+			-1,
+			0,
+			1,
+			0 };
 
-	public static final int[] RAD = new int[] { 0, -90, 180, 90 };
+	public static final int[] RAD = new int[] {
+			0,
+			-90,
+			180,
+			90 };
 
 	// FMLの機能を利用した他MOD様のアイテム取得メソッド。
 	// protectedにする意味は正直あんまりない。
