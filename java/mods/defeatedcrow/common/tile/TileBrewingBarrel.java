@@ -29,6 +29,8 @@ public class TileBrewingBarrel extends TileEntity implements IFluidHandler {
 	// 向き
 	private boolean side = false;
 
+	private int lastState = 0;
+
 	// NBT
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
@@ -113,7 +115,7 @@ public class TileBrewingBarrel extends TileEntity implements IFluidHandler {
 
 	@Override
 	public void updateEntity() {
-		if (this.worldObj != null) {
+		if (!this.worldObj.isRemote) {
 			if (!this.isAged && this.canBrew())// まだ熟成未完了
 			{
 				// 直射日光が当たっていない・常温でのみ熟成する。
@@ -132,6 +134,12 @@ public class TileBrewingBarrel extends TileEntity implements IFluidHandler {
 			if (this.productTank.isEmpty()) {
 				this.setAged(false);
 				this.setAgingTime(0);
+			}
+
+			int state = this.productTank.getFluidAmount() + this.aging;
+			if (lastState != state) {
+				lastState = state;
+				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			}
 		}
 
@@ -211,7 +219,15 @@ public class TileBrewingBarrel extends TileEntity implements IFluidHandler {
 
 	@Override
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-		return this.productTank.drain(maxDrain, doDrain);
+		if (maxDrain <= 0 || !this.isAged) {
+			return null;
+		}
+		FluidStack ret = productTank.drain(maxDrain, doDrain);
+		if (productTank.isEmpty()) {
+			this.setAged(false);
+			this.setAgingStage(0);
+		}
+		return ret;
 	}
 
 	// 外部からの液体の受け入れ

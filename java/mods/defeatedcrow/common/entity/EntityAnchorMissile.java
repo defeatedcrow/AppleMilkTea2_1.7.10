@@ -1,28 +1,21 @@
 package mods.defeatedcrow.common.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.handler.CustomExplosion;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.boss.EntityDragonPart;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
 import net.minecraft.util.AxisAlignedBB;
@@ -32,6 +25,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /*
  * このエンティティの動作
@@ -119,23 +114,23 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 
 		// 初期状態での向きは射手の向きに依存する
 		this.setLocationAndAngles(par2EntityLivingBase.posX,
-				par2EntityLivingBase.posY + (double) par2EntityLivingBase.getEyeHeight(), par2EntityLivingBase.posZ,
+				par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight(), par2EntityLivingBase.posZ,
 				par2EntityLivingBase.rotationYaw, par2EntityLivingBase.rotationPitch);
 
 		// 初速度
 		this.posX += -(double) (MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * (1.0F + adjustZ))
-				- (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * adjustX);
+				- MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * adjustX;
 		this.posY += 0.05000000149011612D + adjustY;
 		this.posZ += (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * (1.0F + adjustZ))
 				- (double) (MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * adjustX);
 		this.setPosition(this.posX, this.posY, this.posZ);
 
 		// 初速度
-		this.motionX = (double) (-MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper
-				.cos(this.rotationPitch / 180.0F * (float) Math.PI));
-		this.motionZ = (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper
-				.cos(this.rotationPitch / 180.0F * (float) Math.PI));
-		this.motionY = (double) (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI));
+		this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI)
+				* MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
+		this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI)
+				* MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
+		this.motionY = (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI));
 		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, speed * 1.5F, speed2);
 	}
 
@@ -150,35 +145,35 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 	 * IProjectileで実装が必要なメソッド。
 	 * ディスペンサーによる発射メソッドなどで使用されている。
 	 */
+	@Override
 	public void setThrowableHeading(double par1, double par3, double par5, float par7, float par8) {
 		float f2 = MathHelper.sqrt_double(par1 * par1 + par3 * par3 + par5 * par5);
-		par1 /= (double) f2;
-		par3 /= (double) f2;
-		par5 /= (double) f2;
-		par1 += this.rand.nextGaussian() * (double) (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D
-				* (double) par8;
-		par3 += this.rand.nextGaussian() * (double) (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D
-				* (double) par8;
-		par5 += this.rand.nextGaussian() * (double) (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D
-				* (double) par8;
-		par1 *= (double) par7;
-		par3 *= (double) par7;
-		par5 *= (double) par7;
+		par1 /= f2;
+		par3 /= f2;
+		par5 /= f2;
+		par1 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * par8;
+		par3 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * par8;
+		par5 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * par8;
+		par1 *= par7;
+		par3 *= par7;
+		par5 *= par7;
 		this.motionX = par1;
 		this.motionY = par3;
 		this.motionZ = par5;
 		float f3 = MathHelper.sqrt_double(par1 * par1 + par5 * par5);
 		this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(par1, par5) * 180.0D / Math.PI);
-		this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(par3, (double) f3) * 180.0D / Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(par3, f3) * 180.0D / Math.PI);
 		this.ticksInGround = 0;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void setPositionAndRotation2(double par1, double par3, double par5, float par7, float par8, int par9) {
 		this.setPosition(par1, par3, par5);
 		this.setRotation(par7, par8);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void setVelocity(double par1, double par3, double par5) {
 		this.motionX = par1;
@@ -188,7 +183,7 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
 			float f = MathHelper.sqrt_double(par1 * par1 + par5 * par5);
 			this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(par1, par5) * 180.0D / Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(par3, (double) f) * 180.0D / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(par3, f) * 180.0D / Math.PI);
 			this.prevRotationPitch = this.rotationPitch;
 			this.prevRotationYaw = this.rotationYaw;
 			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -242,7 +237,7 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
 			float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, (double) f) * 180.0D / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, f) * 180.0D / Math.PI);
 		}
 
 		// 激突したブロックを確認している
@@ -282,9 +277,9 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 			} else// 埋まり状態の解除処理
 			{
 				this.inGround = false;
-				this.motionX *= (double) (this.rand.nextFloat() * 0.1F);
-				this.motionY *= (double) (this.rand.nextFloat() * 0.1F);
-				this.motionZ *= (double) (this.rand.nextFloat() * 0.1F);
+				this.motionX *= this.rand.nextFloat() * 0.1F;
+				this.motionY *= this.rand.nextFloat() * 0.1F;
+				this.motionZ *= this.rand.nextFloat() * 0.1F;
 				this.ticksInGround = 0;
 				this.ticksInAir = 0;
 			}
@@ -321,9 +316,9 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 				Entity entity = null;
 
 				// ターゲットの場合
-				if (entity1 instanceof EntityLivingBase) {
+				if (entity1 instanceof EntityLivingBase || entity1 instanceof EntityDragonPart) {
 					f1 = 0.3F;
-					AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand((double) f1, (double) f1, (double) f1);
+					AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
 					MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec3, vec31);
 
 					if (movingobjectposition1 != null) {
@@ -396,7 +391,7 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 					target.setDead();
 				} else {
 					// ダメージを与える処理を呼ぶ
-					if (target.attackEntityFrom(damagesource, (float) i1)) {
+					if (target.attackEntityFrom(damagesource, i1)) {
 						// ダメージを与えることに成功したら以下の処理を行う
 						if (target instanceof EntityLivingBase) {
 							EntityLivingBase entitylivingbase = (EntityLivingBase) target;
@@ -407,9 +402,9 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 
 								if (f3 > 0.0F) {
 									// Y方向に大きめに打ち上げる
-									target.addVelocity(this.motionX * (double) this.knockbackStrength
-											* 0.2000000238418579D / (double) f3, 0.3D, this.motionZ
-											* (double) this.knockbackStrength * 0.2000000238418579D / (double) f3);
+									target.addVelocity(
+											this.motionX * this.knockbackStrength * 0.2000000238418579D / f3, 0.3D,
+											this.motionZ * this.knockbackStrength * 0.2000000238418579D / f3);
 								}
 							}
 
@@ -428,9 +423,7 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 						this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 
 						// 当たったあと、弾を消去する。エンティティ貫通がONの弾種はそのまま残す。
-						if (!(target instanceof EntityEnderman)) {
-							explode = true;
-						}
+						explode = true;
 					}
 				}
 			}
@@ -442,14 +435,14 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 				this.zTile = movingobjectposition.blockZ;
 				this.inTile = this.worldObj.getBlock(this.xTile, this.yTile, this.zTile);
 				this.inData = this.worldObj.getBlockMetadata(this.xTile, this.yTile, this.zTile);
-				this.motionX = (double) ((float) (movingobjectposition.hitVec.xCoord - this.posX));
-				this.motionY = (double) ((float) (movingobjectposition.hitVec.yCoord - this.posY));
-				this.motionZ = (double) ((float) (movingobjectposition.hitVec.zCoord - this.posZ));
+				this.motionX = ((float) (movingobjectposition.hitVec.xCoord - this.posX));
+				this.motionY = ((float) (movingobjectposition.hitVec.yCoord - this.posY));
+				this.motionZ = ((float) (movingobjectposition.hitVec.zCoord - this.posZ));
 				f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ
 						* this.motionZ);
-				this.posX -= this.motionX / (double) f2 * 0.05000000074505806D;
-				this.posY -= this.motionY / (double) f2 * 0.05000000074505806D;
-				this.posZ -= this.motionZ / (double) f2 * 0.05000000074505806D;
+				this.posX -= this.motionX / f2 * 0.05000000074505806D;
+				this.posY -= this.motionY / f2 * 0.05000000074505806D;
+				this.posZ -= this.motionZ / f2 * 0.05000000074505806D;
 				this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 				this.inGround = true;
 
@@ -461,16 +454,16 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 		}
 
 		// さいごに爆発処理
-		int lim = this.targetEntity == null ? 60 : 600;
+		int live = (targetEntity != null && targetEntity.isEntityAlive()) ? 10 : 600;
 
-		if (explode || this.livingTimeCount > lim) {
+		if (explode || this.livingTimeCount > live) {
 			if (this.isExploded() == 0) {
 				AMTLogger.debugInfo("explosion");
 				this.setExplosion();
-				if (!DCsConfig.disableMissileExplosion) {
+				if (!DCsConfig.disableMissileExplosion && !worldObj.isRemote) {
 					float f = 5.0F;
-					CustomExplosion explosion = new CustomExplosion(worldObj, this, (EntityLivingBase) shootingEntity,
-							this.posX, this.posY, this.posZ, f, CustomExplosion.Type.Anchor, true);
+					CustomExplosion explosion = new CustomExplosion(worldObj, this, shootingEntity, this.posX,
+							this.posY, this.posZ, f, CustomExplosion.Type.Anchor, true);
 					explosion.doExplosion();
 				}
 			}
@@ -479,24 +472,28 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 
 		// 追尾
 		if (active) {
-			if (targetEntity != null) {
+			if (targetEntity != null && targetEntity.isEntityAlive()) {
 				double dx = targetEntity.posX - this.posX;
-				double dy = targetEntity.boundingBox.minY + ((double) targetEntity.height / 2.0D) - this.posY;
+				double dy = targetEntity.boundingBox.minY + (targetEntity.height / 2.0D) - this.posY;
 				double dz = targetEntity.posZ - this.posZ;
-				double d3 = (double) MathHelper.sqrt_double(dx * dx + dz * dz);
+				double d3 = MathHelper.sqrt_double(dx * dx + dz * dz);
 
 				if (d3 >= 1.0E-7D) {
 					float f4 = (float) d3 * 0.2F;
 					double dy2 = dy + f4;
 
 					float ff = MathHelper.sqrt_double(dx * dx + dy2 * dy2 + dz * dz);
-					dx /= (double) ff;
-					dy /= (double) ff;
-					dz /= (double) ff;
+					dx /= ff;
+					dy /= ff;
+					dz /= ff;
 
 					this.motionX = (this.motionX + dx) / 2;
 					this.motionY = (this.motionY + dy) / 2;
 					this.motionZ = (this.motionZ + dz) / 2;
+
+					this.motionX *= 1.25D;
+					this.motionY *= 1.25D;
+					this.motionZ *= 1.25D;
 				}
 			}
 		}
@@ -506,7 +503,7 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
 			float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, (double) f) * 180.0D / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, f) * 180.0D / Math.PI);
 		}
 
 		// 改めてポジションに速度を加算。向きも更新。
@@ -515,7 +512,7 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 		this.posZ += this.motionZ;
 		float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-		this.rotationPitch = (float) (Math.atan2(this.motionY, (double) f2) * 180.0D / Math.PI);
+		this.rotationPitch = (float) (Math.atan2(this.motionY, f2) * 180.0D / Math.PI);
 
 		while (this.rotationPitch - this.prevRotationPitch < -180.0F) {
 			this.prevRotationPitch -= 360.0F;
@@ -541,10 +538,8 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 			// 泡パーティクルが出る
 			for (int j1 = 0; j1 < 4; ++j1) {
 				float f3 = 0.25F;
-				this.worldObj
-						.spawnParticle("bubble", this.posX - this.motionX * (double) f3, this.posY - this.motionY
-								* (double) f3, this.posZ - this.motionZ * (double) f3, this.motionX, this.motionY,
-								this.motionZ);
+				this.worldObj.spawnParticle("bubble", this.posX - this.motionX * f3, this.posY - this.motionY * f3,
+						this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
 			}
 		}
 
@@ -555,11 +550,12 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 	/*
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
 		par1NBTTagCompound.setShort("xTile", (short) this.xTile);
 		par1NBTTagCompound.setShort("yTile", (short) this.yTile);
 		par1NBTTagCompound.setShort("zTile", (short) this.zTile);
-		par1NBTTagCompound.setByte("inTile", (byte) (byte) Block.getIdFromBlock(this.inTile));
+		par1NBTTagCompound.setByte("inTile", (byte) Block.getIdFromBlock(this.inTile));
 		par1NBTTagCompound.setByte("inData", (byte) this.inData);
 		par1NBTTagCompound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
 		par1NBTTagCompound.setByte("active", (byte) (this.active ? 1 : 0));
@@ -569,6 +565,7 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 	/*
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
 		this.xTile = par1NBTTagCompound.getShort("xTile");
 		this.yTile = par1NBTTagCompound.getShort("yTile");
@@ -586,6 +583,7 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 	/*
 	 * プレイヤーと衝突した時のメソッド。今回は何もしない
 	 */
+	@Override
 	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer) {
 
 	}
@@ -594,10 +592,12 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 	 * ブロックに対し、上を歩いたかという判定の対象になるか、というEntityクラスのメソッド。
 	 * 耕地を荒らしたりするのに使う。
 	 */
+	@Override
 	protected boolean canTriggerWalking() {
 		return false;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public float getShadowSize() {
 		return 0.0F;
@@ -615,6 +615,7 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 		this.knockbackStrength = par1;
 	}
 
+	@Override
 	public boolean canAttackWithItem() {
 		return false;
 	}
@@ -627,7 +628,10 @@ public class EntityAnchorMissile extends Entity implements IProjectile {
 	/* ダメージソースのタイプ */
 	public DamageSource thisDamageSource(Entity entity) {
 		// 発射元のEntityがnullだった場合の対策を含む。
-		return entity != null ? EntityDamageSource.causeIndirectMagicDamage(entity, this) : DamageSource.magic;
+		if (entity instanceof EntityPlayer) {
+			return EntityDamageSource.causePlayerDamage((EntityPlayer) entity);
+		}
+		return entity != null ? EntityDamageSource.causeIndirectMagicDamage(this, entity) : DamageSource.magic;
 	}
 
 	/* 爆発判定 */

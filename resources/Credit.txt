@@ -21,4 +21,4 @@ github: https://github.com/defeatedcrow/AppleMilkTea2_1.7.10
 -Belgabor: en_US
 -zoejool8bq: zh_TW
 -doublrcore: zh_CN, zh_TW
--doushio9967: zh_CN
+-doushio9967: en_US

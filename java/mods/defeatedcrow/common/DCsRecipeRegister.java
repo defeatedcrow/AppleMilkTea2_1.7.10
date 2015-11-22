@@ -1578,7 +1578,7 @@ public class DCsRecipeRegister {
 	}
 
 	static void addMachines() {
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.prosessor, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.processor, 1), new Object[] {
 				"XXX",
 				"ZYZ",
 				"ZWZ",
@@ -1591,7 +1591,7 @@ public class DCsRecipeRegister {
 				Character.valueOf('X'),
 				new ItemStack(Blocks.glass, 1) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.advProsessor, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.advProcessor, 1), new Object[] {
 				"ZXZ",
 				"ZYZ",
 				"ZWZ",
@@ -1600,11 +1600,11 @@ public class DCsRecipeRegister {
 				Character.valueOf('Z'),
 				new ItemStack(Items.iron_ingot, 1),
 				Character.valueOf('Y'),
-				new ItemStack(DCsAppleMilk.prosessor, 1),
+				new ItemStack(DCsAppleMilk.processor, 1),
 				Character.valueOf('X'),
 				new ItemStack(Items.diamond_sword, 1) }));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.advProsessor, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.advProcessor, 1), new Object[] {
 				"ZXZ",
 				"ZYZ",
 				"ZWZ",
@@ -1613,7 +1613,7 @@ public class DCsRecipeRegister {
 				Character.valueOf('Z'),
 				new ItemStack(Items.iron_ingot, 1),
 				Character.valueOf('Y'),
-				new ItemStack(DCsAppleMilk.prosessor, 1),
+				new ItemStack(DCsAppleMilk.processor, 1),
 				Character.valueOf('X'),
 				new ItemStack(Items.diamond_sword, 1) }));
 

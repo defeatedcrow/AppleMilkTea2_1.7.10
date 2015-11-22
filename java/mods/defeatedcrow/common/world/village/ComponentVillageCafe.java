@@ -1,6 +1,5 @@
 package mods.defeatedcrow.common.world.village;
 
-import java.util.List;
 import java.util.Random;
 
 import mods.defeatedcrow.common.DCsAppleMilk;
@@ -8,10 +7,12 @@ import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
+import net.minecraftforge.common.ChestGenHooks;
 
 public class ComponentVillageCafe extends StructureVillagePieces.Village {
+
+	private boolean hasMadeChest;
 
 	public ComponentVillageCafe() {
 	}
@@ -150,6 +151,16 @@ public class ComponentVillageCafe extends StructureVillagePieces.Village {
 		this.placeBlockAtCurrentPosition(world, DCsAppleMilk.rotaryDial, f, 5, 3, 6, structureboundingbox);
 		this.placeBlockAtCurrentPosition(world, DCsAppleMilk.teaMakerNext, f, 3, 3, 5, structureboundingbox);
 		this.placeBlockAtCurrentPosition(world, DCsAppleMilk.emptyCup, f, 2, 3, 5, structureboundingbox);
+
+		// チェスト
+		this.placeBlockAtCurrentPosition(world, Blocks.air, 0, 1, 1, 6, structureboundingbox);
+		if (!this.hasMadeChest) {
+			this.hasMadeChest = true;
+			this.generateStructureChestContents(world, structureboundingbox, random, 1, 1, 6,
+					ChestGenHooks.getInfo("villageCafeDC").getItems(random), ChestGenHooks.getInfo("villageCafeDC")
+							.getCount(random));
+		}
+		this.placeBlockAtCurrentPosition(world, Blocks.trapdoor, r, 1, 2, 6, structureboundingbox);
 
 		for (int i = 1; i <= widthZ; ++i) {
 			for (int j = 0; j <= widthX; ++j) {

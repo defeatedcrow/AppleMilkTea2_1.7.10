@@ -2,7 +2,6 @@ package mods.defeatedcrow.common.world.village;
 
 import static net.minecraftforge.common.ChestGenHooks.VILLAGE_BLACKSMITH;
 
-import java.util.List;
 import java.util.Random;
 
 import mods.defeatedcrow.common.DCsAppleMilk;
@@ -14,7 +13,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 import net.minecraftforge.common.ChestGenHooks;
 
@@ -51,11 +49,13 @@ public class ComponentVillageWarehouse extends StructureVillagePieces.Village {
 		this.boundingBox = par4Box;
 	}
 
+	@Override
 	protected void func_143012_a(NBTTagCompound tag) {
 		super.func_143012_a(tag);
 		tag.setBoolean("Chest", this.hasMadeChest);
 	}
 
+	@Override
 	protected void func_143011_b(NBTTagCompound tag) {
 		super.func_143011_b(tag);
 		this.hasMadeChest = tag.getBoolean("Chest");
@@ -72,7 +72,7 @@ public class ComponentVillageWarehouse extends StructureVillagePieces.Village {
 				return true;
 			}
 
-			this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 6 - 1, 0);
+			this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 8 - 1, 0);
 		}
 
 		int widthX = 5;

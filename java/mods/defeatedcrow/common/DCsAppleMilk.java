@@ -83,7 +83,9 @@ import mods.defeatedcrow.plugin.IC2.LoadIC2Plugin;
 import mods.defeatedcrow.plugin.SSector.LoadSSectorPlugin;
 import mods.defeatedcrow.plugin.craftguide.LoadCraftGuidePlugin;
 import mods.defeatedcrow.plugin.ffm.LoadForestryPlugin;
+import mods.defeatedcrow.plugin.mce.MCEOldPlugin;
 import mods.defeatedcrow.plugin.mce.MCEconomyPlugin;
+import mods.defeatedcrow.plugin.mce.RegisterSellItem;
 import mods.defeatedcrow.potion.PotionGetter;
 import mods.defeatedcrow.potion.PotionProtectionEX;
 import mods.defeatedcrow.recipe.OreCrushRecipe;
@@ -120,7 +122,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.8l",
+		version = "1.7.10_2.8n",
 		dependencies = "required-after:Forge@[10.13.2.1291,)")
 public class DCsAppleMilk {
 
@@ -389,6 +391,7 @@ public class DCsAppleMilk {
 	public static boolean SuccessLoadTofu = false;
 	public static boolean SuccessLoadThaumcraft = false;
 	public static boolean SuccessLoadEconomy = false;
+	public static boolean OldEconomy = false;
 	public static boolean SuccessLoadSSector = false;
 	public static boolean SuccessLoadGummi = false;
 	public static boolean[] SuccessLoadGrowth = new boolean[] {
@@ -661,8 +664,10 @@ public class DCsAppleMilk {
 		EntityRegistry.registerModEntity(PlaceableBaseSoup.class, "PlaceableBaseSoup", DCsConfig.entityIdBaseSoup,
 				this, 250, 5, true);
 
+		// chest gen
+		(new AddChestGen()).addChestItems();
+
 		// Villagerの登録
-		villager = new VillagerCafe();
 		villagerYome = new VillagerYome();
 		VillagerRegistry vill = VillagerRegistry.instance();
 
@@ -682,8 +687,6 @@ public class DCsAppleMilk {
 		// Registering new Recipe
 		// レシピや言語の登録は長くなるので専用クラスに任せる
 		(new DCsRecipeRegister()).addRecipe();
-
-		(new AddChestGen()).addChestItems();
 
 		// Langファイル同梱のため、Lang登録クラスはコメントアウトしました。
 		// (new DCsLangRegister()).registerLang();
@@ -962,17 +965,24 @@ public class DCsAppleMilk {
 			ModContainer mod = Loader.instance().getIndexedModList().get("mceconomy2");
 			String s = mod.getVersion();
 			AMTLogger.loadingModInfo("MCEconomy2 " + s);
-			if (s.contains("-2.5.")) {
-				try {
-					this.SuccessLoadEconomy = true;
-					(new MCEconomyPlugin()).registerSellable();
-					AMTLogger.loadedModInfo("MCEconomy2");
 
-				} catch (Exception e) {
-					AMTLogger.failLoadingModInfo("MCEconomy2");
-					e.printStackTrace(System.err);
+			try {
+				this.SuccessLoadEconomy = true;
+				if (s.contains("2.5.")) {
+					RegisterSellItem.registerSellable();
+					(new MCEconomyPlugin()).registerShop();
+				} else {
+					RegisterSellItem.registerSellable();
+					(new MCEOldPlugin()).load();
+					this.OldEconomy = true;
 				}
+				AMTLogger.loadedModInfo("MCEconomy2");
+
+			} catch (Exception e) {
+				AMTLogger.failLoadingModInfo("MCEconomy2");
+				e.printStackTrace(System.err);
 			}
+
 		}
 
 		if (Loader.isModLoaded("SextiarySector")) {
@@ -1181,7 +1191,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "l";
+		return "n";
 	}
 
 	public String getModName() {

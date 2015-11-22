@@ -1,9 +1,9 @@
 package mods.defeatedcrow.plugin.mce;
 
-import shift.mceconomy2.api.MCEconomyAPI;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import shift.mceconomy2.api.MCEconomyAPI;
 
 /**
  * MOD本体で他MODのクラスをインポートしないためのクッション用クラス
@@ -25,6 +25,12 @@ public class OpenShopGui {
 	public static void openShopGui(EntityPlayer player, World world, int x, int y, int z) {
 		if (DCsAppleMilk.SuccessLoadEconomy && MCEconomyPlugin.DCshopId > 0) {
 			MCEconomyAPI.openShopGui(MCEconomyPlugin.DCshopId, player, world, x, y, z);
+		}
+	}
+
+	public static void openOldShopGui(EntityPlayer player, World world, int x, int y, int z) {
+		if (DCsAppleMilk.SuccessLoadEconomy && MCEOldPlugin.OldshopId > 0) {
+			MCEconomyAPI.openShopGui(MCEOldPlugin.OldshopId, player, world, x, y, z);
 		}
 	}
 
