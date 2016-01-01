@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import mods.defeatedcrow.api.appliance.IJawPlate;
 import mods.defeatedcrow.api.appliance.IProcessorPanel;
 import mods.defeatedcrow.api.recipe.IProcessorRecipe;
 import mods.defeatedcrow.api.recipe.IProcessorRecipeRegister;
-import mods.defeatedcrow.api.recipe.IProsessorRecipeRegister;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
+import mods.defeatedcrow.common.config.PropertyHandler;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +18,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProsessorRecipeRegister {
+public class ProcessorRecipeRegister implements IProcessorRecipeRegister {
 
 	private static List<ProcessorRecipe> recipes;
 
@@ -30,31 +31,42 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 	}
 
 	@Override
-	public void addRecipe(ItemStack output, boolean isFood, boolean forceReturn, ItemStack secondary,
+	public void addRecipe(ItemStack output, boolean isFood, int tier, boolean forceReturn, ItemStack secondary,
 			float secondaryChance, Object... input) {
 		float c = MathHelper.clamp_float(0.0F, secondaryChance, 1.0F);
 		if (output == null || output.stackSize == 0)
 			output = null;
 		if (secondary == null || secondary.stackSize == 0)
 			secondary = null;
-		recipes.add(new ProcessorRecipe(output, secondary, isFood, forceReturn, c, input));
+		recipes.add(new ProcessorRecipe(output, secondary, isFood, forceReturn, tier, secondaryChance, input));
 		AMTLogger.debugInfo("Add Prosessor recipe: output " + (output == null ? "null" : output.getDisplayName()));
+	}
+
+	@Override
+	public void addRecipe(ItemStack output, boolean flag, int tier, ItemStack secondary, float secondaryChance,
+			Object... input) {
+		addRecipe(output, flag, tier, false, secondary, secondaryChance, input);
+	}
+
+	@Override
+	public void addRecipe(ItemStack output, boolean flag, int tier, ItemStack secondary, Object... input) {
+		addRecipe(output, flag, tier, false, secondary, 1.0F, input);
+	}
+
+	@Override
+	public void addRecipe(ItemStack output, boolean isFood, boolean forceReturn, ItemStack secondary,
+			float secondaryChance, Object... input) {
+		addRecipe(output, isFood, 3, false, secondary, secondaryChance, input);
 	}
 
 	@Override
 	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, float secondaryChance, Object... input) {
-		float c = MathHelper.clamp_float(0.0F, secondaryChance, 1.0F);
-		if (output == null || output.stackSize == 0)
-			output = null;
-		if (secondary == null || secondary.stackSize == 0)
-			secondary = null;
-		recipes.add(new ProcessorRecipe(output, secondary, flag, false, c, input));
-		AMTLogger.debugInfo("Add Prosessor recipe: output " + (output == null ? "null" : output.getDisplayName()));
+		addRecipe(output, flag, 3, false, secondary, secondaryChance, input);
 	}
 
 	@Override
 	public void addRecipe(ItemStack output, boolean flag, ItemStack secondary, Object... input) {
-		addRecipe(output, flag, secondary, 1.0F, input);
+		addRecipe(output, flag, 3, false, secondary, 1.0F, input);
 	}
 
 	@Override
@@ -70,11 +82,12 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 		private final ArrayList<Object> processedInput;
 		private final float chance;
 		private final boolean forceContainer;
+		private final int tier;
 
 		public final boolean foodRecipe;
 
-		public ProcessorRecipe(ItemStack output, ItemStack sec, boolean flag, boolean flag2, float secondaryChance,
-				Object... inputs) {
+		public ProcessorRecipe(ItemStack output, ItemStack sec, boolean flag, boolean flag2, int t,
+				float secondaryChance, Object... inputs) {
 			this.output = output;
 			this.input = inputs;
 			this.secondary = sec;
@@ -82,6 +95,16 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 			this.forceContainer = flag2;
 			this.chance = secondaryChance;
 			this.processedInput = new ArrayList<Object>();
+			if (foodRecipe) {
+				tier = -1;
+			} else {
+				if (PropertyHandler.procDifficulty() == 0)
+					tier = 0;
+				else if (PropertyHandler.procDifficulty() == 2)
+					tier = 3;
+				else
+					tier = t;
+			}
 			for (int i = 0; i < inputs.length; i++) {
 				if (inputs[i] instanceof String) {
 					processedInput.add(OreDictionary.getOres((String) inputs[i]));
@@ -157,12 +180,6 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 			return new ArrayList<Object>(this.processedInput);
 		}
 
-		@Deprecated
-		@Override
-		public List<Object> getProsessedInput() {
-			return new ArrayList<Object>(this.processedInput);
-		}
-
 		@Override
 		public int getRecipeSize() {
 			return this.processedInput.size();
@@ -211,8 +228,25 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister, IProse
 					}
 				}
 			}
-
 			return required.isEmpty();
+		}
+
+		@Override
+		public int getRecipeTier() {
+			return tier;
+		}
+
+		@Override
+		public boolean matchTier(ItemStack item) {
+			int tier = this.getRecipeTier();
+			if (item == null || item.getItem() == null) {
+				return tier == 0;
+			} else if (item.getItem() instanceof IJawPlate) {
+				IJawPlate tool = (IJawPlate) item.getItem();
+				int toolTier = tool.getTier(item);
+				return toolTier >= tier;
+			}
+			return false;
 		}
 	}
 }

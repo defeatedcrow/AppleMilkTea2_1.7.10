@@ -6,8 +6,6 @@ import java.util.List;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.recipe.ProcessorRecipeRegister.ProcessorRecipe;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import uristqwerty.CraftGuide.api.ItemSlot;
 import uristqwerty.CraftGuide.api.RecipeGenerator;
@@ -37,7 +35,7 @@ public class AdvProcessorRecipeHandlerCG implements RecipeProvider {
 	public void generateRecipes(RecipeGenerator generator) {
 
 		RecipeTemplate template;
-		ItemStack machine = new ItemStack(DCsAppleMilk.advProsessor, 1, 0);
+		ItemStack machine = new ItemStack(DCsAppleMilk.advProcessor, 1, 0);
 		template = generator.createRecipeTemplate(this.slots, machine, "defeatedcrow:textures/gui/craftguidegui.png",
 				1, 120, 82, 120);
 		List<ProcessorRecipe> recipeGet = (List<ProcessorRecipe>) RecipeRegisterManager.processorRecipe.getRecipes();

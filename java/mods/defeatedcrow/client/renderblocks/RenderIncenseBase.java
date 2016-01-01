@@ -1,16 +1,14 @@
 package mods.defeatedcrow.client.renderblocks;
 
-import org.lwjgl.opengl.GL11;
-
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,7 +24,7 @@ public class RenderIncenseBase implements ISimpleBlockRenderingHandler {
 
 		int meta = metadata;
 		this.boxIcon = DCsAppleMilk.incenseBase.getBlockTextureFromSide(1);
-		this.baseIcon = DCsAppleMilk.teppann.getBlockTextureFromSide(1);
+		this.baseIcon = DCsAppleMilk.teppanII.getBlockTextureFromSide(1);
 
 		if (modelID == this.getRenderId()) {
 			// bottom

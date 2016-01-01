@@ -28,8 +28,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemChalcedonyKnife extends ItemTool {
 
-	public static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] { Blocks.pumpkin, Blocks.lit_pumpkin,
-			Blocks.melon_block, Blocks.wool });
+	public static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] {
+			Blocks.pumpkin,
+			Blocks.lit_pumpkin,
+			Blocks.melon_block,
+			Blocks.wool });
 
 	public ItemChalcedonyKnife(ToolMaterial par2) {
 		super(3.0F, par2, blocksEffectiveAgainst);
@@ -115,11 +118,10 @@ public class ItemChalcedonyKnife extends ItemTool {
 
 				for (ItemStack stack : drops) {
 					float f = 0.7F;
-					double d = (double) (rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-					double d1 = (double) (rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-					double d2 = (double) (rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-					EntityItem entityitem = new EntityItem(player.worldObj, (double) x + d, (double) y + d1, (double) z
-							+ d2, stack);
+					double d = rand.nextFloat() * f + (1.0F - f) * 0.5D;
+					double d1 = rand.nextFloat() * f + (1.0F - f) * 0.5D;
+					double d2 = rand.nextFloat() * f + (1.0F - f) * 0.5D;
+					EntityItem entityitem = new EntityItem(player.worldObj, x + d, y + d1, z + d2, stack);
 					entityitem.delayBeforeCanPickup = 10;
 					player.worldObj.spawnEntityInWorld(entityitem);
 				}
@@ -134,7 +136,7 @@ public class ItemChalcedonyKnife extends ItemTool {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:chalcedonyknife");
+		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:tools/chalcedonyknife");
 	}
 
 }

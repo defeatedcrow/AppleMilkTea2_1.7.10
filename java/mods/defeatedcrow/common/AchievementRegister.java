@@ -1,9 +1,6 @@
 package mods.defeatedcrow.common;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
@@ -71,7 +68,7 @@ public class AchievementRegister {
 				DCsAppleMilk.emptyPanGaiden, 1, 0), AchievementList.buildFurnace)).initIndependentStat().registerStat();
 
 		craftTeppan = (new Achievement("defeatedcrow.teppan", "dc.craftTeppan", -5, 4, new ItemStack(
-				DCsAppleMilk.teppann, 1, 0), AchievementList.acquireIron)).initIndependentStat().registerStat();
+				DCsAppleMilk.teppanII, 1, 0), AchievementList.acquireIron)).initIndependentStat().registerStat();
 
 		craftIceMaker = (new Achievement("defeatedcrow.icemaker", "dc.craftIceMaker", 2, -2, new ItemStack(
 				DCsAppleMilk.iceMaker, 1, 0), AchievementList.acquireIron)).initIndependentStat().registerStat();
@@ -122,7 +119,7 @@ public class AchievementRegister {
 				DCsAppleMilk.cLamp, 1, 5), craftChalcedony)).setSpecial().registerStat();
 
 		craftAutoMaker = (new Achievement("defeatedcrow.craftProsessor", "dc.craftProcesser", -4, 0, new ItemStack(
-				DCsAppleMilk.prosessor, 1, 0), craftGrater)).registerStat();
+				DCsAppleMilk.processor, 1, 0), craftGrater)).registerStat();
 
 		burnOnTeppan = (new Achievement("defeatedcrow.teppanFire", "dc.burnOnTeppan", -6, 6, new ItemStack(Blocks.fire,
 				1, 0), craftTeppan)).registerStat();
@@ -156,7 +153,7 @@ public class AchievementRegister {
 		// .registerStat();
 
 		craftJaw = (new Achievement("defeatedcrow.craftJaw", "dc.craftHyperJaw", 6, 1, new ItemStack(
-				DCsAppleMilk.advProsessor, 1, 0), craftChalGear)).registerStat();
+				DCsAppleMilk.advProcessor, 1, 0), craftChalGear)).registerStat();
 
 		craftTart = (new Achievement("defeatedcrow.craftTart", "dc.craftTart", -5, -3, new ItemStack(
 				DCsAppleMilk.appleTart, 1, 0), AchievementList.openInventory)).initIndependentStat().registerStat();
@@ -170,12 +167,43 @@ public class AchievementRegister {
 		useIncense = (new Achievement("defeatedcrow.useIncense", "dc.useIncense", 9, 4, new ItemStack(
 				DCsAppleMilk.incenseBase, 1, 0), craftCharm)).setSpecial().registerStat();
 
-		DCachievementsList = new Achievement[] { getTeaLeaves, craftTeaMaker, craftPan, craftTeppan, craftIceMaker,
-				craftChalcedony, craftLogBox, craftGrater, makeTeaLeaves, getSoup, eatChocoGift, getTea,
-				getAppleMilkTea, getHamaguri, craftCharcoalContainer, craftVegiBag, crashMelon, eatIcecream,
-				craftChalGear, craftGlassLamp, craftAutoMaker, drinkCocktail, burnOnTeppan, makeRice, getAlcohol,
-				getPrincess, getYuzu, craftYuzuBattery, craftChargeableBat, craftBarrel, craftEvp, craftJaw,
-				useIncense, craftTart, useSilkMelon, craftCharm };
+		DCachievementsList = new Achievement[] {
+				getTeaLeaves,
+				craftTeaMaker,
+				craftPan,
+				craftTeppan,
+				craftIceMaker,
+				craftChalcedony,
+				craftLogBox,
+				craftGrater,
+				makeTeaLeaves,
+				getSoup,
+				eatChocoGift,
+				getTea,
+				getAppleMilkTea,
+				getHamaguri,
+				craftCharcoalContainer,
+				craftVegiBag,
+				crashMelon,
+				eatIcecream,
+				craftChalGear,
+				craftGlassLamp,
+				craftAutoMaker,
+				drinkCocktail,
+				burnOnTeppan,
+				makeRice,
+				getAlcohol,
+				getPrincess,
+				getYuzu,
+				craftYuzuBattery,
+				craftChargeableBat,
+				craftBarrel,
+				craftEvp,
+				craftJaw,
+				useIncense,
+				craftTart,
+				useSilkMelon,
+				craftCharm };
 		DCachievementPage = new AchievementPage(newAchievement, DCachievementsList);
 		AchievementPage.registerAchievementPage(DCachievementPage);
 

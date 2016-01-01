@@ -1,6 +1,6 @@
 package mods.defeatedcrow.client.entity;
 
-import mods.defeatedcrow.client.model.model.ModelWoodBowl;
+import mods.defeatedcrow.client.entity.base.ModelWoodBowl;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.entity.edible.PlaceableBowl;
 import net.minecraft.client.renderer.Tessellator;

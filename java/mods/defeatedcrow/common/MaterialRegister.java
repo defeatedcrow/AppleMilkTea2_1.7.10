@@ -7,6 +7,7 @@ import mods.defeatedcrow.common.block.BlockChalcedony;
 import mods.defeatedcrow.common.block.BlockChalcedonyLamp;
 import mods.defeatedcrow.common.block.BlockChalcedonyLampOp;
 import mods.defeatedcrow.common.block.BlockChopsticksBox;
+import mods.defeatedcrow.common.block.BlockCrowDoll;
 import mods.defeatedcrow.common.block.BlockFlint;
 import mods.defeatedcrow.common.block.BlockIncenseBase;
 import mods.defeatedcrow.common.block.BlockRotaryDial;
@@ -20,24 +21,19 @@ import mods.defeatedcrow.common.block.ItemChalcedonyLamp;
 import mods.defeatedcrow.common.block.ItemChopsticksBox;
 import mods.defeatedcrow.common.block.ItemWoodPanel;
 import mods.defeatedcrow.common.block.appliance.BlockAdvProcessor;
-import mods.defeatedcrow.common.block.appliance.BlockAdvProsessor;
 import mods.defeatedcrow.common.block.appliance.BlockEmptyCup;
 import mods.defeatedcrow.common.block.appliance.BlockEmptyPanG;
 import mods.defeatedcrow.common.block.appliance.BlockEvaporator;
-import mods.defeatedcrow.common.block.appliance.BlockFilledChocoPan;
 import mods.defeatedcrow.common.block.appliance.BlockFilledSoupPan;
 import mods.defeatedcrow.common.block.appliance.BlockIceMaker;
 import mods.defeatedcrow.common.block.appliance.BlockProcessor;
-import mods.defeatedcrow.common.block.appliance.BlockProsessor;
 import mods.defeatedcrow.common.block.appliance.BlockTeaMakerBlack;
 import mods.defeatedcrow.common.block.appliance.BlockTeaMakerNext;
 import mods.defeatedcrow.common.block.appliance.BlockTeppanII;
-import mods.defeatedcrow.common.block.appliance.BlockTeppann;
 import mods.defeatedcrow.common.block.appliance.ItemAppliance;
 import mods.defeatedcrow.common.block.appliance.ItemFilledSoupPan;
 import mods.defeatedcrow.common.block.appliance.ItemMachineBlock;
 import mods.defeatedcrow.common.block.appliance.ItemPanG;
-import mods.defeatedcrow.common.block.appliance.ItemTeppann;
 import mods.defeatedcrow.common.block.brewing.BlockBarrel;
 import mods.defeatedcrow.common.block.brewing.BlockCordial;
 import mods.defeatedcrow.common.block.brewing.BlockEmptyBottle;
@@ -54,7 +50,9 @@ import mods.defeatedcrow.common.block.container.BlockContainerSaddle;
 import mods.defeatedcrow.common.block.container.BlockContainerWaterBottle;
 import mods.defeatedcrow.common.block.container.BlockEggBasket;
 import mods.defeatedcrow.common.block.container.BlockFlowerPot;
+import mods.defeatedcrow.common.block.container.BlockFlowerVase;
 import mods.defeatedcrow.common.block.container.BlockGunpowderContainer;
+import mods.defeatedcrow.common.block.container.BlockHedge;
 import mods.defeatedcrow.common.block.container.BlockMelonBomb;
 import mods.defeatedcrow.common.block.container.BlockMobDrop;
 import mods.defeatedcrow.common.block.container.BlockMushBox;
@@ -67,7 +65,9 @@ import mods.defeatedcrow.common.block.container.ItemCardboard;
 import mods.defeatedcrow.common.block.container.ItemContainerBase;
 import mods.defeatedcrow.common.block.container.ItemEggBasket;
 import mods.defeatedcrow.common.block.container.ItemFlowerPot;
+import mods.defeatedcrow.common.block.container.ItemFlowerVase;
 import mods.defeatedcrow.common.block.container.ItemGunpowderContainer;
+import mods.defeatedcrow.common.block.container.ItemHedge;
 import mods.defeatedcrow.common.block.container.ItemMelonBomb;
 import mods.defeatedcrow.common.block.container.ItemMobDropBox;
 import mods.defeatedcrow.common.block.container.ItemMushBox;
@@ -149,6 +149,7 @@ import mods.defeatedcrow.common.item.ItemOreDust;
 import mods.defeatedcrow.common.item.appliance.ItemBattery;
 import mods.defeatedcrow.common.item.appliance.ItemGrater;
 import mods.defeatedcrow.common.item.appliance.ItemIcyCrystal;
+import mods.defeatedcrow.common.item.appliance.ItemJawplate;
 import mods.defeatedcrow.common.item.appliance.ItemSlotPanel;
 import mods.defeatedcrow.common.item.appliance.ItemYuzuGatling;
 import mods.defeatedcrow.common.item.edible.ItemAppleSandwich;
@@ -281,6 +282,7 @@ public class MaterialRegister {
 		// 装置関係
 		GameRegistry.registerItem(DCsAppleMilk.batteryItem, "defeatedcrow.battery");
 		GameRegistry.registerItem(DCsAppleMilk.slotPanel, "defeatedcrow.slotPanel");
+		GameRegistry.registerItem(DCsAppleMilk.jawPlate, "defeatedcrow.jawPlate");
 		GameRegistry.registerItem(DCsAppleMilk.dustWood, "defeatedcrow.dustWood");
 		GameRegistry.registerItem(DCsAppleMilk.essentialOil, "defeatedcrow.essentialOil");
 		GameRegistry.registerItem(DCsAppleMilk.incenseRose, "defeatedcrow.incense_rose");
@@ -318,10 +320,6 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.processor, ItemMachineBlock.class, "defeatedcrow.processor");
 		GameRegistry.registerBlock(DCsAppleMilk.advProcessor, ItemMachineBlock.class, "defeatedcrow.advProcessor");
 		GameRegistry.registerBlock(DCsAppleMilk.evaporator, ItemMachineBlock.class, "defeatedcrow.evaporator");
-		// deprecated
-		GameRegistry.registerBlock(DCsAppleMilk.teppann, ItemTeppann.class, "defeatedcrow.teppann");
-		GameRegistry.registerBlock(DCsAppleMilk.prosessor, ItemMachineBlock.class, "defeatedcrow.prosessor");
-		GameRegistry.registerBlock(DCsAppleMilk.advProsessor, ItemMachineBlock.class, "defeatedcrow.advProsessor");
 
 		// エネルギー
 		GameRegistry.registerBlock(DCsAppleMilk.redGel, "defeatedcrow.redGel");
@@ -342,6 +340,8 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.mobBlock, ItemMobDropBox.class, "defeatedcrow.mobDropBox");
 		GameRegistry.registerFuelHandler(DCsAppleMilk.charcoalBox);
 		GameRegistry.registerBlock(DCsAppleMilk.flowerPot, ItemFlowerPot.class, "defeatedcrow.flowerPot");
+		GameRegistry.registerBlock(DCsAppleMilk.flowerBase, ItemFlowerVase.class, "defeatedcrow.flowerVase");
+		GameRegistry.registerBlock(DCsAppleMilk.hedge, ItemHedge.class, "defeatedcrow.hedge");
 		GameRegistry.registerBlock(DCsAppleMilk.containerWBottle, ItemContainerBase.class,
 				"defeatedcrow.containerBottleW");
 		GameRegistry.registerBlock(DCsAppleMilk.containerSaddle, ItemContainerBase.class,
@@ -388,9 +388,9 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.rotaryDial, "defeatedcrow.rotaryDial");
 		GameRegistry.registerBlock(DCsAppleMilk.yuzuFence, "defeatedcrow.yuzuFence");
 		GameRegistry.registerBlock(DCsAppleMilk.woodPanel, ItemWoodPanel.class, "defeatedcrow.woodPanel");
+		GameRegistry.registerBlock(DCsAppleMilk.crowDoll, "defeatedcrow.crowFigure");
 
 		// 食べ物
-		GameRegistry.registerBlock(DCsAppleMilk.filledChocoPan, "defeatedcrow.soupPan3");
 		GameRegistry.registerBlock(DCsAppleMilk.bowlBlock, EntityItemBowl.class, "defeatedcrow.bowlBlock");
 		GameRegistry.registerBlock(DCsAppleMilk.bowlJP, EntityItemBowlJP.class, "defeatedcrow.bowlJP");
 		GameRegistry.registerBlock(DCsAppleMilk.foodPlate, EntityItemSteak.class, "defeatedcrow.foodPlate");
@@ -711,14 +711,6 @@ public class MaterialRegister {
 		DCsAppleMilk.condensedMIlk = (new ItemCondensedMilk(1, 1, false)).setUnlocalizedName(
 				"defeatedcrow.condensedMilk").setCreativeTab(DCsAppleMilk.applemilkMaterial);
 
-		// DCsAppleMilk.filledPan = (new BlockFilledPan()).
-		// setBlockName("defeatedcrow.soupPan");
-		//
-		// DCsAppleMilk.filledPan2 = (new BlockFilledPan2()).
-		// setBlockName("defeatedcrow.soupPan_2");
-
-		DCsAppleMilk.filledChocoPan = (new BlockFilledChocoPan()).setBlockName("defeatedcrow.soupPan_3");
-
 		DCsAppleMilk.bowlBlock = (new BlockBowl()).setBlockName("defeatedcrow.bowlBlock").setCreativeTab(
 				DCsAppleMilk.applemilkFood);
 
@@ -840,6 +832,12 @@ public class MaterialRegister {
 				.setUnlocalizedName("defeatedcrow.containeritemDoorI")
 				.setTextureName("defeatedcrow:containeritem_doorI").setCreativeTab(DCsAppleMilk.applemilkContainer);
 
+		DCsAppleMilk.flowerBase = (new BlockFlowerVase()).setBlockName("defeatedcrow.flowerVase").setCreativeTab(
+				DCsAppleMilk.applemilkContainer);
+
+		DCsAppleMilk.hedge = (new BlockHedge()).setBlockName("defeatedcrow.hedge").setCreativeTab(
+				DCsAppleMilk.applemilkContainer);
+
 	}
 
 	static void addDecorations() {
@@ -878,6 +876,9 @@ public class MaterialRegister {
 
 		DCsAppleMilk.woodPanel = (new BlockWoodPanel()).setBlockName("defeatedcrow.woodPanel").setCreativeTab(
 				DCsAppleMilk.applemilkContainer);
+
+		DCsAppleMilk.crowDoll = (new BlockCrowDoll()).setBlockName("defeatedcrow.crowFigure").setCreativeTab(
+				DCsAppleMilk.applemilk);
 	}
 
 	static void addPlants() {
@@ -974,13 +975,8 @@ public class MaterialRegister {
 		DCsAppleMilk.slotPanel = (new ItemSlotPanel()).setUnlocalizedName("defeatedcrow.slotPanel").setCreativeTab(
 				DCsAppleMilk.applemilk);
 
-		// deprecated
-
-		DCsAppleMilk.teppann = (new BlockTeppann()).setBlockName("defeatedcrow.cookingIronPlate");
-
-		DCsAppleMilk.prosessor = (new BlockProsessor()).setBlockName("defeatedcrow.prosessor");
-
-		DCsAppleMilk.advProsessor = (new BlockAdvProsessor()).setBlockName("defeatedcrow.advProsessor");
+		DCsAppleMilk.jawPlate = (new ItemJawplate()).setUnlocalizedName("defeatedcrow.jawPlate").setCreativeTab(
+				DCsAppleMilk.applemilk);
 
 		// エネルギー
 		DCsAppleMilk.batteryItem = (new ItemBattery()).setUnlocalizedName("defeatedcrow.battery").setCreativeTab(

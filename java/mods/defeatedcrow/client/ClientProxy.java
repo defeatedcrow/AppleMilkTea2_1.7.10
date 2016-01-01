@@ -28,23 +28,21 @@ import mods.defeatedcrow.client.item.RenderItemYuzuGatling;
 import mods.defeatedcrow.client.model.model.ModelAnchorMissile;
 import mods.defeatedcrow.client.model.model.ModelYuzuBullet;
 import mods.defeatedcrow.client.model.tileentity.TileEntityAlcoholCupRenderer;
-import mods.defeatedcrow.client.model.tileentity.TileEntityAutoMakerRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityBarrelRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityBottleRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityBowlJPRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityBowlRackRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityBreadRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCLampRenderer;
-import mods.defeatedcrow.client.model.tileentity.TileEntityCanisterRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCardBoardRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityChargerRenderer;
-import mods.defeatedcrow.client.model.tileentity.TileEntityChocoPanRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityChopsticksRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCocktail2Renderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCocktailRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCocktailSPRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityContainerBaseRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCordialRenderer;
+import mods.defeatedcrow.client.model.tileentity.TileEntityCrowdollRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityCupHandleRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityDialRenderer;
 import mods.defeatedcrow.client.model.tileentity.TileEntityEHandleRenderer;
@@ -92,8 +90,10 @@ import mods.defeatedcrow.client.renderblocks.RenderFilledBowl;
 import mods.defeatedcrow.client.renderblocks.RenderFilledBowlJP;
 import mods.defeatedcrow.client.renderblocks.RenderFilledCup;
 import mods.defeatedcrow.client.renderblocks.RenderFlowerPot;
+import mods.defeatedcrow.client.renderblocks.RenderFlowerVase;
 import mods.defeatedcrow.client.renderblocks.RenderFoodPlate;
 import mods.defeatedcrow.client.renderblocks.RenderGelBat;
+import mods.defeatedcrow.client.renderblocks.RenderHedge;
 import mods.defeatedcrow.client.renderblocks.RenderIceCream;
 import mods.defeatedcrow.client.renderblocks.RenderIceMaker;
 import mods.defeatedcrow.client.renderblocks.RenderIncenseBase;
@@ -135,29 +135,22 @@ import mods.defeatedcrow.common.entity.edible.PlaceableSandwich;
 import mods.defeatedcrow.common.entity.edible.PlaceableSteak;
 import mods.defeatedcrow.common.entity.edible.PlaceableTart;
 import mods.defeatedcrow.common.tile.TileAlcoholCup;
-import mods.defeatedcrow.common.tile.TileAutoMaker;
 import mods.defeatedcrow.common.tile.TileBowlRack;
 import mods.defeatedcrow.common.tile.TileBread;
 import mods.defeatedcrow.common.tile.TileBrewingBarrel;
 import mods.defeatedcrow.common.tile.TileCLamp;
-import mods.defeatedcrow.common.tile.TileCPanel;
-import mods.defeatedcrow.common.tile.TileCanister;
 import mods.defeatedcrow.common.tile.TileCardBoard;
-import mods.defeatedcrow.common.tile.TileChocoPan;
 import mods.defeatedcrow.common.tile.TileChopsticksBox;
 import mods.defeatedcrow.common.tile.TileCocktail;
 import mods.defeatedcrow.common.tile.TileCocktail2;
 import mods.defeatedcrow.common.tile.TileCocktailSP;
 import mods.defeatedcrow.common.tile.TileContainerBase;
 import mods.defeatedcrow.common.tile.TileCordial;
+import mods.defeatedcrow.common.tile.TileCrowDoll;
 import mods.defeatedcrow.common.tile.TileCupHandle;
-import mods.defeatedcrow.common.tile.TileDummy;
 import mods.defeatedcrow.common.tile.TileEggs;
 import mods.defeatedcrow.common.tile.TileEmptyBottle;
 import mods.defeatedcrow.common.tile.TileFlowerPot;
-import mods.defeatedcrow.common.tile.TileHasDirection;
-import mods.defeatedcrow.common.tile.TileHasRemain2;
-import mods.defeatedcrow.common.tile.TileHasRemaining;
 import mods.defeatedcrow.common.tile.TileIceCream;
 import mods.defeatedcrow.common.tile.TileIncenseBase;
 import mods.defeatedcrow.common.tile.TileJPBowl;
@@ -170,19 +163,14 @@ import mods.defeatedcrow.common.tile.TileVegiBag;
 import mods.defeatedcrow.common.tile.TileWipeBox;
 import mods.defeatedcrow.common.tile.TileWipeBox2;
 import mods.defeatedcrow.common.tile.appliance.TileAdvProcessor;
-import mods.defeatedcrow.common.tile.appliance.TileAdvProsessor;
 import mods.defeatedcrow.common.tile.appliance.TileEvaporator;
 import mods.defeatedcrow.common.tile.appliance.TileFilledSoupPan;
 import mods.defeatedcrow.common.tile.appliance.TileIceMaker;
 import mods.defeatedcrow.common.tile.appliance.TileMakerNext;
 import mods.defeatedcrow.common.tile.appliance.TilePanG;
 import mods.defeatedcrow.common.tile.appliance.TileProcessor;
-import mods.defeatedcrow.common.tile.appliance.TileProsessor;
 import mods.defeatedcrow.common.tile.appliance.TileTeppanII;
-import mods.defeatedcrow.common.tile.appliance.TileTeppann;
-import mods.defeatedcrow.common.tile.energy.TileChargerBase;
 import mods.defeatedcrow.common.tile.energy.TileChargerDevice;
-import mods.defeatedcrow.common.tile.energy.TileGelBat;
 import mods.defeatedcrow.common.tile.energy.TileHandleEngine;
 import mods.defeatedcrow.handler.KeyConfigHelper;
 import mods.defeatedcrow.handler.NetworkUtil;
@@ -202,7 +190,6 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -223,68 +210,46 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerTileEntity() {
 
-		GameRegistry.registerTileEntity(TileHasDirection.class, "TileHasDirection");
-		GameRegistry.registerTileEntity(TileHasRemaining.class, "TileHasRemaining");
-		GameRegistry.registerTileEntity(TileHasRemain2.class, "TileHasRemaining2");
-		GameRegistry.registerTileEntity(TileDummy.class, "TileDummy");
-		GameRegistry.registerTileEntity(TileCPanel.class, "TileChalcedonyPanel");
+		super.registerTileEntity();
 
-		ClientRegistry.registerTileEntity(TileCupHandle.class, "TileCupHandle", new TileEntityCupHandleRenderer());
-		ClientRegistry.registerTileEntity(TileBread.class, "TileBread", new TileEntityBreadRenderer());
-		ClientRegistry.registerTileEntity(TileJPBowl.class, "TileJPBowl", new TileEntityBowlJPRenderer());
-		ClientRegistry
-				.registerTileEntity(TileChopsticksBox.class, "TileChopsticks", new TileEntityChopsticksRenderer());
-		ClientRegistry.registerTileEntity(TileEggs.class, "TileEggs", new TileEntityEggsRenderer());
-		ClientRegistry.registerTileEntity(TileSteak.class, "TileSteak", new TileEntitySteakRenderer());
-		ClientRegistry.registerTileEntity(TileMakerHandle.class, "TileMakerHandle", new TileEntityMakerRenderer());
-		ClientRegistry.registerTileEntity(TilePanHandle.class, "TilePanHandle", new TileEntityPanHandleRenderer());
-		ClientRegistry.registerTileEntity(TileMakerNext.class, "TilemakerNext", new TileEntityMakerNextRenderer());
-		ClientRegistry.registerTileEntity(TileWipeBox.class, "TileWipeBox", new TileEntityWipeBoxRenderer());
-		ClientRegistry.registerTileEntity(TileIceMaker.class, "TileIceMaker", new TileEntityIceMakerRenderer());
-		ClientRegistry.registerTileEntity(TileIceCream.class, "TileIceCream", new TileEntityIceCreamRenderer());
-		ClientRegistry.registerTileEntity(TileWipeBox2.class, "TileWipeBox2", new TileEntityWipe2Renderer());
-		ClientRegistry.registerTileEntity(TileRotaryDial.class, "TileRotaryDial", new TileEntityDialRenderer());
-		ClientRegistry.registerTileEntity(TileCocktail.class, "TileCocktail", new TileEntityCocktailRenderer());
-		ClientRegistry.registerTileEntity(TileCocktail2.class, "TileCocktail2", new TileEntityCocktail2Renderer());
-		ClientRegistry.registerTileEntity(TileLargeBottle.class, "TileLargeBottle", new TileEntityBottleRenderer());
-		ClientRegistry
-				.registerTileEntity(TileEmptyBottle.class, "TileEmptyBottle", new TileEntityEmptyBottleRenderer());
-		ClientRegistry.registerTileEntity(TileCLamp.class, "TileChalcedonyLamp", new TileEntityCLampRenderer());
-		ClientRegistry.registerTileEntity(TileCordial.class, "TileCordial", new TileEntityCordialRenderer());
-		ClientRegistry.registerTileEntity(TileAlcoholCup.class, "TileAlcoholCup", new TileEntityAlcoholCupRenderer());
-		ClientRegistry.registerTileEntity(TileProcessor.class, "TileProcessor", new TileEntityProcessorRenderer());
-		ClientRegistry.registerTileEntity(TileAdvProcessor.class, "TileAdvProcessor",
-				new TileEntityJawCrusherRenderer());
-		ClientRegistry.registerTileEntity(TileEvaporator.class, "TileEvaporator", new TileEntityEvaporatorRenderer());
-		ClientRegistry.registerTileEntity(TileVegiBag.class, "TileVegiBag", new TileEntityVegiBagRenderer());
-		ClientRegistry.registerTileEntity(TileCardBoard.class, "TileCardBoard", new TileEntityCardBoardRenderer());
-		ClientRegistry
-				.registerTileEntity(TileIncenseBase.class, "TileIncenseBase", new TileEntityIncenseBaseRenderer());
-		ClientRegistry.registerTileEntity(TilePanG.class, "TilePanG", new TileEntityPanGRenderer());
-		ClientRegistry.registerTileEntity(TileCanister.class, "TileCanister", new TileEntityCanisterRenderer());
-		ClientRegistry.registerTileEntity(TileBrewingBarrel.class, "TileBarrel", new TileEntityBarrelRenderer());
-		ClientRegistry
-				.registerTileEntity(TileChargerDevice.class, "TileChargerDevice", new TileEntityChargerRenderer());
-		ClientRegistry.registerTileEntity(TileFlowerPot.class, "TileFlowerPot", new TileEntityFlowerPotRenderer());
-		ClientRegistry.registerTileEntity(TileTeppanII.class, "TileTeppanII", new TileEntityTeppanIIRenderer());
-		ClientRegistry.registerTileEntity(TileCocktailSP.class, "TileCocktailSP", new TileEntityCocktailSPRenderer());
-		ClientRegistry.registerTileEntity(TileHandleEngine.class, "TileEHandle", new TileEntityEHandleRenderer());
-		ClientRegistry.registerTileEntity(TileBowlRack.class, "TileBowlRack", new TileEntityBowlRackRenderer());
-
-		GameRegistry.registerTileEntity(TileChargerBase.class, "TileChargerBase");
-		GameRegistry.registerTileEntity(TileGelBat.class, "TileGelBattery");
-		ClientRegistry.registerTileEntity(TileContainerBase.class, "TileDCContainerBase",
-				new TileEntityContainerBaseRenderer());
-
-		// deprecated
-		GameRegistry.registerTileEntity(TileTeppann.class, "TileTeppann");
-		ClientRegistry.registerTileEntity(TileChocoPan.class, "TileChocoPan", new TileEntityChocoPanRenderer());
-		ClientRegistry
-				.registerTileEntity(TileFilledSoupPan.class, "TileFilledSoupPan", new TileEntitySoupPanRenderer());
-		ClientRegistry.registerTileEntity(TileAutoMaker.class, "TileAutoMaker", new TileEntityAutoMakerRenderer());
-		ClientRegistry.registerTileEntity(TileProsessor.class, "TileProsessor", new TileEntityProcessorRenderer());
-		ClientRegistry.registerTileEntity(TileAdvProsessor.class, "TileAdvProsessor",
-				new TileEntityJawCrusherRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCupHandle.class, new TileEntityCupHandleRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileBread.class, new TileEntityBreadRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileJPBowl.class, new TileEntityBowlJPRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileChopsticksBox.class, new TileEntityChopsticksRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEggs.class, new TileEntityEggsRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileSteak.class, new TileEntitySteakRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileMakerHandle.class, new TileEntityMakerRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TilePanHandle.class, new TileEntityPanHandleRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileFilledSoupPan.class, new TileEntitySoupPanRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileMakerNext.class, new TileEntityMakerNextRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileWipeBox.class, new TileEntityWipeBoxRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileIceMaker.class, new TileEntityIceMakerRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileIceCream.class, new TileEntityIceCreamRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileWipeBox2.class, new TileEntityWipe2Renderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileRotaryDial.class, new TileEntityDialRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCocktail.class, new TileEntityCocktailRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCocktail2.class, new TileEntityCocktail2Renderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileLargeBottle.class, new TileEntityBottleRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEmptyBottle.class, new TileEntityEmptyBottleRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCLamp.class, new TileEntityCLampRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCordial.class, new TileEntityCordialRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileAlcoholCup.class, new TileEntityAlcoholCupRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileProcessor.class, new TileEntityProcessorRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileAdvProcessor.class, new TileEntityJawCrusherRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEvaporator.class, new TileEntityEvaporatorRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileVegiBag.class, new TileEntityVegiBagRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCardBoard.class, new TileEntityCardBoardRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileIncenseBase.class, new TileEntityIncenseBaseRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TilePanG.class, new TileEntityPanGRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileBrewingBarrel.class, new TileEntityBarrelRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileChargerDevice.class, new TileEntityChargerRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileFlowerPot.class, new TileEntityFlowerPotRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileTeppanII.class, new TileEntityTeppanIIRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCocktailSP.class, new TileEntityCocktailSPRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileHandleEngine.class, new TileEntityEHandleRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileBowlRack.class, new TileEntityBowlRackRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileContainerBase.class, new TileEntityContainerBaseRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCrowDoll.class, new TileEntityCrowdollRenderer());
 	}
 
 	@Override
@@ -336,6 +301,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerBlockHandler(new RenderCLampOp());
 		RenderingRegistry.registerBlockHandler(new RenderSoupPanFilled());
 		RenderingRegistry.registerBlockHandler(new RenderContainerWBottle());
+		RenderingRegistry.registerBlockHandler(new RenderFlowerVase());
+		RenderingRegistry.registerBlockHandler(new RenderHedge());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMelonBomb.class, new RenderMelonBomb());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySilkyMelon.class, new RenderSilkyMelon());
@@ -367,7 +334,6 @@ public class ClientProxy extends CommonProxy {
 				new RenderItemCocktailSP());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(DCsAppleMilk.handleEngine),
 				new RenderEHandleItem());
-
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipeID,
 				new ResourceLocation(Util.getEntityTexturePassNoAlt() + "villager_cafe.png"));
 		VillagerRegistry.instance().registerVillagerSkin(DCsConfig.villagerRecipe2ID,

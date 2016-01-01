@@ -1,20 +1,23 @@
 package mods.defeatedcrow.common.item;
 
+import mods.defeatedcrow.common.DCsAppleMilk;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
+
 import com.google.common.collect.Multimap;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.defeatedcrow.common.DCsAppleMilk;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
 
 public class ItemOnixSword extends ItemSword {
 
@@ -32,14 +35,14 @@ public class ItemOnixSword extends ItemSword {
 	public Multimap getItemAttributeModifiers() {
 		Multimap multimap = super.getItemAttributeModifiers();
 		multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(
-				field_111210_e, "Weapon modifier", (double) this.damage, 0));
+				field_111210_e, "Weapon modifier", this.damage, 0));
 		return multimap;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:onixsword");
+		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:tools/onixsword");
 	}
 
 	@Override
@@ -83,10 +86,10 @@ public class ItemOnixSword extends ItemSword {
 
 		int shp = EnchantmentHelper.getEnchantmentLevel(Enchantment.sharpness.effectId, par1ItemStack);
 
-		float f = (float) j / 20.0F;
+		float f = j / 20.0F;
 		f = (f * f + f * 2.0F) / 3.0F;
 
-		if ((double) f < 0.5D) {
+		if (f < 0.5D) {
 			return;
 		}
 

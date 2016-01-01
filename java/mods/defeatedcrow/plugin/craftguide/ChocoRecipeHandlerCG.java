@@ -28,7 +28,7 @@ public class ChocoRecipeHandlerCG implements RecipeProvider {
 	@Override
 	public void generateRecipes(RecipeGenerator generator) {
 		RecipeTemplate template;
-		ItemStack machine = new ItemStack(DCsAppleMilk.filledChocoPan, 1, 0);
+		ItemStack machine = new ItemStack(DCsAppleMilk.filledSoupPan, 1, 0);
 		template = generator.createRecipeTemplate(this.slots, machine, "defeatedcrow:textures/gui/craftguidegui.png",
 				1, 1, 82, 1);
 		Map<Object, ItemStack> recipeGet = RecipeRegisterManager.chocoRecipe.getRecipeList();
@@ -40,7 +40,7 @@ public class ChocoRecipeHandlerCG implements RecipeProvider {
 			items[2] = machine;
 
 			if (obj instanceof ItemStack) {
-				items[0] = (ItemStack) obj;
+				items[0] = obj;
 			} else if (obj instanceof String) {
 				String s = (String) obj;
 				ArrayList<ItemStack> ret = OreDictionary.getOres(s);

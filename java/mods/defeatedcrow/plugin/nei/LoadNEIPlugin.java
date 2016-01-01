@@ -16,8 +16,6 @@ public class LoadNEIPlugin {
 	public static AdvProcessorRecipeHandler advProcessorRecipe;
 	public static EvaporatorRecipeHandler evaporatorRecipe;
 	public static TeppanRecipeHandler plateRecipe;
-	@Deprecated
-	public static ChocoRecipeHandler chocoRecipe;
 	public static BrewingRecipeHandler brewRecipe;
 	public static FondueSourceHandler fondueSource;
 	public static FondueRecipeHandler fondueRecipe;
@@ -65,10 +63,6 @@ public class LoadNEIPlugin {
 		API.registerRecipeHandler(plateRecipe);
 		API.registerUsageHandler(plateRecipe);
 		API.registerGuiOverlay(GuiRecipe.class, plateRecipe.getOverlayIdentifier(), 0, 0);
-
-		// API.registerRecipeHandler(chocoRecipe);
-		// API.registerUsageHandler(chocoRecipe);
-		// API.registerGuiOverlay(GuiRecipe.class, chocoRecipe.getOverlayIdentifier(), 0, 0);
 
 		API.registerRecipeHandler(brewRecipe);
 		API.registerUsageHandler(brewRecipe);

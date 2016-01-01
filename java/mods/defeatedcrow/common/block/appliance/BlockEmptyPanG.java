@@ -290,7 +290,7 @@ public class BlockEmptyPanG extends BlockContainer {
 	@Override
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase,
 			ItemStack par6ItemStack) {
-		int playerFacing = MathHelper.floor_double((double) ((par5EntityLivingBase.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+		int playerFacing = MathHelper.floor_double((par5EntityLivingBase.rotationYaw * 4F) / 360F + 0.5D) & 3;
 
 		boolean facing = false;
 		if (playerFacing == 0) {
@@ -342,8 +342,7 @@ public class BlockEmptyPanG extends BlockContainer {
 			float a = par1World.rand.nextFloat() * 0.8F + 0.1F;
 			float a1 = par1World.rand.nextFloat() * 0.8F + 0.1F;
 			float a2 = par1World.rand.nextFloat() * 0.8F + 0.1F;
-			EntityItem drop = new EntityItem(par1World, (double) ((float) par2 + a), (double) ((float) par3 + a1),
-					(double) ((float) par4 + a2), block);
+			EntityItem drop = new EntityItem(par1World, par2 + a, par3 + a1, par4 + a2, block);
 
 			if (input != null) {
 				NBTTagCompound tag = new NBTTagCompound();
@@ -354,9 +353,9 @@ public class BlockEmptyPanG extends BlockContainer {
 			}
 
 			float a3 = 0.05F;
-			drop.motionX = (double) ((float) par1World.rand.nextGaussian() * a3);
-			drop.motionY = (double) ((float) par1World.rand.nextGaussian() * a3 + 0.2F);
-			drop.motionZ = (double) ((float) par1World.rand.nextGaussian() * a3);
+			drop.motionX = (float) par1World.rand.nextGaussian() * a3;
+			drop.motionY = (float) par1World.rand.nextGaussian() * a3 + 0.2F;
+			drop.motionZ = (float) par1World.rand.nextGaussian() * a3;
 			par1World.spawnEntityInWorld(drop);
 		}
 	}
@@ -414,9 +413,9 @@ public class BlockEmptyPanG extends BlockContainer {
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		int l = par1World.getBlockMetadata(par2, par3, par4);
 		Block i = par1World.getBlock(par2, par3 - 1, par2);
-		double d0 = (double) ((float) par2 + 0.25F + par5Random.nextFloat() / 2);
-		double d1 = (double) ((float) par3 + par5Random.nextFloat());
-		double d2 = (double) ((float) par4 + 0.25F + par5Random.nextFloat() / 2);
+		double d0 = par2 + 0.25F + par5Random.nextFloat() / 2;
+		double d1 = par3 + par5Random.nextFloat();
+		double d2 = par4 + 0.25F + par5Random.nextFloat() / 2;
 		double d3 = 0.0199999988079071D;
 		double d4 = 0.27000001072883606D;
 
@@ -433,5 +432,4 @@ public class BlockEmptyPanG extends BlockContainer {
 			FMLClientHandler.instance().getClient().effectRenderer.addEffect(cloud);
 		}
 	}
-
 }

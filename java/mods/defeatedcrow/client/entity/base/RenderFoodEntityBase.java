@@ -1,7 +1,5 @@
 package mods.defeatedcrow.client.entity.base;
 
-import mods.defeatedcrow.client.model.model.ModelTeaCup;
-import mods.defeatedcrow.client.model.model.ModelWoodBowl;
 import mods.defeatedcrow.common.base.FoodBaseEntity;
 import mods.defeatedcrow.common.base.FoodModelType.Deco;
 import mods.defeatedcrow.common.base.FoodModelType.Dish;

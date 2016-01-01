@@ -1,20 +1,18 @@
 package mods.defeatedcrow.plugin;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModContainer;
-import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.config.DCsConfig;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import thaumcraft.api.ItemApi;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModContainer;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class LoadThaumcraftPlugin {
 
@@ -68,8 +66,10 @@ public class LoadThaumcraftPlugin {
 				.add(Aspect.WEAPON, 3).add(Aspect.ENERGY, 1).add(Aspect.WATER, 1));
 
 		// battery
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.batteryItem), new int[] { 0, 1, 2 },
-				new AspectList().add(Aspect.ENERGY, 3));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.batteryItem), new int[] {
+				0,
+				1,
+				2 }, new AspectList().add(Aspect.ENERGY, 3));
 
 		// magic
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.essentialOil), new int[] { 32767 },
@@ -131,8 +131,12 @@ public class LoadThaumcraftPlugin {
 				new AspectList().add(Aspect.TREE, 9).add(Aspect.MAGIC, 3));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.woodBox), new int[] { 6 },
 				new AspectList().add(Aspect.TREE, 9).add(Aspect.MAGIC, 3).add(Aspect.ORDER, 3));
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.woodBox), new int[] { 0, 1, 2, 3, 10 },
-				new AspectList().add(Aspect.TREE, 8));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.woodBox), new int[] {
+				0,
+				1,
+				2,
+				3,
+				10 }, new AspectList().add(Aspect.TREE, 8));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.woodBox), new int[] { 4 },
 				new AspectList().add(Aspect.TREE, 8).add(Aspect.SLIME, 3));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.woodBox), new int[] { 7 },
@@ -155,16 +159,22 @@ public class LoadThaumcraftPlugin {
 				new AspectList().add(Aspect.WATER, 8).add(Aspect.HEAL, 3));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.vegiBag), new int[] { 0 },
 				new AspectList().add(Aspect.CROP, 8).add(Aspect.PLANT, 4));
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.vegiBag), new int[] { 1, 2, 3, 7 },
-				new AspectList().add(Aspect.CROP, 8));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.vegiBag), new int[] {
+				1,
+				2,
+				3,
+				7 }, new AspectList().add(Aspect.CROP, 8));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.vegiBag), new int[] { 5 },
 				new AspectList().add(Aspect.CROP, 8).add(Aspect.AIR, 3));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.vegiBag), new int[] { 6 },
 				new AspectList().add(Aspect.CROP, 8).add(Aspect.WATER, 3));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.vegiBag), new int[] { 8 },
 				new AspectList().add(Aspect.CROP, 8).add(Aspect.MAGIC, 3));
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cardboard), new int[] { 0, 1, 2, 3 },
-				new AspectList().add(Aspect.CROP, 8));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cardboard), new int[] {
+				0,
+				1,
+				2,
+				3 }, new AspectList().add(Aspect.CROP, 8));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.mobBlock), new int[] { 0 },
 				new AspectList().add(Aspect.FLESH, 5));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.mobBlock), new int[] { 1 },
@@ -175,8 +185,9 @@ public class LoadThaumcraftPlugin {
 				new AspectList().add(Aspect.ELDRITCH, 5));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.mobBlock), new int[] { 4 },
 				new AspectList().add(Aspect.SLIME, 5));
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.flowerPot), new int[] { 0, 1 }, new AspectList()
-				.add(Aspect.SENSES, 5).add(Aspect.PLANT, 3));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.flowerPot), new int[] {
+				0,
+				1 }, new AspectList().add(Aspect.SENSES, 5).add(Aspect.PLANT, 3));
 
 		// chalcedony
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.flintBlock), new int[] { 0 },
@@ -184,10 +195,16 @@ public class LoadThaumcraftPlugin {
 		ThaumcraftApi
 				.registerObjectTag(new ItemStack(DCsAppleMilk.chalcedony), new int[] { OreDictionary.WILDCARD_VALUE },
 						new AspectList().add(Aspect.MINE, 3).add(Aspect.CRYSTAL, 3));
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cLamp), new int[] { 0, 1, 2, 3 }, new AspectList()
-				.add(Aspect.LIGHT, 2).add(Aspect.CRYSTAL, 3));
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cLamp), new int[] { 4, 5, 6, 7 }, new AspectList()
-				.add(Aspect.LIGHT, 2).add(Aspect.CRYSTAL, 3).add(Aspect.VOID, 1));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cLamp), new int[] {
+				0,
+				1,
+				2,
+				3 }, new AspectList().add(Aspect.LIGHT, 2).add(Aspect.CRYSTAL, 3));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cLamp), new int[] {
+				4,
+				5,
+				6,
+				7 }, new AspectList().add(Aspect.LIGHT, 2).add(Aspect.CRYSTAL, 3).add(Aspect.VOID, 1));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.cLamp), new int[] { 8 },
 				new AspectList().add(Aspect.LIGHT, 2).add(Aspect.CRYSTAL, 3).add(Aspect.MIND, 2).add(Aspect.ENERGY, 2));
 		ThaumcraftApi
@@ -243,9 +260,9 @@ public class LoadThaumcraftPlugin {
 				.add(Aspect.WATER, 2).add(Aspect.DARKNESS, 1).add(Aspect.FIRE, 1));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.rotaryDial), new int[] { 0 },
 				new AspectList().add(Aspect.MECHANISM, 2).add(Aspect.EXCHANGE, 2).add(Aspect.TRAVEL, 1));
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.prosessor), new int[] { 0 },
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.processor), new int[] { 0 },
 				new AspectList().add(Aspect.MECHANISM, 3).add(Aspect.ENTROPY, 3).add(Aspect.CRAFT, 2));
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.advProsessor), new int[] { 0 }, new AspectList()
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.advProcessor), new int[] { 0 }, new AspectList()
 				.add(Aspect.MECHANISM, 3).add(Aspect.ENTROPY, 3).add(Aspect.METAL, 2));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.evaporator), new int[] { 0 },
 				new AspectList().add(Aspect.MECHANISM, 3).add(Aspect.WATER, 2).add(Aspect.VOID, 2));
@@ -311,14 +328,16 @@ public class LoadThaumcraftPlugin {
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.chocoBlock),
 				new int[] { OreDictionary.WILDCARD_VALUE }, new AspectList().add(Aspect.HEAL, 3).add(Aspect.MIND, 3)
 						.add(Aspect.SENSES, 3));
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.filledChocoPan),
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.filledSoupPan),
 				new int[] { OreDictionary.WILDCARD_VALUE }, new AspectList().add(Aspect.HEAL, 3).add(Aspect.MIND, 3)
 						.add(Aspect.MAGIC, 3));
 
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.wipeBox2), new int[] { 0, 1 },
-				new AspectList().add(Aspect.MIND, 3).add(Aspect.MAGIC, 3));
-		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.wipeBox), new int[] { 2, 3 },
-				new AspectList().add(Aspect.MIND, 6).add(Aspect.MAGIC, 6));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.wipeBox2), new int[] {
+				0,
+				1 }, new AspectList().add(Aspect.MIND, 3).add(Aspect.MAGIC, 3));
+		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.wipeBox), new int[] {
+				2,
+				3 }, new AspectList().add(Aspect.MIND, 6).add(Aspect.MAGIC, 6));
 		ThaumcraftApi.registerObjectTag(new ItemStack(DCsAppleMilk.wipeBox2),
 				new int[] { OreDictionary.WILDCARD_VALUE }, new AspectList().add(Aspect.MIND, 10).add(Aspect.MAGIC, 10)
 						.add(Aspect.VOID, 10));
@@ -331,8 +350,12 @@ public class LoadThaumcraftPlugin {
 			GameRegistry.addShapelessRecipe(new ItemStack(LoadThaumcraftPlugin.thaumicGreatwood.getItem(), 9, 0),
 					new ItemStack(DCsAppleMilk.woodBox, 1, 5));
 
-			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 5), new Object[] { "UUU", "UUU", "UUU",
-					Character.valueOf('U'), new ItemStack(LoadThaumcraftPlugin.thaumicGreatwood.getItem(), 1, 0) });
+			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 5), new Object[] {
+					"UUU",
+					"UUU",
+					"UUU",
+					Character.valueOf('U'),
+					new ItemStack(LoadThaumcraftPlugin.thaumicGreatwood.getItem(), 1, 0) });
 		}
 
 		if (this.thaumicSilverwood != null) {
@@ -340,8 +363,12 @@ public class LoadThaumcraftPlugin {
 			GameRegistry.addShapelessRecipe(new ItemStack(LoadThaumcraftPlugin.thaumicSilverwood.getItem(), 9, 1),
 					new ItemStack(DCsAppleMilk.woodBox, 1, 6));
 
-			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 6), new Object[] { "UUU", "UUU", "UUU",
-					Character.valueOf('U'), new ItemStack(LoadThaumcraftPlugin.thaumicSilverwood.getItem(), 1, 1) });
+			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 6), new Object[] {
+					"UUU",
+					"UUU",
+					"UUU",
+					Character.valueOf('U'),
+					new ItemStack(LoadThaumcraftPlugin.thaumicSilverwood.getItem(), 1, 1) });
 		}
 
 		if (this.thaumicNitor != null) {

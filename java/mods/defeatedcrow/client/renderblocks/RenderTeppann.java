@@ -1,15 +1,14 @@
 package mods.defeatedcrow.client.renderblocks;
 
-import org.lwjgl.opengl.GL11;
-
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,9 +27,9 @@ public class RenderTeppann implements ISimpleBlockRenderingHandler {
 		int meta = metadata;
 		if (meta > 9)
 			meta = 9;
-		this.contentsIIcon = DCsAppleMilk.teppann.getIcon(0, meta);
-		this.plateIIcon = DCsAppleMilk.teppann.getBlockTextureFromSide(1);
-		this.dishIIcon = DCsAppleMilk.teppann.getBlockTextureFromSide(2);
+		this.contentsIIcon = DCsAppleMilk.teppanII.getIcon(0, meta);
+		this.plateIIcon = DCsAppleMilk.teppanII.getBlockTextureFromSide(1);
+		this.dishIIcon = DCsAppleMilk.teppanII.getBlockTextureFromSide(2);
 		this.innerIIcon = DCsAppleMilk.foodPlate.getBlockTextureFromSide(4);
 
 		if (modelID == this.getRenderId()) {
@@ -96,9 +95,9 @@ public class RenderTeppann implements ISimpleBlockRenderingHandler {
 		int meta = world.getBlockMetadata(x, y, z);
 		if (meta > 9)
 			meta = 9;
-		this.contentsIIcon = DCsAppleMilk.teppann.getIcon(0, meta);
-		this.plateIIcon = DCsAppleMilk.teppann.getBlockTextureFromSide(1);
-		this.dishIIcon = DCsAppleMilk.teppann.getBlockTextureFromSide(2);
+		this.contentsIIcon = DCsAppleMilk.teppanII.getIcon(0, meta);
+		this.plateIIcon = DCsAppleMilk.teppanII.getBlockTextureFromSide(1);
+		this.dishIIcon = DCsAppleMilk.teppanII.getBlockTextureFromSide(2);
 		this.innerIIcon = DCsAppleMilk.foodPlate.getBlockTextureFromSide(4);
 
 		if (modelId == this.getRenderId()) {

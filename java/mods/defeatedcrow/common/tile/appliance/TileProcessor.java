@@ -55,7 +55,7 @@ public class TileProcessor extends MachineBase {
 		float chance = 1.0F;
 
 		for (IProcessorRecipe recipe : recipes) {
-			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && recipe.matches(items)) {
+			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && this.ismatchTier() && recipe.matches(items)) {
 				output = recipe.getOutput();
 				sec = recipe.getSecondary();
 				chance = recipe.getChance();
@@ -121,12 +121,20 @@ public class TileProcessor extends MachineBase {
 		return true;
 	}
 
+	public boolean ismatchTier() {
+		return true;
+	}
+
+	public void onRecipeOutput() {
+
+	}
+
 	@Override
 	public void onProgress() {
 		// 結局canSmelt()と同じことをしていて無駄な感じはする
 		List<ItemStack> items = new ArrayList<ItemStack>(this.getCurrentContains());
 		List<IProcessorRecipe> recipes = new ArrayList<IProcessorRecipe>(
-				RecipeRegisterManager.prosessorRecipe.getRecipes());
+				RecipeRegisterManager.processorRecipe.getRecipes());
 		if (recipes == null || recipes.isEmpty())
 			return;
 
@@ -134,7 +142,7 @@ public class TileProcessor extends MachineBase {
 		boolean flag = false;
 
 		for (IProcessorRecipe recipe : recipes) {
-			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && recipe.matches(items)) {
+			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && this.ismatchTier() && recipe.matches(items)) {
 				activeRecipe = recipe;
 				flag = true;
 			}
@@ -226,6 +234,8 @@ public class TileProcessor extends MachineBase {
 					this.itemstacks[12].stackSize += cont.stackSize;
 				}
 			}
+
+			this.onRecipeOutput();
 
 			this.markDirty();
 		}

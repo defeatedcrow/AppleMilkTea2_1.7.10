@@ -217,7 +217,7 @@ public class BlockFilledSoupPan extends BlockContainer {
 	@Override
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase,
 			ItemStack par6ItemStack) {
-		int playerFacing = MathHelper.floor_double((double) ((par5EntityLivingBase.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+		int playerFacing = MathHelper.floor_double((par5EntityLivingBase.rotationYaw * 4F) / 360F + 0.5D) & 3;
 
 		boolean facing = false;
 		if (playerFacing == 1 || playerFacing == 3) {
@@ -286,9 +286,9 @@ public class BlockFilledSoupPan extends BlockContainer {
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		int l = par1World.getBlockMetadata(par2, par3, par4);
 		Block i = par1World.getBlock(par2, par3 - 1, par2);
-		double d0 = (double) ((float) par2 + 0.25F + par5Random.nextFloat() / 2);
-		double d1 = (double) ((float) par3 + par5Random.nextFloat());
-		double d2 = (double) ((float) par4 + 0.25F + par5Random.nextFloat() / 2);
+		double d0 = par2 + 0.25F + par5Random.nextFloat() / 2;
+		double d1 = par3 + par5Random.nextFloat();
+		double d2 = par4 + 0.25F + par5Random.nextFloat() / 2;
 		double d3 = 0.0199999988079071D;
 		double d4 = 0.27000001072883606D;
 
@@ -298,5 +298,4 @@ public class BlockFilledSoupPan extends BlockContainer {
 			FMLClientHandler.instance().getClient().effectRenderer.addEffect(cloud);
 		}
 	}
-
 }

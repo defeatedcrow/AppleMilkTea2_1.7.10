@@ -14,9 +14,9 @@
     "name":"Apple&Milk&Tea!",
     "url":"http://defeatedcrow.wiki.fc2.com/wiki/AppleMilkTea%20ver2",
     "updateUrl":"",
-    "version":"1.7.10_2.8n",
+    "version":"1.7.10_2.9a",
     "requiredMods":[
-      "Minecraft Forge1.7.10 10.13.2.1291+, PotionExtention-1.7.10-1.1.0+"
+      "Minecraft Forge1.7.10 10.13.2.1448+, PotionExtention-1.7.10-1.1.0+"
     ]
   }
 ]

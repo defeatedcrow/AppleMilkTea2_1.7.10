@@ -395,34 +395,34 @@ public class RegisterMakerRecipe {
 						"bucketMilk" });
 
 		// 砕石機
-		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.flint), false, new ItemStack(Blocks.sand),
-				new Object[] { new ItemStack(Blocks.gravel) });
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.flint), false, 0,
+				new ItemStack(Blocks.sand), new Object[] { new ItemStack(Blocks.gravel) });
 
-		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.clay_ball), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.clay_ball), false, 0, null,
 				new Object[] { new ItemStack(Blocks.sand) });
 
-		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.sand), false, new ItemStack(
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.sand), false, 0, new ItemStack(
 				Items.rotten_flesh), new Object[] { new ItemStack(Blocks.soul_sand) });
 
-		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.clay_ball), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Items.clay_ball), false, 0, null,
 				new Object[] { new ItemStack(Blocks.dirt) });
 
-		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, null, new Object[] {
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, 0, null, new Object[] {
 				"dustAsh",
 				"dustOilCake",
 				new ItemStack(Items.dye, 1, 15),
 				new ItemStack(Blocks.sand) });
 
-		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, null, new Object[] {
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(Blocks.dirt), false, 0, null, new Object[] {
 				"dustAsh",
 				"dustOilCake",
 				new ItemStack(DCsAppleMilk.EXItems, 1, 6),
 				new ItemStack(Blocks.sand) });
 
-		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, 0, null,
 				new Object[] { "logWood" });
 
-		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 1), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 1), false, 0, null,
 				new Object[] { new ItemStack(Items.coal, 1, 1) });
 
 		// ツール還元
@@ -669,7 +669,7 @@ public class RegisterMakerRecipe {
 	public static void testRecipe() {
 		OreDictionary.registerOre("logYuzuWood", new ItemStack(DCsAppleMilk.logYuzu, 1, 0));
 
-		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, null,
+		RecipeRegisterManager.processorRecipe.addRecipe(new ItemStack(DCsAppleMilk.dustWood, 1, 0), false, 0, null,
 				new Object[] { "logYuzuWood" });
 	}
 

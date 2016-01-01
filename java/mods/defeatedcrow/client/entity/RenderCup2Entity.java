@@ -1,6 +1,6 @@
 package mods.defeatedcrow.client.entity;
 
-import mods.defeatedcrow.client.model.model.ModelTeaCup;
+import mods.defeatedcrow.client.entity.base.ModelTeaCup;
 import mods.defeatedcrow.common.block.edible.BlockFilledCup2;
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.entity.edible.PlaceableCup2;

@@ -2,38 +2,33 @@ package mods.defeatedcrow.common.item;
 
 import java.util.Set;
 
-import com.google.common.collect.Sets;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.api.plants.IRightClickHarvestable;
-import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.block.plants.BlockClamSand;
-import mods.defeatedcrow.common.config.DCsConfig;
-import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStem;
 import net.minecraft.block.IGrowable;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import net.minecraftforge.fluids.BlockFluidClassic;
+
+import com.google.common.collect.Sets;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemChalcedonyShears extends ItemTool {
 
-	public static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] { Blocks.pumpkin, Blocks.lit_pumpkin,
-			Blocks.melon_block, Blocks.wool });
+	public static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] {
+			Blocks.pumpkin,
+			Blocks.lit_pumpkin,
+			Blocks.melon_block,
+			Blocks.wool });
 
 	public ItemChalcedonyShears(ToolMaterial par2) {
 		super(3.0F, par2, blocksEffectiveAgainst);
@@ -67,7 +62,7 @@ public class ItemChalcedonyShears extends ItemTool {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:chalcedonyshears");
+		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:tools/chalcedonyshears");
 	}
 
 	// メイン処理

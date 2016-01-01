@@ -11,9 +11,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerProcessor extends Container {
 
-	private TileProcessor tileentity;
-
-	private TileProcessor inventory;
+	protected TileProcessor tileentity;
+	protected TileProcessor inventory;
 
 	private int lastCookTime;
 	private int lastBurnTime;
@@ -34,8 +33,8 @@ public class ContainerProcessor extends Container {
 
 		// 完成品
 		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 1, 9, 55));
-		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 11, 118, 35));
-		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 12, 145, 35));
+		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 11, 118, 35 + adj()));
+		this.addSlotToContainer(new SlotFurnace(player, this.inventory, 12, 145, 35 + adj()));
 
 		int i;
 
@@ -50,6 +49,10 @@ public class ContainerProcessor extends Container {
 		for (i = 0; i < 9; ++i) {
 			this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 142));
 		}
+	}
+
+	protected int adj() {
+		return 0;
 	}
 
 	@Override
@@ -104,22 +107,23 @@ public class ContainerProcessor extends Container {
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
 		ItemStack itemstack = null;
 		Slot slot = (Slot) this.inventorySlots.get(par2);
+		int lim = tileentity.getSizeInventory();
 
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
 			// カーソルを排出スロットにあわせているとき
-			if (par2 == 1 || par2 == 11 || par2 == 12) {
+			if (par2 == 1 || par2 == 11 || par2 == 12 || par2 == lim - 1) {
 				// アイテムの移動(スロット3～39へ)
-				if (!this.mergeItemStack(itemstack1, 13, 49, true)) {
+				if (!this.mergeItemStack(itemstack1, lim, 35 + lim, true)) {
 					return null;
 				}
 
 				slot.onSlotChange(itemstack1, itemstack);
 			}
 			// カーソルをプレイヤーのインベントリにあわせている
-			else if (par2 > 12) {
+			else if (par2 >= lim) {
 				// 燃料である
 				if (TileProcessor.isItemFuel(itemstack)) {
 					// アイテムの移動(スロット0～1へ)
@@ -135,7 +139,7 @@ public class ContainerProcessor extends Container {
 				}
 			}
 			// アイテムの移動(スロット3～39へ)
-			else if (!this.mergeItemStack(itemstack1, 13, 49, false)) {
+			else if (!this.mergeItemStack(itemstack1, lim, 35 + lim, false)) {
 				return null;
 			}
 

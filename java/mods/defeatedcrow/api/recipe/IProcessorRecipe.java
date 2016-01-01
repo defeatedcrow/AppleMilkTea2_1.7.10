@@ -18,9 +18,6 @@ public interface IProcessorRecipe {
 
 	public boolean forceReturnContainer();
 
-	@Deprecated
-	public List<Object> getProsessedInput();
-
 	public List<Object> getProcessedInput();
 
 	public int getRecipeSize();
@@ -28,5 +25,9 @@ public interface IProcessorRecipe {
 	public boolean matches(List<ItemStack> items);
 
 	ItemStack getContainerItem(List<ItemStack> items);
+
+	int getRecipeTier();
+
+	boolean matchTier(ItemStack item);
 
 }

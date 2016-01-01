@@ -1,5 +1,6 @@
 package mods.defeatedcrow.common.tile.appliance;
 
+import mods.defeatedcrow.api.appliance.IJawPlate;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -49,12 +50,34 @@ public class TileAdvProcessor extends TileProcessor {
 	}
 
 	/*
-	 * 食べ物レシピ以外が対応レシピ。
+	 * 対応レシピ判定。
 	 * Recipeクラス側でスロットパネル利用可能等の判定を行うので、このフラグで設定。
 	 */
 	@Override
 	public boolean acceptFoodRecipe() {
+		ItemStack stack = this.getStackInSlot(13);
+		if (stack != null && stack.getItem() instanceof IJawPlate) {
+			int tier = ((IJawPlate) stack.getItem()).getTier(stack);
+			return tier == -1;
+		}
 		return false;
+	}
+
+	@Override
+	public void onRecipeOutput() {
+		ItemStack stack = this.getStackInSlot(13);
+		if (stack != null && stack.getItem() instanceof IJawPlate) {
+			ItemStack ret = ((IJawPlate) stack.getItem()).returnItem(stack);
+			this.setInventorySlotContents(13, ret);
+		}
+	}
+
+	/* === inventory === */
+
+	// slot追加
+	@Override
+	public int getSizeInventory() {
+		return 14;
 	}
 
 	/*
@@ -88,10 +111,43 @@ public class TileAdvProcessor extends TileProcessor {
 		}
 	}
 
+	@Override
+	protected int[] slotsTop() {
+		return new int[] {
+				0,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				13 };
+	}
+
+	@Override
+	protected int[] slotsBottom() {
+		return new int[] {
+				1,
+				11,
+				12,
+				13 };
+	}
+
 	// slotPanelの排出を禁止
 	@Override
-	public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3) {
-		return par2ItemStack.getItem() != DCsAppleMilk.slotPanel;
+	public boolean canExtractItem(int slot, ItemStack stack, int side) {
+		if (stack == null)
+			return false;
+		if (slot == 13) {
+			if (stack.getItem() instanceof IJawPlate) {
+				int tier = ((IJawPlate) stack.getItem()).getTier(stack);
+				return tier == 0;
+			}
+		}
+		return stack.getItem() != DCsAppleMilk.slotPanel;
 	}
 
 	@Override

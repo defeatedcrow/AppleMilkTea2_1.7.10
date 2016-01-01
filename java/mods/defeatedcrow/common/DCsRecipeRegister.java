@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -469,6 +470,35 @@ public class DCsRecipeRegister {
 				GameRegistry.addShapelessRecipe(new ItemStack(rets[i], 1, j + 1), new ItemStack(rets[i], 1, j),
 						new ItemStack(items[i], 1, 0));
 			}
+		}
+
+		for (int i = 0; i < 6; i++) {
+			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.sapling, 9, i),
+					new ItemStack(DCsAppleMilk.hedge, 1, i));
+
+			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.hedge, 1, i), new Object[] {
+					"UUU",
+					"UUU",
+					"UUU",
+					Character.valueOf('U'),
+					new ItemStack(Blocks.sapling, 1, i) });
+		}
+
+		for (int i = 0; i < 4; i++) {
+			int[] k = {
+					4,
+					5,
+					1,
+					0 };
+			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.double_plant, 9, k[i]), new ItemStack(
+					DCsAppleMilk.flowerBase, 1, i));
+
+			GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.flowerBase, 1, i), new Object[] {
+					"UUU",
+					"UUU",
+					"UUU",
+					Character.valueOf('U'),
+					new ItemStack(Blocks.double_plant, 1, k[i]) });
 		}
 	}
 
@@ -1768,6 +1798,51 @@ public class DCsRecipeRegister {
 				Character.valueOf('Z'),
 				new ItemStack(DCsAppleMilk.redGel, 1, 0) }));
 
+		// 歯板
+		ItemStack plate = new ItemStack(DCsAppleMilk.jawPlate, 1, 0);
+		NBTTagCompound tag = new NBTTagCompound();
+		tag.setInteger("dcsJawCount", 64);
+		plate.setTagCompound(tag);
+		GameRegistry.addRecipe(new ShapedOreRecipe(plate, new Object[] {
+				"XXX",
+				" Y ",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.stained_hardened_clay, 1, 32767),
+				Character.valueOf('Y'),
+				"toolGrater" }));
+
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.jawPlate, 1, 1), new Object[] {
+				"XXX",
+				" Y ",
+				Character.valueOf('X'),
+				new ItemStack(Blocks.cobblestone, 1, 0),
+				Character.valueOf('Y'),
+				"toolGrater" }));
+
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.jawPlate, 1, 2), new Object[] {
+				"XXX",
+				" Y ",
+				Character.valueOf('X'),
+				"blockChalcedony",
+				Character.valueOf('Y'),
+				"toolGrater" }));
+
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.jawPlate, 1, 3), new Object[] {
+				"XXX",
+				" Y ",
+				Character.valueOf('X'),
+				"ingotIron",
+				Character.valueOf('Y'),
+				"toolGrater" }));
+
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.jawPlate, 1, 4), new Object[] {
+				"XXX",
+				" Y ",
+				Character.valueOf('X'),
+				"ingotSteel",
+				Character.valueOf('Y'),
+				"toolGrater" }));
+
 		// カノン
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.yuzuGatling, 1, 0), new Object[] {
 				"  X",
@@ -1972,6 +2047,11 @@ public class DCsRecipeRegister {
 				new ItemStack(DCsAppleMilk.dustWood, 8, 2), 0.2F);
 
 		GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.logYuzu, 1, 0), new ItemStack(Items.coal, 1, 1), 0.2F);
+
+		for (int i = 0; i < 6; i++) {
+			GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.jawPlate, 1, i), new ItemStack(DCsAppleMilk.jawPlate,
+					1, i), 0.0F);
+		}
 	}
 
 	/*

@@ -14,8 +14,6 @@ public class LoadCraftGuidePlugin extends CraftGuideAPIObject {
 	public static AdvProcessorRecipeHandlerCG advProcessorRecipeCG;
 	public static EvaporatorRecipeHandlerCG evaporatorRecipeCG;
 	public static TeppanRecipeHandlerCG plateRecipeCG;
-	@Deprecated
-	public static ChocoRecipeHandlerCG chocoRecipeCG;
 	public static FondueRecipeHandlerCG fondueRecipeCG;
 	public static FondueSourceHandlerCG fondueSourceCG;
 	public static BrewRecipeHandlerCG brewRecipeCG;
@@ -29,7 +27,6 @@ public class LoadCraftGuidePlugin extends CraftGuideAPIObject {
 			evaporatorRecipeCG = new EvaporatorRecipeHandlerCG();
 			advProcessorRecipeCG = new AdvProcessorRecipeHandlerCG();
 			plateRecipeCG = new TeppanRecipeHandlerCG();
-			// chocoRecipeCG = new ChocoRecipeHandlerCG();
 			brewRecipeCG = new BrewRecipeHandlerCG();
 			fondueRecipeCG = new FondueRecipeHandlerCG();
 			fondueSourceCG = new FondueSourceHandlerCG();
@@ -43,7 +40,6 @@ public class LoadCraftGuidePlugin extends CraftGuideAPIObject {
 			register.invoke(null, new Object[] { evaporatorRecipeCG });
 			register.invoke(null, new Object[] { advProcessorRecipeCG });
 			register.invoke(null, new Object[] { plateRecipeCG });
-			// register.invoke(null, new Object[] { chocoRecipeCG });
 			register.invoke(null, new Object[] { brewRecipeCG });
 			register.invoke(null, new Object[] { fondueRecipeCG });
 			register.invoke(null, new Object[] { fondueSourceCG });

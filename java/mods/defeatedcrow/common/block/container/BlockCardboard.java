@@ -21,7 +21,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockCardboard extends BlockContainer {
 
-	private static final String[] bagVegi = new String[] { "_mint", "_cassis", "_yuzu", "_camellia" };
+	private static final String[] bagVegi = new String[] {
+			"_mint",
+			"_cassis",
+			"_yuzu",
+			"_camellia",
+			"_coffee",
+			"_bamboo",
+			"_tomato",
+			"_grape" };
 
 	@SideOnly(Side.CLIENT)
 	private IIcon texTop;
@@ -53,8 +61,6 @@ public class BlockCardboard extends BlockContainer {
 	public IIcon getIcon(int par1, int par2) {
 		int i = par2 & 7;
 		boolean flag = par2 > 7;
-		if (i > 3)
-			i = 3;
 		if (par1 == 1) {
 			return this.texTop;
 		} else if (par1 == 0) {
@@ -75,7 +81,7 @@ public class BlockCardboard extends BlockContainer {
 	@Override
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase,
 			ItemStack par6ItemStack) {
-		int l = MathHelper.floor_double((double) (par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		int l = MathHelper.floor_double(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 		int meta = par6ItemStack.getItemDamage();
 		byte facing = 0;
 
@@ -113,6 +119,10 @@ public class BlockCardboard extends BlockContainer {
 		par3List.add(new ItemStack(par1, 1, 1));
 		par3List.add(new ItemStack(par1, 1, 2));
 		par3List.add(new ItemStack(par1, 1, 3));
+		par3List.add(new ItemStack(par1, 1, 4));
+		par3List.add(new ItemStack(par1, 1, 5));
+		par3List.add(new ItemStack(par1, 1, 6));
+		par3List.add(new ItemStack(par1, 1, 7));
 	}
 
 	@Override
@@ -122,9 +132,9 @@ public class BlockCardboard extends BlockContainer {
 		this.texFront = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_F");
 		this.texTop = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_T");
 		this.texBottom = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_B");
-		this.texSide = new IIcon[4];
+		this.texSide = new IIcon[8];
 
-		for (int i = 0; i < 4; ++i) {
+		for (int i = 0; i < 8; ++i) {
 			this.texSide[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "cardboard_S" + bagVegi[i]);
 		}
 

@@ -2,10 +2,10 @@ package mods.defeatedcrow.recipe;
 
 import java.util.HashMap;
 
-import mods.defeatedcrow.api.recipe.*;
-import mods.defeatedcrow.common.*;
-import mods.defeatedcrow.recipe.IceRecipeRegister.IceRecipe;
-import mods.defeatedcrow.recipe.TeaRecipeRegister.TeaRecipe;
+import mods.defeatedcrow.api.recipe.IIceRecipe;
+import mods.defeatedcrow.api.recipe.ITeaRecipe;
+import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.item.ItemStack;
 
 public class RegisteredRecipeGet {
@@ -46,8 +46,6 @@ public class RegisteredRecipeGet {
 		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 7), new ItemStack(DCsAppleMilk.bowlBlock, 1, 7));
 		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 9), new ItemStack(DCsAppleMilk.bowlBlock, 1, 8));
 		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 10), new ItemStack(DCsAppleMilk.bowlBlock, 1, 9));
-		panRecipeList.put(new ItemStack(DCsAppleMilk.mincedFoods, 1, 8), new ItemStack(DCsAppleMilk.filledChocoPan, 1,
-				0));
 	}
 
 }

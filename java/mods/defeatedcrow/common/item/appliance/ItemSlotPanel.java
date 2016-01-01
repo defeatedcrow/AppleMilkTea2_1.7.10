@@ -23,7 +23,7 @@ public class ItemSlotPanel extends Item implements IProcessorPanel {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:slotpanel");
+		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:tools/slotpanel");
 	}
 
 	@Override

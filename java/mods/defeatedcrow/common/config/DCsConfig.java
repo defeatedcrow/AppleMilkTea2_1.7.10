@@ -61,6 +61,7 @@ public class DCsConfig {
 	public static int chargeDif = 1;
 	public static int exchangeDif = 2;
 	public static boolean altModRecipe = true;
+	public static int procDif = 1;
 
 	public static boolean useEXRecipe = false;
 	public static boolean notGenTeaTree = false;
@@ -218,6 +219,9 @@ public class DCsConfig {
 			Property altModR = cfg.get("difficulty setting", "Another Mod Recipe", altModRecipe,
 					"Enable Recipes added the another mod machines.");
 
+			Property procDifP = cfg.get("difficulty setting", "JawCrusher Recipe Difficulty", dustDif,
+					"Change difficulty of the JawCrusher recipe tier." + BR + "0:sweet 1:normal 2:bitter");
+
 			Property useAltTeppan = cfg.get("render setting", "Enable Alt Teppan Texture", useAltTeppanTex,
 					"Enable Alternate Teppan Texture like a mesh grill.");
 
@@ -267,6 +271,7 @@ public class DCsConfig {
 			chargeDif = chargeDifP.getInt();
 			exchangeDif = exchangeDifP.getInt();
 			altModRecipe = altModR.getBoolean();
+			procDif = procDifP.getInt();
 
 			setCupScale = cupScale.getDouble();
 

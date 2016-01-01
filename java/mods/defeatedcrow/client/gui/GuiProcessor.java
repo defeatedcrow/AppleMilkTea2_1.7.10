@@ -16,13 +16,17 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiProcessor extends GuiContainer {
 
-	private TileProcessor tileentity;
-	private TileProcessor inventory;
+	protected TileProcessor tileentity;
+	protected TileProcessor inventory;
 
 	public GuiProcessor(EntityPlayer player, TileProcessor par2TileEntity) {
 		super(new ContainerProcessor(player, par2TileEntity));
 		this.tileentity = par2TileEntity;
 		this.inventory = par2TileEntity;
+	}
+
+	protected int adj() {
+		return 0;
 	}
 
 	@Override
@@ -80,7 +84,7 @@ public class GuiProcessor extends GuiContainer {
 		this.drawTexturedModalRect(k + 11, l + 53 - i1, 176, 43 - i1, 12, i1);
 
 		i2 = this.tileentity.getCookProgressScaled(24);
-		this.drawTexturedModalRect(k + 88, l + 35, 176, 0, i2 + 1, 16);
+		this.drawTexturedModalRect(k + 88, l + 35 + adj(), 176, 0, i2 + 1, 16);
 	}
 
 	public String GuiTexPass() {

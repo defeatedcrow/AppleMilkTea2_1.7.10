@@ -22,6 +22,64 @@ public interface IProcessorRecipeRegister {
 	 *            : 完成品(液体)
 	 * @param isFoodRecipe
 	 *            : Processor用レシピかどうか
+	 * @param tier
+	 *            : RecipeのTier
+	 * @param forceReturnContainer
+	 *            : 材料アイテムがContaineeItemと同じclassの場合でも、容器返却を強制する
+	 * @param secondaryChance
+	 *            : secondary生成確率
+	 * @param input
+	 *            : 材料アイテム(ItemStack, String)
+	 */
+	void addRecipe(ItemStack output, boolean isFoodRecipe, int tier, boolean forceReturnContainer, ItemStack secondary,
+			float secondaryChance, Object... input);
+
+	/**
+	 * Processor(フードプロセッサー)またはJaw Crusher(ジョークラッシャー)のどちらかにレシピを追加する。 <br>
+	 * forceReturnContainerがfalseになっている登録メソッド。
+	 * 
+	 * @param output
+	 *            : 完成品
+	 * @param secondary
+	 *            : 完成品(液体)
+	 * @param isFoodRecipe
+	 *            : Processor用レシピかどうか
+	 * @param tier
+	 *            : RecipeのTier
+	 * @param secondaryChance
+	 *            : secondary生成確率
+	 * @param input
+	 *            : 材料アイテム(ItemStack, String)
+	 */
+	void addRecipe(ItemStack output, boolean isFoodRecipe, int tier, ItemStack secondary, float secondaryChance,
+			Object... input);
+
+	/**
+	 * Processor(フードプロセッサー)またはJaw Crusher(ジョークラッシャー)のどちらかにレシピを追加する。 <br>
+	 * こちらのメソッドでは、secondaryの発生確率は100%で固定される。
+	 * 
+	 * @param output
+	 *            : 完成品
+	 * @param secondary
+	 *            : 完成品(液体)
+	 * @param isFoodRecipe
+	 *            : Processor用レシピかどうか
+	 * @param tier
+	 *            : RecipeのTier
+	 * @param input
+	 *            : 材料アイテム(ItemStack, String)
+	 */
+	void addRecipe(ItemStack output, boolean isFoodRecipe, int tier, ItemStack secondary, Object... input);
+
+	/**
+	 * Tierを指定しないメソッド。Tierは最大になる。
+	 * 
+	 * @param output
+	 *            : 完成品
+	 * @param secondary
+	 *            : 完成品(液体)
+	 * @param isFoodRecipe
+	 *            : Processor用レシピかどうか
 	 * @param forceReturnContainer
 	 *            : 材料アイテムがContaineeItemと同じclassの場合でも、容器返却を強制する
 	 * @param secondaryChance
@@ -33,8 +91,7 @@ public interface IProcessorRecipeRegister {
 			float secondaryChance, Object... input);
 
 	/**
-	 * Processor(フードプロセッサー)またはJaw Crusher(ジョークラッシャー)のどちらかにレシピを追加する。 <br>
-	 * forceReturnContainerがfalseになっている登録メソッド。
+	 * Tierを指定しないメソッド。Tierは最大になる。
 	 * 
 	 * @param output
 	 *            : 完成品
@@ -50,8 +107,7 @@ public interface IProcessorRecipeRegister {
 	void addRecipe(ItemStack output, boolean isFoodRecipe, ItemStack secondary, float secondaryChance, Object... input);
 
 	/**
-	 * Processor(フードプロセッサー)またはJaw Crusher(ジョークラッシャー)のどちらかにレシピを追加する。 <br>
-	 * こちらのメソッドでは、secondaryの発生確率は100%で固定される。
+	 * Tierを指定しないメソッド。Tierは最大になる。
 	 * 
 	 * @param output
 	 *            : 完成品

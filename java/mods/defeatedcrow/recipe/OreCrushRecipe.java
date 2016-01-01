@@ -2,7 +2,6 @@ package mods.defeatedcrow.recipe;
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.PropertyHandler;
@@ -10,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /*
  * ここでは他MODの鉱石辞書登録内容を走査し、
@@ -32,9 +32,25 @@ public class OreCrushRecipe {
 	public static ArrayList<ItemStack> tier5 = new ArrayList<ItemStack>();
 
 	public static void searchOreName() {
-		String[] ores1 = new String[] { "Iron", "Tin", "Copper" };
-		String[] ores2 = new String[] { "Silver", "Lead", "Gold", "Nickel", "Platinum", "Redstone" };
-		String[] gems = new String[] { "Coal", "Diamond", "Ruby", "Sapphire", "Peridot", "Emerald", "Quartz" };
+		String[] ores1 = new String[] {
+				"Iron",
+				"Tin",
+				"Copper",
+				"Coal" };
+		String[] ores2 = new String[] {
+				"Silver",
+				"Lead",
+				"Gold",
+				"Nickel",
+				"Redstone",
+				"Quartz" };
+		String[] gems = new String[] {
+				"Diamond",
+				"Ruby",
+				"Sapphire",
+				"Peridot",
+				"Emerald",
+				"Platinum" };
 
 		int[] d = PropertyHandler.getDustGen();
 
@@ -51,9 +67,9 @@ public class OreCrushRecipe {
 				dust = OreDictionary.getOres("dust" + ores1[i]).get(0);
 
 			if (OreDictionary.getOres(ore) != null && !OreDictionary.getOres(ore).isEmpty() && dust != null) {
-				RecipeRegisterManager.prosessorRecipe.addRecipe(
-						new ItemStack(dust.getItem(), d[0], dust.getItemDamage()), false, new ItemStack(dust.getItem(),
-								d[1], dust.getItemDamage()), 0.5F, new Object[] { ore });
+				RecipeRegisterManager.processorRecipe.addRecipe(
+						new ItemStack(dust.getItem(), d[0], dust.getItemDamage()), false, 1,
+						new ItemStack(dust.getItem(), d[1], dust.getItemDamage()), 0.5F, new Object[] { ore });
 			}
 
 			if (nugget != null) {
@@ -70,8 +86,8 @@ public class OreCrushRecipe {
 				dust = OreDictionary.getOres("dust" + ores2[i]).get(0);
 
 			if (OreDictionary.getOres(ore) != null && !OreDictionary.getOres(ore).isEmpty() && dust != null) {
-				RecipeRegisterManager.prosessorRecipe.addRecipe(
-						new ItemStack(dust.getItem(), d[0], dust.getItemDamage()), false, new ItemStack(
+				RecipeRegisterManager.processorRecipe.addRecipe(
+						new ItemStack(dust.getItem(), d[0], dust.getItemDamage()), false, 2, new ItemStack(
 								DCsAppleMilk.strangeSlag, 1, 0), 0.5F, new Object[] { ore });
 			}
 
@@ -93,8 +109,8 @@ public class OreCrushRecipe {
 				gem = OreDictionary.getOres("gem" + gems[i]).get(0);
 
 			if (OreDictionary.getOres(ore) != null && !OreDictionary.getOres(ore).isEmpty() && gem != null) {
-				RecipeRegisterManager.prosessorRecipe.addRecipe(
-						new ItemStack(gem.getItem(), d[0], gem.getItemDamage()), false, new ItemStack(
+				RecipeRegisterManager.processorRecipe.addRecipe(
+						new ItemStack(gem.getItem(), d[0], gem.getItemDamage()), false, 3, new ItemStack(
 								DCsAppleMilk.strangeSlag, 1, 0), 0.5F, new Object[] { ore });
 			}
 
@@ -124,7 +140,15 @@ public class OreCrushRecipe {
 
 		// ボタ山設定以外のdust取得
 		// ingotが存在しないと焼くレシピも存在しない
-		String[] ores3 = new String[] { "Iron", "Tin", "Copper", "Silver", "Lead", "Gold", "Nickel", "Platinum" };
+		String[] ores3 = new String[] {
+				"Iron",
+				"Tin",
+				"Copper",
+				"Silver",
+				"Lead",
+				"Gold",
+				"Nickel",
+				"Platinum" };
 		for (int i = 0; i < ores3.length; i++) {
 			if (OreDictionary.getOres("ingot" + ores3[i]) != null
 					&& !OreDictionary.getOres("ingot" + ores3[i]).isEmpty()) {

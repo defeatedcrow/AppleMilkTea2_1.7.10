@@ -29,7 +29,7 @@ public class ItemChalcedonyMonocle extends ItemArmor {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:monocle");
+		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:tools/monocle");
 	}
 
 	@Override

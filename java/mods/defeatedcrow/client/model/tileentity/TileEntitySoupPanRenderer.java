@@ -55,13 +55,13 @@ public class TileEntitySoupPanRenderer extends TileEntitySpecialRenderer {
 		GL11.glPushMatrix();
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glTranslatef((float) par1, (float) par2 + 1.0F, (float) par3 + 1.0F);
+		GL11.glTranslatef(par1, par2 + 1.0F, par3 + 1.0F);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 		short short1 = 0;
 
 		GL11.glTranslatef(0.0F, -1.0F, 0.0F);
-		GL11.glRotatef((float) short1, 0.0F, -1.0F, 0.0F);
+		GL11.glRotatef(short1, 0.0F, -1.0F, 0.0F);
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		model.render((Entity) null, 0.0F, 0.0F, 0.0F, d, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
@@ -75,7 +75,7 @@ public class TileEntitySoupPanRenderer extends TileEntitySpecialRenderer {
 			GL11.glPushMatrix();
 			GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 			GL11.glColor4f(2.0F, 2.0F, 2.0F, 0.9F);
-			GL11.glTranslatef((float) par1, (float) par2 + 0.5F, (float) par3);
+			GL11.glTranslatef(par1, par2 + 0.5F, par3);
 			GL11.glScalef(1.0F, -1.0F, -1.0F);
 			GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
 
@@ -101,10 +101,10 @@ public class TileEntitySoupPanRenderer extends TileEntitySpecialRenderer {
 
 			tessellator.startDrawingQuads();
 			tessellator.setNormal(1.0F, 0.0F, 0.0F);
-			tessellator.addVertexWithUV(0.16D, y, -0.84D, (double) f14, (double) f4);
-			tessellator.addVertexWithUV(0.84D, y, -0.84D, (double) f14, (double) f5);
-			tessellator.addVertexWithUV(0.84D, y, -0.16D, (double) f15, (double) f5);
-			tessellator.addVertexWithUV(0.16D, y, -0.16D, (double) f15, (double) f4);
+			tessellator.addVertexWithUV(0.16D, y, -0.84D, f14, f4);
+			tessellator.addVertexWithUV(0.84D, y, -0.84D, f14, f5);
+			tessellator.addVertexWithUV(0.84D, y, -0.16D, f15, f5);
+			tessellator.addVertexWithUV(0.16D, y, -0.16D, f15, f4);
 			tessellator.draw();
 
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

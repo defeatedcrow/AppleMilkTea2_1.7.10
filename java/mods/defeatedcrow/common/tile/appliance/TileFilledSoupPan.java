@@ -7,7 +7,6 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-@Deprecated
 public class TileFilledSoupPan extends TileEntity {
 
 	private byte type = 0;

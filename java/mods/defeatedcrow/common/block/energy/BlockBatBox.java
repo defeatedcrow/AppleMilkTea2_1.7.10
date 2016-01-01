@@ -2,8 +2,6 @@ package mods.defeatedcrow.common.block.energy;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.tile.energy.TileChargerBase;
 import mods.defeatedcrow.common.tile.energy.TileChargerDevice;
@@ -20,6 +18,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockBatBox extends BlockContainer {
 
@@ -50,10 +50,12 @@ public class BlockBatBox extends BlockContainer {
 		return true;
 	}
 
+	@Override
 	public boolean isOpaqueCube() {
 		return false;
 	}
 
+	@Override
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
@@ -66,7 +68,7 @@ public class BlockBatBox extends BlockContainer {
 	@Override
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase,
 			ItemStack par6ItemStack) {
-		int playerFacing = MathHelper.floor_double((double) ((par5EntityLivingBase.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+		int playerFacing = MathHelper.floor_double((par5EntityLivingBase.rotationYaw * 4F) / 360F + 0.5D) & 3;
 
 		byte facing = 0;
 		if (playerFacing == 0) {
@@ -107,9 +109,11 @@ public class BlockBatBox extends BlockContainer {
 
 	@Override
 	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
-		TileChargerBase tileentity = (TileChargerBase) par1World.getTileEntity(par2, par3, par4);
+		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
+		TileChargerBase tileentity = null;
 
-		if (tileentity != null) {
+		if (tile != null && tile instanceof TileChargerBase) {
+			tileentity = (TileChargerBase) tile;
 			int charge = tileentity.getChargeAmount();
 
 			ItemStack block = new ItemStack(this, 1, 0);
@@ -117,19 +121,18 @@ public class BlockBatBox extends BlockContainer {
 			float a = this.rand.nextFloat() * 0.8F + 0.1F;
 			float a1 = this.rand.nextFloat() * 0.8F + 0.1F;
 			float a2 = this.rand.nextFloat() * 0.8F + 0.1F;
-			EntityItem drop = new EntityItem(par1World, (double) ((float) par2 + a), (double) ((float) par3 + a1),
-					(double) ((float) par4 + a2), block);
+			EntityItem drop = new EntityItem(par1World, par2 + a, par3 + a1, par4 + a2, block);
 
 			if (charge > 0) {
 				NBTTagCompound tag = new NBTTagCompound();
-				tag.setInteger("charge", (int) charge);
+				tag.setInteger("charge", charge);
 				drop.getEntityItem().setTagCompound(tag);
 			}
 
 			float a3 = 0.05F;
-			drop.motionX = (double) ((float) this.rand.nextGaussian() * a3);
-			drop.motionY = (double) ((float) this.rand.nextGaussian() * a3 + 0.2F);
-			drop.motionZ = (double) ((float) this.rand.nextGaussian() * a3);
+			drop.motionX = (float) this.rand.nextGaussian() * a3;
+			drop.motionY = (float) this.rand.nextGaussian() * a3 + 0.2F;
+			drop.motionZ = (float) this.rand.nextGaussian() * a3;
 			par1World.spawnEntityInWorld(drop);
 
 			for (int j1 = 0; j1 < tileentity.getSizeInventory(); ++j1) {
@@ -148,9 +151,8 @@ public class BlockBatBox extends BlockContainer {
 						}
 
 						itemstack.stackSize -= k1;
-						EntityItem entityitem = new EntityItem(par1World, (double) ((float) par2 + f),
-								(double) ((float) par3 + f1), (double) ((float) par4 + f2), new ItemStack(
-										itemstack.getItem(), k1, itemstack.getItemDamage()));
+						EntityItem entityitem = new EntityItem(par1World, par2 + f, par3 + f1, par4 + f2,
+								new ItemStack(itemstack.getItem(), k1, itemstack.getItemDamage()));
 
 						if (itemstack.hasTagCompound()) {
 							entityitem.getEntityItem().setTagCompound(
@@ -158,9 +160,9 @@ public class BlockBatBox extends BlockContainer {
 						}
 
 						float f3 = 0.05F;
-						entityitem.motionX = (double) ((float) this.rand.nextGaussian() * f3);
-						entityitem.motionY = (double) ((float) this.rand.nextGaussian() * f3 + 0.2F);
-						entityitem.motionZ = (double) ((float) this.rand.nextGaussian() * f3);
+						entityitem.motionX = (float) this.rand.nextGaussian() * f3;
+						entityitem.motionY = (float) this.rand.nextGaussian() * f3 + 0.2F;
+						entityitem.motionZ = (float) this.rand.nextGaussian() * f3;
 						par1World.spawnEntityInWorld(entityitem);
 					}
 				}

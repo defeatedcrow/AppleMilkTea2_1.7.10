@@ -2,12 +2,7 @@ package mods.defeatedcrow.common.item;
 
 import java.util.Set;
 
-import com.google.common.collect.Sets;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.common.AMTLogger;
-import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -15,29 +10,50 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IShearable;
+
+import com.google.common.collect.Sets;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemChalcedonyHammer extends ItemPickaxe {
 	/** an array of the blocks this pickaxe is effective against */
-	public static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] { Blocks.cobblestone,
-			Blocks.double_stone_slab, Blocks.stone_slab, Blocks.stone, Blocks.sandstone, Blocks.mossy_cobblestone,
-			Blocks.iron_ore, Blocks.iron_block, Blocks.coal_ore, Blocks.gold_block, Blocks.gold_ore,
-			Blocks.diamond_ore, Blocks.diamond_block, Blocks.ice, Blocks.netherrack, Blocks.lapis_ore,
-			Blocks.lapis_block, Blocks.redstone_ore, Blocks.lit_redstone_ore, Blocks.rail, Blocks.detector_rail,
-			Blocks.golden_rail, Blocks.activator_rail });
+	public static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] {
+			Blocks.cobblestone,
+			Blocks.double_stone_slab,
+			Blocks.stone_slab,
+			Blocks.stone,
+			Blocks.sandstone,
+			Blocks.mossy_cobblestone,
+			Blocks.iron_ore,
+			Blocks.iron_block,
+			Blocks.coal_ore,
+			Blocks.gold_block,
+			Blocks.gold_ore,
+			Blocks.diamond_ore,
+			Blocks.diamond_block,
+			Blocks.ice,
+			Blocks.netherrack,
+			Blocks.lapis_ore,
+			Blocks.lapis_block,
+			Blocks.redstone_ore,
+			Blocks.lit_redstone_ore,
+			Blocks.rail,
+			Blocks.detector_rail,
+			Blocks.golden_rail,
+			Blocks.activator_rail });
 
 	public ItemChalcedonyHammer(ToolMaterial par2EnumToolMaterial) {
 		super(par2EnumToolMaterial);
 		this.setHarvestLevel("pickaxe", 2);
 	}
 
+	@Override
 	public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, Block par3, int par4, int par5, int par6,
 			EntityLivingBase par7EntityLivingBase) {
 		if (par3 != Blocks.ice) {
@@ -47,6 +63,7 @@ public class ItemChalcedonyHammer extends ItemPickaxe {
 		}
 	}
 
+	@Override
 	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4,
 			int par5, int par6, int par7, float par8, float par9, float par10) {
 		Block i1 = par3World.getBlock(par4, par5, par6);
@@ -110,9 +127,9 @@ public class ItemChalcedonyHammer extends ItemPickaxe {
 				} else if (i1 == Blocks.stonebrick) {
 					par3World.setBlock(par4, par5, par6, Blocks.stonebrick, 3, 3);
 				}
-				par3World.playSoundEffect((double) ((float) par4 + 0.5F), (double) ((float) par5 + 0.5F),
-						(double) ((float) par6 + 0.5F), Blocks.stone.stepSound.getBreakSound(),
-						(Blocks.stone.stepSound.getVolume() + 1.0F) / 2.0F, Blocks.stone.stepSound.getPitch() * 0.8F);
+				par3World.playSoundEffect(par4 + 0.5F, par5 + 0.5F, par6 + 0.5F,
+						Blocks.stone.stepSound.getBreakSound(), (Blocks.stone.stepSound.getVolume() + 1.0F) / 2.0F,
+						Blocks.stone.stepSound.getPitch() * 0.8F);
 				par1ItemStack.damageItem(damage, par2EntityPlayer);
 				return true;
 			}
@@ -123,8 +140,7 @@ public class ItemChalcedonyHammer extends ItemPickaxe {
 				if (i1 == Blocks.stone
 						|| (i1.getItemDropped(meta, itemRand, 0) == null || i1.quantityDropped(meta, 0, itemRand) == 0)) {
 					par3World.setBlockToAir(par4, par5, par6);
-					par3World.playSoundEffect((double) ((float) par4 + 0.5F), (double) ((float) par5 + 0.5F),
-							(double) ((float) par6 + 0.5F), i1.stepSound.getBreakSound(),
+					par3World.playSoundEffect(par4 + 0.5F, par5 + 0.5F, par6 + 0.5F, i1.stepSound.getBreakSound(),
 							(i1.stepSound.getVolume() + 1.0F) / 2.0F, i1.stepSound.getPitch() * 0.8F);
 
 					if (!par2EntityPlayer.inventory.addItemStackToInventory(get)) {
@@ -144,6 +160,6 @@ public class ItemChalcedonyHammer extends ItemPickaxe {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:chalcedonyhammer");
+		this.itemIcon = par1IconRegister.registerIcon("defeatedcrow:tools/chalcedonyhammer");
 	}
 }

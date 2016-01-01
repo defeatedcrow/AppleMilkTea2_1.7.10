@@ -6,6 +6,7 @@ import java.util.List;
 
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.client.gui.GuiAdvProcessor;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.recipe.ProcessorRecipeRegister.ProcessorRecipe;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
@@ -60,6 +61,7 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 		public ArrayList<PositionedStack> input;
 		public PositionedStack result;
 		public PositionedStack leave;
+		public PositionedStack plate;
 
 		public RecipeCacher() {
 			input = new ArrayList<PositionedStack>();
@@ -68,17 +70,36 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 		public RecipeCacher(ItemStack[] out) {
 			this();
 			if (out[0] != null) {
-				this.result = new PositionedStack(out[0], 113, 24);
+				this.result = new PositionedStack(out[0], 113, 32);
 			}
 
 			if (out[1] != null) {
-				this.leave = new PositionedStack(out[1], 140, 24);
+				this.leave = new PositionedStack(out[1], 140, 32);
 			}
 		}
 
-		public RecipeCacher(List<?> in, ItemStack[] out) {
+		public RecipeCacher(List<?> in, ItemStack[] out, int tier) {
 			this(out);
 			setInput(in);
+			ItemStack jawplate = null;
+			switch (tier) {
+			case -1:
+				jawplate = new ItemStack(DCsAppleMilk.jawPlate, 1, 0);
+				break;
+			case 1:
+				jawplate = new ItemStack(DCsAppleMilk.jawPlate, 1, 1);
+				break;
+			case 2:
+				jawplate = new ItemStack(DCsAppleMilk.jawPlate, 1, 3);
+				break;
+			case 3:
+				jawplate = new ItemStack(DCsAppleMilk.jawPlate, 1, 5);
+				break;
+			default:
+				break;
+			}
+			if (jawplate != null)
+				this.plate = new PositionedStack(jawplate, 86, 5);
 		}
 
 		public void setInput(List<?> items) {
@@ -102,8 +123,13 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 		}
 
 		@Override
-		public PositionedStack getOtherStack() {
-			return this.leave;
+		public List<PositionedStack> getOtherStacks() {
+			ArrayList<PositionedStack> stacks = new ArrayList<PositionedStack>();
+			if (leave != null)
+				stacks.add(leave);
+			if (plate != null)
+				stacks.add(plate);
+			return stacks;
 		}
 
 	}
@@ -125,7 +151,7 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadTransferRects() {
 		transferRects
-				.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(90, 30, 20, 20), "DCsAdvProcessor"));
+				.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(90, 38, 20, 20), "DCsAdvProcessor"));
 	}
 
 	@Override
@@ -137,7 +163,7 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 				return;
 			for (ProcessorRecipe recipe : recipes) {
 				List<Object> in = recipe.getProcessedInput();
-				boolean flag = !recipe.isFoodRecipe();
+				boolean flag = true;
 				for (Object ret : in) {
 					if (ret instanceof List) {
 						List<ItemStack> items = (List<ItemStack>) ret;
@@ -150,7 +176,7 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 						recipe.getOutput(),
 						recipe.getSecondary() };
 				if (flag)
-					arecipes.add(new RecipeCacher(in, out));
+					arecipes.add(new RecipeCacher(in, out, recipe.getRecipeTier()));
 			}
 		} else {
 			super.loadCraftingRecipes(outputId, results);
@@ -167,7 +193,7 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 		for (ProcessorRecipe recipe : recipes) {
 			List<Object> in = recipe.getProcessedInput();
 			// input中にnullがないかチェックする。鉱石辞書レシピ用。
-			boolean flag = !recipe.isFoodRecipe();
+			boolean flag = true;
 			for (Object ret : in) {
 				if (ret instanceof List) {
 					List<ItemStack> items = (List<ItemStack>) ret;
@@ -179,10 +205,10 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 					recipe.getOutput(),
 					recipe.getSecondary() };
 			if (flag && out[0] != null && NEIServerUtils.areStacksSameType(out[0], result)) {
-				arecipes.add(new RecipeCacher(in, out));
+				arecipes.add(new RecipeCacher(in, out, recipe.getRecipeTier()));
 			}
 			if (flag && out[1] != null && NEIServerUtils.areStacksSameType(out[1], result)) {
-				arecipes.add(new RecipeCacher(in, out));
+				arecipes.add(new RecipeCacher(in, out, recipe.getRecipeTier()));
 			}
 		}
 	}
@@ -192,7 +218,7 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 
 		List<ProcessorRecipe> recipes = this.recipeLoader();
 
-		if (recipes == null || recipes.isEmpty())
+		if (recipes == null || recipes.isEmpty() || ingredient == null)
 			return;
 		for (ProcessorRecipe recipe : recipes) {
 			if (recipe == null)
@@ -202,11 +228,12 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 			ItemStack[] out = new ItemStack[] {
 					recipe.getOutput(),
 					recipe.getSecondary() };
+			int tier = recipe.getRecipeTier();
 
-			boolean flag = !recipe.isFoodRecipe() && this.contain(in, ingredient);
+			boolean flag = this.contain(in, ingredient);
 
 			if (flag) {
-				RecipeCacher cache = new RecipeCacher(in, out);
+				RecipeCacher cache = new RecipeCacher(in, out, tier);
 				cache.setIngredientPermutation(cache.input, ingredient);
 				arecipes.add(cache);
 			}
@@ -252,7 +279,7 @@ public class AdvProcessorRecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void drawExtras(int recipe) {
-		drawProgressBar(83, 24, 176, 0, 24, 16, 32, 0);
+		drawProgressBar(83, 32, 176, 0, 24, 16, 32, 0);
 	}
 
 }

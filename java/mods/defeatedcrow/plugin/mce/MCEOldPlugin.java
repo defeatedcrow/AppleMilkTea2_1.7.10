@@ -54,7 +54,7 @@ public class MCEOldPlugin extends ProductList {
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.emptyPanGaiden, 1, 0), 200));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.teppanII, 1, 0), 1000));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.iceMaker, 1, 0), 1800));
-		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.prosessor, 1, 0), 2000));
+		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.processor, 1, 0), 2000));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.batteryItem, 1, 1), 500));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.batteryItem, 64, 1), 30000));
 		DCsProduct.add(new ProductItem(new ItemStack(DCsAppleMilk.chalcedonyHammer, 1, 0), 300));

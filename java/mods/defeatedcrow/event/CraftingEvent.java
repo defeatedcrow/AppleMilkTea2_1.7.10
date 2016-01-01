@@ -2,13 +2,13 @@ package mods.defeatedcrow.event;
 
 import java.util.ArrayList;
 
-import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.AchievementRegister;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.FakePlayer;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
@@ -36,7 +36,7 @@ public class CraftingEvent {
 				player.triggerAchievement(AchievementRegister.craftLogBox);
 			} else if (crafting.getItem() == DCsAppleMilk.EXItems && crafting.getItemDamage() == 3) {
 				player.triggerAchievement(AchievementRegister.craftChalGear);
-			} else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.prosessor)) {
+			} else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.processor)) {
 				player.triggerAchievement(AchievementRegister.craftAutoMaker);
 			} else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.vegiBag)) {
 				player.triggerAchievement(AchievementRegister.craftVegiBag);
@@ -52,7 +52,7 @@ public class CraftingEvent {
 				player.triggerAchievement(AchievementRegister.craftBarrel);
 			} else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.evaporator)) {
 				player.triggerAchievement(AchievementRegister.craftEvp);
-			} else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.advProsessor)) {
+			} else if (crafting.getItem() == Item.getItemFromBlock(DCsAppleMilk.advProcessor)) {
 				player.triggerAchievement(AchievementRegister.craftJaw);
 			} else if (crafting.getItem() == DCsAppleMilk.princessClam && crafting.getItemDamage() > 0) {
 				player.triggerAchievement(AchievementRegister.craftCharm);

@@ -8,9 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
-import mods.defeatedcrow.client.gui.GuiIceMaker;
 import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.plugin.nei.TeaRecipeHandler.recipeCacher;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,7 +17,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import codechicken.nei.recipe.TemplateRecipeHandler.CachedRecipe;
 
 public class ChocoRecipeHandler extends TemplateRecipeHandler {
 
@@ -178,7 +175,7 @@ public class ChocoRecipeHandler extends TemplateRecipeHandler {
 				RecipeCacher cache = new RecipeCacher(inputs, out);
 				cache.setIngredientPermutation(cache.input, ingredient);
 				arecipes.add(cache);
-			} else if (!inputs.isEmpty() && ingredient.getItem() == Item.getItemFromBlock(DCsAppleMilk.filledChocoPan)) {
+			} else if (!inputs.isEmpty() && ingredient.getItem() == Item.getItemFromBlock(DCsAppleMilk.filledSoupPan)) {
 				arecipes.add(new RecipeCacher(inputs, out));
 			}
 		}

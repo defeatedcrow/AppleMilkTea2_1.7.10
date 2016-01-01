@@ -4,7 +4,6 @@ import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
@@ -24,7 +23,7 @@ public class RenderYuzuBat implements ISimpleBlockRenderingHandler {
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 
 		int meta = metadata;
-		this.boxIIcon = DCsAppleMilk.teppann.getBlockTextureFromSide(1);
+		this.boxIIcon = DCsAppleMilk.teppanII.getBlockTextureFromSide(1);
 		this.innerIIcon = DCsAppleMilk.yuzuBat.getBlockTextureFromSide(0);
 
 		if (modelID == this.getRenderId()) {
@@ -65,7 +64,7 @@ public class RenderYuzuBat implements ISimpleBlockRenderingHandler {
 			RenderBlocks renderer) {
 
 		int meta = world.getBlockMetadata(x, y, z);
-		this.boxIIcon = DCsAppleMilk.teppann.getBlockTextureFromSide(1);
+		this.boxIIcon = DCsAppleMilk.teppanII.getBlockTextureFromSide(1);
 		this.innerIIcon = DCsAppleMilk.yuzuBat.getBlockTextureFromSide(0);
 
 		if (modelId == this.getRenderId()) {

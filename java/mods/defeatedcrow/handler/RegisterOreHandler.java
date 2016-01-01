@@ -2,8 +2,6 @@ package mods.defeatedcrow.handler;
 
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.DCsConfig;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -128,7 +126,7 @@ public class RegisterOreHandler {
 		OreDictionary.registerOre("blockEmptyCup", new ItemStack(DCsAppleMilk.emptyCup));
 		OreDictionary.registerOre("blockEmptyPan", new ItemStack(DCsAppleMilk.emptyPanGaiden));
 		OreDictionary.registerOre("blockEvaporator", new ItemStack(DCsAppleMilk.evaporator));
-		OreDictionary.registerOre("blockProsessor", new ItemStack(DCsAppleMilk.prosessor));
+		OreDictionary.registerOre("blockProsessor", new ItemStack(DCsAppleMilk.processor));
 
 		OreDictionary.registerOre("gearIron", new ItemStack(DCsAppleMilk.EXItems, 1, 3));
 		OreDictionary.registerOre("gearChalcedony", new ItemStack(DCsAppleMilk.EXItems, 1, 3));

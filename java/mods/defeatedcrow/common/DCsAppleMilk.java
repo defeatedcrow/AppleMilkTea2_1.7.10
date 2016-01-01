@@ -66,6 +66,7 @@ import mods.defeatedcrow.event.EatFoodEvent;
 import mods.defeatedcrow.event.EntityMoreDropEvent;
 import mods.defeatedcrow.event.FluidContainerRegisterEvent;
 import mods.defeatedcrow.event.ShowOreNameEvent;
+import mods.defeatedcrow.event.SpawnCancelEvent;
 import mods.defeatedcrow.handler.RegisterOreHandler;
 import mods.defeatedcrow.handler.Util;
 import mods.defeatedcrow.plugin.AddonIntegration;
@@ -122,8 +123,8 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.8n",
-		dependencies = "required-after:Forge@[10.13.2.1291,)")
+		version = "1.7.10_2.9beta",
+		dependencies = "required-after:Forge@[10.13.2.1448,)")
 public class DCsAppleMilk {
 
 	// プロキシの登録
@@ -197,6 +198,8 @@ public class DCsAppleMilk {
 	public static Block silkyMelon;
 	public static Block flowerPot;
 	public static Block yuzuFence;
+	public static Block flowerBase;
+	public static Block hedge;
 
 	public static Block containerWBottle;
 	public static Block containerSaddle;
@@ -210,11 +213,13 @@ public class DCsAppleMilk {
 	public static Block saplingYuzu;
 	public static Block logYuzu;
 	public static Block leavesYuzu;
+
 	// インテリア
 	public static Block bowlRack;
 	public static Block Basket;
 	public static Block chopsticksBox;
 	public static Block woodPanel;
+
 	// カルセドニー
 	public static Block flintBlock;
 	public static Block chalcedony;
@@ -222,6 +227,9 @@ public class DCsAppleMilk {
 	public static Block rotaryDial;
 	public static Block chalcenonyPanel;
 	public static Block cLampOpaque;
+
+	// defeatedcrow
+	public static Block crowDoll;
 
 	// アイテムのインスタンス
 	// 食べ物アイテム
@@ -265,6 +273,7 @@ public class DCsAppleMilk {
 	// 装置関係
 	public static Item batteryItem;
 	public static Item slotPanel;
+	public static Item jawPlate;
 
 	// 酒造等
 	public static Item itemLargeBottle;
@@ -335,28 +344,6 @@ public class DCsAppleMilk {
 	// NEI表示用ダミー
 	public static Item dummyItem;
 	public static Item dummyTeppan;
-
-	// 以下は没アイテム。クラスだけ残してある関係でインスタンスもとってあるが、中身はnullである
-	@Deprecated
-	public static Block emptyPan;
-	@Deprecated
-	public static Block filledPan;
-	@Deprecated
-	public static Block filledPan2;
-	@Deprecated
-	public static Block canister;
-	@Deprecated
-	public static Item emptyWallMug;
-	@Deprecated
-	public static Item wallMug;
-	@Deprecated
-	public static Block teppann;
-	@Deprecated
-	public static Block filledChocoPan;
-	@Deprecated
-	public static Block prosessor;
-	@Deprecated
-	public static Block advProsessor;
 
 	// ポーションのインスタンス
 	public static Potion Immunization;
@@ -468,6 +455,8 @@ public class DCsAppleMilk {
 	public static int modelCSaddle;
 	public static int modelCWDoor;
 	public static int modelCIDoor;
+	public static int modelHedge;
+	public static int modelFlowerVase;
 
 	public static final String[] TEX_PASS = new String[] {
 			"defeatedcrow:",
@@ -668,6 +657,7 @@ public class DCsAppleMilk {
 		(new AddChestGen()).addChestItems();
 
 		// Villagerの登録
+		villager = new VillagerCafe();
 		villagerYome = new VillagerYome();
 		VillagerRegistry vill = VillagerRegistry.instance();
 
@@ -724,6 +714,8 @@ public class DCsAppleMilk {
 		MinecraftForge.EVENT_BUS.register(new ShowOreNameEvent());
 		// バケツイベント
 		MinecraftForge.EVENT_BUS.register(new BucketFillEvent());
+		// スポーン制御
+		MinecraftForge.EVENT_BUS.register(new SpawnCancelEvent());
 		// クラフトで耐久が減るアイテムの登録
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());
 		// FMLCommonHandler.instance().bus().register(new
@@ -783,6 +775,8 @@ public class DCsAppleMilk {
 		this.modelCLampOp = proxy.getRenderID();
 		this.modelSoupPan = proxy.getRenderID();
 		this.modelCWBottle = proxy.getRenderID();
+		this.modelHedge = proxy.getRenderID();
+		this.modelFlowerVase = proxy.getRenderID();
 		proxy.registerRenderers();
 
 		// ティーメーカーのレシピ数の無限化のため、専用のレシピ登録クラスを用意した
@@ -1191,7 +1185,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "n";
+		return "p";
 	}
 
 	public String getModName() {
