@@ -428,4 +428,9 @@ public class ClientProxy extends CommonProxy {
 	public boolean isRightKeyDown() {
 		return Keyboard.isKeyDown(KeyConfigHelper.getRightKey());
 	}
+
+	@Override
+	public boolean isWarpKeyDown() {
+		return DCsConfig.charmWarpKey == 0 ? false : Keyboard.isKeyDown(DCsConfig.charmWarpKey);
+	}
 }

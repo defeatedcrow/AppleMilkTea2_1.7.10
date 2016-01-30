@@ -1,4 +1,8 @@
-﻿
+﻿#================================================
+#语言：简体中文
+#对应:AppleMilkTea2-1.7.10_2.9f
+#更新日期:2016/1/29
+#================================================
 tile.defeatedcrow.WoodBox_oak.name=橡木箱
 tile.defeatedcrow.WoodBox_spruse.name=云衫木箱
 tile.defeatedcrow.WoodBox_birch.name=桦木箱
@@ -85,13 +89,17 @@ tile.defeatedcrow.vegiBag_Pumpkin.name=南瓜袋
 tile.defeatedcrow.vegiBag_Seed.name=种子袋
 tile.defeatedcrow.vegiBag_Reed.name=甘蔗袋
 tile.defeatedcrow.vegiBag_Cactus.name=仙人掌袋
-tile.defeatedcrow.vegiBagCocoa.name=可可袋
+tile.defeatedcrow.vegiBag_Cocoa.name=可可袋
 tile.defeatedcrow.vegiBag_Wart.name= 地狱疣袋
 tile.defeatedcrow.vegiBag_Sugar.name=糖袋
 tile.defeatedcrow.cardboardBox_mint.name=装薄荷的纸板箱
 tile.defeatedcrow.cardboardBox_cassis.name=装黑加仑的纸板箱
 tile.defeatedcrow.cardboardBox_camellia.name=装山茶花的纸板箱
 tile.defeatedcrow.cardboardBox_yuzu.name=装柚子的纸板箱
+tile.defeatedcrow.cardboardBox_coffee.name=装咖啡的纸板箱
+tile.defeatedcrow.cardboardBox_bamboo.name=装竹子的纸板箱
+tile.defeatedcrow.cardboardBox_tomato.name=装番茄的纸板箱
+tile.defeatedcrow.cardboardBox_grape.name=装葡萄的纸板箱
 tile.defeatedcrow.mobDropBox_rotten.name=腐肉箱
 tile.defeatedcrow.mobDropBox_bone.name=骨箱
 tile.defeatedcrow.mobDropBox_ender.name=装末影珍珠的纸板箱
@@ -116,7 +124,6 @@ tile.defeatedcrow.iceCreamBlock_lime.name=酸橙冰淇淋
 tile.defeatedcrow.iceCreamBlock_tomato.name=番茄冰淇淋
 tile.defeatedcrow.iceCreamBlock_berry.name=浆果冰淇淋
 tile.defeatedcrow.iceCreamBlock_grape.name=葡萄冰激凌
-tile.defeatedcrow.iceCreamBlock_mint.name=薄荷冰淇淋
 tile.defeatedcrow.iceCreamBlock_mint.name=薄荷冰淇淋
 tile.defeatedcrow.iceCreamBlock_orange.name=橙子冰激凌
 tile.defeatedcrow.iceCreamBlock_soda.name=苏打冰激凌
@@ -252,6 +259,7 @@ tile.defeatedcrow.blockCordial_1.name=茶汤瓶
 tile.defeatedcrow.blockCordial_2.name=黑加仑酒瓶
 tile.defeatedcrow.blockCordial_3.name=梅花酒酒瓶
 tile.defeatedcrow.blockCordial_4.name=阿玛雷托酒瓶
+tile.defeatedcrow.blockBarrel.name=酿造桶
 tile.defeatedcrow.emptyBottle.name=空瓶
 tile.defeatedcrow.emptyBottle_0.name=空瓶
 tile.defeatedcrow.emptyBottle_1.name=空瓶
@@ -263,7 +271,6 @@ tile.defeatedcrow.emptyBottle_6.name=空瓶
 tile.defeatedcrow.emptyBottle_7.name=空瓶
 tile.defeatedcrow.emptyBottle_8.name=空瓶
 tile.defeatedcrow.largeBottle.name=酒瓶
-tile.defeatedcrow.blockBarrel.name=酿造桶
 tile.defeatedcrow.redGel.name=红石凝胶
 tile.defeatedcrow.lightGel.name=柚子凝胶
 tile.defeatedcrow.yuzuBatContainer.name=柚子电池复合体
@@ -280,6 +287,21 @@ tile.defeatedcrow.filledSoupPan_TONKOTU.name=砂锅 (骨汤)
 tile.defeatedcrow.filledSoupPan_SHOYU.name=砂锅 (酱油)
 tile.defeatedcrow.filledSoupPan_BLOOD.name=砂锅 (鲜血)
 tile.defeatedcrow.filledSoupPan_PURPLE.name=砂锅 (暗黑)
+tile.defeatedcrow.filledSoupPan_CHEESE.name=砂锅 (奶酪)
+tile.defeatedcrow.containerBottleW.name=水瓶箱
+tile.defeatedcrow.containerSaddle.name=鞍箱
+tile.defeatedcrow.hedge_boxwood_n.name=杨木树篱
+tile.defeatedcrow.hedge_podocarp.name=罗汉松树篱
+tile.defeatedcrow.hedge_photinia.name=石楠树篱
+tile.defeatedcrow.hedge_snakegourd.name=丝瓜格栅
+tile.defeatedcrow.hedge_osmanthus.name=桂树树篱
+tile.defeatedcrow.hedge_boxwood_g.name=金色杨木树篱树篱
+tile.defeatedcrow.flowerVase_rose.name=玫瑰花束
+tile.defeatedcrow.flowerVase_peony.name=牡丹花束
+tile.defeatedcrow.flowerVase_lilac.name=丁香花束
+tile.defeatedcrow.flowerVase_sun.name=向日葵花束
+tile.defeatedcrow.crowFigure.name=乌鸦玩偶
+
 item.defeatedcrow.bakedApple.name=烤苹果
 item.defeatedcrow.appleTart_0.name=苹果馅饼
 item.defeatedcrow.appleTart_1.name=黑加仑馅饼
@@ -518,6 +540,12 @@ item.defeatedcrow.containeritemDoorW.name=木门捆
 item.defeatedcrow.containeritemDoorI.name=铁门捆
 tile.defeatedcrow.containerBottleW.name=水瓶箱
 tile.defeatedcrow.containerSaddle.name=鞍箱
+item.defeatedcrow.jawPlate_0.name=消毒颚板
+item.defeatedcrow.jawPlate_1.name=石质颚板
+item.defeatedcrow.jawPlate_2.name=玉髓颚板
+item.defeatedcrow.jawPlate_3.name=铁质颚板
+item.defeatedcrow.jawPlate_4.name=钢质颚板
+item.defeatedcrow.jawPlate_5.name=合金颚板
 
 entity.compressedMelon.name=压缩西瓜
 entity.compressedSilkMelon.name=平滑压缩西瓜
@@ -532,6 +560,8 @@ fluid.vodka_young=未过滤的伏特加
 fluid.sake_young=醪液
 fluid.beer_young=麦芽汁
 fluid.wine_young=葡萄汁
+fluid.rum_young=拉姆酒发酵液
+fluid.vodka_young=未过滤的伏特加
 fluid.shothu_dc=烧酒
 fluid.whiskey_dc=威士忌
 fluid.brandy_dc=白兰地
@@ -541,6 +571,8 @@ fluid.vodka_dc=伏特加
 fluid.sake_dc=日本清酒
 fluid.beer_dc=啤酒
 fluid.wine_dc=红酒
+fluid.rum_dc=朗姆酒
+fluid.vodka_dc=伏特加
 
 DCs.potion.immunization=免疫
 DCs.potion.protectionExplode=爆炸保护
@@ -595,10 +627,8 @@ achievement.dc.craftChalGear=新的机械
 achievement.dc.craftChalGear.desc=制作一个玉髓齿轮
 achievement.dc.craftGlassLamp=长久预防者
 achievement.dc.craftGlassLamp.desc=做出橙色玉髓玻璃灯。
-
 achievement.dc.craftProcesser=自动化风潮
 achievement.dc.craftProcesser.desc=制作食物加工机
-achievement.dc.craftAutoMaker.desc=做一个茶壶附件
 achievement.dc.drinkCocktail=优雅周五晚
 achievement.dc.drinkCocktail.desc=喝一杯任何品种的鸡尾酒
 achievement.dc.burnOnTeppan=小心烫伤！
@@ -637,6 +667,7 @@ dc.panMessage.noChocolateRecipe=这个物品并没有可用的巧克力干酪配
 dc.plateMessage.noRecipe=这个物品并没有可用配方.
 dc.plateMessage.noHeatSource=这个方块底下需要有热源.(例如火,岩浆)
 dc.plateMessage.needOvenMode=需要烤炉模式.顶面和其它三面需要被其它方块所包围.
+dc.panMessage.noFondueRecipe=该物品没有可用合成配方.
 
 dc.PanGuiNameNEI=砂锅
 dc.MakerGuiNEI=制茶机
@@ -649,3 +680,7 @@ dc.ChocoGuiNEI=巧克力干酪
 dc.BrewingGuiNEI=酿造
 dc.FondueSourceGuiNEI=烧汤
 dc.FondueRecipeGuiNEI=干酪
+dc.HeatSourceGuiNEI=热源
+
+item.defeatedcrow.circuit_chalcedony.name=玉髓电子管
+for.circuit.manualAMT.name=苹果奶茶种植手册

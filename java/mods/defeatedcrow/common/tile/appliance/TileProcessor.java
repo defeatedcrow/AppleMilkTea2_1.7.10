@@ -55,7 +55,7 @@ public class TileProcessor extends MachineBase {
 		float chance = 1.0F;
 
 		for (IProcessorRecipe recipe : recipes) {
-			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && this.ismatchTier() && recipe.matches(items)) {
+			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && this.ismatchTier(recipe) && recipe.matches(items)) {
 				output = recipe.getOutput();
 				sec = recipe.getSecondary();
 				chance = recipe.getChance();
@@ -121,7 +121,7 @@ public class TileProcessor extends MachineBase {
 		return true;
 	}
 
-	public boolean ismatchTier() {
+	public boolean ismatchTier(IProcessorRecipe recipe) {
 		return true;
 	}
 
@@ -142,7 +142,7 @@ public class TileProcessor extends MachineBase {
 		boolean flag = false;
 
 		for (IProcessorRecipe recipe : recipes) {
-			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && this.ismatchTier() && recipe.matches(items)) {
+			if (recipe.isFoodRecipe() == this.acceptFoodRecipe() && this.ismatchTier(recipe) && recipe.matches(items)) {
 				activeRecipe = recipe;
 				flag = true;
 			}

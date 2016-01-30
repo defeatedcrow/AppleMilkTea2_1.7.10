@@ -1,10 +1,8 @@
 package mods.defeatedcrow.common.block.container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import mods.defeatedcrow.api.ICompressedItem;
 import mods.defeatedcrow.common.config.DCsConfig;
 import mods.defeatedcrow.common.entity.EntityKinoko;
-import mods.defeatedcrow.common.entity.edible.PlaceableIcecream;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,10 +10,14 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemMushBox extends ItemBlock {
+public class ItemMushBox extends ItemBlock implements ICompressedItem {
 
-	private static final String[] type = new String[] { "_red", "_brown" };
+	private static final String[] type = new String[] {
+			"_red",
+			"_brown" };
 
 	public ItemMushBox(Block block) {
 		super(block);
@@ -83,10 +85,9 @@ public class ItemMushBox extends ItemBlock {
 				int m = this.getMetadata(item.getItemDamage());
 
 				if (!world.isRemote) {
-					if (this.spownEntityFoods(world, player, new ItemStack(this, 1, m), (double) ((float) x + 0.5F),
-							(double) ((float) y + 0.0F), (double) ((float) z + 0.5F))) {
-						world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F),
-								(double) ((float) z + 0.5F), this.field_150939_a.stepSound.func_150496_b(),
+					if (this.spownEntityFoods(world, player, new ItemStack(this, 1, m), x + 0.5F, y + 0.0F, z + 0.5F)) {
+						world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F,
+								this.field_150939_a.stepSound.func_150496_b(),
 								(this.field_150939_a.stepSound.getVolume() + 1.0F) / 2.0F,
 								this.field_150939_a.stepSound.getPitch() * 0.8F);
 						--item.stackSize;
@@ -99,8 +100,7 @@ public class ItemMushBox extends ItemBlock {
 						i1);
 
 				if (placeBlockAt(item, player, world, x, y, z, side, p_77648_8_, p_77648_9_, p_77648_10_, j1)) {
-					world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F),
-							(double) ((float) z + 0.5F), this.field_150939_a.stepSound.func_150496_b(),
+					world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, this.field_150939_a.stepSound.func_150496_b(),
 							(this.field_150939_a.stepSound.getVolume() + 1.0F) / 2.0F,
 							this.field_150939_a.stepSound.getPitch() * 0.8F);
 					--item.stackSize;
@@ -160,6 +160,21 @@ public class ItemMushBox extends ItemBlock {
 		}
 
 		return world.canPlaceEntityOnSide(this.field_150939_a, x, y, z, false, side, (Entity) null, item);
+	}
+
+	@Override
+	public ItemStack getDisassembledItem(ItemStack cont) {
+		if (cont == null || cont.getItem() == null)
+			return null;
+		int m = cont.getItemDamage();
+		switch (m) {
+		case 0:
+			return new ItemStack(Blocks.red_mushroom, 9, 0);
+		case 1:
+			return new ItemStack(Blocks.brown_mushroom, 9, 0);
+		default:
+			return null;
+		}
 	}
 
 }

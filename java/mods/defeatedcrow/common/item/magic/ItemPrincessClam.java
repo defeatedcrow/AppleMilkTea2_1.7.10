@@ -27,8 +27,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemPrincessClam extends Item {
 
-	private static final String[] clamType = new String[] { "princessclam", "raden_flower", "raden_butterfly",
-			"raden_wing", "raden_moon" };
+	private static final String[] clamType = new String[] {
+			"princessclam",
+			"raden_flower",
+			"raden_butterfly",
+			"raden_wing",
+			"raden_moon" };
 
 	@SideOnly(Side.CLIENT)
 	private IIcon iconclamType[];
@@ -50,8 +54,7 @@ public class ItemPrincessClam extends Item {
 		if (i1 == Blocks.sand && meta == 0)// ハマグリを植えるときの処理
 		{
 			par3World.setBlock(posX, posY, posZ, DCsAppleMilk.clamSand, 2, 3);
-			par3World.playSoundEffect((double) ((float) posX + 0.5F), (double) ((float) posY + 0.5F),
-					(double) ((float) posZ + 0.5F), block.stepSound.getStepResourcePath(),
+			par3World.playSoundEffect(posX + 0.5F, posY + 0.5F, posZ + 0.5F, block.stepSound.getStepResourcePath(),
 					(block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
 			--par1ItemStack.stackSize;
 			return true;
@@ -145,7 +148,7 @@ public class ItemPrincessClam extends Item {
 							} else {
 								--itemstack.stackSize;
 								if (itemstack.stackSize < 1) {
-									itemstack = (ItemStack) null;
+									itemstack = null;
 									return null;
 								}
 							}
@@ -208,7 +211,7 @@ public class ItemPrincessClam extends Item {
 									} else {
 										--itemstack.stackSize;
 										if (itemstack.stackSize < 1) {
-											itemstack = (ItemStack) null;
+											itemstack = null;
 											return null;
 										}
 									}
@@ -253,7 +256,7 @@ public class ItemPrincessClam extends Item {
 							y1 = Y + i;
 							flag = true;
 							break;
-						} else if (world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.vine
+						} else if (world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.water
 								|| world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.plants
 								|| world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.snow) {
 							y1 = Y + i;

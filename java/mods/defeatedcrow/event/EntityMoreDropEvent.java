@@ -64,9 +64,19 @@ public class EntityMoreDropEvent {
 							continue;
 						if (hold != null && hold.getItem() != null && hold.isItemEqual(get.getEntityItem()))
 							continue;
-						int count = 1 + world.rand.nextInt(flowerCount);
-						get.getEntityItem().stackSize += count;
-						AMTLogger.debugInfo("increase drops :" + get.getEntityItem().getDisplayName() + " +" + count);
+
+						if (get.getEntityItem().getItem().isDamageable() && !DCsAppleMilk.debugMode) {
+							int dam = get.getEntityItem().getItemDamage();
+							dam -= world.rand.nextInt(flowerCount) * 20;
+							if (dam < 0)
+								dam = 0;
+							get.getEntityItem().setItemDamage(dam);
+						} else {
+							int count = 1 + world.rand.nextInt(flowerCount);
+							get.getEntityItem().stackSize += count;
+							AMTLogger.debugInfo("increase drops :" + get.getEntityItem().getDisplayName() + " +"
+									+ count);
+						}
 					}
 				}
 

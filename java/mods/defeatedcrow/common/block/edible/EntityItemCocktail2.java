@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import cpw.mods.fml.server.FMLServerHandler;
 import mods.defeatedcrow.api.energy.IBattery;
-import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.common.AchievementRegister;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.block.appliance.ItemMachineBlock;
 import mods.defeatedcrow.common.config.DCsConfig;
-import mods.defeatedcrow.common.entity.edible.*;
+import mods.defeatedcrow.common.entity.edible.PlaceableCocktail2;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -25,16 +23,26 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityItemCocktail2 extends EdibleEntityItemBlock2 {
 
-	private static final String[] type = new String[] { "_mako_tyuhai", "_panache", "_spritzer", "_screw_driver",
-			"_god_farther", "_tom_and_jerry", "_alexander", "_zoom", "_amaretto_milktea", "_snow_saronno" };
+	private static final String[] type = new String[] {
+			"_mako_tyuhai",
+			"_panache",
+			"_spritzer",
+			"_screw_driver",
+			"_god_farther",
+			"_tom_and_jerry",
+			"_alexander",
+			"_zoom",
+			"_amaretto_milktea",
+			"_snow_saronno" };
 
 	public EntityItemCocktail2(Block block) {
 		super(block, false, true);
@@ -64,7 +72,9 @@ public class EntityItemCocktail2 extends EdibleEntityItemBlock2 {
 
 	@Override
 	public int[] hungerOnEaten(int meta) {
-		return new int[] { 0, 0 };
+		return new int[] {
+				0,
+				0 };
 	}
 
 	@Override
@@ -107,7 +117,8 @@ public class EntityItemCocktail2 extends EdibleEntityItemBlock2 {
 			} else {
 				potion = new PotionEffect(Potion.moveSpeed.id, 12000, 1);
 			}
-		} else if (meta == 4 && DCsAppleMilk.prvProjectile != null && DCsAppleMilk.prvExplode != null)// god farther
+		} else if (meta == 4 && DCsAppleMilk.prvProjectile != null && DCsAppleMilk.prvExplode != null)// god
+																										// farther
 		{
 			potion = null;
 			if (par1EntityPlayer.isPotionActive(DCsConfig.potionIDPrvProjectile)) {
@@ -269,7 +280,9 @@ public class EntityItemCocktail2 extends EdibleEntityItemBlock2 {
 					int posY = MathHelper.floor_double(player.posY) + world.rand.nextInt(3) - 1;
 					int posZ = MathHelper.floor_double(player.posZ) + world.rand.nextInt(7) - 3;
 
-					Block[] flowers = new Block[] { Blocks.yellow_flower, Blocks.red_flower };
+					Block[] flowers = new Block[] {
+							Blocks.yellow_flower,
+							Blocks.red_flower };
 					int type = i & 1;
 					int m = world.rand.nextInt(5);
 
@@ -282,14 +295,15 @@ public class EntityItemCocktail2 extends EdibleEntityItemBlock2 {
 
 		if (meta == 9)// snow saronno
 		{
-			WorldInfo worldinfo = MinecraftServer.getServer().worldServers[0].getWorldInfo();
+			WorldInfo worldinfo = world.getWorldInfo();
 
-			worldinfo.setRainTime(6000);
+			worldinfo.setRainTime(1200);
 			worldinfo.setRaining(true);
 			worldinfo.setThundering(false);
 		}
 	}
 
+	@Override
 	public EnumAction getItemUseAction(ItemStack par1ItemStack) {
 		return EnumAction.drink;
 	}
@@ -311,6 +325,7 @@ public class EntityItemCocktail2 extends EdibleEntityItemBlock2 {
 		return false;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	// マウスオーバー時の表示情報
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {

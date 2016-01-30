@@ -226,4 +226,8 @@ public class CommonProxy implements IGuiHandler {
 		return false;
 	}
 
+	public boolean isWarpKeyDown() {
+		return false;
+	}
+
 }

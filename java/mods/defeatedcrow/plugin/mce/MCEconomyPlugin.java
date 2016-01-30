@@ -56,6 +56,7 @@ public class MCEconomyPlugin implements IShop {
 		DCsProduct.add(new AMTProduct(new ItemStack(DCsAppleMilk.teppanII, 1, 0), 1000));
 		DCsProduct.add(new AMTProduct(new ItemStack(DCsAppleMilk.iceMaker, 1, 0), 1800));
 		DCsProduct.add(new AMTProduct(new ItemStack(DCsAppleMilk.processor, 1, 0), 2000));
+		DCsProduct.add(new AMTProduct(new ItemStack(DCsAppleMilk.jawPlate, 1, 5), 3000));
 		DCsProduct.add(new AMTProduct(new ItemStack(DCsAppleMilk.batteryItem, 1, 1), 500));
 		DCsProduct.add(new AMTProduct(new ItemStack(DCsAppleMilk.batteryItem, 64, 1), 30000));
 		DCsProduct.add(new AMTProduct(new ItemStack(DCsAppleMilk.chalcedonyHammer, 1, 0), 300));

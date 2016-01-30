@@ -63,6 +63,9 @@ public class DCsConfig {
 	public static boolean altModRecipe = true;
 	public static int procDif = 1;
 
+	// key
+	public static int charmWarpKey = 0x2D;
+
 	public static boolean useEXRecipe = false;
 	public static boolean notGenTeaTree = false;
 	public static boolean allowSlimeBallDic = true;
@@ -219,11 +222,15 @@ public class DCsConfig {
 			Property altModR = cfg.get("difficulty setting", "Another Mod Recipe", altModRecipe,
 					"Enable Recipes added the another mod machines.");
 
-			Property procDifP = cfg.get("difficulty setting", "JawCrusher Recipe Difficulty", dustDif,
+			Property procDifP = cfg.get("difficulty setting", "JawCrusher Recipe Difficulty", procDif,
 					"Change difficulty of the JawCrusher recipe tier." + BR + "0:sweet 1:normal 2:bitter");
 
 			Property useAltTeppan = cfg.get("render setting", "Enable Alt Teppan Texture", useAltTeppanTex,
 					"Enable Alternate Teppan Texture like a mesh grill.");
+
+			Property warpKey = cfg.get("setting", "Charm Warp Key Number", charmWarpKey,
+					"Set key number for rapid warp by charm effect. Default key is X(45)."
+							+ "+ BR + If you don't want this effect, set 0.");
 
 			Property entityIce = cfg.get("entityid", "EntityIDIceCream", entityIdIce);
 			Property entityCup = cfg.get("entityid", "EntityIDCup", entityIdCup);
@@ -274,6 +281,8 @@ public class DCsConfig {
 			procDif = procDifP.getInt();
 
 			setCupScale = cupScale.getDouble();
+
+			charmWarpKey = warpKey.getInt();
 
 			PropertyHandler.loadConfig();
 

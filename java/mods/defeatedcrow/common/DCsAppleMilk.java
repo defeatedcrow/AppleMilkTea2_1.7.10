@@ -69,6 +69,7 @@ import mods.defeatedcrow.event.ShowOreNameEvent;
 import mods.defeatedcrow.event.SpawnCancelEvent;
 import mods.defeatedcrow.handler.RegisterOreHandler;
 import mods.defeatedcrow.handler.Util;
+import mods.defeatedcrow.network.DCsNetworkHandler;
 import mods.defeatedcrow.plugin.AddonIntegration;
 import mods.defeatedcrow.plugin.LoadBCPlugin;
 import mods.defeatedcrow.plugin.LoadBambooPlugin;
@@ -123,8 +124,8 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.9beta",
-		dependencies = "required-after:Forge@[10.13.2.1448,)")
+		version = "1.7.10_2.9f",
+		dependencies = "required-after:Forge@[10.13.4.1448,)")
 public class DCsAppleMilk {
 
 	// プロキシの登録
@@ -683,6 +684,9 @@ public class DCsAppleMilk {
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 
+		// network
+		DCsNetworkHandler.init();
+
 		// 地形生成イベントの登録
 		// コンフィグでONのときだけ読み込まれる
 		if (!DCsConfig.notGenTeaTree) {
@@ -1157,6 +1161,7 @@ public class DCsAppleMilk {
 		(new DCsRecipeRegister()).addCocktailSPRecipe();
 		(new DCsRecipeRegister()).addKelpRecipe();
 		(new DCsRecipeRegister()).addMetalRecipe();
+		(new DCsRecipeRegister()).addCardboardRecipe();
 		(new RegisterMakerRecipe()).addKelpRecipe();
 
 		// レシピ閲覧系MODの連携要素
@@ -1181,11 +1186,11 @@ public class DCsAppleMilk {
 	}
 
 	public int getMinorVersion() {
-		return 8;
+		return 9;
 	}
 
 	public String getRivision() {
-		return "p";
+		return "f";
 	}
 
 	public String getModName() {

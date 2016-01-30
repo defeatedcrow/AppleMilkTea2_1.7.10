@@ -81,7 +81,7 @@ public class GuiAdvProcessor extends GuiContainer {
 		this.drawTexturedModalRect(k + 11, l + 53 - i1, 176, 43 - i1, 12, i1);
 
 		i2 = this.tileentity.getCookProgressScaled(24);
-		this.drawTexturedModalRect(k + 89, l + 43, 176, 0, i2 + 1, 16);
+		this.drawTexturedModalRect(k + 88, l + 43, 176, 0, i2 + 1, 16);
 	}
 
 	public String GuiTexPass() {

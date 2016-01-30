@@ -16,6 +16,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Util {
@@ -62,6 +63,16 @@ public class Util {
 
 	public static int getHamaguriChanceValue() {
 		int l = DCsConfig.clamChanceValue;
+		if (l < 0)
+			l = 1;
+		else if (l > 100)
+			l = 100;
+
+		return l;
+	}
+
+	public static int getPrincessChanceValue() {
+		int l = DCsConfig.princessChanceValue;
 		if (l < 0)
 			l = 1;
 		else if (l > 100)
@@ -204,8 +215,18 @@ public class Util {
 		return flag;
 	}
 
+	// nullチェック用
 	public static boolean notEmptyItem(ItemStack item) {
 		return item != null && item.stackSize != 0 && item.getItem() != null;
+	}
+
+	// OreNameから一つだけアイテムを得る
+	public static ItemStack getOreStack(String ore) {
+		if (OreDictionary.doesOreNameExist(ore) && !OreDictionary.getOres(ore).isEmpty())
+			return new ItemStack(OreDictionary.getOres(ore).get(0).getItem(), 9, OreDictionary.getOres(ore).get(0)
+					.getItemDamage());
+		else
+			return null;
 	}
 
 	// デバッグモード

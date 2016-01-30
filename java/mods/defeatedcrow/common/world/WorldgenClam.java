@@ -4,13 +4,10 @@ import java.util.Random;
 
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class WorldgenClam implements IWorldGenerator {
@@ -26,6 +23,7 @@ public class WorldgenClam implements IWorldGenerator {
 		int chunk2X = chunkX << 4;
 		int chunk2Z = chunkZ << 4;
 		int count = Util.getHamaguriChanceValue();
+		int pr = Util.getPrincessChanceValue();
 
 		if ((genDim1 != 1 && genDim1 != -1)) {
 			for (int i = 0; i < count; i++) {
@@ -35,7 +33,7 @@ public class WorldgenClam implements IWorldGenerator {
 
 				if (world.getBlock(PosX, PosY + 1, PosZ).getMaterial() == Material.water
 						&& (world.getBlock(PosX, PosY, PosZ) == Blocks.sand || world.getBlock(PosX, PosY, PosZ) == Blocks.dirt)) {
-					if (world.rand.nextInt(20) == 0) {
+					if (world.rand.nextInt(100) < pr) {
 						world.setBlock(PosX, PosY, PosZ, DCsAppleMilk.clamSand, 2, 2);
 					} else {
 						world.setBlock(PosX, PosY, PosZ, DCsAppleMilk.clamSand, 0, 2);

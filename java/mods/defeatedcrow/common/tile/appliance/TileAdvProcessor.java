@@ -1,6 +1,7 @@
 package mods.defeatedcrow.common.tile.appliance;
 
 import mods.defeatedcrow.api.appliance.IJawPlate;
+import mods.defeatedcrow.api.recipe.IProcessorRecipe;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -61,6 +62,12 @@ public class TileAdvProcessor extends TileProcessor {
 			return tier == -1;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean ismatchTier(IProcessorRecipe recipe) {
+		ItemStack stack = this.getStackInSlot(13);
+		return recipe.matchTier(stack);
 	}
 
 	@Override

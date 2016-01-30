@@ -10,7 +10,6 @@ import mods.defeatedcrow.api.recipe.IProcessorRecipe;
 import mods.defeatedcrow.api.recipe.IProcessorRecipeRegister;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
-import mods.defeatedcrow.common.config.PropertyHandler;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -39,7 +38,8 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister {
 		if (secondary == null || secondary.stackSize == 0)
 			secondary = null;
 		recipes.add(new ProcessorRecipe(output, secondary, isFood, forceReturn, tier, secondaryChance, input));
-		AMTLogger.debugInfo("Add Prosessor recipe: output " + (output == null ? "null" : output.getDisplayName()));
+		AMTLogger.debugInfo("Add Prosessor recipe: output " + (output == null ? "null" : output.getDisplayName())
+				+ ", tier" + tier);
 	}
 
 	@Override
@@ -98,12 +98,12 @@ public class ProcessorRecipeRegister implements IProcessorRecipeRegister {
 			if (foodRecipe) {
 				tier = -1;
 			} else {
-				if (PropertyHandler.procDifficulty() == 0)
-					tier = 0;
-				else if (PropertyHandler.procDifficulty() == 2)
-					tier = 3;
-				else
-					tier = t;
+				// if (PropertyHandler.procDifficulty() == 0)
+				// tier = 0;
+				// else if (PropertyHandler.procDifficulty() == 2)
+				// tier = 3;
+				// else
+				tier = t;
 			}
 			for (int i = 0; i < inputs.length; i++) {
 				if (inputs[i] instanceof String) {

@@ -36,21 +36,25 @@ public class OreCrushRecipe {
 				"Iron",
 				"Tin",
 				"Copper",
-				"Coal" };
+				"Zinc" };
 		String[] ores2 = new String[] {
 				"Silver",
 				"Lead",
 				"Gold",
+				"Redstone" };
+		String[] ores3 = new String[] {
 				"Nickel",
-				"Redstone",
-				"Quartz" };
+				"Platinum",
+				"Magnetite" };
 		String[] gems = new String[] {
+				"Coal",
+				"Quartz" };
+		String[] gems2 = new String[] {
 				"Diamond",
 				"Ruby",
 				"Sapphire",
 				"Peridot",
-				"Emerald",
-				"Platinum" };
+				"Emerald" };
 
 		int[] d = PropertyHandler.getDustGen();
 
@@ -102,11 +106,53 @@ public class OreCrushRecipe {
 		}
 
 		// その3
+		for (int i = 0; i < ores3.length; i++) {
+			String ore = "ore" + ores3[i];
+			ItemStack dust = null;
+			ItemStack ingot = null;
+			if (OreDictionary.getOres("dust" + ores3[i]) != null && !OreDictionary.getOres("dust" + ores3[i]).isEmpty())
+				dust = OreDictionary.getOres("dust" + ores3[i]).get(0);
+
+			if (OreDictionary.getOres(ore) != null && !OreDictionary.getOres(ore).isEmpty() && dust != null) {
+				RecipeRegisterManager.processorRecipe.addRecipe(
+						new ItemStack(dust.getItem(), d[0], dust.getItemDamage()), false, 3, new ItemStack(
+								DCsAppleMilk.strangeSlag, 1, 0), 0.5F, new Object[] { ore });
+			}
+
+			if (OreDictionary.getOres("ingot" + ores3[i]) != null
+					&& !OreDictionary.getOres("ingot" + ores3[i]).isEmpty()) {
+				ingot = OreDictionary.getOres("ingot" + ores3[i]).get(0);
+			}
+
+			if (dust != null) {
+				tier3.add(dust);
+			}
+		}
+
+		// その4
 		for (int i = 0; i < gems.length; i++) {
 			String ore = "ore" + gems[i];
 			ItemStack gem = null;
 			if (OreDictionary.getOres("gem" + gems[i]) != null && !OreDictionary.getOres("gem" + gems[i]).isEmpty())
 				gem = OreDictionary.getOres("gem" + gems[i]).get(0);
+
+			if (OreDictionary.getOres(ore) != null && !OreDictionary.getOres(ore).isEmpty() && gem != null) {
+				RecipeRegisterManager.processorRecipe.addRecipe(
+						new ItemStack(gem.getItem(), d[0], gem.getItemDamage()), false, 1, new ItemStack(gem.getItem(),
+								1, gem.getItemDamage()), 0.5F, new Object[] { ore });
+			}
+
+			if (gem != null) {
+				tier2.add(gem);
+			}
+		}
+
+		// その5
+		for (int i = 0; i < gems2.length; i++) {
+			String ore = "ore" + gems2[i];
+			ItemStack gem = null;
+			if (OreDictionary.getOres("gem" + gems2[i]) != null && !OreDictionary.getOres("gem" + gems2[i]).isEmpty())
+				gem = OreDictionary.getOres("gem" + gems2[i]).get(0);
 
 			if (OreDictionary.getOres(ore) != null && !OreDictionary.getOres(ore).isEmpty() && gem != null) {
 				RecipeRegisterManager.processorRecipe.addRecipe(
@@ -140,7 +186,7 @@ public class OreCrushRecipe {
 
 		// ボタ山設定以外のdust取得
 		// ingotが存在しないと焼くレシピも存在しない
-		String[] ores3 = new String[] {
+		String[] ores4 = new String[] {
 				"Iron",
 				"Tin",
 				"Copper",
@@ -149,10 +195,10 @@ public class OreCrushRecipe {
 				"Gold",
 				"Nickel",
 				"Platinum" };
-		for (int i = 0; i < ores3.length; i++) {
-			if (OreDictionary.getOres("ingot" + ores3[i]) != null
-					&& !OreDictionary.getOres("ingot" + ores3[i]).isEmpty()) {
-				ItemStack ingot = OreDictionary.getOres("ingot" + ores3[i]).get(0);
+		for (int i = 0; i < ores4.length; i++) {
+			if (OreDictionary.getOres("ingot" + ores4[i]) != null
+					&& !OreDictionary.getOres("ingot" + ores4[i]).isEmpty()) {
+				ItemStack ingot = OreDictionary.getOres("ingot" + ores4[i]).get(0);
 				GameRegistry.addSmelting(new ItemStack(DCsAppleMilk.oreDust, 1, i), new ItemStack(ingot.getItem(), 1,
 						ingot.getItemDamage()), 0.3F);
 			} else// なかったら鉄になる

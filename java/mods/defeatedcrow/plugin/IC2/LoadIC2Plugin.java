@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Loader;
 
 public class LoadIC2Plugin {
@@ -24,6 +25,7 @@ public class LoadIC2Plugin {
 	public static ItemStack IC2WaterCell;
 	public static ItemStack IC2Coffeepowder;
 	public static ItemStack IC2Mug;
+	public static ItemStack IC2CoffeeBeans;
 	public static ItemStack IC2MugCoffee;
 	public static ItemStack IC2MugCoffeeMilk;
 	public static ItemStack IC2dropRubber;
@@ -37,6 +39,8 @@ public class LoadIC2Plugin {
 		this.IC2Cell = new ItemStack(IC2Items.getItem("cell").getItem(), 1, IC2Items.getItem("cell").getItemDamage());
 		this.IC2WaterCell = new ItemStack(IC2Items.getItem("waterCell").getItem(), 1, IC2Items.getItem("waterCell")
 				.getItemDamage());
+		this.IC2CoffeeBeans = new ItemStack(IC2Items.getItem("coffeeBeans").getItem(), 1, IC2Items.getItem(
+				"coffeeBeans").getItemDamage());
 		this.IC2Coffeepowder = new ItemStack(IC2Items.getItem("coffeePowder").getItem(), 1, IC2Items.getItem(
 				"coffeePowder").getItemDamage());
 		this.IC2Mug = new ItemStack(IC2Items.getItem("mugEmpty").getItem(), 1, 0);
@@ -52,6 +56,10 @@ public class LoadIC2Plugin {
 					12), new ItemStack(DCsAppleMilk.teacupBlock, 1, 13), new String(
 					"defeatedcrow:textures/blocks/contents_cocoa.png"), new String(
 					"defeatedcrow:textures/blocks/contents_cocoa_milk.png"));
+		}
+
+		if (IC2CoffeeBeans != null) {
+			OreDictionary.registerOre("cropCoffee", IC2CoffeeBeans);
 		}
 
 		// インスタントティー用の水入り容器登録

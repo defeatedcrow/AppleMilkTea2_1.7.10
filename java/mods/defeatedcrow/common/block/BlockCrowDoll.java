@@ -10,7 +10,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -132,6 +134,34 @@ public class BlockCrowDoll extends BlockContainer {
 	@Override
 	public TileEntity createNewTileEntity(World world, int a) {
 		return new TileCrowDoll();
+	}
+
+	// クリックでブルブルする
+	@Override
+	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
+		if (world.isRemote)
+			return;
+		if (player != null) {
+			TileEntity tile = world.getTileEntity(x, y, z);
+			TileCrowDoll doll = null;
+			if (tile != null && tile instanceof TileCrowDoll) {
+				doll = (TileCrowDoll) tile;
+			}
+			if (doll != null) {
+				doll.range = 3.0D;
+				world.markBlockForUpdate(x, y, z);
+			}
+		}
+	}
+
+	@Override
+	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
+	}
+
+	// おまけ
+	@Override
+	public float getEnchantPowerBonus(World world, int x, int y, int z) {
+		return 5;
 	}
 
 }

@@ -8,7 +8,6 @@ import mods.defeatedcrow.api.plants.IRightClickHarvestable;
 import mods.defeatedcrow.api.plants.PlantsClickEvent;
 import mods.defeatedcrow.client.particle.EntityOrbFX;
 import mods.defeatedcrow.client.particle.ParticleTex;
-import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.AchievementRegister;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.config.DCsConfig;
@@ -174,6 +173,7 @@ public class BlockClamSand extends Block implements IRightClickHarvestable {
 			// メタデータ
 			int meta = par1World.getBlockMetadata(par2, par3, par4);
 			int chance = DCsConfig.clamChanceValue;
+			int pr = Util.getPrincessChanceValue();
 
 			// 増殖予定の座標選定
 			int i = par1World.rand.nextInt(4);
@@ -198,7 +198,7 @@ public class BlockClamSand extends Block implements IRightClickHarvestable {
 						if (par1World.getBlockMetadata(X1, Y1, Z1) != 2) {
 							par1World.setBlock(X1, Y1, Z1, DCsAppleMilk.clamSand);
 							s += "normal";
-							AMTLogger.debugInfo(s);
+							// AMTLogger.debugInfo(s);
 						}
 
 					}
@@ -207,19 +207,19 @@ public class BlockClamSand extends Block implements IRightClickHarvestable {
 						if (par1World.getBlockMetadata(X1, Y1, Z1) != 2) {
 							par1World.setBlock(X1, Y1, Z1, DCsAppleMilk.clamSand);
 							s += "normal";
-							AMTLogger.debugInfo(s);
+							// AMTLogger.debugInfo(s);
 						}
 					} else {
 						// 自身が衰退ハマグリ砂になる
 						par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 3);
 					}
 				} else {
-					if (flag2 && flag3 && flag4 && par1World.rand.nextInt(15) == 0)// 低確率
+					if (flag2 && flag3 && flag4 && par1World.rand.nextInt(100) * 2 < pr)// 低確率
 					{
 						// プリンセス誕生
 						par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 3);
 						s += "princess gen";
-						AMTLogger.debugInfo(s);
+						// AMTLogger.debugInfo(s);
 					} else {
 						// 自身が衰退ハマグリ砂になる
 						par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 3);
@@ -240,8 +240,8 @@ public class BlockClamSand extends Block implements IRightClickHarvestable {
 				if (par1World.getBlockMetadata(X1, Y1, Z1) != 2 && flag3 && flag4) {
 					par1World.setBlock(X1, Y1, Z1, DCsAppleMilk.clamSand);
 				}
-				s += "princess";
-				AMTLogger.debugInfo(s);
+				s += "by princess";
+				// AMTLogger.debugInfo(s);
 			}
 
 			int meta2 = par1World.getBlockMetadata(par2, par3, par4);// 結果のメタ
@@ -260,9 +260,9 @@ public class BlockClamSand extends Block implements IRightClickHarvestable {
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		int l = par1World.getBlockMetadata(par2, par3, par4);
 		Block i = par1World.getBlock(par2, par3 + 1, par2);
-		double d0 = (double) ((float) par2 + 0.5F);
-		double d1 = (double) ((float) par3 + 1.1F);
-		double d2 = (double) ((float) par4 + 0.5F);
+		double d0 = par2 + 0.5F;
+		double d1 = par3 + 1.1F;
+		double d2 = par4 + 0.5F;
 		double d3 = 0.015D;
 		double d4 = 0.27000001072883606D;
 
@@ -280,7 +280,7 @@ public class BlockClamSand extends Block implements IRightClickHarvestable {
 
 		if (!DCsConfig.noRenderFoodsSteam) {
 			if (l == 2) {
-				EntityOrbFX cloud = new EntityOrbFX(par1World, d0, d1 + (double) k, d2, 0.0D, d3, 0.0D);
+				EntityOrbFX cloud = new EntityOrbFX(par1World, d0, d1 + k, d2, 0.0D, d3, 0.0D);
 				cloud.setParticleIcon(ParticleTex.getInstance().getIcon("orb"));
 				FMLClientHandler.instance().getClient().effectRenderer.addEffect(cloud);
 			}
@@ -366,8 +366,7 @@ public class BlockClamSand extends Block implements IRightClickHarvestable {
 			float a = world.rand.nextFloat() * 0.8F + 0.1F;
 			float a1 = world.rand.nextFloat() * 0.8F + 0.1F;
 			float a2 = world.rand.nextFloat() * 0.8F + 0.1F;
-			EntityItem drop = new EntityItem(world, (double) ((float) x + a), (double) ((float) y + a1),
-					(double) ((float) z + a2), ret);
+			EntityItem drop = new EntityItem(world, x + a, y + a1, z + a2, ret);
 			drop.motionY = 0.25F;
 
 			if (!world.isRemote && world.spawnEntityInWorld(drop)) {

@@ -19,6 +19,7 @@ import mods.defeatedcrow.common.block.ItemCLampOp;
 import mods.defeatedcrow.common.block.ItemChalcedony;
 import mods.defeatedcrow.common.block.ItemChalcedonyLamp;
 import mods.defeatedcrow.common.block.ItemChopsticksBox;
+import mods.defeatedcrow.common.block.ItemFlintBlock;
 import mods.defeatedcrow.common.block.ItemWoodPanel;
 import mods.defeatedcrow.common.block.appliance.BlockAdvProcessor;
 import mods.defeatedcrow.common.block.appliance.BlockEmptyCup;
@@ -61,7 +62,9 @@ import mods.defeatedcrow.common.block.container.BlockVegiBag;
 import mods.defeatedcrow.common.block.container.BlockWipeBox;
 import mods.defeatedcrow.common.block.container.BlockWipeBox2;
 import mods.defeatedcrow.common.block.container.BlockWoodBox;
+import mods.defeatedcrow.common.block.container.ItemAppleBox;
 import mods.defeatedcrow.common.block.container.ItemCardboard;
+import mods.defeatedcrow.common.block.container.ItemCharcoalBox;
 import mods.defeatedcrow.common.block.container.ItemContainerBase;
 import mods.defeatedcrow.common.block.container.ItemEggBasket;
 import mods.defeatedcrow.common.block.container.ItemFlowerPot;
@@ -331,10 +334,10 @@ public class MaterialRegister {
 
 		// 圧縮系
 		GameRegistry.registerBlock(DCsAppleMilk.woodBox, ItemWoodBox.class, "defeatedcrow.WoodBox");
-		GameRegistry.registerBlock(DCsAppleMilk.appleBox, "defeatedcrow.AppleBox");
+		GameRegistry.registerBlock(DCsAppleMilk.appleBox, ItemAppleBox.class, "defeatedcrow.AppleBox");
 		GameRegistry.registerBlock(DCsAppleMilk.vegiBag, ItemVegiBag.class, "defeatedcrow.VegiBag");
 		GameRegistry.registerBlock(DCsAppleMilk.cardboard, ItemCardboard.class, "defeatedcrow.cardboardBox");
-		GameRegistry.registerBlock(DCsAppleMilk.charcoalBox, "defeatedcrow.Charcoalcontainer");
+		GameRegistry.registerBlock(DCsAppleMilk.charcoalBox, ItemCharcoalBox.class, "defeatedcrow.Charcoalcontainer");
 		GameRegistry.registerBlock(DCsAppleMilk.gunpowderContainer, ItemGunpowderContainer.class,
 				"defeatedcrow.GunpowderContainer");
 		GameRegistry.registerBlock(DCsAppleMilk.mobBlock, ItemMobDropBox.class, "defeatedcrow.mobDropBox");
@@ -368,7 +371,7 @@ public class MaterialRegister {
 				"defeatedcrow.blockDummyAlcohol2");
 
 		// カルセドニー
-		GameRegistry.registerBlock(DCsAppleMilk.flintBlock, "defeatedcrow.flintBlock");
+		GameRegistry.registerBlock(DCsAppleMilk.flintBlock, ItemFlintBlock.class, "defeatedcrow.flintBlock");
 		GameRegistry.registerBlock(DCsAppleMilk.chalcedony, ItemChalcedony.class, "defeatedcrow.chalcedony");
 		GameRegistry.registerBlock(DCsAppleMilk.cLamp, ItemChalcedonyLamp.class, "defeatedcrow.chalcedonyLamp");
 		GameRegistry.registerBlock(DCsAppleMilk.cLampOpaque, ItemCLampOp.class, "defeatedcrow.chalcedonyLampOp");

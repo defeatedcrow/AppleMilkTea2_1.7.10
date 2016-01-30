@@ -2381,4 +2381,79 @@ public class DCsRecipeRegister {
 		}
 	}
 
+	public static void addCardboardRecipe() {
+		ArrayList<ItemStack> coffee = new ArrayList<ItemStack>(OreDictionary.getOres("cropCoffee"));
+		if (!coffee.isEmpty()) {
+			for (ItemStack i : coffee) {
+				if (i == null || i.getItem() == null)
+					continue;
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(i.getItem(), 9, i.getItemDamage()),
+						new Object[] { new ItemStack(DCsAppleMilk.cardboard, 1, 4) }));
+
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cardboard, 1, 4), new Object[] {
+						"XXX",
+						"XXX",
+						"XXX",
+						'X',
+						new ItemStack(i.getItem(), 1, i.getItemDamage()) }));
+			}
+		}
+
+		ArrayList<ItemStack> bamboo = new ArrayList<ItemStack>(OreDictionary.getOres("bamboo"));
+		if (!bamboo.isEmpty()) {
+			for (ItemStack i : bamboo) {
+				if (i == null || i.getItem() == null)
+					continue;
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(i.getItem(), 9, i.getItemDamage()),
+						new Object[] { new ItemStack(DCsAppleMilk.cardboard, 1, 5) }));
+
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cardboard, 1, 5), new Object[] {
+						"XXX",
+						"XXX",
+						"XXX",
+						'X',
+						new ItemStack(i.getItem(), 1, i.getItemDamage()) }));
+			}
+		}
+
+		ArrayList<ItemStack> tomato = new ArrayList<ItemStack>(OreDictionary.getOres("cropTomato"));
+		tomato.addAll(OreDictionary.getOres("tomato"));
+		if (!tomato.isEmpty()) {
+			for (ItemStack i : tomato) {
+				if (i == null || i.getItem() == null)
+					continue;
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(i.getItem(), 9, i.getItemDamage()),
+						new Object[] { new ItemStack(DCsAppleMilk.cardboard, 1, 6) }));
+
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cardboard, 1, 6), new Object[] {
+						"XXX",
+						"XXX",
+						"XXX",
+						'X',
+						new ItemStack(i.getItem(), 1, i.getItemDamage()) }));
+			}
+		}
+
+		ArrayList<ItemStack> grape = new ArrayList<ItemStack>(OreDictionary.getOres("cropGrape"));
+		grape.addAll(OreDictionary.getOres("grape"));
+		if (!grape.isEmpty()) {
+			for (ItemStack i : grape) {
+				if (i == null || i.getItem() == null)
+					continue;
+
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(i.getItem(), 9, i.getItemDamage()),
+						new Object[] { new ItemStack(DCsAppleMilk.cardboard, 1, 7) }));
+
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(DCsAppleMilk.cardboard, 1, 7), new Object[] {
+						"XXX",
+						"XXX",
+						"XXX",
+						'X',
+						new ItemStack(i.getItem(), 1, i.getItemDamage()) }));
+			}
+		}
+	}
 }

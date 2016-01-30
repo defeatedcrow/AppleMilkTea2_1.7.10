@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -16,7 +17,6 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import wa.item.Items;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -54,12 +54,14 @@ public class TileEntityCrowdollRenderer extends TileEntitySpecialRenderer {
 			j = 90.0F;
 		boolean isFancy = Minecraft.isFancyGraphicsEnabled();
 
+		float h = 0.05F * (float) tile.range;
+
 		this.bindTexture(dollTex);
 
 		GL11.glPushMatrix();
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glTranslatef(par1 + 0.5F, par2 + 1.5F, par3 + 0.5F);
+		GL11.glTranslatef(par1 + 0.5F, par2 + 1.5F + h, par3 + 0.5F);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glRotatef(j, 0.0F, 1.0F, 0.0F);
 		model.render((Entity) null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
@@ -70,7 +72,18 @@ public class TileEntityCrowdollRenderer extends TileEntitySpecialRenderer {
 		GL11.glPushMatrix();
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glTranslatef(par1 + 0.5F, par2 + 0.75F, par3 + 0.5F);
+		GL11.glTranslatef(par1 + 0.5F, par2 + 1.5F, par3 + 0.5F);
+		GL11.glScalef(1.0F, -1.0F, -1.0F);
+		GL11.glRotatef(j, 0.0F, 1.0F, 0.0F);
+		model.renderBase((Entity) null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+
+		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+		GL11.glPopMatrix();
+
+		GL11.glPushMatrix();
+		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glTranslatef(par1 + 0.5F, par2 + 0.75F + h, par3 + 0.5F);
 		GL11.glScalef(1.2F, -1.2F, -1.2F);
 		GL11.glRotatef(j + 180.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glTranslatef(-0.15F, 0.0F, 0.0F);
