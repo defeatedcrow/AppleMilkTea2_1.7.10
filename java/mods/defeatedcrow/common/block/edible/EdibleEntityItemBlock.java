@@ -74,11 +74,15 @@ public abstract class EdibleEntityItemBlock extends ItemBlock implements IEdible
 
 			if (this.hungerOnEaten(meta) != null) {
 				int[] h = this.hungerOnEaten(meta);
-				par3EntityPlayer.getFoodStats().addStats(h[0], h[1] * 0.1F);
+				addStatus(par3EntityPlayer, h, par1ItemStack);
 			}
 		}
 
 		return par1ItemStack;
+	}
+
+	protected void addStatus(EntityPlayer player, int[] heal, ItemStack food) {
+		player.getFoodStats().addStats(heal[0], heal[1] * 0.1F);
 	}
 
 	/**
@@ -146,7 +150,9 @@ public abstract class EdibleEntityItemBlock extends ItemBlock implements IEdible
 
 	@Override
 	public int[] hungerOnEaten(int meta) {
-		return new int[] { 4, 2 };
+		return new int[] {
+				4,
+				2 };
 	}
 
 	/**
@@ -272,10 +278,9 @@ public abstract class EdibleEntityItemBlock extends ItemBlock implements IEdible
 				int m = this.getMetadata(item.getItemDamage());
 
 				if (!world.isRemote) {
-					if (this.spownEntityFoods(world, player, new ItemStack(this, 1, m), (double) ((float) x + 0.5F),
-							(double) ((float) y + 0.0F), (double) ((float) z + 0.5F))) {
-						world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F),
-								(double) ((float) z + 0.5F), this.field_150939_a.stepSound.func_150496_b(),
+					if (this.spownEntityFoods(world, player, new ItemStack(this, 1, m), x + 0.5F, y + 0.0F, z + 0.5F)) {
+						world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F,
+								this.field_150939_a.stepSound.func_150496_b(),
 								(this.field_150939_a.stepSound.getVolume() + 1.0F) / 2.0F,
 								this.field_150939_a.stepSound.getPitch() * 0.8F);
 						--item.stackSize;
@@ -288,8 +293,7 @@ public abstract class EdibleEntityItemBlock extends ItemBlock implements IEdible
 						i1);
 
 				if (placeBlockAt(item, player, world, x, y, z, side, p_77648_8_, p_77648_9_, p_77648_10_, j1)) {
-					world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F),
-							(double) ((float) z + 0.5F), this.field_150939_a.stepSound.func_150496_b(),
+					world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, this.field_150939_a.stepSound.func_150496_b(),
 							(this.field_150939_a.stepSound.getVolume() + 1.0F) / 2.0F,
 							this.field_150939_a.stepSound.getPitch() * 0.8F);
 					--item.stackSize;

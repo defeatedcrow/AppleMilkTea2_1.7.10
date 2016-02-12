@@ -163,6 +163,9 @@ public class RegisterOreHandler {
 		OreDictionary.registerOre("blockClam", new ItemStack(DCsAppleMilk.gunpowderContainer, 1, 3));
 		OreDictionary.registerOre("gemClam", new ItemStack(DCsAppleMilk.princessClam, 1, 0));
 		OreDictionary.registerOre("dustClam", new ItemStack(DCsAppleMilk.EXItems, 1, 6));
+		OreDictionary.registerOre("blockClamSand", new ItemStack(DCsAppleMilk.clamSand, 1, 0));
+
+		OreDictionary.registerOre("gemClam", new ItemStack(DCsAppleMilk.princessClam, 1, 0));
 
 		if (DCsConfig.allowSlimeBallDic) {
 			OreDictionary.registerOre("slimeball", new ItemStack(DCsAppleMilk.EXItems, 1, 1));
@@ -223,6 +226,21 @@ public class RegisterOreHandler {
 		OreDictionary.registerOre("bottleVodka", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 54));
 		OreDictionary.registerOre("bottleWhiskey", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 55));
 		OreDictionary.registerOre("bottleBrandy", new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 56));
+
+		// insence
+		OreDictionary.registerOre("itemIncense", new ItemStack(DCsAppleMilk.incenseAgar, 1, 0));
+		OreDictionary.registerOre("itemIncense", new ItemStack(DCsAppleMilk.incenseApple, 1, 0));
+		OreDictionary.registerOre("itemIncense", new ItemStack(DCsAppleMilk.incenseClam, 1, 0));
+		OreDictionary.registerOre("itemIncense", new ItemStack(DCsAppleMilk.incenseFrank, 1, 0));
+		OreDictionary.registerOre("itemIncense", new ItemStack(DCsAppleMilk.incenseIce, 1, 0));
+		OreDictionary.registerOre("itemIncense", new ItemStack(DCsAppleMilk.incenseLavender, 1, 0));
+		OreDictionary.registerOre("itemIncense", new ItemStack(DCsAppleMilk.incenseMint, 1, 0));
+		OreDictionary.registerOre("itemIncense", new ItemStack(DCsAppleMilk.incenseRose, 1, 0));
+		OreDictionary.registerOre("itemIncense", new ItemStack(DCsAppleMilk.incenseSandalwood, 1, 0));
+		OreDictionary.registerOre("itemIncense", new ItemStack(DCsAppleMilk.incenseVanilla, 1, 0));
+		OreDictionary.registerOre("itemIncense", new ItemStack(DCsAppleMilk.incenseYuzu, 1, 0));
+		OreDictionary.registerOre("itemEssentialOil", new ItemStack(DCsAppleMilk.essentialOil, 1, 0));
+
 	}
 
 }

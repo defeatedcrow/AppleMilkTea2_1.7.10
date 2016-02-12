@@ -8,11 +8,15 @@ import mods.defeatedcrow.api.potion.PotionLivingBase;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.item.magic.ItemPrincessClam;
+import mods.defeatedcrow.handler.Coord;
+import mods.defeatedcrow.handler.CoordListRegister;
 import mods.defeatedcrow.network.DCsNetworkHandler;
 import mods.defeatedcrow.network.MessageCharmWarp;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -66,7 +70,7 @@ public class DCsLivingEvent {
 					}
 				}
 
-				if (!keyDown) {
+				if (player.worldObj.isRemote && !keyDown) {
 					if (DCsAppleMilk.proxy.isWarpKeyDown()) {
 						keyDown = true;
 						ItemStack charm = null;
@@ -187,43 +191,79 @@ public class DCsLivingEvent {
 			ArrayList<PotionEffect> potions = new ArrayList<PotionEffect>();
 
 			if (living != null && !living.worldObj.isRemote) {
-				// PotionEffectのリスト
-				Iterator iterator = living.getActivePotionEffects().iterator();
 
-				while (iterator.hasNext()) {
-					PotionEffect effect = (PotionEffect) iterator.next();
+				boolean f = true;
+				if (living instanceof EntityLiving && ((EntityLiving) living).hasCustomNameTag()) {
 
-					int id = effect.getPotionID();
-					Potion potion = Potion.potionTypes[id];
-
-					if (potion != null && potion instanceof PotionLivingBase) {
-						potions.add(effect);
+				} else {
+					if (living instanceof IMob) {
+						f = false;
+					} else if (living.riddenByEntity != null && living.riddenByEntity instanceof IMob) {
+						f = false;
+					} else if (living.ridingEntity != null && living.ridingEntity instanceof IMob) {
+						f = false;
 					}
-
-					if (potion != null && potion.id == potion.jump.id) {
-						living.fallDistance = 0.0F;
-					}
-
-					if (living.ridingEntity != null && living.ridingEntity instanceof EntityLivingBase) {
-						EntityLivingBase riding = (EntityLivingBase) event.entity.ridingEntity;
-						if (potion != null) {
-							riding.addPotionEffect(effect);
-						}
-					}
-
 				}
-			}
 
-			for (PotionEffect eff : potions) {
-				Potion potion = Potion.potionTypes[eff.getPotionID()];
-				int amp = eff.getAmplifier();
-				int dur = eff.getDuration();
+				if (!f) {
+					int x = MathHelper.floor_double(living.posX);
+					int y = MathHelper.floor_double(living.posY);
+					int z = MathHelper.floor_double(living.posZ);
+					int cX = x >> 4;
+					int cZ = z >> 4;
+					Coord cood = new Coord(cX, cZ, living.worldObj.provider.dimensionId);
+					if (CoordListRegister.isCoodIncluded(cood)) {
+						if (living.riddenByEntity != null) {
+							living.riddenByEntity.setDead();
+						}
+						if (living.ridingEntity != null) {
+							living.ridingEntity.setDead();
+						}
+						living.setDead();
+					} else {
+						f = true;
+					}
+				}
 
-				if (potion != null && potion instanceof PotionLivingBase) {
-					PotionLivingBase immunity = (PotionLivingBase) potion;
+				if (f) {
+					// PotionEffectのリスト
+					Iterator iterator = living.getActivePotionEffects().iterator();
 
-					if (immunity.formPotionEffect(amp, immunity.id, living)) {
-						AMTLogger.debugInfo("Succeeded to form effect of PotionLivingBase.");
+					while (iterator.hasNext()) {
+						PotionEffect effect = (PotionEffect) iterator.next();
+
+						int id = effect.getPotionID();
+						Potion potion = Potion.potionTypes[id];
+
+						if (potion != null && potion instanceof PotionLivingBase) {
+							potions.add(effect);
+						}
+
+						if (potion != null && potion.id == potion.jump.id) {
+							living.fallDistance = 0.0F;
+						}
+
+						if (living.ridingEntity != null && living.ridingEntity instanceof EntityLivingBase) {
+							EntityLivingBase riding = (EntityLivingBase) event.entity.ridingEntity;
+							if (potion != null) {
+								riding.addPotionEffect(effect);
+							}
+						}
+
+					}
+
+					for (PotionEffect eff : potions) {
+						Potion potion = Potion.potionTypes[eff.getPotionID()];
+						int amp = eff.getAmplifier();
+						int dur = eff.getDuration();
+
+						if (potion != null && potion instanceof PotionLivingBase) {
+							PotionLivingBase immunity = (PotionLivingBase) potion;
+
+							if (immunity.formPotionEffect(amp, immunity.id, living)) {
+								AMTLogger.debugInfo("Succeeded to form effect of PotionLivingBase.");
+							}
+						}
 					}
 				}
 			}

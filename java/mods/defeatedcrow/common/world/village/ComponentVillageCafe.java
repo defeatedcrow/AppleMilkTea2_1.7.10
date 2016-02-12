@@ -152,6 +152,11 @@ public class ComponentVillageCafe extends StructureVillagePieces.Village {
 		this.placeBlockAtCurrentPosition(world, DCsAppleMilk.teaMakerNext, f, 3, 3, 5, structureboundingbox);
 		this.placeBlockAtCurrentPosition(world, DCsAppleMilk.emptyCup, f, 2, 3, 5, structureboundingbox);
 
+		// 20%
+		if (random.nextInt(5) == 0) {
+			this.placeBlockAtCurrentPosition(world, DCsAppleMilk.crowDoll, f, 1, 3, 5, structureboundingbox);
+		}
+
 		// チェスト
 		this.placeBlockAtCurrentPosition(world, Blocks.air, 0, 1, 1, 6, structureboundingbox);
 		if (!this.hasMadeChest) {

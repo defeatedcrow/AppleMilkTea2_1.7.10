@@ -8,13 +8,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class SpawnCancelEvent {
 
 	@SubscribeEvent
-	public void onSpawnEvent(EntityJoinWorldEvent event) {
+	public void onSpawnEvent(LivingSpawnEvent.CheckSpawn event) {
 		Entity entity = event.entity;
 		World world = event.world;
 
@@ -30,7 +31,20 @@ public class SpawnCancelEvent {
 			int cZ = z >> 4;
 			Coord cood = new Coord(cX, cZ, world.provider.dimensionId);
 			if (CoordListRegister.isCoodIncluded(cood)) {
-				event.setCanceled(true);
+				if (entity.ridingEntity != null) {
+					Entity ride = entity.ridingEntity;
+					ride.riddenByEntity = null;
+					entity.ridingEntity = null;
+					ride.setDead();
+
+				}
+				if (entity.riddenByEntity != null) {
+					Entity rider = entity.riddenByEntity;
+					rider.ridingEntity = null;
+					entity.riddenByEntity = null;
+					rider.setDead();
+				}
+				event.setResult(Result.DENY);
 			}
 		}
 	}

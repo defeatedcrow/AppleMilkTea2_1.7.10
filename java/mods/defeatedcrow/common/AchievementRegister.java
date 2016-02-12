@@ -92,7 +92,7 @@ public class AchievementRegister {
 				DCsAppleMilk.chocoBlock, 1, 1), makeRice)).setSpecial().registerStat();
 
 		getTea = (new Achievement("defeatedcrow.getTea", "dc.getTea", -3, -4, new ItemStack(DCsAppleMilk.teacupBlock,
-				1, 2), craftTeaMaker)).registerStat();
+				1, 4), craftTeaMaker)).registerStat();
 
 		getAppleMilkTea = (new Achievement("defeatedcrow.applemilktea", "dc.getAppleMilkTea", -4, -6, new ItemStack(
 				DCsAppleMilk.teaCup2, 1, 3), getTea)).setSpecial().registerStat();

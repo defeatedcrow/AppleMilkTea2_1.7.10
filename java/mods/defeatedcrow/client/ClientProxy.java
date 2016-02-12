@@ -396,41 +396,41 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public boolean isShiftKeyDown() {
-		return Keyboard.isKeyDown(Keyboard.KEY_LSHIFT);
+		return Keyboard.isCreated() && Keyboard.isKeyDown(Keyboard.KEY_LSHIFT);
 	}
 
 	@Override
 	public boolean isJumpKeyDown() {
-		return Keyboard.isKeyDown(KeyConfigHelper.getJumpKey());
+		return Keyboard.isCreated() && Keyboard.isKeyDown(KeyConfigHelper.getJumpKey());
 	}
 
 	@Override
 	public boolean isSneakKeyDown() {
-		return Keyboard.isKeyDown(KeyConfigHelper.getSneakKey());
+		return Keyboard.isCreated() && Keyboard.isKeyDown(KeyConfigHelper.getSneakKey());
 	}
 
 	@Override
 	public boolean isFowardKeyDown() {
-		return Keyboard.isKeyDown(KeyConfigHelper.getFowardKey());
+		return Keyboard.isCreated() && Keyboard.isKeyDown(KeyConfigHelper.getFowardKey());
 	}
 
 	@Override
 	public boolean isBackKeyDown() {
-		return Keyboard.isKeyDown(KeyConfigHelper.getBackKey());
+		return Keyboard.isCreated() && Keyboard.isKeyDown(KeyConfigHelper.getBackKey());
 	}
 
 	@Override
 	public boolean isLeftKeyDown() {
-		return Keyboard.isKeyDown(KeyConfigHelper.getLeftKey());
+		return Keyboard.isCreated() && Keyboard.isKeyDown(KeyConfigHelper.getLeftKey());
 	}
 
 	@Override
 	public boolean isRightKeyDown() {
-		return Keyboard.isKeyDown(KeyConfigHelper.getRightKey());
+		return Keyboard.isCreated() && Keyboard.isKeyDown(KeyConfigHelper.getRightKey());
 	}
 
 	@Override
 	public boolean isWarpKeyDown() {
-		return DCsConfig.charmWarpKey == 0 ? false : Keyboard.isKeyDown(DCsConfig.charmWarpKey);
+		return DCsConfig.charmWarpKey == 0 ? false : Keyboard.isCreated() && Keyboard.isKeyDown(DCsConfig.charmWarpKey);
 	}
 }

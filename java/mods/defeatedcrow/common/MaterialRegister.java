@@ -19,6 +19,7 @@ import mods.defeatedcrow.common.block.ItemCLampOp;
 import mods.defeatedcrow.common.block.ItemChalcedony;
 import mods.defeatedcrow.common.block.ItemChalcedonyLamp;
 import mods.defeatedcrow.common.block.ItemChopsticksBox;
+import mods.defeatedcrow.common.block.ItemCrowDoll;
 import mods.defeatedcrow.common.block.ItemFlintBlock;
 import mods.defeatedcrow.common.block.ItemWoodPanel;
 import mods.defeatedcrow.common.block.appliance.BlockAdvProcessor;
@@ -391,7 +392,7 @@ public class MaterialRegister {
 		GameRegistry.registerBlock(DCsAppleMilk.rotaryDial, "defeatedcrow.rotaryDial");
 		GameRegistry.registerBlock(DCsAppleMilk.yuzuFence, "defeatedcrow.yuzuFence");
 		GameRegistry.registerBlock(DCsAppleMilk.woodPanel, ItemWoodPanel.class, "defeatedcrow.woodPanel");
-		GameRegistry.registerBlock(DCsAppleMilk.crowDoll, "defeatedcrow.crowFigure");
+		GameRegistry.registerBlock(DCsAppleMilk.crowDoll, ItemCrowDoll.class, "defeatedcrow.crowFigure");
 
 		// 食べ物
 		GameRegistry.registerBlock(DCsAppleMilk.bowlBlock, EntityItemBowl.class, "defeatedcrow.bowlBlock");

@@ -124,7 +124,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.9f",
+		version = "1.7.10_2.9h",
 		dependencies = "required-after:Forge@[10.13.4.1448,)")
 public class DCsAppleMilk {
 
@@ -1190,7 +1190,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "f";
+		return "h";
 	}
 
 	public String getModName() {

@@ -1,5 +1,8 @@
 package mods.defeatedcrow.api.appliance;
 
+/*
+ * 鍋のフォンデュレシピに使うスープタイプ
+ * */
 public enum SoupType {
 	EMPTY(0, "Empty", "defeatedcrow:textures/blocks/contents/water.png", "defeatedcrow:contents/water"),
 	WATER(1, "Water", "defeatedcrow:textures/blocks/contents/water.png", "defeatedcrow:contents/water"),

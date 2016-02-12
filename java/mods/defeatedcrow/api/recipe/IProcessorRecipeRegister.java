@@ -19,7 +19,7 @@ public interface IProcessorRecipeRegister {
 	 * @param output
 	 *            : 完成品
 	 * @param secondary
-	 *            : 完成品(液体)
+	 *            : 副生成物
 	 * @param isFoodRecipe
 	 *            : Processor用レシピかどうか
 	 * @param tier
@@ -41,7 +41,7 @@ public interface IProcessorRecipeRegister {
 	 * @param output
 	 *            : 完成品
 	 * @param secondary
-	 *            : 完成品(液体)
+	 *            : 副生成物
 	 * @param isFoodRecipe
 	 *            : Processor用レシピかどうか
 	 * @param tier
@@ -61,7 +61,7 @@ public interface IProcessorRecipeRegister {
 	 * @param output
 	 *            : 完成品
 	 * @param secondary
-	 *            : 完成品(液体)
+	 *            : 副生成物
 	 * @param isFoodRecipe
 	 *            : Processor用レシピかどうか
 	 * @param tier
@@ -77,7 +77,7 @@ public interface IProcessorRecipeRegister {
 	 * @param output
 	 *            : 完成品
 	 * @param secondary
-	 *            : 完成品(液体)
+	 *            : 副生成物
 	 * @param isFoodRecipe
 	 *            : Processor用レシピかどうか
 	 * @param forceReturnContainer
@@ -96,7 +96,7 @@ public interface IProcessorRecipeRegister {
 	 * @param output
 	 *            : 完成品
 	 * @param secondary
-	 *            : 完成品(液体)
+	 *            : 副生成物
 	 * @param isFoodRecipe
 	 *            : Processor用レシピかどうか
 	 * @param secondaryChance
@@ -112,7 +112,7 @@ public interface IProcessorRecipeRegister {
 	 * @param output
 	 *            : 完成品
 	 * @param secondary
-	 *            : 完成品(液体)
+	 *            : 副生成物
 	 * @param isFoodRecipe
 	 *            : Processor用レシピかどうか
 	 * @param input

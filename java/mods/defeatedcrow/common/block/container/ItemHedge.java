@@ -1,6 +1,7 @@
 package mods.defeatedcrow.common.block.container;
 
 import mods.defeatedcrow.api.ICompressedItem;
+import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -14,7 +15,8 @@ public class ItemHedge extends ItemBlock implements ICompressedItem {
 			"_photinia",
 			"_snakegourd",
 			"_osmanthus",
-			"_boxwood_g" };
+			"_boxwood_g",
+			"_tatibana_n" };
 
 	public ItemHedge(Block block) {
 		super(block);
@@ -25,7 +27,7 @@ public class ItemHedge extends ItemBlock implements ICompressedItem {
 	@Override
 	public String getUnlocalizedName(ItemStack par1ItemStack) {
 		int m = (par1ItemStack.getItemDamage() & 7);
-		if (m < 6)
+		if (m < 7)
 			return super.getUnlocalizedName() + types[m];
 		else
 			return super.getUnlocalizedName() + m;
@@ -41,8 +43,10 @@ public class ItemHedge extends ItemBlock implements ICompressedItem {
 		if (cont == null || cont.getItem() == null)
 			return null;
 		int m = cont.getItemDamage();
-		if (m < 7) {
+		if (m < 6) {
 			return new ItemStack(Blocks.sapling, 9, m);
+		} else if (m == 6) {
+			return new ItemStack(DCsAppleMilk.saplingYuzu, 9, 0);
 		} else {
 			return null;
 		}
