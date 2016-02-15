@@ -4,8 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.item.magic.ItemPrincessClam;
@@ -13,25 +11,22 @@ import mods.defeatedcrow.common.tile.TileCPanel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockFence;
-import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockCPanel extends BlockContainer {
 
@@ -52,14 +47,17 @@ public class BlockCPanel extends BlockContainer {
 		return DCsAppleMilk.modelCPanel;
 	}
 
+	@Override
 	public boolean isOpaqueCube() {
 		return false;
 	}
 
+	@Override
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
 
+	@Override
 	public boolean canProvidePower() {
 		return true;
 	}
@@ -75,6 +73,7 @@ public class BlockCPanel extends BlockContainer {
 		}
 	}
 
+	@Override
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer,
 			int par6, float par7, float par8, float par9) {
 		ItemStack item = par5EntityPlayer.inventory.getCurrentItem();
@@ -137,6 +136,7 @@ public class BlockCPanel extends BlockContainer {
 		return true;
 	}
 
+	@Override
 	public void setBlockBoundsForItemRender() {
 		float f = 0.5F;
 		float f1 = 0.125F;
@@ -144,10 +144,12 @@ public class BlockCPanel extends BlockContainer {
 		this.setBlockBounds(0.5F - f, 0.5F - f1, 0.5F - f2, 0.5F + f, 0.5F + f1, 0.5F + f2);
 	}
 
+	@Override
 	public int getMobilityFlag() {
 		return 1;
 	}
 
+	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_) {
 		this.setPlateBound(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
 	}
@@ -163,24 +165,29 @@ public class BlockCPanel extends BlockContainer {
 		}
 	}
 
+	@Override
 	public int tickRate(World p_149738_1_) {
 		return 20;
 	}
 
+	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_,
 			int p_149668_4_) {
 		return null;
 	}
 
+	@Override
 	public boolean getBlocksMovement(IBlockAccess p_149655_1_, int p_149655_2_, int p_149655_3_, int p_149655_4_) {
 		return true;
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		return world.doesBlockHaveSolidTopSurface(world, x, y - 1, z)
 				|| BlockFence.func_149825_a(world.getBlock(x, y - 1, z));
 	}
 
+	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
 		boolean flag = false;
 
@@ -195,6 +202,7 @@ public class BlockCPanel extends BlockContainer {
 		}
 	}
 
+	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		if (!world.isRemote) {
 			int i = this.strengthAsMeta(world.getBlockMetadata(x, y, z));
@@ -207,6 +215,7 @@ public class BlockCPanel extends BlockContainer {
 
 	// このブロックのメインイベント。
 	// 感圧板としてのアップデート+ワープ処理。
+	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		if (!world.isRemote) {
 			int i = this.strengthAsMeta(world.getBlockMetadata(x, y, z));
@@ -373,12 +382,12 @@ public class BlockCPanel extends BlockContainer {
 			world.setBlockMetadataWithNotify(x, y, z, (meta & 7), 2);
 			this.notifyPlate(world, x, y, z);
 			world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
-			world.playSoundEffect((double) x + 0.5D, (double) y + 0.1D, (double) z + 0.5D, "random.click", 0.3F, 0.5F);
+			world.playSoundEffect(x + 0.5D, y + 0.1D, z + 0.5D, "random.click", 0.3F, 0.5F);
 		} else if (flag1 && !flag) {
 			world.setBlockMetadataWithNotify(x, y, z, (meta | 8), 2);
 			this.notifyPlate(world, x, y, z);
 			world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
-			world.playSoundEffect((double) x + 0.5D, (double) y + 0.1D, (double) z + 0.5D, "random.click", 0.3F, 0.6F);
+			world.playSoundEffect(x + 0.5D, y + 0.1D, z + 0.5D, "random.click", 0.3F, 0.6F);
 		}
 
 		if (flag1) {
@@ -388,10 +397,10 @@ public class BlockCPanel extends BlockContainer {
 
 	protected AxisAlignedBB func_150061_a(int x, int y, int z) {
 		float f = 0.125F;
-		return AxisAlignedBB.getBoundingBox((double) ((float) x + f), (double) y, (double) ((float) z + f),
-				(double) ((float) (x + 1) - f), (double) y + 0.25D, (double) ((float) (z + 1) - f));
+		return AxisAlignedBB.getBoundingBox(x + f, y, z + f, x + 1 - f, y + 0.25D, z + 1 - f);
 	}
 
+	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
 		if (this.strengthAsMeta(meta) > 0) {
 			this.notifyPlate(world, x, y, z);
@@ -405,17 +414,16 @@ public class BlockCPanel extends BlockContainer {
 				float f1 = world.rand.nextFloat() * 0.8F + 0.1F;
 				float f2 = world.rand.nextFloat() * 0.8F + 0.1F;
 
-				EntityItem entityitem = new EntityItem(world, (double) ((float) x + f), (double) ((float) y + f1),
-						(double) ((float) z + f2), drop.copy());
+				EntityItem entityitem = new EntityItem(world, x + f, y + f1, z + f2, drop.copy());
 
 				if (drop.hasTagCompound()) {
 					entityitem.getEntityItem().setTagCompound((NBTTagCompound) drop.getTagCompound().copy());
 				}
 
 				float f3 = 0.05F;
-				entityitem.motionX = (double) ((float) world.rand.nextGaussian() * f3);
-				entityitem.motionY = (double) ((float) world.rand.nextGaussian() * f3 + 0.2F);
-				entityitem.motionZ = (double) ((float) world.rand.nextGaussian() * f3);
+				entityitem.motionX = (float) world.rand.nextGaussian() * f3;
+				entityitem.motionY = (float) world.rand.nextGaussian() * f3 + 0.2F;
+				entityitem.motionZ = (float) world.rand.nextGaussian() * f3;
 				world.spawnEntityInWorld(entityitem);
 			}
 		}
@@ -428,12 +436,14 @@ public class BlockCPanel extends BlockContainer {
 		world.notifyBlocksOfNeighborChange(x, y - 1, z, this);
 	}
 
+	@Override
 	public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int p_149709_5_) {
 		return this.strengthAsMeta(world.getBlockMetadata(x, y, z));
 	}
 
+	@Override
 	public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int meta) {
-		return meta > 7 ? this.strengthAsMeta(world.getBlockMetadata(x, y, z)) : 0;
+		return this.strengthAsMeta(world.getBlockMetadata(x, y, z));
 	}
 
 	protected int calcStrength(World world, int x, int y, int z) {

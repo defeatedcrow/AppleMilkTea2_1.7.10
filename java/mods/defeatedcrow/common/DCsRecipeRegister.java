@@ -484,6 +484,16 @@ public class DCsRecipeRegister {
 					new ItemStack(Blocks.sapling, 1, i) });
 		}
 
+		GameRegistry.addRecipe(new ItemStack(DCsAppleMilk.hedge, 1, 6), new Object[] {
+				"UUU",
+				"UUU",
+				"UUU",
+				Character.valueOf('U'),
+				new ItemStack(DCsAppleMilk.saplingYuzu, 1, 0) });
+
+		GameRegistry.addShapelessRecipe(new ItemStack(DCsAppleMilk.saplingYuzu, 9, 0), new ItemStack(
+				DCsAppleMilk.hedge, 1, 6));
+
 		for (int i = 0; i < 4; i++) {
 			int[] k = {
 					4,
