@@ -1,4 +1,4 @@
-## AppleMilkTea 2.9h 1.7.10
+## AppleMilkTea 2 1.7.10
 
 ### 動作環境:
 ・Minecraft 1.7.10
