@@ -83,6 +83,7 @@ public class DCsConfig {
 	public static boolean bonemealClam = true;
 	public static boolean allowEdibleEntities = true;
 	public static boolean fearMelon = false;
+	public static boolean completeFearMelon = false;
 	public static boolean enableMobBlock[] = {
 			true,
 			true,
@@ -171,6 +172,8 @@ public class DCsConfig {
 					"Disable destruction by explosion of melon.");
 			Property melonFear = cfg.get("entity setting", "Silky Melon of Fear", fearMelon,
 					"Silky Melon can destroy all blocks except blocks that coordinates Y = 1.");
+			Property completeFear = cfg.get("entity setting", "Silky Melon of the Complete Fear", completeFearMelon,
+					"Silky Melon can destroy all blocks include bedrock, and force it to drop.");
 			Property missileExplosion = cfg.get("entity setting", "Dsiable Missile Explosion", disableMissileExplosion,
 					"Disable explosion of missiles generated from the Fossil Scale.");
 			Property safetyChoco = cfg.get("setting", "Safety Chocolate Gift", safetyChocolate,
@@ -310,6 +313,7 @@ public class DCsConfig {
 			entityIdMelon = entityMelon.getInt();
 			canExplodeMelon = explodeMelon.getBoolean(false);
 			fearMelon = melonFear.getBoolean(false);
+			completeFearMelon = completeFear.getBoolean();
 
 			entityIdIce = entityIce.getInt();
 			entityIdCup = entityCup.getInt();

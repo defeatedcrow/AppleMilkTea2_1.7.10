@@ -90,7 +90,7 @@ public class EntitySilkyMelon extends Entity {
 
 	public EntitySilkyMelon(World par1World, double par2, double par4, double par6) {
 		this(par1World);
-		this.setPosition(par2, par4 + (double) this.yOffset, par6);
+		this.setPosition(par2, par4 + this.yOffset, par6);
 		this.motionX = 0.0D;
 		this.motionY = 0.0D;
 		this.motionZ = 0.0D;
@@ -101,7 +101,7 @@ public class EntitySilkyMelon extends Entity {
 
 	@Override
 	public double getMountedYOffset() {
-		return (double) this.height * 0.0D + 0.06000001192092896D;
+		return this.height * 0.0D + 0.06000001192092896D;
 	}
 
 	@Override
@@ -174,7 +174,7 @@ public class EntitySilkyMelon extends Entity {
 			for (int i = -2; i < 3; i++) {
 				for (int k = -2; k < 3; k++) {
 					for (int j = -2; j < 3; j++) {
-						if (Y - j > 0 && Y - j < 255 && !this.worldObj.isAirBlock(X + i, Y - j, Z + k)) {
+						if (Y - j >= 0 && Y - j < 255 && !this.worldObj.isAirBlock(X + i, Y - j, Z + k)) {
 
 							Block block = this.worldObj.getBlock(X + i, Y - j, Z + k);
 							int meta = this.worldObj.getBlockMetadata(X + i, Y - j, Z + k);
@@ -183,22 +183,31 @@ public class EntitySilkyMelon extends Entity {
 								if (block.getExplosionResistance(this) > 1000
 										|| block.getBlockHardness(worldObj, X + i, Y - j, Z + k) < 0)
 									canBreak = false;
-								if (DCsConfig.fearMelon)
+								if (DCsConfig.fearMelon && Y - j > 0)
+									canBreak = true;
+								if (DCsConfig.completeFearMelon)
 									canBreak = true;
 
 								boolean c = block.hasTileEntity(meta) || !block.renderAsNormalBlock();
 
 								if (canBreak) {
-									if (c) {
-										this.worldObj.setBlockToAir(X + i, Y - j, Z + k);
+									if (block.hasTileEntity(meta)) {
+										// this.worldObj.setBlockToAir(X + i, Y - j, Z + k);
+										// 破壊しないようにしてみる
 									} else if (block.getMaterial() == Material.water
 											|| block.getMaterial() == Material.lava
 											|| block instanceof BlockFluidClassic) {
+										// 液体は消去
 										this.worldObj.setBlockToAir(X + i, Y - j, Z + k);
 									} else {
-										ItemStack drop = new ItemStack(block, 1, meta);
-										this.worldObj.setBlockToAir(X + i, Y - j, Z + k);
-										this.entityDropItem(drop, 1.0F);
+										// 非固形Blockの破壊はコンフィグで可否を設定
+										if (!block.renderAsNormalBlock() || DCsConfig.completeFearMelon) {
+											ItemStack drop = new ItemStack(block, 1, meta);
+											this.worldObj.setBlockToAir(X + i, Y - j, Z + k);
+											this.entityDropItem(drop, 1.0F);
+										} else {
+											this.worldObj.setBlockToAir(X + i, Y - j, Z + k);
+										}
 									}
 								}
 							}
@@ -250,8 +259,8 @@ public class EntitySilkyMelon extends Entity {
 		this.boatX = par1;
 		this.boatY = par3;
 		this.boatZ = par5;
-		this.boatYaw = (double) par7;
-		this.boatPitch = (double) par8;
+		this.boatYaw = par7;
+		this.boatPitch = par8;
 		this.motionX = this.velocityX;
 		this.motionY = this.velocityY;
 		this.motionZ = this.velocityZ;
@@ -299,16 +308,14 @@ public class EntitySilkyMelon extends Entity {
 
 		// 当たり判定が水中にあるか？
 		for (int i = 0; i < b0; ++i) {
-			double d1 = this.boundingBox.minY + (this.boundingBox.maxY - this.boundingBox.minY) * (double) (i + 0)
-					/ (double) b0 - 0.125D;
-			double d2 = this.boundingBox.minY + (this.boundingBox.maxY - this.boundingBox.minY) * (double) (i + 1)
-					/ (double) b0 - 0.125D;
+			double d1 = this.boundingBox.minY + (this.boundingBox.maxY - this.boundingBox.minY) * (i + 0) / b0 - 0.125D;
+			double d2 = this.boundingBox.minY + (this.boundingBox.maxY - this.boundingBox.minY) * (i + 1) / b0 - 0.125D;
 			AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(this.boundingBox.minX, d1,
 					this.boundingBox.minZ, this.boundingBox.maxX, d2, this.boundingBox.maxZ);
 
 			// 浮力
 			if (this.worldObj.isAABBInMaterial(axisalignedbb, Material.water)) {
-				d0 += 1.0D / (double) b0;
+				d0 += 1.0D / b0;
 			}
 		}
 
@@ -318,12 +325,12 @@ public class EntitySilkyMelon extends Entity {
 
 		// 水しぶき生成
 		if (d3 > 0.26249999999999996D && this.inWater) {
-			d4 = Math.cos((double) this.rotationYaw * Math.PI / 180.0D);
-			d5 = Math.sin((double) this.rotationYaw * Math.PI / 180.0D);
+			d4 = Math.cos(this.rotationYaw * Math.PI / 180.0D);
+			d5 = Math.sin(this.rotationYaw * Math.PI / 180.0D);
 
-			for (int j = 0; (double) j < 1.0D + d3 * 60.0D; ++j) {
-				double d6 = (double) (this.rand.nextFloat() * 2.0F - 1.0F);
-				double d7 = (double) (this.rand.nextInt(2) * 2 - 1) * 0.7D;
+			for (int j = 0; j < 1.0D + d3 * 60.0D; ++j) {
+				double d6 = this.rand.nextFloat() * 2.0F - 1.0F;
+				double d7 = (this.rand.nextInt(2) * 2 - 1) * 0.7D;
 				double d8;
 				double d9;
 
@@ -347,13 +354,13 @@ public class EntitySilkyMelon extends Entity {
 		// 向きと加速度の変化？
 		if (this.worldObj.isRemote && this.field_70279_a) {
 			if (this.boatPosRotationIncrements > 0) {
-				d4 = this.posX + (this.boatX - this.posX) / (double) this.boatPosRotationIncrements;
-				d5 = this.posY + (this.boatY - this.posY) / (double) this.boatPosRotationIncrements;
-				d11 = this.posZ + (this.boatZ - this.posZ) / (double) this.boatPosRotationIncrements;
-				d10 = MathHelper.wrapAngleTo180_double(this.boatYaw - (double) this.rotationYaw);
-				this.rotationYaw = (float) ((double) this.rotationYaw + d10 / (double) this.boatPosRotationIncrements);
-				this.rotationPitch = (float) ((double) this.rotationPitch + (this.boatPitch - (double) this.rotationPitch)
-						/ (double) this.boatPosRotationIncrements);
+				d4 = this.posX + (this.boatX - this.posX) / this.boatPosRotationIncrements;
+				d5 = this.posY + (this.boatY - this.posY) / this.boatPosRotationIncrements;
+				d11 = this.posZ + (this.boatZ - this.posZ) / this.boatPosRotationIncrements;
+				d10 = MathHelper.wrapAngleTo180_double(this.boatYaw - this.rotationYaw);
+				this.rotationYaw = (float) (this.rotationYaw + d10 / this.boatPosRotationIncrements);
+				this.rotationPitch = (float) (this.rotationPitch + (this.boatPitch - this.rotationPitch)
+						/ this.boatPosRotationIncrements);
 				--this.boatPosRotationIncrements;
 				this.setPosition(d4, d5, d11);
 				this.setRotation(this.rotationYaw, this.rotationPitch);
@@ -388,11 +395,11 @@ public class EntitySilkyMelon extends Entity {
 
 			// 乗っているEntityの前進速度
 			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase) {
-				d4 = (double) ((EntityLivingBase) this.riddenByEntity).moveForward;
+				d4 = ((EntityLivingBase) this.riddenByEntity).moveForward;
 
 				if (d4 > 0.0D) {
-					d5 = -Math.sin((double) (this.riddenByEntity.rotationYaw * (float) Math.PI / 180.0F));
-					d11 = Math.cos((double) (this.riddenByEntity.rotationYaw * (float) Math.PI / 180.0F));
+					d5 = -Math.sin(this.riddenByEntity.rotationYaw * (float) Math.PI / 180.0F);
+					d11 = Math.cos(this.riddenByEntity.rotationYaw * (float) Math.PI / 180.0F);
 					this.motionX += d5 * this.speedMultiplier * 0.05000000074505806D;
 					this.motionZ += d11 * this.speedMultiplier * 0.05000000074505806D;
 				}
@@ -458,15 +465,15 @@ public class EntitySilkyMelon extends Entity {
 
 			// また向きを調整している？
 			this.rotationPitch = 0.0F;
-			d5 = (double) this.rotationYaw;
+			d5 = this.rotationYaw;
 			d11 = this.prevPosX - this.posX;
 			d10 = this.prevPosZ - this.posZ;
 
 			if (d11 * d11 + d10 * d10 > 0.001D) {
-				d5 = (double) ((float) (Math.atan2(d10, d11) * 180.0D / Math.PI));
+				d5 = ((float) (Math.atan2(d10, d11) * 180.0D / Math.PI));
 			}
 
-			double d12 = MathHelper.wrapAngleTo180_double(d5 - (double) this.rotationYaw);
+			double d12 = MathHelper.wrapAngleTo180_double(d5 - this.rotationYaw);
 
 			if (d12 > 20.0D) {
 				d12 = 20.0D;
@@ -476,7 +483,7 @@ public class EntitySilkyMelon extends Entity {
 				d12 = -20.0D;
 			}
 
-			this.rotationYaw = (float) ((double) this.rotationYaw + d12);
+			this.rotationYaw = (float) (this.rotationYaw + d12);
 			this.setRotation(this.rotationYaw, this.rotationPitch);
 
 			// 当たり判定が乗り物の分拡大されているぽい
@@ -497,8 +504,8 @@ public class EntitySilkyMelon extends Entity {
 
 				// 雪と睡蓮を破壊
 				for (l = 0; l < 4; ++l) {
-					int i1 = MathHelper.floor_double(this.posX + ((double) (l % 2) - 0.5D) * 0.8D);
-					int j1 = MathHelper.floor_double(this.posZ + ((double) (l / 2) - 0.5D) * 0.8D);
+					int i1 = MathHelper.floor_double(this.posX + (l % 2 - 0.5D) * 0.8D);
+					int j1 = MathHelper.floor_double(this.posZ + (l / 2 - 0.5D) * 0.8D);
 
 					for (int k1 = 0; k1 < 2; ++k1) {
 						int l1 = MathHelper.floor_double(this.posY) + k1;
@@ -524,8 +531,8 @@ public class EntitySilkyMelon extends Entity {
 	@Override
 	public void updateRiderPosition() {
 		if (this.riddenByEntity != null) {
-			double d0 = Math.cos((double) this.rotationYaw * Math.PI / 180.0D) * 0.4D;
-			double d1 = Math.sin((double) this.rotationYaw * Math.PI / 180.0D) * 0.4D;
+			double d0 = Math.cos(this.rotationYaw * Math.PI / 180.0D) * 0.4D;
+			double d1 = Math.sin(this.rotationYaw * Math.PI / 180.0D) * 0.4D;
 			this.riddenByEntity.setPosition(this.posX + d0,
 					this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ + d1);
 		}

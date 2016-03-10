@@ -1,7 +1,8 @@
 ﻿#================================================
 #語言:繁體中文
-#對應:AppleMilkTea2-1.7.10_2.8e
-#更新日:2015/9/10
+#對應:AppleMilkTea2-1.7.10_2.9j
+#更新日:2016/2/21
+#翻譯:賽瑟麗雅&GOOGLE
 #================================================
 tile.defeatedcrow.WoodBox_oak.name=橡樹原木箱
 tile.defeatedcrow.WoodBox_spruse.name=衫樹原木箱
@@ -96,6 +97,10 @@ tile.defeatedcrow.cardboardBox_mint.name=裝箱薄荷
 tile.defeatedcrow.cardboardBox_cassis.name=裝箱黑加侖
 tile.defeatedcrow.cardboardBox_camellia.name=裝箱山茶花
 tile.defeatedcrow.cardboardBox_yuzu.name=裝箱柚子
+tile.defeatedcrow.cardboardBox_coffee.name=裝箱咖啡豆
+tile.defeatedcrow.cardboardBox_bamboo.name=裝箱竹子
+tile.defeatedcrow.cardboardBox_tomato.name=裝箱番茄
+tile.defeatedcrow.cardboardBox_grape.name=裝箱葡萄
 tile.defeatedcrow.mobDropBox_rotten.name=壓縮腐肉塊
 tile.defeatedcrow.mobDropBox_bone.name=納骨箱
 tile.defeatedcrow.mobDropBox_ender.name=終界珍珠箱
@@ -175,7 +180,7 @@ tile.defeatedcrow.bowlBlock_BLTsoup.name=培根蔬菜番茄湯
 tile.defeatedcrow.bowlBlock_misosoup.name=味噌湯
 tile.defeatedcrow.bowlBlock_clamsoup.name=蛤蜊的潮汁
 tile.defeatedcrow.bowlBlock15.name=空碗
-tile.defeatedcrow.bowlBlockJP_ric​​e.name=煮熟的米飯(和風)
+tile.defeatedcrow.bowlBlockJP_rice.name=煮熟的米飯(和風)
 tile.defeatedcrow.bowlBlockJP_mushroom.name=燉蘑菇(和風)
 tile.defeatedcrow.bowlBlockJP_stew.name=鮭魚燉(和風)
 tile.defeatedcrow.bowlBlockJP_zousui.name=雞肉菜粥(和風)
@@ -293,8 +298,21 @@ tile.defeatedcrow.filledSoupPan_TONKOTU.name=砂鍋(豚骨)
 tile.defeatedcrow.filledSoupPan_SHOYU.name=砂鍋(醬油)
 tile.defeatedcrow.filledSoupPan_BLOOD.name=砂鍋(血)
 tile.defeatedcrow.filledSoupPan_PURPLE.name=砂鍋(闇)
+tile.defeatedcrow.filledSoupPan_CHEESE.name=砂鍋(起司)
 tile.defeatedcrow.containerBottleW.name=水瓶的籃子
 tile.defeatedcrow.containerSaddle.name=鞍的籃子
+tile.defeatedcrow.hedge_boxwood_n.name=橡樹苗柵欄
+tile.defeatedcrow.hedge_podocarp.name=杉樹苗柵欄
+tile.defeatedcrow.hedge_photinia.name=樺樹苗柵欄
+tile.defeatedcrow.hedge_snakegourd.name=叢林樹苗柵欄
+tile.defeatedcrow.hedge_osmanthus.name=相思樹苗柵欄
+tile.defeatedcrow.hedge_boxwood_g.name=班入りツゲの垣根
+tile.defeatedcrow.hedge_tatibana_n.name=柚子樹苗柵欄
+tile.defeatedcrow.flowerVase_rose.name=玫瑰花束
+tile.defeatedcrow.flowerVase_peony.name=牡丹花束
+tile.defeatedcrow.flowerVase_lilac.name=紫丁香花束
+tile.defeatedcrow.flowerVase_sun.name=向日葵花束
+tile.defeatedcrow.crowFigure.name=烏鴉公仔
 
 item.defeatedcrow.bakedApple.name=烤蘋果
 item.defeatedcrow.appleTart_0.name=蘋果餡餅
@@ -529,6 +547,7 @@ item.defeatedcrow.basesoupitem_SHOYU.name=裝醬油的碗
 item.defeatedcrow.basesoupitem_TONKOTU.name=豚骨高湯的碗
 item.defeatedcrow.basesoupitem_BLOOD.name=鮮血的碗
 item.defeatedcrow.basesoupitem_PURPLE.name=黑暗汁液的碗
+item.defeatedcrow.basesoupitem_CHEESE.name=熱濃起司的碗
 
 item.defeatedcrow.dummyItem.name=液體生成
 item.defeatedcrow.dummyPlate_0.name=鐵板燒
@@ -536,6 +555,12 @@ item.defeatedcrow.dummyPlate_1.name=烤箱
 item.defeatedcrow.containeritemDoorW.name=木門組合束
 item.defeatedcrow.containeritemDoorI.name=鐵門組合束
 item.defeatedcrow.debugArm.name=八眼紫龍
+item.defeatedcrow.jawPlate_0.name=殺菌完畢的顎夾板
+item.defeatedcrow.jawPlate_1.name=石頭的的顎夾板
+item.defeatedcrow.jawPlate_2.name=玉髄的顎夾板
+item.defeatedcrow.jawPlate_3.name=鐵的顎夾板
+item.defeatedcrow.jawPlate_4.name=鋼鐵的顎夾板
+item.defeatedcrow.jawPlate_5.name=特殊合金的顎夾板
 
 entity.compressedMelon.name=壓縮西瓜
 entity.compressedSilkMelon.name=平滑壓縮西瓜

@@ -448,11 +448,11 @@ public class MaterialRegister {
 					.setProtectSuffocation().setPotionName("DCs.potion.protectionSuffocation");
 		}
 		if (Potion.potionTypes[DCsConfig.potionIDHallucinations] == null && DCsConfig.potionIDHallucinations < lim) {
-			DCsAppleMilk.hallucinations = new PotionHallucination(DCsConfig.potionIDHallucinations, true, 0xFF32FF, 8,
-					0).setPotionName("DCs.potion.hallucination");
+			DCsAppleMilk.hallucinations = new PotionHallucination(DCsConfig.potionIDHallucinations, true, 0xFF32FF, 0,
+					1).setPotionName("DCs.potion.hallucination");
 		}
 		if (Potion.potionTypes[DCsConfig.potionIDConfinement] == null && DCsConfig.potionIDConfinement < lim) {
-			DCsAppleMilk.confinement = new PotionConfinement(DCsConfig.potionIDConfinement, true, 0X646464, 9, 0)
+			DCsAppleMilk.confinement = new PotionConfinement(DCsConfig.potionIDConfinement, true, 0X646464, 0, 2)
 					.setPotionName("DCs.potion.confinement");
 		}
 		return true;

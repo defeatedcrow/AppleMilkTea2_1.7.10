@@ -271,8 +271,6 @@ public class LoadModHandler {
 				ItemStack milk = new ItemStack(milk180.get(0).getItem(), 1, milk180.get(0).getItemDamage());
 				if (milk != null) {
 					LoadModHandler.registerModItems("milk180", milk);
-
-					OreDictionary.registerOre("listAllmilk", milk);
 				}
 			}
 

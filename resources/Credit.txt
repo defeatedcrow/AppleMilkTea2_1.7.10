@@ -1,5 +1,5 @@
 Apple&Milk&Tea! mod is authored by defeatedcrow.
-wiki: http://defeatedcrow.wiki.fc2.com/
+wiki: http://defeatedcrow.wiki.fc2.com/ (Old Wiki) and http://defeatedcrow.jp/modwiki/Mainpage (New Wiki)
 forum (unofficial Japanese forum): http://forum.minecraftuser.jp/viewtopic.php?f=13&t=17657
 github: https://github.com/defeatedcrow/AppleMilkTea2_1.7.10
 
@@ -19,6 +19,6 @@ github: https://github.com/defeatedcrow/AppleMilkTea2_1.7.10
 -TunkShif: zh_CN
 -Mrkwtkr: zh_CN
 -Belgabor: en_US
--zoejool8bq: zh_TW
+-zoejook8bq: zh_TW
 -doublrcore: zh_CN, zh_TW
 -doushio9967: en_US
