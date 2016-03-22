@@ -1,6 +1,7 @@
 package mods.defeatedcrow.common.block.container;
 
 import java.util.List;
+import java.util.Random;
 
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
@@ -53,6 +54,18 @@ public class BlockHedge extends Block {
 		super(Material.wood);
 		this.setStepSound(Block.soundTypeGrass);
 		this.setHardness(0.1F);
+		this.setTickRandomly(true);
+	}
+
+	// テクスチャの更新
+	@Override
+	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
+		if (!par1World.isRemote) {
+			int meta = par1World.getBlockMetadata(par2, par3, par4);
+			if (meta == 3 || meta == 6) {
+				par1World.markBlockForUpdate(par2, par3, par4);
+			}
+		}
 	}
 
 	@Override

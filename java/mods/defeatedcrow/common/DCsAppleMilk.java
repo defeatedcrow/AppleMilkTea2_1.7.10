@@ -9,6 +9,7 @@ package mods.defeatedcrow.common;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 
 import mods.defeatedcrow.api.potion.AMTPotionManager;
 import mods.defeatedcrow.common.block.container.BlockCharcoalBox;
@@ -124,7 +125,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.9l",
+		version = "1.7.10_2.9m",
 		dependencies = "required-after:Forge@[10.13.4.1448,)")
 public class DCsAppleMilk {
 
@@ -470,6 +471,8 @@ public class DCsAppleMilk {
 			"defeatedcrow:textures/entity/x32alt/" };
 
 	public static final String[] TEX_PASS_ALT = new String[] { "defeatedcrow:textures/entity/x32alt/" };
+
+	public static final Calendar CAL = Calendar.getInstance();
 
 	@EventHandler
 	public void construct(FMLConstructionEvent event) {
@@ -1190,7 +1193,7 @@ public class DCsAppleMilk {
 	}
 
 	public String getRivision() {
-		return "l";
+		return "m";
 	}
 
 	public String getModName() {

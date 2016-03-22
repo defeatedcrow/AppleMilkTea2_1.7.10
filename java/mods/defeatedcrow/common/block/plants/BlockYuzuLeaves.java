@@ -1,6 +1,7 @@
 package mods.defeatedcrow.common.block.plants;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -65,7 +66,12 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable, IRig
 		this.leavesIcon = new IIcon[3];
 
 		for (int i = 0; i < 3; ++i) {
-			this.leavesIcon[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "leaves_yuzu_" + i);
+			if (i == 2 && DCsAppleMilk.CAL.get(Calendar.MONTH) == 3 && DCsAppleMilk.CAL.get(Calendar.DATE) == 1) {
+				this.leavesIcon[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "leaves_yuzu_" + i
+						+ "_4_1");
+			} else {
+				this.leavesIcon[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "leaves_yuzu_" + i);
+			}
 		}
 
 	}
@@ -246,9 +252,9 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable, IRig
 		if (p_149734_1_.canLightningStrikeAt(p_149734_2_, p_149734_3_ + 1, p_149734_4_)
 				&& !World.doesBlockHaveSolidTopSurface(p_149734_1_, p_149734_2_, p_149734_3_ - 1, p_149734_4_)
 				&& p_149734_5_.nextInt(15) == 1) {
-			double d0 = (double) ((float) p_149734_2_ + p_149734_5_.nextFloat());
-			double d1 = (double) p_149734_3_ - 0.05D;
-			double d2 = (double) ((float) p_149734_4_ + p_149734_5_.nextFloat());
+			double d0 = p_149734_2_ + p_149734_5_.nextFloat();
+			double d1 = p_149734_3_ - 0.05D;
+			double d2 = p_149734_4_ + p_149734_5_.nextFloat();
 			p_149734_1_.spawnParticle("dripWater", d0, d1, d2, 0.0D, 0.0D, 0.0D);
 		}
 	}
@@ -285,7 +291,8 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable, IRig
 	}
 
 	/**
-	 * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
+	 * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the
+	 * coordinates of the
 	 * block and l is the block's subtype/damage.
 	 */
 	@Override
@@ -305,8 +312,10 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable, IRig
 	}
 
 	/**
-	 * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
-	 * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
+	 * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
+	 * shared face of two
+	 * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this
+	 * block.
 	 */
 	@Override
 	public boolean isOpaqueCube() {
@@ -333,8 +342,10 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable, IRig
 	}
 
 	/**
-	 * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage
-	 * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested should return null.
+	 * Returns an item stack containing a single instance of the current block type. 'i' is the
+	 * block's subtype/damage
+	 * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested
+	 * should return null.
 	 */
 	@Override
 	protected ItemStack createStackedBlock(int p_149644_1_) {
@@ -442,8 +453,7 @@ public class BlockYuzuLeaves extends BlockLeavesBase implements IShearable, IRig
 			float a = world.rand.nextFloat() * 0.8F + 0.1F;
 			float a1 = world.rand.nextFloat() * 0.8F + 0.1F;
 			float a2 = world.rand.nextFloat() * 0.8F + 0.1F;
-			EntityItem drop = new EntityItem(world, (double) ((float) x + a), (double) ((float) y + a1),
-					(double) ((float) z + a2), ret);
+			EntityItem drop = new EntityItem(world, x + a, y + a1, z + a2, ret);
 			drop.motionY = 0.25F;
 
 			if (!world.isRemote && world.spawnEntityInWorld(drop)) {
